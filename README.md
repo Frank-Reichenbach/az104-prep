@@ -10,6 +10,13 @@ for the remaining objectives.
 
 ## Start studying
 
+The GitHub Pages address is
+<https://frank-reichenbach.github.io/az104-prep/>. Deployment status is tracked
+in [STATUS.md](STATUS.md). Browser progress is separate from localhost; use
+export/import to move your history between them.
+
+To run locally:
+
 Use Node.js 22 or newer. There are no third-party packages to install.
 
 ```sh
@@ -22,7 +29,10 @@ unless you choose to open a Microsoft source link. Answer keys are available
 locally: this is a personal study tool, not a secure assessment platform.
 
 Choose a topic and either practice (feedback after each question) or test
-(feedback at the end). Multiple-answer questions require the exact answer set.
+(feedback at the end). Test submissions advance immediately. Preparation keeps
+the Next question step. Every question shows its topic. Incorrect results open
+automatically and show your selections plus the correct options; correct
+results remain collapsed. Multiple-answer questions require the exact answer set.
 Progress stays in this browser. Export it before clearing browser storage or
 moving to a different browser. Imported progress replaces current progress.
 
@@ -57,6 +67,8 @@ You can also study without the app:
 npm run build
 npm run check
 npm test
+npm run build:site
+npm run test:browser
 ```
 
 Edit questions in questions/, then rebuild. Do not hand-edit generated/
@@ -69,8 +81,9 @@ Microsoft and does not contain official exam questions.
 
 The GitHub repository is
 [Frank-Reichenbach/az104-prep](https://github.com/Frank-Reichenbach/az104-prep).
-GitHub Pages hosting is planned alongside local usage; the site has not yet
-been deployed by this project setup. See [PLAN.md](PLAN.md) for deployment and
-quiz refinements, and [STATUS.md](STATUS.md) for the next task.
+See [hosting instructions](docs/hosting.md) for the static build and deployment
+workflow, [PLAN.md](PLAN.md) for the scope, and [STATUS.md](STATUS.md) for the
+next task. Browser tests require Google Chrome (or BROWSER_BIN pointing to a
+Chromium executable) and use a disposable profile.
 
 Personal progress exports can be stored under the ignored progress/ directory.

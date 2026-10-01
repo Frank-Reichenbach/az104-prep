@@ -24,16 +24,23 @@ function summarize() {
 function reference(href, text) {
   const link = el('a', text); link.href = href; link.target = '_blank'; link.rel = 'noopener'; return link;
 }
-function explain(q, selected) {
+function topicContext(q) {
+  const topic = bank.topics.find(t => t.id === q.topic);
+  if (!topic) return q.topic;
+  return `${topic.domain[0].toUpperCase()}${topic.domain.slice(1)} › ${topic.title}`;
+}
+function explain(q, selected, compact = false) {
   const box = el('div');
   box.append(el('p', score(q, selected) ? 'Correct answer set.' : 'Incorrect answer set.', score(q, selected) ? 'correct' : 'incorrect'));
   for (const option of q.options) {
     const good = q.correct.includes(option.id);
+    if (compact && !selected.includes(option.id) && !good) continue;
     const p = el('p', undefined, `explanation ${good ? 'correct' : 'incorrect'}`);
+    p.dataset.optionId = option.id;
     p.append(el('strong', `${good ? 'Correct' : 'Incorrect'} option${selected.includes(option.id) ? ' · selected' : ''}: ${option.text} `), document.createTextNode(option.explanation));
     box.append(p);
   }
-  const links = el('p'); links.append(reference('/' + q.knowledge, 'Study this topic'));
+  const links = el('p'); links.append(reference(new URL(q.knowledge, new URL('.', import.meta.url)).href, 'Study this topic'));
   q.sources.forEach((url, i) => links.append(document.createTextNode(' · '), reference(url, `Microsoft source ${i + 1}`)));
   box.append(links, el('p', `Evidence checked ${q.verified} · ${q.id}`, 'muted'));
   return box;
@@ -41,6 +48,7 @@ function explain(q, selected) {
 function renderQuestion() {
   const q = active[position]; submitted = false;
   $('position').textContent = `${mode} · Question ${position + 1} of ${active.length}`;
+  $('question-topic').textContent = topicContext(q);
   $('prompt').textContent = q.prompt;
   $('instruction').textContent = `Select ${q.select} answer${q.select === 1 ? '' : 's'}.`;
   $('choices').replaceChildren($('instruction'));
@@ -64,7 +72,9 @@ function finish() {
   $('review').replaceChildren();
   answers.forEach((a, i) => {
     const details = el('details');
-    details.append(el('summary', `${i + 1}. ${score(a.q, a.selected) ? 'Correct' : 'Review'} — ${a.q.prompt}`), explain(a.q, a.selected));
+    details.open = !score(a.q, a.selected);
+    details.append(el('summary', `${i + 1}. ${score(a.q, a.selected) ? 'Correct' : 'Review'} — ${a.q.prompt}`),
+      el('p', topicContext(a.q), 'muted'), explain(a.q, a.selected, true));
     $('review').append(details);
   });
   show('results'); $('result-title').focus();
@@ -88,13 +98,14 @@ $('answer-form').addEventListener('submit', event => {
   message(); submitted = true; answers.push({ q, selected });
   attempts.push({ id: q.id, revision: q.revision, selected, at: new Date().toISOString() });
   attempts = attempts.slice(-10000); save();
+  if (mode === 'test') { advance(); return; }
   $('choices').disabled = true; $('submit-answer').hidden = true;
-  if (mode === 'practice') $('feedback').append(explain(q, selected));
-  else $('feedback').append(el('p', 'Answer recorded. Explanations appear at the end.'));
+  $('feedback').append(explain(q, selected));
   $('next').hidden = false; $('next').textContent = position + 1 === active.length ? 'View results' : 'Next question';
   $('next').focus();
 });
-$('next').addEventListener('click', () => { if (++position < active.length) renderQuestion(); else finish(); });
+function advance() { if (++position < active.length) renderQuestion(); else finish(); }
+$('next').addEventListener('click', advance);
 $('end').addEventListener('click', () => { if (confirm('End this session? Submitted answers are saved; unanswered questions are not scored.')) finish(); });
 $('again').addEventListener('click', () => { message(); summarize(); show('setup'); $('topic').focus(); });
 $('export').addEventListener('click', () => {
@@ -114,7 +125,7 @@ $('import').addEventListener('change', async event => {
 });
 
 try {
-  const response = await fetch('/data.json');
+  const response = await fetch(new URL('./data.json', import.meta.url));
   if (!response.ok) throw new Error('Question data could not be loaded. Run npm run build.');
   bank = await response.json();
   if (bank.schemaVersion !== 1 || !Array.isArray(bank.questions)) throw new Error('Unsupported question bank.');

@@ -4,81 +4,63 @@ Updated: 2026-10-01. Approved scope: [PLAN.md](PLAN.md).
 
 ## Current increment
 
-Repository foundation and the first storage sample. This is **not** completion
-of the full approved knowledge base. The app currently draws from storage only.
+Quiz refinements and GitHub Pages publication. The knowledge base still has
+three documented objectives out of 82, with 16 questions across 15 families.
+Azure command examples remain documentation-checked, not lab-tested.
 
-- Local Git repository initialized on chore/initial-setup. The user provided
-  https://github.com/Frank-Reichenbach/az104-prep as the origin remote; origin
-  is now configured to that repository's HTTPS Git URL. The planning update is
-  on docs/github-pages-plan.
-- Approved plan, project instructions, README, ignore rules, attributes, and
-  editor configuration added.
-- All 82 task bullets from the April 17, 2026 outline inventoried with local IDs.
-- Three specific topics documented: containers, access tiers, lifecycle.
-- Sixteen original questions across fifteen families, including one reviewed
-  scenario variant. Every option has an explanation and source references.
-- Local app supports topic filtering, practice/test feedback, shuffled options,
-  one variant per family, exact-match scoring, missed-family review, and
-  browser progress export/import.
-- Build generates coverage, printable questions, answer explanations, and app
-  data from the source files.
+Implemented:
+
+- Test submissions advance immediately to the next question or final results.
+- Preparation retains full answer explanations and the Next step.
+- Every question shows its topic, including mixed-topic sessions.
+- Incorrect results open by default; correct results remain collapsed.
+- Result details show selected and correct options, without unrelated
+  distractors or duplicate options for partially correct multiple selections.
+- Relative URLs support local hosting and the /az104-prep/ project path.
+- A static-site build packages app files and study content into _site/.
+- GitHub Actions validates, tests, builds, and deploys using standard runners.
+
+## Publication
+
+Origin: https://github.com/Frank-Reichenbach/az104-prep.git.
+The remote was inspected and confirmed public and empty. The user authorized
+publication until they can test the Pages app. The first published branch will
+be feature/github-pages; no merge is needed for this initial deployment.
+
+Target: https://frank-reichenbach.github.io/az104-prep/.
+Deployment is pending; update this section after checking the live site.
 
 ## Verification
 
-Microsoft documentation was checked on 2026-10-01. Azure commands and policy
-examples have not been executed in Azure.
-
-- npm run build: generated coverage, app data, and printable material.
-- npm run check: validates question structure, mappings, internal links, and
-  reproducibility of generated files.
-- npm test: 10 tests cover exact-match scoring, shuffling, variant exclusion,
-  topic/missed filtering, progress validation, content rejection cases, and
-  local HTTP routes. The HTTP test needed host permission to bind a loopback
-  port; rerunning with that permission completed successfully.
-- No visual or interactive browser review was performed in this session.
-  JavaScript syntax and HTTP behavior were checked separately.
-- Planning update: npm run check and git diff --check completed; origin's fetch
-  and push URLs were verified locally. No app code changed in this update.
+- Content build/check: valid mappings, question structure, internal links, and
+  reproducible generated output.
+- Ten Node tests cover scoring, variants, progress validation, content
+  rejection cases, and local HTTP routing.
+- Chrome automation checked both local-root and project-path hosting. It
+  exercised all available families, valid/invalid submissions, partially
+  correct multiple answers, direct advancement, final results, topic context,
+  compact results, expansion state, preparation feedback, internal HTTP links,
+  and browser history persistence after reload.
+- No Azure resources were deployed and no paid service was configured.
 
 ## Next task
 
-Implement the requested quiz refinements:
+Finish publication and verify the live Pages app. Then let the user test it.
+After the UI feedback, resume storage research: blob/container soft deletion,
+blob versioning, and file-share snapshots/soft deletion (st-14, st-17, st-15).
+Add specific topic files and 3–5 original question families per topic, then
+update exam/topics.json and rebuild.
 
-1. Test submissions advance directly to the next question or final results.
-   Preparation keeps feedback and the Next question button.
-2. Display the topic/module above each question.
-3. Open incorrect results by default; keep correct results collapsed.
-4. Result details show selected answers and, when wrong, the correct answers,
-   without the other distractors. Keep full explanations in preparation mode.
-
-Then implement GitHub Pages packaging and deployment as specified in PLAN.md.
-The expected URL is https://frank-reichenbach.github.io/az104-prep/; it is not
-verified live. No push, Pages activation, or deployment has been performed in
-this planning update. Remote visibility, existing history, and Pages settings
-have not been inspected. The hosting discussion's 1–2 hour estimate remains
-preliminary. This update records the work; it does not implement the UI changes.
-
-After these app tasks, research storage data protection: blob/container soft
-deletion, blob versioning, and file-share
-snapshots/soft deletion (st-14, st-17, st-15). Add separate detailed files and
-3–5 original question families per specific topic. Follow docs/research.md and
-update exam/topics.json, rebuild, and update this handoff.
-
-Then complete the remaining storage objectives, followed by identity/governance,
+Complete the remaining storage objectives, followed by identity/governance,
 compute, networking, and monitoring/recovery. Domain-weighted mixed quizzes
-remain deferred until enough questions exist in every domain. A quiz skill is
-an optional later interface, not required for this first app.
+remain deferred until every domain has enough questions. A skill remains an
+optional later interface.
 
-## Known limits and decisions
+## Limits
 
-- Coverage is 3/82 objectives. A documented objective is not proof of exhaustive
-  scenario coverage or user mastery.
-- Current product docs describe smart tier. It is not included in scored
-  questions; assess its relevance when refreshing the tier topic.
-- No Azure deployments or paid services. GitHub Pages is now the planned
-  public hosting target, while local usage remains supported.
-- The app stores answered-question history, not an unfinished quiz session.
-  Reloading ends the active session but keeps submitted answers when browser
-  storage is available.
-- Knowledge links open Markdown as text in the local server. A formatted
-  document reader is outside the initial basic app.
+- The app has the storage sample, not complete exam preparation.
+- Study progress is browser-local; transfer it using export/import.
+- Reloading ends an unfinished quiz but preserves submitted answers when
+  browser storage is available.
+- Knowledge links expose Markdown. A formatted reader is outside this increment.
+- Smart tier remains supplementary research, not scored content.

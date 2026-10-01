@@ -17,8 +17,8 @@ Pages. Implementation is tracked in [STATUS.md](STATUS.md).
   services for a public repository.
 - Link the local repository to
   [Frank-Reichenbach/az104-prep](https://github.com/Frank-Reichenbach/az104-prep)
-  as origin. Linking the remote is the current Git operation; publication and
-  Pages activation remain implementation milestones, not completed actions.
+  as origin. The user subsequently authorized publication and Pages activation
+  so they can test the hosted app. Check STATUS.md for deployment results.
 - Apply the requested test navigation, topic context, and result display
   refinements before expanding the question bank further.
 

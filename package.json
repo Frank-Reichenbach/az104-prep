@@ -9,6 +9,8 @@
     "start": "node scripts/serve.mjs",
     "build": "node scripts/build.mjs",
     "check": "node scripts/build.mjs --check",
-    "test": "node --test"
+    "test": "node --test",
+    "build:site": "npm run check && node scripts/build-site.mjs",
+    "test:browser": "node scripts/browser-check.mjs"
   }
 }

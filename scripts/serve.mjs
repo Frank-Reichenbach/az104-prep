@@ -7,7 +7,7 @@ import { ROOT } from './content.mjs';
 const assets = new Set(['/index.html', '/style.css', '/main.mjs', '/quiz.mjs', '/data.json']);
 const mime = { '.html': 'text/html', '.css': 'text/css', '.mjs': 'text/javascript', '.json': 'application/json', '.md': 'text/plain' };
 
-export function createStudyServer(root = ROOT) {
+export function createStudyServer(root = ROOT, { basePath = '/', staticSite = false } = {}) {
   return http.createServer(async (req, res) => {
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('Cache-Control', 'no-store');
@@ -15,10 +15,12 @@ export function createStudyServer(root = ROOT) {
     if (!['GET', 'HEAD'].includes(req.method)) { res.writeHead(405); res.end(); return; }
     try {
       let pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+      if (!pathname.startsWith(basePath)) { res.writeHead(404); res.end('Not found'); return; }
+      pathname = '/' + pathname.slice(basePath.length);
       if (pathname === '/') pathname = '/index.html';
       let file;
-      if (assets.has(pathname)) file = path.join(root, 'app', pathname.slice(1));
-      else if (/^\/(knowledge|generated|questions|examples|exam|docs)\/[a-zA-Z0-9_/-]+\.(md|json)$/.test(pathname)) file = path.join(root, pathname.slice(1));
+      if (assets.has(pathname)) file = path.join(root, staticSite ? '' : 'app', pathname.slice(1));
+      else if (/^\/(knowledge|generated|questions|examples|exam|docs|templates)\/[a-zA-Z0-9_/-]+\.(md|json)$/.test(pathname)) file = path.join(root, pathname.slice(1));
       else { res.writeHead(404); res.end('Not found'); return; }
       const actual = await realpath(file);
       if (!actual.startsWith(root + path.sep) || actual !== path.resolve(file)) { res.writeHead(404); res.end('Not found'); return; }

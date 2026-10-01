@@ -12,6 +12,7 @@ credentials.json
 # Dependencies, temporary output, and personal study history
 node_modules/
 coverage/
+_site/
 tmp/
 progress/
 az104-progress*.json

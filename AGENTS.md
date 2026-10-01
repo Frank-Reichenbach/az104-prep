@@ -75,5 +75,8 @@ Do not ask for approval again for work already authorized in PLAN.md.
 - Attribute AI-generated changes with an Assisted-by model trailer. Do not
   invent a human co-author or reviewer.
 - The initial setup branch is chore/initial-setup. No merge is authorized.
+- The user authorized publishing and activating GitHub Pages to test the app.
+  The empty remote is initially published from feature/github-pages; deployment
+  does not require a merge. Keep future merges subject to explicit approval.
 - Do not change global Git configuration. Use the existing Git identity; report
   a missing identity rather than inventing one.
