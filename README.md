@@ -67,5 +67,10 @@ Azure examples are documentation-checked, not lab-tested. This workspace does
 not require an Azure subscription. The study material is independent of
 Microsoft and does not contain official exam questions.
 
-The repository is local, with no remote configured. Personal progress exports
-can be stored under the ignored progress/ directory.
+The GitHub repository is
+[Frank-Reichenbach/az104-prep](https://github.com/Frank-Reichenbach/az104-prep).
+GitHub Pages hosting is planned alongside local usage; the site has not yet
+been deployed by this project setup. See [PLAN.md](PLAN.md) for deployment and
+quiz refinements, and [STATUS.md](STATUS.md) for the next task.
+
+Personal progress exports can be stored under the ignored progress/ directory.

@@ -1,6 +1,7 @@
 # AZ-104 knowledge base and practice app
 
-Status: approved on 2026-10-01. Implementation is tracked in [STATUS.md](STATUS.md).
+Status: approved on 2026-10-01; updated to include quiz refinements and GitHub
+Pages. Implementation is tracked in [STATUS.md](STATUS.md).
 
 ## User decisions
 
@@ -12,6 +13,14 @@ Status: approved on 2026-10-01. Implementation is tracked in [STATUS.md](STATUS.
   ignore rules, attributes, and basic project configuration.
 - This working directory may be structured as needed.
 - Preserve the plan and progress so implementation can span multiple sessions.
+- Keep one app usable both locally and on GitHub Pages, using GitHub's free
+  services for a public repository.
+- Link the local repository to
+  [Frank-Reichenbach/az104-prep](https://github.com/Frank-Reichenbach/az104-prep)
+  as origin. Linking the remote is the current Git operation; publication and
+  Pages activation remain implementation milestones, not completed actions.
+- Apply the requested test navigation, topic context, and result display
+  refinements before expanding the question bank further.
 
 ## Outcome
 
@@ -25,7 +34,8 @@ not just the initial storage sample.
 
 Create the local repository, project instructions, source templates, validation
 commands, and persistent progress records. Keep the app free of runtime package
-dependencies. Do not publish the repository or deploy Azure resources.
+dependencies. Connect the user-provided GitHub remote. Prepare publication
+through the GitHub Pages phase below; do not deploy Azure resources.
 
 ## 2. Inventory the exam
 
@@ -78,15 +88,25 @@ references, generated output, and quiz logic. Review scenario ambiguity and
 Microsoft evidence separately. Test Azure examples only if that work is later
 authorized; documentation verification alone must not be labeled lab testing.
 
-## 6. Build the local study app
+## 6. Refine the study app
 
 Initial functions:
 
 - Topic selection and a configurable quiz length.
 - Shuffled questions and options; one variant per question family.
-- Practice mode with feedback after each answer.
-- Test mode with feedback at the end.
-- Exact-match multiple-answer scoring and explanations for every option.
+- Practice/preparation mode with feedback after each answer and an explicit
+  Next question step.
+- Test mode advances immediately after a valid answer submission, with no
+  recorded-answer confirmation step. The final submission opens the results.
+- Show the topic/module above every question, including mixed-topic sessions,
+  so the Azure service and task are clear.
+- Exact-match multiple-answer scoring. Keep explanations for every option in
+  the question bank and preparation feedback.
+- Session results expand incorrect responses by default and keep correct
+  responses collapsed. Show the selected answers; for an incorrect response,
+  also show the correct answers. Exclude unrelated unselected distractors from
+  the result detail. Handle partially correct multiple-answer selections
+  without duplicating an option that was both selected and correct.
 - Review of missed questions and local progress with export/import.
 - Links from answers to the relevant knowledge files.
 
@@ -98,7 +118,44 @@ percentages are not Microsoft's scaled exam score.
 A skill remains an optional later interface, consuming the same question data.
 Do not duplicate the bank or add a model API requirement to the app.
 
-## 7. Maintain and review
+## 7. Publish the same app with GitHub Pages
+
+Target repository: [Frank-Reichenbach/az104-prep](https://github.com/Frank-Reichenbach/az104-prep).
+Expected project URL: <https://frank-reichenbach.github.io/az104-prep/>.
+This is a planned address, not a statement that the site is live.
+
+Use static HTML, CSS, JavaScript, question data, and study files. Node remains
+a local development/build tool; GitHub Pages does not need to run our server.
+
+Implementation steps:
+
+1. Inspect the remote's visibility, branches, default branch, and Pages settings
+   before publication. Preserve existing remote history if present. Do not
+   assume that linking origin means the remote is empty or publicly visible.
+2. Adapt asset, data, and knowledge links to work at both the local root and
+   the /az104-prep/ project path.
+3. Add a reproducible static-site output containing only the study app and its
+   intended content. Do not include personal progress or local configuration.
+4. Add a GitHub Actions workflow that validates content, runs tests, builds
+   the static output, and deploys through GitHub Pages. Pull requests should
+   validate without deploying; publish from the selected deployment branch.
+5. Use the project's Git conventions for publishing changes. A merge still
+   requires an explicit request or approval.
+6. Enable Pages and verify the published URL, question submission, results,
+   source links, and progress import/export. Keep local usage working.
+
+Cost constraint: use GitHub Pages on a public repository, standard GitHub-hosted
+Actions runners, and the included github.io address. Do not add paid runners,
+a purchased domain, a backend, or a paid service. GitHub documents
+[Pages availability on GitHub Free](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages)
+and [free standard Actions runner usage for public repositories](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
+
+Progress stays in each browser. Export/import transfers it between localhost,
+the published site, or devices; there is no account or automatic synchronization.
+Questions and answer keys are public study material. The preliminary estimate
+for adapting and checking deployment is 1–2 hours, subject to the remote setup.
+
+## 8. Maintain and review
 
 Track source verification dates and affected questions through stable IDs.
 Refresh the exam outline and high-change topics before the exam. Retire or
@@ -119,4 +176,8 @@ are planning suggestions, not assumed weekly commitments.
 - Each question has an unambiguous answer set and a rationale for every option.
 - All generated files can be reproduced; links and question data validate.
 - The local app supports both practice and test flows and portable progress.
+- Test submission advances directly; every question has visible topic context;
+  results open incorrect responses and show only selected/correct options.
+- The same app works locally and at the GitHub Pages project path, with a
+  documented free deployment workflow and verified published site.
 - Coverage, outstanding uncertainties, and source currency remain visible.
