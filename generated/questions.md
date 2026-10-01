@@ -181,3 +181,223 @@ A. Policy changes can take up to 24 hours to take effect and start the first run
 B. Inspect filters and time conditions as well as allowing for execution time.
 C. Every eligible blob must finish changing tier within ten minutes of saving.
 D. Enable anonymous reads to allow lifecycle management to process the blobs.
+
+## st-blob-delete-001
+
+In a flat-namespace Blob Storage account with versioning disabled, a blob is deleted while blob soft-delete retention is 7 days. Two days later, an administrator changes retention to 30 days. Which interval applies to that already-deleted blob?
+
+Select **1**. Difficulty: applied.
+
+A. The original 7-day interval, measured from deletion
+B. 30 days, measured from the original deletion
+C. 30 days, measured from the settings change
+D. Indefinite retention until versioning is enabled
+
+## st-blob-delete-002
+
+A team wants in-account recovery for two accidental operations in Azure Blob Storage: deleting an individual blob while its container remains, and deleting the entire container. Which two settings directly address these respective recovery scopes?
+
+Select **2**. Difficulty: applied.
+
+A. Blob soft delete
+B. Container soft delete
+C. The cool default access tier
+D. Disallow anonymous blob access
+
+## st-blob-delete-003
+
+An application overwrites a block blob using Put Blob in a flat-namespace account. Blob soft delete was enabled before the overwrite, versioning is disabled, and the retention window is still active. Undelete recovers the soft-deleted snapshot, but the current blob still contains the unwanted data. What additional action restores the earlier contents as current?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. Copy the desired recovered snapshot over the current blob
+B. Enable container soft delete and wait
+C. Increase the retention period to force automatic rollback
+D. Set the current blob to hot
+
+## st-blob-delete-004
+
+A Blob Storage account has retained soft-deleted blobs that have not expired. An administrator disables blob soft delete to change future protection behavior. What happens to those already-retained blobs?
+
+Select **1**. Difficulty: applied.
+
+A. They remain recoverable until their existing retention windows expire
+B. They are immediately permanently deleted
+C. They are automatically restored to the active namespace
+D. They become archived blobs with a new 180-day retention period
+
+## st-container-delete-001
+
+A container named invoices was soft-deleted yesterday. Its retention period has not expired, but another process created a new active invoices container. Why can the old container not be restored now?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. Container restoration requires the original name, which is already in use
+B. Containers cannot be restored until the final day of retention
+C. The replacement container must first use the archive tier
+D. The old container must be restored under an arbitrary new name
+
+## st-container-delete-002
+
+An Azure storage account had container soft delete enabled, but no blob soft delete, versioning, snapshots, or backup. A user deletes one blob while leaving its container intact. Can container soft delete restore that blob by itself?
+
+Select **1**. Difficulty: applied.
+
+A. No; it protects deletion of the container, not individual deletions inside an existing container
+B. Yes; every container keeps a rolling copy of all prior blob contents
+C. Yes; deleting the container now recreates the earlier missing blob
+D. Yes; extending container retention reconstructs the blob
+
+## st-container-delete-003
+
+You must verify that a storage account retains deleted containers. Its Blob service properties show deleteRetentionPolicy.enabled as true. Which additional property specifically verifies container protection?
+
+Select **1**. Difficulty: applied.
+
+A. containerDeleteRetentionPolicy.enabled
+B. isVersioningEnabled
+C. allowBlobPublicAccess
+D. accessTier
+
+## st-container-delete-004
+
+A design enables container soft delete and claims this alone will recover every container if the entire storage account is accidentally deleted. Which statement correctly identifies the gap?
+
+Select **1**. Difficulty: applied.
+
+A. Container soft delete does not protect deletion of the storage account itself
+B. The design works whenever container retention is at least 30 days
+C. Enabling blob versioning guarantees restoration of the deleted account
+D. Only anonymous containers are protected from account deletion
+
+## st-version-001
+
+Blob versioning is enabled in a supported flat-namespace account. A client deletes a block blob without supplying a version ID. What is the immediate versioning result?
+
+Select **1**. Difficulty: applied.
+
+A. The current version becomes a previous version, and no current version remains
+B. Every version is deleted permanently
+C. The oldest version automatically becomes current
+D. The delete is always blocked while any previous version exists
+
+## st-version-002
+
+An administrator wants Azure Blob versioning on a storage account whose hierarchical namespace is enabled for Data Lake Storage. What does the currently documented feature support imply?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. Blob versioning is not supported on that account configuration
+B. Enabling container soft delete adds versioning support
+C. Changing the default access tier to hot enables versioning
+D. Assigning an extra Reader role enables the feature
+
+## st-version-003
+
+A supported Blob Storage account has versioning and blob soft delete enabled. A desired previous version was explicitly deleted and is still retained. There is no current blob. Which two operations form the recovery sequence to restore its contents as current?
+
+Select **2**. Difficulty: troubleshooting.
+
+A. First undelete the retained blob versions
+B. Then copy the desired previous version to create a current blob
+C. Modify the desired historical version in place to mark it current
+D. Disable versioning to promote the oldest retained version automatically
+
+## st-version-004
+
+A frequently overwritten block blob has accumulated many historical versions. The team wants to control retained storage and listing latency while keeping recent recovery points. Which approach follows Microsoft's version-management guidance?
+
+Select **1**. Difficulty: applied.
+
+A. Define lifecycle cleanup for previous versions using an appropriate retention requirement
+B. Rely on automatic deletion as soon as the blob reaches 1,000 versions
+C. Configure only a current-blob tiering rule and assume previous versions are deleted
+D. Disable versioning to immediately purge all previous versions
+
+## st-file-snapshot-001
+
+A classic SMB Azure file share has a snapshot from before an unwanted file overwrite. The live share still exists. How should an administrator recover the earlier file contents?
+
+Select **1**. Difficulty: applied.
+
+A. Read the file from the snapshot and restore or copy it to a writable destination
+B. Open the snapshot and edit its file contents in place
+C. Enable share soft delete to undo the existing file overwrite
+D. Rename the live share to the snapshot timestamp
+
+## st-file-snapshot-002
+
+An Azure file share has three snapshots. An administrator deletes the oldest one while retaining the newest. Because snapshots store changes incrementally, must the oldest snapshot be kept for the newest snapshot's files to remain recoverable?
+
+Select **1**. Difficulty: applied.
+
+A. No; the retained snapshot remains a usable recovery point
+B. Yes; deleting any earlier snapshot always breaks all later snapshots
+C. No, but the newest snapshot can recover only files still present in the live share
+D. Only if the newest snapshot is moved to the blob hot tier first
+
+## st-file-snapshot-003
+
+A classic Azure file share has snapshots, but share soft delete and backup are disabled. An administrator proposes deleting the share and all its snapshots to free capacity, while relying on those snapshots for later recovery. What is wrong with the proposal?
+
+Select **1**. Difficulty: applied.
+
+A. Those snapshots cannot be retained independently after the share and its snapshots are deleted
+B. Nothing; snapshots automatically remain for seven days
+C. Nothing; deleting a share converts its snapshots into account backups
+D. Only the share name matters; recreating the name restores all snapshots
+
+## st-file-snapshot-004
+
+An application deployment will change files on a classic SMB Azure file share. The administrator wants a recovery point for the pre-deployment contents. Which two actions support that goal?
+
+Select **2**. Difficulty: applied.
+
+A. Create a share snapshot before the application changes the files
+B. Verify the captured files and the permissions needed to copy them to a recovery destination
+C. Wait until after corruption is discovered to create the first snapshot of the earlier state
+D. Enable only share soft delete instead of preserving earlier file contents
+
+## st-file-delete-001
+
+Share soft delete is enabled for a classic Azure file share. A user deletes a single file, but the share remains active. A snapshot containing that file was taken earlier. Which recovery source applies?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. The earlier share snapshot containing the file
+B. Undelete the still-active share to reverse the individual file deletion
+C. Increase share retention to recreate the file automatically
+D. Use the file's automatically created Azure Blob version
+
+## st-file-delete-002
+
+You want a 14-day soft-delete window for classic Azure file shares in a storage account. Which configuration operation targets that protection?
+
+Select **1**. Difficulty: applied.
+
+A. Update the account's File service properties and enable share delete retention for 14 days
+B. Enable blob delete retention on the account's Blob service
+C. Enable container delete retention on the account's Blob service
+D. Add a retention=14 tag to each share
+
+## st-file-delete-003
+
+A classic Azure file share was deleted while share soft delete was enabled. Its retention window remains active, and the retained share contains files and snapshots. What does undeleting that share restore?
+
+Select **1**. Difficulty: applied.
+
+A. The share and its retained contents, including snapshots
+B. Only an empty share with the original name
+C. The files, but never the snapshots
+D. All shares deleted from every account in the subscription
+
+## st-file-delete-004
+
+You will restore a retained classic Azure file share using az storage share-rm restore. You know the account, resource group, and original share name. What additional value should you obtain from listing deleted shares?
+
+Select **1**. Difficulty: applied.
+
+A. The deleted share version used by --deleted-version
+B. A Blob Storage version ID from az storage blob list
+C. A SAS expiry date to use as the deleted version
+D. Any snapshot timestamp from any active share

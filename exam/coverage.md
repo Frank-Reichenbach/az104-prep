@@ -4,7 +4,7 @@
 
 Outline: 2026-04-17. Source checked: 2026-10-01.
 
-3/82 objectives have documented topic coverage. This measures presence of researched content, not mastery or exhaustive scenario coverage.
+6/82 objectives have documented topic coverage. This measures presence of researched content, not mastery or exhaustive scenario coverage.
 
 [Microsoft scope source](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-104). IDs below are local identifiers.
 
@@ -69,10 +69,10 @@ Outline: 2026-04-17. Source checked: 2026-10-01.
 | st-11 | Provision and configure Azure file shares | — | 0 | Planned |
 | st-12 | Provision and configure blob containers | [Blob containers](../knowledge/storage/blob-storage/containers.md) | 5 | Documented; not lab-tested |
 | st-13 | Choose and configure access tiers | [Blob access tiers](../knowledge/storage/blob-storage/access-tiers.md) | 5 | Documented; not lab-tested |
-| st-14 | Recover blobs and containers using soft deletion | — | 0 | Planned |
-| st-15 | Protect Azure Files with snapshots and soft deletion | — | 0 | Planned |
+| st-14 | Recover blobs and containers using soft deletion | [Blob soft deletion](../knowledge/storage/blob-storage/blob-soft-delete.md), [Container soft deletion](../knowledge/storage/blob-storage/container-soft-delete.md) | 8 | Documented; not lab-tested |
+| st-15 | Protect Azure Files with snapshots and soft deletion | [Azure Files share snapshots](../knowledge/storage/azure-files/snapshots.md), [Azure Files share soft deletion](../knowledge/storage/azure-files/soft-delete.md) | 8 | Documented; not lab-tested |
 | st-16 | Automate blob lifecycle transitions and expiration | [Blob lifecycle management](../knowledge/storage/blob-storage/lifecycle-management.md) | 6 | Documented; not lab-tested |
-| st-17 | Maintain blob versions | — | 0 | Planned |
+| st-17 | Maintain blob versions | [Blob versioning](../knowledge/storage/blob-storage/versioning.md) | 4 | Documented; not lab-tested |
 
 ## Compute (20–25%)
 

@@ -1,5 +1,10 @@
 [
   {"id":"storage.blobs.containers","domain":"storage","title":"Blob containers","path":"knowledge/storage/blob-storage/containers.md","objectives":["st-12"],"status":"documented","verified":"2026-10-01"},
   {"id":"storage.blobs.access-tiers","domain":"storage","title":"Blob access tiers","path":"knowledge/storage/blob-storage/access-tiers.md","objectives":["st-13"],"status":"documented","verified":"2026-10-01"},
-  {"id":"storage.blobs.lifecycle","domain":"storage","title":"Blob lifecycle management","path":"knowledge/storage/blob-storage/lifecycle-management.md","objectives":["st-16"],"status":"documented","verified":"2026-10-01"}
+  {"id":"storage.blobs.lifecycle","domain":"storage","title":"Blob lifecycle management","path":"knowledge/storage/blob-storage/lifecycle-management.md","objectives":["st-16"],"status":"documented","verified":"2026-10-01"},
+  {"id":"storage.blobs.soft-delete","domain":"storage","title":"Blob soft deletion","path":"knowledge/storage/blob-storage/blob-soft-delete.md","objectives":["st-14"],"status":"documented","verified":"2026-10-01"},
+  {"id":"storage.blobs.container-soft-delete","domain":"storage","title":"Container soft deletion","path":"knowledge/storage/blob-storage/container-soft-delete.md","objectives":["st-14"],"status":"documented","verified":"2026-10-01"},
+  {"id":"storage.blobs.versioning","domain":"storage","title":"Blob versioning","path":"knowledge/storage/blob-storage/versioning.md","objectives":["st-17"],"status":"documented","verified":"2026-10-01"},
+  {"id":"storage.files.snapshots","domain":"storage","title":"Azure Files share snapshots","path":"knowledge/storage/azure-files/snapshots.md","objectives":["st-15"],"status":"documented","verified":"2026-10-01"},
+  {"id":"storage.files.soft-delete","domain":"storage","title":"Azure Files share soft deletion","path":"knowledge/storage/azure-files/soft-delete.md","objectives":["st-15"],"status":"documented","verified":"2026-10-01"}
 ]

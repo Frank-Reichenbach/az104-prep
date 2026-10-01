@@ -4,9 +4,16 @@ Updated: 2026-10-01. Approved scope: [PLAN.md](PLAN.md).
 
 ## Current increment
 
-Quiz refinements and GitHub Pages publication. The knowledge base still has
-three documented objectives out of 82, with 16 questions across 15 families.
+Storage data-protection expansion. The knowledge base now has six documented
+objectives out of 82, with 36 questions across 35 families and eight topics.
 Azure command examples remain documentation-checked, not lab-tested.
+
+New content covers blob soft deletion, container soft deletion, blob versioning,
+Azure Files share snapshots, and classic share soft deletion. There are four
+new question families per topic. Files distinguish recovery scope, retention,
+feature prerequisites, implementation, verification, and cleanup. The snapshot
+topic records an ambiguity in introductory Microsoft wording and follows the
+dedicated soft-delete reference's explicit share-level scope.
 
 Implemented:
 
@@ -34,6 +41,11 @@ published app commit d43ce77. GitHub's automatically created main-only
 environment rule initially blocked deployment; feature/github-pages was added
 to the explicit allowlist and the deployment rerun succeeded.
 
+The data-protection expansion passed local content, Node, and Chrome checks.
+It publishes through the Pages workflow on the same ongoing feature branch;
+no merge is involved. Use the latest successful Actions run to identify the
+current deployment, rather than treating a local commit as publication.
+
 ## Verification
 
 - Content build/check: valid mappings, question structure, internal links, and
@@ -51,11 +63,10 @@ to the explicit allowlist and the deployment rerun succeeded.
 
 ## Next task
 
-The hosted app is ready for the user's test. After UI feedback, resume storage
-research: blob/container soft deletion,
-blob versioning, and file-share snapshots/soft deletion (st-14, st-17, st-15).
-Add specific topic files and 3–5 original question families per topic, then
-update exam/topics.json and rebuild.
+After publishing the data-protection expansion, research storage access:
+shared access signatures, stored access policies, access keys, and storage
+network rules (st-02, st-03, st-04, st-01). Add specific topic files and 3–5
+original question families per topic, update exam/topics.json, and rebuild.
 
 Complete the remaining storage objectives, followed by identity/governance,
 compute, networking, and monitoring/recovery. Domain-weighted mixed quizzes
