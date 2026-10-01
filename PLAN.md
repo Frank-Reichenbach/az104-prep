@@ -121,8 +121,9 @@ Do not duplicate the bank or add a model API requirement to the app.
 ## 7. Publish the same app with GitHub Pages
 
 Target repository: [Frank-Reichenbach/az104-prep](https://github.com/Frank-Reichenbach/az104-prep).
-Expected project URL: <https://frank-reichenbach.github.io/az104-prep/>.
-This is a planned address, not a statement that the site is live.
+Live project URL: <https://frank-reichenbach.github.io/az104-prep/>.
+Initial publication and browser verification completed on 2026-10-01. The
+steps below describe the deployment design; see STATUS.md for the outcome.
 
 Use static HTML, CSS, JavaScript, question data, and study files. Node remains
 a local development/build tool; GitHub Pages does not need to run our server.

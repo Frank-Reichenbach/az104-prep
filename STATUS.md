@@ -24,11 +24,15 @@ Implemented:
 
 Origin: https://github.com/Frank-Reichenbach/az104-prep.git.
 The remote was inspected and confirmed public and empty. The user authorized
-publication until they can test the Pages app. The first published branch will
-be feature/github-pages; no merge is needed for this initial deployment.
+publication until they can test the Pages app. The published/default branch is
+feature/github-pages; no merge was needed for this initial deployment.
 
-Target: https://frank-reichenbach.github.io/az104-prep/.
-Deployment is pending; update this section after checking the live site.
+Live app: https://frank-reichenbach.github.io/az104-prep/.
+GitHub Pages deployed successfully and the public app was verified in Chrome.
+[Deployment run](https://github.com/Frank-Reichenbach/az104-prep/actions/runs/36872020021)
+published app commit d43ce77. GitHub's automatically created main-only
+environment rule initially blocked deployment; feature/github-pages was added
+to the explicit allowlist and the deployment rerun succeeded.
 
 ## Verification
 
@@ -41,12 +45,14 @@ Deployment is pending; update this section after checking the live site.
   correct multiple answers, direct advancement, final results, topic context,
   compact results, expansion state, preparation feedback, internal HTTP links,
   and browser history persistence after reload.
+- The same browser checks also completed against the live GitHub Pages URL,
+  including retrieval of internal study links and progress after reload.
 - No Azure resources were deployed and no paid service was configured.
 
 ## Next task
 
-Finish publication and verify the live Pages app. Then let the user test it.
-After the UI feedback, resume storage research: blob/container soft deletion,
+The hosted app is ready for the user's test. After UI feedback, resume storage
+research: blob/container soft deletion,
 blob versioning, and file-share snapshots/soft deletion (st-14, st-17, st-15).
 Add specific topic files and 3–5 original question families per topic, then
 update exam/topics.json and rebuild.
