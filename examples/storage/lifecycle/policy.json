@@ -1,0 +1,20 @@
+{
+  "rules": [
+    {
+      "enabled": true,
+      "name": "StudyReportsToCool",
+      "type": "Lifecycle",
+      "definition": {
+        "filters": {
+          "blobTypes": ["blockBlob"],
+          "prefixMatch": ["study-records/reports/"]
+        },
+        "actions": {
+          "baseBlob": {
+            "tierToCool": {"daysAfterModificationGreaterThan": 45}
+          }
+        }
+      }
+    }
+  ]
+}

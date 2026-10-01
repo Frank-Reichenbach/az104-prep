@@ -1,0 +1,30 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+.azure/
+credentials.json
+
+# Dependencies, temporary output, and personal study history
+node_modules/
+coverage/
+tmp/
+progress/
+az104-progress*.json
+*.log
+*.tsbuildinfo
+__pycache__/
+*.py[cod]
+
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Generated content is committed; rebuild with npm run build.

@@ -1,0 +1,38 @@
+:root { color-scheme: light; font: 17px/1.55 system-ui, sans-serif; color: #182d3d; background: #f0f4f6; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { width: min(850px, 100%); margin: 0 auto; padding: 2.5rem 1.2rem; }
+h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.1; margin: .3rem 0 1rem; letter-spacing: -.04em; }
+h2 { font-size: 1.35rem; line-height: 1.4; }
+h3 { font-size: 1.05rem; }
+a { color: #075b89; text-underline-offset: .2em; }
+.eyebrow { font-size: .75rem; letter-spacing: .12em; font-weight: 700; color: #365a70; }
+.notice { border-left: 4px solid #177d92; padding: .75rem 1rem; background: #e0edf1; }
+.card { background: white; border: 1px solid #d4dfe5; border-radius: 12px; margin: 1.5rem 0; padding: 1.6rem; }
+label { display: block; font-weight: 600; margin-top: .7rem; }
+input, select, button { font: inherit; }
+input[type=number], select { width: 100%; border: 1px solid #8b9da9; border-radius: 5px; padding: .6rem; background: white; color: inherit; }
+.row { display: flex; gap: 1rem; flex-wrap: wrap; }
+.row > div { flex: 1 1 220px; }
+.inline { display: flex; align-items: baseline; gap: .65rem; font-weight: 400; margin: 1.2rem 0; }
+button { border: 1px solid #086b80; border-radius: 5px; background: #086b80; color: white; padding: .65rem 1.1rem; cursor: pointer; margin: .5rem .4rem .5rem 0; }
+button:hover { background: #064c5b; }
+button.secondary { background: white; color: #086078; }
+button:disabled { opacity: .55; cursor: default; }
+:focus-visible { outline: 3px solid #a65108; outline-offset: 3px; }
+.muted, footer { font-size: .86rem; color: #4f626e; }
+fieldset { border: 0; padding: 0; margin: 1rem 0; }
+legend { margin-bottom: .5rem; }
+.choice { display: flex; gap: .8rem; padding: 1rem; border: 1px solid #bdcdd5; border-radius: 6px; margin: .7rem 0; cursor: pointer; font-weight: 400; }
+.choice:has(input:checked) { background: #e6f2f5; border-color: #086b80; }
+.choice input { flex: 0 0 auto; margin-top: .35rem; }
+.correct { border-left: 4px solid #247442; padding-left: .9rem; }
+.incorrect { border-left: 4px solid #a24824; padding-left: .9rem; }
+.explanation { padding-bottom: .35rem; }
+details { border-top: 1px solid #d4dfe5; padding: 1rem 0; }
+summary { cursor: pointer; font-weight: 600; }
+#message:empty { display: none; }
+#message { color: #754010; background: #fff1df; padding: .7rem; }
+[hidden] { display: none !important; }
+footer { margin-top: 2rem; }
+@media (max-width: 500px) { .card { padding: 1rem; } main { padding: 1.5rem .8rem; } }

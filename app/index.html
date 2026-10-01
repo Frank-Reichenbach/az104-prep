@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AZ-104 Practice</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/main.mjs"></script>
+</head>
+<body>
+  <main>
+    <header><p class="eyebrow">AZURE ADMINISTRATOR · LOCAL STUDY</p><h1>AZ-104 Practice</h1>
+      <p>Understand the choice. Learn from every option.</p>
+      <p id="coverage" class="notice">Loading question bank…</p>
+      <nav><a href="/exam/coverage.md" target="_blank" rel="noopener">Coverage</a> · <a href="/knowledge/index.md" target="_blank" rel="noopener">Knowledge index</a> · <a href="/generated/questions.md" target="_blank" rel="noopener">Printable questions</a></nav>
+    </header>
+    <p id="message" role="status" aria-live="polite"></p>
+    <section id="setup" class="card" hidden>
+      <h2>Your next session</h2>
+      <form id="start-form">
+        <label for="topic">Topic</label><select id="topic"><option value="all">All available topics</option></select>
+        <div class="row">
+          <div><label for="count">Questions</label><input id="count" type="number" value="10" min="1" max="100" required></div>
+          <div><label for="mode">Mode</label><select id="mode"><option value="practice">Practice · feedback after each answer</option><option value="test">Test · feedback at the end</option></select></div>
+        </div>
+        <label class="inline"><input id="missed" type="checkbox"> Review currently missed question families</label>
+        <p class="muted">Select the stated number of answers. Multiple-answer questions require an exact match. A session uses at most one variant per family.</p>
+        <button type="submit">Start session</button>
+      </form>
+      <p id="progress"></p>
+      <div class="row actions"><button id="export" class="secondary" type="button">Export progress</button><button id="import-button" class="secondary" type="button">Import progress</button><input id="import" type="file" accept=".json,application/json" hidden></div>
+      <p class="muted">Progress stays in this browser. Import replaces it after confirmation. Export before clearing browser storage.</p>
+    </section>
+    <section id="session" class="card" hidden>
+      <p id="position" class="eyebrow"></p><h2 id="prompt" tabindex="-1"></h2>
+      <form id="answer-form"><fieldset id="choices"><legend id="instruction"></legend></fieldset><button id="submit-answer" type="submit">Check answer</button></form>
+      <div id="feedback" aria-live="polite"></div>
+      <button id="next" type="button" hidden>Next question</button>
+      <button id="end" class="secondary" type="button">End session</button>
+    </section>
+    <section id="results" class="card" hidden><h2 id="result-title" tabindex="-1">Session results</h2><p id="result-score"></p><p class="muted">This measures the completed sample questions, not Microsoft's exam score or readiness across all domains.</p><div id="review"></div><button id="again" type="button">Choose another session</button></section>
+    <footer>Independent study material · English · No account or cloud service required</footer>
+  </main>
+</body>
+</html>

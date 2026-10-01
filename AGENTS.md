@@ -1,0 +1,64 @@
+# Project instructions
+
+## Purpose and approved scope
+
+Build an English AZ-104 knowledge base and original multiple-choice practice
+questions for a learner with some hands-on Azure experience. The target exam
+window is December 2026–January 2027. The user approved the plan on October 1,
+2026, including a basic local browser app and local Git repository.
+
+Read PLAN.md, STATUS.md, and exam/coverage.md before continuing work. Resume the
+next unfinished task. These documents preserve decisions across sessions.
+Do not ask for approval again for work already authorized in PLAN.md.
+
+## Content
+
+- Follow the April 17, 2026 exam outline until a documented refresh changes it.
+- Research Microsoft primary sources before writing technical claims. Cite
+  supporting pages beside the claim and record the verification date.
+- Paraphrase explanations; write original questions. Do not copy exam questions.
+- Separate Microsoft recommendations, hard service constraints, and examples.
+- Every specific topic needs its own Markdown file. Cross-link shared concepts
+  rather than duplicating technical explanations across domains.
+- Use repository-defined stable objective, topic, question, and option IDs.
+- Include implementation, verification, permissions, limitations, and related
+  misconceptions. Label examples not executed in Azure.
+- Record unresolved or conflicting documentation explicitly. Do not silently
+  turn an uncertain claim into a scored question.
+- New features in product documentation are not automatically new exam
+  objectives. Label supplementary material.
+
+## Questions and app
+
+- Author questions in questions/**/*.json; the format is documented in
+  docs/question-format.md. Generated Markdown and app data are not source files.
+- Every option needs a rationale, including correct options. A distractor must
+  be wrong under the exact scenario, not merely less fashionable.
+- Use reviewed variants, never runtime AI rewriting of scored questions.
+- Score using stable option IDs, not visible letters or array positions.
+- Do not show two variants of the same family in one quiz.
+- Use exact-match scoring for multiple-answer questions; explain this in the UI.
+- Keep the app local, dependency-free, and usable with keyboard controls.
+- No Azure deployment, cloud account, model API, or external service is needed
+  to use the app. Writing examples is authorized; executing paid Azure labs
+  is outside the initial implementation scope.
+
+## Working and verification
+
+- Run npm run build, npm run check, and npm test after relevant changes.
+- Automated checks validate structure and behavior; they do not establish
+  Azure technical correctness. Review sources separately.
+- Update STATUS.md with actual results, remaining work, and the next task.
+- Never mark an objective complete based only on a placeholder or empty file.
+- Keep study history local to the browser; exported history belongs in the
+  ignored progress/ directory if saved in the repository.
+
+## Git
+
+- This is a local repository. Do not create a remote or publish it unless asked.
+- Use chore/, docs/, feature/, or fix/ branch prefixes and Conventional Commits.
+- Attribute AI-generated changes with an Assisted-by model trailer. Do not
+  invent a human co-author or reviewer.
+- The initial setup branch is chore/initial-setup. No merge is authorized.
+- Do not change global Git configuration. Use the existing Git identity; report
+  a missing identity rather than inventing one.

@@ -1,0 +1,14 @@
+{
+  "name": "az-104-study",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local AZ-104 knowledge base and multiple-choice practice",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check",
+    "test": "node --test"
+  }
+}

@@ -1,0 +1,131 @@
+import { makeQuiz, score, missedFamilies, parseProgress } from './quiz.mjs';
+
+const $ = id => document.getElementById(id);
+const STORAGE = 'az104-progress-v1';
+let bank, attempts = [], active = [], position = 0, answers = [], mode = 'practice', submitted = false, storageWritable = true;
+function el(tag, text, className) {
+  const node = document.createElement(tag);
+  if (text !== undefined) node.textContent = text;
+  if (className) node.className = className;
+  return node;
+}
+function message(text = '') { $('message').textContent = text; }
+function show(id) { for (const name of ['setup', 'session', 'results']) $(name).hidden = name !== id; }
+function save() {
+  if (!storageWritable) { message('Existing unreadable progress was preserved. Export new answers to save them; automatic storage is disabled for this session.'); return; }
+  try { localStorage.setItem(STORAGE, JSON.stringify({ version: 1, attempts })); }
+  catch { message('Browser storage is unavailable or full. Export progress to preserve this session.'); }
+}
+function summarize() {
+  const map = new Map(bank.questions.map(q => [q.id, q]));
+  const correct = attempts.filter(a => score(map.get(a.id), a.selected)).length;
+  $('progress').textContent = `${attempts.length} recorded answers · ${correct} correct · ${missedFamilies(attempts, bank.questions).size} currently missed families`;
+}
+function reference(href, text) {
+  const link = el('a', text); link.href = href; link.target = '_blank'; link.rel = 'noopener'; return link;
+}
+function explain(q, selected) {
+  const box = el('div');
+  box.append(el('p', score(q, selected) ? 'Correct answer set.' : 'Incorrect answer set.', score(q, selected) ? 'correct' : 'incorrect'));
+  for (const option of q.options) {
+    const good = q.correct.includes(option.id);
+    const p = el('p', undefined, `explanation ${good ? 'correct' : 'incorrect'}`);
+    p.append(el('strong', `${good ? 'Correct' : 'Incorrect'} option${selected.includes(option.id) ? ' · selected' : ''}: ${option.text} `), document.createTextNode(option.explanation));
+    box.append(p);
+  }
+  const links = el('p'); links.append(reference('/' + q.knowledge, 'Study this topic'));
+  q.sources.forEach((url, i) => links.append(document.createTextNode(' · '), reference(url, `Microsoft source ${i + 1}`)));
+  box.append(links, el('p', `Evidence checked ${q.verified} · ${q.id}`, 'muted'));
+  return box;
+}
+function renderQuestion() {
+  const q = active[position]; submitted = false;
+  $('position').textContent = `${mode} · Question ${position + 1} of ${active.length}`;
+  $('prompt').textContent = q.prompt;
+  $('instruction').textContent = `Select ${q.select} answer${q.select === 1 ? '' : 's'}.`;
+  $('choices').replaceChildren($('instruction'));
+  q.options.forEach((option, i) => {
+    const label = el('label', undefined, 'choice');
+    const input = document.createElement('input'); input.type = q.select === 1 ? 'radio' : 'checkbox';
+    input.name = 'answer'; input.value = option.id;
+    label.append(input, el('span', `${String.fromCharCode(65 + i)}. ${option.text}`));
+    $('choices').append(label);
+  });
+  $('choices').disabled = false; $('submit-answer').hidden = false;
+  $('submit-answer').textContent = mode === 'practice' ? 'Check answer' : 'Submit answer';
+  $('feedback').replaceChildren(); $('next').hidden = true;
+  $('prompt').focus();
+}
+function finish() {
+  const correct = answers.filter(a => score(a.q, a.selected)).length;
+  $('result-score').textContent = answers.length
+    ? `${correct}/${answers.length} correct (${Math.round(correct / answers.length * 100)}%) · ${answers.length}/${active.length} planned questions answered`
+    : 'No questions answered in this session.';
+  $('review').replaceChildren();
+  answers.forEach((a, i) => {
+    const details = el('details');
+    details.append(el('summary', `${i + 1}. ${score(a.q, a.selected) ? 'Correct' : 'Review'} — ${a.q.prompt}`), explain(a.q, a.selected));
+    $('review').append(details);
+  });
+  show('results'); $('result-title').focus();
+}
+
+$('start-form').addEventListener('submit', event => {
+  event.preventDefault(); message();
+  try {
+    active = makeQuiz(bank.questions, { topic: $('topic').value, count: Number($('count').value),
+      missed: $('missed').checked ? missedFamilies(attempts, bank.questions) : null });
+    if (!active.length) { message('No question families match this selection. Change the topic or turn off missed-question review.'); return; }
+    if (active.length < Number($('count').value)) message(`This selection has ${active.length} available families; the session uses all of them.`);
+    mode = $('mode').value; position = 0; answers = []; show('session'); renderQuestion();
+  } catch (error) { message(error.message); }
+});
+$('answer-form').addEventListener('submit', event => {
+  event.preventDefault(); if (submitted) return;
+  const q = active[position];
+  const selected = [...$('choices').querySelectorAll('input:checked')].map(input => input.value);
+  if (selected.length !== q.select) { message(`Select exactly ${q.select} answer${q.select === 1 ? '' : 's'} before submitting.`); return; }
+  message(); submitted = true; answers.push({ q, selected });
+  attempts.push({ id: q.id, revision: q.revision, selected, at: new Date().toISOString() });
+  attempts = attempts.slice(-10000); save();
+  $('choices').disabled = true; $('submit-answer').hidden = true;
+  if (mode === 'practice') $('feedback').append(explain(q, selected));
+  else $('feedback').append(el('p', 'Answer recorded. Explanations appear at the end.'));
+  $('next').hidden = false; $('next').textContent = position + 1 === active.length ? 'View results' : 'Next question';
+  $('next').focus();
+});
+$('next').addEventListener('click', () => { if (++position < active.length) renderQuestion(); else finish(); });
+$('end').addEventListener('click', () => { if (confirm('End this session? Submitted answers are saved; unanswered questions are not scored.')) finish(); });
+$('again').addEventListener('click', () => { message(); summarize(); show('setup'); $('topic').focus(); });
+$('export').addEventListener('click', () => {
+  const url = URL.createObjectURL(new Blob([JSON.stringify({ version: 1, attempts }, null, 2)], { type: 'application/json' }));
+  const a = el('a'); a.href = url; a.download = 'az104-progress.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+$('import-button').addEventListener('click', () => $('import').click());
+$('import').addEventListener('change', async event => {
+  const file = event.target.files[0]; if (!file) return;
+  try {
+    if (file.size > 5_000_000) throw new Error('Progress file exceeds the 5 MB limit.');
+    const result = parseProgress(JSON.parse(await file.text()), bank.questions);
+    if (!confirm(`Replace current progress with ${result.attempts.length} answers? ${result.skipped} unknown or outdated answers will be skipped.`)) return;
+    message(); attempts = result.attempts; save(); summarize();
+  } catch (error) { message(`Import failed: ${error.message}`); }
+  finally { event.target.value = ''; }
+});
+
+try {
+  const response = await fetch('/data.json');
+  if (!response.ok) throw new Error('Question data could not be loaded. Run npm run build.');
+  bank = await response.json();
+  if (bank.schemaVersion !== 1 || !Array.isArray(bank.questions)) throw new Error('Unsupported question bank.');
+  bank.topics.forEach(topic => { const option = el('option', topic.title); option.value = topic.id; $('topic').append(option); });
+  $('coverage').textContent = `Storage sample · ${bank.questions.length} questions, ${new Set(bank.questions.map(q => q.family)).size} families · ${bank.coverage.covered}/${bank.coverage.total} objectives documented. Full exam coverage is still in progress.`;
+  try {
+    const saved = localStorage.getItem(STORAGE);
+    if (saved) {
+      const result = parseProgress(JSON.parse(saved), bank.questions); attempts = result.attempts;
+      if (result.skipped) message(`${result.skipped} answers from unknown or changed question revisions were excluded.`);
+    }
+  } catch { storageWritable = false; message('Saved progress could not be read and will not be overwritten. New answers can be exported; automatic storage is disabled for this session.'); }
+  summarize(); show('setup');
+} catch (error) { message(error.message); $('coverage').textContent = 'Question bank unavailable.'; }

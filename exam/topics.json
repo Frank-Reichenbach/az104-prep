@@ -1,0 +1,5 @@
+[
+  {"id":"storage.blobs.containers","domain":"storage","title":"Blob containers","path":"knowledge/storage/blob-storage/containers.md","objectives":["st-12"],"status":"documented","verified":"2026-10-01"},
+  {"id":"storage.blobs.access-tiers","domain":"storage","title":"Blob access tiers","path":"knowledge/storage/blob-storage/access-tiers.md","objectives":["st-13"],"status":"documented","verified":"2026-10-01"},
+  {"id":"storage.blobs.lifecycle","domain":"storage","title":"Blob lifecycle management","path":"knowledge/storage/blob-storage/lifecycle-management.md","objectives":["st-16"],"status":"documented","verified":"2026-10-01"}
+]

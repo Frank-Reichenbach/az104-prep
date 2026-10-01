@@ -1,0 +1,722 @@
+{
+  "schemaVersion": 1,
+  "outlineEffective": "2026-04-17",
+  "coverage": {
+    "covered": 3,
+    "total": 82
+  },
+  "topics": [
+    {
+      "id": "storage.blobs.containers",
+      "domain": "storage",
+      "title": "Blob containers",
+      "path": "knowledge/storage/blob-storage/containers.md",
+      "objectives": [
+        "st-12"
+      ],
+      "status": "documented",
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "storage.blobs.access-tiers",
+      "domain": "storage",
+      "title": "Blob access tiers",
+      "path": "knowledge/storage/blob-storage/access-tiers.md",
+      "objectives": [
+        "st-13"
+      ],
+      "status": "documented",
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "storage.blobs.lifecycle",
+      "domain": "storage",
+      "title": "Blob lifecycle management",
+      "path": "knowledge/storage/blob-storage/lifecycle-management.md",
+      "objectives": [
+        "st-16"
+      ],
+      "status": "documented",
+      "verified": "2026-10-01"
+    }
+  ],
+  "questions": [
+    {
+      "id": "st-container-001",
+      "family": "st-container-account-gate",
+      "revision": 1,
+      "topic": "storage.blobs.containers",
+      "objectives": [
+        "st-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "A container previously allowed anonymous blob reads. An administrator now disables anonymous access on its storage account. Network connectivity is unchanged. What happens to subsequent anonymous blob requests?",
+      "select": 1,
+      "options": [
+        {
+          "id": "account-blocks",
+          "text": "They fail because the account setting overrides container-level anonymous access.",
+          "explanation": "The account-level prohibition prevents anonymous blob reads regardless of the container's previous setting."
+        },
+        {
+          "id": "container-wins",
+          "text": "They succeed because the container setting is more specific.",
+          "explanation": "Container specificity does not override the account's prohibition on anonymous access."
+        },
+        {
+          "id": "restart",
+          "text": "They succeed until the storage account is restarted.",
+          "explanation": "There is no storage-account restart step that postpones enforcement of this access setting."
+        },
+        {
+          "id": "signed-only",
+          "text": "Only requests signed with an account key are blocked.",
+          "explanation": "This setting governs anonymous reads; account-key authorization is a separate mechanism."
+        }
+      ],
+      "correct": [
+        "account-blocks"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/containers.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-configure"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-container-002",
+      "family": "st-container-data-role",
+      "revision": 1,
+      "topic": "storage.blobs.containers",
+      "objectives": [
+        "st-12"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "An operator has the management-plane Reader role on a storage account but no blob data role. They must create a container through the Blob service using Azure CLI with --auth-mode login. Which additional built-in role is the least privileged of these choices that supports the operation? Assume network access works.",
+      "select": 1,
+      "options": [
+        {
+          "id": "data-contributor",
+          "text": "Storage Blob Data Contributor at the storage account scope",
+          "explanation": "This role includes the container-write operation required by Create Container. Account scope covers creation of the new container."
+        },
+        {
+          "id": "data-reader",
+          "text": "Storage Blob Data Reader at the storage account scope",
+          "explanation": "Read permissions do not allow creation of a container."
+        },
+        {
+          "id": "reader",
+          "text": "Reader at the subscription scope",
+          "explanation": "Broadening management-plane read access does not grant the required container-write operation."
+        },
+        {
+          "id": "data-owner",
+          "text": "Storage Blob Data Owner at the storage account scope",
+          "explanation": "It can support the task, but grants more privilege than the listed Data Contributor role; the question requires least privilege among these choices."
+        }
+      ],
+      "correct": [
+        "data-contributor"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/containers.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/rest/api/storageservices/create-container",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/assign-azure-role-data-access"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-container-003",
+      "family": "st-container-enable-account",
+      "revision": 1,
+      "topic": "storage.blobs.containers",
+      "objectives": [
+        "st-12"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An account permits anonymous access, but a newly created container retains its Private access level. What must an anonymous client expect when requesting a blob from that container?",
+      "select": 1,
+      "options": [
+        {
+          "id": "denied",
+          "text": "Access is denied because the container still requires authorization.",
+          "explanation": "Permitting anonymous access at the account does not automatically enable it for a private container."
+        },
+        {
+          "id": "all-public",
+          "text": "The blob can be read because every container inherits anonymous access.",
+          "explanation": "The account setting permits public container configuration; it does not make every container public."
+        },
+        {
+          "id": "listing-only",
+          "text": "The client can list blobs but cannot read their contents.",
+          "explanation": "Private access does not grant anonymous listing rights."
+        },
+        {
+          "id": "new-blobs",
+          "text": "Only blobs uploaded after the account setting changed are public.",
+          "explanation": "Anonymous access is governed by account and container settings, not blob upload time."
+        }
+      ],
+      "correct": [
+        "denied"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/containers.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-configure"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-container-004",
+      "family": "st-container-cli-auth",
+      "revision": 1,
+      "topic": "storage.blobs.containers",
+      "objectives": [
+        "st-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "You are signed in to Azure CLI and have the required blob data role. You want a container command to explicitly use your Entra identity rather than attempt account-key authorization. Which argument selects that behavior?",
+      "select": 1,
+      "options": [
+        {
+          "id": "login",
+          "text": "--auth-mode login",
+          "explanation": "Login mode explicitly selects the signed-in identity for data authorization."
+        },
+        {
+          "id": "key",
+          "text": "--auth-mode key",
+          "explanation": "Key mode selects account-key authorization, which contradicts the requirement."
+        },
+        {
+          "id": "private",
+          "text": "--public-access off",
+          "explanation": "This configures anonymous container access; it does not select the caller's authorization mode."
+        },
+        {
+          "id": "name",
+          "text": "--account-name <account>",
+          "explanation": "The account name identifies the target resource but does not select Entra authorization."
+        }
+      ],
+      "correct": [
+        "login"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/containers.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-data-operations-cli"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-container-005",
+      "family": "st-container-portal-roles",
+      "revision": 1,
+      "topic": "storage.blobs.containers",
+      "objectives": [
+        "st-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "A user has no existing Azure role assignments. They must navigate to a storage account in the Portal and read its blob data using Entra credentials. Which two roles provide the required management visibility and read-only data access? Assume network access is already allowed.",
+      "select": 2,
+      "options": [
+        {
+          "id": "reader",
+          "text": "Reader at the storage account scope",
+          "explanation": "Reader supplies management-plane visibility needed for Portal navigation."
+        },
+        {
+          "id": "blob-reader",
+          "text": "Storage Blob Data Reader at the required data scope",
+          "explanation": "This grants blob data reads using the user's Entra identity."
+        },
+        {
+          "id": "queue-reader",
+          "text": "Storage Queue Data Reader at the storage account scope",
+          "explanation": "Queue data permissions do not grant blob data reads."
+        },
+        {
+          "id": "billing-reader",
+          "text": "Billing Reader at the subscription scope",
+          "explanation": "Billing information access is not the required storage resource navigation or blob data role."
+        }
+      ],
+      "correct": [
+        "reader",
+        "blob-reader"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/containers.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/assign-azure-role-data-access"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-tier-001",
+      "family": "st-tier-online",
+      "revision": 1,
+      "topic": "storage.blobs.access-tiers",
+      "objectives": [
+        "st-13"
+      ],
+      "difficulty": "applied",
+      "prompt": "A design review compares only cool and archive for an infrequently read block-blob dataset. The application must read any object immediately, without waiting for rehydration. Which choice satisfies that requirement?",
+      "select": 1,
+      "options": [
+        {
+          "id": "cool",
+          "text": "Cool, because it remains an online tier",
+          "explanation": "Cool permits immediate reads. The question restricts the comparison to cool and archive and does not assert cool is universally cheapest."
+        },
+        {
+          "id": "archive",
+          "text": "Archive, because infrequent access eliminates rehydration",
+          "explanation": "Low access frequency does not remove archive's offline retrieval behavior."
+        },
+        {
+          "id": "archive-priority",
+          "text": "Archive, because high-priority rehydration makes all reads immediately available",
+          "explanation": "Higher rehydration priority does not turn archived data into always-online data."
+        },
+        {
+          "id": "neither",
+          "text": "Neither, because cool also requires rehydration before each read",
+          "explanation": "Cool is an online tier and does not require archive-style rehydration."
+        }
+      ],
+      "correct": [
+        "cool"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/access-tiers.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-tier-002",
+      "family": "st-tier-minimum",
+      "revision": 1,
+      "topic": "storage.blobs.access-tiers",
+      "objectives": [
+        "st-13"
+      ],
+      "difficulty": "applied",
+      "prompt": "A block blob in a general-purpose v2 account is deleted from the cool tier after 12 days. Soft delete is disabled and no retention protection applies. What does the cool tier's 30-day minimum mean?",
+      "select": 1,
+      "options": [
+        {
+          "id": "billing",
+          "text": "Deletion is possible, but an early-deletion charge can cover the remaining 18 days.",
+          "explanation": "The minimum is a billing duration. In this scenario, 30 minus 12 leaves 18 days of early-deletion charges."
+        },
+        {
+          "id": "locked",
+          "text": "Azure refuses deletion until day 30.",
+          "explanation": "A tier's billing minimum is not an immutability or retention lock."
+        },
+        {
+          "id": "no-cost",
+          "text": "Deletion is free of any remaining-duration charge because the blob no longer exists.",
+          "explanation": "Early removal is precisely the circumstance in which a minimum-duration charge applies."
+        },
+        {
+          "id": "archive",
+          "text": "Azure automatically archives the blob until day 30.",
+          "explanation": "Deleting a cool-tier blob does not implicitly move it into archive."
+        }
+      ],
+      "correct": [
+        "billing"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/access-tiers.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-tier-003",
+      "family": "st-tier-default",
+      "revision": 1,
+      "topic": "storage.blobs.access-tiers",
+      "objectives": [
+        "st-13"
+      ],
+      "difficulty": "applied",
+      "prompt": "Blob A inherits its account's hot default tier. Blob B is explicitly set to hot. The account default is changed to cool. Which blob follows the new default without a separate blob-level tier operation?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Blob A only",
+          "explanation": "An inferred tier follows the account default; an explicitly assigned tier does not."
+        },
+        {
+          "id": "b",
+          "text": "Blob B only",
+          "explanation": "This reverses the distinction between inferred and explicitly assigned tiers."
+        },
+        {
+          "id": "both",
+          "text": "Both blobs",
+          "explanation": "An account default change does not overwrite Blob B's explicit tier assignment."
+        },
+        {
+          "id": "neither",
+          "text": "Neither blob; defaults only affect future uploads",
+          "explanation": "The default also applies to existing blobs whose tier is inferred."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/access-tiers.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-tier-004",
+      "family": "st-tier-archive-redundancy",
+      "revision": 1,
+      "topic": "storage.blobs.access-tiers",
+      "objectives": [
+        "st-13"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A standard general-purpose v2 account uses ZRS. An administrator wants to put a block blob into archive without changing the account's redundancy. What is the relevant limitation?",
+      "select": 1,
+      "options": [
+        {
+          "id": "unsupported",
+          "text": "Archive is not supported with ZRS.",
+          "explanation": "The documented archive redundancy choices are LRS, GRS, and RA-GRS; ZRS is excluded."
+        },
+        {
+          "id": "wait",
+          "text": "The blob must first spend 30 days in hot.",
+          "explanation": "A waiting period in hot does not resolve an unsupported redundancy combination."
+        },
+        {
+          "id": "container",
+          "text": "The container must permit anonymous reads.",
+          "explanation": "Anonymous access settings do not determine archive redundancy support."
+        },
+        {
+          "id": "tracking",
+          "text": "Enabling last-access-time tracking enables archive on ZRS.",
+          "explanation": "Tracking supplies lifecycle conditions; it does not change archive's redundancy constraints."
+        }
+      ],
+      "correct": [
+        "unsupported"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/access-tiers.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-tier-005",
+      "family": "st-tier-cost-inputs",
+      "revision": 1,
+      "topic": "storage.blobs.access-tiers",
+      "objectives": [
+        "st-13"
+      ],
+      "difficulty": "applied",
+      "prompt": "A team wants to reduce blob storage spending. Which two considerations follow Microsoft's guidance for choosing tiers?",
+      "select": 2,
+      "options": [
+        {
+          "id": "access-cost",
+          "text": "Evaluate expected read frequency and retrieval charges alongside capacity prices.",
+          "explanation": "Lower capacity prices can be offset by higher access costs."
+        },
+        {
+          "id": "upload",
+          "text": "Upload directly to the appropriate tier when the expected usage is known.",
+          "explanation": "Choosing the suitable tier at upload can avoid extra operations from a later transition."
+        },
+        {
+          "id": "lowest-capacity",
+          "text": "Always choose the tier with the lowest per-GB capacity price.",
+          "explanation": "Capacity price alone ignores retrieval requirements, operations, and access charges."
+        },
+        {
+          "id": "daily-cycle",
+          "text": "Cycle blobs through every tier daily to avoid minimum-duration charges.",
+          "explanation": "Repeated transitions can introduce operations and early-deletion charges instead of avoiding them."
+        }
+      ],
+      "correct": [
+        "access-cost",
+        "upload"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/access-tiers.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-best-practices"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-life-001",
+      "family": "st-life-prefix",
+      "revision": 1,
+      "topic": "storage.blobs.lifecycle",
+      "objectives": [
+        "st-16"
+      ],
+      "difficulty": "applied",
+      "prompt": "A lifecycle rule must target block blobs whose names begin with reports/ inside the study-records container. Which prefixMatch value targets that path?",
+      "select": 1,
+      "options": [
+        {
+          "id": "full-prefix",
+          "text": "study-records/reports/",
+          "explanation": "A prefix begins with the container name, followed by the relevant blob-name prefix."
+        },
+        {
+          "id": "blob-only",
+          "text": "reports/",
+          "explanation": "The required container name is missing; this does not target reports/ within study-records."
+        },
+        {
+          "id": "wildcard",
+          "text": "*/reports/",
+          "explanation": "Lifecycle prefixes do not use wildcard matching; the asterisk would be literal."
+        },
+        {
+          "id": "whole",
+          "text": "study-records/",
+          "explanation": "This would include the entire container, rather than limiting the action to reports/."
+        }
+      ],
+      "correct": [
+        "full-prefix"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/lifecycle-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-structure"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-life-001b",
+      "family": "st-life-prefix",
+      "revision": 1,
+      "topic": "storage.blobs.lifecycle",
+      "objectives": [
+        "st-16"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A lifecycle rule uses prefixMatch invoices/2026/*.csv. The container is invoices and the actual blob name is 2026/march.csv. Why does the intended wildcard rule not match that blob?",
+      "select": 1,
+      "options": [
+        {
+          "id": "literal",
+          "text": "The asterisk is treated literally; use invoices/2026/ to target that whole prefix.",
+          "explanation": "Prefix filters do not support wildcard matching. The replacement targets all names beginning 2026/ in invoices, not only CSV files."
+        },
+        {
+          "id": "account-name",
+          "text": "The prefix must begin with the storage account name.",
+          "explanation": "A lifecycle prefix begins with a container name, not a storage account name."
+        },
+        {
+          "id": "url",
+          "text": "The prefix must be a complete HTTPS blob URL.",
+          "explanation": "A prefixMatch value uses the container and blob-name prefix, not a full endpoint URL."
+        },
+        {
+          "id": "anonymous",
+          "text": "CSV blobs are excluded unless the container is anonymous.",
+          "explanation": "Anonymous access does not enable lifecycle matching of a file extension."
+        }
+      ],
+      "correct": [
+        "literal"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/lifecycle-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-structure"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-life-002",
+      "family": "st-life-rehydrate",
+      "revision": 1,
+      "topic": "storage.blobs.lifecycle",
+      "objectives": [
+        "st-16"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Can a Blob lifecycle policy automatically rehydrate archived data into an online tier?",
+      "select": 1,
+      "options": [
+        {
+          "id": "separate",
+          "text": "No; archive rehydration requires a separate supported operation.",
+          "explanation": "Lifecycle management does not support rehydrating archived blobs into an online tier."
+        },
+        {
+          "id": "age",
+          "text": "Yes, by setting an age condition on an archive-to-hot lifecycle action.",
+          "explanation": "An age condition cannot enable an unsupported lifecycle action."
+        },
+        {
+          "id": "access",
+          "text": "Yes, by enabling last-access-time tracking.",
+          "explanation": "Tracking access supplies time-based information; it does not add archive rehydration support."
+        },
+        {
+          "id": "filter",
+          "text": "Yes, if the rule targets only one container.",
+          "explanation": "Narrowing a filter changes the target set, not the actions lifecycle management supports."
+        }
+      ],
+      "correct": [
+        "separate"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/lifecycle-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-life-003",
+      "family": "st-life-write-versus-read",
+      "revision": 1,
+      "topic": "storage.blobs.lifecycle",
+      "objectives": [
+        "st-16"
+      ],
+      "difficulty": "applied",
+      "prompt": "An enabled rule tiers a current block blob to cool when daysAfterModificationGreaterThan is 45. The blob was last modified 60 days ago and was read yesterday. It matches every filter and tiering is supported. Does yesterday's read make it ineligible under this condition?",
+      "select": 1,
+      "options": [
+        {
+          "id": "no",
+          "text": "No; eligibility here depends on last modification, not last read.",
+          "explanation": "Reading the blob does not reset the last-modified timestamp used by this condition. Execution still depends on the policy run."
+        },
+        {
+          "id": "yes",
+          "text": "Yes; every read resets the last-modified timestamp.",
+          "explanation": "This confuses access time with modification time."
+        },
+        {
+          "id": "creation",
+          "text": "Yes; the condition always uses the container's creation date.",
+          "explanation": "The configured condition refers to the individual blob's modification age."
+        },
+        {
+          "id": "disabled",
+          "text": "Yes; reading a blob disables lifecycle rules for that container.",
+          "explanation": "Reading data does not disable the account's lifecycle policy."
+        }
+      ],
+      "correct": [
+        "no"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/lifecycle-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-structure"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-life-004",
+      "family": "st-life-whole-policy",
+      "revision": 1,
+      "topic": "storage.blobs.lifecycle",
+      "objectives": [
+        "st-16"
+      ],
+      "difficulty": "applied",
+      "prompt": "A storage account already has several required lifecycle rules. You are updating its management policy through the API-backed CLI workflow to add another rule. Which approach preserves the existing behavior?",
+      "select": 1,
+      "options": [
+        {
+          "id": "whole",
+          "text": "Read the existing policy and submit a complete policy containing the retained rules and the new rule.",
+          "explanation": "Lifecycle policies are written in full. Existing rules must be retained in the submitted policy."
+        },
+        {
+          "id": "partial",
+          "text": "Submit only the new rule and rely on an implicit merge.",
+          "explanation": "The service does not support partial policy updates with implicit rule merging."
+        },
+        {
+          "id": "second",
+          "text": "Attach a second independent lifecycle management policy to the same account.",
+          "explanation": "The account's management policy contains the collection of rules; adding a rule is not attaching another independent policy."
+        },
+        {
+          "id": "container",
+          "text": "Store the new rule as container metadata.",
+          "explanation": "Container metadata does not configure the storage account's lifecycle management policy."
+        }
+      ],
+      "correct": [
+        "whole"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/lifecycle-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-configure"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-life-005",
+      "family": "st-life-timing",
+      "revision": 1,
+      "topic": "storage.blobs.lifecycle",
+      "objectives": [
+        "st-16"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "You saved a valid lifecycle rule ten minutes ago. Eligible blobs still show their original tier. Which two statements should guide the investigation?",
+      "select": 2,
+      "options": [
+        {
+          "id": "delay",
+          "text": "Policy changes can take up to 24 hours to take effect and start the first run.",
+          "explanation": "Ten minutes without a tier change is not by itself evidence that the rule is invalid."
+        },
+        {
+          "id": "inspect",
+          "text": "Inspect filters and time conditions as well as allowing for execution time.",
+          "explanation": "An enabled policy still acts only on matching eligible objects, and execution is asynchronous."
+        },
+        {
+          "id": "guarantee",
+          "text": "Every eligible blob must finish changing tier within ten minutes of saving.",
+          "explanation": "The documented execution behavior does not provide that completion guarantee."
+        },
+        {
+          "id": "public",
+          "text": "Enable anonymous reads to allow lifecycle management to process the blobs.",
+          "explanation": "Lifecycle processing does not require making the data anonymously readable."
+        }
+      ],
+      "correct": [
+        "delay",
+        "inspect"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/lifecycle-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-structure"
+      ],
+      "verified": "2026-10-01"
+    }
+  ]
+}

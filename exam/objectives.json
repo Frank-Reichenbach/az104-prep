@@ -1,0 +1,145 @@
+{
+  "outlineEffective": "2026-04-17",
+  "verified": "2026-10-01",
+  "source": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-104",
+  "note": "IDs are local, not Microsoft objective identifiers. Titles paraphrase the published tasks.",
+  "domains": [
+    {
+      "id": "identity", "title": "Identity and governance", "weight": [20, 25],
+      "groups": [
+        {"title": "Entra users and groups", "objectives": [
+          {"id": "id-01", "title": "Provision users and groups"},
+          {"id": "id-02", "title": "Maintain user and group properties"},
+          {"id": "id-03", "title": "Administer Entra license assignments"},
+          {"id": "id-04", "title": "Administer external identities"},
+          {"id": "id-05", "title": "Set up self-service password reset"}
+        ]},
+        {"title": "Resource authorization", "objectives": [
+          {"id": "id-06", "title": "Use Azure built-in roles"},
+          {"id": "id-07", "title": "Apply role assignments at appropriate scopes"},
+          {"id": "id-08", "title": "Determine effective access from assignments"}
+        ]},
+        {"title": "Subscriptions and governance", "objectives": [
+          {"id": "id-09", "title": "Apply and maintain Azure Policy"},
+          {"id": "id-10", "title": "Protect resources with locks"},
+          {"id": "id-11", "title": "Organize resources with tags"},
+          {"id": "id-12", "title": "Administer resource groups"},
+          {"id": "id-13", "title": "Administer subscriptions"},
+          {"id": "id-14", "title": "Control spending through budgets, alerts, and Advisor"},
+          {"id": "id-15", "title": "Arrange management groups"}
+        ]}
+      ]
+    },
+    {
+      "id": "storage", "title": "Storage", "weight": [15, 20],
+      "groups": [
+        {"title": "Storage access", "objectives": [
+          {"id": "st-01", "title": "Restrict storage access through network rules"},
+          {"id": "st-02", "title": "Delegate access using shared access signatures"},
+          {"id": "st-03", "title": "Control SAS access with stored policies"},
+          {"id": "st-04", "title": "Administer storage account keys"},
+          {"id": "st-05", "title": "Enable identity-based Azure Files access"}
+        ]},
+        {"title": "Storage accounts", "objectives": [
+          {"id": "st-06", "title": "Provision and configure storage accounts"},
+          {"id": "st-07", "title": "Select and configure redundancy"},
+          {"id": "st-08", "title": "Set up object replication"},
+          {"id": "st-09", "title": "Configure storage encryption"},
+          {"id": "st-10", "title": "Transfer and manage data with AzCopy and Storage Explorer"}
+        ]},
+        {"title": "Files and blobs", "objectives": [
+          {"id": "st-11", "title": "Provision and configure Azure file shares"},
+          {"id": "st-12", "title": "Provision and configure blob containers"},
+          {"id": "st-13", "title": "Choose and configure access tiers"},
+          {"id": "st-14", "title": "Recover blobs and containers using soft deletion"},
+          {"id": "st-15", "title": "Protect Azure Files with snapshots and soft deletion"},
+          {"id": "st-16", "title": "Automate blob lifecycle transitions and expiration"},
+          {"id": "st-17", "title": "Maintain blob versions"}
+        ]}
+      ]
+    },
+    {
+      "id": "compute", "title": "Compute", "weight": [20, 25],
+      "groups": [
+        {"title": "ARM and Bicep deployments", "objectives": [
+          {"id": "co-01", "title": "Read ARM templates and Bicep definitions"},
+          {"id": "co-02", "title": "Change an existing ARM template"},
+          {"id": "co-03", "title": "Change an existing Bicep definition"},
+          {"id": "co-04", "title": "Deploy infrastructure with ARM or Bicep"},
+          {"id": "co-05", "title": "Export ARM deployments and convert templates to Bicep"}
+        ]},
+        {"title": "Virtual machines", "objectives": [
+          {"id": "co-06", "title": "Provision virtual machines"},
+          {"id": "co-07", "title": "Enable VM host encryption"},
+          {"id": "co-08", "title": "Relocate VMs across groups, subscriptions, or regions"},
+          {"id": "co-09", "title": "Resize virtual machines"},
+          {"id": "co-10", "title": "Administer VM disks"},
+          {"id": "co-11", "title": "Use availability sets and availability zones"},
+          {"id": "co-12", "title": "Set up virtual machine scale sets"}
+        ]},
+        {"title": "Container services", "objectives": [
+          {"id": "co-13", "title": "Administer Azure Container Registry"},
+          {"id": "co-14", "title": "Run workloads with Container Instances"},
+          {"id": "co-15", "title": "Run workloads with Container Apps"},
+          {"id": "co-16", "title": "Size and scale Container Instances and Container Apps"}
+        ]},
+        {"title": "App Service", "objectives": [
+          {"id": "co-17", "title": "Provision an App Service plan"},
+          {"id": "co-18", "title": "Scale App Service plans"},
+          {"id": "co-19", "title": "Provision an App Service application"},
+          {"id": "co-20", "title": "Set up application certificates and TLS"},
+          {"id": "co-21", "title": "Attach an existing custom DNS name"},
+          {"id": "co-22", "title": "Configure application backups"},
+          {"id": "co-23", "title": "Configure App Service network connectivity"},
+          {"id": "co-24", "title": "Use deployment slots"}
+        ]}
+      ]
+    },
+    {
+      "id": "networking", "title": "Networking", "weight": [15, 20],
+      "groups": [
+        {"title": "Virtual network administration", "objectives": [
+          {"id": "nw-01", "title": "Build virtual networks and subnets"},
+          {"id": "nw-02", "title": "Connect networks through peering"},
+          {"id": "nw-03", "title": "Configure public IP resources"},
+          {"id": "nw-04", "title": "Control traffic with custom routes"},
+          {"id": "nw-05", "title": "Diagnose connectivity problems"}
+        ]},
+        {"title": "Network access controls", "objectives": [
+          {"id": "nw-06", "title": "Configure network and application security groups"},
+          {"id": "nw-07", "title": "Determine effective NSG rules"},
+          {"id": "nw-08", "title": "Provide administrative access through Bastion"},
+          {"id": "nw-09", "title": "Use service endpoints for platform services"},
+          {"id": "nw-10", "title": "Use private endpoints for platform services"}
+        ]},
+        {"title": "DNS and load balancing", "objectives": [
+          {"id": "nw-11", "title": "Administer Azure DNS"},
+          {"id": "nw-12", "title": "Set up public and internal load balancers"},
+          {"id": "nw-13", "title": "Diagnose load balancer behavior"}
+        ]}
+      ]
+    },
+    {
+      "id": "monitoring", "title": "Monitoring and recovery", "weight": [10, 15],
+      "groups": [
+        {"title": "Observability", "objectives": [
+          {"id": "mo-01", "title": "Read and interpret Azure Monitor metrics"},
+          {"id": "mo-02", "title": "Configure collection of monitoring logs"},
+          {"id": "mo-03", "title": "Query logs and interpret results"},
+          {"id": "mo-04", "title": "Configure alerts, action groups, and processing rules"},
+          {"id": "mo-05", "title": "Use Insights for VMs, storage, and networks"},
+          {"id": "mo-06", "title": "Use Network Watcher and Connection Monitor"}
+        ]},
+        {"title": "Backup and disaster recovery", "objectives": [
+          {"id": "mo-07", "title": "Provision a Recovery Services vault"},
+          {"id": "mo-08", "title": "Provision a Backup vault"},
+          {"id": "mo-09", "title": "Define backup policies"},
+          {"id": "mo-10", "title": "Back up and restore using Azure Backup"},
+          {"id": "mo-11", "title": "Configure Site Recovery replication"},
+          {"id": "mo-12", "title": "Fail over Azure resources to a secondary region"},
+          {"id": "mo-13", "title": "Read and configure backup reports and alerts"}
+        ]}
+      ]
+    }
+  ]
+}
