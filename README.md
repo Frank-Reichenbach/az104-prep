@@ -67,7 +67,7 @@ You can also study without the app:
 | examples/ | Illustrative Azure configuration; not executed automatically |
 | docs/ | Research and question authoring conventions |
 | templates/ | Starting point for a specific knowledge topic |
-| app/ | Local browser quiz and generated question bundle |
+| app/ | Local browser quiz, Tailwind source (`tailwind.css`), compiled `style.css`, and generated question bundle |
 | scripts/ | Build, validation, and local server |
 | tests/ | Quiz logic, content validation, and server tests |
 | generated/ | Reproducible Markdown questionnaires and answer keys |
@@ -75,7 +75,7 @@ You can also study without the app:
 ## Maintain the content
 
 ```sh
-npm run build
+npm run build   # also compiles Tailwind: app/tailwind.css -> app/style.css
 npm run check
 npm test
 npm run build:site
