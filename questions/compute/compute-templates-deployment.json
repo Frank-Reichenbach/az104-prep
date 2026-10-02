@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-deploy-scope",
+      "family": "co-deploy-scope",
+      "revision": 1,
+      "topic": "compute.templates.deployment",
+      "objectives": [
+        "co-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "You must deploy a Bicep file into an existing resource group. Which command family targets that scope?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "az deployment group create",
+          "explanation": "The group deployment command targets a resource group."
+        },
+        {
+          "id": "b",
+          "text": "az deployment sub create",
+          "explanation": "This targets a subscription deployment, not the requested group scope."
+        },
+        {
+          "id": "c",
+          "text": "az deployment mg create",
+          "explanation": "This targets a management group."
+        },
+        {
+          "id": "d",
+          "text": "az deployment tenant create",
+          "explanation": "This targets the tenant scope."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/deployment.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-deploy-preview",
+      "family": "co-deploy-preview",
+      "revision": 1,
+      "topic": "compute.templates.deployment",
+      "objectives": [
+        "co-04"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which operation previews an ARM or Bicep deployment without applying the proposed resource changes?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "what-if",
+          "explanation": "What-if compares the intended deployment with current resources."
+        },
+        {
+          "id": "b",
+          "text": "create with a new deployment name",
+          "explanation": "A different history name does not prevent resource changes."
+        },
+        {
+          "id": "c",
+          "text": "deleting the previous deployment record",
+          "explanation": "History deletion does not preview a new deployment."
+        },
+        {
+          "id": "d",
+          "text": "compiling the Bicep file only",
+          "explanation": "Compilation produces JSON without comparing Azure resources."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/deployment.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-deploy-rbac",
+      "family": "co-deploy-rbac",
+      "revision": 1,
+      "topic": "compute.templates.deployment",
+      "objectives": [
+        "co-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "A deployment identity has Contributor on a resource group. Its template creates a VM and an Azure role assignment. The VM succeeds, but role assignment creation is denied. What additional permission should you investigate?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Microsoft.Authorization/roleAssignments/write at the assignment scope",
+          "explanation": "Contributor does not grant role assignment administration."
+        },
+        {
+          "id": "b",
+          "text": "Microsoft.Compute/virtualMachines/read only",
+          "explanation": "VM read permission does not authorize role assignments."
+        },
+        {
+          "id": "c",
+          "text": "Microsoft.Resources/deployments/read only",
+          "explanation": "Reading deployment history cannot authorize the denied assignment."
+        },
+        {
+          "id": "d",
+          "text": "Microsoft.Compute/virtualMachines/start/action only",
+          "explanation": "Starting a VM is unrelated to granting Azure resource access."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/deployment.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

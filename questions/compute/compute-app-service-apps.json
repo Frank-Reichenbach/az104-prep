@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-web-zip",
+      "family": "co-web-zip",
+      "revision": 1,
+      "topic": "compute.app-service.apps",
+      "objectives": [
+        "co-19"
+      ],
+      "difficulty": "applied",
+      "prompt": "A published application is deployed to App Service from a ZIP archive. What archive layout does the documented deployment process require?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Deployable application files at the ZIP root.",
+          "explanation": "A surrounding parent folder can prevent the app from finding its expected files."
+        },
+        {
+          "id": "b",
+          "text": "All application files nested inside an arbitrary extra parent directory.",
+          "explanation": "The required root layout should not include an extra wrapping folder."
+        },
+        {
+          "id": "c",
+          "text": "Only an empty folder named wwwroot.",
+          "explanation": "An empty archive cannot supply the application."
+        },
+        {
+          "id": "d",
+          "text": "Only the source repository URL stored in a text file.",
+          "explanation": "ZIP package deployment needs the actual deployable application files."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/apps.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/deploy-zip",
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-common",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-settings",
+      "family": "co-web-settings",
+      "revision": 1,
+      "topic": "compute.app-service.apps",
+      "objectives": [
+        "co-19"
+      ],
+      "difficulty": "foundation",
+      "prompt": "What happens when an administrator changes App Service app settings?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The settings are supplied as environment variables and the app restarts.",
+          "explanation": "App Service applies configuration changes through its app settings mechanism."
+        },
+        {
+          "id": "b",
+          "text": "The App Service plan changes operating system automatically.",
+          "explanation": "Environment settings do not convert the plan OS."
+        },
+        {
+          "id": "c",
+          "text": "A new staging slot is always created.",
+          "explanation": "Changing app settings does not create a slot."
+        },
+        {
+          "id": "d",
+          "text": "The application image is necessarily rebuilt and pushed to ACR.",
+          "explanation": "Settings changes do not require a container build or image push."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/apps.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/deploy-zip",
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-common",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-managed",
+      "family": "co-web-managed",
+      "revision": 1,
+      "topic": "compute.app-service.apps",
+      "objectives": [
+        "co-19"
+      ],
+      "difficulty": "applied",
+      "prompt": "A web app has managed identity enabled but receives authorization failures from a protected Azure service. What should be checked?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The identity has the required role or access policy on that target service.",
+          "explanation": "Authentication through managed identity still requires target-service authorization."
+        },
+        {
+          "id": "b",
+          "text": "Assume enabling identity grants Contributor to every service.",
+          "explanation": "Identity creation does not grant broad Azure access."
+        },
+        {
+          "id": "c",
+          "text": "Change the web app display name to the service name.",
+          "explanation": "Matching names do not grant authorization."
+        },
+        {
+          "id": "d",
+          "text": "Increase plan workers as the only permission fix.",
+          "explanation": "Additional workers do not change identity permissions."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/apps.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/deploy-zip",
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-common",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

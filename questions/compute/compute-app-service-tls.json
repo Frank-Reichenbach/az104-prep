@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-tls-binding",
+      "family": "co-tls-binding",
+      "revision": 1,
+      "topic": "compute.app-service.tls",
+      "objectives": [
+        "co-20"
+      ],
+      "difficulty": "applied",
+      "prompt": "A valid certificate for www.example.com has been uploaded to App Service, and the custom hostname is mapped, but HTTPS still does not use it. What configuration is missing?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A TLS binding associating the hostname with the certificate.",
+          "explanation": "Upload stores the certificate; the binding selects it for the hostname."
+        },
+        {
+          "id": "b",
+          "text": "Only another copy of the same certificate file.",
+          "explanation": "Duplicate upload does not create the missing binding."
+        },
+        {
+          "id": "c",
+          "text": "Only a larger App Service instance count.",
+          "explanation": "Worker count does not associate a certificate with a hostname."
+        },
+        {
+          "id": "d",
+          "text": "Only a DNS TTL of zero.",
+          "explanation": "TTL does not configure the app TLS binding."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/tls.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings",
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-tls-wildcard",
+      "family": "co-tls-wildcard",
+      "revision": 1,
+      "topic": "compute.app-service.tls",
+      "objectives": [
+        "co-20"
+      ],
+      "difficulty": "applied",
+      "prompt": "An app requires a wildcard certificate covering *.example.com. Which certificate approach fits App Service requirements?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Import or upload a suitable wildcard certificate from a certificate provider.",
+          "explanation": "A supported certificate with the required names can be bound to the app."
+        },
+        {
+          "id": "b",
+          "text": "Request a free App Service managed wildcard certificate.",
+          "explanation": "The free managed certificate does not support wildcards."
+        },
+        {
+          "id": "c",
+          "text": "Use the default azurewebsites.net certificate for example.com.",
+          "explanation": "The default certificate does not cover the custom domain."
+        },
+        {
+          "id": "d",
+          "text": "Create only an ownership TXT record and omit TLS binding.",
+          "explanation": "Domain ownership verification does not provide wildcard TLS."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/tls.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings",
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-tls-sni",
+      "family": "co-tls-sni",
+      "revision": 1,
+      "topic": "compute.app-service.tls",
+      "objectives": [
+        "co-20"
+      ],
+      "difficulty": "foundation",
+      "prompt": "What is the purpose of an SNI TLS binding in App Service?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Select the certificate by hostname while sharing an IP address.",
+          "explanation": "Server Name Indication communicates the requested hostname during TLS."
+        },
+        {
+          "id": "b",
+          "text": "Require a separate dedicated IP for every hostname.",
+          "explanation": "That is not the purpose of SNI."
+        },
+        {
+          "id": "c",
+          "text": "Automatically create all external DNS records.",
+          "explanation": "TLS binding does not administer the DNS provider."
+        },
+        {
+          "id": "d",
+          "text": "Encrypt application data stored on the filesystem.",
+          "explanation": "A TLS binding protects transport connections, not filesystem storage."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/tls.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings",
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

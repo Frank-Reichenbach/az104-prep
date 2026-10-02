@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-acr-abac",
+      "family": "co-acr-abac",
+      "revision": 1,
+      "topic": "compute.containers.registry",
+      "objectives": [
+        "co-13"
+      ],
+      "difficulty": "applied",
+      "prompt": "An ACR registry uses RBAC Registry + ABAC Repository Permissions. A workload must pull an image from an allowed repository but has only AcrPull. What should be changed?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Assign Container Registry Repository Reader with any condition covering the repository.",
+          "explanation": "ABAC-enabled registries use the repository roles rather than legacy AcrPull."
+        },
+        {
+          "id": "b",
+          "text": "Keep AcrPull and only refresh the token indefinitely.",
+          "explanation": "A token refresh cannot make an unhonored role grant access."
+        },
+        {
+          "id": "c",
+          "text": "Assign only Container Registry Repository Catalog Lister.",
+          "explanation": "Listing repository names is not permission to pull their images."
+        },
+        {
+          "id": "d",
+          "text": "Assign only Reader on the registry resource.",
+          "explanation": "Control-plane read does not grant repository image access in ABAC mode."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/registry.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions",
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices",
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-acr-digest",
+      "family": "co-acr-digest",
+      "revision": 1,
+      "topic": "compute.containers.registry",
+      "objectives": [
+        "co-13"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A deployment must refer to the exact same container image content after a tag is reassigned. Which identifier should it record?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The image digest",
+          "explanation": "A digest identifies content rather than a mutable tag label."
+        },
+        {
+          "id": "b",
+          "text": "Only the latest tag",
+          "explanation": "latest is a mutable tag and may refer to different content later."
+        },
+        {
+          "id": "c",
+          "text": "Only the repository name",
+          "explanation": "A repository can contain many image versions."
+        },
+        {
+          "id": "d",
+          "text": "Only the registry resource group",
+          "explanation": "A management container does not identify image content."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/registry.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions",
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices",
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-acr-identity",
+      "family": "co-acr-identity",
+      "revision": 1,
+      "topic": "compute.containers.registry",
+      "objectives": [
+        "co-13"
+      ],
+      "difficulty": "applied",
+      "prompt": "A supported Azure service must pull private ACR images without storing a shared registry password. Which approach fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Use its managed identity with the appropriate image pull role for the registry mode.",
+          "explanation": "Managed identity authentication avoids a shared password and still requires authorization."
+        },
+        {
+          "id": "b",
+          "text": "Enable the registry admin account and embed its password in the image.",
+          "explanation": "This stores a shared secret and exposes it in the artifact."
+        },
+        {
+          "id": "c",
+          "text": "Assign only a display name to the managed identity without roles.",
+          "explanation": "An identity still requires permission to pull the repository."
+        },
+        {
+          "id": "d",
+          "text": "Give the registry a public endpoint and assume images become anonymous.",
+          "explanation": "Network reachability does not provide repository authorization."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/registry.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions",
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices",
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

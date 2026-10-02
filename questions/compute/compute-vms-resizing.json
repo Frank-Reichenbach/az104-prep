@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-resize-restart",
+      "family": "co-resize-restart",
+      "revision": 1,
+      "topic": "compute.vms.resizing",
+      "objectives": [
+        "co-09"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A running Azure VM can use the requested target size on its current host cluster. What should you still plan for when resizing it?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A VM restart and application interruption",
+          "explanation": "Running-VM resizing is disruptive even without a separate deallocation requirement."
+        },
+        {
+          "id": "b",
+          "text": "A guaranteed change with no guest restart",
+          "explanation": "Availability of the SKU does not make resizing nondisruptive."
+        },
+        {
+          "id": "c",
+          "text": "Automatic replication into another region",
+          "explanation": "Resize changes resource allocation, not disaster recovery configuration."
+        },
+        {
+          "id": "d",
+          "text": "Automatic expansion of every guest filesystem",
+          "explanation": "Changing the VM size does not automatically extend all disk filesystems."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/resizing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-resize-set",
+      "family": "co-resize-set",
+      "revision": 1,
+      "topic": "compute.vms.resizing",
+      "objectives": [
+        "co-09"
+      ],
+      "difficulty": "applied",
+      "prompt": "A VM in an availability set needs a size unavailable on the current hardware cluster. Which operational consequence must be considered?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "All VMs in that availability set may need to be deallocated.",
+          "explanation": "This allows the set to be allocated on hardware that supports the new size."
+        },
+        {
+          "id": "b",
+          "text": "Only changing its resource group guarantees the new size.",
+          "explanation": "Resource-group membership does not select a different hardware cluster."
+        },
+        {
+          "id": "c",
+          "text": "Increasing the OS disk guarantees the new size.",
+          "explanation": "Disk capacity does not establish compute SKU availability."
+        },
+        {
+          "id": "d",
+          "text": "Changing the display name forces a compatible cluster.",
+          "explanation": "Resource naming does not control placement capacity."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/resizing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-resize-proof",
+      "family": "co-resize-proof",
+      "revision": 1,
+      "topic": "compute.vms.resizing",
+      "objectives": [
+        "co-09"
+      ],
+      "difficulty": "applied",
+      "prompt": "A resize operation fails, but the VM model now displays the requested larger size. What is the best next verification?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Check the operation failure, allocation state, and actual guest resources.",
+          "explanation": "The model can show the requested configuration before successful allocation."
+        },
+        {
+          "id": "b",
+          "text": "Conclude the larger size is active solely from the model field.",
+          "explanation": "That field can reflect the failed requested change."
+        },
+        {
+          "id": "c",
+          "text": "Assume the guest data disks were necessarily erased.",
+          "explanation": "A failed compute resize does not establish data-disk deletion."
+        },
+        {
+          "id": "d",
+          "text": "Delete the deployment history to complete the resize.",
+          "explanation": "History deletion does not allocate new hardware."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/resizing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

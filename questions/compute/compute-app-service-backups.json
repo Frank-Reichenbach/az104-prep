@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-web-backup-external",
+      "family": "co-web-backup-external",
+      "revision": 1,
+      "topic": "compute.app-service.backups",
+      "objectives": [
+        "co-22"
+      ],
+      "difficulty": "applied",
+      "prompt": "An App Service app has automatic backups and stores business data in an externally mounted Azure file share. What should the recovery design include?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Separate protection and restore procedures for the mounted share.",
+          "explanation": "Automatic App Service backups exclude custom-mounted Azure storage."
+        },
+        {
+          "id": "b",
+          "text": "Assume every mounted share is included in the automatic app backup.",
+          "explanation": "The documented scope does not include that external storage."
+        },
+        {
+          "id": "c",
+          "text": "Use an app-setting rename to bring the share into the backup.",
+          "explanation": "Renaming configuration does not change the backup coverage."
+        },
+        {
+          "id": "d",
+          "text": "Treat the source-code ZIP as a backup of all business data.",
+          "explanation": "The deployment artifact does not contain independently stored application data."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/backups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-backup"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-backup-restore",
+      "family": "co-web-backup-restore",
+      "revision": 1,
+      "topic": "compute.app-service.backups",
+      "objectives": [
+        "co-22"
+      ],
+      "difficulty": "applied",
+      "prompt": "Before replacing a production App Service app with a backup, which approach provides useful recovery evidence?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Restore to a supported separate app or slot and test the app and dependencies.",
+          "explanation": "A recovery test checks usable behavior and configuration beyond backup job status."
+        },
+        {
+          "id": "b",
+          "text": "Only check that the backup list contains a timestamp.",
+          "explanation": "A recorded backup does not prove the application can function after restoration."
+        },
+        {
+          "id": "c",
+          "text": "Edit the backup ZIP manually to make its timestamp newer.",
+          "explanation": "Altering backup artifacts can invalidate recovery."
+        },
+        {
+          "id": "d",
+          "text": "Assume app restoration recreates every identity and network dependency.",
+          "explanation": "Several related configurations and external services need separate recovery."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/backups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-backup"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-backup-database",
+      "family": "co-web-backup-database",
+      "revision": 1,
+      "topic": "compute.app-service.backups",
+      "objectives": [
+        "co-22"
+      ],
+      "difficulty": "applied",
+      "prompt": "In October 2026, you design a new App Service recovery setup with Azure SQL. Which database backup approach follows current Microsoft guidance?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Use Azure SQL native backup and restore alongside app protection.",
+          "explanation": "Microsoft recommends native database tools, and new linked SQL backup configurations were removed in April 2026."
+        },
+        {
+          "id": "b",
+          "text": "Depend on creating a new App Service linked SQL backup configuration.",
+          "explanation": "The documented removal schedule has already removed this option for new configurations."
+        },
+        {
+          "id": "c",
+          "text": "Assume automatic App Service backups include the SQL database.",
+          "explanation": "Automatic backups do not include linked databases."
+        },
+        {
+          "id": "d",
+          "text": "Use a deployment-slot swap as the only database backup.",
+          "explanation": "A slot swap does not create a recoverable database backup."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/backups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-backup"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

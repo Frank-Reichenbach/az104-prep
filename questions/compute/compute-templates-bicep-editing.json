@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-bicep-refactor",
+      "family": "co-bicep-refactor",
+      "revision": 1,
+      "topic": "compute.templates.bicep-editing",
+      "objectives": [
+        "co-03"
+      ],
+      "difficulty": "applied",
+      "prompt": "You rename a Bicep symbolic identifier from store to archive, updating all code references but retaining the resource type, Azure name, scope, and properties. What does this change itself do?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Refactors the code without changing the Azure resource identity.",
+          "explanation": "The deployed identity uses type, name, and scope, not the local symbol."
+        },
+        {
+          "id": "b",
+          "text": "Renames the deployed account to archive.",
+          "explanation": "The Azure name property was retained."
+        },
+        {
+          "id": "c",
+          "text": "Deletes the resource formerly represented by store.",
+          "explanation": "Changing only the symbol does not request deletion."
+        },
+        {
+          "id": "d",
+          "text": "Moves the resource into a deployment named archive.",
+          "explanation": "A symbolic identifier does not select deployment scope or history name."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/bicep-editing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-bicep-build",
+      "family": "co-bicep-build",
+      "revision": 1,
+      "topic": "compute.templates.bicep-editing",
+      "objectives": [
+        "co-03"
+      ],
+      "difficulty": "foundation",
+      "prompt": "What does a successful az bicep build establish before an Azure deployment?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The file can compile to an ARM template.",
+          "explanation": "Build performs compilation and reports Bicep diagnostics."
+        },
+        {
+          "id": "b",
+          "text": "The deployment identity has all required Azure permissions.",
+          "explanation": "Local compilation does not establish RBAC access."
+        },
+        {
+          "id": "c",
+          "text": "The target region has capacity for every VM.",
+          "explanation": "Allocation happens during deployment, not compilation."
+        },
+        {
+          "id": "d",
+          "text": "All Azure Policy assignments permit the resources.",
+          "explanation": "Policy evaluation depends on the Azure scope and resource request."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/bicep-editing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-bicep-existing",
+      "family": "co-bicep-existing",
+      "revision": 1,
+      "topic": "compute.templates.bicep-editing",
+      "objectives": [
+        "co-03"
+      ],
+      "difficulty": "applied",
+      "prompt": "A Bicep declaration uses existing for a virtual network in another resource group. Which TWO statements are correct?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "The declaration references the virtual network without redeploying it.",
+          "explanation": "existing describes an already deployed resource."
+        },
+        {
+          "id": "b",
+          "text": "Its scope must identify the resource group containing that network.",
+          "explanation": "The resource must be resolved at its actual scope."
+        },
+        {
+          "id": "c",
+          "text": "The network is created automatically when missing.",
+          "explanation": "An existing reference does not provision a missing resource."
+        },
+        {
+          "id": "d",
+          "text": "The declaration grants the deploying identity network access rights.",
+          "explanation": "Bicep references do not grant RBAC permissions."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/compute/templates/bicep-editing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

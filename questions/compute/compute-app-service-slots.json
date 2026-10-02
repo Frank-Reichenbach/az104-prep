@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-slot-sticky",
+      "family": "co-slot-sticky",
+      "revision": 1,
+      "topic": "compute.app-service.slots",
+      "objectives": [
+        "co-24"
+      ],
+      "difficulty": "applied",
+      "prompt": "Production and staging use different database connection strings, and each must remain attached to its environment during a slot swap. What should be configured?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Mark the connection strings as deployment slot settings.",
+          "explanation": "Sticky connection strings remain associated with their slot."
+        },
+        {
+          "id": "b",
+          "text": "Leave them swappable and rely on different display names.",
+          "explanation": "Display names do not prevent connection string swapping."
+        },
+        {
+          "id": "c",
+          "text": "Put both connection strings only in the shared plan name.",
+          "explanation": "The plan name does not supply environment-specific application configuration."
+        },
+        {
+          "id": "d",
+          "text": "Change only the staging traffic percentage.",
+          "explanation": "Traffic routing does not make connection strings sticky."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/slots.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-slot-identity",
+      "family": "co-slot-identity",
+      "revision": 1,
+      "topic": "compute.app-service.slots",
+      "objectives": [
+        "co-24"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which App Service configuration remains with its slot during a swap?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Managed identity",
+          "explanation": "Managed identities are listed among settings that do not swap."
+        },
+        {
+          "id": "b",
+          "text": "All application content",
+          "explanation": "Content is the main item moved between slots."
+        },
+        {
+          "id": "c",
+          "text": "Every ordinary unmarked app setting",
+          "explanation": "App settings can swap unless configured sticky or subject to documented exceptions."
+        },
+        {
+          "id": "d",
+          "text": "All runtime framework settings",
+          "explanation": "Framework settings are among the swappable configuration items."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/slots.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-slot-rollback",
+      "family": "co-slot-rollback",
+      "revision": 1,
+      "topic": "compute.app-service.slots",
+      "objectives": [
+        "co-24"
+      ],
+      "difficulty": "applied",
+      "prompt": "A release is swapped from staging to production and performs an external database schema migration. What does swapping the slots back provide?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A code/configuration rollback path that still needs a separate database compatibility or recovery plan.",
+          "explanation": "A slot swap does not undo external database mutations."
+        },
+        {
+          "id": "b",
+          "text": "Automatic reversal of every database change.",
+          "explanation": "External data is outside the slot content swap."
+        },
+        {
+          "id": "c",
+          "text": "Automatic restoration of all production data from Azure Backup.",
+          "explanation": "Swap does not trigger database restoration."
+        },
+        {
+          "id": "d",
+          "text": "Deletion of the newer database schema with guaranteed zero data loss.",
+          "explanation": "A swap has no such schema or data-loss guarantee."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/slots.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

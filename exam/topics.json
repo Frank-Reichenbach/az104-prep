@@ -396,5 +396,269 @@
     ],
     "status": "documented",
     "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.templates.interpretation",
+    "domain": "compute",
+    "title": "Reading ARM templates and Bicep",
+    "path": "knowledge/compute/templates/interpretation.md",
+    "objectives": [
+      "co-01"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.templates.arm-editing",
+    "domain": "compute",
+    "title": "Editing ARM templates safely",
+    "path": "knowledge/compute/templates/arm-editing.md",
+    "objectives": [
+      "co-02"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.templates.bicep-editing",
+    "domain": "compute",
+    "title": "Editing Bicep parameters, resources, and modules",
+    "path": "knowledge/compute/templates/bicep-editing.md",
+    "objectives": [
+      "co-03"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.templates.deployment",
+    "domain": "compute",
+    "title": "Validating and deploying ARM and Bicep",
+    "path": "knowledge/compute/templates/deployment.md",
+    "objectives": [
+      "co-04"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.templates.export",
+    "domain": "compute",
+    "title": "Exporting templates and decompiling Bicep",
+    "path": "knowledge/compute/templates/export.md",
+    "objectives": [
+      "co-05"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.vms.creation",
+    "domain": "compute",
+    "title": "Virtual machine provisioning and access",
+    "path": "knowledge/compute/virtual-machines/creation.md",
+    "objectives": [
+      "co-06"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.vms.host-encryption",
+    "domain": "compute",
+    "title": "Encryption at host for virtual machines",
+    "path": "knowledge/compute/virtual-machines/host-encryption.md",
+    "objectives": [
+      "co-07"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.vms.moves",
+    "domain": "compute",
+    "title": "Moving VMs between scopes and regions",
+    "path": "knowledge/compute/virtual-machines/moves.md",
+    "objectives": [
+      "co-08"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.vms.resizing",
+    "domain": "compute",
+    "title": "Resizing virtual machines",
+    "path": "knowledge/compute/virtual-machines/resizing.md",
+    "objectives": [
+      "co-09"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.vms.disks",
+    "domain": "compute",
+    "title": "Managed disk attachment, expansion, and performance",
+    "path": "knowledge/compute/virtual-machines/disks.md",
+    "objectives": [
+      "co-10"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.vms.availability",
+    "domain": "compute",
+    "title": "Availability sets and availability zones",
+    "path": "knowledge/compute/virtual-machines/availability.md",
+    "objectives": [
+      "co-11"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.vms.scale-sets",
+    "domain": "compute",
+    "title": "Virtual machine scale sets and autoscale",
+    "path": "knowledge/compute/virtual-machines/scale-sets.md",
+    "objectives": [
+      "co-12"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.containers.registry",
+    "domain": "compute",
+    "title": "Container Registry images and access",
+    "path": "knowledge/compute/containers/registry.md",
+    "objectives": [
+      "co-13"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.containers.instances",
+    "domain": "compute",
+    "title": "Container Instances groups and restart behavior",
+    "path": "knowledge/compute/containers/instances.md",
+    "objectives": [
+      "co-14"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.containers.apps",
+    "domain": "compute",
+    "title": "Container Apps environments, ingress, and revisions",
+    "path": "knowledge/compute/containers/apps.md",
+    "objectives": [
+      "co-15"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.containers.scaling",
+    "domain": "compute",
+    "title": "Container resource sizing and replica scaling",
+    "path": "knowledge/compute/containers/scaling.md",
+    "objectives": [
+      "co-16"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.app-service.plans",
+    "domain": "compute",
+    "title": "App Service plan creation and compute sharing",
+    "path": "knowledge/compute/app-service/plans.md",
+    "objectives": [
+      "co-17"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.app-service.scaling",
+    "domain": "compute",
+    "title": "App Service scale up, scale out, and autoscale",
+    "path": "knowledge/compute/app-service/scaling.md",
+    "objectives": [
+      "co-18"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.app-service.apps",
+    "domain": "compute",
+    "title": "App Service application deployment and configuration",
+    "path": "knowledge/compute/app-service/apps.md",
+    "objectives": [
+      "co-19"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.app-service.tls",
+    "domain": "compute",
+    "title": "App Service certificates and TLS bindings",
+    "path": "knowledge/compute/app-service/tls.md",
+    "objectives": [
+      "co-20"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.app-service.domains",
+    "domain": "compute",
+    "title": "App Service custom DNS names and ownership verification",
+    "path": "knowledge/compute/app-service/domains.md",
+    "objectives": [
+      "co-21"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.app-service.backups",
+    "domain": "compute",
+    "title": "App Service backup configuration and restoration",
+    "path": "knowledge/compute/app-service/backups.md",
+    "objectives": [
+      "co-22"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.app-service.networking",
+    "domain": "compute",
+    "title": "App Service inbound and outbound networking",
+    "path": "knowledge/compute/app-service/networking.md",
+    "objectives": [
+      "co-23"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "compute.app-service.slots",
+    "domain": "compute",
+    "title": "App Service deployment slots and swaps",
+    "path": "knowledge/compute/app-service/slots.md",
+    "objectives": [
+      "co-24"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
   }
 ]

@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-vmss-mode",
+      "family": "co-vmss-mode",
+      "revision": 1,
+      "topic": "compute.vms.scale-sets",
+      "objectives": [
+        "co-12"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An existing Uniform VM scale set must become Flexible. What must the administrator account for?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Orchestration mode cannot be changed in place; plan a supported migration or replacement.",
+          "explanation": "The mode is selected when the scale set is created."
+        },
+        {
+          "id": "b",
+          "text": "Changing the upgrade policy to Rolling changes orchestration mode.",
+          "explanation": "Upgrade policy and orchestration mode are different settings."
+        },
+        {
+          "id": "c",
+          "text": "Setting instance count to zero automatically converts it.",
+          "explanation": "Capacity changes do not convert the resource mode."
+        },
+        {
+          "id": "d",
+          "text": "Moving it to another resource group converts it to Flexible.",
+          "explanation": "Resource-group moves do not change orchestration mode."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/scale-sets.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes",
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-vmss-manual",
+      "family": "co-vmss-manual",
+      "revision": 1,
+      "topic": "compute.vms.scale-sets",
+      "objectives": [
+        "co-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "A scale set uses Manual upgrade policy. Its model is updated to a new image, then a new instance is added. What is expected?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The new instance uses the new model; existing instances need an explicit update.",
+          "explanation": "Manual policy separates model updates from updating existing instances."
+        },
+        {
+          "id": "b",
+          "text": "Every existing instance updates immediately in guaranteed batches.",
+          "explanation": "That behavior is not provided by Manual policy."
+        },
+        {
+          "id": "c",
+          "text": "New instances always use the oldest image until all existing VMs are deleted.",
+          "explanation": "New instances use the latest model."
+        },
+        {
+          "id": "d",
+          "text": "The model update is ignored for both old and new instances.",
+          "explanation": "The updated model governs subsequent instance creation."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/scale-sets.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes",
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-vmss-scale",
+      "family": "co-vmss-scale",
+      "revision": 1,
+      "topic": "compute.vms.scale-sets",
+      "objectives": [
+        "co-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "A VM scale set should add instances during sustained demand and later remove them. Which TWO configuration choices support this?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "A scaling profile and autoscale rules with bounded instance counts",
+          "explanation": "The profile defines new instances and the rules control count within limits."
+        },
+        {
+          "id": "b",
+          "text": "Distinct scale-out and scale-in conditions with suitable cooldown",
+          "explanation": "These govern both directions while limiting oscillation."
+        },
+        {
+          "id": "c",
+          "text": "Only changing the VM SKU on one instance",
+          "explanation": "That is a size change, not count-based demand scaling."
+        },
+        {
+          "id": "d",
+          "text": "Setting a maximum count of one while expecting three instances",
+          "explanation": "The configured maximum prevents scaling to three."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/scale-sets.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes",
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

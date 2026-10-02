@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-web-outbound",
+      "family": "co-web-outbound",
+      "revision": 1,
+      "topic": "compute.app-service.networking",
+      "objectives": [
+        "co-23"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An App Service app must call a VM using its private IP in a same-region VNet. Which App Service networking feature provides the outbound VNet path?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Regional VNet integration",
+          "explanation": "It routes outbound calls from the app into the integrated network."
+        },
+        {
+          "id": "b",
+          "text": "Only a private endpoint for the web app",
+          "explanation": "That provides inbound private access to the app."
+        },
+        {
+          "id": "c",
+          "text": "Only an app custom-domain binding",
+          "explanation": "A hostname binding does not create the outbound VNet path."
+        },
+        {
+          "id": "d",
+          "text": "Only an inbound IP access restriction",
+          "explanation": "Inbound filtering does not configure private outbound routing."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/networking.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-inbound",
+      "family": "co-web-inbound",
+      "revision": 1,
+      "topic": "compute.app-service.networking",
+      "objectives": [
+        "co-23"
+      ],
+      "difficulty": "applied",
+      "prompt": "Users must access an App Service app privately from a VNet, and the app must also reach a private database. Which TWO capabilities should be configured for their respective traffic directions?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "An App Service private endpoint for inbound requests",
+          "explanation": "The endpoint exposes the app through a private IP."
+        },
+        {
+          "id": "b",
+          "text": "VNet integration for the app outbound database connection",
+          "explanation": "Integration provides outbound network access."
+        },
+        {
+          "id": "c",
+          "text": "VNet integration alone as proof of private inbound access",
+          "explanation": "Integration does not provide private inbound app access."
+        },
+        {
+          "id": "d",
+          "text": "The app private endpoint alone as proof of private outbound database routing",
+          "explanation": "The inbound endpoint does not configure outbound integration."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/compute/app-service/networking.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-subnet",
+      "family": "co-web-subnet",
+      "revision": 1,
+      "topic": "compute.app-service.networking",
+      "objectives": [
+        "co-23"
+      ],
+      "difficulty": "applied",
+      "prompt": "A web app already uses a delegated subnet for VNet integration. Where should its inbound private endpoint be placed?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "In a different suitable subnet.",
+          "explanation": "The integration and private endpoint subnets must be different."
+        },
+        {
+          "id": "b",
+          "text": "Always in the same delegated integration subnet.",
+          "explanation": "App Service documents separate subnet requirements for these features."
+        },
+        {
+          "id": "c",
+          "text": "In the app deployment slot instead of a subnet.",
+          "explanation": "A slot is an application resource, not a network subnet."
+        },
+        {
+          "id": "d",
+          "text": "In a DNS record with no private endpoint NIC.",
+          "explanation": "DNS alone cannot create a private endpoint network interface."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/networking.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

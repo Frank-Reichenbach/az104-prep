@@ -4,6 +4,1086 @@
 
 [Questions without answers](questions.md)
 
+## co-web-zip
+
+A published application is deployed to App Service from a ZIP archive. What archive layout does the documented deployment process require?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Deployable application files at the ZIP root. A surrounding parent folder can prevent the app from finding its expected files.
+- **B. Incorrect:** All application files nested inside an arbitrary extra parent directory. The required root layout should not include an extra wrapping folder.
+- **C. Incorrect:** Only an empty folder named wwwroot. An empty archive cannot supply the application.
+- **D. Incorrect:** Only the source repository URL stored in a text file. ZIP package deployment needs the actual deployable application files.
+
+Study: [knowledge file](../knowledge/compute/app-service/apps.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/deploy-zip) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/configure-common) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity)
+
+## co-web-settings
+
+What happens when an administrator changes App Service app settings?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** The settings are supplied as environment variables and the app restarts. App Service applies configuration changes through its app settings mechanism.
+- **B. Incorrect:** The App Service plan changes operating system automatically. Environment settings do not convert the plan OS.
+- **C. Incorrect:** A new staging slot is always created. Changing app settings does not create a slot.
+- **D. Incorrect:** The application image is necessarily rebuilt and pushed to ACR. Settings changes do not require a container build or image push.
+
+Study: [knowledge file](../knowledge/compute/app-service/apps.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/deploy-zip) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/configure-common) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity)
+
+## co-web-managed
+
+A web app has managed identity enabled but receives authorization failures from a protected Azure service. What should be checked?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** The identity has the required role or access policy on that target service. Authentication through managed identity still requires target-service authorization.
+- **B. Incorrect:** Assume enabling identity grants Contributor to every service. Identity creation does not grant broad Azure access.
+- **C. Incorrect:** Change the web app display name to the service name. Matching names do not grant authorization.
+- **D. Incorrect:** Increase plan workers as the only permission fix. Additional workers do not change identity permissions.
+
+Study: [knowledge file](../knowledge/compute/app-service/apps.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/deploy-zip) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/configure-common) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity)
+
+## co-web-backup-external
+
+An App Service app has automatic backups and stores business data in an externally mounted Azure file share. What should the recovery design include?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Separate protection and restore procedures for the mounted share. Automatic App Service backups exclude custom-mounted Azure storage.
+- **B. Incorrect:** Assume every mounted share is included in the automatic app backup. The documented scope does not include that external storage.
+- **C. Incorrect:** Use an app-setting rename to bring the share into the backup. Renaming configuration does not change the backup coverage.
+- **D. Incorrect:** Treat the source-code ZIP as a backup of all business data. The deployment artifact does not contain independently stored application data.
+
+Study: [knowledge file](../knowledge/compute/app-service/backups.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/manage-backup)
+
+## co-web-backup-restore
+
+Before replacing a production App Service app with a backup, which approach provides useful recovery evidence?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Restore to a supported separate app or slot and test the app and dependencies. A recovery test checks usable behavior and configuration beyond backup job status.
+- **B. Incorrect:** Only check that the backup list contains a timestamp. A recorded backup does not prove the application can function after restoration.
+- **C. Incorrect:** Edit the backup ZIP manually to make its timestamp newer. Altering backup artifacts can invalidate recovery.
+- **D. Incorrect:** Assume app restoration recreates every identity and network dependency. Several related configurations and external services need separate recovery.
+
+Study: [knowledge file](../knowledge/compute/app-service/backups.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/manage-backup)
+
+## co-web-backup-database
+
+In October 2026, you design a new App Service recovery setup with Azure SQL. Which database backup approach follows current Microsoft guidance?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Use Azure SQL native backup and restore alongside app protection. Microsoft recommends native database tools, and new linked SQL backup configurations were removed in April 2026.
+- **B. Incorrect:** Depend on creating a new App Service linked SQL backup configuration. The documented removal schedule has already removed this option for new configurations.
+- **C. Incorrect:** Assume automatic App Service backups include the SQL database. Automatic backups do not include linked databases.
+- **D. Incorrect:** Use a deployment-slot swap as the only database backup. A slot swap does not create a recoverable database backup.
+
+Study: [knowledge file](../knowledge/compute/app-service/backups.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/manage-backup)
+
+## co-domain-cname
+
+You map www.example.com to an App Service app and want DNS to follow its default hostname rather than a fixed IP. Which routing record does Microsoft recommend?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** A CNAME from www to the app default hostname. CNAME maps the subdomain to the hostname.
+- **B. Incorrect:** A TXT record containing only the app IP. TXT verification is not traffic routing.
+- **C. Incorrect:** An MX record targeting the app hostname. MX controls mail delivery, not web traffic resolution.
+- **D. Incorrect:** An NS record delegating www to the app hostname. An app hostname is not an authoritative DNS nameserver.
+
+Study: [knowledge file](../knowledge/compute/app-service/domains.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover)
+
+## co-domain-txt
+
+What is the purpose of the asuid.www TXT record when configuring www.example.com for App Service?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Prove domain ownership and help prevent another app claiming the hostname. The domain verification ID supports ownership verification and takeover protection.
+- **B. Incorrect:** Route HTTPS packets to the app private IP. TXT records do not route client traffic.
+- **C. Incorrect:** Store the certificate private key for browsers. A public TXT record must not contain a private key.
+- **D. Incorrect:** Set the App Service plan worker count. DNS verification does not configure compute capacity.
+
+Study: [knowledge file](../knowledge/compute/app-service/domains.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover)
+
+## co-domain-binding
+
+www.example.com resolves to the correct App Service address, but the app has no custom-hostname entry for it and requests return a platform 404. What should be configured?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Validate and add the hostname binding to the intended app. App Service must associate that Host header with the app.
+- **B. Incorrect:** Only lower the DNS TTL repeatedly. Correct resolution cannot replace the missing app mapping.
+- **C. Incorrect:** Only add another identical A record. Duplicating routing does not establish the hostname binding.
+- **D. Incorrect:** Only scale out the plan. Additional workers do not register the custom hostname.
+
+Study: [knowledge file](../knowledge/compute/app-service/domains.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover)
+
+## co-web-outbound
+
+An App Service app must call a VM using its private IP in a same-region VNet. Which App Service networking feature provides the outbound VNet path?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Regional VNet integration It routes outbound calls from the app into the integrated network.
+- **B. Incorrect:** Only a private endpoint for the web app That provides inbound private access to the app.
+- **C. Incorrect:** Only an app custom-domain binding A hostname binding does not create the outbound VNet path.
+- **D. Incorrect:** Only an inbound IP access restriction Inbound filtering does not configure private outbound routing.
+
+Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint)
+
+## co-web-inbound
+
+Users must access an App Service app privately from a VNet, and the app must also reach a private database. Which TWO capabilities should be configured for their respective traffic directions?
+
+Select **2**. Difficulty: applied.
+
+- **A. Correct:** An App Service private endpoint for inbound requests The endpoint exposes the app through a private IP.
+- **B. Correct:** VNet integration for the app outbound database connection Integration provides outbound network access.
+- **C. Incorrect:** VNet integration alone as proof of private inbound access Integration does not provide private inbound app access.
+- **D. Incorrect:** The app private endpoint alone as proof of private outbound database routing The inbound endpoint does not configure outbound integration.
+
+Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint)
+
+## co-web-subnet
+
+A web app already uses a delegated subnet for VNet integration. Where should its inbound private endpoint be placed?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** In a different suitable subnet. The integration and private endpoint subnets must be different.
+- **B. Incorrect:** Always in the same delegated integration subnet. App Service documents separate subnet requirements for these features.
+- **C. Incorrect:** In the app deployment slot instead of a subnet. A slot is an application resource, not a network subnet.
+- **D. Incorrect:** In a DNS record with no private endpoint NIC. DNS alone cannot create a private endpoint network interface.
+
+Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint)
+
+## co-plan-sharing
+
+Two web apps and a staging slot run in the same dedicated App Service plan. What compute relationship should the administrator expect?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** They share the plan worker capacity. Apps and slots consume resources from the same dedicated plan.
+- **B. Incorrect:** Each receives an independently billed dedicated worker set automatically. Dedicated compute is allocated at plan level.
+- **C. Incorrect:** The staging slot runs in a different region automatically. A slot uses the same hosting plan, not automatic regional isolation.
+- **D. Incorrect:** Stopping one app deletes the shared plan workers. App lifecycle operations do not delete the plan.
+
+Study: [knowledge file](../knowledge/compute/app-service/plans.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs)
+
+## co-plan-separate
+
+A resource-intensive app must have an independent compute and scaling boundary from other apps. Which design fits?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Place it in a separate App Service plan. A separate plan separates the worker capacity and plan scaling.
+- **B. Incorrect:** Create only another deployment slot in the existing plan. Slots still share the existing plan workers.
+- **C. Incorrect:** Change only the app resource group while retaining the plan. Resource-group organization does not separate shared compute.
+- **D. Incorrect:** Assign a different custom hostname while retaining the plan. DNS naming does not change the compute boundary.
+
+Study: [knowledge file](../knowledge/compute/app-service/plans.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs)
+
+## co-plan-cost
+
+The only app in a paid dedicated App Service plan is stopped. What should be checked to stop unnecessary plan compute charges?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Whether the unused plan can be deleted or moved to a suitable lower tier. The plan retains its allocated paid capacity while the app is stopped.
+- **B. Incorrect:** Assume the stopped app makes the dedicated plan free. Billing is based on allocated plan resources.
+- **C. Incorrect:** Remove only the app custom domain. Hostname configuration does not release the plan compute.
+- **D. Incorrect:** Delete only the app deployment history. Deployment records do not determine worker allocation.
+
+Study: [knowledge file](../knowledge/compute/app-service/plans.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs)
+
+## co-web-scale-up
+
+An App Service app needs more memory per worker and a higher-tier feature. Which operation addresses these requirements?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Scale up the App Service plan to a suitable SKU. Scale up changes worker resources and tier features.
+- **B. Incorrect:** Only increase worker count with the existing SKU. Scale out adds workers but does not increase memory per worker or unlock higher-tier features.
+- **C. Incorrect:** Only add a staging slot. A slot consumes the existing plan capacity.
+- **D. Incorrect:** Only set a larger maximum autoscale count. A count limit does not change the worker SKU.
+
+Study: [knowledge file](../knowledge/compute/app-service/scaling.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-best-practices)
+
+## co-web-schedule
+
+An App Service plan must run more instances at 08:00 each weekday based on a schedule. Which scaling mechanism should be used?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Azure Monitor autoscale with a scheduled profile. Autoscale supports schedules for plan capacity.
+- **B. Incorrect:** App Service automatic scaling based only on HTTP traffic. HTTP automatic scaling does not express the requested time-based schedule.
+- **C. Incorrect:** A deployment-slot swap at 08:00. Swapping code slots does not define scheduled worker capacity.
+- **D. Incorrect:** A higher SKU without any scheduled scaling configuration. Changing tier does not implement the requested daily instance schedule.
+
+Study: [knowledge file](../knowledge/compute/app-service/scaling.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-best-practices)
+
+## co-web-autolimits
+
+You evaluate App Service automatic HTTP scaling. Which TWO points belong in the cost and compatibility review?
+
+Select **2**. Difficulty: applied.
+
+- **A. Correct:** Prewarmed instances are billable. Automatic scaling reserves a buffer whose instance time is charged.
+- **B. Correct:** Deployment-slot traffic is unsupported for this scaling feature. The documented automatic scaling feature does not scale based on slot traffic.
+- **C. Incorrect:** It is the same configuration as Azure Monitor schedule rules. Automatic HTTP scaling and Azure Monitor autoscale are distinct.
+- **D. Incorrect:** It provides paid Premium features on Free plans. The feature requires supported Premium tiers.
+
+Study: [knowledge file](../knowledge/compute/app-service/scaling.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-best-practices)
+
+## co-slot-sticky
+
+Production and staging use different database connection strings, and each must remain attached to its environment during a slot swap. What should be configured?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Mark the connection strings as deployment slot settings. Sticky connection strings remain associated with their slot.
+- **B. Incorrect:** Leave them swappable and rely on different display names. Display names do not prevent connection string swapping.
+- **C. Incorrect:** Put both connection strings only in the shared plan name. The plan name does not supply environment-specific application configuration.
+- **D. Incorrect:** Change only the staging traffic percentage. Traffic routing does not make connection strings sticky.
+
+Study: [knowledge file](../knowledge/compute/app-service/slots.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots)
+
+## co-slot-identity
+
+Which App Service configuration remains with its slot during a swap?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Managed identity Managed identities are listed among settings that do not swap.
+- **B. Incorrect:** All application content Content is the main item moved between slots.
+- **C. Incorrect:** Every ordinary unmarked app setting App settings can swap unless configured sticky or subject to documented exceptions.
+- **D. Incorrect:** All runtime framework settings Framework settings are among the swappable configuration items.
+
+Study: [knowledge file](../knowledge/compute/app-service/slots.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots)
+
+## co-slot-rollback
+
+A release is swapped from staging to production and performs an external database schema migration. What does swapping the slots back provide?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** A code/configuration rollback path that still needs a separate database compatibility or recovery plan. A slot swap does not undo external database mutations.
+- **B. Incorrect:** Automatic reversal of every database change. External data is outside the slot content swap.
+- **C. Incorrect:** Automatic restoration of all production data from Azure Backup. Swap does not trigger database restoration.
+- **D. Incorrect:** Deletion of the newer database schema with guaranteed zero data loss. A swap has no such schema or data-loss guarantee.
+
+Study: [knowledge file](../knowledge/compute/app-service/slots.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots)
+
+## co-tls-binding
+
+A valid certificate for www.example.com has been uploaded to App Service, and the custom hostname is mapped, but HTTPS still does not use it. What configuration is missing?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** A TLS binding associating the hostname with the certificate. Upload stores the certificate; the binding selects it for the hostname.
+- **B. Incorrect:** Only another copy of the same certificate file. Duplicate upload does not create the missing binding.
+- **C. Incorrect:** Only a larger App Service instance count. Worker count does not associate a certificate with a hostname.
+- **D. Incorrect:** Only a DNS TTL of zero. TTL does not configure the app TLS binding.
+
+Study: [knowledge file](../knowledge/compute/app-service/tls.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate)
+
+## co-tls-wildcard
+
+An app requires a wildcard certificate covering *.example.com. Which certificate approach fits App Service requirements?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Import or upload a suitable wildcard certificate from a certificate provider. A supported certificate with the required names can be bound to the app.
+- **B. Incorrect:** Request a free App Service managed wildcard certificate. The free managed certificate does not support wildcards.
+- **C. Incorrect:** Use the default azurewebsites.net certificate for example.com. The default certificate does not cover the custom domain.
+- **D. Incorrect:** Create only an ownership TXT record and omit TLS binding. Domain ownership verification does not provide wildcard TLS.
+
+Study: [knowledge file](../knowledge/compute/app-service/tls.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate)
+
+## co-tls-sni
+
+What is the purpose of an SNI TLS binding in App Service?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Select the certificate by hostname while sharing an IP address. Server Name Indication communicates the requested hostname during TLS.
+- **B. Incorrect:** Require a separate dedicated IP for every hostname. That is not the purpose of SNI.
+- **C. Incorrect:** Automatically create all external DNS records. TLS binding does not administer the DNS provider.
+- **D. Incorrect:** Encrypt application data stored on the filesystem. A TLS binding protects transport connections, not filesystem storage.
+
+Study: [knowledge file](../knowledge/compute/app-service/tls.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate)
+
+## co-aca-revision
+
+Which Container Apps change creates a new revision?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Changing the container image in the app template Container image configuration is revision-scoped.
+- **B. Incorrect:** Changing only an existing secret value Secret values are application-scoped; revisions may need restarting to consume changes.
+- **C. Incorrect:** Changing only ingress traffic weights Traffic configuration is application-scoped.
+- **D. Incorrect:** Adding only a managed identity Changing the identity does not itself create a new revision.
+
+Study: [knowledge file](../knowledge/compute/containers/apps.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-apps/revisions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-apps/managed-identity)
+
+## co-aca-canary
+
+You want two Container Apps image versions active simultaneously, with 10% of ingress traffic sent to the new version. Which revision mode supports this?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Multiple revision mode It supports concurrent active revisions and traffic splitting.
+- **B. Incorrect:** Single revision mode as the steady deployment state Single mode does not keep multiple active application versions for this canary design.
+- **C. Incorrect:** An ACI restart policy of Always ACI restart policies are a different service mechanism.
+- **D. Incorrect:** Disabling ingress for all revisions That prevents the required incoming traffic split.
+
+Study: [knowledge file](../knowledge/compute/containers/apps.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-apps/revisions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-apps/managed-identity)
+
+## co-aca-port
+
+A Container App image pulls successfully, but HTTP ingress cannot reach the process. The process listens on 8080 while ingress targets 80. What should be corrected?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Set the ingress target port to the actual listening port. Ingress must forward to the port served by the container.
+- **B. Incorrect:** Grant the image publisher a broader push role only. The image has already been pulled; publishing rights do not fix runtime routing.
+- **C. Incorrect:** Change only the revision label to 8080. Labels do not set container listening or target ports.
+- **D. Incorrect:** Increase maximum replicas without changing the port. More replicas with the same port mismatch remain unreachable.
+
+Study: [knowledge file](../knowledge/compute/containers/apps.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-apps/revisions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-apps/managed-identity)
+
+## co-aci-localhost
+
+Two Linux containers in the same ACI container group need to communicate on an internal-only port. Which address can they use?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** localhost with the listening port Containers in a group share a local network.
+- **B. Incorrect:** Only a public load-balancer frontend A public frontend is unnecessary for same-group communication.
+- **C. Incorrect:** Only a separate VNet peering for each container Containers in one group do not each require a peered VNet.
+- **D. Incorrect:** The ACR repository URL as the runtime service address A registry stores images; it is not the running service endpoint.
+
+Study: [knowledge file](../knowledge/compute/containers/instances.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files)
+
+## co-aci-onfailure
+
+An ACI batch task should retry after a nonzero process exit and remain terminated after successful completion. Which restart policy explicitly expresses that behavior?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** OnFailure This policy restarts failed processes but does not restart successful completion.
+- **B. Incorrect:** Always Always also restarts the container after successful completion.
+- **C. Incorrect:** Never as a guarantee of exactly-once execution Current documentation warns that nonzero exits can still be restarted; it is not an exactly-once guarantee.
+- **D. Incorrect:** An HTTP replica scaling rule Replica scaling is not an ACI restart-policy value.
+
+Study: [knowledge file](../knowledge/compute/containers/instances.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files)
+
+## co-aci-persist
+
+Output from an ACI task must survive deletion of its container group. Which design meets the requirement?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Write results to durable external storage and retain that storage. Data durability must extend beyond the container-group lifecycle.
+- **B. Incorrect:** Store the only copy in the container writable layer. Deleting and recreating the group does not preserve that layer as a durable archive.
+- **C. Incorrect:** Use Always restart policy instead of persistent storage. Restart policy does not provide durable output after deletion.
+- **D. Incorrect:** Give the group a DNS label and store output only locally. A DNS label does not persist container filesystem contents.
+
+Study: [knowledge file](../knowledge/compute/containers/instances.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files)
+
+## co-acr-abac
+
+An ACR registry uses RBAC Registry + ABAC Repository Permissions. A workload must pull an image from an allowed repository but has only AcrPull. What should be changed?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Assign Container Registry Repository Reader with any condition covering the repository. ABAC-enabled registries use the repository roles rather than legacy AcrPull.
+- **B. Incorrect:** Keep AcrPull and only refresh the token indefinitely. A token refresh cannot make an unhonored role grant access.
+- **C. Incorrect:** Assign only Container Registry Repository Catalog Lister. Listing repository names is not permission to pull their images.
+- **D. Incorrect:** Assign only Reader on the registry resource. Control-plane read does not grant repository image access in ABAC mode.
+
+Study: [knowledge file](../knowledge/compute/containers/registry.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication)
+
+## co-acr-digest
+
+A deployment must refer to the exact same container image content after a tag is reassigned. Which identifier should it record?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** The image digest A digest identifies content rather than a mutable tag label.
+- **B. Incorrect:** Only the latest tag latest is a mutable tag and may refer to different content later.
+- **C. Incorrect:** Only the repository name A repository can contain many image versions.
+- **D. Incorrect:** Only the registry resource group A management container does not identify image content.
+
+Study: [knowledge file](../knowledge/compute/containers/registry.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication)
+
+## co-acr-identity
+
+A supported Azure service must pull private ACR images without storing a shared registry password. Which approach fits?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Use its managed identity with the appropriate image pull role for the registry mode. Managed identity authentication avoids a shared password and still requires authorization.
+- **B. Incorrect:** Enable the registry admin account and embed its password in the image. This stores a shared secret and exposes it in the artifact.
+- **C. Incorrect:** Assign only a display name to the managed identity without roles. An identity still requires permission to pull the repository.
+- **D. Incorrect:** Give the registry a public endpoint and assume images become anonymous. Network reachability does not provide repository authorization.
+
+Study: [knowledge file](../knowledge/compute/containers/registry.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication)
+
+## co-scale-aci
+
+An ACI group has two containers requesting one CPU each. One container has a limit of two CPUs. What does that limit allow?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Use up to two CPUs when available within the allocated group resources. A limit permits borrowing available allocation; it does not expand the group beyond its requested capacity.
+- **B. Incorrect:** Automatically create a second container-group replica. Container resource limits do not create replicas.
+- **C. Incorrect:** Reserve four CPUs for the group automatically. The requests total two CPUs, not four.
+- **D. Incorrect:** Guarantee two dedicated CPUs for each container simultaneously. Both containers cannot each consume two CPUs from a two-CPU allocation.
+
+Study: [knowledge file](../knowledge/compute/containers/scaling.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/scale-app) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-apps/containers)
+
+## co-scale-zero
+
+A Container Apps queue worker has ingress disabled, minReplicas 0, and no custom scale rule. Why can it remain at zero while queue messages arrive?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** No configured trigger observes the queue and requests replicas. Without ingress or a custom event rule, queue arrivals do not wake the app.
+- **B. Incorrect:** maxReplicas always forces at least that many replicas to run. Maximum is a limit, not the requested minimum.
+- **C. Incorrect:** Changing the image tag in ACR automatically processes the queue. An image tag does not configure an event scaler.
+- **D. Incorrect:** The inactive replica can measure its own CPU and wake itself. There is no running replica producing that utilization signal.
+
+Study: [knowledge file](../knowledge/compute/containers/scaling.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/scale-app) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-apps/containers)
+
+## co-scale-oom
+
+Every Container Apps replica fails during startup because its memory allocation is too small. Which change directly addresses that failure?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Choose a supported larger per-replica memory allocation and deploy the revision. Each replica needs enough memory to start successfully.
+- **B. Incorrect:** Raise only maxReplicas while preserving the insufficient allocation. More failing replicas do not increase memory available to each process.
+- **C. Incorrect:** Lower minReplicas to zero and leave the image unchanged. A lower minimum does not fix the startup memory requirement.
+- **D. Incorrect:** Change only the ingress traffic percentage. Traffic distribution does not enlarge the container memory allocation.
+
+Study: [knowledge file](../knowledge/compute/containers/scaling.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/scale-app) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-apps/containers)
+
+## co-arm-param
+
+An ARM template must accept only Standard_LRS or Standard_ZRS for a storageSku input. Which parameter property enforces this during validation?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** allowedValues The supplied value must be a member of this array.
+- **B. Incorrect:** defaultValue A default supplies an omitted value; it does not restrict explicit input.
+- **C. Incorrect:** metadata.description This documents the parameter without enforcing an allowed set.
+- **D. Incorrect:** minLength Length validation cannot restrict the input to these two SKU names.
+
+Study: [knowledge file](../knowledge/compute/templates/arm-editing.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if)
+
+## co-arm-incremental
+
+An ARM incremental deployment redeclares an existing resource but omits one of its non-default properties. What should the administrator assume when reviewing the change?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** The omitted property can reset to its default; declare the full intended configuration. Incremental applies the resource definition rather than a partial property patch.
+- **B. Incorrect:** Every omitted property is preserved because the mode is incremental. The preservation rule concerns omitted resources, not omitted properties on redeclared resources.
+- **C. Incorrect:** The entire resource is deleted because its definition changed. Incremental does not delete the resource merely because a property is omitted.
+- **D. Incorrect:** Only the template contentVersion controls whether the property changes. contentVersion is template metadata, not an update switch.
+
+Study: [knowledge file](../knowledge/compute/templates/arm-editing.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if)
+
+## co-arm-secure
+
+An ARM template accepts an administrator password. Which TWO choices help prevent exposing it in template and deployment records?
+
+Select **2**. Difficulty: applied.
+
+- **A. Correct:** Declare the input as secureString. Secure parameters are not stored as plain values in deployment history.
+- **B. Correct:** Avoid hard-coded secrets and ordinary outputs containing the password. A secure input can still be exposed by how the template author uses it.
+- **C. Incorrect:** Use a string parameter with a password-like name. The name does not give a regular string secure handling.
+- **D. Incorrect:** Put the password in defaultValue in the public template. Secure parameter handling does not hide a literal in the source file.
+
+Study: [knowledge file](../knowledge/compute/templates/arm-editing.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if)
+
+## co-bicep-refactor
+
+You rename a Bicep symbolic identifier from store to archive, updating all code references but retaining the resource type, Azure name, scope, and properties. What does this change itself do?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Refactors the code without changing the Azure resource identity. The deployed identity uses type, name, and scope, not the local symbol.
+- **B. Incorrect:** Renames the deployed account to archive. The Azure name property was retained.
+- **C. Incorrect:** Deletes the resource formerly represented by store. Changing only the symbol does not request deletion.
+- **D. Incorrect:** Moves the resource into a deployment named archive. A symbolic identifier does not select deployment scope or history name.
+
+Study: [knowledge file](../knowledge/compute/templates/bicep-editing.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource)
+
+## co-bicep-build
+
+What does a successful az bicep build establish before an Azure deployment?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** The file can compile to an ARM template. Build performs compilation and reports Bicep diagnostics.
+- **B. Incorrect:** The deployment identity has all required Azure permissions. Local compilation does not establish RBAC access.
+- **C. Incorrect:** The target region has capacity for every VM. Allocation happens during deployment, not compilation.
+- **D. Incorrect:** All Azure Policy assignments permit the resources. Policy evaluation depends on the Azure scope and resource request.
+
+Study: [knowledge file](../knowledge/compute/templates/bicep-editing.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource)
+
+## co-bicep-existing
+
+A Bicep declaration uses existing for a virtual network in another resource group. Which TWO statements are correct?
+
+Select **2**. Difficulty: applied.
+
+- **A. Correct:** The declaration references the virtual network without redeploying it. existing describes an already deployed resource.
+- **B. Correct:** Its scope must identify the resource group containing that network. The resource must be resolved at its actual scope.
+- **C. Incorrect:** The network is created automatically when missing. An existing reference does not provision a missing resource.
+- **D. Incorrect:** The declaration grants the deploying identity network access rights. Bicep references do not grant RBAC permissions.
+
+Study: [knowledge file](../knowledge/compute/templates/bicep-editing.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource)
+
+## co-deploy-scope
+
+You must deploy a Bicep file into an existing resource group. Which command family targets that scope?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** az deployment group create The group deployment command targets a resource group.
+- **B. Incorrect:** az deployment sub create This targets a subscription deployment, not the requested group scope.
+- **C. Incorrect:** az deployment mg create This targets a management group.
+- **D. Incorrect:** az deployment tenant create This targets the tenant scope.
+
+Study: [knowledge file](../knowledge/compute/templates/deployment.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged)
+
+## co-deploy-preview
+
+Which operation previews an ARM or Bicep deployment without applying the proposed resource changes?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** what-if What-if compares the intended deployment with current resources.
+- **B. Incorrect:** create with a new deployment name A different history name does not prevent resource changes.
+- **C. Incorrect:** deleting the previous deployment record History deletion does not preview a new deployment.
+- **D. Incorrect:** compiling the Bicep file only Compilation produces JSON without comparing Azure resources.
+
+Study: [knowledge file](../knowledge/compute/templates/deployment.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged)
+
+## co-deploy-rbac
+
+A deployment identity has Contributor on a resource group. Its template creates a VM and an Azure role assignment. The VM succeeds, but role assignment creation is denied. What additional permission should you investigate?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Microsoft.Authorization/roleAssignments/write at the assignment scope Contributor does not grant role assignment administration.
+- **B. Incorrect:** Microsoft.Compute/virtualMachines/read only VM read permission does not authorize role assignments.
+- **C. Incorrect:** Microsoft.Resources/deployments/read only Reading deployment history cannot authorize the denied assignment.
+- **D. Incorrect:** Microsoft.Compute/virtualMachines/start/action only Starting a VM is unrelated to granting Azure resource access.
+
+Study: [knowledge file](../knowledge/compute/templates/deployment.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged)
+
+## co-export-current
+
+An administrator changed a VM configuration manually after its original ARM deployment. Which export is intended to capture the current resource configuration?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Export from the resource group or resource This generates a template based on the current resource state.
+- **B. Incorrect:** Export only the original deployment from history That retrieves the original template, not later manual changes.
+- **C. Incorrect:** Compile the original Bicep source again Compilation does not discover drift in Azure.
+- **D. Incorrect:** Download only the original parameter file Original inputs do not include subsequent manual changes.
+
+Study: [knowledge file](../knowledge/compute/templates/export.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/export-bicep-portal)
+
+## co-export-convert
+
+You have exported an ARM JSON template and want editable Bicep source. Which command performs the conversion?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** az bicep decompile --file current.json Decompile converts ARM JSON into a Bicep starting point.
+- **B. Incorrect:** az bicep build --file current.json Build compiles Bicep to ARM JSON; it is the opposite direction.
+- **C. Incorrect:** az deployment group create --template-file current.json Create deploys the template rather than converting its source.
+- **D. Incorrect:** az deployment group what-if --template-file current.json What-if previews deployment changes; it does not emit Bicep source.
+
+Study: [knowledge file](../knowledge/compute/templates/export.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/export-bicep-portal)
+
+## co-export-review
+
+A resource-group template export completes with warnings. Which TWO checks are appropriate before reusing it?
+
+Select **2**. Difficulty: applied.
+
+- **A. Correct:** Check for omitted resource types, properties, and secret inputs. Exports can be incomplete and need manual correction.
+- **B. Correct:** Review names, IDs, and parameterization for the new environment. Generated configuration can retain environment-specific values.
+- **C. Incorrect:** Assume it contains a restorable copy of application data. A resource template is configuration, not a data backup.
+- **D. Incorrect:** Treat successful export as proof of successful redeployment. Export does not validate all deployment constraints or runtime dependencies.
+
+Study: [knowledge file](../knowledge/compute/templates/export.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/export-bicep-portal)
+
+## co-read-input-output
+
+In an ARM template, which section accepts deployment-time values such as a VM size?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** parameters. Parameters define inputs supplied when deploying.
+- **B. Incorrect:** variables. Variables derive internal values rather than acting as caller-supplied parameters.
+- **C. Incorrect:** outputs. Outputs return values after deployment.
+- **D. Incorrect:** contentVersion. This identifies a template revision, not deployment inputs.
+
+Study: [knowledge file](../knowledge/compute/templates/interpretation.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies)
+
+## co-read-symbolic-name
+
+In Bicep, resource network has name: vnetName. Which value determines the deployed virtual network's name?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** The value supplied by vnetName to the name property. The resource name property controls Azure naming.
+- **B. Incorrect:** The symbolic identifier network. That identifier is for references inside Bicep.
+- **C. Incorrect:** The output variable's identifier. Output labels do not name the resource.
+- **D. Incorrect:** The Bicep filename. The filename is not the declared resource name.
+
+Study: [knowledge file](../knowledge/compute/templates/interpretation.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies)
+
+## co-read-dependency
+
+Bicep resource B references a property of resource A. What is the usual dependency implication?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Bicep infers a dependency on A. The reference expresses the required ordering.
+- **B. Incorrect:** Only the textual order of declarations matters. File position is not the dependency model.
+- **C. Incorrect:** B can never depend on A without a manual sleep. ARM dependencies do not require sleeps.
+- **D. Incorrect:** Every resource in the entire file becomes sequential. Unrelated resources can still deploy in parallel.
+
+Study: [knowledge file](../knowledge/compute/templates/interpretation.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies)
+
+## co-avail-fault
+
+Which availability-set concept separates VMs according to shared power and network infrastructure?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Fault domain Fault domains describe shared physical failure boundaries.
+- **B. Incorrect:** Update domain Update domains organize planned maintenance reboots.
+- **C. Incorrect:** Resource group A resource group is a management container, not hardware isolation.
+- **D. Incorrect:** Deployment name A deployment record does not define hardware placement.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/availability.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines)
+
+## co-avail-zone
+
+An application has one VM in availability zone 1. It must continue serving if zone 1 fails. What additional design is needed?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Healthy application instances in another zone with resilient routing and dependencies. Zonal survival needs working replicas and supporting services outside the failed zone.
+- **B. Incorrect:** Only label the existing VM zone-redundant using a tag. Tags do not create replicas or change placement.
+- **C. Incorrect:** Rely on the existing zonal VM being copied automatically to all zones. A zonal VM is placed in one zone.
+- **D. Incorrect:** Add more update domains to the same single VM. Update domains do not create another running application instance.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/availability.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines)
+
+## co-avail-update
+
+An availability set has five update domains and seven VMs. Which statement about planned maintenance is correct?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Some VMs share update domains, and one update domain is restarted at a time. More VMs than update domains requires sharing; maintenance is sequenced by domain.
+- **B. Incorrect:** Every VM must have its own distinct update domain. Seven VMs can share the configured five domains.
+- **C. Incorrect:** All five update domains always restart together. The update-domain mechanism limits simultaneous planned restart groups.
+- **D. Incorrect:** Update domain numbers guarantee ascending maintenance order. Maintenance order is not guaranteed to follow domain numbering.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/availability.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines)
+
+## co-vm-private
+
+A Linux VM is created without a public IP in a subnet reachable only through a corporate VPN. How should an administrator establish SSH access?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Connect through the VPN and use the VM private IP with valid guest credentials. The VPN supplies the private network path; SSH still requires authentication.
+- **B. Incorrect:** Use the private IP directly from an unrelated Internet connection. Private addresses are not publicly routed to the VM.
+- **C. Incorrect:** Assign Virtual Machine Contributor and SSH through ARM automatically. Resource management rights do not create an SSH network path.
+- **D. Incorrect:** Add an NSG allow rule and assume it assigns a public address. An NSG filters traffic; it does not provide a public IP or route.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/creation.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch)
+
+## co-vm-stopped
+
+A guest operating system is shut down, and Azure reports Stopped (allocated). What stops VM compute allocation charges?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Deallocate the VM through Azure. Deallocation releases the allocated compute; retained resources can still cost money.
+- **B. Incorrect:** Leave it in the current state because the guest is off. Stopped but allocated VMs retain compute allocation.
+- **C. Incorrect:** Remove its public IP only. Public IP removal does not deallocate the VM.
+- **D. Incorrect:** Disable boot diagnostics only. Diagnostics settings do not determine compute allocation.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/creation.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch)
+
+## co-vm-trusted
+
+Which TWO features are associated with Trusted Launch for a supported Generation 2 Azure VM?
+
+Select **2**. Difficulty: foundation.
+
+- **A. Correct:** Secure Boot Secure Boot helps prevent unauthorized boot components.
+- **B. Correct:** Virtual TPM vTPM supports measured boot and related integrity capabilities.
+- **C. Incorrect:** Automatic replication of the VM into another region Trusted Launch is a security feature, not regional disaster recovery.
+- **D. Incorrect:** Automatic creation of a guest application backup Boot security does not create a backup policy.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/creation.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch)
+
+## co-disk-expand
+
+A managed data disk was increased from 128 GiB to 256 GiB in Azure, but the guest filesystem still shows the old capacity. What is the next appropriate task?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Extend the guest partition and filesystem using the supported OS procedure. Azure disk capacity and the guest filesystem size are separate layers.
+- **B. Incorrect:** Shrink the Azure disk back and then expand it again. Managed disk shrinking is unsupported and does not solve filesystem sizing.
+- **C. Incorrect:** Rename the LUN to 256. A LUN identifies attachment; it is not a capacity value.
+- **D. Incorrect:** Change only the VM public IP. Network addressing does not resize the filesystem.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/disks.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk)
+
+## co-disk-os
+
+Which TWO managed disk types are unsuitable as the OS disk of an Azure VM?
+
+Select **2**. Difficulty: foundation.
+
+- **A. Correct:** Ultra Disk Ultra Disks are supported for data disks, not OS disks.
+- **B. Correct:** Premium SSD v2 Premium SSD v2 cannot be used as an OS disk.
+- **C. Incorrect:** Premium SSD Supported VM configurations can use Premium SSD OS disks.
+- **D. Incorrect:** Standard SSD Standard SSD can be used for an OS disk.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/disks.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk)
+
+## co-disk-existing
+
+You attach a managed disk containing existing application data to a Linux VM. What should you do before mounting it?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Identify the device and inspect its existing partitions and filesystem. This avoids destructive initialization of a disk that already contains data.
+- **B. Incorrect:** Always create a new filesystem because attachment erases formatting. Attachment does not require destructive reformatting.
+- **C. Incorrect:** Copy the data to the temporary disk as its only permanent location. Temporary storage is not a durable replacement.
+- **D. Incorrect:** Assume Azure attachment automatically configures the guest mount. The guest still needs the appropriate discovery and mount configuration.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/disks.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk)
+
+## co-host-scope
+
+A VM already has encrypted managed disks. The requirement now includes its temporary disk and host caches. Which VM feature addresses that scope?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Encryption at host Host encryption covers storage on the VM host in addition to the managed-disk path.
+- **B. Incorrect:** Only the existing managed-disk server-side encryption setting Managed-disk encryption alone does not establish encryption of all host storage.
+- **C. Incorrect:** Secure Boot alone Secure Boot validates the boot chain; it is not disk-cache encryption.
+- **D. Incorrect:** An application HTTPS certificate alone HTTPS protects network connections, not host storage at rest.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/host-encryption.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli)
+
+## co-host-ade
+
+A VM previously used Azure Disk Encryption. An administrator wants to enable encryption at host on that same VM. What does the documented restriction require them to recognize?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** That VM history is incompatible with enabling encryption at host directly. The restriction covers VMs that currently or ever had Azure Disk Encryption enabled.
+- **B. Incorrect:** Disabling Secure Boot always removes the restriction. Secure Boot does not remove the Azure Disk Encryption compatibility restriction.
+- **C. Incorrect:** Switching only the data disk to Standard HDD always removes the restriction. Changing disk performance tier does not change the VM encryption history rule.
+- **D. Incorrect:** Enabling both methods together is required. The two encryption methods cannot be combined in this way.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/host-encryption.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli)
+
+## co-host-confirm
+
+Which setting directly confirms that encryption at host is enabled on a VM after the supported configuration process?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** securityProfile.encryptionAtHost equals true This is the VM host-encryption property.
+- **B. Incorrect:** The disk reports ordinary server-side encryption Managed disks can report encryption while host encryption is disabled.
+- **C. Incorrect:** The VM uses SSH public-key authentication Authentication does not report encryption of host storage.
+- **D. Incorrect:** The VM has a Recovery Services backup item Backup protection does not establish the host-encryption setting.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/host-encryption.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli)
+
+## co-move-region
+
+A VM is in West Europe. You move it to a resource group whose metadata location is North Europe using the standard ARM move operation. Where does the VM run afterward?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** West Europe Changing resource-group membership does not change the VM region.
+- **B. Incorrect:** North Europe automatically Resource-group metadata location does not control member resource locations.
+- **C. Incorrect:** Both regions with automatic replication An ARM scope move does not configure replication.
+- **D. Incorrect:** A region chosen from the destination group name Names do not select the physical region of an existing VM.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/moves.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-limitations/virtual-machines-move-limitations) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/resource-mover/tutorial-move-region-virtual-machines)
+
+## co-move-tenant
+
+You plan an ARM cross-subscription VM move. Which TWO requirements should you validate?
+
+Select **2**. Difficulty: applied.
+
+- **A. Correct:** Both subscriptions belong to the same Entra tenant. Direct ARM moves do not cross tenant boundaries.
+- **B. Correct:** The virtual network and required dependent resources are included as required. Cross-subscription VM moves have dependency requirements.
+- **C. Incorrect:** Only the VM resource is needed regardless of its dependencies. Networking and other resource dependencies can block validation.
+- **D. Incorrect:** The move automatically changes the VM to the destination group region. Scope moves preserve the VM region.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/moves.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-limitations/virtual-machines-move-limitations) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/resource-mover/tutorial-move-region-virtual-machines)
+
+## co-move-id
+
+After a successful VM move to another resource group, an automation script using the old resource ID fails. What should be checked first?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Update the script to use the VM resource ID at its new scope. The resource-group segment of the ID changes during the move.
+- **B. Incorrect:** Assume the VM has retained the old ID permanently. A resource ID includes its resource group.
+- **C. Incorrect:** Change only the guest hostname to match the old resource group. Guest hostname does not repair an ARM resource ID reference.
+- **D. Incorrect:** Reinstall the VM agent to recreate the old resource ID. The agent does not determine the VM ARM scope.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/moves.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-limitations/virtual-machines-move-limitations) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/resource-mover/tutorial-move-region-virtual-machines)
+
+## co-resize-restart
+
+A running Azure VM can use the requested target size on its current host cluster. What should you still plan for when resizing it?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** A VM restart and application interruption Running-VM resizing is disruptive even without a separate deallocation requirement.
+- **B. Incorrect:** A guaranteed change with no guest restart Availability of the SKU does not make resizing nondisruptive.
+- **C. Incorrect:** Automatic replication into another region Resize changes resource allocation, not disaster recovery configuration.
+- **D. Incorrect:** Automatic expansion of every guest filesystem Changing the VM size does not automatically extend all disk filesystems.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/resizing.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk)
+
+## co-resize-set
+
+A VM in an availability set needs a size unavailable on the current hardware cluster. Which operational consequence must be considered?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** All VMs in that availability set may need to be deallocated. This allows the set to be allocated on hardware that supports the new size.
+- **B. Incorrect:** Only changing its resource group guarantees the new size. Resource-group membership does not select a different hardware cluster.
+- **C. Incorrect:** Increasing the OS disk guarantees the new size. Disk capacity does not establish compute SKU availability.
+- **D. Incorrect:** Changing the display name forces a compatible cluster. Resource naming does not control placement capacity.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/resizing.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk)
+
+## co-resize-proof
+
+A resize operation fails, but the VM model now displays the requested larger size. What is the best next verification?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Check the operation failure, allocation state, and actual guest resources. The model can show the requested configuration before successful allocation.
+- **B. Incorrect:** Conclude the larger size is active solely from the model field. That field can reflect the failed requested change.
+- **C. Incorrect:** Assume the guest data disks were necessarily erased. A failed compute resize does not establish data-disk deletion.
+- **D. Incorrect:** Delete the deployment history to complete the resize. History deletion does not allocate new hardware.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/resizing.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk)
+
+## co-vmss-mode
+
+An existing Uniform VM scale set must become Flexible. What must the administrator account for?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Orchestration mode cannot be changed in place; plan a supported migration or replacement. The mode is selected when the scale set is created.
+- **B. Incorrect:** Changing the upgrade policy to Rolling changes orchestration mode. Upgrade policy and orchestration mode are different settings.
+- **C. Incorrect:** Setting instance count to zero automatically converts it. Capacity changes do not convert the resource mode.
+- **D. Incorrect:** Moving it to another resource group converts it to Flexible. Resource-group moves do not change orchestration mode.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/scale-sets.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy)
+
+## co-vmss-manual
+
+A scale set uses Manual upgrade policy. Its model is updated to a new image, then a new instance is added. What is expected?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** The new instance uses the new model; existing instances need an explicit update. Manual policy separates model updates from updating existing instances.
+- **B. Incorrect:** Every existing instance updates immediately in guaranteed batches. That behavior is not provided by Manual policy.
+- **C. Incorrect:** New instances always use the oldest image until all existing VMs are deleted. New instances use the latest model.
+- **D. Incorrect:** The model update is ignored for both old and new instances. The updated model governs subsequent instance creation.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/scale-sets.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy)
+
+## co-vmss-scale
+
+A VM scale set should add instances during sustained demand and later remove them. Which TWO configuration choices support this?
+
+Select **2**. Difficulty: applied.
+
+- **A. Correct:** A scaling profile and autoscale rules with bounded instance counts The profile defines new instances and the rules control count within limits.
+- **B. Correct:** Distinct scale-out and scale-in conditions with suitable cooldown These govern both directions while limiting oscillation.
+- **C. Incorrect:** Only changing the VM SKU on one instance That is a size change, not count-based demand scaling.
+- **D. Incorrect:** Setting a maximum count of one while expecting three instances The configured maximum prevents scaling to three.
+
+Study: [knowledge file](../knowledge/compute/virtual-machines/scale-sets.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy)
+
 ## id-budget-not-cap
 
 A monthly Azure budget reaches 100% and sends an alert. No automation is attached. What happens to running resources?

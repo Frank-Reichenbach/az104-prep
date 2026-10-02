@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-aca-revision",
+      "family": "co-aca-revision",
+      "revision": 1,
+      "topic": "compute.containers.apps",
+      "objectives": [
+        "co-15"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which Container Apps change creates a new revision?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Changing the container image in the app template",
+          "explanation": "Container image configuration is revision-scoped."
+        },
+        {
+          "id": "b",
+          "text": "Changing only an existing secret value",
+          "explanation": "Secret values are application-scoped; revisions may need restarting to consume changes."
+        },
+        {
+          "id": "c",
+          "text": "Changing only ingress traffic weights",
+          "explanation": "Traffic configuration is application-scoped."
+        },
+        {
+          "id": "d",
+          "text": "Adding only a managed identity",
+          "explanation": "Changing the identity does not itself create a new revision."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/apps.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-apps/revisions",
+        "https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to",
+        "https://learn.microsoft.com/en-us/azure/container-apps/managed-identity"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-aca-canary",
+      "family": "co-aca-canary",
+      "revision": 1,
+      "topic": "compute.containers.apps",
+      "objectives": [
+        "co-15"
+      ],
+      "difficulty": "applied",
+      "prompt": "You want two Container Apps image versions active simultaneously, with 10% of ingress traffic sent to the new version. Which revision mode supports this?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Multiple revision mode",
+          "explanation": "It supports concurrent active revisions and traffic splitting."
+        },
+        {
+          "id": "b",
+          "text": "Single revision mode as the steady deployment state",
+          "explanation": "Single mode does not keep multiple active application versions for this canary design."
+        },
+        {
+          "id": "c",
+          "text": "An ACI restart policy of Always",
+          "explanation": "ACI restart policies are a different service mechanism."
+        },
+        {
+          "id": "d",
+          "text": "Disabling ingress for all revisions",
+          "explanation": "That prevents the required incoming traffic split."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/apps.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-apps/revisions",
+        "https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to",
+        "https://learn.microsoft.com/en-us/azure/container-apps/managed-identity"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-aca-port",
+      "family": "co-aca-port",
+      "revision": 1,
+      "topic": "compute.containers.apps",
+      "objectives": [
+        "co-15"
+      ],
+      "difficulty": "applied",
+      "prompt": "A Container App image pulls successfully, but HTTP ingress cannot reach the process. The process listens on 8080 while ingress targets 80. What should be corrected?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Set the ingress target port to the actual listening port.",
+          "explanation": "Ingress must forward to the port served by the container."
+        },
+        {
+          "id": "b",
+          "text": "Grant the image publisher a broader push role only.",
+          "explanation": "The image has already been pulled; publishing rights do not fix runtime routing."
+        },
+        {
+          "id": "c",
+          "text": "Change only the revision label to 8080.",
+          "explanation": "Labels do not set container listening or target ports."
+        },
+        {
+          "id": "d",
+          "text": "Increase maximum replicas without changing the port.",
+          "explanation": "More replicas with the same port mismatch remain unreachable."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/apps.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-apps/revisions",
+        "https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to",
+        "https://learn.microsoft.com/en-us/azure/container-apps/managed-identity"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

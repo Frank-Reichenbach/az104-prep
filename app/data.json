@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "outlineEffective": "2026-04-17",
   "coverage": {
-    "covered": 32,
+    "covered": 56,
     "total": 82
   },
   "topics": [
@@ -403,9 +403,3420 @@
       ],
       "status": "documented",
       "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.templates.interpretation",
+      "domain": "compute",
+      "title": "Reading ARM templates and Bicep",
+      "path": "knowledge/compute/templates/interpretation.md",
+      "objectives": [
+        "co-01"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.templates.arm-editing",
+      "domain": "compute",
+      "title": "Editing ARM templates safely",
+      "path": "knowledge/compute/templates/arm-editing.md",
+      "objectives": [
+        "co-02"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.templates.bicep-editing",
+      "domain": "compute",
+      "title": "Editing Bicep parameters, resources, and modules",
+      "path": "knowledge/compute/templates/bicep-editing.md",
+      "objectives": [
+        "co-03"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.templates.deployment",
+      "domain": "compute",
+      "title": "Validating and deploying ARM and Bicep",
+      "path": "knowledge/compute/templates/deployment.md",
+      "objectives": [
+        "co-04"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.templates.export",
+      "domain": "compute",
+      "title": "Exporting templates and decompiling Bicep",
+      "path": "knowledge/compute/templates/export.md",
+      "objectives": [
+        "co-05"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.vms.creation",
+      "domain": "compute",
+      "title": "Virtual machine provisioning and access",
+      "path": "knowledge/compute/virtual-machines/creation.md",
+      "objectives": [
+        "co-06"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.vms.host-encryption",
+      "domain": "compute",
+      "title": "Encryption at host for virtual machines",
+      "path": "knowledge/compute/virtual-machines/host-encryption.md",
+      "objectives": [
+        "co-07"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.vms.moves",
+      "domain": "compute",
+      "title": "Moving VMs between scopes and regions",
+      "path": "knowledge/compute/virtual-machines/moves.md",
+      "objectives": [
+        "co-08"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.vms.resizing",
+      "domain": "compute",
+      "title": "Resizing virtual machines",
+      "path": "knowledge/compute/virtual-machines/resizing.md",
+      "objectives": [
+        "co-09"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.vms.disks",
+      "domain": "compute",
+      "title": "Managed disk attachment, expansion, and performance",
+      "path": "knowledge/compute/virtual-machines/disks.md",
+      "objectives": [
+        "co-10"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.vms.availability",
+      "domain": "compute",
+      "title": "Availability sets and availability zones",
+      "path": "knowledge/compute/virtual-machines/availability.md",
+      "objectives": [
+        "co-11"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.vms.scale-sets",
+      "domain": "compute",
+      "title": "Virtual machine scale sets and autoscale",
+      "path": "knowledge/compute/virtual-machines/scale-sets.md",
+      "objectives": [
+        "co-12"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.containers.registry",
+      "domain": "compute",
+      "title": "Container Registry images and access",
+      "path": "knowledge/compute/containers/registry.md",
+      "objectives": [
+        "co-13"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.containers.instances",
+      "domain": "compute",
+      "title": "Container Instances groups and restart behavior",
+      "path": "knowledge/compute/containers/instances.md",
+      "objectives": [
+        "co-14"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.containers.apps",
+      "domain": "compute",
+      "title": "Container Apps environments, ingress, and revisions",
+      "path": "knowledge/compute/containers/apps.md",
+      "objectives": [
+        "co-15"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.containers.scaling",
+      "domain": "compute",
+      "title": "Container resource sizing and replica scaling",
+      "path": "knowledge/compute/containers/scaling.md",
+      "objectives": [
+        "co-16"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.app-service.plans",
+      "domain": "compute",
+      "title": "App Service plan creation and compute sharing",
+      "path": "knowledge/compute/app-service/plans.md",
+      "objectives": [
+        "co-17"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.app-service.scaling",
+      "domain": "compute",
+      "title": "App Service scale up, scale out, and autoscale",
+      "path": "knowledge/compute/app-service/scaling.md",
+      "objectives": [
+        "co-18"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.app-service.apps",
+      "domain": "compute",
+      "title": "App Service application deployment and configuration",
+      "path": "knowledge/compute/app-service/apps.md",
+      "objectives": [
+        "co-19"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.app-service.tls",
+      "domain": "compute",
+      "title": "App Service certificates and TLS bindings",
+      "path": "knowledge/compute/app-service/tls.md",
+      "objectives": [
+        "co-20"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.app-service.domains",
+      "domain": "compute",
+      "title": "App Service custom DNS names and ownership verification",
+      "path": "knowledge/compute/app-service/domains.md",
+      "objectives": [
+        "co-21"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.app-service.backups",
+      "domain": "compute",
+      "title": "App Service backup configuration and restoration",
+      "path": "knowledge/compute/app-service/backups.md",
+      "objectives": [
+        "co-22"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.app-service.networking",
+      "domain": "compute",
+      "title": "App Service inbound and outbound networking",
+      "path": "knowledge/compute/app-service/networking.md",
+      "objectives": [
+        "co-23"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "compute.app-service.slots",
+      "domain": "compute",
+      "title": "App Service deployment slots and swaps",
+      "path": "knowledge/compute/app-service/slots.md",
+      "objectives": [
+        "co-24"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
     }
   ],
   "questions": [
+    {
+      "id": "co-web-zip",
+      "family": "co-web-zip",
+      "revision": 1,
+      "topic": "compute.app-service.apps",
+      "objectives": [
+        "co-19"
+      ],
+      "difficulty": "applied",
+      "prompt": "A published application is deployed to App Service from a ZIP archive. What archive layout does the documented deployment process require?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Deployable application files at the ZIP root.",
+          "explanation": "A surrounding parent folder can prevent the app from finding its expected files."
+        },
+        {
+          "id": "b",
+          "text": "All application files nested inside an arbitrary extra parent directory.",
+          "explanation": "The required root layout should not include an extra wrapping folder."
+        },
+        {
+          "id": "c",
+          "text": "Only an empty folder named wwwroot.",
+          "explanation": "An empty archive cannot supply the application."
+        },
+        {
+          "id": "d",
+          "text": "Only the source repository URL stored in a text file.",
+          "explanation": "ZIP package deployment needs the actual deployable application files."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/apps.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/deploy-zip",
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-common",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-settings",
+      "family": "co-web-settings",
+      "revision": 1,
+      "topic": "compute.app-service.apps",
+      "objectives": [
+        "co-19"
+      ],
+      "difficulty": "foundation",
+      "prompt": "What happens when an administrator changes App Service app settings?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The settings are supplied as environment variables and the app restarts.",
+          "explanation": "App Service applies configuration changes through its app settings mechanism."
+        },
+        {
+          "id": "b",
+          "text": "The App Service plan changes operating system automatically.",
+          "explanation": "Environment settings do not convert the plan OS."
+        },
+        {
+          "id": "c",
+          "text": "A new staging slot is always created.",
+          "explanation": "Changing app settings does not create a slot."
+        },
+        {
+          "id": "d",
+          "text": "The application image is necessarily rebuilt and pushed to ACR.",
+          "explanation": "Settings changes do not require a container build or image push."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/apps.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/deploy-zip",
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-common",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-managed",
+      "family": "co-web-managed",
+      "revision": 1,
+      "topic": "compute.app-service.apps",
+      "objectives": [
+        "co-19"
+      ],
+      "difficulty": "applied",
+      "prompt": "A web app has managed identity enabled but receives authorization failures from a protected Azure service. What should be checked?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The identity has the required role or access policy on that target service.",
+          "explanation": "Authentication through managed identity still requires target-service authorization."
+        },
+        {
+          "id": "b",
+          "text": "Assume enabling identity grants Contributor to every service.",
+          "explanation": "Identity creation does not grant broad Azure access."
+        },
+        {
+          "id": "c",
+          "text": "Change the web app display name to the service name.",
+          "explanation": "Matching names do not grant authorization."
+        },
+        {
+          "id": "d",
+          "text": "Increase plan workers as the only permission fix.",
+          "explanation": "Additional workers do not change identity permissions."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/apps.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/deploy-zip",
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-common",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-backup-external",
+      "family": "co-web-backup-external",
+      "revision": 1,
+      "topic": "compute.app-service.backups",
+      "objectives": [
+        "co-22"
+      ],
+      "difficulty": "applied",
+      "prompt": "An App Service app has automatic backups and stores business data in an externally mounted Azure file share. What should the recovery design include?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Separate protection and restore procedures for the mounted share.",
+          "explanation": "Automatic App Service backups exclude custom-mounted Azure storage."
+        },
+        {
+          "id": "b",
+          "text": "Assume every mounted share is included in the automatic app backup.",
+          "explanation": "The documented scope does not include that external storage."
+        },
+        {
+          "id": "c",
+          "text": "Use an app-setting rename to bring the share into the backup.",
+          "explanation": "Renaming configuration does not change the backup coverage."
+        },
+        {
+          "id": "d",
+          "text": "Treat the source-code ZIP as a backup of all business data.",
+          "explanation": "The deployment artifact does not contain independently stored application data."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/backups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-backup"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-backup-restore",
+      "family": "co-web-backup-restore",
+      "revision": 1,
+      "topic": "compute.app-service.backups",
+      "objectives": [
+        "co-22"
+      ],
+      "difficulty": "applied",
+      "prompt": "Before replacing a production App Service app with a backup, which approach provides useful recovery evidence?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Restore to a supported separate app or slot and test the app and dependencies.",
+          "explanation": "A recovery test checks usable behavior and configuration beyond backup job status."
+        },
+        {
+          "id": "b",
+          "text": "Only check that the backup list contains a timestamp.",
+          "explanation": "A recorded backup does not prove the application can function after restoration."
+        },
+        {
+          "id": "c",
+          "text": "Edit the backup ZIP manually to make its timestamp newer.",
+          "explanation": "Altering backup artifacts can invalidate recovery."
+        },
+        {
+          "id": "d",
+          "text": "Assume app restoration recreates every identity and network dependency.",
+          "explanation": "Several related configurations and external services need separate recovery."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/backups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-backup"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-backup-database",
+      "family": "co-web-backup-database",
+      "revision": 1,
+      "topic": "compute.app-service.backups",
+      "objectives": [
+        "co-22"
+      ],
+      "difficulty": "applied",
+      "prompt": "In October 2026, you design a new App Service recovery setup with Azure SQL. Which database backup approach follows current Microsoft guidance?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Use Azure SQL native backup and restore alongside app protection.",
+          "explanation": "Microsoft recommends native database tools, and new linked SQL backup configurations were removed in April 2026."
+        },
+        {
+          "id": "b",
+          "text": "Depend on creating a new App Service linked SQL backup configuration.",
+          "explanation": "The documented removal schedule has already removed this option for new configurations."
+        },
+        {
+          "id": "c",
+          "text": "Assume automatic App Service backups include the SQL database.",
+          "explanation": "Automatic backups do not include linked databases."
+        },
+        {
+          "id": "d",
+          "text": "Use a deployment-slot swap as the only database backup.",
+          "explanation": "A slot swap does not create a recoverable database backup."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/backups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-backup"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-domain-cname",
+      "family": "co-domain-cname",
+      "revision": 1,
+      "topic": "compute.app-service.domains",
+      "objectives": [
+        "co-21"
+      ],
+      "difficulty": "foundation",
+      "prompt": "You map www.example.com to an App Service app and want DNS to follow its default hostname rather than a fixed IP. Which routing record does Microsoft recommend?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A CNAME from www to the app default hostname.",
+          "explanation": "CNAME maps the subdomain to the hostname."
+        },
+        {
+          "id": "b",
+          "text": "A TXT record containing only the app IP.",
+          "explanation": "TXT verification is not traffic routing."
+        },
+        {
+          "id": "c",
+          "text": "An MX record targeting the app hostname.",
+          "explanation": "MX controls mail delivery, not web traffic resolution."
+        },
+        {
+          "id": "d",
+          "text": "An NS record delegating www to the app hostname.",
+          "explanation": "An app hostname is not an authoritative DNS nameserver."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/domains.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain",
+        "https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-domain-txt",
+      "family": "co-domain-txt",
+      "revision": 1,
+      "topic": "compute.app-service.domains",
+      "objectives": [
+        "co-21"
+      ],
+      "difficulty": "foundation",
+      "prompt": "What is the purpose of the asuid.www TXT record when configuring www.example.com for App Service?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Prove domain ownership and help prevent another app claiming the hostname.",
+          "explanation": "The domain verification ID supports ownership verification and takeover protection."
+        },
+        {
+          "id": "b",
+          "text": "Route HTTPS packets to the app private IP.",
+          "explanation": "TXT records do not route client traffic."
+        },
+        {
+          "id": "c",
+          "text": "Store the certificate private key for browsers.",
+          "explanation": "A public TXT record must not contain a private key."
+        },
+        {
+          "id": "d",
+          "text": "Set the App Service plan worker count.",
+          "explanation": "DNS verification does not configure compute capacity."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/domains.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain",
+        "https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-domain-binding",
+      "family": "co-domain-binding",
+      "revision": 1,
+      "topic": "compute.app-service.domains",
+      "objectives": [
+        "co-21"
+      ],
+      "difficulty": "applied",
+      "prompt": "www.example.com resolves to the correct App Service address, but the app has no custom-hostname entry for it and requests return a platform 404. What should be configured?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Validate and add the hostname binding to the intended app.",
+          "explanation": "App Service must associate that Host header with the app."
+        },
+        {
+          "id": "b",
+          "text": "Only lower the DNS TTL repeatedly.",
+          "explanation": "Correct resolution cannot replace the missing app mapping."
+        },
+        {
+          "id": "c",
+          "text": "Only add another identical A record.",
+          "explanation": "Duplicating routing does not establish the hostname binding."
+        },
+        {
+          "id": "d",
+          "text": "Only scale out the plan.",
+          "explanation": "Additional workers do not register the custom hostname."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/domains.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain",
+        "https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-outbound",
+      "family": "co-web-outbound",
+      "revision": 1,
+      "topic": "compute.app-service.networking",
+      "objectives": [
+        "co-23"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An App Service app must call a VM using its private IP in a same-region VNet. Which App Service networking feature provides the outbound VNet path?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Regional VNet integration",
+          "explanation": "It routes outbound calls from the app into the integrated network."
+        },
+        {
+          "id": "b",
+          "text": "Only a private endpoint for the web app",
+          "explanation": "That provides inbound private access to the app."
+        },
+        {
+          "id": "c",
+          "text": "Only an app custom-domain binding",
+          "explanation": "A hostname binding does not create the outbound VNet path."
+        },
+        {
+          "id": "d",
+          "text": "Only an inbound IP access restriction",
+          "explanation": "Inbound filtering does not configure private outbound routing."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/networking.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-inbound",
+      "family": "co-web-inbound",
+      "revision": 1,
+      "topic": "compute.app-service.networking",
+      "objectives": [
+        "co-23"
+      ],
+      "difficulty": "applied",
+      "prompt": "Users must access an App Service app privately from a VNet, and the app must also reach a private database. Which TWO capabilities should be configured for their respective traffic directions?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "An App Service private endpoint for inbound requests",
+          "explanation": "The endpoint exposes the app through a private IP."
+        },
+        {
+          "id": "b",
+          "text": "VNet integration for the app outbound database connection",
+          "explanation": "Integration provides outbound network access."
+        },
+        {
+          "id": "c",
+          "text": "VNet integration alone as proof of private inbound access",
+          "explanation": "Integration does not provide private inbound app access."
+        },
+        {
+          "id": "d",
+          "text": "The app private endpoint alone as proof of private outbound database routing",
+          "explanation": "The inbound endpoint does not configure outbound integration."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/compute/app-service/networking.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-subnet",
+      "family": "co-web-subnet",
+      "revision": 1,
+      "topic": "compute.app-service.networking",
+      "objectives": [
+        "co-23"
+      ],
+      "difficulty": "applied",
+      "prompt": "A web app already uses a delegated subnet for VNet integration. Where should its inbound private endpoint be placed?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "In a different suitable subnet.",
+          "explanation": "The integration and private endpoint subnets must be different."
+        },
+        {
+          "id": "b",
+          "text": "Always in the same delegated integration subnet.",
+          "explanation": "App Service documents separate subnet requirements for these features."
+        },
+        {
+          "id": "c",
+          "text": "In the app deployment slot instead of a subnet.",
+          "explanation": "A slot is an application resource, not a network subnet."
+        },
+        {
+          "id": "d",
+          "text": "In a DNS record with no private endpoint NIC.",
+          "explanation": "DNS alone cannot create a private endpoint network interface."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/networking.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-plan-sharing",
+      "family": "co-plan-sharing",
+      "revision": 1,
+      "topic": "compute.app-service.plans",
+      "objectives": [
+        "co-17"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Two web apps and a staging slot run in the same dedicated App Service plan. What compute relationship should the administrator expect?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "They share the plan worker capacity.",
+          "explanation": "Apps and slots consume resources from the same dedicated plan."
+        },
+        {
+          "id": "b",
+          "text": "Each receives an independently billed dedicated worker set automatically.",
+          "explanation": "Dedicated compute is allocated at plan level."
+        },
+        {
+          "id": "c",
+          "text": "The staging slot runs in a different region automatically.",
+          "explanation": "A slot uses the same hosting plan, not automatic regional isolation."
+        },
+        {
+          "id": "d",
+          "text": "Stopping one app deletes the shared plan workers.",
+          "explanation": "App lifecycle operations do not delete the plan."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/plans.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans",
+        "https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-plan-separate",
+      "family": "co-plan-separate",
+      "revision": 1,
+      "topic": "compute.app-service.plans",
+      "objectives": [
+        "co-17"
+      ],
+      "difficulty": "applied",
+      "prompt": "A resource-intensive app must have an independent compute and scaling boundary from other apps. Which design fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Place it in a separate App Service plan.",
+          "explanation": "A separate plan separates the worker capacity and plan scaling."
+        },
+        {
+          "id": "b",
+          "text": "Create only another deployment slot in the existing plan.",
+          "explanation": "Slots still share the existing plan workers."
+        },
+        {
+          "id": "c",
+          "text": "Change only the app resource group while retaining the plan.",
+          "explanation": "Resource-group organization does not separate shared compute."
+        },
+        {
+          "id": "d",
+          "text": "Assign a different custom hostname while retaining the plan.",
+          "explanation": "DNS naming does not change the compute boundary."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/plans.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans",
+        "https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-plan-cost",
+      "family": "co-plan-cost",
+      "revision": 1,
+      "topic": "compute.app-service.plans",
+      "objectives": [
+        "co-17"
+      ],
+      "difficulty": "applied",
+      "prompt": "The only app in a paid dedicated App Service plan is stopped. What should be checked to stop unnecessary plan compute charges?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Whether the unused plan can be deleted or moved to a suitable lower tier.",
+          "explanation": "The plan retains its allocated paid capacity while the app is stopped."
+        },
+        {
+          "id": "b",
+          "text": "Assume the stopped app makes the dedicated plan free.",
+          "explanation": "Billing is based on allocated plan resources."
+        },
+        {
+          "id": "c",
+          "text": "Remove only the app custom domain.",
+          "explanation": "Hostname configuration does not release the plan compute."
+        },
+        {
+          "id": "d",
+          "text": "Delete only the app deployment history.",
+          "explanation": "Deployment records do not determine worker allocation."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/plans.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans",
+        "https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-scale-up",
+      "family": "co-web-scale-up",
+      "revision": 1,
+      "topic": "compute.app-service.scaling",
+      "objectives": [
+        "co-18"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An App Service app needs more memory per worker and a higher-tier feature. Which operation addresses these requirements?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Scale up the App Service plan to a suitable SKU.",
+          "explanation": "Scale up changes worker resources and tier features."
+        },
+        {
+          "id": "b",
+          "text": "Only increase worker count with the existing SKU.",
+          "explanation": "Scale out adds workers but does not increase memory per worker or unlock higher-tier features."
+        },
+        {
+          "id": "c",
+          "text": "Only add a staging slot.",
+          "explanation": "A slot consumes the existing plan capacity."
+        },
+        {
+          "id": "d",
+          "text": "Only set a larger maximum autoscale count.",
+          "explanation": "A count limit does not change the worker SKU."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/scaling.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up",
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-best-practices"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-schedule",
+      "family": "co-web-schedule",
+      "revision": 1,
+      "topic": "compute.app-service.scaling",
+      "objectives": [
+        "co-18"
+      ],
+      "difficulty": "applied",
+      "prompt": "An App Service plan must run more instances at 08:00 each weekday based on a schedule. Which scaling mechanism should be used?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Azure Monitor autoscale with a scheduled profile.",
+          "explanation": "Autoscale supports schedules for plan capacity."
+        },
+        {
+          "id": "b",
+          "text": "App Service automatic scaling based only on HTTP traffic.",
+          "explanation": "HTTP automatic scaling does not express the requested time-based schedule."
+        },
+        {
+          "id": "c",
+          "text": "A deployment-slot swap at 08:00.",
+          "explanation": "Swapping code slots does not define scheduled worker capacity."
+        },
+        {
+          "id": "d",
+          "text": "A higher SKU without any scheduled scaling configuration.",
+          "explanation": "Changing tier does not implement the requested daily instance schedule."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/scaling.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up",
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-best-practices"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-autolimits",
+      "family": "co-web-autolimits",
+      "revision": 1,
+      "topic": "compute.app-service.scaling",
+      "objectives": [
+        "co-18"
+      ],
+      "difficulty": "applied",
+      "prompt": "You evaluate App Service automatic HTTP scaling. Which TWO points belong in the cost and compatibility review?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "Prewarmed instances are billable.",
+          "explanation": "Automatic scaling reserves a buffer whose instance time is charged."
+        },
+        {
+          "id": "b",
+          "text": "Deployment-slot traffic is unsupported for this scaling feature.",
+          "explanation": "The documented automatic scaling feature does not scale based on slot traffic."
+        },
+        {
+          "id": "c",
+          "text": "It is the same configuration as Azure Monitor schedule rules.",
+          "explanation": "Automatic HTTP scaling and Azure Monitor autoscale are distinct."
+        },
+        {
+          "id": "d",
+          "text": "It provides paid Premium features on Free plans.",
+          "explanation": "The feature requires supported Premium tiers."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/compute/app-service/scaling.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up",
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-best-practices"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-slot-sticky",
+      "family": "co-slot-sticky",
+      "revision": 1,
+      "topic": "compute.app-service.slots",
+      "objectives": [
+        "co-24"
+      ],
+      "difficulty": "applied",
+      "prompt": "Production and staging use different database connection strings, and each must remain attached to its environment during a slot swap. What should be configured?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Mark the connection strings as deployment slot settings.",
+          "explanation": "Sticky connection strings remain associated with their slot."
+        },
+        {
+          "id": "b",
+          "text": "Leave them swappable and rely on different display names.",
+          "explanation": "Display names do not prevent connection string swapping."
+        },
+        {
+          "id": "c",
+          "text": "Put both connection strings only in the shared plan name.",
+          "explanation": "The plan name does not supply environment-specific application configuration."
+        },
+        {
+          "id": "d",
+          "text": "Change only the staging traffic percentage.",
+          "explanation": "Traffic routing does not make connection strings sticky."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/slots.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-slot-identity",
+      "family": "co-slot-identity",
+      "revision": 1,
+      "topic": "compute.app-service.slots",
+      "objectives": [
+        "co-24"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which App Service configuration remains with its slot during a swap?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Managed identity",
+          "explanation": "Managed identities are listed among settings that do not swap."
+        },
+        {
+          "id": "b",
+          "text": "All application content",
+          "explanation": "Content is the main item moved between slots."
+        },
+        {
+          "id": "c",
+          "text": "Every ordinary unmarked app setting",
+          "explanation": "App settings can swap unless configured sticky or subject to documented exceptions."
+        },
+        {
+          "id": "d",
+          "text": "All runtime framework settings",
+          "explanation": "Framework settings are among the swappable configuration items."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/slots.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-slot-rollback",
+      "family": "co-slot-rollback",
+      "revision": 1,
+      "topic": "compute.app-service.slots",
+      "objectives": [
+        "co-24"
+      ],
+      "difficulty": "applied",
+      "prompt": "A release is swapped from staging to production and performs an external database schema migration. What does swapping the slots back provide?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A code/configuration rollback path that still needs a separate database compatibility or recovery plan.",
+          "explanation": "A slot swap does not undo external database mutations."
+        },
+        {
+          "id": "b",
+          "text": "Automatic reversal of every database change.",
+          "explanation": "External data is outside the slot content swap."
+        },
+        {
+          "id": "c",
+          "text": "Automatic restoration of all production data from Azure Backup.",
+          "explanation": "Swap does not trigger database restoration."
+        },
+        {
+          "id": "d",
+          "text": "Deletion of the newer database schema with guaranteed zero data loss.",
+          "explanation": "A swap has no such schema or data-loss guarantee."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/slots.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-tls-binding",
+      "family": "co-tls-binding",
+      "revision": 1,
+      "topic": "compute.app-service.tls",
+      "objectives": [
+        "co-20"
+      ],
+      "difficulty": "applied",
+      "prompt": "A valid certificate for www.example.com has been uploaded to App Service, and the custom hostname is mapped, but HTTPS still does not use it. What configuration is missing?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A TLS binding associating the hostname with the certificate.",
+          "explanation": "Upload stores the certificate; the binding selects it for the hostname."
+        },
+        {
+          "id": "b",
+          "text": "Only another copy of the same certificate file.",
+          "explanation": "Duplicate upload does not create the missing binding."
+        },
+        {
+          "id": "c",
+          "text": "Only a larger App Service instance count.",
+          "explanation": "Worker count does not associate a certificate with a hostname."
+        },
+        {
+          "id": "d",
+          "text": "Only a DNS TTL of zero.",
+          "explanation": "TTL does not configure the app TLS binding."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/tls.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings",
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-tls-wildcard",
+      "family": "co-tls-wildcard",
+      "revision": 1,
+      "topic": "compute.app-service.tls",
+      "objectives": [
+        "co-20"
+      ],
+      "difficulty": "applied",
+      "prompt": "An app requires a wildcard certificate covering *.example.com. Which certificate approach fits App Service requirements?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Import or upload a suitable wildcard certificate from a certificate provider.",
+          "explanation": "A supported certificate with the required names can be bound to the app."
+        },
+        {
+          "id": "b",
+          "text": "Request a free App Service managed wildcard certificate.",
+          "explanation": "The free managed certificate does not support wildcards."
+        },
+        {
+          "id": "c",
+          "text": "Use the default azurewebsites.net certificate for example.com.",
+          "explanation": "The default certificate does not cover the custom domain."
+        },
+        {
+          "id": "d",
+          "text": "Create only an ownership TXT record and omit TLS binding.",
+          "explanation": "Domain ownership verification does not provide wildcard TLS."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/tls.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings",
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-tls-sni",
+      "family": "co-tls-sni",
+      "revision": 1,
+      "topic": "compute.app-service.tls",
+      "objectives": [
+        "co-20"
+      ],
+      "difficulty": "foundation",
+      "prompt": "What is the purpose of an SNI TLS binding in App Service?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Select the certificate by hostname while sharing an IP address.",
+          "explanation": "Server Name Indication communicates the requested hostname during TLS."
+        },
+        {
+          "id": "b",
+          "text": "Require a separate dedicated IP for every hostname.",
+          "explanation": "That is not the purpose of SNI."
+        },
+        {
+          "id": "c",
+          "text": "Automatically create all external DNS records.",
+          "explanation": "TLS binding does not administer the DNS provider."
+        },
+        {
+          "id": "d",
+          "text": "Encrypt application data stored on the filesystem.",
+          "explanation": "A TLS binding protects transport connections, not filesystem storage."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/tls.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings",
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-aca-revision",
+      "family": "co-aca-revision",
+      "revision": 1,
+      "topic": "compute.containers.apps",
+      "objectives": [
+        "co-15"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which Container Apps change creates a new revision?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Changing the container image in the app template",
+          "explanation": "Container image configuration is revision-scoped."
+        },
+        {
+          "id": "b",
+          "text": "Changing only an existing secret value",
+          "explanation": "Secret values are application-scoped; revisions may need restarting to consume changes."
+        },
+        {
+          "id": "c",
+          "text": "Changing only ingress traffic weights",
+          "explanation": "Traffic configuration is application-scoped."
+        },
+        {
+          "id": "d",
+          "text": "Adding only a managed identity",
+          "explanation": "Changing the identity does not itself create a new revision."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/apps.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-apps/revisions",
+        "https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to",
+        "https://learn.microsoft.com/en-us/azure/container-apps/managed-identity"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-aca-canary",
+      "family": "co-aca-canary",
+      "revision": 1,
+      "topic": "compute.containers.apps",
+      "objectives": [
+        "co-15"
+      ],
+      "difficulty": "applied",
+      "prompt": "You want two Container Apps image versions active simultaneously, with 10% of ingress traffic sent to the new version. Which revision mode supports this?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Multiple revision mode",
+          "explanation": "It supports concurrent active revisions and traffic splitting."
+        },
+        {
+          "id": "b",
+          "text": "Single revision mode as the steady deployment state",
+          "explanation": "Single mode does not keep multiple active application versions for this canary design."
+        },
+        {
+          "id": "c",
+          "text": "An ACI restart policy of Always",
+          "explanation": "ACI restart policies are a different service mechanism."
+        },
+        {
+          "id": "d",
+          "text": "Disabling ingress for all revisions",
+          "explanation": "That prevents the required incoming traffic split."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/apps.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-apps/revisions",
+        "https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to",
+        "https://learn.microsoft.com/en-us/azure/container-apps/managed-identity"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-aca-port",
+      "family": "co-aca-port",
+      "revision": 1,
+      "topic": "compute.containers.apps",
+      "objectives": [
+        "co-15"
+      ],
+      "difficulty": "applied",
+      "prompt": "A Container App image pulls successfully, but HTTP ingress cannot reach the process. The process listens on 8080 while ingress targets 80. What should be corrected?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Set the ingress target port to the actual listening port.",
+          "explanation": "Ingress must forward to the port served by the container."
+        },
+        {
+          "id": "b",
+          "text": "Grant the image publisher a broader push role only.",
+          "explanation": "The image has already been pulled; publishing rights do not fix runtime routing."
+        },
+        {
+          "id": "c",
+          "text": "Change only the revision label to 8080.",
+          "explanation": "Labels do not set container listening or target ports."
+        },
+        {
+          "id": "d",
+          "text": "Increase maximum replicas without changing the port.",
+          "explanation": "More replicas with the same port mismatch remain unreachable."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/apps.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-apps/revisions",
+        "https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to",
+        "https://learn.microsoft.com/en-us/azure/container-apps/managed-identity"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-aci-localhost",
+      "family": "co-aci-localhost",
+      "revision": 1,
+      "topic": "compute.containers.instances",
+      "objectives": [
+        "co-14"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Two Linux containers in the same ACI container group need to communicate on an internal-only port. Which address can they use?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "localhost with the listening port",
+          "explanation": "Containers in a group share a local network."
+        },
+        {
+          "id": "b",
+          "text": "Only a public load-balancer frontend",
+          "explanation": "A public frontend is unnecessary for same-group communication."
+        },
+        {
+          "id": "c",
+          "text": "Only a separate VNet peering for each container",
+          "explanation": "Containers in one group do not each require a peered VNet."
+        },
+        {
+          "id": "d",
+          "text": "The ACR repository URL as the runtime service address",
+          "explanation": "A registry stores images; it is not the running service endpoint."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/instances.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups",
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy",
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-aci-onfailure",
+      "family": "co-aci-onfailure",
+      "revision": 1,
+      "topic": "compute.containers.instances",
+      "objectives": [
+        "co-14"
+      ],
+      "difficulty": "applied",
+      "prompt": "An ACI batch task should retry after a nonzero process exit and remain terminated after successful completion. Which restart policy explicitly expresses that behavior?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "OnFailure",
+          "explanation": "This policy restarts failed processes but does not restart successful completion."
+        },
+        {
+          "id": "b",
+          "text": "Always",
+          "explanation": "Always also restarts the container after successful completion."
+        },
+        {
+          "id": "c",
+          "text": "Never as a guarantee of exactly-once execution",
+          "explanation": "Current documentation warns that nonzero exits can still be restarted; it is not an exactly-once guarantee."
+        },
+        {
+          "id": "d",
+          "text": "An HTTP replica scaling rule",
+          "explanation": "Replica scaling is not an ACI restart-policy value."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/instances.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups",
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy",
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-aci-persist",
+      "family": "co-aci-persist",
+      "revision": 1,
+      "topic": "compute.containers.instances",
+      "objectives": [
+        "co-14"
+      ],
+      "difficulty": "applied",
+      "prompt": "Output from an ACI task must survive deletion of its container group. Which design meets the requirement?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Write results to durable external storage and retain that storage.",
+          "explanation": "Data durability must extend beyond the container-group lifecycle."
+        },
+        {
+          "id": "b",
+          "text": "Store the only copy in the container writable layer.",
+          "explanation": "Deleting and recreating the group does not preserve that layer as a durable archive."
+        },
+        {
+          "id": "c",
+          "text": "Use Always restart policy instead of persistent storage.",
+          "explanation": "Restart policy does not provide durable output after deletion."
+        },
+        {
+          "id": "d",
+          "text": "Give the group a DNS label and store output only locally.",
+          "explanation": "A DNS label does not persist container filesystem contents."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/instances.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups",
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy",
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-acr-abac",
+      "family": "co-acr-abac",
+      "revision": 1,
+      "topic": "compute.containers.registry",
+      "objectives": [
+        "co-13"
+      ],
+      "difficulty": "applied",
+      "prompt": "An ACR registry uses RBAC Registry + ABAC Repository Permissions. A workload must pull an image from an allowed repository but has only AcrPull. What should be changed?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Assign Container Registry Repository Reader with any condition covering the repository.",
+          "explanation": "ABAC-enabled registries use the repository roles rather than legacy AcrPull."
+        },
+        {
+          "id": "b",
+          "text": "Keep AcrPull and only refresh the token indefinitely.",
+          "explanation": "A token refresh cannot make an unhonored role grant access."
+        },
+        {
+          "id": "c",
+          "text": "Assign only Container Registry Repository Catalog Lister.",
+          "explanation": "Listing repository names is not permission to pull their images."
+        },
+        {
+          "id": "d",
+          "text": "Assign only Reader on the registry resource.",
+          "explanation": "Control-plane read does not grant repository image access in ABAC mode."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/registry.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions",
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices",
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-acr-digest",
+      "family": "co-acr-digest",
+      "revision": 1,
+      "topic": "compute.containers.registry",
+      "objectives": [
+        "co-13"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A deployment must refer to the exact same container image content after a tag is reassigned. Which identifier should it record?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The image digest",
+          "explanation": "A digest identifies content rather than a mutable tag label."
+        },
+        {
+          "id": "b",
+          "text": "Only the latest tag",
+          "explanation": "latest is a mutable tag and may refer to different content later."
+        },
+        {
+          "id": "c",
+          "text": "Only the repository name",
+          "explanation": "A repository can contain many image versions."
+        },
+        {
+          "id": "d",
+          "text": "Only the registry resource group",
+          "explanation": "A management container does not identify image content."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/registry.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions",
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices",
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-acr-identity",
+      "family": "co-acr-identity",
+      "revision": 1,
+      "topic": "compute.containers.registry",
+      "objectives": [
+        "co-13"
+      ],
+      "difficulty": "applied",
+      "prompt": "A supported Azure service must pull private ACR images without storing a shared registry password. Which approach fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Use its managed identity with the appropriate image pull role for the registry mode.",
+          "explanation": "Managed identity authentication avoids a shared password and still requires authorization."
+        },
+        {
+          "id": "b",
+          "text": "Enable the registry admin account and embed its password in the image.",
+          "explanation": "This stores a shared secret and exposes it in the artifact."
+        },
+        {
+          "id": "c",
+          "text": "Assign only a display name to the managed identity without roles.",
+          "explanation": "An identity still requires permission to pull the repository."
+        },
+        {
+          "id": "d",
+          "text": "Give the registry a public endpoint and assume images become anonymous.",
+          "explanation": "Network reachability does not provide repository authorization."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/registry.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions",
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices",
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-scale-aci",
+      "family": "co-scale-aci",
+      "revision": 1,
+      "topic": "compute.containers.scaling",
+      "objectives": [
+        "co-16"
+      ],
+      "difficulty": "applied",
+      "prompt": "An ACI group has two containers requesting one CPU each. One container has a limit of two CPUs. What does that limit allow?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Use up to two CPUs when available within the allocated group resources.",
+          "explanation": "A limit permits borrowing available allocation; it does not expand the group beyond its requested capacity."
+        },
+        {
+          "id": "b",
+          "text": "Automatically create a second container-group replica.",
+          "explanation": "Container resource limits do not create replicas."
+        },
+        {
+          "id": "c",
+          "text": "Reserve four CPUs for the group automatically.",
+          "explanation": "The requests total two CPUs, not four."
+        },
+        {
+          "id": "d",
+          "text": "Guarantee two dedicated CPUs for each container simultaneously.",
+          "explanation": "Both containers cannot each consume two CPUs from a two-CPU allocation."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/scaling.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups",
+        "https://learn.microsoft.com/en-us/azure/container-apps/scale-app",
+        "https://learn.microsoft.com/en-us/azure/container-apps/containers"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-scale-zero",
+      "family": "co-scale-zero",
+      "revision": 1,
+      "topic": "compute.containers.scaling",
+      "objectives": [
+        "co-16"
+      ],
+      "difficulty": "applied",
+      "prompt": "A Container Apps queue worker has ingress disabled, minReplicas 0, and no custom scale rule. Why can it remain at zero while queue messages arrive?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "No configured trigger observes the queue and requests replicas.",
+          "explanation": "Without ingress or a custom event rule, queue arrivals do not wake the app."
+        },
+        {
+          "id": "b",
+          "text": "maxReplicas always forces at least that many replicas to run.",
+          "explanation": "Maximum is a limit, not the requested minimum."
+        },
+        {
+          "id": "c",
+          "text": "Changing the image tag in ACR automatically processes the queue.",
+          "explanation": "An image tag does not configure an event scaler."
+        },
+        {
+          "id": "d",
+          "text": "The inactive replica can measure its own CPU and wake itself.",
+          "explanation": "There is no running replica producing that utilization signal."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/scaling.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups",
+        "https://learn.microsoft.com/en-us/azure/container-apps/scale-app",
+        "https://learn.microsoft.com/en-us/azure/container-apps/containers"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-scale-oom",
+      "family": "co-scale-oom",
+      "revision": 1,
+      "topic": "compute.containers.scaling",
+      "objectives": [
+        "co-16"
+      ],
+      "difficulty": "applied",
+      "prompt": "Every Container Apps replica fails during startup because its memory allocation is too small. Which change directly addresses that failure?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Choose a supported larger per-replica memory allocation and deploy the revision.",
+          "explanation": "Each replica needs enough memory to start successfully."
+        },
+        {
+          "id": "b",
+          "text": "Raise only maxReplicas while preserving the insufficient allocation.",
+          "explanation": "More failing replicas do not increase memory available to each process."
+        },
+        {
+          "id": "c",
+          "text": "Lower minReplicas to zero and leave the image unchanged.",
+          "explanation": "A lower minimum does not fix the startup memory requirement."
+        },
+        {
+          "id": "d",
+          "text": "Change only the ingress traffic percentage.",
+          "explanation": "Traffic distribution does not enlarge the container memory allocation."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/scaling.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups",
+        "https://learn.microsoft.com/en-us/azure/container-apps/scale-app",
+        "https://learn.microsoft.com/en-us/azure/container-apps/containers"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-arm-param",
+      "family": "co-arm-param",
+      "revision": 1,
+      "topic": "compute.templates.arm-editing",
+      "objectives": [
+        "co-02"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An ARM template must accept only Standard_LRS or Standard_ZRS for a storageSku input. Which parameter property enforces this during validation?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "allowedValues",
+          "explanation": "The supplied value must be a member of this array."
+        },
+        {
+          "id": "b",
+          "text": "defaultValue",
+          "explanation": "A default supplies an omitted value; it does not restrict explicit input."
+        },
+        {
+          "id": "c",
+          "text": "metadata.description",
+          "explanation": "This documents the parameter without enforcing an allowed set."
+        },
+        {
+          "id": "d",
+          "text": "minLength",
+          "explanation": "Length validation cannot restrict the input to these two SKU names."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/arm-editing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-arm-incremental",
+      "family": "co-arm-incremental",
+      "revision": 1,
+      "topic": "compute.templates.arm-editing",
+      "objectives": [
+        "co-02"
+      ],
+      "difficulty": "applied",
+      "prompt": "An ARM incremental deployment redeclares an existing resource but omits one of its non-default properties. What should the administrator assume when reviewing the change?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The omitted property can reset to its default; declare the full intended configuration.",
+          "explanation": "Incremental applies the resource definition rather than a partial property patch."
+        },
+        {
+          "id": "b",
+          "text": "Every omitted property is preserved because the mode is incremental.",
+          "explanation": "The preservation rule concerns omitted resources, not omitted properties on redeclared resources."
+        },
+        {
+          "id": "c",
+          "text": "The entire resource is deleted because its definition changed.",
+          "explanation": "Incremental does not delete the resource merely because a property is omitted."
+        },
+        {
+          "id": "d",
+          "text": "Only the template contentVersion controls whether the property changes.",
+          "explanation": "contentVersion is template metadata, not an update switch."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/arm-editing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-arm-secure",
+      "family": "co-arm-secure",
+      "revision": 1,
+      "topic": "compute.templates.arm-editing",
+      "objectives": [
+        "co-02"
+      ],
+      "difficulty": "applied",
+      "prompt": "An ARM template accepts an administrator password. Which TWO choices help prevent exposing it in template and deployment records?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "Declare the input as secureString.",
+          "explanation": "Secure parameters are not stored as plain values in deployment history."
+        },
+        {
+          "id": "b",
+          "text": "Avoid hard-coded secrets and ordinary outputs containing the password.",
+          "explanation": "A secure input can still be exposed by how the template author uses it."
+        },
+        {
+          "id": "c",
+          "text": "Use a string parameter with a password-like name.",
+          "explanation": "The name does not give a regular string secure handling."
+        },
+        {
+          "id": "d",
+          "text": "Put the password in defaultValue in the public template.",
+          "explanation": "Secure parameter handling does not hide a literal in the source file."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/compute/templates/arm-editing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-bicep-refactor",
+      "family": "co-bicep-refactor",
+      "revision": 1,
+      "topic": "compute.templates.bicep-editing",
+      "objectives": [
+        "co-03"
+      ],
+      "difficulty": "applied",
+      "prompt": "You rename a Bicep symbolic identifier from store to archive, updating all code references but retaining the resource type, Azure name, scope, and properties. What does this change itself do?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Refactors the code without changing the Azure resource identity.",
+          "explanation": "The deployed identity uses type, name, and scope, not the local symbol."
+        },
+        {
+          "id": "b",
+          "text": "Renames the deployed account to archive.",
+          "explanation": "The Azure name property was retained."
+        },
+        {
+          "id": "c",
+          "text": "Deletes the resource formerly represented by store.",
+          "explanation": "Changing only the symbol does not request deletion."
+        },
+        {
+          "id": "d",
+          "text": "Moves the resource into a deployment named archive.",
+          "explanation": "A symbolic identifier does not select deployment scope or history name."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/bicep-editing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-bicep-build",
+      "family": "co-bicep-build",
+      "revision": 1,
+      "topic": "compute.templates.bicep-editing",
+      "objectives": [
+        "co-03"
+      ],
+      "difficulty": "foundation",
+      "prompt": "What does a successful az bicep build establish before an Azure deployment?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The file can compile to an ARM template.",
+          "explanation": "Build performs compilation and reports Bicep diagnostics."
+        },
+        {
+          "id": "b",
+          "text": "The deployment identity has all required Azure permissions.",
+          "explanation": "Local compilation does not establish RBAC access."
+        },
+        {
+          "id": "c",
+          "text": "The target region has capacity for every VM.",
+          "explanation": "Allocation happens during deployment, not compilation."
+        },
+        {
+          "id": "d",
+          "text": "All Azure Policy assignments permit the resources.",
+          "explanation": "Policy evaluation depends on the Azure scope and resource request."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/bicep-editing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-bicep-existing",
+      "family": "co-bicep-existing",
+      "revision": 1,
+      "topic": "compute.templates.bicep-editing",
+      "objectives": [
+        "co-03"
+      ],
+      "difficulty": "applied",
+      "prompt": "A Bicep declaration uses existing for a virtual network in another resource group. Which TWO statements are correct?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "The declaration references the virtual network without redeploying it.",
+          "explanation": "existing describes an already deployed resource."
+        },
+        {
+          "id": "b",
+          "text": "Its scope must identify the resource group containing that network.",
+          "explanation": "The resource must be resolved at its actual scope."
+        },
+        {
+          "id": "c",
+          "text": "The network is created automatically when missing.",
+          "explanation": "An existing reference does not provision a missing resource."
+        },
+        {
+          "id": "d",
+          "text": "The declaration grants the deploying identity network access rights.",
+          "explanation": "Bicep references do not grant RBAC permissions."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/compute/templates/bicep-editing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-deploy-scope",
+      "family": "co-deploy-scope",
+      "revision": 1,
+      "topic": "compute.templates.deployment",
+      "objectives": [
+        "co-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "You must deploy a Bicep file into an existing resource group. Which command family targets that scope?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "az deployment group create",
+          "explanation": "The group deployment command targets a resource group."
+        },
+        {
+          "id": "b",
+          "text": "az deployment sub create",
+          "explanation": "This targets a subscription deployment, not the requested group scope."
+        },
+        {
+          "id": "c",
+          "text": "az deployment mg create",
+          "explanation": "This targets a management group."
+        },
+        {
+          "id": "d",
+          "text": "az deployment tenant create",
+          "explanation": "This targets the tenant scope."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/deployment.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-deploy-preview",
+      "family": "co-deploy-preview",
+      "revision": 1,
+      "topic": "compute.templates.deployment",
+      "objectives": [
+        "co-04"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which operation previews an ARM or Bicep deployment without applying the proposed resource changes?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "what-if",
+          "explanation": "What-if compares the intended deployment with current resources."
+        },
+        {
+          "id": "b",
+          "text": "create with a new deployment name",
+          "explanation": "A different history name does not prevent resource changes."
+        },
+        {
+          "id": "c",
+          "text": "deleting the previous deployment record",
+          "explanation": "History deletion does not preview a new deployment."
+        },
+        {
+          "id": "d",
+          "text": "compiling the Bicep file only",
+          "explanation": "Compilation produces JSON without comparing Azure resources."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/deployment.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-deploy-rbac",
+      "family": "co-deploy-rbac",
+      "revision": 1,
+      "topic": "compute.templates.deployment",
+      "objectives": [
+        "co-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "A deployment identity has Contributor on a resource group. Its template creates a VM and an Azure role assignment. The VM succeeds, but role assignment creation is denied. What additional permission should you investigate?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Microsoft.Authorization/roleAssignments/write at the assignment scope",
+          "explanation": "Contributor does not grant role assignment administration."
+        },
+        {
+          "id": "b",
+          "text": "Microsoft.Compute/virtualMachines/read only",
+          "explanation": "VM read permission does not authorize role assignments."
+        },
+        {
+          "id": "c",
+          "text": "Microsoft.Resources/deployments/read only",
+          "explanation": "Reading deployment history cannot authorize the denied assignment."
+        },
+        {
+          "id": "d",
+          "text": "Microsoft.Compute/virtualMachines/start/action only",
+          "explanation": "Starting a VM is unrelated to granting Azure resource access."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/deployment.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-export-current",
+      "family": "co-export-current",
+      "revision": 1,
+      "topic": "compute.templates.export",
+      "objectives": [
+        "co-05"
+      ],
+      "difficulty": "applied",
+      "prompt": "An administrator changed a VM configuration manually after its original ARM deployment. Which export is intended to capture the current resource configuration?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Export from the resource group or resource",
+          "explanation": "This generates a template based on the current resource state."
+        },
+        {
+          "id": "b",
+          "text": "Export only the original deployment from history",
+          "explanation": "That retrieves the original template, not later manual changes."
+        },
+        {
+          "id": "c",
+          "text": "Compile the original Bicep source again",
+          "explanation": "Compilation does not discover drift in Azure."
+        },
+        {
+          "id": "d",
+          "text": "Download only the original parameter file",
+          "explanation": "Original inputs do not include subsequent manual changes."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/export.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/export-bicep-portal"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-export-convert",
+      "family": "co-export-convert",
+      "revision": 1,
+      "topic": "compute.templates.export",
+      "objectives": [
+        "co-05"
+      ],
+      "difficulty": "foundation",
+      "prompt": "You have exported an ARM JSON template and want editable Bicep source. Which command performs the conversion?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "az bicep decompile --file current.json",
+          "explanation": "Decompile converts ARM JSON into a Bicep starting point."
+        },
+        {
+          "id": "b",
+          "text": "az bicep build --file current.json",
+          "explanation": "Build compiles Bicep to ARM JSON; it is the opposite direction."
+        },
+        {
+          "id": "c",
+          "text": "az deployment group create --template-file current.json",
+          "explanation": "Create deploys the template rather than converting its source."
+        },
+        {
+          "id": "d",
+          "text": "az deployment group what-if --template-file current.json",
+          "explanation": "What-if previews deployment changes; it does not emit Bicep source."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/export.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/export-bicep-portal"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-export-review",
+      "family": "co-export-review",
+      "revision": 1,
+      "topic": "compute.templates.export",
+      "objectives": [
+        "co-05"
+      ],
+      "difficulty": "applied",
+      "prompt": "A resource-group template export completes with warnings. Which TWO checks are appropriate before reusing it?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "Check for omitted resource types, properties, and secret inputs.",
+          "explanation": "Exports can be incomplete and need manual correction."
+        },
+        {
+          "id": "b",
+          "text": "Review names, IDs, and parameterization for the new environment.",
+          "explanation": "Generated configuration can retain environment-specific values."
+        },
+        {
+          "id": "c",
+          "text": "Assume it contains a restorable copy of application data.",
+          "explanation": "A resource template is configuration, not a data backup."
+        },
+        {
+          "id": "d",
+          "text": "Treat successful export as proof of successful redeployment.",
+          "explanation": "Export does not validate all deployment constraints or runtime dependencies."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/compute/templates/export.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/export-bicep-portal"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-read-input-output",
+      "family": "co-read-input-output",
+      "revision": 1,
+      "topic": "compute.templates.interpretation",
+      "objectives": [
+        "co-01"
+      ],
+      "difficulty": "foundation",
+      "prompt": "In an ARM template, which section accepts deployment-time values such as a VM size?",
+      "select": 1,
+      "options": [
+        {
+          "id": "parameters",
+          "text": "parameters.",
+          "explanation": "Parameters define inputs supplied when deploying."
+        },
+        {
+          "id": "variables",
+          "text": "variables.",
+          "explanation": "Variables derive internal values rather than acting as caller-supplied parameters."
+        },
+        {
+          "id": "outputs",
+          "text": "outputs.",
+          "explanation": "Outputs return values after deployment."
+        },
+        {
+          "id": "content",
+          "text": "contentVersion.",
+          "explanation": "This identifies a template revision, not deployment inputs."
+        }
+      ],
+      "correct": [
+        "parameters"
+      ],
+      "knowledge": "knowledge/compute/templates/interpretation.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-read-symbolic-name",
+      "family": "co-read-symbolic-name",
+      "revision": 1,
+      "topic": "compute.templates.interpretation",
+      "objectives": [
+        "co-01"
+      ],
+      "difficulty": "applied",
+      "prompt": "In Bicep, resource network has name: vnetName. Which value determines the deployed virtual network's name?",
+      "select": 1,
+      "options": [
+        {
+          "id": "property",
+          "text": "The value supplied by vnetName to the name property.",
+          "explanation": "The resource name property controls Azure naming."
+        },
+        {
+          "id": "symbol",
+          "text": "The symbolic identifier network.",
+          "explanation": "That identifier is for references inside Bicep."
+        },
+        {
+          "id": "output",
+          "text": "The output variable's identifier.",
+          "explanation": "Output labels do not name the resource."
+        },
+        {
+          "id": "file",
+          "text": "The Bicep filename.",
+          "explanation": "The filename is not the declared resource name."
+        }
+      ],
+      "correct": [
+        "property"
+      ],
+      "knowledge": "knowledge/compute/templates/interpretation.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-read-dependency",
+      "family": "co-read-dependency",
+      "revision": 1,
+      "topic": "compute.templates.interpretation",
+      "objectives": [
+        "co-01"
+      ],
+      "difficulty": "applied",
+      "prompt": "Bicep resource B references a property of resource A. What is the usual dependency implication?",
+      "select": 1,
+      "options": [
+        {
+          "id": "implicit",
+          "text": "Bicep infers a dependency on A.",
+          "explanation": "The reference expresses the required ordering."
+        },
+        {
+          "id": "order",
+          "text": "Only the textual order of declarations matters.",
+          "explanation": "File position is not the dependency model."
+        },
+        {
+          "id": "none",
+          "text": "B can never depend on A without a manual sleep.",
+          "explanation": "ARM dependencies do not require sleeps."
+        },
+        {
+          "id": "serial",
+          "text": "Every resource in the entire file becomes sequential.",
+          "explanation": "Unrelated resources can still deploy in parallel."
+        }
+      ],
+      "correct": [
+        "implicit"
+      ],
+      "knowledge": "knowledge/compute/templates/interpretation.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-avail-fault",
+      "family": "co-avail-fault",
+      "revision": 1,
+      "topic": "compute.vms.availability",
+      "objectives": [
+        "co-11"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which availability-set concept separates VMs according to shared power and network infrastructure?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Fault domain",
+          "explanation": "Fault domains describe shared physical failure boundaries."
+        },
+        {
+          "id": "b",
+          "text": "Update domain",
+          "explanation": "Update domains organize planned maintenance reboots."
+        },
+        {
+          "id": "c",
+          "text": "Resource group",
+          "explanation": "A resource group is a management container, not hardware isolation."
+        },
+        {
+          "id": "d",
+          "text": "Deployment name",
+          "explanation": "A deployment record does not define hardware placement."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/availability.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview",
+        "https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-avail-zone",
+      "family": "co-avail-zone",
+      "revision": 1,
+      "topic": "compute.vms.availability",
+      "objectives": [
+        "co-11"
+      ],
+      "difficulty": "applied",
+      "prompt": "An application has one VM in availability zone 1. It must continue serving if zone 1 fails. What additional design is needed?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Healthy application instances in another zone with resilient routing and dependencies.",
+          "explanation": "Zonal survival needs working replicas and supporting services outside the failed zone."
+        },
+        {
+          "id": "b",
+          "text": "Only label the existing VM zone-redundant using a tag.",
+          "explanation": "Tags do not create replicas or change placement."
+        },
+        {
+          "id": "c",
+          "text": "Rely on the existing zonal VM being copied automatically to all zones.",
+          "explanation": "A zonal VM is placed in one zone."
+        },
+        {
+          "id": "d",
+          "text": "Add more update domains to the same single VM.",
+          "explanation": "Update domains do not create another running application instance."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/availability.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview",
+        "https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-avail-update",
+      "family": "co-avail-update",
+      "revision": 1,
+      "topic": "compute.vms.availability",
+      "objectives": [
+        "co-11"
+      ],
+      "difficulty": "applied",
+      "prompt": "An availability set has five update domains and seven VMs. Which statement about planned maintenance is correct?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Some VMs share update domains, and one update domain is restarted at a time.",
+          "explanation": "More VMs than update domains requires sharing; maintenance is sequenced by domain."
+        },
+        {
+          "id": "b",
+          "text": "Every VM must have its own distinct update domain.",
+          "explanation": "Seven VMs can share the configured five domains."
+        },
+        {
+          "id": "c",
+          "text": "All five update domains always restart together.",
+          "explanation": "The update-domain mechanism limits simultaneous planned restart groups."
+        },
+        {
+          "id": "d",
+          "text": "Update domain numbers guarantee ascending maintenance order.",
+          "explanation": "Maintenance order is not guaranteed to follow domain numbering."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/availability.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview",
+        "https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-vm-private",
+      "family": "co-vm-private",
+      "revision": 1,
+      "topic": "compute.vms.creation",
+      "objectives": [
+        "co-06"
+      ],
+      "difficulty": "applied",
+      "prompt": "A Linux VM is created without a public IP in a subnet reachable only through a corporate VPN. How should an administrator establish SSH access?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Connect through the VPN and use the VM private IP with valid guest credentials.",
+          "explanation": "The VPN supplies the private network path; SSH still requires authentication."
+        },
+        {
+          "id": "b",
+          "text": "Use the private IP directly from an unrelated Internet connection.",
+          "explanation": "Private addresses are not publicly routed to the VM."
+        },
+        {
+          "id": "c",
+          "text": "Assign Virtual Machine Contributor and SSH through ARM automatically.",
+          "explanation": "Resource management rights do not create an SSH network path."
+        },
+        {
+          "id": "d",
+          "text": "Add an NSG allow rule and assume it assigns a public address.",
+          "explanation": "An NSG filters traffic; it does not provide a public IP or route."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/creation.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-vm-stopped",
+      "family": "co-vm-stopped",
+      "revision": 1,
+      "topic": "compute.vms.creation",
+      "objectives": [
+        "co-06"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A guest operating system is shut down, and Azure reports Stopped (allocated). What stops VM compute allocation charges?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Deallocate the VM through Azure.",
+          "explanation": "Deallocation releases the allocated compute; retained resources can still cost money."
+        },
+        {
+          "id": "b",
+          "text": "Leave it in the current state because the guest is off.",
+          "explanation": "Stopped but allocated VMs retain compute allocation."
+        },
+        {
+          "id": "c",
+          "text": "Remove its public IP only.",
+          "explanation": "Public IP removal does not deallocate the VM."
+        },
+        {
+          "id": "d",
+          "text": "Disable boot diagnostics only.",
+          "explanation": "Diagnostics settings do not determine compute allocation."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/creation.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-vm-trusted",
+      "family": "co-vm-trusted",
+      "revision": 1,
+      "topic": "compute.vms.creation",
+      "objectives": [
+        "co-06"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which TWO features are associated with Trusted Launch for a supported Generation 2 Azure VM?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "Secure Boot",
+          "explanation": "Secure Boot helps prevent unauthorized boot components."
+        },
+        {
+          "id": "b",
+          "text": "Virtual TPM",
+          "explanation": "vTPM supports measured boot and related integrity capabilities."
+        },
+        {
+          "id": "c",
+          "text": "Automatic replication of the VM into another region",
+          "explanation": "Trusted Launch is a security feature, not regional disaster recovery."
+        },
+        {
+          "id": "d",
+          "text": "Automatic creation of a guest application backup",
+          "explanation": "Boot security does not create a backup policy."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/creation.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-disk-expand",
+      "family": "co-disk-expand",
+      "revision": 1,
+      "topic": "compute.vms.disks",
+      "objectives": [
+        "co-10"
+      ],
+      "difficulty": "applied",
+      "prompt": "A managed data disk was increased from 128 GiB to 256 GiB in Azure, but the guest filesystem still shows the old capacity. What is the next appropriate task?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Extend the guest partition and filesystem using the supported OS procedure.",
+          "explanation": "Azure disk capacity and the guest filesystem size are separate layers."
+        },
+        {
+          "id": "b",
+          "text": "Shrink the Azure disk back and then expand it again.",
+          "explanation": "Managed disk shrinking is unsupported and does not solve filesystem sizing."
+        },
+        {
+          "id": "c",
+          "text": "Rename the LUN to 256.",
+          "explanation": "A LUN identifies attachment; it is not a capacity value."
+        },
+        {
+          "id": "d",
+          "text": "Change only the VM public IP.",
+          "explanation": "Network addressing does not resize the filesystem."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/disks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-disk-os",
+      "family": "co-disk-os",
+      "revision": 1,
+      "topic": "compute.vms.disks",
+      "objectives": [
+        "co-10"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which TWO managed disk types are unsuitable as the OS disk of an Azure VM?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "Ultra Disk",
+          "explanation": "Ultra Disks are supported for data disks, not OS disks."
+        },
+        {
+          "id": "b",
+          "text": "Premium SSD v2",
+          "explanation": "Premium SSD v2 cannot be used as an OS disk."
+        },
+        {
+          "id": "c",
+          "text": "Premium SSD",
+          "explanation": "Supported VM configurations can use Premium SSD OS disks."
+        },
+        {
+          "id": "d",
+          "text": "Standard SSD",
+          "explanation": "Standard SSD can be used for an OS disk."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/disks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-disk-existing",
+      "family": "co-disk-existing",
+      "revision": 1,
+      "topic": "compute.vms.disks",
+      "objectives": [
+        "co-10"
+      ],
+      "difficulty": "applied",
+      "prompt": "You attach a managed disk containing existing application data to a Linux VM. What should you do before mounting it?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Identify the device and inspect its existing partitions and filesystem.",
+          "explanation": "This avoids destructive initialization of a disk that already contains data."
+        },
+        {
+          "id": "b",
+          "text": "Always create a new filesystem because attachment erases formatting.",
+          "explanation": "Attachment does not require destructive reformatting."
+        },
+        {
+          "id": "c",
+          "text": "Copy the data to the temporary disk as its only permanent location.",
+          "explanation": "Temporary storage is not a durable replacement."
+        },
+        {
+          "id": "d",
+          "text": "Assume Azure attachment automatically configures the guest mount.",
+          "explanation": "The guest still needs the appropriate discovery and mount configuration."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/disks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-host-scope",
+      "family": "co-host-scope",
+      "revision": 1,
+      "topic": "compute.vms.host-encryption",
+      "objectives": [
+        "co-07"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A VM already has encrypted managed disks. The requirement now includes its temporary disk and host caches. Which VM feature addresses that scope?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Encryption at host",
+          "explanation": "Host encryption covers storage on the VM host in addition to the managed-disk path."
+        },
+        {
+          "id": "b",
+          "text": "Only the existing managed-disk server-side encryption setting",
+          "explanation": "Managed-disk encryption alone does not establish encryption of all host storage."
+        },
+        {
+          "id": "c",
+          "text": "Secure Boot alone",
+          "explanation": "Secure Boot validates the boot chain; it is not disk-cache encryption."
+        },
+        {
+          "id": "d",
+          "text": "An application HTTPS certificate alone",
+          "explanation": "HTTPS protects network connections, not host storage at rest."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/host-encryption.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-host-ade",
+      "family": "co-host-ade",
+      "revision": 1,
+      "topic": "compute.vms.host-encryption",
+      "objectives": [
+        "co-07"
+      ],
+      "difficulty": "applied",
+      "prompt": "A VM previously used Azure Disk Encryption. An administrator wants to enable encryption at host on that same VM. What does the documented restriction require them to recognize?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "That VM history is incompatible with enabling encryption at host directly.",
+          "explanation": "The restriction covers VMs that currently or ever had Azure Disk Encryption enabled."
+        },
+        {
+          "id": "b",
+          "text": "Disabling Secure Boot always removes the restriction.",
+          "explanation": "Secure Boot does not remove the Azure Disk Encryption compatibility restriction."
+        },
+        {
+          "id": "c",
+          "text": "Switching only the data disk to Standard HDD always removes the restriction.",
+          "explanation": "Changing disk performance tier does not change the VM encryption history rule."
+        },
+        {
+          "id": "d",
+          "text": "Enabling both methods together is required.",
+          "explanation": "The two encryption methods cannot be combined in this way."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/host-encryption.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-host-confirm",
+      "family": "co-host-confirm",
+      "revision": 1,
+      "topic": "compute.vms.host-encryption",
+      "objectives": [
+        "co-07"
+      ],
+      "difficulty": "applied",
+      "prompt": "Which setting directly confirms that encryption at host is enabled on a VM after the supported configuration process?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "securityProfile.encryptionAtHost equals true",
+          "explanation": "This is the VM host-encryption property."
+        },
+        {
+          "id": "b",
+          "text": "The disk reports ordinary server-side encryption",
+          "explanation": "Managed disks can report encryption while host encryption is disabled."
+        },
+        {
+          "id": "c",
+          "text": "The VM uses SSH public-key authentication",
+          "explanation": "Authentication does not report encryption of host storage."
+        },
+        {
+          "id": "d",
+          "text": "The VM has a Recovery Services backup item",
+          "explanation": "Backup protection does not establish the host-encryption setting."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/host-encryption.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-move-region",
+      "family": "co-move-region",
+      "revision": 1,
+      "topic": "compute.vms.moves",
+      "objectives": [
+        "co-08"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A VM is in West Europe. You move it to a resource group whose metadata location is North Europe using the standard ARM move operation. Where does the VM run afterward?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "West Europe",
+          "explanation": "Changing resource-group membership does not change the VM region."
+        },
+        {
+          "id": "b",
+          "text": "North Europe automatically",
+          "explanation": "Resource-group metadata location does not control member resource locations."
+        },
+        {
+          "id": "c",
+          "text": "Both regions with automatic replication",
+          "explanation": "An ARM scope move does not configure replication."
+        },
+        {
+          "id": "d",
+          "text": "A region chosen from the destination group name",
+          "explanation": "Names do not select the physical region of an existing VM."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/moves.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-limitations/virtual-machines-move-limitations",
+        "https://learn.microsoft.com/en-us/azure/resource-mover/tutorial-move-region-virtual-machines"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-move-tenant",
+      "family": "co-move-tenant",
+      "revision": 1,
+      "topic": "compute.vms.moves",
+      "objectives": [
+        "co-08"
+      ],
+      "difficulty": "applied",
+      "prompt": "You plan an ARM cross-subscription VM move. Which TWO requirements should you validate?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "Both subscriptions belong to the same Entra tenant.",
+          "explanation": "Direct ARM moves do not cross tenant boundaries."
+        },
+        {
+          "id": "b",
+          "text": "The virtual network and required dependent resources are included as required.",
+          "explanation": "Cross-subscription VM moves have dependency requirements."
+        },
+        {
+          "id": "c",
+          "text": "Only the VM resource is needed regardless of its dependencies.",
+          "explanation": "Networking and other resource dependencies can block validation."
+        },
+        {
+          "id": "d",
+          "text": "The move automatically changes the VM to the destination group region.",
+          "explanation": "Scope moves preserve the VM region."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/moves.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-limitations/virtual-machines-move-limitations",
+        "https://learn.microsoft.com/en-us/azure/resource-mover/tutorial-move-region-virtual-machines"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-move-id",
+      "family": "co-move-id",
+      "revision": 1,
+      "topic": "compute.vms.moves",
+      "objectives": [
+        "co-08"
+      ],
+      "difficulty": "applied",
+      "prompt": "After a successful VM move to another resource group, an automation script using the old resource ID fails. What should be checked first?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Update the script to use the VM resource ID at its new scope.",
+          "explanation": "The resource-group segment of the ID changes during the move."
+        },
+        {
+          "id": "b",
+          "text": "Assume the VM has retained the old ID permanently.",
+          "explanation": "A resource ID includes its resource group."
+        },
+        {
+          "id": "c",
+          "text": "Change only the guest hostname to match the old resource group.",
+          "explanation": "Guest hostname does not repair an ARM resource ID reference."
+        },
+        {
+          "id": "d",
+          "text": "Reinstall the VM agent to recreate the old resource ID.",
+          "explanation": "The agent does not determine the VM ARM scope."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/moves.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-limitations/virtual-machines-move-limitations",
+        "https://learn.microsoft.com/en-us/azure/resource-mover/tutorial-move-region-virtual-machines"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-resize-restart",
+      "family": "co-resize-restart",
+      "revision": 1,
+      "topic": "compute.vms.resizing",
+      "objectives": [
+        "co-09"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A running Azure VM can use the requested target size on its current host cluster. What should you still plan for when resizing it?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A VM restart and application interruption",
+          "explanation": "Running-VM resizing is disruptive even without a separate deallocation requirement."
+        },
+        {
+          "id": "b",
+          "text": "A guaranteed change with no guest restart",
+          "explanation": "Availability of the SKU does not make resizing nondisruptive."
+        },
+        {
+          "id": "c",
+          "text": "Automatic replication into another region",
+          "explanation": "Resize changes resource allocation, not disaster recovery configuration."
+        },
+        {
+          "id": "d",
+          "text": "Automatic expansion of every guest filesystem",
+          "explanation": "Changing the VM size does not automatically extend all disk filesystems."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/resizing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-resize-set",
+      "family": "co-resize-set",
+      "revision": 1,
+      "topic": "compute.vms.resizing",
+      "objectives": [
+        "co-09"
+      ],
+      "difficulty": "applied",
+      "prompt": "A VM in an availability set needs a size unavailable on the current hardware cluster. Which operational consequence must be considered?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "All VMs in that availability set may need to be deallocated.",
+          "explanation": "This allows the set to be allocated on hardware that supports the new size."
+        },
+        {
+          "id": "b",
+          "text": "Only changing its resource group guarantees the new size.",
+          "explanation": "Resource-group membership does not select a different hardware cluster."
+        },
+        {
+          "id": "c",
+          "text": "Increasing the OS disk guarantees the new size.",
+          "explanation": "Disk capacity does not establish compute SKU availability."
+        },
+        {
+          "id": "d",
+          "text": "Changing the display name forces a compatible cluster.",
+          "explanation": "Resource naming does not control placement capacity."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/resizing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-resize-proof",
+      "family": "co-resize-proof",
+      "revision": 1,
+      "topic": "compute.vms.resizing",
+      "objectives": [
+        "co-09"
+      ],
+      "difficulty": "applied",
+      "prompt": "A resize operation fails, but the VM model now displays the requested larger size. What is the best next verification?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Check the operation failure, allocation state, and actual guest resources.",
+          "explanation": "The model can show the requested configuration before successful allocation."
+        },
+        {
+          "id": "b",
+          "text": "Conclude the larger size is active solely from the model field.",
+          "explanation": "That field can reflect the failed requested change."
+        },
+        {
+          "id": "c",
+          "text": "Assume the guest data disks were necessarily erased.",
+          "explanation": "A failed compute resize does not establish data-disk deletion."
+        },
+        {
+          "id": "d",
+          "text": "Delete the deployment history to complete the resize.",
+          "explanation": "History deletion does not allocate new hardware."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/resizing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-vmss-mode",
+      "family": "co-vmss-mode",
+      "revision": 1,
+      "topic": "compute.vms.scale-sets",
+      "objectives": [
+        "co-12"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An existing Uniform VM scale set must become Flexible. What must the administrator account for?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Orchestration mode cannot be changed in place; plan a supported migration or replacement.",
+          "explanation": "The mode is selected when the scale set is created."
+        },
+        {
+          "id": "b",
+          "text": "Changing the upgrade policy to Rolling changes orchestration mode.",
+          "explanation": "Upgrade policy and orchestration mode are different settings."
+        },
+        {
+          "id": "c",
+          "text": "Setting instance count to zero automatically converts it.",
+          "explanation": "Capacity changes do not convert the resource mode."
+        },
+        {
+          "id": "d",
+          "text": "Moving it to another resource group converts it to Flexible.",
+          "explanation": "Resource-group moves do not change orchestration mode."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/scale-sets.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes",
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-vmss-manual",
+      "family": "co-vmss-manual",
+      "revision": 1,
+      "topic": "compute.vms.scale-sets",
+      "objectives": [
+        "co-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "A scale set uses Manual upgrade policy. Its model is updated to a new image, then a new instance is added. What is expected?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The new instance uses the new model; existing instances need an explicit update.",
+          "explanation": "Manual policy separates model updates from updating existing instances."
+        },
+        {
+          "id": "b",
+          "text": "Every existing instance updates immediately in guaranteed batches.",
+          "explanation": "That behavior is not provided by Manual policy."
+        },
+        {
+          "id": "c",
+          "text": "New instances always use the oldest image until all existing VMs are deleted.",
+          "explanation": "New instances use the latest model."
+        },
+        {
+          "id": "d",
+          "text": "The model update is ignored for both old and new instances.",
+          "explanation": "The updated model governs subsequent instance creation."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/scale-sets.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes",
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-vmss-scale",
+      "family": "co-vmss-scale",
+      "revision": 1,
+      "topic": "compute.vms.scale-sets",
+      "objectives": [
+        "co-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "A VM scale set should add instances during sustained demand and later remove them. Which TWO configuration choices support this?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "A scaling profile and autoscale rules with bounded instance counts",
+          "explanation": "The profile defines new instances and the rules control count within limits."
+        },
+        {
+          "id": "b",
+          "text": "Distinct scale-out and scale-in conditions with suitable cooldown",
+          "explanation": "These govern both directions while limiting oscillation."
+        },
+        {
+          "id": "c",
+          "text": "Only changing the VM SKU on one instance",
+          "explanation": "That is a size change, not count-based demand scaling."
+        },
+        {
+          "id": "d",
+          "text": "Setting a maximum count of one while expecting three instances",
+          "explanation": "The configured maximum prevents scaling to three."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/scale-sets.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes",
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy"
+      ],
+      "verified": "2026-10-02"
+    },
     {
       "id": "id-budget-not-cap",
       "family": "id-budget-not-cap",

@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-disk-expand",
+      "family": "co-disk-expand",
+      "revision": 1,
+      "topic": "compute.vms.disks",
+      "objectives": [
+        "co-10"
+      ],
+      "difficulty": "applied",
+      "prompt": "A managed data disk was increased from 128 GiB to 256 GiB in Azure, but the guest filesystem still shows the old capacity. What is the next appropriate task?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Extend the guest partition and filesystem using the supported OS procedure.",
+          "explanation": "Azure disk capacity and the guest filesystem size are separate layers."
+        },
+        {
+          "id": "b",
+          "text": "Shrink the Azure disk back and then expand it again.",
+          "explanation": "Managed disk shrinking is unsupported and does not solve filesystem sizing."
+        },
+        {
+          "id": "c",
+          "text": "Rename the LUN to 256.",
+          "explanation": "A LUN identifies attachment; it is not a capacity value."
+        },
+        {
+          "id": "d",
+          "text": "Change only the VM public IP.",
+          "explanation": "Network addressing does not resize the filesystem."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/disks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-disk-os",
+      "family": "co-disk-os",
+      "revision": 1,
+      "topic": "compute.vms.disks",
+      "objectives": [
+        "co-10"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which TWO managed disk types are unsuitable as the OS disk of an Azure VM?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "Ultra Disk",
+          "explanation": "Ultra Disks are supported for data disks, not OS disks."
+        },
+        {
+          "id": "b",
+          "text": "Premium SSD v2",
+          "explanation": "Premium SSD v2 cannot be used as an OS disk."
+        },
+        {
+          "id": "c",
+          "text": "Premium SSD",
+          "explanation": "Supported VM configurations can use Premium SSD OS disks."
+        },
+        {
+          "id": "d",
+          "text": "Standard SSD",
+          "explanation": "Standard SSD can be used for an OS disk."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/disks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-disk-existing",
+      "family": "co-disk-existing",
+      "revision": 1,
+      "topic": "compute.vms.disks",
+      "objectives": [
+        "co-10"
+      ],
+      "difficulty": "applied",
+      "prompt": "You attach a managed disk containing existing application data to a Linux VM. What should you do before mounting it?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Identify the device and inspect its existing partitions and filesystem.",
+          "explanation": "This avoids destructive initialization of a disk that already contains data."
+        },
+        {
+          "id": "b",
+          "text": "Always create a new filesystem because attachment erases formatting.",
+          "explanation": "Attachment does not require destructive reformatting."
+        },
+        {
+          "id": "c",
+          "text": "Copy the data to the temporary disk as its only permanent location.",
+          "explanation": "Temporary storage is not a durable replacement."
+        },
+        {
+          "id": "d",
+          "text": "Assume Azure attachment automatically configures the guest mount.",
+          "explanation": "The guest still needs the appropriate discovery and mount configuration."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/disks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

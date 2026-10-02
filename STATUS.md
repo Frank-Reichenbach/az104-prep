@@ -4,9 +4,17 @@ Updated: 2026-10-02. Approved scope: [PLAN.md](PLAN.md).
 
 ## Current increment
 
-Identity/governance expansion. The knowledge base now has 32 documented
-objectives out of 82, with 123 questions across 122 families and 36 topics.
+Compute expansion. The knowledge base now has 56 documented
+objectives out of 82, with 195 questions across 194 families and 60 topics.
 Azure command examples remain documentation-checked, not lab-tested.
+
+All 24 compute objectives now have guides, questions, and domain/subtopic
+indexes. Content build/check, all ten Node tests, static-site build, and Chrome
+checks at the local root and project path passed for all 195 questions. The
+72 compute questions are ready for publication.
+App Service research records the newer linked-database backup deprecation and
+the conflicting certificate-public-access wording alongside the November 2025
+update. Conflicting details are not used as unconditional scored answers.
 
 All 17 storage objectives now have guides and original questions. The latest
 topics cover SAS, stored policies, keys, network rules, Files identity and
@@ -52,8 +60,9 @@ to the explicit allowlist and the deployment rerun succeeded.
 
 The complete storage domain deployed from d3dcaeb in successful Actions run
 36959628423. The live site was also checked in Chrome. Identity/governance
-changes are being validated and published on the same ongoing feature branch;
-no merge is involved. Verify the latest run before claiming its publication.
+commit 3638c9c deployed successfully in run 36960817593 after retrying a
+Chrome startup timeout. That published bank contains 123 questions. No merge
+was involved. The expanded compute bank is still local.
 
 ## Verification
 
@@ -72,15 +81,16 @@ no merge is involved. Verify the latest run before claiming its publication.
 
 ## Next task
 
-Publish identity/governance, then research compute starting with ARM/Bicep
-interpretation and editing (co-01 through co-05). Continue through networking
+Complete compute validation and publication, then continue through networking
 and monitoring/recovery. Domain-weighted mixed quizzes
 remain deferred until every domain has enough questions. A skill remains an
 optional later interface.
 
 ## Limits
 
-- The app covers storage and identity/governance; other domains remain.
+- Storage and identity/governance are published. All compute objectives are
+  documented locally; 26 objectives remain across networking and monitoring.
+  Presence of content is not exhaustive scenario coverage.
 - Study progress is browser-local; transfer it using export/import.
 - Reloading ends an unfinished quiz but preserves submitted answers when
   browser storage is available.

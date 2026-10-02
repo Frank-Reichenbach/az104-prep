@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-export-current",
+      "family": "co-export-current",
+      "revision": 1,
+      "topic": "compute.templates.export",
+      "objectives": [
+        "co-05"
+      ],
+      "difficulty": "applied",
+      "prompt": "An administrator changed a VM configuration manually after its original ARM deployment. Which export is intended to capture the current resource configuration?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Export from the resource group or resource",
+          "explanation": "This generates a template based on the current resource state."
+        },
+        {
+          "id": "b",
+          "text": "Export only the original deployment from history",
+          "explanation": "That retrieves the original template, not later manual changes."
+        },
+        {
+          "id": "c",
+          "text": "Compile the original Bicep source again",
+          "explanation": "Compilation does not discover drift in Azure."
+        },
+        {
+          "id": "d",
+          "text": "Download only the original parameter file",
+          "explanation": "Original inputs do not include subsequent manual changes."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/export.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/export-bicep-portal"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-export-convert",
+      "family": "co-export-convert",
+      "revision": 1,
+      "topic": "compute.templates.export",
+      "objectives": [
+        "co-05"
+      ],
+      "difficulty": "foundation",
+      "prompt": "You have exported an ARM JSON template and want editable Bicep source. Which command performs the conversion?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "az bicep decompile --file current.json",
+          "explanation": "Decompile converts ARM JSON into a Bicep starting point."
+        },
+        {
+          "id": "b",
+          "text": "az bicep build --file current.json",
+          "explanation": "Build compiles Bicep to ARM JSON; it is the opposite direction."
+        },
+        {
+          "id": "c",
+          "text": "az deployment group create --template-file current.json",
+          "explanation": "Create deploys the template rather than converting its source."
+        },
+        {
+          "id": "d",
+          "text": "az deployment group what-if --template-file current.json",
+          "explanation": "What-if previews deployment changes; it does not emit Bicep source."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/export.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/export-bicep-portal"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-export-review",
+      "family": "co-export-review",
+      "revision": 1,
+      "topic": "compute.templates.export",
+      "objectives": [
+        "co-05"
+      ],
+      "difficulty": "applied",
+      "prompt": "A resource-group template export completes with warnings. Which TWO checks are appropriate before reusing it?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "Check for omitted resource types, properties, and secret inputs.",
+          "explanation": "Exports can be incomplete and need manual correction."
+        },
+        {
+          "id": "b",
+          "text": "Review names, IDs, and parameterization for the new environment.",
+          "explanation": "Generated configuration can retain environment-specific values."
+        },
+        {
+          "id": "c",
+          "text": "Assume it contains a restorable copy of application data.",
+          "explanation": "A resource template is configuration, not a data backup."
+        },
+        {
+          "id": "d",
+          "text": "Treat successful export as proof of successful redeployment.",
+          "explanation": "Export does not validate all deployment constraints or runtime dependencies."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/compute/templates/export.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/export-bicep-portal"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

@@ -1,10 +1,11 @@
 # Compute
 
-Status: research planned. This is an index, not completed study material.
+All 24 compute objectives have researched guides and original questions.
+Examples are documentation-checked and have not been executed in Azure.
 
-Planned subtopics are ARM/Bicep interpretation, editing, deployment and export;
-virtual machines, encryption, relocation, sizes, disks, availability and scale
-sets; Container Registry, Container Instances and Container Apps; and App
-Service plans, scaling, TLS, DNS, backups, networking, and slots.
+- [ARM and Bicep deployments](templates/index.md)
+- [Virtual machine administration](virtual-machines/index.md)
+- [Container services](containers/index.md)
+- [App Service administration](app-service/index.md)
 
 See [the objective checklist](../../exam/coverage.md) for IDs co-01 through co-24.

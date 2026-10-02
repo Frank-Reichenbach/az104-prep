@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-scale-aci",
+      "family": "co-scale-aci",
+      "revision": 1,
+      "topic": "compute.containers.scaling",
+      "objectives": [
+        "co-16"
+      ],
+      "difficulty": "applied",
+      "prompt": "An ACI group has two containers requesting one CPU each. One container has a limit of two CPUs. What does that limit allow?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Use up to two CPUs when available within the allocated group resources.",
+          "explanation": "A limit permits borrowing available allocation; it does not expand the group beyond its requested capacity."
+        },
+        {
+          "id": "b",
+          "text": "Automatically create a second container-group replica.",
+          "explanation": "Container resource limits do not create replicas."
+        },
+        {
+          "id": "c",
+          "text": "Reserve four CPUs for the group automatically.",
+          "explanation": "The requests total two CPUs, not four."
+        },
+        {
+          "id": "d",
+          "text": "Guarantee two dedicated CPUs for each container simultaneously.",
+          "explanation": "Both containers cannot each consume two CPUs from a two-CPU allocation."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/scaling.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups",
+        "https://learn.microsoft.com/en-us/azure/container-apps/scale-app",
+        "https://learn.microsoft.com/en-us/azure/container-apps/containers"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-scale-zero",
+      "family": "co-scale-zero",
+      "revision": 1,
+      "topic": "compute.containers.scaling",
+      "objectives": [
+        "co-16"
+      ],
+      "difficulty": "applied",
+      "prompt": "A Container Apps queue worker has ingress disabled, minReplicas 0, and no custom scale rule. Why can it remain at zero while queue messages arrive?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "No configured trigger observes the queue and requests replicas.",
+          "explanation": "Without ingress or a custom event rule, queue arrivals do not wake the app."
+        },
+        {
+          "id": "b",
+          "text": "maxReplicas always forces at least that many replicas to run.",
+          "explanation": "Maximum is a limit, not the requested minimum."
+        },
+        {
+          "id": "c",
+          "text": "Changing the image tag in ACR automatically processes the queue.",
+          "explanation": "An image tag does not configure an event scaler."
+        },
+        {
+          "id": "d",
+          "text": "The inactive replica can measure its own CPU and wake itself.",
+          "explanation": "There is no running replica producing that utilization signal."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/scaling.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups",
+        "https://learn.microsoft.com/en-us/azure/container-apps/scale-app",
+        "https://learn.microsoft.com/en-us/azure/container-apps/containers"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-scale-oom",
+      "family": "co-scale-oom",
+      "revision": 1,
+      "topic": "compute.containers.scaling",
+      "objectives": [
+        "co-16"
+      ],
+      "difficulty": "applied",
+      "prompt": "Every Container Apps replica fails during startup because its memory allocation is too small. Which change directly addresses that failure?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Choose a supported larger per-replica memory allocation and deploy the revision.",
+          "explanation": "Each replica needs enough memory to start successfully."
+        },
+        {
+          "id": "b",
+          "text": "Raise only maxReplicas while preserving the insufficient allocation.",
+          "explanation": "More failing replicas do not increase memory available to each process."
+        },
+        {
+          "id": "c",
+          "text": "Lower minReplicas to zero and leave the image unchanged.",
+          "explanation": "A lower minimum does not fix the startup memory requirement."
+        },
+        {
+          "id": "d",
+          "text": "Change only the ingress traffic percentage.",
+          "explanation": "Traffic distribution does not enlarge the container memory allocation."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/containers/scaling.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups",
+        "https://learn.microsoft.com/en-us/azure/container-apps/scale-app",
+        "https://learn.microsoft.com/en-us/azure/container-apps/containers"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

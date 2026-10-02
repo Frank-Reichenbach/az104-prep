@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-plan-sharing",
+      "family": "co-plan-sharing",
+      "revision": 1,
+      "topic": "compute.app-service.plans",
+      "objectives": [
+        "co-17"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Two web apps and a staging slot run in the same dedicated App Service plan. What compute relationship should the administrator expect?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "They share the plan worker capacity.",
+          "explanation": "Apps and slots consume resources from the same dedicated plan."
+        },
+        {
+          "id": "b",
+          "text": "Each receives an independently billed dedicated worker set automatically.",
+          "explanation": "Dedicated compute is allocated at plan level."
+        },
+        {
+          "id": "c",
+          "text": "The staging slot runs in a different region automatically.",
+          "explanation": "A slot uses the same hosting plan, not automatic regional isolation."
+        },
+        {
+          "id": "d",
+          "text": "Stopping one app deletes the shared plan workers.",
+          "explanation": "App lifecycle operations do not delete the plan."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/plans.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans",
+        "https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-plan-separate",
+      "family": "co-plan-separate",
+      "revision": 1,
+      "topic": "compute.app-service.plans",
+      "objectives": [
+        "co-17"
+      ],
+      "difficulty": "applied",
+      "prompt": "A resource-intensive app must have an independent compute and scaling boundary from other apps. Which design fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Place it in a separate App Service plan.",
+          "explanation": "A separate plan separates the worker capacity and plan scaling."
+        },
+        {
+          "id": "b",
+          "text": "Create only another deployment slot in the existing plan.",
+          "explanation": "Slots still share the existing plan workers."
+        },
+        {
+          "id": "c",
+          "text": "Change only the app resource group while retaining the plan.",
+          "explanation": "Resource-group organization does not separate shared compute."
+        },
+        {
+          "id": "d",
+          "text": "Assign a different custom hostname while retaining the plan.",
+          "explanation": "DNS naming does not change the compute boundary."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/plans.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans",
+        "https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-plan-cost",
+      "family": "co-plan-cost",
+      "revision": 1,
+      "topic": "compute.app-service.plans",
+      "objectives": [
+        "co-17"
+      ],
+      "difficulty": "applied",
+      "prompt": "The only app in a paid dedicated App Service plan is stopped. What should be checked to stop unnecessary plan compute charges?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Whether the unused plan can be deleted or moved to a suitable lower tier.",
+          "explanation": "The plan retains its allocated paid capacity while the app is stopped."
+        },
+        {
+          "id": "b",
+          "text": "Assume the stopped app makes the dedicated plan free.",
+          "explanation": "Billing is based on allocated plan resources."
+        },
+        {
+          "id": "c",
+          "text": "Remove only the app custom domain.",
+          "explanation": "Hostname configuration does not release the plan compute."
+        },
+        {
+          "id": "d",
+          "text": "Delete only the app deployment history.",
+          "explanation": "Deployment records do not determine worker allocation."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/plans.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans",
+        "https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage",
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

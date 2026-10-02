@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-arm-param",
+      "family": "co-arm-param",
+      "revision": 1,
+      "topic": "compute.templates.arm-editing",
+      "objectives": [
+        "co-02"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An ARM template must accept only Standard_LRS or Standard_ZRS for a storageSku input. Which parameter property enforces this during validation?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "allowedValues",
+          "explanation": "The supplied value must be a member of this array."
+        },
+        {
+          "id": "b",
+          "text": "defaultValue",
+          "explanation": "A default supplies an omitted value; it does not restrict explicit input."
+        },
+        {
+          "id": "c",
+          "text": "metadata.description",
+          "explanation": "This documents the parameter without enforcing an allowed set."
+        },
+        {
+          "id": "d",
+          "text": "minLength",
+          "explanation": "Length validation cannot restrict the input to these two SKU names."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/arm-editing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-arm-incremental",
+      "family": "co-arm-incremental",
+      "revision": 1,
+      "topic": "compute.templates.arm-editing",
+      "objectives": [
+        "co-02"
+      ],
+      "difficulty": "applied",
+      "prompt": "An ARM incremental deployment redeclares an existing resource but omits one of its non-default properties. What should the administrator assume when reviewing the change?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The omitted property can reset to its default; declare the full intended configuration.",
+          "explanation": "Incremental applies the resource definition rather than a partial property patch."
+        },
+        {
+          "id": "b",
+          "text": "Every omitted property is preserved because the mode is incremental.",
+          "explanation": "The preservation rule concerns omitted resources, not omitted properties on redeclared resources."
+        },
+        {
+          "id": "c",
+          "text": "The entire resource is deleted because its definition changed.",
+          "explanation": "Incremental does not delete the resource merely because a property is omitted."
+        },
+        {
+          "id": "d",
+          "text": "Only the template contentVersion controls whether the property changes.",
+          "explanation": "contentVersion is template metadata, not an update switch."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/templates/arm-editing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-arm-secure",
+      "family": "co-arm-secure",
+      "revision": 1,
+      "topic": "compute.templates.arm-editing",
+      "objectives": [
+        "co-02"
+      ],
+      "difficulty": "applied",
+      "prompt": "An ARM template accepts an administrator password. Which TWO choices help prevent exposing it in template and deployment records?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "Declare the input as secureString.",
+          "explanation": "Secure parameters are not stored as plain values in deployment history."
+        },
+        {
+          "id": "b",
+          "text": "Avoid hard-coded secrets and ordinary outputs containing the password.",
+          "explanation": "A secure input can still be exposed by how the template author uses it."
+        },
+        {
+          "id": "c",
+          "text": "Use a string parameter with a password-like name.",
+          "explanation": "The name does not give a regular string secure handling."
+        },
+        {
+          "id": "d",
+          "text": "Put the password in defaultValue in the public template.",
+          "explanation": "Secure parameter handling does not hide a literal in the source file."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/compute/templates/arm-editing.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

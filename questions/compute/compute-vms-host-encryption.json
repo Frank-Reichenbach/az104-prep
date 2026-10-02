@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-host-scope",
+      "family": "co-host-scope",
+      "revision": 1,
+      "topic": "compute.vms.host-encryption",
+      "objectives": [
+        "co-07"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A VM already has encrypted managed disks. The requirement now includes its temporary disk and host caches. Which VM feature addresses that scope?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Encryption at host",
+          "explanation": "Host encryption covers storage on the VM host in addition to the managed-disk path."
+        },
+        {
+          "id": "b",
+          "text": "Only the existing managed-disk server-side encryption setting",
+          "explanation": "Managed-disk encryption alone does not establish encryption of all host storage."
+        },
+        {
+          "id": "c",
+          "text": "Secure Boot alone",
+          "explanation": "Secure Boot validates the boot chain; it is not disk-cache encryption."
+        },
+        {
+          "id": "d",
+          "text": "An application HTTPS certificate alone",
+          "explanation": "HTTPS protects network connections, not host storage at rest."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/host-encryption.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-host-ade",
+      "family": "co-host-ade",
+      "revision": 1,
+      "topic": "compute.vms.host-encryption",
+      "objectives": [
+        "co-07"
+      ],
+      "difficulty": "applied",
+      "prompt": "A VM previously used Azure Disk Encryption. An administrator wants to enable encryption at host on that same VM. What does the documented restriction require them to recognize?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "That VM history is incompatible with enabling encryption at host directly.",
+          "explanation": "The restriction covers VMs that currently or ever had Azure Disk Encryption enabled."
+        },
+        {
+          "id": "b",
+          "text": "Disabling Secure Boot always removes the restriction.",
+          "explanation": "Secure Boot does not remove the Azure Disk Encryption compatibility restriction."
+        },
+        {
+          "id": "c",
+          "text": "Switching only the data disk to Standard HDD always removes the restriction.",
+          "explanation": "Changing disk performance tier does not change the VM encryption history rule."
+        },
+        {
+          "id": "d",
+          "text": "Enabling both methods together is required.",
+          "explanation": "The two encryption methods cannot be combined in this way."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/host-encryption.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-host-confirm",
+      "family": "co-host-confirm",
+      "revision": 1,
+      "topic": "compute.vms.host-encryption",
+      "objectives": [
+        "co-07"
+      ],
+      "difficulty": "applied",
+      "prompt": "Which setting directly confirms that encryption at host is enabled on a VM after the supported configuration process?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "securityProfile.encryptionAtHost equals true",
+          "explanation": "This is the VM host-encryption property."
+        },
+        {
+          "id": "b",
+          "text": "The disk reports ordinary server-side encryption",
+          "explanation": "Managed disks can report encryption while host encryption is disabled."
+        },
+        {
+          "id": "c",
+          "text": "The VM uses SSH public-key authentication",
+          "explanation": "Authentication does not report encryption of host storage."
+        },
+        {
+          "id": "d",
+          "text": "The VM has a Recovery Services backup item",
+          "explanation": "Backup protection does not establish the host-encryption setting."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/host-encryption.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

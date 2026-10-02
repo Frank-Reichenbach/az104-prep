@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-avail-fault",
+      "family": "co-avail-fault",
+      "revision": 1,
+      "topic": "compute.vms.availability",
+      "objectives": [
+        "co-11"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which availability-set concept separates VMs according to shared power and network infrastructure?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Fault domain",
+          "explanation": "Fault domains describe shared physical failure boundaries."
+        },
+        {
+          "id": "b",
+          "text": "Update domain",
+          "explanation": "Update domains organize planned maintenance reboots."
+        },
+        {
+          "id": "c",
+          "text": "Resource group",
+          "explanation": "A resource group is a management container, not hardware isolation."
+        },
+        {
+          "id": "d",
+          "text": "Deployment name",
+          "explanation": "A deployment record does not define hardware placement."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/availability.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview",
+        "https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-avail-zone",
+      "family": "co-avail-zone",
+      "revision": 1,
+      "topic": "compute.vms.availability",
+      "objectives": [
+        "co-11"
+      ],
+      "difficulty": "applied",
+      "prompt": "An application has one VM in availability zone 1. It must continue serving if zone 1 fails. What additional design is needed?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Healthy application instances in another zone with resilient routing and dependencies.",
+          "explanation": "Zonal survival needs working replicas and supporting services outside the failed zone."
+        },
+        {
+          "id": "b",
+          "text": "Only label the existing VM zone-redundant using a tag.",
+          "explanation": "Tags do not create replicas or change placement."
+        },
+        {
+          "id": "c",
+          "text": "Rely on the existing zonal VM being copied automatically to all zones.",
+          "explanation": "A zonal VM is placed in one zone."
+        },
+        {
+          "id": "d",
+          "text": "Add more update domains to the same single VM.",
+          "explanation": "Update domains do not create another running application instance."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/availability.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview",
+        "https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-avail-update",
+      "family": "co-avail-update",
+      "revision": 1,
+      "topic": "compute.vms.availability",
+      "objectives": [
+        "co-11"
+      ],
+      "difficulty": "applied",
+      "prompt": "An availability set has five update domains and seven VMs. Which statement about planned maintenance is correct?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Some VMs share update domains, and one update domain is restarted at a time.",
+          "explanation": "More VMs than update domains requires sharing; maintenance is sequenced by domain."
+        },
+        {
+          "id": "b",
+          "text": "Every VM must have its own distinct update domain.",
+          "explanation": "Seven VMs can share the configured five domains."
+        },
+        {
+          "id": "c",
+          "text": "All five update domains always restart together.",
+          "explanation": "The update-domain mechanism limits simultaneous planned restart groups."
+        },
+        {
+          "id": "d",
+          "text": "Update domain numbers guarantee ascending maintenance order.",
+          "explanation": "Maintenance order is not guaranteed to follow domain numbering."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/virtual-machines/availability.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview",
+        "https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

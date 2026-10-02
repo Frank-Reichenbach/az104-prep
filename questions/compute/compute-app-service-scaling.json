@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-web-scale-up",
+      "family": "co-web-scale-up",
+      "revision": 1,
+      "topic": "compute.app-service.scaling",
+      "objectives": [
+        "co-18"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An App Service app needs more memory per worker and a higher-tier feature. Which operation addresses these requirements?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Scale up the App Service plan to a suitable SKU.",
+          "explanation": "Scale up changes worker resources and tier features."
+        },
+        {
+          "id": "b",
+          "text": "Only increase worker count with the existing SKU.",
+          "explanation": "Scale out adds workers but does not increase memory per worker or unlock higher-tier features."
+        },
+        {
+          "id": "c",
+          "text": "Only add a staging slot.",
+          "explanation": "A slot consumes the existing plan capacity."
+        },
+        {
+          "id": "d",
+          "text": "Only set a larger maximum autoscale count.",
+          "explanation": "A count limit does not change the worker SKU."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/scaling.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up",
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-best-practices"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-schedule",
+      "family": "co-web-schedule",
+      "revision": 1,
+      "topic": "compute.app-service.scaling",
+      "objectives": [
+        "co-18"
+      ],
+      "difficulty": "applied",
+      "prompt": "An App Service plan must run more instances at 08:00 each weekday based on a schedule. Which scaling mechanism should be used?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Azure Monitor autoscale with a scheduled profile.",
+          "explanation": "Autoscale supports schedules for plan capacity."
+        },
+        {
+          "id": "b",
+          "text": "App Service automatic scaling based only on HTTP traffic.",
+          "explanation": "HTTP automatic scaling does not express the requested time-based schedule."
+        },
+        {
+          "id": "c",
+          "text": "A deployment-slot swap at 08:00.",
+          "explanation": "Swapping code slots does not define scheduled worker capacity."
+        },
+        {
+          "id": "d",
+          "text": "A higher SKU without any scheduled scaling configuration.",
+          "explanation": "Changing tier does not implement the requested daily instance schedule."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/scaling.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up",
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-best-practices"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-web-autolimits",
+      "family": "co-web-autolimits",
+      "revision": 1,
+      "topic": "compute.app-service.scaling",
+      "objectives": [
+        "co-18"
+      ],
+      "difficulty": "applied",
+      "prompt": "You evaluate App Service automatic HTTP scaling. Which TWO points belong in the cost and compatibility review?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "Prewarmed instances are billable.",
+          "explanation": "Automatic scaling reserves a buffer whose instance time is charged."
+        },
+        {
+          "id": "b",
+          "text": "Deployment-slot traffic is unsupported for this scaling feature.",
+          "explanation": "The documented automatic scaling feature does not scale based on slot traffic."
+        },
+        {
+          "id": "c",
+          "text": "It is the same configuration as Azure Monitor schedule rules.",
+          "explanation": "Automatic HTTP scaling and Azure Monitor autoscale are distinct."
+        },
+        {
+          "id": "d",
+          "text": "It provides paid Premium features on Free plans.",
+          "explanation": "The feature requires supported Premium tiers."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/compute/app-service/scaling.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up",
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-best-practices"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-read-input-output",
+      "family": "co-read-input-output",
+      "revision": 1,
+      "topic": "compute.templates.interpretation",
+      "objectives": [
+        "co-01"
+      ],
+      "difficulty": "foundation",
+      "prompt": "In an ARM template, which section accepts deployment-time values such as a VM size?",
+      "select": 1,
+      "options": [
+        {
+          "id": "parameters",
+          "text": "parameters.",
+          "explanation": "Parameters define inputs supplied when deploying."
+        },
+        {
+          "id": "variables",
+          "text": "variables.",
+          "explanation": "Variables derive internal values rather than acting as caller-supplied parameters."
+        },
+        {
+          "id": "outputs",
+          "text": "outputs.",
+          "explanation": "Outputs return values after deployment."
+        },
+        {
+          "id": "content",
+          "text": "contentVersion.",
+          "explanation": "This identifies a template revision, not deployment inputs."
+        }
+      ],
+      "correct": [
+        "parameters"
+      ],
+      "knowledge": "knowledge/compute/templates/interpretation.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-read-symbolic-name",
+      "family": "co-read-symbolic-name",
+      "revision": 1,
+      "topic": "compute.templates.interpretation",
+      "objectives": [
+        "co-01"
+      ],
+      "difficulty": "applied",
+      "prompt": "In Bicep, resource network has name: vnetName. Which value determines the deployed virtual network's name?",
+      "select": 1,
+      "options": [
+        {
+          "id": "property",
+          "text": "The value supplied by vnetName to the name property.",
+          "explanation": "The resource name property controls Azure naming."
+        },
+        {
+          "id": "symbol",
+          "text": "The symbolic identifier network.",
+          "explanation": "That identifier is for references inside Bicep."
+        },
+        {
+          "id": "output",
+          "text": "The output variable's identifier.",
+          "explanation": "Output labels do not name the resource."
+        },
+        {
+          "id": "file",
+          "text": "The Bicep filename.",
+          "explanation": "The filename is not the declared resource name."
+        }
+      ],
+      "correct": [
+        "property"
+      ],
+      "knowledge": "knowledge/compute/templates/interpretation.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-read-dependency",
+      "family": "co-read-dependency",
+      "revision": 1,
+      "topic": "compute.templates.interpretation",
+      "objectives": [
+        "co-01"
+      ],
+      "difficulty": "applied",
+      "prompt": "Bicep resource B references a property of resource A. What is the usual dependency implication?",
+      "select": 1,
+      "options": [
+        {
+          "id": "implicit",
+          "text": "Bicep infers a dependency on A.",
+          "explanation": "The reference expresses the required ordering."
+        },
+        {
+          "id": "order",
+          "text": "Only the textual order of declarations matters.",
+          "explanation": "File position is not the dependency model."
+        },
+        {
+          "id": "none",
+          "text": "B can never depend on A without a manual sleep.",
+          "explanation": "ARM dependencies do not require sleeps."
+        },
+        {
+          "id": "serial",
+          "text": "Every resource in the entire file becomes sequential.",
+          "explanation": "Unrelated resources can still deploy in parallel."
+        }
+      ],
+      "correct": [
+        "implicit"
+      ],
+      "knowledge": "knowledge/compute/templates/interpretation.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

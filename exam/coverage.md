@@ -4,7 +4,7 @@
 
 Outline: 2026-04-17. Source checked: 2026-10-01.
 
-32/82 objectives have documented topic coverage. This measures presence of researched content, not mastery or exhaustive scenario coverage.
+56/82 objectives have documented topic coverage. This measures presence of researched content, not mastery or exhaustive scenario coverage.
 
 [Microsoft scope source](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-104). IDs below are local identifiers.
 
@@ -80,45 +80,45 @@ Outline: 2026-04-17. Source checked: 2026-10-01.
 
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
-| co-01 | Read ARM templates and Bicep definitions | — | 0 | Planned |
-| co-02 | Change an existing ARM template | — | 0 | Planned |
-| co-03 | Change an existing Bicep definition | — | 0 | Planned |
-| co-04 | Deploy infrastructure with ARM or Bicep | — | 0 | Planned |
-| co-05 | Export ARM deployments and convert templates to Bicep | — | 0 | Planned |
+| co-01 | Read ARM templates and Bicep definitions | [Reading ARM templates and Bicep](../knowledge/compute/templates/interpretation.md) | 3 | Documented; not lab-tested |
+| co-02 | Change an existing ARM template | [Editing ARM templates safely](../knowledge/compute/templates/arm-editing.md) | 3 | Documented; not lab-tested |
+| co-03 | Change an existing Bicep definition | [Editing Bicep parameters, resources, and modules](../knowledge/compute/templates/bicep-editing.md) | 3 | Documented; not lab-tested |
+| co-04 | Deploy infrastructure with ARM or Bicep | [Validating and deploying ARM and Bicep](../knowledge/compute/templates/deployment.md) | 3 | Documented; not lab-tested |
+| co-05 | Export ARM deployments and convert templates to Bicep | [Exporting templates and decompiling Bicep](../knowledge/compute/templates/export.md) | 3 | Documented; not lab-tested |
 
 ### Virtual machines
 
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
-| co-06 | Provision virtual machines | — | 0 | Planned |
-| co-07 | Enable VM host encryption | — | 0 | Planned |
-| co-08 | Relocate VMs across groups, subscriptions, or regions | — | 0 | Planned |
-| co-09 | Resize virtual machines | — | 0 | Planned |
-| co-10 | Administer VM disks | — | 0 | Planned |
-| co-11 | Use availability sets and availability zones | — | 0 | Planned |
-| co-12 | Set up virtual machine scale sets | — | 0 | Planned |
+| co-06 | Provision virtual machines | [Virtual machine provisioning and access](../knowledge/compute/virtual-machines/creation.md) | 3 | Documented; not lab-tested |
+| co-07 | Enable VM host encryption | [Encryption at host for virtual machines](../knowledge/compute/virtual-machines/host-encryption.md) | 3 | Documented; not lab-tested |
+| co-08 | Relocate VMs across groups, subscriptions, or regions | [Moving VMs between scopes and regions](../knowledge/compute/virtual-machines/moves.md) | 3 | Documented; not lab-tested |
+| co-09 | Resize virtual machines | [Resizing virtual machines](../knowledge/compute/virtual-machines/resizing.md) | 3 | Documented; not lab-tested |
+| co-10 | Administer VM disks | [Managed disk attachment, expansion, and performance](../knowledge/compute/virtual-machines/disks.md) | 3 | Documented; not lab-tested |
+| co-11 | Use availability sets and availability zones | [Availability sets and availability zones](../knowledge/compute/virtual-machines/availability.md) | 3 | Documented; not lab-tested |
+| co-12 | Set up virtual machine scale sets | [Virtual machine scale sets and autoscale](../knowledge/compute/virtual-machines/scale-sets.md) | 3 | Documented; not lab-tested |
 
 ### Container services
 
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
-| co-13 | Administer Azure Container Registry | — | 0 | Planned |
-| co-14 | Run workloads with Container Instances | — | 0 | Planned |
-| co-15 | Run workloads with Container Apps | — | 0 | Planned |
-| co-16 | Size and scale Container Instances and Container Apps | — | 0 | Planned |
+| co-13 | Administer Azure Container Registry | [Container Registry images and access](../knowledge/compute/containers/registry.md) | 3 | Documented; not lab-tested |
+| co-14 | Run workloads with Container Instances | [Container Instances groups and restart behavior](../knowledge/compute/containers/instances.md) | 3 | Documented; not lab-tested |
+| co-15 | Run workloads with Container Apps | [Container Apps environments, ingress, and revisions](../knowledge/compute/containers/apps.md) | 3 | Documented; not lab-tested |
+| co-16 | Size and scale Container Instances and Container Apps | [Container resource sizing and replica scaling](../knowledge/compute/containers/scaling.md) | 3 | Documented; not lab-tested |
 
 ### App Service
 
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
-| co-17 | Provision an App Service plan | — | 0 | Planned |
-| co-18 | Scale App Service plans | — | 0 | Planned |
-| co-19 | Provision an App Service application | — | 0 | Planned |
-| co-20 | Set up application certificates and TLS | — | 0 | Planned |
-| co-21 | Attach an existing custom DNS name | — | 0 | Planned |
-| co-22 | Configure application backups | — | 0 | Planned |
-| co-23 | Configure App Service network connectivity | — | 0 | Planned |
-| co-24 | Use deployment slots | — | 0 | Planned |
+| co-17 | Provision an App Service plan | [App Service plan creation and compute sharing](../knowledge/compute/app-service/plans.md) | 3 | Documented; not lab-tested |
+| co-18 | Scale App Service plans | [App Service scale up, scale out, and autoscale](../knowledge/compute/app-service/scaling.md) | 3 | Documented; not lab-tested |
+| co-19 | Provision an App Service application | [App Service application deployment and configuration](../knowledge/compute/app-service/apps.md) | 3 | Documented; not lab-tested |
+| co-20 | Set up application certificates and TLS | [App Service certificates and TLS bindings](../knowledge/compute/app-service/tls.md) | 3 | Documented; not lab-tested |
+| co-21 | Attach an existing custom DNS name | [App Service custom DNS names and ownership verification](../knowledge/compute/app-service/domains.md) | 3 | Documented; not lab-tested |
+| co-22 | Configure application backups | [App Service backup configuration and restoration](../knowledge/compute/app-service/backups.md) | 3 | Documented; not lab-tested |
+| co-23 | Configure App Service network connectivity | [App Service inbound and outbound networking](../knowledge/compute/app-service/networking.md) | 3 | Documented; not lab-tested |
+| co-24 | Use deployment slots | [App Service deployment slots and swaps](../knowledge/compute/app-service/slots.md) | 3 | Documented; not lab-tested |
 
 ## Networking (15–20%)
 

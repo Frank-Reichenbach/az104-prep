@@ -6,6 +6,798 @@ Select the stated number of answers. Multiple-answer questions use exact-match s
 
 [Answer key](answers.md)
 
+## co-web-zip
+
+A published application is deployed to App Service from a ZIP archive. What archive layout does the documented deployment process require?
+
+Select **1**. Difficulty: applied.
+
+A. Deployable application files at the ZIP root.
+B. All application files nested inside an arbitrary extra parent directory.
+C. Only an empty folder named wwwroot.
+D. Only the source repository URL stored in a text file.
+
+## co-web-settings
+
+What happens when an administrator changes App Service app settings?
+
+Select **1**. Difficulty: foundation.
+
+A. The settings are supplied as environment variables and the app restarts.
+B. The App Service plan changes operating system automatically.
+C. A new staging slot is always created.
+D. The application image is necessarily rebuilt and pushed to ACR.
+
+## co-web-managed
+
+A web app has managed identity enabled but receives authorization failures from a protected Azure service. What should be checked?
+
+Select **1**. Difficulty: applied.
+
+A. The identity has the required role or access policy on that target service.
+B. Assume enabling identity grants Contributor to every service.
+C. Change the web app display name to the service name.
+D. Increase plan workers as the only permission fix.
+
+## co-web-backup-external
+
+An App Service app has automatic backups and stores business data in an externally mounted Azure file share. What should the recovery design include?
+
+Select **1**. Difficulty: applied.
+
+A. Separate protection and restore procedures for the mounted share.
+B. Assume every mounted share is included in the automatic app backup.
+C. Use an app-setting rename to bring the share into the backup.
+D. Treat the source-code ZIP as a backup of all business data.
+
+## co-web-backup-restore
+
+Before replacing a production App Service app with a backup, which approach provides useful recovery evidence?
+
+Select **1**. Difficulty: applied.
+
+A. Restore to a supported separate app or slot and test the app and dependencies.
+B. Only check that the backup list contains a timestamp.
+C. Edit the backup ZIP manually to make its timestamp newer.
+D. Assume app restoration recreates every identity and network dependency.
+
+## co-web-backup-database
+
+In October 2026, you design a new App Service recovery setup with Azure SQL. Which database backup approach follows current Microsoft guidance?
+
+Select **1**. Difficulty: applied.
+
+A. Use Azure SQL native backup and restore alongside app protection.
+B. Depend on creating a new App Service linked SQL backup configuration.
+C. Assume automatic App Service backups include the SQL database.
+D. Use a deployment-slot swap as the only database backup.
+
+## co-domain-cname
+
+You map www.example.com to an App Service app and want DNS to follow its default hostname rather than a fixed IP. Which routing record does Microsoft recommend?
+
+Select **1**. Difficulty: foundation.
+
+A. A CNAME from www to the app default hostname.
+B. A TXT record containing only the app IP.
+C. An MX record targeting the app hostname.
+D. An NS record delegating www to the app hostname.
+
+## co-domain-txt
+
+What is the purpose of the asuid.www TXT record when configuring www.example.com for App Service?
+
+Select **1**. Difficulty: foundation.
+
+A. Prove domain ownership and help prevent another app claiming the hostname.
+B. Route HTTPS packets to the app private IP.
+C. Store the certificate private key for browsers.
+D. Set the App Service plan worker count.
+
+## co-domain-binding
+
+www.example.com resolves to the correct App Service address, but the app has no custom-hostname entry for it and requests return a platform 404. What should be configured?
+
+Select **1**. Difficulty: applied.
+
+A. Validate and add the hostname binding to the intended app.
+B. Only lower the DNS TTL repeatedly.
+C. Only add another identical A record.
+D. Only scale out the plan.
+
+## co-web-outbound
+
+An App Service app must call a VM using its private IP in a same-region VNet. Which App Service networking feature provides the outbound VNet path?
+
+Select **1**. Difficulty: foundation.
+
+A. Regional VNet integration
+B. Only a private endpoint for the web app
+C. Only an app custom-domain binding
+D. Only an inbound IP access restriction
+
+## co-web-inbound
+
+Users must access an App Service app privately from a VNet, and the app must also reach a private database. Which TWO capabilities should be configured for their respective traffic directions?
+
+Select **2**. Difficulty: applied.
+
+A. An App Service private endpoint for inbound requests
+B. VNet integration for the app outbound database connection
+C. VNet integration alone as proof of private inbound access
+D. The app private endpoint alone as proof of private outbound database routing
+
+## co-web-subnet
+
+A web app already uses a delegated subnet for VNet integration. Where should its inbound private endpoint be placed?
+
+Select **1**. Difficulty: applied.
+
+A. In a different suitable subnet.
+B. Always in the same delegated integration subnet.
+C. In the app deployment slot instead of a subnet.
+D. In a DNS record with no private endpoint NIC.
+
+## co-plan-sharing
+
+Two web apps and a staging slot run in the same dedicated App Service plan. What compute relationship should the administrator expect?
+
+Select **1**. Difficulty: foundation.
+
+A. They share the plan worker capacity.
+B. Each receives an independently billed dedicated worker set automatically.
+C. The staging slot runs in a different region automatically.
+D. Stopping one app deletes the shared plan workers.
+
+## co-plan-separate
+
+A resource-intensive app must have an independent compute and scaling boundary from other apps. Which design fits?
+
+Select **1**. Difficulty: applied.
+
+A. Place it in a separate App Service plan.
+B. Create only another deployment slot in the existing plan.
+C. Change only the app resource group while retaining the plan.
+D. Assign a different custom hostname while retaining the plan.
+
+## co-plan-cost
+
+The only app in a paid dedicated App Service plan is stopped. What should be checked to stop unnecessary plan compute charges?
+
+Select **1**. Difficulty: applied.
+
+A. Whether the unused plan can be deleted or moved to a suitable lower tier.
+B. Assume the stopped app makes the dedicated plan free.
+C. Remove only the app custom domain.
+D. Delete only the app deployment history.
+
+## co-web-scale-up
+
+An App Service app needs more memory per worker and a higher-tier feature. Which operation addresses these requirements?
+
+Select **1**. Difficulty: foundation.
+
+A. Scale up the App Service plan to a suitable SKU.
+B. Only increase worker count with the existing SKU.
+C. Only add a staging slot.
+D. Only set a larger maximum autoscale count.
+
+## co-web-schedule
+
+An App Service plan must run more instances at 08:00 each weekday based on a schedule. Which scaling mechanism should be used?
+
+Select **1**. Difficulty: applied.
+
+A. Azure Monitor autoscale with a scheduled profile.
+B. App Service automatic scaling based only on HTTP traffic.
+C. A deployment-slot swap at 08:00.
+D. A higher SKU without any scheduled scaling configuration.
+
+## co-web-autolimits
+
+You evaluate App Service automatic HTTP scaling. Which TWO points belong in the cost and compatibility review?
+
+Select **2**. Difficulty: applied.
+
+A. Prewarmed instances are billable.
+B. Deployment-slot traffic is unsupported for this scaling feature.
+C. It is the same configuration as Azure Monitor schedule rules.
+D. It provides paid Premium features on Free plans.
+
+## co-slot-sticky
+
+Production and staging use different database connection strings, and each must remain attached to its environment during a slot swap. What should be configured?
+
+Select **1**. Difficulty: applied.
+
+A. Mark the connection strings as deployment slot settings.
+B. Leave them swappable and rely on different display names.
+C. Put both connection strings only in the shared plan name.
+D. Change only the staging traffic percentage.
+
+## co-slot-identity
+
+Which App Service configuration remains with its slot during a swap?
+
+Select **1**. Difficulty: foundation.
+
+A. Managed identity
+B. All application content
+C. Every ordinary unmarked app setting
+D. All runtime framework settings
+
+## co-slot-rollback
+
+A release is swapped from staging to production and performs an external database schema migration. What does swapping the slots back provide?
+
+Select **1**. Difficulty: applied.
+
+A. A code/configuration rollback path that still needs a separate database compatibility or recovery plan.
+B. Automatic reversal of every database change.
+C. Automatic restoration of all production data from Azure Backup.
+D. Deletion of the newer database schema with guaranteed zero data loss.
+
+## co-tls-binding
+
+A valid certificate for www.example.com has been uploaded to App Service, and the custom hostname is mapped, but HTTPS still does not use it. What configuration is missing?
+
+Select **1**. Difficulty: applied.
+
+A. A TLS binding associating the hostname with the certificate.
+B. Only another copy of the same certificate file.
+C. Only a larger App Service instance count.
+D. Only a DNS TTL of zero.
+
+## co-tls-wildcard
+
+An app requires a wildcard certificate covering *.example.com. Which certificate approach fits App Service requirements?
+
+Select **1**. Difficulty: applied.
+
+A. Import or upload a suitable wildcard certificate from a certificate provider.
+B. Request a free App Service managed wildcard certificate.
+C. Use the default azurewebsites.net certificate for example.com.
+D. Create only an ownership TXT record and omit TLS binding.
+
+## co-tls-sni
+
+What is the purpose of an SNI TLS binding in App Service?
+
+Select **1**. Difficulty: foundation.
+
+A. Select the certificate by hostname while sharing an IP address.
+B. Require a separate dedicated IP for every hostname.
+C. Automatically create all external DNS records.
+D. Encrypt application data stored on the filesystem.
+
+## co-aca-revision
+
+Which Container Apps change creates a new revision?
+
+Select **1**. Difficulty: foundation.
+
+A. Changing the container image in the app template
+B. Changing only an existing secret value
+C. Changing only ingress traffic weights
+D. Adding only a managed identity
+
+## co-aca-canary
+
+You want two Container Apps image versions active simultaneously, with 10% of ingress traffic sent to the new version. Which revision mode supports this?
+
+Select **1**. Difficulty: applied.
+
+A. Multiple revision mode
+B. Single revision mode as the steady deployment state
+C. An ACI restart policy of Always
+D. Disabling ingress for all revisions
+
+## co-aca-port
+
+A Container App image pulls successfully, but HTTP ingress cannot reach the process. The process listens on 8080 while ingress targets 80. What should be corrected?
+
+Select **1**. Difficulty: applied.
+
+A. Set the ingress target port to the actual listening port.
+B. Grant the image publisher a broader push role only.
+C. Change only the revision label to 8080.
+D. Increase maximum replicas without changing the port.
+
+## co-aci-localhost
+
+Two Linux containers in the same ACI container group need to communicate on an internal-only port. Which address can they use?
+
+Select **1**. Difficulty: foundation.
+
+A. localhost with the listening port
+B. Only a public load-balancer frontend
+C. Only a separate VNet peering for each container
+D. The ACR repository URL as the runtime service address
+
+## co-aci-onfailure
+
+An ACI batch task should retry after a nonzero process exit and remain terminated after successful completion. Which restart policy explicitly expresses that behavior?
+
+Select **1**. Difficulty: applied.
+
+A. OnFailure
+B. Always
+C. Never as a guarantee of exactly-once execution
+D. An HTTP replica scaling rule
+
+## co-aci-persist
+
+Output from an ACI task must survive deletion of its container group. Which design meets the requirement?
+
+Select **1**. Difficulty: applied.
+
+A. Write results to durable external storage and retain that storage.
+B. Store the only copy in the container writable layer.
+C. Use Always restart policy instead of persistent storage.
+D. Give the group a DNS label and store output only locally.
+
+## co-acr-abac
+
+An ACR registry uses RBAC Registry + ABAC Repository Permissions. A workload must pull an image from an allowed repository but has only AcrPull. What should be changed?
+
+Select **1**. Difficulty: applied.
+
+A. Assign Container Registry Repository Reader with any condition covering the repository.
+B. Keep AcrPull and only refresh the token indefinitely.
+C. Assign only Container Registry Repository Catalog Lister.
+D. Assign only Reader on the registry resource.
+
+## co-acr-digest
+
+A deployment must refer to the exact same container image content after a tag is reassigned. Which identifier should it record?
+
+Select **1**. Difficulty: foundation.
+
+A. The image digest
+B. Only the latest tag
+C. Only the repository name
+D. Only the registry resource group
+
+## co-acr-identity
+
+A supported Azure service must pull private ACR images without storing a shared registry password. Which approach fits?
+
+Select **1**. Difficulty: applied.
+
+A. Use its managed identity with the appropriate image pull role for the registry mode.
+B. Enable the registry admin account and embed its password in the image.
+C. Assign only a display name to the managed identity without roles.
+D. Give the registry a public endpoint and assume images become anonymous.
+
+## co-scale-aci
+
+An ACI group has two containers requesting one CPU each. One container has a limit of two CPUs. What does that limit allow?
+
+Select **1**. Difficulty: applied.
+
+A. Use up to two CPUs when available within the allocated group resources.
+B. Automatically create a second container-group replica.
+C. Reserve four CPUs for the group automatically.
+D. Guarantee two dedicated CPUs for each container simultaneously.
+
+## co-scale-zero
+
+A Container Apps queue worker has ingress disabled, minReplicas 0, and no custom scale rule. Why can it remain at zero while queue messages arrive?
+
+Select **1**. Difficulty: applied.
+
+A. No configured trigger observes the queue and requests replicas.
+B. maxReplicas always forces at least that many replicas to run.
+C. Changing the image tag in ACR automatically processes the queue.
+D. The inactive replica can measure its own CPU and wake itself.
+
+## co-scale-oom
+
+Every Container Apps replica fails during startup because its memory allocation is too small. Which change directly addresses that failure?
+
+Select **1**. Difficulty: applied.
+
+A. Choose a supported larger per-replica memory allocation and deploy the revision.
+B. Raise only maxReplicas while preserving the insufficient allocation.
+C. Lower minReplicas to zero and leave the image unchanged.
+D. Change only the ingress traffic percentage.
+
+## co-arm-param
+
+An ARM template must accept only Standard_LRS or Standard_ZRS for a storageSku input. Which parameter property enforces this during validation?
+
+Select **1**. Difficulty: foundation.
+
+A. allowedValues
+B. defaultValue
+C. metadata.description
+D. minLength
+
+## co-arm-incremental
+
+An ARM incremental deployment redeclares an existing resource but omits one of its non-default properties. What should the administrator assume when reviewing the change?
+
+Select **1**. Difficulty: applied.
+
+A. The omitted property can reset to its default; declare the full intended configuration.
+B. Every omitted property is preserved because the mode is incremental.
+C. The entire resource is deleted because its definition changed.
+D. Only the template contentVersion controls whether the property changes.
+
+## co-arm-secure
+
+An ARM template accepts an administrator password. Which TWO choices help prevent exposing it in template and deployment records?
+
+Select **2**. Difficulty: applied.
+
+A. Declare the input as secureString.
+B. Avoid hard-coded secrets and ordinary outputs containing the password.
+C. Use a string parameter with a password-like name.
+D. Put the password in defaultValue in the public template.
+
+## co-bicep-refactor
+
+You rename a Bicep symbolic identifier from store to archive, updating all code references but retaining the resource type, Azure name, scope, and properties. What does this change itself do?
+
+Select **1**. Difficulty: applied.
+
+A. Refactors the code without changing the Azure resource identity.
+B. Renames the deployed account to archive.
+C. Deletes the resource formerly represented by store.
+D. Moves the resource into a deployment named archive.
+
+## co-bicep-build
+
+What does a successful az bicep build establish before an Azure deployment?
+
+Select **1**. Difficulty: foundation.
+
+A. The file can compile to an ARM template.
+B. The deployment identity has all required Azure permissions.
+C. The target region has capacity for every VM.
+D. All Azure Policy assignments permit the resources.
+
+## co-bicep-existing
+
+A Bicep declaration uses existing for a virtual network in another resource group. Which TWO statements are correct?
+
+Select **2**. Difficulty: applied.
+
+A. The declaration references the virtual network without redeploying it.
+B. Its scope must identify the resource group containing that network.
+C. The network is created automatically when missing.
+D. The declaration grants the deploying identity network access rights.
+
+## co-deploy-scope
+
+You must deploy a Bicep file into an existing resource group. Which command family targets that scope?
+
+Select **1**. Difficulty: applied.
+
+A. az deployment group create
+B. az deployment sub create
+C. az deployment mg create
+D. az deployment tenant create
+
+## co-deploy-preview
+
+Which operation previews an ARM or Bicep deployment without applying the proposed resource changes?
+
+Select **1**. Difficulty: foundation.
+
+A. what-if
+B. create with a new deployment name
+C. deleting the previous deployment record
+D. compiling the Bicep file only
+
+## co-deploy-rbac
+
+A deployment identity has Contributor on a resource group. Its template creates a VM and an Azure role assignment. The VM succeeds, but role assignment creation is denied. What additional permission should you investigate?
+
+Select **1**. Difficulty: applied.
+
+A. Microsoft.Authorization/roleAssignments/write at the assignment scope
+B. Microsoft.Compute/virtualMachines/read only
+C. Microsoft.Resources/deployments/read only
+D. Microsoft.Compute/virtualMachines/start/action only
+
+## co-export-current
+
+An administrator changed a VM configuration manually after its original ARM deployment. Which export is intended to capture the current resource configuration?
+
+Select **1**. Difficulty: applied.
+
+A. Export from the resource group or resource
+B. Export only the original deployment from history
+C. Compile the original Bicep source again
+D. Download only the original parameter file
+
+## co-export-convert
+
+You have exported an ARM JSON template and want editable Bicep source. Which command performs the conversion?
+
+Select **1**. Difficulty: foundation.
+
+A. az bicep decompile --file current.json
+B. az bicep build --file current.json
+C. az deployment group create --template-file current.json
+D. az deployment group what-if --template-file current.json
+
+## co-export-review
+
+A resource-group template export completes with warnings. Which TWO checks are appropriate before reusing it?
+
+Select **2**. Difficulty: applied.
+
+A. Check for omitted resource types, properties, and secret inputs.
+B. Review names, IDs, and parameterization for the new environment.
+C. Assume it contains a restorable copy of application data.
+D. Treat successful export as proof of successful redeployment.
+
+## co-read-input-output
+
+In an ARM template, which section accepts deployment-time values such as a VM size?
+
+Select **1**. Difficulty: foundation.
+
+A. parameters.
+B. variables.
+C. outputs.
+D. contentVersion.
+
+## co-read-symbolic-name
+
+In Bicep, resource network has name: vnetName. Which value determines the deployed virtual network's name?
+
+Select **1**. Difficulty: applied.
+
+A. The value supplied by vnetName to the name property.
+B. The symbolic identifier network.
+C. The output variable's identifier.
+D. The Bicep filename.
+
+## co-read-dependency
+
+Bicep resource B references a property of resource A. What is the usual dependency implication?
+
+Select **1**. Difficulty: applied.
+
+A. Bicep infers a dependency on A.
+B. Only the textual order of declarations matters.
+C. B can never depend on A without a manual sleep.
+D. Every resource in the entire file becomes sequential.
+
+## co-avail-fault
+
+Which availability-set concept separates VMs according to shared power and network infrastructure?
+
+Select **1**. Difficulty: foundation.
+
+A. Fault domain
+B. Update domain
+C. Resource group
+D. Deployment name
+
+## co-avail-zone
+
+An application has one VM in availability zone 1. It must continue serving if zone 1 fails. What additional design is needed?
+
+Select **1**. Difficulty: applied.
+
+A. Healthy application instances in another zone with resilient routing and dependencies.
+B. Only label the existing VM zone-redundant using a tag.
+C. Rely on the existing zonal VM being copied automatically to all zones.
+D. Add more update domains to the same single VM.
+
+## co-avail-update
+
+An availability set has five update domains and seven VMs. Which statement about planned maintenance is correct?
+
+Select **1**. Difficulty: applied.
+
+A. Some VMs share update domains, and one update domain is restarted at a time.
+B. Every VM must have its own distinct update domain.
+C. All five update domains always restart together.
+D. Update domain numbers guarantee ascending maintenance order.
+
+## co-vm-private
+
+A Linux VM is created without a public IP in a subnet reachable only through a corporate VPN. How should an administrator establish SSH access?
+
+Select **1**. Difficulty: applied.
+
+A. Connect through the VPN and use the VM private IP with valid guest credentials.
+B. Use the private IP directly from an unrelated Internet connection.
+C. Assign Virtual Machine Contributor and SSH through ARM automatically.
+D. Add an NSG allow rule and assume it assigns a public address.
+
+## co-vm-stopped
+
+A guest operating system is shut down, and Azure reports Stopped (allocated). What stops VM compute allocation charges?
+
+Select **1**. Difficulty: foundation.
+
+A. Deallocate the VM through Azure.
+B. Leave it in the current state because the guest is off.
+C. Remove its public IP only.
+D. Disable boot diagnostics only.
+
+## co-vm-trusted
+
+Which TWO features are associated with Trusted Launch for a supported Generation 2 Azure VM?
+
+Select **2**. Difficulty: foundation.
+
+A. Secure Boot
+B. Virtual TPM
+C. Automatic replication of the VM into another region
+D. Automatic creation of a guest application backup
+
+## co-disk-expand
+
+A managed data disk was increased from 128 GiB to 256 GiB in Azure, but the guest filesystem still shows the old capacity. What is the next appropriate task?
+
+Select **1**. Difficulty: applied.
+
+A. Extend the guest partition and filesystem using the supported OS procedure.
+B. Shrink the Azure disk back and then expand it again.
+C. Rename the LUN to 256.
+D. Change only the VM public IP.
+
+## co-disk-os
+
+Which TWO managed disk types are unsuitable as the OS disk of an Azure VM?
+
+Select **2**. Difficulty: foundation.
+
+A. Ultra Disk
+B. Premium SSD v2
+C. Premium SSD
+D. Standard SSD
+
+## co-disk-existing
+
+You attach a managed disk containing existing application data to a Linux VM. What should you do before mounting it?
+
+Select **1**. Difficulty: applied.
+
+A. Identify the device and inspect its existing partitions and filesystem.
+B. Always create a new filesystem because attachment erases formatting.
+C. Copy the data to the temporary disk as its only permanent location.
+D. Assume Azure attachment automatically configures the guest mount.
+
+## co-host-scope
+
+A VM already has encrypted managed disks. The requirement now includes its temporary disk and host caches. Which VM feature addresses that scope?
+
+Select **1**. Difficulty: foundation.
+
+A. Encryption at host
+B. Only the existing managed-disk server-side encryption setting
+C. Secure Boot alone
+D. An application HTTPS certificate alone
+
+## co-host-ade
+
+A VM previously used Azure Disk Encryption. An administrator wants to enable encryption at host on that same VM. What does the documented restriction require them to recognize?
+
+Select **1**. Difficulty: applied.
+
+A. That VM history is incompatible with enabling encryption at host directly.
+B. Disabling Secure Boot always removes the restriction.
+C. Switching only the data disk to Standard HDD always removes the restriction.
+D. Enabling both methods together is required.
+
+## co-host-confirm
+
+Which setting directly confirms that encryption at host is enabled on a VM after the supported configuration process?
+
+Select **1**. Difficulty: applied.
+
+A. securityProfile.encryptionAtHost equals true
+B. The disk reports ordinary server-side encryption
+C. The VM uses SSH public-key authentication
+D. The VM has a Recovery Services backup item
+
+## co-move-region
+
+A VM is in West Europe. You move it to a resource group whose metadata location is North Europe using the standard ARM move operation. Where does the VM run afterward?
+
+Select **1**. Difficulty: foundation.
+
+A. West Europe
+B. North Europe automatically
+C. Both regions with automatic replication
+D. A region chosen from the destination group name
+
+## co-move-tenant
+
+You plan an ARM cross-subscription VM move. Which TWO requirements should you validate?
+
+Select **2**. Difficulty: applied.
+
+A. Both subscriptions belong to the same Entra tenant.
+B. The virtual network and required dependent resources are included as required.
+C. Only the VM resource is needed regardless of its dependencies.
+D. The move automatically changes the VM to the destination group region.
+
+## co-move-id
+
+After a successful VM move to another resource group, an automation script using the old resource ID fails. What should be checked first?
+
+Select **1**. Difficulty: applied.
+
+A. Update the script to use the VM resource ID at its new scope.
+B. Assume the VM has retained the old ID permanently.
+C. Change only the guest hostname to match the old resource group.
+D. Reinstall the VM agent to recreate the old resource ID.
+
+## co-resize-restart
+
+A running Azure VM can use the requested target size on its current host cluster. What should you still plan for when resizing it?
+
+Select **1**. Difficulty: foundation.
+
+A. A VM restart and application interruption
+B. A guaranteed change with no guest restart
+C. Automatic replication into another region
+D. Automatic expansion of every guest filesystem
+
+## co-resize-set
+
+A VM in an availability set needs a size unavailable on the current hardware cluster. Which operational consequence must be considered?
+
+Select **1**. Difficulty: applied.
+
+A. All VMs in that availability set may need to be deallocated.
+B. Only changing its resource group guarantees the new size.
+C. Increasing the OS disk guarantees the new size.
+D. Changing the display name forces a compatible cluster.
+
+## co-resize-proof
+
+A resize operation fails, but the VM model now displays the requested larger size. What is the best next verification?
+
+Select **1**. Difficulty: applied.
+
+A. Check the operation failure, allocation state, and actual guest resources.
+B. Conclude the larger size is active solely from the model field.
+C. Assume the guest data disks were necessarily erased.
+D. Delete the deployment history to complete the resize.
+
+## co-vmss-mode
+
+An existing Uniform VM scale set must become Flexible. What must the administrator account for?
+
+Select **1**. Difficulty: foundation.
+
+A. Orchestration mode cannot be changed in place; plan a supported migration or replacement.
+B. Changing the upgrade policy to Rolling changes orchestration mode.
+C. Setting instance count to zero automatically converts it.
+D. Moving it to another resource group converts it to Flexible.
+
+## co-vmss-manual
+
+A scale set uses Manual upgrade policy. Its model is updated to a new image, then a new instance is added. What is expected?
+
+Select **1**. Difficulty: applied.
+
+A. The new instance uses the new model; existing instances need an explicit update.
+B. Every existing instance updates immediately in guaranteed batches.
+C. New instances always use the oldest image until all existing VMs are deleted.
+D. The model update is ignored for both old and new instances.
+
+## co-vmss-scale
+
+A VM scale set should add instances during sustained demand and later remove them. Which TWO configuration choices support this?
+
+Select **2**. Difficulty: applied.
+
+A. A scaling profile and autoscale rules with bounded instance counts
+B. Distinct scale-out and scale-in conditions with suitable cooldown
+C. Only changing the VM SKU on one instance
+D. Setting a maximum count of one while expecting three instances
+
 ## id-budget-not-cap
 
 A monthly Azure budget reaches 100% and sends an alert. No automation is attached. What happens to running resources?

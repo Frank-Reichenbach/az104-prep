@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "co-domain-cname",
+      "family": "co-domain-cname",
+      "revision": 1,
+      "topic": "compute.app-service.domains",
+      "objectives": [
+        "co-21"
+      ],
+      "difficulty": "foundation",
+      "prompt": "You map www.example.com to an App Service app and want DNS to follow its default hostname rather than a fixed IP. Which routing record does Microsoft recommend?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A CNAME from www to the app default hostname.",
+          "explanation": "CNAME maps the subdomain to the hostname."
+        },
+        {
+          "id": "b",
+          "text": "A TXT record containing only the app IP.",
+          "explanation": "TXT verification is not traffic routing."
+        },
+        {
+          "id": "c",
+          "text": "An MX record targeting the app hostname.",
+          "explanation": "MX controls mail delivery, not web traffic resolution."
+        },
+        {
+          "id": "d",
+          "text": "An NS record delegating www to the app hostname.",
+          "explanation": "An app hostname is not an authoritative DNS nameserver."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/domains.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain",
+        "https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-domain-txt",
+      "family": "co-domain-txt",
+      "revision": 1,
+      "topic": "compute.app-service.domains",
+      "objectives": [
+        "co-21"
+      ],
+      "difficulty": "foundation",
+      "prompt": "What is the purpose of the asuid.www TXT record when configuring www.example.com for App Service?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Prove domain ownership and help prevent another app claiming the hostname.",
+          "explanation": "The domain verification ID supports ownership verification and takeover protection."
+        },
+        {
+          "id": "b",
+          "text": "Route HTTPS packets to the app private IP.",
+          "explanation": "TXT records do not route client traffic."
+        },
+        {
+          "id": "c",
+          "text": "Store the certificate private key for browsers.",
+          "explanation": "A public TXT record must not contain a private key."
+        },
+        {
+          "id": "d",
+          "text": "Set the App Service plan worker count.",
+          "explanation": "DNS verification does not configure compute capacity."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/domains.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain",
+        "https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "co-domain-binding",
+      "family": "co-domain-binding",
+      "revision": 1,
+      "topic": "compute.app-service.domains",
+      "objectives": [
+        "co-21"
+      ],
+      "difficulty": "applied",
+      "prompt": "www.example.com resolves to the correct App Service address, but the app has no custom-hostname entry for it and requests return a platform 404. What should be configured?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Validate and add the hostname binding to the intended app.",
+          "explanation": "App Service must associate that Host header with the app."
+        },
+        {
+          "id": "b",
+          "text": "Only lower the DNS TTL repeatedly.",
+          "explanation": "Correct resolution cannot replace the missing app mapping."
+        },
+        {
+          "id": "c",
+          "text": "Only add another identical A record.",
+          "explanation": "Duplicating routing does not establish the hostname binding."
+        },
+        {
+          "id": "d",
+          "text": "Only scale out the plan.",
+          "explanation": "Additional workers do not register the custom hostname."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/compute/app-service/domains.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain",
+        "https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}
