@@ -72,6 +72,21 @@ test('mixed missed review fills available capacity even when a domain is scarce'
   assert.throws(() => makeQuiz(pool, { ...options, domains: [] }), /valid exam domain weights/);
 });
 
+test('extra variants do not increase a family\'s chance in weighted selection', () => {
+  const pool = [{ ...single, family: 'one-version' },
+    ...Array.from({ length: 21 }, (_, i) => ({ ...single, id: `variant-${i}`, family: 'many-versions' }))];
+  let seed = 104;
+  const random = () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 2 ** 32; };
+  let chosen = 0;
+  for (let i = 0; i < 1000; i++) {
+    const [q] = makeQuiz(pool, { topic: 'weighted', count: 1,
+      domains: [{ id: 'storage', weight: [15, 20] }],
+      topics: [{ id: single.topic, domain: 'storage' }] }, random);
+    chosen += q.family === 'many-versions';
+  }
+  assert.ok(chosen > 400 && chosen < 600, `Expected similar family likelihood, got ${chosen}/1000`);
+});
+
 test('missed review uses latest family result, including across variants and unordered history', () => {
   const variants = questions.filter(q => q.family === 'st-life-prefix');
   const wrong = variants[0].options.find(o => !variants[0].correct.includes(o.id)).id;

@@ -1,7 +1,8 @@
 # AZ-104 knowledge base and practice app
 
 Status: approved on 2026-10-01; updated to include quiz refinements and GitHub
-Pages. Implementation is tracked in [STATUS.md](STATUS.md).
+Pages. Initial implementation completed on 2026-10-02; coverage, verification,
+and maintenance are tracked in [STATUS.md](STATUS.md).
 
 ## User decisions
 

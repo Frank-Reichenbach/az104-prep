@@ -45,17 +45,22 @@ Initial publication required no merge. Future merges still require approval.
 
 Live app: https://frank-reichenbach.github.io/az104-prep/.
 
-Latest confirmed deployment: compute commit 7e844d6, successful
-[Actions run 37002370532](https://github.com/Frank-Reichenbach/az104-prep/actions/runs/37002370532).
-That published bank has 195 questions. The complete 322-question bank and
-weighted sessions are local pending final validation and publication.
+The complete 322-question bank and weighted sessions deployed from e0a31df in
+successful [Actions run 37025534855](https://github.com/Frank-Reichenbach/az104-prep/actions/runs/37025534855).
+The public data was checked for 322 questions, 99 topics, and 82/82 objectives.
+Chrome verified weighted sessions, direct advancement, topic context, results,
+preparation feedback, study links, and saved progress against the live URL.
+The branch also includes a follow-up correction that shuffles unique families
+before weighted selection so families with extra variants have equal selection
+opportunity. Its regression test and local browser checks passed.
+For subsequent deployment commits, use the repository's Actions history.
 
 ## Verification
 
 Content build/check has validated all 82 objective mappings, question formats,
 three or more families per topic, internal links, and generated output.
-All 12 Node tests passed, including weighted domain allocation, scarce/missed
-family selection, exact scoring, variant isolation, progress validation, and
+All 13 Node tests passed, including weighted domain allocation, scarce/missed
+family selection, variant selection fairness, exact scoring, isolation, progress validation, and
 local HTTP routing. The static build and Chrome checks passed at both the local
 root and /az104-prep/ path, exercising weighted 100-question tests, direct
 navigation, module context, compact/open results, preparation feedback, internal
@@ -79,13 +84,12 @@ retirement are documented with current alternatives.
 
 ## Next task
 
-Review the Git diff and tracked source inventory, commit with model attribution, push the
-authorized deployment branch, and verify the new Pages deployment and live app.
-Update this handoff with the final commit, run, and live question count.
-
-After the initial implementation is complete, maintenance consists of study
-feedback, further scenario depth, and source refresh before the exam. A skill
-remains an optional later interface; the basic app is the chosen first interface.
+The approved initial knowledge base and basic app are complete. There are no
+unfinished exam objectives. Next work is maintenance driven by study feedback,
+additional scenario depth, and source refresh before the December–January exam
+window. Recheck the official outline and the documented service changes first.
+A skill remains an optional later interface; the basic app is the chosen first
+interface. Do not start cloud labs without authorization for that separate scope.
 
 ## Limits
 

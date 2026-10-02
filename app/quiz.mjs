@@ -19,7 +19,9 @@ export function makeQuiz(questions, { topic = 'all', count = 10, missed = null, 
     && (!missed || missed.has(q.family)));
   const families = new Map();
   for (const q of shuffle(pool, random)) if (!families.has(q.family)) families.set(q.family, q);
-  let selected = [...families.values()];
+  // Shuffle unique families before allocating; extra variants must not make
+  // their family more likely to occupy an early slot in a domain bucket.
+  let selected = shuffle([...families.values()], random);
   if (topic === 'weighted') {
     if (!domains.length || new Set(domains.map(d => d.id)).size !== domains.length
       || domains.some(d => !Array.isArray(d.weight) || d.weight.length !== 2
