@@ -115,6 +115,15 @@ cross-region restore, Connection Monitor agent guidance, and failback tutorial
 direction wording. VM Insights Map/Dependency Agent deprecation and NSG flow-log
 retirement are documented with current alternatives.
 
+## Styling
+
+The app UI uses Tailwind CSS v4, compiled at build time (devDependencies only;
+no runtime dependency, CDN, or CSP change). Edit app/tailwind.css, index.html,
+or main.mjs, then run `npm run build:css` and commit the generated app/style.css.
+CI fails if the committed stylesheet is stale. `npm ci` is now required before
+building. Verified 2026-10-03: npm test (13 pass) and the browser check at both
+base paths passed (Edge via BROWSER_BIN); a visual check was done on desktop width only.
+
 ## Next task
 
 The approved initial knowledge base and basic app are complete. There are no
