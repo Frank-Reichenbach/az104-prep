@@ -27,6 +27,7 @@ Printable questions and answers now include domain/topic context.
 Implemented app behavior:
 
 - Coverage, Knowledge index, Printable questions and "Study this topic" open in an in-app Markdown viewer (`#/doc/<path>`, `app/markdown.mjs`) instead of raw `.md` files.
+- Compact header: title left, theme toggle top right. Question/family/objective counts and the Coverage, Knowledge index, Printable questions and Changelog links moved to the footer. Verified with `pnpm run build`, `pnpm run check`, `pnpm test` (24 pass) and a browser check at desktop and 375px width.
 - Test submission advances directly to the next question or final results.
 - Preparation preserves feedback for every option and the Next step.
 - "I'm unsure" (button or `U` key) records an attempt with `unsure: true` and no selection; it never counts as correct. Review filter offers wrong, unsure, or both (latest result per family). Verified by `npm test` (18 pass); not yet browser-verified by the user.

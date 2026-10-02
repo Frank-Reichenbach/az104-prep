@@ -67,7 +67,7 @@
   .field { @apply w-full rounded-[5px] border border-field bg-surface p-2.5 text-inherit; }
   .btn { @apply my-2 mr-1.5 cursor-pointer rounded-[5px] border border-brand bg-brand px-4.5 py-2.5 text-on-brand hover:bg-brand-dark disabled:cursor-default disabled:opacity-55; }
   .btn-secondary { @apply bg-surface text-secondary hover:bg-selected; }
-  .theme-toggle { @apply m-0 ml-1.5 inline-flex size-10 items-center justify-center rounded-full p-0; }
+  .theme-toggle { @apply m-0 inline-flex shrink-0 size-10 items-center justify-center rounded-full p-0; }
   .theme-toggle svg { @apply size-5 fill-none stroke-current; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .theme-toggle .sun { display: none; }
   :root[data-theme=dark] .theme-toggle .sun { display: block; }

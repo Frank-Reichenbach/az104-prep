@@ -199,7 +199,7 @@ try {
     const domain = bank.domains.find(d => d.id === topic.domain);
     const option = el('option', `${domain.title} › ${topic.title}`); option.value = topic.id; $('topic').append(option);
   });
-  $('coverage').textContent = `${bank.questions.length} questions, ${new Set(bank.questions.map(q => q.family)).size} families · ${bank.coverage.covered}/${bank.coverage.total} objectives documented. ${bank.coverage.covered < bank.coverage.total ? 'Full exam coverage is still in progress.' : 'Documentation coverage does not measure exam readiness.'}`;
+  $('coverage').textContent = `${bank.questions.length} questions · ${new Set(bank.questions.map(q => q.family)).size} families · ${bank.coverage.covered}/${bank.coverage.total} objectives documented`;
   try {
     const saved = localStorage.getItem(STORAGE);
     if (saved) {
