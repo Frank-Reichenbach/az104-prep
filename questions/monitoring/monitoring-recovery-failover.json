@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-failover-rto",
+      "family": "mo-failover-rto",
+      "revision": 1,
+      "topic": "monitoring.recovery.failover",
+      "objectives": [
+        "mo-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "During Site Recovery failover, your priority is to avoid extra processing of received replication data before recovery. Which recovery-point option fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Latest processed.",
+          "explanation": "It uses an already processed point, avoiding additional recovery-point processing before failover."
+        },
+        {
+          "id": "b",
+          "text": "Latest.",
+          "explanation": "Latest processes received data first, favoring a more recent point rather than avoiding that processing."
+        },
+        {
+          "id": "c",
+          "text": "Any old application-consistent point necessarily minimizes recovery time.",
+          "explanation": "Application consistency describes recovered data consistency, not a guarantee of minimum processing/recovery time."
+        },
+        {
+          "id": "d",
+          "text": "A backup-policy retention change.",
+          "explanation": "A backup retention change does not choose a Site Recovery failover point."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/site-recovery/failover.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failover-failback",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failback",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-failover-commit",
+      "family": "mo-failover-commit",
+      "revision": 1,
+      "topic": "monitoring.recovery.failover",
+      "objectives": [
+        "mo-12"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A recovered Site Recovery VM is running, but you might need a different recovery point. Which action removes the ability to change the recovery point?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Viewing the target VM's size.",
+          "explanation": "Inspecting VM configuration does not commit failover."
+        },
+        {
+          "id": "b",
+          "text": "Checking the failover job status.",
+          "explanation": "Monitoring the job does not delete the available recovery points."
+        },
+        {
+          "id": "c",
+          "text": "Committing the failover.",
+          "explanation": "Commit deletes the available recovery points for the VM and ends recovery-point changes."
+        },
+        {
+          "id": "d",
+          "text": "Opening the replicated item's overview.",
+          "explanation": "Opening the overview is a read operation."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/site-recovery/failover.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failover-failback",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failback",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-failover-shutdown",
+      "family": "mo-failover-shutdown",
+      "revision": 1,
+      "topic": "monitoring.recovery.failover",
+      "objectives": [
+        "mo-12"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "You select Shut down machine before beginning failover in Site Recovery, but the source VM cannot be shut down. Which statement is correct?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Site Recovery always cancels failover automatically.",
+          "explanation": "The tutorial states that failover continues even when source shutdown fails."
+        },
+        {
+          "id": "b",
+          "text": "Failover can continue, so your runbook must address a potentially active source application.",
+          "explanation": "The setting attempts shutdown; it does not guarantee shutdown or exclusive application activity."
+        },
+        {
+          "id": "c",
+          "text": "The setting guarantees that no source writes can be lost.",
+          "explanation": "A failed shutdown and replication state prevent such an unconditional guarantee."
+        },
+        {
+          "id": "d",
+          "text": "The source VM is automatically converted into an offline backup.",
+          "explanation": "The setting controls an attempted shutdown, not conversion to Azure Backup."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/site-recovery/failover.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failover-failback",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failback",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

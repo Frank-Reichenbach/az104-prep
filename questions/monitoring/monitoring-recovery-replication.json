@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-replication-cache",
+      "family": "mo-replication-cache",
+      "revision": 1,
+      "topic": "monitoring.recovery.replication",
+      "objectives": [
+        "mo-11"
+      ],
+      "difficulty": "foundation",
+      "prompt": "You enable Azure-to-Azure Site Recovery for a VM. Where should the replication cache storage account be located?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Only in the target recovery region.",
+          "explanation": "The documented replication path uses a cache account in the source region."
+        },
+        {
+          "id": "b",
+          "text": "In the source VM's region.",
+          "explanation": "VM changes pass through source-region cache storage before recovery processing in the target region."
+        },
+        {
+          "id": "c",
+          "text": "In any third region chosen for backup reports.",
+          "explanation": "Reporting placement does not determine Site Recovery cache placement."
+        },
+        {
+          "id": "d",
+          "text": "On the VM's temporary disk instead of a storage account.",
+          "explanation": "A temporary disk is not the replication cache storage account."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/site-recovery/replication.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-enable-replication",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-about-networking",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-replication-permissions",
+      "family": "mo-replication-permissions",
+      "revision": 1,
+      "topic": "monitoring.recovery.replication",
+      "objectives": [
+        "mo-11"
+      ],
+      "difficulty": "applied",
+      "prompt": "An administrator has Site Recovery Contributor on a vault but cannot enable replication using another resource group's resources. What should you check?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The required permissions on the linked source and target resources.",
+          "explanation": "Site Recovery validates permissions on the resources used by the operation, as well as vault access."
+        },
+        {
+          "id": "b",
+          "text": "Whether the role grants subscription-wide Owner automatically.",
+          "explanation": "A role assignment at the vault does not confer subscription-wide Owner."
+        },
+        {
+          "id": "c",
+          "text": "Whether Site Recovery Reader would grant more write access.",
+          "explanation": "Reader is for inspecting recovery state, not enabling replication."
+        },
+        {
+          "id": "d",
+          "text": "Whether disabling storage encryption bypasses Azure RBAC.",
+          "explanation": "Encryption settings do not eliminate authorization checks."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/site-recovery/replication.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-enable-replication",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-about-networking",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-replication-network",
+      "family": "mo-replication-network",
+      "revision": 1,
+      "topic": "monitoring.recovery.replication",
+      "objectives": [
+        "mo-11"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A restrictive NSG blocks a source VM's Site Recovery replication. You need connectivity rules that tolerate service IP changes. What is Microsoft's recommended approach?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Pin the recovery service's current IP addresses permanently.",
+          "explanation": "Hard-coded service IP addresses can change and break replication."
+        },
+        {
+          "id": "b",
+          "text": "Allow only inbound RDP to the source VM.",
+          "explanation": "Remote desktop access does not provide the outbound service connectivity replication needs."
+        },
+        {
+          "id": "c",
+          "text": "Use the documented service tags and outbound HTTPS rules, and check storage firewall access.",
+          "explanation": "Service tags support changing service addresses; storage firewall permissions still need separate review."
+        },
+        {
+          "id": "d",
+          "text": "Configure an authenticated proxy as the mandatory replication path.",
+          "explanation": "Authenticated proxies are unsupported for Site Recovery replication."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/site-recovery/replication.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-enable-replication",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-about-networking",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

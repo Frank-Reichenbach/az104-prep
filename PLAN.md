@@ -42,7 +42,7 @@ through the GitHub Pages phase below; do not deploy Azure resources.
 ## 2. Inventory the exam
 
 Use the [official AZ-104 study guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-104)
-as the scope baseline (objectives effective April 17, 2026; checked October 1,
+as the scope baseline (objectives effective April 17, 2026; checked October 2,
 2026). Record domain weights and prerequisite knowledge in exam/az-104.md.
 Map each listed objective to stable local IDs, specific knowledge files,
 questions, and completion status. Separate supplementary background.

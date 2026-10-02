@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-action-test-failed-variant",
+      "family": "mo-action-test",
+      "revision": 1,
+      "topic": "monitoring.alerts.action-groups",
+      "objectives": [
+        "mo-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "An Azure Monitor action group's sample email test fails. What can you conclude about a separate metric alert rule's threshold evaluation from this result alone?",
+      "select": 1,
+      "options": [
+        {
+          "id": "separate",
+          "text": "Nothing definitive; the sample tests the action path, not the metric condition.",
+          "explanation": "Investigate delivery separately and check real rule evaluation using its own state and telemetry."
+        },
+        {
+          "id": "false",
+          "text": "The metric threshold is definitely false.",
+          "explanation": "Sample delivery does not evaluate the metric threshold."
+        },
+        {
+          "id": "fired",
+          "text": "The real metric rule definitely fired.",
+          "explanation": "Sending a sample does not establish that the real rule evaluated true."
+        },
+        {
+          "id": "telemetry",
+          "text": "The VM definitely stopped emitting metric samples.",
+          "explanation": "A notification-path failure does not prove loss of metric collection."
+        }
+      ],
+      "correct": [
+        "separate"
+      ],
+      "knowledge": "knowledge/monitoring/alerts/action-groups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-processing-weekly-variant",
+      "family": "mo-processing-maintenance",
+      "revision": 1,
+      "topic": "monitoring.alerts.processing",
+      "objectives": [
+        "mo-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "During a weekly maintenance window, Azure Monitor must continue creating matching VM alert instances but omit their notification actions. Which configuration meets this requirement?",
+      "select": 1,
+      "options": [
+        {
+          "id": "suppress",
+          "text": "A scheduled alert processing rule suppressing action groups for the VM.",
+          "explanation": "It changes actions on fired alerts during the matching schedule while preserving evaluation."
+        },
+        {
+          "id": "disable",
+          "text": "Disable the VM's alert rules for that window.",
+          "explanation": "Disabled rules cannot keep creating the required alert instances."
+        },
+        {
+          "id": "delete",
+          "text": "Delete the action group every week and recreate it later.",
+          "explanation": "This is not scheduled scoped suppression and can affect other rules sharing the group."
+        },
+        {
+          "id": "collect",
+          "text": "Remove the VM's monitoring collection configuration during maintenance.",
+          "explanation": "That interrupts telemetry rather than preserving alert evaluation with suppressed actions."
+        }
+      ],
+      "correct": [
+        "suppress"
+      ],
+      "knowledge": "knowledge/monitoring/alerts/processing-rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

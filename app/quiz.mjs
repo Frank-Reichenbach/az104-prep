@@ -13,13 +13,41 @@ export function score(question, selected) {
     && question.correct.every(id => ids.has(id));
 }
 
-export function makeQuiz(questions, { topic = 'all', count = 10, missed = null } = {}, random = Math.random) {
+export function makeQuiz(questions, { topic = 'all', count = 10, missed = null, domains = [], topics = [] } = {}, random = Math.random) {
   if (!Number.isInteger(count) || count < 1) throw new Error('Choose a positive whole-number quiz length.');
-  const pool = questions.filter(q => (topic === 'all' || q.topic === topic)
+  const pool = questions.filter(q => (topic === 'all' || topic === 'weighted' || q.topic === topic)
     && (!missed || missed.has(q.family)));
   const families = new Map();
   for (const q of shuffle(pool, random)) if (!families.has(q.family)) families.set(q.family, q);
-  return shuffle([...families.values()], random).slice(0, count)
+  let selected = [...families.values()];
+  if (topic === 'weighted') {
+    if (!domains.length || new Set(domains.map(d => d.id)).size !== domains.length
+      || domains.some(d => !Array.isArray(d.weight) || d.weight.length !== 2
+        || d.weight.some(w => !Number.isFinite(w) || w <= 0) || d.weight[0] > d.weight[1]))
+      throw new Error('Mixed sessions require valid exam domain weights.');
+    const topicDomains = new Map(topics.map(t => [t.id, t.domain]));
+    const buckets = shuffle(domains.map(d => ({ id: d.id, weight: (d.weight[0] + d.weight[1]) / 2,
+      questions: [], selected: 0 })), random);
+    for (const q of selected) {
+      const bucket = buckets.find(b => b.id === topicDomains.get(q.topic));
+      if (!bucket) throw new Error(`Missing exam domain for ${q.id}.`);
+      bucket.questions.push(q);
+    }
+    const available = buckets.filter(b => b.questions.length);
+    const totalWeight = available.reduce((sum, b) => sum + b.weight, 0);
+    const size = Math.min(count, selected.length);
+    selected = [];
+    // Allocate whole questions by the largest gap from the normalized target.
+    // Exhausted domains are skipped, so a restricted/missed pool still fills.
+    while (selected.length < size) {
+      const candidates = available.filter(b => b.selected < b.questions.length);
+      candidates.sort((a, b) => (size * b.weight / totalWeight - b.selected)
+        - (size * a.weight / totalWeight - a.selected));
+      const bucket = candidates[0];
+      selected.push(bucket.questions[bucket.selected++]);
+    }
+  }
+  return shuffle(selected, random).slice(0, count)
     .map(q => ({ ...q, options: shuffle(q.options, random) }));
 }
 

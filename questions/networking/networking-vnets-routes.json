@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "nw-route-prefix",
+      "family": "nw-route-prefix",
+      "revision": 1,
+      "topic": "networking.vnets.routes",
+      "objectives": [
+        "nw-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "A VM's effective routes include an active system route 10.50.0.0/16 to Virtual network and a UDR 0.0.0.0/0 to a virtual appliance. With no other matching route, where does traffic to 10.50.2.8 go?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Directly through the Virtual network route.",
+          "explanation": "The /16 match is more specific than /0."
+        },
+        {
+          "id": "b",
+          "text": "Through the appliance because all UDRs beat all system routes.",
+          "explanation": "Route-type priority is not a replacement for prefix selection."
+        },
+        {
+          "id": "c",
+          "text": "To the Internet because the destination is outside the VM subnet.",
+          "explanation": "The active VNet route covers the destination."
+        },
+        {
+          "id": "d",
+          "text": "It is dropped because the route table lacks a matching UDR.",
+          "explanation": "System routes remain part of effective routing."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/networking/virtual-networks/routes.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/manage-route-table"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-route-association",
+      "family": "nw-route-association",
+      "revision": 1,
+      "topic": "networking.vnets.routes",
+      "objectives": [
+        "nw-04"
+      ],
+      "difficulty": "foundation",
+      "prompt": "You create a route table and a route, but a workload subnet's effective routes are unchanged. The table is not associated with any subnet. What is missing?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Associate the table with the VM's managed disk.",
+          "explanation": "Route tables are associated with subnets."
+        },
+        {
+          "id": "b",
+          "text": "Associate the table with the workload subnet.",
+          "explanation": "Creating a table alone does not apply it."
+        },
+        {
+          "id": "c",
+          "text": "Add the table name as an NSG service tag.",
+          "explanation": "NSG service tags do not apply route tables."
+        },
+        {
+          "id": "d",
+          "text": "Replace the VNet's DNS server list with the next-hop IP.",
+          "explanation": "DNS settings do not select the subnet route table."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/networking/virtual-networks/routes.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/manage-route-table"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-route-forward",
+      "family": "nw-route-forward",
+      "revision": 1,
+      "topic": "networking.vnets.routes",
+      "objectives": [
+        "nw-04"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A UDR sends app-subnet traffic to a firewall VM in another subnet. NSGs permit it, but the firewall does not forward packets. Which two forwarding settings must you check?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "IP forwarding on the firewall's Azure NIC.",
+          "explanation": "The NIC must be allowed to handle traffic for other addresses."
+        },
+        {
+          "id": "b",
+          "text": "Dynamic allocation on the firewall's public IP.",
+          "explanation": "Public IP allocation does not enable forwarding."
+        },
+        {
+          "id": "c",
+          "text": "Forwarding within the firewall operating system/appliance.",
+          "explanation": "The guest must actually route the packets."
+        },
+        {
+          "id": "d",
+          "text": "A DNS label on the application VM.",
+          "explanation": "A DNS label does not enable appliance forwarding."
+        }
+      ],
+      "correct": [
+        "a",
+        "c"
+      ],
+      "knowledge": "knowledge/networking/virtual-networks/routes.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/manage-route-table"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

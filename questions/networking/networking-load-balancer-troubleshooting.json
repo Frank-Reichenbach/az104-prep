@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "nw-lb-http-probe",
+      "family": "nw-lb-http-probe",
+      "revision": 1,
+      "topic": "networking.load-balancer.troubleshooting",
+      "objectives": [
+        "nw-13"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A backend HTTPS probe receives HTTP 302 redirecting to a login page. TCP connectivity works. Why is the probe unhealthy?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The HTTP/HTTPS probe needs HTTP 200 rather than a redirect.",
+          "explanation": "A non-200 response marks the HTTP health check down."
+        },
+        {
+          "id": "b",
+          "text": "HTTPS probes only accept UDP responses.",
+          "explanation": "HTTPS uses TCP/TLS."
+        },
+        {
+          "id": "c",
+          "text": "Any response proves health, so the frontend IP must be wrong.",
+          "explanation": "The response code is part of the health decision."
+        },
+        {
+          "id": "d",
+          "text": "A public backend IP is required for HTTPS probes.",
+          "explanation": "Probes can reach private backend addresses."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/networking/load-balancer/troubleshooting.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview",
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-diagnostics",
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections",
+        "https://learn.microsoft.com/en-us/troubleshoot/azure/load-balancer/troubleshoot-common-problems/load-balancer-troubleshoot"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-lb-probe-tag",
+      "family": "nw-lb-probe-tag",
+      "revision": 1,
+      "topic": "networking.load-balancer.troubleshooting",
+      "objectives": [
+        "nw-13"
+      ],
+      "difficulty": "applied",
+      "prompt": "Which NSG source service tag identifies Azure Load Balancer health-probe traffic?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Internet.",
+          "explanation": "That is not the specific probe source tag."
+        },
+        {
+          "id": "b",
+          "text": "AzureLoadBalancer.",
+          "explanation": "This tag identifies the platform health-probe source."
+        },
+        {
+          "id": "c",
+          "text": "AzureTrafficManager.",
+          "explanation": "Traffic Manager probing is a different service."
+        },
+        {
+          "id": "d",
+          "text": "Storage.",
+          "explanation": "That identifies storage service addresses rather than Load Balancer probes."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/networking/load-balancer/troubleshooting.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview",
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-diagnostics",
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections",
+        "https://learn.microsoft.com/en-us/troubleshoot/azure/load-balancer/troubleshoot-common-problems/load-balancer-troubleshoot"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-lb-healthy-block",
+      "family": "nw-lb-healthy-block",
+      "revision": 1,
+      "topic": "networking.load-balancer.troubleshooting",
+      "objectives": [
+        "nw-13"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "Load Balancer probes are healthy, but HTTPS clients cannot connect. The probe uses TCP 9000 while the rule sends clients to TCP 443. What is a valid next check?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Assume 9000 health proves 443 is permitted and listening.",
+          "explanation": "Different ports can have different listeners and filters."
+        },
+        {
+          "id": "b",
+          "text": "Remove the backend pool because probing succeeded.",
+          "explanation": "Pool removal would break distribution rather than diagnose the client path."
+        },
+        {
+          "id": "c",
+          "text": "Inspect TCP 443 rule mapping, NSGs, guest firewall, and listener.",
+          "explanation": "A separate probe port does not establish the application's path."
+        },
+        {
+          "id": "d",
+          "text": "Change the DNS TTL to make the probe test TCP 443.",
+          "explanation": "DNS TTL does not change probe or backend ports."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/networking/load-balancer/troubleshooting.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview",
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-diagnostics",
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections",
+        "https://learn.microsoft.com/en-us/troubleshoot/azure/load-balancer/troubleshoot-common-problems/load-balancer-troubleshoot"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

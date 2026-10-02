@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-bv-type",
+      "family": "mo-bv-type",
+      "revision": 1,
+      "topic": "monitoring.backup.backup-vault",
+      "objectives": [
+        "mo-08"
+      ],
+      "difficulty": "foundation",
+      "prompt": "You choose a vault for standalone Azure Disk Backup under Microsoft.DataProtection. Which resource type fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Backup vault.",
+          "explanation": "Azure Disk Backup uses this vault family."
+        },
+        {
+          "id": "b",
+          "text": "Only a Recovery Services vault configured for VM backup.",
+          "explanation": "That is a different recovery-workload architecture."
+        },
+        {
+          "id": "c",
+          "text": "An Azure Monitor workspace.",
+          "explanation": "This stores monitoring data rather than manages disk backup."
+        },
+        {
+          "id": "d",
+          "text": "An action group.",
+          "explanation": "This defines alert responses rather than backup instances."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/backup/backup-vault.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/backup/backup-vault-overview",
+        "https://learn.microsoft.com/en-us/azure/backup/create-manage-backup-vault",
+        "https://learn.microsoft.com/en-us/azure/backup/disk-backup-overview",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-dataprotection-use-rest-api-backup-disks"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-bv-identity",
+      "family": "mo-bv-identity",
+      "revision": 1,
+      "topic": "monitoring.backup.backup-vault",
+      "objectives": [
+        "mo-08"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "An operator can create backup instances, but disk backup validation says the vault cannot access the source disk. What should you inspect?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Only the operator's DNS suffix.",
+          "explanation": "DNS suffix does not supply disk RBAC."
+        },
+        {
+          "id": "b",
+          "text": "The Backup vault managed identity's required role assignments and scopes.",
+          "explanation": "The service identity needs its own workload permissions."
+        },
+        {
+          "id": "c",
+          "text": "Only the action-group email recipients.",
+          "explanation": "Notifications do not authorize backup access."
+        },
+        {
+          "id": "d",
+          "text": "Only the disk's display name.",
+          "explanation": "Renaming does not grant the identity access."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/backup/backup-vault.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/backup/backup-vault-overview",
+        "https://learn.microsoft.com/en-us/azure/backup/create-manage-backup-vault",
+        "https://learn.microsoft.com/en-us/azure/backup/disk-backup-overview",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-dataprotection-use-rest-api-backup-disks"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-bv-operational",
+      "family": "mo-bv-operational",
+      "revision": 1,
+      "topic": "monitoring.backup.backup-vault",
+      "objectives": [
+        "mo-08"
+      ],
+      "difficulty": "applied",
+      "prompt": "A Backup vault uses GRS and manages Azure Disk Backup operational snapshots. Does that setting copy those disk snapshots into geo-redundant vault storage?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes, every vault-managed workload is stored in the vault.",
+          "explanation": "Operational disk backup is an exception to this assumption."
+        },
+        {
+          "id": "b",
+          "text": "Yes, as soon as the disk has a public IP.",
+          "explanation": "Disks have no such public-IP backup switch."
+        },
+        {
+          "id": "c",
+          "text": "No; operational disk snapshots are not copied to vault storage.",
+          "explanation": "Vault redundancy therefore does not apply to that operational tier."
+        },
+        {
+          "id": "d",
+          "text": "Yes, if the operator has Owner.",
+          "explanation": "Operator RBAC does not change the backup architecture."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/backup/backup-vault.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/backup/backup-vault-overview",
+        "https://learn.microsoft.com/en-us/azure/backup/create-manage-backup-vault",
+        "https://learn.microsoft.com/en-us/azure/backup/disk-backup-overview",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-dataprotection-use-rest-api-backup-disks"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

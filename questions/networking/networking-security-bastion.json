@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "nw-bastion-subnet",
+      "family": "nw-bastion-subnet",
+      "revision": 1,
+      "topic": "networking.security.bastion",
+      "objectives": [
+        "nw-08"
+      ],
+      "difficulty": "foundation",
+      "prompt": "You deploy a new dedicated Standard Bastion host. Which subnet configuration meets its requirement?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A dedicated AzureBastionSubnet of /26 or larger.",
+          "explanation": "Dedicated hosts require that name and minimum subnet size."
+        },
+        {
+          "id": "b",
+          "text": "Any workload subnet of /28.",
+          "explanation": "The name, dedication, and size do not meet the requirement."
+        },
+        {
+          "id": "c",
+          "text": "GatewaySubnet shared with a VPN gateway.",
+          "explanation": "Bastion requires its own named subnet."
+        },
+        {
+          "id": "d",
+          "text": "AzureBastionSubnet /27 for a newly created host.",
+          "explanation": "The legacy /27 exception does not apply to this new deployment."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/networking/security/bastion.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview",
+        "https://learn.microsoft.com/en-us/azure/bastion/configuration-settings",
+        "https://learn.microsoft.com/en-us/azure/bastion/bastion-nsg",
+        "https://learn.microsoft.com/en-us/azure/bastion/bastion-connect-vm-rdp-windows"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-bastion-target",
+      "family": "nw-bastion-target",
+      "revision": 1,
+      "topic": "networking.security.bastion",
+      "objectives": [
+        "nw-08"
+      ],
+      "difficulty": "applied",
+      "prompt": "You use browser RDP through a dedicated Bastion host to a VM reachable by private IP. Which target-VM configuration is sufficient for the network path?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A public IP and Internet-wide RDP allow.",
+          "explanation": "The Bastion path uses the VM's private IP."
+        },
+        {
+          "id": "b",
+          "text": "Private-IP reachability and permitted Bastion-to-VM RDP traffic.",
+          "explanation": "This supplies the target-side path without exposing its RDP port publicly."
+        },
+        {
+          "id": "c",
+          "text": "No RDP listener because Bastion supplies the guest desktop service.",
+          "explanation": "Bastion transports the connection; the guest must support RDP."
+        },
+        {
+          "id": "d",
+          "text": "Only a DNS label on a target public IP.",
+          "explanation": "A DNS label does not establish the Bastion-to-VM path."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/networking/security/bastion.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview",
+        "https://learn.microsoft.com/en-us/azure/bastion/configuration-settings",
+        "https://learn.microsoft.com/en-us/azure/bastion/bastion-nsg",
+        "https://learn.microsoft.com/en-us/azure/bastion/bastion-connect-vm-rdp-windows"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-bastion-reader",
+      "family": "nw-bastion-reader",
+      "revision": 1,
+      "topic": "networking.security.bastion",
+      "objectives": [
+        "nw-08"
+      ],
+      "difficulty": "applied",
+      "prompt": "A user can read the VM, NIC, and Bastion resources but lacks valid guest RDP login rights. Does Azure Reader grant those rights?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes, Reader becomes guest administrator through Bastion.",
+          "explanation": "Resource visibility does not grant guest administration."
+        },
+        {
+          "id": "b",
+          "text": "Yes, if Bastion is Standard.",
+          "explanation": "The SKU does not create guest login rights."
+        },
+        {
+          "id": "c",
+          "text": "No; resource read permissions and guest authentication are separate.",
+          "explanation": "The user still needs a supported guest login and rights."
+        },
+        {
+          "id": "d",
+          "text": "Yes, if the VM has no public IP.",
+          "explanation": "Private networking does not change authentication rights."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/networking/security/bastion.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview",
+        "https://learn.microsoft.com/en-us/azure/bastion/configuration-settings",
+        "https://learn.microsoft.com/en-us/azure/bastion/bastion-nsg",
+        "https://learn.microsoft.com/en-us/azure/bastion/bastion-connect-vm-rdp-windows"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-reprotect-direction",
+      "family": "mo-reprotect-direction",
+      "revision": 1,
+      "topic": "monitoring.recovery.failback",
+      "objectives": [
+        "mo-12"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A VM now runs in the secondary region after a committed Site Recovery failover. You choose Re-Protect to prepare for returning to the primary. What does this do?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Immediately moves production execution to the primary.",
+          "explanation": "Reprotection starts reverse replication; failback is a later recovery operation."
+        },
+        {
+          "id": "b",
+          "text": "Deletes all backups in a Backup vault.",
+          "explanation": "Site Recovery reprotection is not an Azure Backup deletion operation."
+        },
+        {
+          "id": "c",
+          "text": "Keeps only primary-to-secondary replication without collecting secondary changes.",
+          "explanation": "Returning safely requires replication of changes from the current secondary VM toward the primary."
+        },
+        {
+          "id": "d",
+          "text": "Replicates from the secondary region toward the primary region.",
+          "explanation": "This is the documented reverse replication direction after failover."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "knowledge": "knowledge/monitoring/site-recovery/failback.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failover-failback",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failback",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-failback-ready",
+      "family": "mo-failback-ready",
+      "revision": 1,
+      "topic": "monitoring.recovery.failback",
+      "objectives": [
+        "mo-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "A VM was failed over and reprotected from secondary to primary using Site Recovery. Before failback, which two checks are required by the tutorial?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "The replicated VM is healthy/protected and synchronization is complete.",
+          "explanation": "Failback should use a healthy, synchronized replicated item."
+        },
+        {
+          "id": "b",
+          "text": "The original primary VM is powered on to receive disk changes.",
+          "explanation": "The tutorial requires the original primary-region VM to be shut down; an active VM can make failback fail."
+        },
+        {
+          "id": "c",
+          "text": "The primary region is available and required resource access is permitted.",
+          "explanation": "Availability and resource permissions are prerequisites for returning to that region."
+        },
+        {
+          "id": "d",
+          "text": "All replication recovery points are deleted before the failback starts.",
+          "explanation": "Failback uses a selected recovery point; deleting them beforehand is not a prerequisite."
+        }
+      ],
+      "correct": [
+        "a",
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/site-recovery/failback.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failover-failback",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failback",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-failback-protection",
+      "family": "mo-failback-protection",
+      "revision": 1,
+      "topic": "monitoring.recovery.failback",
+      "objectives": [
+        "mo-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "A Site Recovery failback has returned your VM to the primary region. What restores disaster recovery coverage toward the secondary region?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Assume protection has resumed without checking replication.",
+          "explanation": "The tutorial calls for reprotection after failback."
+        },
+        {
+          "id": "b",
+          "text": "Reprotect the primary VM toward the secondary and verify replication health.",
+          "explanation": "This restores the intended primary-to-secondary replication direction."
+        },
+        {
+          "id": "c",
+          "text": "Leave reverse replication permanently configured toward the primary.",
+          "explanation": "Once execution is primary again, the intended recovery destination is the secondary."
+        },
+        {
+          "id": "d",
+          "text": "Run Cleanup test failover instead of reprotection.",
+          "explanation": "Test-drill cleanup is a separate workflow and does not establish production replication."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/site-recovery/failback.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failover-failback",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failback",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-kql-summarize",
+      "family": "mo-kql-summarize",
+      "revision": 1,
+      "topic": "monitoring.logs.kql",
+      "objectives": [
+        "mo-03"
+      ],
+      "difficulty": "applied",
+      "prompt": "What does `Syslog | summarize Messages=count() by Computer` return?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "One row per observed Computer value with its message count.",
+          "explanation": "summarize groups the input by Computer and counts rows."
+        },
+        {
+          "id": "b",
+          "text": "Every Syslog row with no aggregation.",
+          "explanation": "summarize reduces rows into groups."
+        },
+        {
+          "id": "c",
+          "text": "Only the most recent message per computer.",
+          "explanation": "count() is not a latest-row selection."
+        },
+        {
+          "id": "d",
+          "text": "A count of computers per message text.",
+          "explanation": "The grouping key is Computer, not message text."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/logs/kql.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries",
+        "https://learn.microsoft.com/en-us/kusto/query/summarize-operator",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-tutorial"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-kql-take",
+      "family": "mo-kql-take",
+      "revision": 1,
+      "topic": "monitoring.logs.kql",
+      "objectives": [
+        "mo-03"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Does `Syslog | take 10` guarantee the latest ten messages?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes, take implicitly sorts by TimeGenerated.",
+          "explanation": "take does not impose that ordering."
+        },
+        {
+          "id": "b",
+          "text": "No; use an explicit time-based top/sort for latest records.",
+          "explanation": "take supplies an arbitrary limited sample."
+        },
+        {
+          "id": "c",
+          "text": "Yes, because every Log Analytics table is ordered newest first.",
+          "explanation": "That ordering is not guaranteed by this query."
+        },
+        {
+          "id": "d",
+          "text": "No; take deletes the selected messages.",
+          "explanation": "KQL queries do not delete these log records."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/logs/kql.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries",
+        "https://learn.microsoft.com/en-us/kusto/query/summarize-operator",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-tutorial"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-kql-empty",
+      "family": "mo-kql-empty",
+      "revision": 1,
+      "topic": "monitoring.logs.kql",
+      "objectives": [
+        "mo-03"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A log query returns no rows for the last five minutes. Which two checks are appropriate before concluding the operation never occurred?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "Check workspace/table scope and query/time-picker filters.",
+          "explanation": "Scope or narrow filtering can exclude relevant data."
+        },
+        {
+          "id": "b",
+          "text": "Assume no rows proves all systems were healthy.",
+          "explanation": "Missing data is not health evidence by itself."
+        },
+        {
+          "id": "c",
+          "text": "Check collection and ingestion of the expected event.",
+          "explanation": "The event may not have reached the queried table yet."
+        },
+        {
+          "id": "d",
+          "text": "Delete the DCR to make historical rows appear.",
+          "explanation": "Removing collection does not create missing history."
+        }
+      ],
+      "correct": [
+        "a",
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/logs/kql.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries",
+        "https://learn.microsoft.com/en-us/kusto/query/summarize-operator",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-tutorial"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

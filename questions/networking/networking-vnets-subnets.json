@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "nw-subnet-reserved",
+      "family": "nw-subnet-reserved",
+      "revision": 1,
+      "topic": "networking.vnets.subnets",
+      "objectives": [
+        "nw-01"
+      ],
+      "difficulty": "foundation",
+      "prompt": "How many IPv4 addresses are available for assignment in a normal Azure /27 subnet before service-specific allocations?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "27",
+          "explanation": "The subnet has 32 addresses; Azure reserves five."
+        },
+        {
+          "id": "b",
+          "text": "30",
+          "explanation": "Subtracting only network and broadcast misses three other Azure reservations."
+        },
+        {
+          "id": "c",
+          "text": "32",
+          "explanation": "Azure reserves addresses and does not allow all 32 to be assigned."
+        },
+        {
+          "id": "d",
+          "text": "24",
+          "explanation": "Eight reserved addresses is not the ordinary Azure IPv4 reservation count."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/networking/virtual-networks/subnets.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-vnet-region",
+      "family": "nw-vnet-region",
+      "revision": 1,
+      "topic": "networking.vnets.subnets",
+      "objectives": [
+        "nw-01"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which statement describes an Azure virtual network location boundary?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A VNet is regional and can span availability zones within that region.",
+          "explanation": "The network belongs to one region while serving its zones."
+        },
+        {
+          "id": "b",
+          "text": "A VNet automatically spans every Azure region.",
+          "explanation": "Cross-region connectivity requires separate networks and a connection."
+        },
+        {
+          "id": "c",
+          "text": "A VNet is confined to one availability zone.",
+          "explanation": "A VNet spans availability zones in its region."
+        },
+        {
+          "id": "d",
+          "text": "Changing the resource-group location moves the VNet to another region.",
+          "explanation": "Resource-group metadata does not relocate the VNet."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/networking/virtual-networks/subnets.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-vnet-egress",
+      "family": "nw-vnet-egress",
+      "revision": 1,
+      "topic": "networking.vnets.subnets",
+      "objectives": [
+        "nw-01"
+      ],
+      "difficulty": "applied",
+      "prompt": "A VM is deployed into a new private subnet with defaultOutboundAccess false. It needs Internet access for updates. What should be configured?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A supported explicit outbound method, such as a NAT gateway.",
+          "explanation": "A private subnet does not supply implicit default outbound access."
+        },
+        {
+          "id": "b",
+          "text": "Assume the platform always assigns usable default outbound access.",
+          "explanation": "The subnet setting explicitly prevents relying on that behavior."
+        },
+        {
+          "id": "c",
+          "text": "Only add an NSG allow rule without any outbound method.",
+          "explanation": "Permission to send traffic does not provide the required public egress translation."
+        },
+        {
+          "id": "d",
+          "text": "Only add a private DNS zone.",
+          "explanation": "DNS resolution does not supply an Internet egress path."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/networking/virtual-networks/subnets.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

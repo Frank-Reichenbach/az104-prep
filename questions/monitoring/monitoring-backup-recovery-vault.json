@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-rsv-region",
+      "family": "mo-rsv-region",
+      "revision": 1,
+      "topic": "monitoring.backup.recovery-vault",
+      "objectives": [
+        "mo-07"
+      ],
+      "difficulty": "foundation",
+      "prompt": "You configure Azure VM backup to a Recovery Services vault. Which location requirement applies?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The vault must be in the VM's region.",
+          "explanation": "Azure VM backup uses a vault in the same region."
+        },
+        {
+          "id": "b",
+          "text": "Any region works if the names match.",
+          "explanation": "Names do not override region requirements."
+        },
+        {
+          "id": "c",
+          "text": "Only a region different from the VM is allowed.",
+          "explanation": "Primary backup enrollment is not configured this way."
+        },
+        {
+          "id": "d",
+          "text": "The vault has no region because all vaults are global.",
+          "explanation": "A Recovery Services vault is a regional resource."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/backup/recovery-services-vault.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/backup/backup-create-recovery-services-vault",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-rsv-redundancy",
+      "family": "mo-rsv-redundancy",
+      "revision": 1,
+      "topic": "monitoring.backup.recovery-vault",
+      "objectives": [
+        "mo-07"
+      ],
+      "difficulty": "applied",
+      "prompt": "You have not protected any item in a new Recovery Services vault. When should you decide its storage replication type?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Only after several successful backups.",
+          "explanation": "The setting becomes unavailable for ordinary change after backup configuration."
+        },
+        {
+          "id": "b",
+          "text": "Before configuring the first backup.",
+          "explanation": "This is the documented timing for selecting replication."
+        },
+        {
+          "id": "c",
+          "text": "At each individual file restore.",
+          "explanation": "Restore does not redefine vault replication."
+        },
+        {
+          "id": "d",
+          "text": "By changing the VM's NSG.",
+          "explanation": "NSGs do not configure vault storage redundancy."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/backup/recovery-services-vault.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/backup/backup-create-recovery-services-vault",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-rsv-crr",
+      "family": "mo-rsv-crr",
+      "revision": 1,
+      "topic": "monitoring.backup.recovery-vault",
+      "objectives": [
+        "mo-07"
+      ],
+      "difficulty": "applied",
+      "prompt": "For a supported Azure VM workload, which vault redundancy is required to enable Cross Region Restore?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "LRS.",
+          "explanation": "Locally redundant storage does not supply the secondary-region copy."
+        },
+        {
+          "id": "b",
+          "text": "ZRS only.",
+          "explanation": "Zone redundancy remains within a region."
+        },
+        {
+          "id": "c",
+          "text": "GRS.",
+          "explanation": "Cross Region Restore requires a geo-redundant vault and workload support."
+        },
+        {
+          "id": "d",
+          "text": "A public IP with global tier.",
+          "explanation": "IP routing tier is unrelated to backup redundancy."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/backup/recovery-services-vault.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/backup/backup-create-recovery-services-vault",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

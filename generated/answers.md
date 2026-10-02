@@ -6,6 +6,8 @@
 
 ## co-web-zip
 
+Topic: Compute › App Service application deployment and configuration.
+
 A published application is deployed to App Service from a ZIP archive. What archive layout does the documented deployment process require?
 
 Select **1**. Difficulty: applied.
@@ -20,6 +22,8 @@ Study: [knowledge file](../knowledge/compute/app-service/apps.md). Evidence chec
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/deploy-zip) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/configure-common) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity)
 
 ## co-web-settings
+
+Topic: Compute › App Service application deployment and configuration.
 
 What happens when an administrator changes App Service app settings?
 
@@ -36,6 +40,8 @@ Study: [knowledge file](../knowledge/compute/app-service/apps.md). Evidence chec
 
 ## co-web-managed
 
+Topic: Compute › App Service application deployment and configuration.
+
 A web app has managed identity enabled but receives authorization failures from a protected Azure service. What should be checked?
 
 Select **1**. Difficulty: applied.
@@ -50,6 +56,8 @@ Study: [knowledge file](../knowledge/compute/app-service/apps.md). Evidence chec
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/deploy-zip) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/configure-common) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity)
 
 ## co-web-backup-external
+
+Topic: Compute › App Service backup configuration and restoration.
 
 An App Service app has automatic backups and stores business data in an externally mounted Azure file share. What should the recovery design include?
 
@@ -66,6 +74,8 @@ Study: [knowledge file](../knowledge/compute/app-service/backups.md). Evidence c
 
 ## co-web-backup-restore
 
+Topic: Compute › App Service backup configuration and restoration.
+
 Before replacing a production App Service app with a backup, which approach provides useful recovery evidence?
 
 Select **1**. Difficulty: applied.
@@ -80,6 +90,8 @@ Study: [knowledge file](../knowledge/compute/app-service/backups.md). Evidence c
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/manage-backup)
 
 ## co-web-backup-database
+
+Topic: Compute › App Service backup configuration and restoration.
 
 In October 2026, you design a new App Service recovery setup with Azure SQL. Which database backup approach follows current Microsoft guidance?
 
@@ -96,6 +108,8 @@ Study: [knowledge file](../knowledge/compute/app-service/backups.md). Evidence c
 
 ## co-domain-cname
 
+Topic: Compute › App Service custom DNS names and ownership verification.
+
 You map www.example.com to an App Service app and want DNS to follow its default hostname rather than a fixed IP. Which routing record does Microsoft recommend?
 
 Select **1**. Difficulty: foundation.
@@ -110,6 +124,8 @@ Study: [knowledge file](../knowledge/compute/app-service/domains.md). Evidence c
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover)
 
 ## co-domain-txt
+
+Topic: Compute › App Service custom DNS names and ownership verification.
 
 What is the purpose of the asuid.www TXT record when configuring www.example.com for App Service?
 
@@ -126,6 +142,8 @@ Study: [knowledge file](../knowledge/compute/app-service/domains.md). Evidence c
 
 ## co-domain-binding
 
+Topic: Compute › App Service custom DNS names and ownership verification.
+
 www.example.com resolves to the correct App Service address, but the app has no custom-hostname entry for it and requests return a platform 404. What should be configured?
 
 Select **1**. Difficulty: applied.
@@ -140,6 +158,8 @@ Study: [knowledge file](../knowledge/compute/app-service/domains.md). Evidence c
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover)
 
 ## co-web-outbound
+
+Topic: Compute › App Service inbound and outbound networking.
 
 An App Service app must call a VM using its private IP in a same-region VNet. Which App Service networking feature provides the outbound VNet path?
 
@@ -156,6 +176,8 @@ Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidenc
 
 ## co-web-inbound
 
+Topic: Compute › App Service inbound and outbound networking.
+
 Users must access an App Service app privately from a VNet, and the app must also reach a private database. Which TWO capabilities should be configured for their respective traffic directions?
 
 Select **2**. Difficulty: applied.
@@ -170,6 +192,8 @@ Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidenc
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint)
 
 ## co-web-subnet
+
+Topic: Compute › App Service inbound and outbound networking.
 
 A web app already uses a delegated subnet for VNet integration. Where should its inbound private endpoint be placed?
 
@@ -186,6 +210,8 @@ Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidenc
 
 ## co-plan-sharing
 
+Topic: Compute › App Service plan creation and compute sharing.
+
 Two web apps and a staging slot run in the same dedicated App Service plan. What compute relationship should the administrator expect?
 
 Select **1**. Difficulty: foundation.
@@ -200,6 +226,8 @@ Study: [knowledge file](../knowledge/compute/app-service/plans.md). Evidence che
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs)
 
 ## co-plan-separate
+
+Topic: Compute › App Service plan creation and compute sharing.
 
 A resource-intensive app must have an independent compute and scaling boundary from other apps. Which design fits?
 
@@ -216,6 +244,8 @@ Study: [knowledge file](../knowledge/compute/app-service/plans.md). Evidence che
 
 ## co-plan-cost
 
+Topic: Compute › App Service plan creation and compute sharing.
+
 The only app in a paid dedicated App Service plan is stopped. What should be checked to stop unnecessary plan compute charges?
 
 Select **1**. Difficulty: applied.
@@ -230,6 +260,8 @@ Study: [knowledge file](../knowledge/compute/app-service/plans.md). Evidence che
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs)
 
 ## co-web-scale-up
+
+Topic: Compute › App Service scale up, scale out, and autoscale.
 
 An App Service app needs more memory per worker and a higher-tier feature. Which operation addresses these requirements?
 
@@ -246,6 +278,8 @@ Study: [knowledge file](../knowledge/compute/app-service/scaling.md). Evidence c
 
 ## co-web-schedule
 
+Topic: Compute › App Service scale up, scale out, and autoscale.
+
 An App Service plan must run more instances at 08:00 each weekday based on a schedule. Which scaling mechanism should be used?
 
 Select **1**. Difficulty: applied.
@@ -260,6 +294,8 @@ Study: [knowledge file](../knowledge/compute/app-service/scaling.md). Evidence c
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-best-practices)
 
 ## co-web-autolimits
+
+Topic: Compute › App Service scale up, scale out, and autoscale.
 
 You evaluate App Service automatic HTTP scaling. Which TWO points belong in the cost and compatibility review?
 
@@ -276,6 +312,8 @@ Study: [knowledge file](../knowledge/compute/app-service/scaling.md). Evidence c
 
 ## co-slot-sticky
 
+Topic: Compute › App Service deployment slots and swaps.
+
 Production and staging use different database connection strings, and each must remain attached to its environment during a slot swap. What should be configured?
 
 Select **1**. Difficulty: applied.
@@ -290,6 +328,8 @@ Study: [knowledge file](../knowledge/compute/app-service/slots.md). Evidence che
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots)
 
 ## co-slot-identity
+
+Topic: Compute › App Service deployment slots and swaps.
 
 Which App Service configuration remains with its slot during a swap?
 
@@ -306,6 +346,8 @@ Study: [knowledge file](../knowledge/compute/app-service/slots.md). Evidence che
 
 ## co-slot-rollback
 
+Topic: Compute › App Service deployment slots and swaps.
+
 A release is swapped from staging to production and performs an external database schema migration. What does swapping the slots back provide?
 
 Select **1**. Difficulty: applied.
@@ -320,6 +362,8 @@ Study: [knowledge file](../knowledge/compute/app-service/slots.md). Evidence che
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots)
 
 ## co-tls-binding
+
+Topic: Compute › App Service certificates and TLS bindings.
 
 A valid certificate for www.example.com has been uploaded to App Service, and the custom hostname is mapped, but HTTPS still does not use it. What configuration is missing?
 
@@ -336,6 +380,8 @@ Study: [knowledge file](../knowledge/compute/app-service/tls.md). Evidence check
 
 ## co-tls-wildcard
 
+Topic: Compute › App Service certificates and TLS bindings.
+
 An app requires a wildcard certificate covering *.example.com. Which certificate approach fits App Service requirements?
 
 Select **1**. Difficulty: applied.
@@ -350,6 +396,8 @@ Study: [knowledge file](../knowledge/compute/app-service/tls.md). Evidence check
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate)
 
 ## co-tls-sni
+
+Topic: Compute › App Service certificates and TLS bindings.
 
 What is the purpose of an SNI TLS binding in App Service?
 
@@ -366,6 +414,8 @@ Study: [knowledge file](../knowledge/compute/app-service/tls.md). Evidence check
 
 ## co-aca-revision
 
+Topic: Compute › Container Apps environments, ingress, and revisions.
+
 Which Container Apps change creates a new revision?
 
 Select **1**. Difficulty: foundation.
@@ -380,6 +430,8 @@ Study: [knowledge file](../knowledge/compute/containers/apps.md). Evidence check
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-apps/revisions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-apps/managed-identity)
 
 ## co-aca-canary
+
+Topic: Compute › Container Apps environments, ingress, and revisions.
 
 You want two Container Apps image versions active simultaneously, with 10% of ingress traffic sent to the new version. Which revision mode supports this?
 
@@ -396,6 +448,8 @@ Study: [knowledge file](../knowledge/compute/containers/apps.md). Evidence check
 
 ## co-aca-port
 
+Topic: Compute › Container Apps environments, ingress, and revisions.
+
 A Container App image pulls successfully, but HTTP ingress cannot reach the process. The process listens on 8080 while ingress targets 80. What should be corrected?
 
 Select **1**. Difficulty: applied.
@@ -410,6 +464,8 @@ Study: [knowledge file](../knowledge/compute/containers/apps.md). Evidence check
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-apps/revisions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-apps/managed-identity)
 
 ## co-aci-localhost
+
+Topic: Compute › Container Instances groups and restart behavior.
 
 Two Linux containers in the same ACI container group need to communicate on an internal-only port. Which address can they use?
 
@@ -426,6 +482,8 @@ Study: [knowledge file](../knowledge/compute/containers/instances.md). Evidence 
 
 ## co-aci-onfailure
 
+Topic: Compute › Container Instances groups and restart behavior.
+
 An ACI batch task should retry after a nonzero process exit and remain terminated after successful completion. Which restart policy explicitly expresses that behavior?
 
 Select **1**. Difficulty: applied.
@@ -440,6 +498,8 @@ Study: [knowledge file](../knowledge/compute/containers/instances.md). Evidence 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files)
 
 ## co-aci-persist
+
+Topic: Compute › Container Instances groups and restart behavior.
 
 Output from an ACI task must survive deletion of its container group. Which design meets the requirement?
 
@@ -456,6 +516,8 @@ Study: [knowledge file](../knowledge/compute/containers/instances.md). Evidence 
 
 ## co-acr-abac
 
+Topic: Compute › Container Registry images and access.
+
 An ACR registry uses RBAC Registry + ABAC Repository Permissions. A workload must pull an image from an allowed repository but has only AcrPull. What should be changed?
 
 Select **1**. Difficulty: applied.
@@ -470,6 +532,8 @@ Study: [knowledge file](../knowledge/compute/containers/registry.md). Evidence c
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication)
 
 ## co-acr-digest
+
+Topic: Compute › Container Registry images and access.
 
 A deployment must refer to the exact same container image content after a tag is reassigned. Which identifier should it record?
 
@@ -486,6 +550,8 @@ Study: [knowledge file](../knowledge/compute/containers/registry.md). Evidence c
 
 ## co-acr-identity
 
+Topic: Compute › Container Registry images and access.
+
 A supported Azure service must pull private ACR images without storing a shared registry password. Which approach fits?
 
 Select **1**. Difficulty: applied.
@@ -500,6 +566,8 @@ Study: [knowledge file](../knowledge/compute/containers/registry.md). Evidence c
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication)
 
 ## co-scale-aci
+
+Topic: Compute › Container resource sizing and replica scaling.
 
 An ACI group has two containers requesting one CPU each. One container has a limit of two CPUs. What does that limit allow?
 
@@ -516,6 +584,8 @@ Study: [knowledge file](../knowledge/compute/containers/scaling.md). Evidence ch
 
 ## co-scale-zero
 
+Topic: Compute › Container resource sizing and replica scaling.
+
 A Container Apps queue worker has ingress disabled, minReplicas 0, and no custom scale rule. Why can it remain at zero while queue messages arrive?
 
 Select **1**. Difficulty: applied.
@@ -530,6 +600,8 @@ Study: [knowledge file](../knowledge/compute/containers/scaling.md). Evidence ch
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/scale-app) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-apps/containers)
 
 ## co-scale-oom
+
+Topic: Compute › Container resource sizing and replica scaling.
 
 Every Container Apps replica fails during startup because its memory allocation is too small. Which change directly addresses that failure?
 
@@ -546,6 +618,8 @@ Study: [knowledge file](../knowledge/compute/containers/scaling.md). Evidence ch
 
 ## co-arm-param
 
+Topic: Compute › Editing ARM templates safely.
+
 An ARM template must accept only Standard_LRS or Standard_ZRS for a storageSku input. Which parameter property enforces this during validation?
 
 Select **1**. Difficulty: foundation.
@@ -560,6 +634,8 @@ Study: [knowledge file](../knowledge/compute/templates/arm-editing.md). Evidence
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if)
 
 ## co-arm-incremental
+
+Topic: Compute › Editing ARM templates safely.
 
 An ARM incremental deployment redeclares an existing resource but omits one of its non-default properties. What should the administrator assume when reviewing the change?
 
@@ -576,6 +652,8 @@ Study: [knowledge file](../knowledge/compute/templates/arm-editing.md). Evidence
 
 ## co-arm-secure
 
+Topic: Compute › Editing ARM templates safely.
+
 An ARM template accepts an administrator password. Which TWO choices help prevent exposing it in template and deployment records?
 
 Select **2**. Difficulty: applied.
@@ -590,6 +668,8 @@ Study: [knowledge file](../knowledge/compute/templates/arm-editing.md). Evidence
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if)
 
 ## co-bicep-refactor
+
+Topic: Compute › Editing Bicep parameters, resources, and modules.
 
 You rename a Bicep symbolic identifier from store to archive, updating all code references but retaining the resource type, Azure name, scope, and properties. What does this change itself do?
 
@@ -606,6 +686,8 @@ Study: [knowledge file](../knowledge/compute/templates/bicep-editing.md). Eviden
 
 ## co-bicep-build
 
+Topic: Compute › Editing Bicep parameters, resources, and modules.
+
 What does a successful az bicep build establish before an Azure deployment?
 
 Select **1**. Difficulty: foundation.
@@ -620,6 +702,8 @@ Study: [knowledge file](../knowledge/compute/templates/bicep-editing.md). Eviden
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource)
 
 ## co-bicep-existing
+
+Topic: Compute › Editing Bicep parameters, resources, and modules.
 
 A Bicep declaration uses existing for a virtual network in another resource group. Which TWO statements are correct?
 
@@ -636,6 +720,8 @@ Study: [knowledge file](../knowledge/compute/templates/bicep-editing.md). Eviden
 
 ## co-deploy-scope
 
+Topic: Compute › Validating and deploying ARM and Bicep.
+
 You must deploy a Bicep file into an existing resource group. Which command family targets that scope?
 
 Select **1**. Difficulty: applied.
@@ -650,6 +736,8 @@ Study: [knowledge file](../knowledge/compute/templates/deployment.md). Evidence 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged)
 
 ## co-deploy-preview
+
+Topic: Compute › Validating and deploying ARM and Bicep.
 
 Which operation previews an ARM or Bicep deployment without applying the proposed resource changes?
 
@@ -666,6 +754,8 @@ Study: [knowledge file](../knowledge/compute/templates/deployment.md). Evidence 
 
 ## co-deploy-rbac
 
+Topic: Compute › Validating and deploying ARM and Bicep.
+
 A deployment identity has Contributor on a resource group. Its template creates a VM and an Azure role assignment. The VM succeeds, but role assignment creation is denied. What additional permission should you investigate?
 
 Select **1**. Difficulty: applied.
@@ -680,6 +770,8 @@ Study: [knowledge file](../knowledge/compute/templates/deployment.md). Evidence 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged)
 
 ## co-export-current
+
+Topic: Compute › Exporting templates and decompiling Bicep.
 
 An administrator changed a VM configuration manually after its original ARM deployment. Which export is intended to capture the current resource configuration?
 
@@ -696,6 +788,8 @@ Study: [knowledge file](../knowledge/compute/templates/export.md). Evidence chec
 
 ## co-export-convert
 
+Topic: Compute › Exporting templates and decompiling Bicep.
+
 You have exported an ARM JSON template and want editable Bicep source. Which command performs the conversion?
 
 Select **1**. Difficulty: foundation.
@@ -710,6 +804,8 @@ Study: [knowledge file](../knowledge/compute/templates/export.md). Evidence chec
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/export-bicep-portal)
 
 ## co-export-review
+
+Topic: Compute › Exporting templates and decompiling Bicep.
 
 A resource-group template export completes with warnings. Which TWO checks are appropriate before reusing it?
 
@@ -726,6 +822,8 @@ Study: [knowledge file](../knowledge/compute/templates/export.md). Evidence chec
 
 ## co-read-input-output
 
+Topic: Compute › Reading ARM templates and Bicep.
+
 In an ARM template, which section accepts deployment-time values such as a VM size?
 
 Select **1**. Difficulty: foundation.
@@ -740,6 +838,8 @@ Study: [knowledge file](../knowledge/compute/templates/interpretation.md). Evide
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies)
 
 ## co-read-symbolic-name
+
+Topic: Compute › Reading ARM templates and Bicep.
 
 In Bicep, resource network has name: vnetName. Which value determines the deployed virtual network's name?
 
@@ -756,6 +856,8 @@ Study: [knowledge file](../knowledge/compute/templates/interpretation.md). Evide
 
 ## co-read-dependency
 
+Topic: Compute › Reading ARM templates and Bicep.
+
 Bicep resource B references a property of resource A. What is the usual dependency implication?
 
 Select **1**. Difficulty: applied.
@@ -770,6 +872,8 @@ Study: [knowledge file](../knowledge/compute/templates/interpretation.md). Evide
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies)
 
 ## co-avail-fault
+
+Topic: Compute › Availability sets and availability zones.
 
 Which availability-set concept separates VMs according to shared power and network infrastructure?
 
@@ -786,6 +890,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/availability.md). 
 
 ## co-avail-zone
 
+Topic: Compute › Availability sets and availability zones.
+
 An application has one VM in availability zone 1. It must continue serving if zone 1 fails. What additional design is needed?
 
 Select **1**. Difficulty: applied.
@@ -800,6 +906,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/availability.md). 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines)
 
 ## co-avail-update
+
+Topic: Compute › Availability sets and availability zones.
 
 An availability set has five update domains and seven VMs. Which statement about planned maintenance is correct?
 
@@ -816,6 +924,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/availability.md). 
 
 ## co-vm-private
 
+Topic: Compute › Virtual machine provisioning and access.
+
 A Linux VM is created without a public IP in a subnet reachable only through a corporate VPN. How should an administrator establish SSH access?
 
 Select **1**. Difficulty: applied.
@@ -830,6 +940,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/creation.md). Evid
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch)
 
 ## co-vm-stopped
+
+Topic: Compute › Virtual machine provisioning and access.
 
 A guest operating system is shut down, and Azure reports Stopped (allocated). What stops VM compute allocation charges?
 
@@ -846,6 +958,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/creation.md). Evid
 
 ## co-vm-trusted
 
+Topic: Compute › Virtual machine provisioning and access.
+
 Which TWO features are associated with Trusted Launch for a supported Generation 2 Azure VM?
 
 Select **2**. Difficulty: foundation.
@@ -860,6 +974,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/creation.md). Evid
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch)
 
 ## co-disk-expand
+
+Topic: Compute › Managed disk attachment, expansion, and performance.
 
 A managed data disk was increased from 128 GiB to 256 GiB in Azure, but the guest filesystem still shows the old capacity. What is the next appropriate task?
 
@@ -876,6 +992,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/disks.md). Evidenc
 
 ## co-disk-os
 
+Topic: Compute › Managed disk attachment, expansion, and performance.
+
 Which TWO managed disk types are unsuitable as the OS disk of an Azure VM?
 
 Select **2**. Difficulty: foundation.
@@ -890,6 +1008,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/disks.md). Evidenc
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk)
 
 ## co-disk-existing
+
+Topic: Compute › Managed disk attachment, expansion, and performance.
 
 You attach a managed disk containing existing application data to a Linux VM. What should you do before mounting it?
 
@@ -906,6 +1026,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/disks.md). Evidenc
 
 ## co-host-scope
 
+Topic: Compute › Encryption at host for virtual machines.
+
 A VM already has encrypted managed disks. The requirement now includes its temporary disk and host caches. Which VM feature addresses that scope?
 
 Select **1**. Difficulty: foundation.
@@ -920,6 +1042,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/host-encryption.md
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli)
 
 ## co-host-ade
+
+Topic: Compute › Encryption at host for virtual machines.
 
 A VM previously used Azure Disk Encryption. An administrator wants to enable encryption at host on that same VM. What does the documented restriction require them to recognize?
 
@@ -936,6 +1060,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/host-encryption.md
 
 ## co-host-confirm
 
+Topic: Compute › Encryption at host for virtual machines.
+
 Which setting directly confirms that encryption at host is enabled on a VM after the supported configuration process?
 
 Select **1**. Difficulty: applied.
@@ -950,6 +1076,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/host-encryption.md
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli)
 
 ## co-move-region
+
+Topic: Compute › Moving VMs between scopes and regions.
 
 A VM is in West Europe. You move it to a resource group whose metadata location is North Europe using the standard ARM move operation. Where does the VM run afterward?
 
@@ -966,6 +1094,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/moves.md). Evidenc
 
 ## co-move-tenant
 
+Topic: Compute › Moving VMs between scopes and regions.
+
 You plan an ARM cross-subscription VM move. Which TWO requirements should you validate?
 
 Select **2**. Difficulty: applied.
@@ -980,6 +1110,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/moves.md). Evidenc
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-limitations/virtual-machines-move-limitations) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/resource-mover/tutorial-move-region-virtual-machines)
 
 ## co-move-id
+
+Topic: Compute › Moving VMs between scopes and regions.
 
 After a successful VM move to another resource group, an automation script using the old resource ID fails. What should be checked first?
 
@@ -996,6 +1128,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/moves.md). Evidenc
 
 ## co-resize-restart
 
+Topic: Compute › Resizing virtual machines.
+
 A running Azure VM can use the requested target size on its current host cluster. What should you still plan for when resizing it?
 
 Select **1**. Difficulty: foundation.
@@ -1010,6 +1144,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/resizing.md). Evid
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk)
 
 ## co-resize-set
+
+Topic: Compute › Resizing virtual machines.
 
 A VM in an availability set needs a size unavailable on the current hardware cluster. Which operational consequence must be considered?
 
@@ -1026,6 +1162,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/resizing.md). Evid
 
 ## co-resize-proof
 
+Topic: Compute › Resizing virtual machines.
+
 A resize operation fails, but the VM model now displays the requested larger size. What is the best next verification?
 
 Select **1**. Difficulty: applied.
@@ -1040,6 +1178,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/resizing.md). Evid
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk)
 
 ## co-vmss-mode
+
+Topic: Compute › Virtual machine scale sets and autoscale.
 
 An existing Uniform VM scale set must become Flexible. What must the administrator account for?
 
@@ -1056,6 +1196,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/scale-sets.md). Ev
 
 ## co-vmss-manual
 
+Topic: Compute › Virtual machine scale sets and autoscale.
+
 A scale set uses Manual upgrade policy. Its model is updated to a new image, then a new instance is added. What is expected?
 
 Select **1**. Difficulty: applied.
@@ -1071,6 +1213,8 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/scale-sets.md). Ev
 
 ## co-vmss-scale
 
+Topic: Compute › Virtual machine scale sets and autoscale.
+
 A VM scale set should add instances during sustained demand and later remove them. Which TWO configuration choices support this?
 
 Select **2**. Difficulty: applied.
@@ -1084,7 +1228,43 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/scale-sets.md). Ev
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy)
 
+## co-web-inbound-direction-variant
+
+Topic: Compute › App Service inbound and outbound networking.
+
+An App Service app already has regional VNet integration. Employees now need to send requests to the app through a private IP in their VNet. Which additional feature provides that inbound path?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** An App Service private endpoint, with appropriate DNS and access configuration. A private endpoint exposes the app privately for inbound requests.
+- **B. Incorrect:** Only the existing VNet integration. Integration provides outbound access from the app, not this inbound path.
+- **C. Incorrect:** Only an outbound route table on the integration subnet. An outbound route does not create an inbound private endpoint for the app.
+- **D. Incorrect:** Only a NAT gateway for the app's outbound traffic. Outbound source translation does not expose a private inbound app address.
+
+Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint)
+
+## co-web-integration-subnet-variant
+
+Topic: Compute › App Service inbound and outbound networking.
+
+An App Service private endpoint already occupies subnet inbound. You now add regional VNet integration to the app. Which subnet arrangement is supported?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Use a different suitable subnet dedicated and delegated for integration. The integration subnet cannot be the same subnet as the app's private endpoint.
+- **B. Incorrect:** Reuse inbound without changing anything because both features use private IPs. Private addressing does not remove the requirement for different subnets.
+- **C. Incorrect:** Replace the integration subnet with a public DNS A record. A DNS record does not provide the outbound integration network.
+- **D. Incorrect:** Attach the app's private endpoint NIC as its integration interface. The inbound private endpoint NIC is not the integration interface.
+
+Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint)
+
 ## id-budget-not-cap
+
+Topic: Identity and governance › Budgets, cost alerts, and Advisor.
 
 A monthly Azure budget reaches 100% and sends an alert. No automation is attached. What happens to running resources?
 
@@ -1101,6 +1281,8 @@ Study: [knowledge file](../knowledge/identity/governance/cost-management.md). Ev
 
 ## id-budget-forecast
 
+Topic: Identity and governance › Budgets, cost alerts, and Advisor.
+
 A team wants a warning when projected month-end cost exceeds its plan even though actual spending is still below it. Which budget threshold fits?
 
 Select **1**. Difficulty: applied.
@@ -1115,6 +1297,8 @@ Study: [knowledge file](../knowledge/identity/governance/cost-management.md). Ev
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations)
 
 ## id-advisor-rightsize
+
+Topic: Identity and governance › Budgets, cost alerts, and Advisor.
 
 Advisor suggests resizing a lightly utilized production VM. What should an administrator do before applying the change?
 
@@ -1131,6 +1315,8 @@ Study: [knowledge file](../knowledge/identity/governance/cost-management.md). Ev
 
 ## id-lock-delete-only
 
+Topic: Identity and governance › Resource locks.
+
 A resource group must permit authorized configuration changes but reject accidental ARM deletion. Which lock fits?
 
 Select **1**. Difficulty: applied.
@@ -1145,6 +1331,8 @@ Study: [knowledge file](../knowledge/identity/governance/locks.md). Evidence che
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane)
 
 ## id-lock-blob-data
+
+Topic: Identity and governance › Resource locks.
 
 A storage account has a CanNotDelete lock. A client has valid data-plane authorization to delete a blob. Does the account lock alone prevent that data operation?
 
@@ -1161,6 +1349,8 @@ Study: [knowledge file](../knowledge/identity/governance/locks.md). Evidence che
 
 ## id-lock-owner
 
+Topic: Identity and governance › Resource locks.
+
 An Owner's ARM delete request fails because a resource has a Delete lock. What is the appropriate deliberate-deletion sequence?
 
 Select **1**. Difficulty: troubleshooting.
@@ -1175,6 +1365,8 @@ Study: [knowledge file](../knowledge/identity/governance/locks.md). Evidence che
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane)
 
 ## id-mg-parent-policy
+
+Topic: Identity and governance › Management groups and inherited governance.
 
 An allowed-locations policy is assigned to management group Production. A subscription beneath it has no exclusion or exemption. Where is the policy relevant?
 
@@ -1191,6 +1383,8 @@ Study: [knowledge file](../knowledge/identity/governance/management-groups.md). 
 
 ## id-mg-one-parent
 
+Topic: Identity and governance › Management groups and inherited governance.
+
 Can one Azure subscription simultaneously be a direct child of two management groups?
 
 Select **1**. Difficulty: foundation.
@@ -1205,6 +1399,8 @@ Study: [knowledge file](../knowledge/identity/governance/management-groups.md). 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/governance/management-groups/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/governance/management-groups/manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups)
 
 ## id-mg-move-impact
+
+Topic: Identity and governance › Management groups and inherited governance.
 
 A subscription moves from Sandbox to Production management group in the same tenant. Which effect should be reviewed?
 
@@ -1221,6 +1417,8 @@ Study: [knowledge file](../knowledge/identity/governance/management-groups.md). 
 
 ## id-policy-audit-deny
 
+Topic: Identity and governance › Azure Policy assignments and remediation.
+
 A team wants to measure resources outside its allowed regions before blocking deployments. Which policy effect reports violations without rejecting requests?
 
 Select **1**. Difficulty: applied.
@@ -1235,6 +1433,8 @@ Study: [knowledge file](../knowledge/identity/governance/policy.md). Evidence ch
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/governance/policy/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources)
 
 ## id-policy-remediation
+
+Topic: Identity and governance › Azure Policy assignments and remediation.
 
 A Modify policy assignment identifies existing untagged resources, but they remain unchanged after evaluation. Which action applies the supported modification to those existing resources?
 
@@ -1251,6 +1451,8 @@ Study: [knowledge file](../knowledge/identity/governance/policy.md). Evidence ch
 
 ## id-policy-removal
 
+Topic: Identity and governance › Azure Policy assignments and remediation.
+
 A DeployIfNotExists policy deployed diagnostic settings. The policy assignment is later removed. What happens to the settings solely because of assignment removal?
 
 Select **1**. Difficulty: foundation.
@@ -1265,6 +1467,8 @@ Study: [knowledge file](../knowledge/identity/governance/policy.md). Evidence ch
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/governance/policy/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources)
 
 ## id-rg-location
+
+Topic: Identity and governance › Resource group lifecycle and moves.
 
 A resource group's metadata location is West Europe. Can it contain a supported resource deployed in North Europe?
 
@@ -1281,6 +1485,8 @@ Study: [knowledge file](../knowledge/identity/governance/resource-groups.md). Ev
 
 ## id-rg-move-region
 
+Topic: Identity and governance › Resource group lifecycle and moves.
+
 An administrator moves a supported VM from rg-old to rg-new in the same subscription. What should they expect from this management move?
 
 Select **1**. Difficulty: applied.
@@ -1295,6 +1501,8 @@ Study: [knowledge file](../knowledge/identity/governance/resource-groups.md). Ev
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription)
 
 ## id-rg-delete
+
+Topic: Identity and governance › Resource group lifecycle and moves.
 
 A study resource group contains a VM, NIC, and storage resources that are no longer needed. What does deleting that group do, assuming no protection blocks deletion?
 
@@ -1311,6 +1519,8 @@ Study: [knowledge file](../knowledge/identity/governance/resource-groups.md). Ev
 
 ## id-sub-context
 
+Topic: Identity and governance › Subscription administration and provider registration.
+
 What does az account set --subscription change?
 
 Select **1**. Difficulty: foundation.
@@ -1325,6 +1535,8 @@ Study: [knowledge file](../knowledge/identity/governance/subscriptions.md). Evid
 [Microsoft source 1](https://learn.microsoft.com/en-us/cli/azure/manage-azure-subscriptions-azure-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/transfer-subscription)
 
 ## id-sub-provider
+
+Topic: Identity and governance › Subscription administration and provider registration.
 
 A deployment reports that Microsoft.Storage is not registered in the selected subscription. The operator has registration permission. What should be done?
 
@@ -1341,6 +1553,8 @@ Study: [knowledge file](../knowledge/identity/governance/subscriptions.md). Evid
 
 ## id-sub-directory-transfer
 
+Topic: Identity and governance › Subscription administration and provider registration.
+
 A team plans to change an Azure subscription's Entra directory. Which dependency requires explicit planning?
 
 Select **1**. Difficulty: applied.
@@ -1355,6 +1569,8 @@ Study: [knowledge file](../knowledge/identity/governance/subscriptions.md). Evid
 [Microsoft source 1](https://learn.microsoft.com/en-us/cli/azure/manage-azure-subscriptions-azure-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/transfer-subscription)
 
 ## id-tag-inheritance
+
+Topic: Identity and governance › Resource tags and tag governance.
 
 A resource group has CostCenter=Finance. A new VM inside it has no tag policy or other tagging automation. Does the VM automatically receive that resource tag?
 
@@ -1371,6 +1587,8 @@ Study: [knowledge file](../knowledge/identity/governance/tags.md). Evidence chec
 
 ## id-tag-merge
 
+Topic: Identity and governance › Resource tags and tag governance.
+
 A resource already has ServiceOwner=Ops. You must add Environment=Training without removing ServiceOwner. Which CLI operation fits?
 
 Select **1**. Difficulty: applied.
@@ -1385,6 +1603,8 @@ Study: [knowledge file](../knowledge/identity/governance/tags.md). Evidence chec
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-policies) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag-inheritance)
 
 ## id-tag-policy-existing
+
+Topic: Identity and governance › Resource tags and tag governance.
 
 Existing supported resources need the CostCenter resource tag copied from their resource group. Which approach can apply that change across the existing population?
 
@@ -1401,6 +1621,8 @@ Study: [knowledge file](../knowledge/identity/governance/tags.md). Evidence chec
 
 ## id-group-dynamic-department
 
+Topic: Identity and governance › Entra groups and dynamic membership.
+
 An Entra security group should automatically include enabled users whose department is Operations. Which membership approach fits?
 
 Select **1**. Difficulty: applied.
@@ -1415,6 +1637,8 @@ Study: [knowledge file](../knowledge/identity/groups/group-management.md). Evide
 [Microsoft source 1](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/users/groups-create-rule)
 
 ## id-group-dynamic-exception
+
+Topic: Identity and governance › Entra groups and dynamic membership.
 
 An administrator cannot manually add a user to an Entra Dynamic User group. The user does not match its rule. What should be reviewed?
 
@@ -1431,6 +1655,8 @@ Study: [knowledge file](../knowledge/identity/groups/group-management.md). Evide
 
 ## id-group-license
 
+Topic: Identity and governance › Entra groups and dynamic membership.
+
 A tenant has 120 unique users across several Entra dynamic user groups. Which licensing approach matches the documented requirement?
 
 Select **1**. Difficulty: foundation.
@@ -1445,6 +1671,8 @@ Study: [knowledge file](../knowledge/identity/groups/group-management.md). Evide
 [Microsoft source 1](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/users/groups-create-rule)
 
 ## id-group-properties
+
+Topic: Identity and governance › Entra groups and dynamic membership.
 
 A cloud-managed Entra security group's description needs updating while applications must keep referring to the same group. Which action fits?
 
@@ -1461,6 +1689,8 @@ Study: [knowledge file](../knowledge/identity/groups/group-management.md). Evide
 
 ## id-scope-one-group
 
+Topic: Identity and governance › Azure role assignments and scopes.
+
 An operations group needs Contributor on resources only in rg-training. It should receive no access to sibling groups. Which assignment scope fits?
 
 Select **1**. Difficulty: applied.
@@ -1475,6 +1705,8 @@ Study: [knowledge file](../knowledge/identity/rbac/assignments-and-scopes.md). E
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview)
 
 ## id-scope-inherited-remove
+
+Topic: Identity and governance › Azure role assignments and scopes.
 
 A user's Contributor assignment is inherited from the subscription. You want to remove that grant. Where must the assignment itself be removed?
 
@@ -1491,6 +1723,8 @@ Study: [knowledge file](../knowledge/identity/rbac/assignments-and-scopes.md). E
 
 ## id-scope-triplet
 
+Topic: Identity and governance › Azure role assignments and scopes.
+
 Which three elements define an Azure RBAC assignment? Select the option containing the complete set.
 
 Select **1**. Difficulty: foundation.
@@ -1505,6 +1739,8 @@ Study: [knowledge file](../knowledge/identity/rbac/assignments-and-scopes.md). E
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview)
 
 ## id-effective-additive
+
+Topic: Identity and governance › Effective access and RBAC troubleshooting.
 
 A user has Contributor at subscription scope and Reader on rg-app inside that subscription. No deny, condition, policy, or lock blocks an operation. Can the user manage resources in rg-app?
 
@@ -1521,6 +1757,8 @@ Study: [knowledge file](../knowledge/identity/rbac/effective-access.md). Evidenc
 
 ## id-effective-deny
 
+Topic: Identity and governance › Effective access and RBAC troubleshooting.
+
 An applicable Azure deny assignment blocks an operation that a user's Owner role would otherwise permit. What does RBAC evaluation do?
 
 Select **1**. Difficulty: foundation.
@@ -1535,6 +1773,8 @@ Study: [knowledge file](../knowledge/identity/rbac/effective-access.md). Evidenc
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments)
 
 ## id-effective-check-path
+
+Topic: Identity and governance › Effective access and RBAC troubleshooting.
 
 A user has no direct role assignment on a VM but can read its configuration. Which two paths should an administrator inspect?
 
@@ -1551,6 +1791,8 @@ Study: [knowledge file](../knowledge/identity/rbac/effective-access.md). Evidenc
 
 ## id-role-contributor-access
 
+Topic: Identity and governance › Azure built-in roles and permission definitions.
+
 An operator has Contributor on a resource group and no other roles. Can they assign Owner to another user there?
 
 Select **1**. Difficulty: foundation.
@@ -1565,6 +1807,8 @@ Study: [knowledge file](../knowledge/identity/rbac/built-in-roles.md). Evidence 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage)
 
 ## id-role-notactions
+
+Topic: Identity and governance › Azure built-in roles and permission definitions.
 
 Role A excludes an operation through NotActions. Role B assigned to the same user and scope grants that operation. No deny assignment or other restriction applies. What follows?
 
@@ -1581,6 +1825,8 @@ Study: [knowledge file](../knowledge/identity/rbac/built-in-roles.md). Evidence 
 
 ## id-role-data-reader
 
+Topic: Identity and governance › Azure built-in roles and permission definitions.
+
 A user must download private blobs using Entra authentication but should not manage storage account configuration. Which listed role matches the data task?
 
 Select **1**. Difficulty: applied.
@@ -1595,6 +1841,8 @@ Study: [knowledge file](../knowledge/identity/rbac/built-in-roles.md). Evidence 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage)
 
 ## id-guest-resource-role
+
+Topic: Identity and governance › External users and B2B collaboration.
 
 A partner redeems an Entra B2B invitation successfully but cannot manage the Azure resource group they are meant to administer. No resource role has been assigned. What is missing?
 
@@ -1611,6 +1859,8 @@ Study: [knowledge file](../knowledge/identity/users/external-users.md). Evidence
 
 ## id-guest-inbound
 
+Topic: Identity and governance › External users and B2B collaboration.
+
 Your tenant must control which partner-tenant users and applications may access your resources through B2B collaboration. Which cross-tenant direction governs that incoming access?
 
 Select **1**. Difficulty: applied.
@@ -1625,6 +1875,8 @@ Study: [knowledge file](../knowledge/identity/users/external-users.md). Evidence
 [Microsoft source 1](https://learn.microsoft.com/en-us/entra/external-id/add-users-administrator) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-settings-b2b-collaboration) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-overview)
 
 ## id-guest-invite-vs-block
+
+Topic: Identity and governance › External users and B2B collaboration.
 
 A partner domain is allowed in external collaboration settings, but a cross-tenant B2B rule blocks the requested access. Does the invitation allowlist override that block?
 
@@ -1641,6 +1893,8 @@ Study: [knowledge file](../knowledge/identity/users/external-users.md). Evidence
 
 ## id-license-nested
 
+Topic: Identity and governance › User and group license assignments.
+
 A product is assigned to Entra group Parent. A user belongs only to Child, which is nested in Parent, and receives no license. What explains this?
 
 Select **1**. Difficulty: troubleshooting.
@@ -1655,6 +1909,8 @@ Study: [knowledge file](../knowledge/identity/users/licenses.md). Evidence check
 [Microsoft source 1](https://learn.microsoft.com/en-us/entra/fundamentals/license-users-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/users/licensing-group-advanced) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/users/licensing-powershell-graph-examples)
 
 ## id-license-retained
+
+Topic: Identity and governance › User and group license assignments.
 
 A user receives a product directly and through a licensing group. The group assignment is removed, but the direct assignment remains. Why can the user retain the product?
 
@@ -1671,6 +1927,8 @@ Study: [knowledge file](../knowledge/identity/users/licenses.md). Evidence check
 
 ## id-license-location
 
+Topic: Identity and governance › User and group license assignments.
+
 A license assignment reports an invalid usage location despite available seats. What should an administrator correct?
 
 Select **1**. Difficulty: troubleshooting.
@@ -1685,6 +1943,8 @@ Study: [knowledge file](../knowledge/identity/users/licenses.md). Evidence check
 [Microsoft source 1](https://learn.microsoft.com/en-us/entra/fundamentals/license-users-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/users/licensing-group-advanced) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/users/licensing-powershell-graph-examples)
 
 ## id-user-role
+
+Topic: Identity and governance › Entra user provisioning and properties.
 
 An administrator must create ordinary cloud-only users in Microsoft Entra ID without assigning directory administrator roles. Which listed role is the least-privileged fit?
 
@@ -1701,6 +1961,8 @@ Study: [knowledge file](../knowledge/identity/users/user-management.md). Evidenc
 
 ## id-user-source
 
+Topic: Identity and governance › Entra user provisioning and properties.
+
 A user's department is synchronized from on-premises Active Directory. Routine cloud edits are rejected or later overwritten. Where should the normal department update be made?
 
 Select **1**. Difficulty: troubleshooting.
@@ -1715,6 +1977,8 @@ Study: [knowledge file](../knowledge/identity/users/user-management.md). Evidenc
 [Microsoft source 1](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-create-delete-users) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-user-profile-info) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/users/directory-overview-user-model)
 
 ## id-user-stable-id
+
+Topic: Identity and governance › Entra user provisioning and properties.
 
 An Entra cloud user's display name changes. Which value should an existing application use to continue identifying that same directory object?
 
@@ -1731,6 +1995,8 @@ Study: [knowledge file](../knowledge/identity/users/user-management.md). Evidenc
 
 ## id-sspr-unregistered
 
+Topic: Identity and governance › Self-service password reset.
+
 An ordinary user belongs to the SSPR pilot group but has not registered enough methods permitted by the policy. Why can the user not complete a forgotten-password reset?
 
 Select **1**. Difficulty: troubleshooting.
@@ -1745,6 +2011,8 @@ Study: [knowledge file](../knowledge/identity/users/self-service-password-reset.
 [Microsoft source 1](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr-writeback) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/authentication/troubleshoot-sspr)
 
 ## id-sspr-writeback
+
+Topic: Identity and governance › Self-service password reset.
 
 A synchronized user's cloud password reset must update on-premises AD DS. Which capability is required beyond ordinary password hash synchronization?
 
@@ -1761,6 +2029,8 @@ Study: [knowledge file](../knowledge/identity/users/self-service-password-reset.
 
 ## id-sspr-method-policy
 
+Topic: Identity and governance › Self-service password reset.
+
 You are configuring recovery authentication methods for a new Entra SSPR deployment after the legacy-method policy deprecation. Which policy should you use?
 
 Select **1**. Difficulty: foundation.
@@ -1774,7 +2044,2100 @@ Study: [knowledge file](../knowledge/identity/users/self-service-password-reset.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr-writeback) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/authentication/troubleshoot-sspr)
 
+## id-lock-freeze-variant
+
+Topic: Identity and governance › Resource locks.
+
+A resource group must reject authorized ARM updates as well as ARM deletion during a configuration freeze. Which management lock meets both requirements while it remains in place?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** ReadOnly. It blocks ARM updates and deletions for authorized users while effective.
+- **B. Incorrect:** CanNotDelete. This permits authorized updates, which the freeze prohibits.
+- **C. Incorrect:** Add Reader to users who already have Contributor. An additional read grant does not subtract existing write permissions.
+- **D. Incorrect:** Apply a Freeze=true tag without a policy. A tag alone does not enforce the required restriction.
+
+Study: [knowledge file](../knowledge/identity/governance/locks.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane)
+
+## id-lock-data-write-variant
+
+Topic: Identity and governance › Resource locks.
+
+A storage account has a ReadOnly management lock. A client has valid blob data-plane write authorization, networking works, and no blob immutability policy applies. Does the lock alone block overwriting a blob through the Blob service?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** No; the management lock restricts control-plane operations. A permitted Blob-service data write is a data-plane operation, outside the management lock's scope.
+- **B. Incorrect:** Yes; ReadOnly makes every stored blob immutable. Management locks and blob immutability are different controls.
+- **C. Incorrect:** Yes; the lock automatically removes the client's blob data role. The lock does not convert the client's data role into a read-only data assignment.
+- **D. Incorrect:** Only if the client uses the second storage account key. The distinction is control plane versus data plane, not the selected key number.
+
+Study: [knowledge file](../knowledge/identity/governance/locks.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane)
+
+## mo-action-reuse
+
+Topic: Monitoring and recovery › Action groups and notification delivery.
+
+CPU and log alerts should notify the same operations team. What reusable Azure Monitor resource defines those recipients?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** An action group. It can be reused by multiple alert rules.
+- **B. Incorrect:** A metric dimension. Dimensions segment telemetry rather than define recipients.
+- **C. Incorrect:** A DCR association. That applies collection settings to a resource.
+- **D. Incorrect:** A private DNS zone. DNS resolution does not define alert recipients.
+
+Study: [knowledge file](../knowledge/monitoring/alerts/action-groups.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules)
+
+## mo-action-test
+
+Topic: Monitoring and recovery › Action groups and notification delivery.
+
+An action group's sample notification test succeeds. What remains to verify for an actual CPU alert?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Nothing; the sample forces the real CPU rule to fire. A response-path test does not evaluate the actual condition.
+- **B. Correct:** The real alert rule's scope/condition and group attachment. A correct group still needs a firing rule or processing-rule attachment.
+- **C. Incorrect:** That the group stores CPU samples. An action group is not a telemetry store.
+- **D. Incorrect:** That the sample changed the VM size. Sending a sample notification is not VM scaling.
+
+Study: [knowledge file](../knowledge/monitoring/alerts/action-groups.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules)
+
+## mo-action-no-message
+
+Topic: Monitoring and recovery › Action groups and notification delivery.
+
+A real alert fired but no email arrived. Which two response-path checks are relevant?
+
+Select **2**. Difficulty: troubleshooting.
+
+- **A. Correct:** Inspect attached/enabled action groups and recipient validation. Those affect email delivery.
+- **B. Incorrect:** Assume the condition never fired despite the alert instance. The instance is evidence of firing; delivery is a separate stage.
+- **C. Correct:** Check whether a processing rule suppressed its action groups. Suppression can leave the alert visible without notifications.
+- **D. Incorrect:** Add a DCR filter to rewrite the recipient email. DCRs configure telemetry collection rather than notification recipients.
+
+Study: [knowledge file](../knowledge/monitoring/alerts/action-groups.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules)
+
+## mo-processing-maintenance
+
+Topic: Monitoring and recovery › Alert processing rules and maintenance suppression.
+
+You want scheduled maintenance to suppress notifications for one VM while preserving fired-alert records. Which approach fits?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** A scheduled alert processing rule suppressing its action groups. This processes fired alerts without disabling condition evaluation.
+- **B. Incorrect:** Disable every alert rule in the subscription. That stops evaluation broadly and loses intended alert firing.
+- **C. Incorrect:** Delete the collected metrics during maintenance. Suppression does not require data deletion.
+- **D. Incorrect:** Remove the VM's DCR permanently. That changes collection rather than a scheduled response policy.
+
+Study: [knowledge file](../knowledge/monitoring/alerts/processing-rules.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups)
+
+## mo-processing-scope
+
+Topic: Monitoring and recovery › Alert processing rules and maintenance suppression.
+
+Can one alert processing rule directly scope resources from a different subscription than its own?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Yes, any subscription in the tenant. The documented scope stays within its subscription.
+- **B. Correct:** No; its scoped resources must be in the same subscription. Create suitable processing rules in the relevant subscriptions.
+- **C. Incorrect:** Yes, if they have identical resource-group names. Matching names do not override subscription scope.
+- **D. Incorrect:** Yes, if the action group uses email. Response type does not change processing-rule scope.
+
+Study: [knowledge file](../knowledge/monitoring/alerts/processing-rules.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups)
+
+## mo-processing-service-health
+
+Topic: Monitoring and recovery › Alert processing rules and maintenance suppression.
+
+Will an Azure Monitor alert processing rule suppress Azure Service Health alerts?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Yes, all alert sources are affected without exception. Service Health is a documented exception.
+- **B. Incorrect:** Yes, if the schedule is recurring. Schedule type does not remove that exception.
+- **C. Correct:** No; processing rules do not affect Service Health alerts. Plan Service Health notification behavior separately.
+- **D. Incorrect:** Yes, if its scope is the whole subscription. Broad scope does not override the exclusion.
+
+Study: [knowledge file](../knowledge/monitoring/alerts/processing-rules.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups)
+
+## mo-alert-signal
+
+Topic: Monitoring and recovery › Alert rules, signals, and evaluation.
+
+You need an alert when Azure records a resource deletion management event. Which signal type fits directly?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Activity Log alert. The Activity Log records management operations.
+- **B. Incorrect:** CPU metric alert. CPU values do not directly represent the deletion event.
+- **C. Incorrect:** Only an action group with no alert rule. An action group defines responses but does not evaluate that event.
+- **D. Incorrect:** A DNS TXT record change. DNS records do not configure management-event detection.
+
+Study: [knowledge file](../knowledge/monitoring/alerts/rules.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview)
+
+## mo-alert-window
+
+Topic: Monitoring and recovery › Alert rules, signals, and evaluation.
+
+A metric alert uses a five-minute evaluation window and one-minute evaluation frequency. What does that mean?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** It evaluates once every five minutes using one minute of data. This reverses frequency and window.
+- **B. Correct:** It evaluates each minute using the previous five minutes of data. Frequency is how often; window is the examined period.
+- **C. Incorrect:** It waits one minute after deleting the five-minute data. Evaluation does not delete metric data.
+- **D. Incorrect:** It sends five notifications for every sample. The settings do not define that notification count.
+
+Study: [knowledge file](../knowledge/monitoring/alerts/rules.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview)
+
+## mo-alert-ack
+
+Topic: Monitoring and recovery › Alert rules, signals, and evaluation.
+
+An operator marks an Azure Monitor alert as Acknowledged. Does that repair its underlying condition?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Yes; acknowledgement rescales the resource. Response state does not automatically perform that repair.
+- **B. Incorrect:** Yes; it resets the monitored metric to zero. Acknowledgement does not rewrite telemetry.
+- **C. Correct:** No; it records operator response while remediation is separate. User response state and service condition are distinct.
+- **D. Incorrect:** Yes; it deletes the rule and its condition. Acknowledgement does not delete the rule.
+
+Study: [knowledge file](../knowledge/monitoring/alerts/rules.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview)
+
+## mo-backup-notifications
+
+Topic: Monitoring and recovery › Azure Backup alerts and notification routing.
+
+A built-in Azure Monitor backup failure alert appears in the portal, but the on-call team receives no email. Which configuration should you check?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Incorrect:** Only the backup recovery-point retention period. Retention does not configure email routing for fired alerts.
+- **B. Incorrect:** Only the restore VM's network interface. A restore NIC does not determine Azure Monitor email notifications.
+- **C. Incorrect:** Whether Backup Reports contains the current partial day. Report timing is separate from action routing for fired alerts.
+- **D. Correct:** The matching alert processing rule and its action group's email receiver. Azure Backup uses processing rules and action groups to route built-in alert notifications.
+
+Study: [knowledge file](../knowledge/monitoring/backup/alerts.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-monitoring-alerts) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups)
+
+## mo-backup-suppression
+
+Topic: Monitoring and recovery › Azure Backup alerts and notification routing.
+
+You suppress Azure Backup alert actions during planned maintenance using an alert processing rule. What does this accomplish?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Suppresses matching notifications/actions without repairing backup failures. Processing rules govern actions; the underlying backup job and alert condition remain separate.
+- **B. Incorrect:** Automatically retries every failed backup until successful. An action-suppression rule does not implement backup retry.
+- **C. Incorrect:** Deletes failed-job records and their alerts permanently. Suppressing actions does not delete the underlying alert/job history.
+- **D. Incorrect:** Disables the backup policy's scheduled jobs. Alert-action processing does not change the backup schedule.
+
+Study: [knowledge file](../knowledge/monitoring/backup/alerts.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-monitoring-alerts) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups)
+
+## mo-backup-custom-logs
+
+Topic: Monitoring and recovery › Azure Backup alerts and notification routing.
+
+You want a custom Azure Backup alert based on a Log Analytics query over vault diagnostic records. Which prerequisite must be satisfied?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Only a Recovery Services vault's existence is required. A vault existing does not make its diagnostic records available in the chosen workspace.
+- **B. Correct:** The required vault diagnostics must reach the queried Log Analytics workspace. Custom log alerts evaluate ingested records, with diagnostic-delivery delay considered.
+- **C. Incorrect:** Every protected VM must use the same public IP address. Public IP sharing is neither required nor relevant to diagnostic-log ingestion.
+- **D. Incorrect:** An action group must generate the raw backup-job diagnostic records. Action groups deliver actions; they do not collect the vault's diagnostic records.
+
+Study: [knowledge file](../knowledge/monitoring/backup/alerts.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-monitoring-alerts) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups)
+
+## mo-bv-type
+
+Topic: Monitoring and recovery › Backup vaults and workload identity permissions.
+
+You choose a vault for standalone Azure Disk Backup under Microsoft.DataProtection. Which resource type fits?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Backup vault. Azure Disk Backup uses this vault family.
+- **B. Incorrect:** Only a Recovery Services vault configured for VM backup. That is a different recovery-workload architecture.
+- **C. Incorrect:** An Azure Monitor workspace. This stores monitoring data rather than manages disk backup.
+- **D. Incorrect:** An action group. This defines alert responses rather than backup instances.
+
+Study: [knowledge file](../knowledge/monitoring/backup/backup-vault.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-vault-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/create-manage-backup-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/disk-backup-overview) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/backup/backup-azure-dataprotection-use-rest-api-backup-disks)
+
+## mo-bv-identity
+
+Topic: Monitoring and recovery › Backup vaults and workload identity permissions.
+
+An operator can create backup instances, but disk backup validation says the vault cannot access the source disk. What should you inspect?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Incorrect:** Only the operator's DNS suffix. DNS suffix does not supply disk RBAC.
+- **B. Correct:** The Backup vault managed identity's required role assignments and scopes. The service identity needs its own workload permissions.
+- **C. Incorrect:** Only the action-group email recipients. Notifications do not authorize backup access.
+- **D. Incorrect:** Only the disk's display name. Renaming does not grant the identity access.
+
+Study: [knowledge file](../knowledge/monitoring/backup/backup-vault.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-vault-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/create-manage-backup-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/disk-backup-overview) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/backup/backup-azure-dataprotection-use-rest-api-backup-disks)
+
+## mo-bv-operational
+
+Topic: Monitoring and recovery › Backup vaults and workload identity permissions.
+
+A Backup vault uses GRS and manages Azure Disk Backup operational snapshots. Does that setting copy those disk snapshots into geo-redundant vault storage?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Yes, every vault-managed workload is stored in the vault. Operational disk backup is an exception to this assumption.
+- **B. Incorrect:** Yes, as soon as the disk has a public IP. Disks have no such public-IP backup switch.
+- **C. Correct:** No; operational disk snapshots are not copied to vault storage. Vault redundancy therefore does not apply to that operational tier.
+- **D. Incorrect:** Yes, if the operator has Owner. Operator RBAC does not change the backup architecture.
+
+Study: [knowledge file](../knowledge/monitoring/backup/backup-vault.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-vault-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/create-manage-backup-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/disk-backup-overview) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/backup/backup-azure-dataprotection-use-rest-api-backup-disks)
+
+## mo-files-tier
+
+Topic: Monitoring and recovery › Azure Files backup and item recovery.
+
+An Azure Files backup policy uses only the Snapshot tier. Where is that recovery data stored?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** In snapshots in the source storage account. Snapshot-only protection does not copy this data to vault storage.
+- **B. Incorrect:** Always in a geo-redundant vaulted copy. Vault redundancy does not apply to snapshot-only points.
+- **C. Incorrect:** Only in the client VM's memory. Share snapshots are stored by the storage service.
+- **D. Incorrect:** Inside the action group. Action groups do not store backup data.
+
+Study: [knowledge file](../knowledge/monitoring/backup/azure-files.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-files) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/restore-afs)
+
+## mo-files-alternate
+
+Topic: Monitoring and recovery › Azure Files backup and item recovery.
+
+You want to inspect recovered files without overwriting the live original share. Which supported restore choice fits?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Original location with overwrite. That can replace live files.
+- **B. Correct:** Alternate location and a test folder/share. This preserves the original contents while allowing review.
+- **C. Incorrect:** Delete the live share before selecting a point. Deletion is unnecessary for this inspection goal.
+- **D. Incorrect:** Change the share's DNS name. DNS changes do not restore the selected backup contents.
+
+Study: [knowledge file](../knowledge/monitoring/backup/azure-files.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-files) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/restore-afs)
+
+## mo-files-conflict
+
+Topic: Monitoring and recovery › Azure Files backup and item recovery.
+
+During an original-location Azure Files restore, which setting controls behavior when a file already exists?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** The public IP allocation method. It does not determine restore file conflicts.
+- **B. Incorrect:** The NSG priority. Filtering rules do not select restore overwrite behavior.
+- **C. Correct:** The restore operation's skip/overwrite conflict choice. That controls existing-file handling.
+- **D. Incorrect:** The vault's display name. Names do not define conflict resolution.
+
+Study: [knowledge file](../knowledge/monitoring/backup/azure-files.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-files) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/restore-afs)
+
+## mo-policy-frequency
+
+Topic: Monitoring and recovery › Backup schedules, retention, and policy selection.
+
+A supported Azure VM workload needs several scheduled recovery points per day, as frequently as every four hours. Which VM backup policy subtype supports this?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Enhanced policy. It supports the documented multiple-daily VM schedule.
+- **B. Incorrect:** Only changing Standard daily retention to four years. Retention length does not create a four-hour schedule.
+- **C. Incorrect:** Only a storage account tag named Hourly. Tags do not define VM backup schedules.
+- **D. Incorrect:** Only a vault NSG allow rule. Network permission does not define backup frequency.
+
+Study: [knowledge file](../knowledge/monitoring/backup/policies.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-enhanced-policy)
+
+## mo-policy-retention
+
+Topic: Monitoring and recovery › Backup schedules, retention, and policy selection.
+
+Which configuration governs how long backup recovery points remain available?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Only the backup start time. Start time determines schedule rather than retention duration.
+- **B. Correct:** The policy's applicable retention settings. Retention governs how long selected points remain.
+- **C. Incorrect:** The VM's DNS TTL. DNS caching is unrelated to backup retention.
+- **D. Incorrect:** The action-group display name. Notification labeling does not preserve recovery points.
+
+Study: [knowledge file](../knowledge/monitoring/backup/policies.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-enhanced-policy)
+
+## mo-policy-job
+
+Topic: Monitoring and recovery › Backup schedules, retention, and policy selection.
+
+A backup policy is assigned with the intended schedule, but recent jobs failed. Can you claim the latest scheduled recovery point exists?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Incorrect:** Yes; policy assignment guarantees every recovery point. Configured intent does not establish job success.
+- **B. Incorrect:** Yes; any notification email creates the recovery point. Notifications do not perform the backup themselves.
+- **C. Correct:** No; inspect successful jobs and actual recovery points. Failed scheduled jobs may not supply the intended point.
+- **D. Incorrect:** Yes; extending retention recreates missed historical backups. Retention cannot reconstruct a backup that was not taken.
+
+Study: [knowledge file](../knowledge/monitoring/backup/policies.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-enhanced-policy)
+
+## mo-protection-locked
+
+Topic: Monitoring and recovery › Backup soft deletion and vault immutability.
+
+A vault's immutability state is Enabled and locked. Can an administrator disable it for early backup cleanup?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** No; the lock makes the immutable setting irreversible. Cleanup must respect the protected retention.
+- **B. Incorrect:** Yes; Reader can disable any lock. Reader cannot do this, and this immutability lock is irreversible.
+- **C. Incorrect:** Yes; changing a tag unlocks it. Tags do not remove vault immutability.
+- **D. Incorrect:** Yes; moving the VM to another subnet disables vault protection. VM networking does not unlock the vault.
+
+Study: [knowledge file](../knowledge/monitoring/backup/protection.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/secure-by-default) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept)
+
+## mo-protection-soft
+
+Topic: Monitoring and recovery › Backup soft deletion and vault immutability.
+
+What is the purpose of backup soft deletion?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Reduce every backup to zero storage cost forever. Retention beyond the included period can incur costs.
+- **B. Correct:** Keep deleted backup data recoverable for its configured window. This protects against accidental or malicious deletion.
+- **C. Incorrect:** Automatically replicate every operational snapshot to another region. Soft deletion is not that replication mechanism.
+- **D. Incorrect:** Replace all recovery points with the source's current state. It retains deleted backup data rather than rewriting it.
+
+Study: [knowledge file](../knowledge/monitoring/backup/protection.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/secure-by-default) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept)
+
+## mo-protection-operational
+
+Topic: Monitoring and recovery › Backup soft deletion and vault immutability.
+
+Does enabling vault immutability automatically make Azure Disk Backup operational snapshots immutable under that vault setting?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Yes; all snapshots share vault-storage immutability. Operational backups are outside this immutability protection.
+- **B. Incorrect:** Yes, if the disk uses Premium SSD. Disk SKU does not remove the operational-tier exception.
+- **C. Correct:** No; vault immutability does not apply to operational disk backups. The documented distinction matters for protection design.
+- **D. Incorrect:** Yes, if the snapshot resource group has the vault's name. Names do not change the backup tier's protection semantics.
+
+Study: [knowledge file](../knowledge/monitoring/backup/protection.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/secure-by-default) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept)
+
+## mo-rsv-region
+
+Topic: Monitoring and recovery › Recovery Services vault configuration.
+
+You configure Azure VM backup to a Recovery Services vault. Which location requirement applies?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** The vault must be in the VM's region. Azure VM backup uses a vault in the same region.
+- **B. Incorrect:** Any region works if the names match. Names do not override region requirements.
+- **C. Incorrect:** Only a region different from the VM is allowed. Primary backup enrollment is not configured this way.
+- **D. Incorrect:** The vault has no region because all vaults are global. A Recovery Services vault is a regional resource.
+
+Study: [knowledge file](../knowledge/monitoring/backup/recovery-services-vault.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-create-recovery-services-vault) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept)
+
+## mo-rsv-redundancy
+
+Topic: Monitoring and recovery › Recovery Services vault configuration.
+
+You have not protected any item in a new Recovery Services vault. When should you decide its storage replication type?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Only after several successful backups. The setting becomes unavailable for ordinary change after backup configuration.
+- **B. Correct:** Before configuring the first backup. This is the documented timing for selecting replication.
+- **C. Incorrect:** At each individual file restore. Restore does not redefine vault replication.
+- **D. Incorrect:** By changing the VM's NSG. NSGs do not configure vault storage redundancy.
+
+Study: [knowledge file](../knowledge/monitoring/backup/recovery-services-vault.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-create-recovery-services-vault) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept)
+
+## mo-rsv-crr
+
+Topic: Monitoring and recovery › Recovery Services vault configuration.
+
+For a supported Azure VM workload, which vault redundancy is required to enable Cross Region Restore?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** LRS. Locally redundant storage does not supply the secondary-region copy.
+- **B. Incorrect:** ZRS only. Zone redundancy remains within a region.
+- **C. Correct:** GRS. Cross Region Restore requires a geo-redundant vault and workload support.
+- **D. Incorrect:** A public IP with global tier. IP routing tier is unrelated to backup redundancy.
+
+Study: [knowledge file](../knowledge/monitoring/backup/recovery-services-vault.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-create-recovery-services-vault) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept)
+
+## mo-reports-pipeline
+
+Topic: Monitoring and recovery › Azure Backup reports and diagnostic data.
+
+You need Azure Backup historical reports across several vaults. Which data path is documented for the reporting workbooks?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Vault diagnostics sent to Log Analytics workspaces. Azure Backup reporting uses Azure Monitor Logs and workbooks over exported vault diagnostic data.
+- **B. Incorrect:** Only VM guest Heartbeat records collected by Azure Monitor Agent. Guest heartbeats do not contain the required backup reporting data.
+- **C. Incorrect:** Only NSG effective security rules. Network-rule inspection is unrelated to backup reporting ingestion.
+- **D. Incorrect:** Backup recovery-point files copied into a workbook. Workbooks query reporting data; they do not directly parse copied recovery-point files.
+
+Study: [knowledge file](../knowledge/monitoring/backup/reports.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/configure-reports) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings)
+
+## mo-reports-delay
+
+Topic: Monitoring and recovery › Azure Backup reports and diagnostic data.
+
+You enabled vault diagnostics an hour ago. A completed backup from the current day is not yet visible in Backup Reports. What should you check before treating this as a reporting failure?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Incorrect:** Whether the backup retention policy is set to one hour. Recovery-point retention does not determine report ingestion or completed-day reporting.
+- **B. Incorrect:** Whether deleting the vault forces immediate report refresh. Deleting a vault is not a report refresh mechanism.
+- **C. Correct:** Initial diagnostic-delivery delay, completed-day reporting, and the selected filters. Initial delivery can take up to 24 hours, reports omit the partial day, and filters affect visible data.
+- **D. Incorrect:** Whether all VMs use Azure Bastion. Bastion connectivity is not a prerequisite for Backup Reports.
+
+Study: [knowledge file](../knowledge/monitoring/backup/reports.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/configure-reports) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings)
+
+## mo-reports-retention
+
+Topic: Monitoring and recovery › Azure Backup reports and diagnostic data.
+
+Your backups retain recovery points for one year, but reporting logs are retained for only a month. You need historical backup reporting over a longer period. What should you change?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Only the backup recovery-point retention policy. Backup retention does not extend the lifetime of diagnostic records in Log Analytics.
+- **B. Correct:** The relevant Log Analytics data retention, considering reporting requirements and cost. Historical reports depend on the log records remaining available.
+- **C. Incorrect:** Only the target VM's disk SKU. Disk performance does not configure diagnostic-data retention.
+- **D. Incorrect:** Only the action group's email recipient. Notification recipients do not control reporting-log retention.
+
+Study: [knowledge file](../knowledge/monitoring/backup/reports.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/configure-reports) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings)
+
+## mo-restore-deleted
+
+Topic: Monitoring and recovery › Azure VM backup and restore operations.
+
+A backed-up Azure VM has been deleted. You want to recover it from a valid point. Which mode fits this situation?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Create new VM, or restore disks and construct a VM. These modes do not require the original VM resource to exist.
+- **B. Incorrect:** Replace existing disks on the deleted VM. Replace existing requires an existing target VM.
+- **C. Incorrect:** Only change the backup schedule. A schedule does not recreate the deleted resource.
+- **D. Incorrect:** Only acknowledge its alert. Alert response state does not restore the VM.
+
+Study: [knowledge file](../knowledge/monitoring/backup/virtual-machines.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms)
+
+## mo-restore-consistency
+
+Topic: Monitoring and recovery › Azure VM backup and restore operations.
+
+A recovery point is crash-consistent. What should you expect during recovery?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Every in-memory write is guaranteed present. Crash consistency captures on-disk state, not all pending memory writes.
+- **B. Correct:** Application/OS recovery may be needed for the captured disk state. Crash-consistent recovery can require checks or transaction recovery.
+- **C. Incorrect:** The point cannot contain any disk data. It does capture disk state.
+- **D. Incorrect:** It is automatically a database transaction-log backup. VM consistency is not equivalent to database log backup.
+
+Study: [knowledge file](../knowledge/monitoring/backup/virtual-machines.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms)
+
+## mo-restore-verify
+
+Topic: Monitoring and recovery › Azure VM backup and restore operations.
+
+Azure reports a VM restore job completed. Which two checks establish practical recovery better than the job state alone?
+
+Select **2**. Difficulty: applied.
+
+- **A. Correct:** Verify the restored VM boots with its intended disks/network. Infrastructure usability needs a direct check.
+- **B. Incorrect:** Assume every external DNS entry changed automatically. External references may need independent repair.
+- **C. Correct:** Verify guest data and application behavior at the restored point. Business recovery requires more than resource creation.
+- **D. Incorrect:** Delete the recovery points immediately before checking the app. That removes fallback without establishing usability.
+
+Study: [knowledge file](../knowledge/monitoring/backup/virtual-machines.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms)
+
+## mo-network-topology
+
+Topic: Monitoring and recovery › Network Insights topology, health, and traffic.
+
+A VM and subnet appear connected in Network Insights topology. What does this establish?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Their represented resource relationship. Topology does not by itself prove application-level reachability.
+- **B. Incorrect:** Every TCP port on the VM is reachable. Listeners and filtering must be tested separately.
+- **C. Incorrect:** The VM's guest login succeeds. Topology does not validate guest credentials.
+- **D. Incorrect:** Continuous probes have automatically been configured. Inventory visibility does not create those tests.
+
+Study: [knowledge file](../knowledge/monitoring/insights/networks.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/network-insights-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview)
+
+## mo-network-continuous
+
+Topic: Monitoring and recovery › Network Insights topology, health, and traffic.
+
+Network Insights shows your resources, but you need recurring latency/reachability measurements between two endpoints. What should you configure?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Only rename the topology resources. Names do not start probes.
+- **B. Correct:** Connection Monitor tests for those endpoints. Continuous connection tests need explicit configuration.
+- **C. Incorrect:** Only change dashboard colors. Formatting does not collect measurements.
+- **D. Incorrect:** A resource lock on the source VM. A lock does not initiate network tests.
+
+Study: [knowledge file](../knowledge/monitoring/insights/networks.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/network-insights-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview)
+
+## mo-network-flow-new
+
+Topic: Monitoring and recovery › Network Insights topology, health, and traffic.
+
+You are selecting traffic logging for a new VNet deployment under current Microsoft guidance. Which choice fits the NSG flow-log retirement?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Create new NSG flow logs indefinitely. New creation is no longer supported.
+- **B. Incorrect:** Use the Activity Log as a record of every IP flow. Management events are not IP traffic-flow records.
+- **C. Correct:** Use virtual network flow logs. Microsoft directs new/migrating designs to VNet flow logs.
+- **D. Incorrect:** Use only DNS records to count all network flows. DNS records do not provide flow logging.
+
+Study: [knowledge file](../knowledge/monitoring/insights/networks.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/network-insights-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview)
+
+## mo-storage-color
+
+Topic: Monitoring and recovery › Storage Insights performance and capacity.
+
+You change Storage Insights' availability color threshold in a copied workbook. What changes?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** The workbook's visual classification. Workbook formatting does not change service availability or create a rule.
+- **B. Incorrect:** The storage service's guaranteed availability. A display threshold does not change a service guarantee.
+- **C. Incorrect:** An alert rule is automatically created with that threshold. Workbook coloring and alert configuration are separate.
+- **D. Incorrect:** The account's replication mode. The workbook setting does not configure redundancy.
+
+Study: [knowledge file](../knowledge/monitoring/insights/storage.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-insights-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage)
+
+## mo-storage-log-target
+
+Topic: Monitoring and recovery › Storage Insights performance and capacity.
+
+You want Blob resource logs archived in Azure Storage. May the diagnostic setting target the same account it monitors?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Yes; recursive logging is required. Recursive logging is precisely the reason this is not supported.
+- **B. Correct:** No; use a different destination account. This avoids logs describing their own writes.
+- **C. Incorrect:** Yes; rename the destination container. A different container does not remove the same-account restriction.
+- **D. Incorrect:** Yes; use a CNAME for the account. An alias still targets the same account.
+
+Study: [knowledge file](../knowledge/monitoring/insights/storage.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-insights-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage)
+
+## mo-storage-no-agent
+
+Topic: Monitoring and recovery › Storage Insights performance and capacity.
+
+Do Storage Insights' platform metrics require installing AMA on a client VM?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Yes; every transaction metric is collected from that guest. Platform storage metrics originate from the service.
+- **B. Incorrect:** Yes; AMA must be installed inside the storage account. A storage account is not a VM guest for AMA installation.
+- **C. Correct:** No; platform metrics are collected by Azure. Additional resource logs have their own collection configuration.
+- **D. Incorrect:** Yes; Dependency Agent supplies storage capacity. That agent is not the platform storage metric source.
+
+Study: [knowledge file](../knowledge/monitoring/insights/storage.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-insights-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage)
+
+## mo-vm-guest
+
+Topic: Monitoring and recovery › VM Insights and enhanced guest monitoring.
+
+A VM's host CPU chart works, but guest memory details are absent. What should you investigate?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Enhanced guest monitoring: AMA, DCR association, and destination. Host metrics alone do not collect all guest counters.
+- **B. Incorrect:** Only a public DNS record for the VM. DNS does not select guest monitoring streams.
+- **C. Incorrect:** Assume guest memory is automatically zero. Missing telemetry is not a zero-memory reading.
+- **D. Incorrect:** Delete the VM's host metrics. Removing evidence does not enable guest collection.
+
+Study: [knowledge file](../knowledge/monitoring/insights/virtual-machines.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/monitor-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vm-enable-monitoring) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/tutorial-enable-monitoring) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vminsights-maps)
+
+## mo-vm-map
+
+Topic: Monitoring and recovery › VM Insights and enhanced guest monitoring.
+
+For a new deployment, a legacy guide recommends enabling VM Insights Map and Dependency Agent. What does current Microsoft guidance say?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Dependency Agent is mandatory for all host metrics. Host metrics do not require it.
+- **B. Correct:** Do not enable this deprecated feature for new deployments. Current documentation gives that guidance and a retirement timeline.
+- **C. Incorrect:** Map has replaced every DCR and workspace. Current monitoring still uses collection rules and destinations.
+- **D. Incorrect:** Install both legacy Log Analytics Agent and AMA to guarantee accuracy. Duplicate collection is not the recommended repair.
+
+Study: [knowledge file](../knowledge/monitoring/insights/virtual-machines.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/monitor-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vm-enable-monitoring) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/tutorial-enable-monitoring) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vminsights-maps)
+
+## mo-vm-destination
+
+Topic: Monitoring and recovery › VM Insights and enhanced guest monitoring.
+
+Which destination matches the current supported OpenTelemetry VM metrics experience?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Only a Storage container containing arbitrary text files. That is not the described metric destination.
+- **B. Incorrect:** An action group. An action group handles responses rather than stores metrics.
+- **C. Correct:** An Azure Monitor workspace. The current metrics experience uses this workspace type.
+- **D. Incorrect:** A Recovery Services vault. That vault provides recovery services rather than VM metric storage.
+
+Study: [knowledge file](../knowledge/monitoring/insights/virtual-machines.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/monitor-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vm-enable-monitoring) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/tutorial-enable-monitoring) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vminsights-maps)
+
+## mo-dcr-association
+
+Topic: Monitoring and recovery › Azure Monitor Agent and data collection rules.
+
+AMA is installed and a DCR defines Linux Syslog to a workspace, but that DCR has no association to the VM. What is missing?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Correct:** Associate the VM with the DCR. The association applies the collection configuration to that machine.
+- **B. Incorrect:** Only assign a DNS label to the VM. DNS labels do not apply collection rules.
+- **C. Incorrect:** Only add AllMetrics to its resource diagnostic setting. That does not associate the Syslog DCR.
+- **D. Incorrect:** Only increase workspace retention. Retention does not initiate collection from an unassociated VM.
+
+Study: [knowledge file](../knowledge/monitoring/logs/agent-dcr.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection)
+
+## mo-dcr-heartbeat
+
+Topic: Monitoring and recovery › Azure Monitor Agent and data collection rules.
+
+The VM appears in Heartbeat, but its expected security events are missing. Which conclusion is justified?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Incorrect:** Heartbeat proves every event filter is correct. Agent communication does not establish event selection.
+- **B. Correct:** Check event source/filter, DCR association, destination, and generated events. Heartbeat narrows the issue but does not prove the specific stream.
+- **C. Incorrect:** The workspace cannot contain any guest data. Heartbeat itself is guest-agent telemetry.
+- **D. Incorrect:** Increase DNS TTL to repair event selection. DNS caching does not define the DCR's event filter.
+
+Study: [knowledge file](../knowledge/monitoring/logs/agent-dcr.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection)
+
+## mo-dcr-sources
+
+Topic: Monitoring and recovery › Azure Monitor Agent and data collection rules.
+
+Which Azure Monitor component defines selected guest data sources and destinations for AMA?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** A resource lock. Locks protect resource management, not source selection.
+- **B. Incorrect:** An NSG rule. An NSG permits or denies traffic rather than defines telemetry streams.
+- **C. Correct:** A data collection rule. The DCR specifies collection and routing configuration.
+- **D. Incorrect:** A public IP allocation method. IP allocation does not define agent data sources.
+
+Study: [knowledge file](../knowledge/monitoring/logs/agent-dcr.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection)
+
+## mo-log-default
+
+Topic: Monitoring and recovery › Resource logs and diagnostic settings.
+
+A resource has platform metrics visible but no resource-operation logs in your workspace. No diagnostic setting exists. What should you configure?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** A diagnostic setting with the required resource log categories and workspace destination. Resource logs generally require explicit collection/export.
+- **B. Incorrect:** Only change the metric chart's color. Chart appearance does not collect logs.
+- **C. Incorrect:** Only add a resource tag named LogAnalytics. Tags do not configure telemetry export.
+- **D. Incorrect:** Only create a DNS alias for the workspace. DNS aliases do not configure the resource's logging path.
+
+Study: [knowledge file](../knowledge/monitoring/logs/diagnostic-settings.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/diagnostic-settings) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/resource-logs) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog)
+
+## mo-log-two-workspaces
+
+Topic: Monitoring and recovery › Resource logs and diagnostic settings.
+
+You need the same resource logs sent to two Log Analytics workspaces. Which diagnostic-settings design is supported?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Two workspace destinations inside one setting. A setting supports one destination of each type.
+- **B. Correct:** Two diagnostic settings, each naming one workspace. Separate settings support multiple destinations of the same type.
+- **C. Incorrect:** One setting with a comma-separated workspace ID. The destination field does not represent multiple workspace IDs.
+- **D. Incorrect:** An NSG rule listing both workspace names. Filtering rules do not configure log export.
+
+Study: [knowledge file](../knowledge/monitoring/logs/diagnostic-settings.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/diagnostic-settings) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/resource-logs) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog)
+
+## mo-log-guest
+
+Topic: Monitoring and recovery › Resource logs and diagnostic settings.
+
+You need Linux guest Syslog from Azure VMs. Does a resource diagnostic setting alone select their Syslog facilities and severities?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Yes; AllMetrics contains all Syslog messages. Metrics are numeric telemetry rather than Syslog messages.
+- **B. Incorrect:** Yes; the Activity Log contains every guest message. The Activity Log records management events.
+- **C. Correct:** No; configure a supported guest-agent/data collection rule path. Guest log collection differs from resource diagnostics.
+- **D. Incorrect:** Yes; a resource tag sets Syslog severity. Tags do not configure the guest collector.
+
+Study: [knowledge file](../knowledge/monitoring/logs/diagnostic-settings.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/diagnostic-settings) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/resource-logs) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog)
+
+## mo-kql-summarize
+
+Topic: Monitoring and recovery › KQL filtering, aggregation, and interpretation.
+
+What does `Syslog | summarize Messages=count() by Computer` return?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** One row per observed Computer value with its message count. summarize groups the input by Computer and counts rows.
+- **B. Incorrect:** Every Syslog row with no aggregation. summarize reduces rows into groups.
+- **C. Incorrect:** Only the most recent message per computer. count() is not a latest-row selection.
+- **D. Incorrect:** A count of computers per message text. The grouping key is Computer, not message text.
+
+Study: [knowledge file](../knowledge/monitoring/logs/kql.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries) · [Microsoft source 2](https://learn.microsoft.com/en-us/kusto/query/summarize-operator) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-tutorial)
+
+## mo-kql-take
+
+Topic: Monitoring and recovery › KQL filtering, aggregation, and interpretation.
+
+Does `Syslog | take 10` guarantee the latest ten messages?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Yes, take implicitly sorts by TimeGenerated. take does not impose that ordering.
+- **B. Correct:** No; use an explicit time-based top/sort for latest records. take supplies an arbitrary limited sample.
+- **C. Incorrect:** Yes, because every Log Analytics table is ordered newest first. That ordering is not guaranteed by this query.
+- **D. Incorrect:** No; take deletes the selected messages. KQL queries do not delete these log records.
+
+Study: [knowledge file](../knowledge/monitoring/logs/kql.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries) · [Microsoft source 2](https://learn.microsoft.com/en-us/kusto/query/summarize-operator) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-tutorial)
+
+## mo-kql-empty
+
+Topic: Monitoring and recovery › KQL filtering, aggregation, and interpretation.
+
+A log query returns no rows for the last five minutes. Which two checks are appropriate before concluding the operation never occurred?
+
+Select **2**. Difficulty: troubleshooting.
+
+- **A. Correct:** Check workspace/table scope and query/time-picker filters. Scope or narrow filtering can exclude relevant data.
+- **B. Incorrect:** Assume no rows proves all systems were healthy. Missing data is not health evidence by itself.
+- **C. Correct:** Check collection and ingestion of the expected event. The event may not have reached the queried table yet.
+- **D. Incorrect:** Delete the DCR to make historical rows appear. Removing collection does not create missing history.
+
+Study: [knowledge file](../knowledge/monitoring/logs/kql.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries) · [Microsoft source 2](https://learn.microsoft.com/en-us/kusto/query/summarize-operator) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-tutorial)
+
+## mo-metric-peak
+
+Topic: Monitoring and recovery › Azure Monitor metric aggregation and dimensions.
+
+A supported CPU metric's 30-minute Average chart hides brief spikes. Which change helps examine peak values?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Use Maximum with a smaller time grain. This exposes interval peaks with finer time resolution.
+- **B. Incorrect:** Use Count to measure peak CPU percentage. Count measures samples, not their largest CPU value.
+- **C. Incorrect:** Use Sum and call it the maximum percentage. Sum and maximum have different meanings.
+- **D. Incorrect:** Change only the chart title. The title does not change aggregation.
+
+Study: [knowledge file](../knowledge/monitoring/metrics/analysis.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/analyze-metrics) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-aggregation-explained)
+
+## mo-metric-split
+
+Topic: Monitoring and recovery › Azure Monitor metric aggregation and dimensions.
+
+A metric supports an instance dimension. You need separate series for each worker rather than one combined average. What should you use?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Only a longer time range. That changes the period rather than separates instances.
+- **B. Correct:** Dimension splitting by instance. Splitting displays the dimension values as separate series.
+- **C. Incorrect:** A sum without dimensions. That combines rather than separates instance data.
+- **D. Incorrect:** A resource lock. Locks do not control chart dimensions.
+
+Study: [knowledge file](../knowledge/monitoring/metrics/analysis.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/analyze-metrics) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-aggregation-explained)
+
+## mo-metric-count
+
+Topic: Monitoring and recovery › Azure Monitor metric aggregation and dimensions.
+
+A metric records three values: 4, 6, and 10 in one interval. Which statement is correct when Count and Sum are supported?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Count and Sum both equal 20. Count measures the three samples.
+- **B. Incorrect:** Count equals the highest value, 10. That is Maximum, not Count.
+- **C. Correct:** Count is 3 and Sum is 20. Samples and total measured values are different quantities.
+- **D. Incorrect:** Average is 20. Average divides the sum by the sample count.
+
+Study: [knowledge file](../knowledge/monitoring/metrics/analysis.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/analyze-metrics) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-aggregation-explained)
+
+## mo-connection-continuous
+
+Topic: Monitoring and recovery › Network Watcher and continuous Connection Monitor.
+
+You need a week of recurring reachability and latency evidence between a VM and an HTTPS endpoint. Which tool fits?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Connection Monitor. It runs recurring tests and keeps historical measurements.
+- **B. Incorrect:** One Next hop query. That reports a route decision at a point in time.
+- **C. Incorrect:** Only IP flow verify once. That evaluates a filtering decision rather than a week's measurements.
+- **D. Incorrect:** Only create an NSG allow rule. Permission to pass traffic is not ongoing measurement.
+
+Study: [knowledge file](../knowledge/monitoring/network/connection-monitor.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview)
+
+## mo-connection-test
+
+Topic: Monitoring and recovery › Network Watcher and continuous Connection Monitor.
+
+What combines sources, destinations, and test configurations within Connection Monitor?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** A public DNS alias. A DNS record does not define monitor test membership.
+- **B. Correct:** A test group. It groups these components into monitored tests.
+- **C. Incorrect:** An Azure RBAC role definition. Roles authorize operations rather than define protocol tests.
+- **D. Incorrect:** A managed disk snapshot. Snapshots do not group connection probes.
+
+Study: [knowledge file](../knowledge/monitoring/network/connection-monitor.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview)
+
+## mo-connection-port
+
+Topic: Monitoring and recovery › Network Watcher and continuous Connection Monitor.
+
+ICMP succeeds between a VM and destination, but the business app uses TCP 443. What should you configure to test that app path?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Incorrect:** Only increase the ICMP packet count. More ICMP probes still do not test TCP 443.
+- **B. Incorrect:** Assume ICMP success proves HTTPS is healthy. Ports, filtering, and application behavior can differ.
+- **C. Correct:** A TCP/HTTP test configuration using the intended HTTPS port and endpoint. This measures the relevant path rather than just ICMP.
+- **D. Incorrect:** A DNS TXT record with the port number. That does not configure the monitor's probe.
+
+Study: [knowledge file](../knowledge/monitoring/network/connection-monitor.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview)
+
+## mo-flow-payload
+
+Topic: Monitoring and recovery › VNet flow logs and traffic analytics.
+
+Can VNet flow logs alone reveal the complete HTTPS request body?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** No; they record flow metadata rather than packet payloads. Addresses/counts do not contain the full application body.
+- **B. Incorrect:** Yes; every byte count includes the complete body text. A numeric byte count is not stored body content.
+- **C. Incorrect:** Yes; the flow state decrypts TLS. Flow state does not decrypt application traffic.
+- **D. Incorrect:** Yes; traffic analytics grants the client's private key. Analytics does not provide TLS private keys.
+
+Study: [knowledge file](../knowledge/monitoring/network/flow-logs.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-manage)
+
+## mo-flow-retention
+
+Topic: Monitoring and recovery › VNet flow logs and traffic analytics.
+
+In the supported VNet flow-log retention setting, what does 0 days mean?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Delete each log immediately. Zero is not immediate expiry in this setting.
+- **B. Correct:** Retain indefinitely until manually removed. This is the documented meaning of zero.
+- **C. Incorrect:** Disable flow collection. Retention is different from enabled state.
+- **D. Incorrect:** Keep only denied flows. Retention does not select the flow action.
+
+Study: [knowledge file](../knowledge/monitoring/network/flow-logs.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-manage)
+
+## mo-flow-analytics
+
+Topic: Monitoring and recovery › VNet flow logs and traffic analytics.
+
+VNet flow-log blobs are arriving, but you want processed traffic visualizations in Log Analytics. What additional configuration should you inspect?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Incorrect:** Only the public IP DNS label. It does not configure analytics ingestion.
+- **B. Incorrect:** Only the VM's disk caching. Disk caching does not enable flow analytics.
+- **C. Correct:** Traffic analytics enablement, selected workspace, and processing interval. Analytics is a separate configured processing stage.
+- **D. Incorrect:** Remove the log storage destination. Removing the source data does not enable processing.
+
+Study: [knowledge file](../knowledge/monitoring/network/flow-logs.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-manage)
+
+## mo-reprotect-direction
+
+Topic: Monitoring and recovery › Site Recovery reprotection and failback.
+
+A VM now runs in the secondary region after a committed Site Recovery failover. You choose Re-Protect to prepare for returning to the primary. What does this do?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Immediately moves production execution to the primary. Reprotection starts reverse replication; failback is a later recovery operation.
+- **B. Incorrect:** Deletes all backups in a Backup vault. Site Recovery reprotection is not an Azure Backup deletion operation.
+- **C. Incorrect:** Keeps only primary-to-secondary replication without collecting secondary changes. Returning safely requires replication of changes from the current secondary VM toward the primary.
+- **D. Correct:** Replicates from the secondary region toward the primary region. This is the documented reverse replication direction after failover.
+
+Study: [knowledge file](../knowledge/monitoring/site-recovery/failback.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failover-failback) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failback) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+
+## mo-failback-ready
+
+Topic: Monitoring and recovery › Site Recovery reprotection and failback.
+
+A VM was failed over and reprotected from secondary to primary using Site Recovery. Before failback, which two checks are required by the tutorial?
+
+Select **2**. Difficulty: applied.
+
+- **A. Correct:** The replicated VM is healthy/protected and synchronization is complete. Failback should use a healthy, synchronized replicated item.
+- **B. Incorrect:** The original primary VM is powered on to receive disk changes. The tutorial requires the original primary-region VM to be shut down; an active VM can make failback fail.
+- **C. Correct:** The primary region is available and required resource access is permitted. Availability and resource permissions are prerequisites for returning to that region.
+- **D. Incorrect:** All replication recovery points are deleted before the failback starts. Failback uses a selected recovery point; deleting them beforehand is not a prerequisite.
+
+Study: [knowledge file](../knowledge/monitoring/site-recovery/failback.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failover-failback) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failback) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+
+## mo-failback-protection
+
+Topic: Monitoring and recovery › Site Recovery reprotection and failback.
+
+A Site Recovery failback has returned your VM to the primary region. What restores disaster recovery coverage toward the secondary region?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Assume protection has resumed without checking replication. The tutorial calls for reprotection after failback.
+- **B. Correct:** Reprotect the primary VM toward the secondary and verify replication health. This restores the intended primary-to-secondary replication direction.
+- **C. Incorrect:** Leave reverse replication permanently configured toward the primary. Once execution is primary again, the intended recovery destination is the secondary.
+- **D. Incorrect:** Run Cleanup test failover instead of reprotection. Test-drill cleanup is a separate workflow and does not establish production replication.
+
+Study: [knowledge file](../knowledge/monitoring/site-recovery/failback.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failover-failback) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failback) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+
+## mo-failover-rto
+
+Topic: Monitoring and recovery › Site Recovery production failover and recovery points.
+
+During Site Recovery failover, your priority is to avoid extra processing of received replication data before recovery. Which recovery-point option fits?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Latest processed. It uses an already processed point, avoiding additional recovery-point processing before failover.
+- **B. Incorrect:** Latest. Latest processes received data first, favoring a more recent point rather than avoiding that processing.
+- **C. Incorrect:** Any old application-consistent point necessarily minimizes recovery time. Application consistency describes recovered data consistency, not a guarantee of minimum processing/recovery time.
+- **D. Incorrect:** A backup-policy retention change. A backup retention change does not choose a Site Recovery failover point.
+
+Study: [knowledge file](../knowledge/monitoring/site-recovery/failover.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failover-failback) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failback) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+
+## mo-failover-commit
+
+Topic: Monitoring and recovery › Site Recovery production failover and recovery points.
+
+A recovered Site Recovery VM is running, but you might need a different recovery point. Which action removes the ability to change the recovery point?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Viewing the target VM's size. Inspecting VM configuration does not commit failover.
+- **B. Incorrect:** Checking the failover job status. Monitoring the job does not delete the available recovery points.
+- **C. Correct:** Committing the failover. Commit deletes the available recovery points for the VM and ends recovery-point changes.
+- **D. Incorrect:** Opening the replicated item's overview. Opening the overview is a read operation.
+
+Study: [knowledge file](../knowledge/monitoring/site-recovery/failover.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failover-failback) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failback) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+
+## mo-failover-shutdown
+
+Topic: Monitoring and recovery › Site Recovery production failover and recovery points.
+
+You select Shut down machine before beginning failover in Site Recovery, but the source VM cannot be shut down. Which statement is correct?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Incorrect:** Site Recovery always cancels failover automatically. The tutorial states that failover continues even when source shutdown fails.
+- **B. Correct:** Failover can continue, so your runbook must address a potentially active source application. The setting attempts shutdown; it does not guarantee shutdown or exclusive application activity.
+- **C. Incorrect:** The setting guarantees that no source writes can be lost. A failed shutdown and replication state prevent such an unconditional guarantee.
+- **D. Incorrect:** The source VM is automatically converted into an offline backup. The setting controls an attempted shutdown, not conversion to Azure Backup.
+
+Study: [knowledge file](../knowledge/monitoring/site-recovery/failover.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failover-failback) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failback) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+
+## mo-replication-cache
+
+Topic: Monitoring and recovery › Site Recovery replication for Azure virtual machines.
+
+You enable Azure-to-Azure Site Recovery for a VM. Where should the replication cache storage account be located?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Only in the target recovery region. The documented replication path uses a cache account in the source region.
+- **B. Correct:** In the source VM's region. VM changes pass through source-region cache storage before recovery processing in the target region.
+- **C. Incorrect:** In any third region chosen for backup reports. Reporting placement does not determine Site Recovery cache placement.
+- **D. Incorrect:** On the VM's temporary disk instead of a storage account. A temporary disk is not the replication cache storage account.
+
+Study: [knowledge file](../knowledge/monitoring/site-recovery/replication.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-enable-replication) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-about-networking) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+
+## mo-replication-permissions
+
+Topic: Monitoring and recovery › Site Recovery replication for Azure virtual machines.
+
+An administrator has Site Recovery Contributor on a vault but cannot enable replication using another resource group's resources. What should you check?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** The required permissions on the linked source and target resources. Site Recovery validates permissions on the resources used by the operation, as well as vault access.
+- **B. Incorrect:** Whether the role grants subscription-wide Owner automatically. A role assignment at the vault does not confer subscription-wide Owner.
+- **C. Incorrect:** Whether Site Recovery Reader would grant more write access. Reader is for inspecting recovery state, not enabling replication.
+- **D. Incorrect:** Whether disabling storage encryption bypasses Azure RBAC. Encryption settings do not eliminate authorization checks.
+
+Study: [knowledge file](../knowledge/monitoring/site-recovery/replication.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-enable-replication) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-about-networking) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+
+## mo-replication-network
+
+Topic: Monitoring and recovery › Site Recovery replication for Azure virtual machines.
+
+A restrictive NSG blocks a source VM's Site Recovery replication. You need connectivity rules that tolerate service IP changes. What is Microsoft's recommended approach?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Incorrect:** Pin the recovery service's current IP addresses permanently. Hard-coded service IP addresses can change and break replication.
+- **B. Incorrect:** Allow only inbound RDP to the source VM. Remote desktop access does not provide the outbound service connectivity replication needs.
+- **C. Correct:** Use the documented service tags and outbound HTTPS rules, and check storage firewall access. Service tags support changing service addresses; storage firewall permissions still need separate review.
+- **D. Incorrect:** Configure an authenticated proxy as the mandatory replication path. Authenticated proxies are unsupported for Site Recovery replication.
+
+Study: [knowledge file](../knowledge/monitoring/site-recovery/replication.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-enable-replication) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-about-networking) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+
+## mo-drill-network
+
+Topic: Monitoring and recovery › Site Recovery test failover and drill cleanup.
+
+You are planning a Site Recovery disaster recovery drill while production remains active. Which target network does Microsoft recommend for the test VMs?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** The production recovery network regardless of address conflicts. Microsoft recommends a non-production network for drills to protect production networking availability.
+- **B. Correct:** A suitable non-production network in the target region. This supports testing without competing with production addresses and network components.
+- **C. Incorrect:** Only the source VM's original subnet in the source region. The drill recovers the VM into the chosen target-region network.
+- **D. Incorrect:** No VNet because test failover uses only an offline disk. Test failover creates a VM connected to the selected target VNet.
+
+Study: [knowledge file](../knowledge/monitoring/site-recovery/test-failover.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+
+## mo-drill-cleanup
+
+Topic: Monitoring and recovery › Site Recovery test failover and drill cleanup.
+
+A Site Recovery test failover is finished and its observations have been recorded. How should you end the drill and remove its test VMs?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Use Cleanup test failover and confirm Testing is complete. This is the documented cleanup workflow, including saving observations and deleting test VMs.
+- **B. Incorrect:** Disable replication permanently for the source VM. Ending a drill does not require removing the source VM's disaster recovery protection.
+- **C. Incorrect:** Commit a production failover. A production failover commit is a different workflow from test cleanup.
+- **D. Incorrect:** Delete the Recovery Services vault immediately. Deleting the vault is neither necessary nor the drill cleanup procedure.
+
+Study: [knowledge file](../knowledge/monitoring/site-recovery/test-failover.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+
+## mo-drill-role
+
+Topic: Monitoring and recovery › Site Recovery test failover and drill cleanup.
+
+A team member should run Site Recovery drills and failover/failback operations, but must not enable or disable replication. Which recovery role fits, with required linked-resource read access supplied separately?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Site Recovery Reader. Reader can inspect recovery state but cannot perform the requested operations.
+- **B. Incorrect:** Site Recovery Contributor. Contributor includes replication management, exceeding the stated recovery-operation scope.
+- **C. Correct:** Site Recovery Operator. Operator supports failover/failback operations while excluding enable/disable replication.
+- **D. Incorrect:** Storage Blob Data Reader. Blob data access does not authorize Site Recovery operations.
+
+Study: [knowledge file](../knowledge/monitoring/site-recovery/test-failover.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+
+## mo-action-test-failed-variant
+
+Topic: Monitoring and recovery › Action groups and notification delivery.
+
+An Azure Monitor action group's sample email test fails. What can you conclude about a separate metric alert rule's threshold evaluation from this result alone?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Nothing definitive; the sample tests the action path, not the metric condition. Investigate delivery separately and check real rule evaluation using its own state and telemetry.
+- **B. Incorrect:** The metric threshold is definitely false. Sample delivery does not evaluate the metric threshold.
+- **C. Incorrect:** The real metric rule definitely fired. Sending a sample does not establish that the real rule evaluated true.
+- **D. Incorrect:** The VM definitely stopped emitting metric samples. A notification-path failure does not prove loss of metric collection.
+
+Study: [knowledge file](../knowledge/monitoring/alerts/action-groups.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules)
+
+## mo-processing-weekly-variant
+
+Topic: Monitoring and recovery › Alert processing rules and maintenance suppression.
+
+During a weekly maintenance window, Azure Monitor must continue creating matching VM alert instances but omit their notification actions. Which configuration meets this requirement?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** A scheduled alert processing rule suppressing action groups for the VM. It changes actions on fired alerts during the matching schedule while preserving evaluation.
+- **B. Incorrect:** Disable the VM's alert rules for that window. Disabled rules cannot keep creating the required alert instances.
+- **C. Incorrect:** Delete the action group every week and recreate it later. This is not scheduled scoped suppression and can affect other rules sharing the group.
+- **D. Incorrect:** Remove the VM's monitoring collection configuration during maintenance. That interrupts telemetry rather than preserving alert evaluation with suppressed actions.
+
+Study: [knowledge file](../knowledge/monitoring/alerts/processing-rules.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups)
+
+## nw-private-link
+
+Topic: Networking › Private DNS zones and VNet links.
+
+Two VNets are peered. A private zone is linked only to VNet A; VNet B uses Azure-provided DNS and cannot resolve its records. What is missing?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Correct:** A private-zone link to VNet B. Peering does not automatically add DNS-zone resolution links.
+- **B. Incorrect:** A second public NS delegation at the registrar. Private-zone visibility is not set by public delegation.
+- **C. Incorrect:** An Internet-wide NSG allow rule. That does not attach the zone to VNet B.
+- **D. Incorrect:** A public IP on every VM in VNet B. Public IPs are not required for linked private-zone resolution.
+
+Study: [knowledge file](../knowledge/networking/dns/private-zones.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/private-dns-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview)
+
+## nw-private-registration
+
+Topic: Networking › Private DNS zones and VNet links.
+
+You link a VNet to a private zone with autoregistration disabled. What does this link provide?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Automatic registration of every VM name. That requires autoregistration enabled.
+- **B. Correct:** Resolution of records in the linked zone without automatic VM registration. This is a resolution-only link.
+- **C. Incorrect:** Public Internet resolution of the zone. The link serves private-network resolution.
+- **D. Incorrect:** Automatic VNet peering to all other linked networks. DNS links do not create network peerings.
+
+Study: [knowledge file](../knowledge/networking/dns/private-zones.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/private-dns-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview)
+
+## nw-private-one
+
+Topic: Networking › Private DNS zones and VNet links.
+
+A VNet already autoregisters VM names in zone alpha.example. You want it to resolve beta.example without changing that registration. Which link is suitable?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** A second autoregistration link to beta.example. One VNet can have only one registration zone.
+- **B. Incorrect:** A registrar NS record for beta.example. Public delegation does not provide this private link.
+- **C. Correct:** A resolution-only link to beta.example. Multiple resolution links can coexist with the registration zone.
+- **D. Incorrect:** A CNAME at alpha.example's apex to beta.example. That neither links the zone nor meets apex record constraints.
+
+Study: [knowledge file](../knowledge/networking/dns/private-zones.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/private-dns-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview)
+
+## nw-dns-delegate
+
+Topic: Networking › Public DNS zones, delegation, and records.
+
+You created the correct public Azure DNS zone and A record, but Internet resolvers still use the previous provider. What configuration should you inspect?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Correct:** Parent/registrar NS delegation to the zone's assigned name servers. Creating the zone does not change external delegation.
+- **B. Incorrect:** A private VNet link for the public zone. Public delegation does not use private-zone VNet links.
+- **C. Incorrect:** The VM's NSG priority. VM filtering does not select the domain's authoritative provider.
+- **D. Incorrect:** A new MX record for the website. MX routes mail rather than delegates DNS hosting.
+
+Study: [knowledge file](../knowledge/networking/dns/public-zones.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/dns-zones-records) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/dns-alias)
+
+## nw-dns-apex
+
+Topic: Networking › Public DNS zones, delegation, and records.
+
+You want the apex of a public Azure DNS zone to track a supported Azure public IP resource. Which approach avoids an invalid apex CNAME?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Delete the apex SOA and NS and create a CNAME. Those apex records are required for the zone.
+- **B. Correct:** Create an apex A alias record set targeting the public IP. Azure DNS aliases support suitable Azure targets at the apex.
+- **C. Incorrect:** Use an MX record pointing at the public IP. MX is for mail routing and does not provide an IPv4 website answer.
+- **D. Incorrect:** Add a private-zone autoregistration link. That does not create the public apex mapping.
+
+Study: [knowledge file](../knowledge/networking/dns/public-zones.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/dns-zones-records) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/dns-alias)
+
+## nw-dns-ttl
+
+Topic: Networking › Public DNS zones, delegation, and records.
+
+Authoritative Azure DNS servers return your new A record, but a recursive resolver still returns the old answer within its cached TTL. What is the likely explanation?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Incorrect:** Azure DNS has changed the VM's private address. DNS records do not control VM address allocation.
+- **B. Incorrect:** The zone must be recreated for any A-record change. Record updates do not require zone recreation.
+- **C. Correct:** The recursive resolver still holds an unexpired cached answer. Cached answers can outlive the authoritative update until expiry.
+- **D. Incorrect:** An NSG rule has rewritten the DNS A record. An NSG filters traffic; it does not rewrite authoritative records.
+
+Study: [knowledge file](../knowledge/networking/dns/public-zones.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/dns-zones-records) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/dns-alias)
+
+## nw-resolver-inbound
+
+Topic: Networking › DNS Private Resolver and hybrid forwarding.
+
+On-premises DNS must resolve an Azure private zone through DNS Private Resolver. The zone is linked to the resolver VNet and private connectivity exists. Where should the on-premises conditional forwarder send matching queries?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** The resolver's inbound endpoint IP. Inbound endpoints receive queries into Azure.
+- **B. Incorrect:** The outbound endpoint as a DNS listener IP. Outbound endpoints process forwarding from Azure; this is not the inbound query path.
+- **C. Incorrect:** The VNet's public load balancer frontend. A load balancer frontend is not automatically the private resolver listener.
+- **D. Incorrect:** The zone's public registrar name servers. Private zones are not resolved through public registrar delegation.
+
+Study: [knowledge file](../knowledge/networking/dns/private-resolver.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-get-started-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/private-resolver-endpoints-rulesets)
+
+## nw-resolver-outbound
+
+Topic: Networking › DNS Private Resolver and hybrid forwarding.
+
+An Azure VNet using default DNS must resolve branch.example at an on-premises DNS server. Which configuration provides conditional forwarding?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Only a public TXT record containing the DNS server IP. TXT data does not configure forwarding.
+- **B. Correct:** Outbound endpoint, suffix rule/ruleset, and client-VNet ruleset link. These configure the managed Azure-to-external resolver path.
+- **C. Incorrect:** Only an autoregistration link for Azure VM names. Registration does not forward branch.example queries on-premises.
+- **D. Incorrect:** Only an NSG allow rule to TCP 53. Filtering permission alone does not select the destination resolver.
+
+Study: [knowledge file](../knowledge/networking/dns/private-resolver.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-get-started-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/private-resolver-endpoints-rulesets)
+
+## nw-resolver-loop
+
+Topic: Networking › DNS Private Resolver and hybrid forwarding.
+
+A ruleset linked to the resolver VNet forwards a suffix back to that resolver's inbound endpoint, causing repeated queries. What should you investigate?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Incorrect:** A need to add more copies of the same forwarding rule. Duplicate forwarding does not remove the cycle.
+- **B. Incorrect:** A missing public IP on the inbound endpoint. The inbound endpoint is private and does not need public exposure.
+- **C. Correct:** A DNS forwarding loop involving the ruleset link and inbound target. The query can return to the same forwarding decision.
+- **D. Incorrect:** A requirement for all private zones to be publicly delegated. Private-zone resolution does not require that delegation.
+
+Study: [knowledge file](../knowledge/networking/dns/private-resolver.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-get-started-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/private-resolver-endpoints-rulesets)
+
+## nw-lb-private
+
+Topic: Networking › Public and internal Standard Load Balancer.
+
+An application must accept TCP connections only over privately routed networks. Which regional Load Balancer frontend fits?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** An internal frontend with a private subnet IP. This provides the privately reachable frontend.
+- **B. Incorrect:** A public frontend plus a public DNS name only. A DNS name does not make a public frontend private.
+- **C. Incorrect:** An outbound rule without any frontend. An outbound rule does not supply this inbound service endpoint.
+- **D. Incorrect:** A probe-only configuration without a load-balancing rule. A probe monitors backends but does not distribute client traffic.
+
+Study: [knowledge file](../knowledge/networking/load-balancer/configuration.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-public-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-internal-portal) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections)
+
+## nw-lb-components
+
+Topic: Networking › Public and internal Standard Load Balancer.
+
+A Standard public Load Balancer has a frontend and backend pool but no load-balancing rule. Healthy backend listeners exist. What configuration maps client TCP 443 to their TCP 8443?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Only a DNS CNAME from 443 to 8443. DNS aliases do not translate TCP ports.
+- **B. Correct:** A load-balancing rule linking frontend, pool, protocol/ports, and probe. That rule defines the distribution and port mapping.
+- **C. Incorrect:** Only an NSG outbound allow on 8443. Filtering permission does not configure the frontend mapping.
+- **D. Incorrect:** Only a route table pointing to the public IP. Routing does not define this load-balancing rule.
+
+Study: [knowledge file](../knowledge/networking/load-balancer/configuration.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-public-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-internal-portal) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections)
+
+## nw-lb-layer
+
+Topic: Networking › Public and internal Standard Load Balancer.
+
+A team wants requests for /images and /api sent to different backend pools according to URL path. Does Azure Load Balancer alone provide this?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Yes, by changing its TCP idle timeout. Idle timeout does not parse HTTP paths.
+- **B. Incorrect:** Yes, by setting the health-probe path to both prefixes. Probe paths test health; they do not route client URLs.
+- **C. Correct:** No; its layer-4 rules do not inspect URL paths. An HTTP-aware routing service is needed for that decision.
+- **D. Incorrect:** Yes, by adding a second public IP to each backend. Additional addresses do not add HTTP path inspection.
+
+Study: [knowledge file](../knowledge/networking/load-balancer/configuration.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-public-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-internal-portal) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections)
+
+## nw-lb-http-probe
+
+Topic: Networking › Load Balancer probes and connectivity diagnosis.
+
+A backend HTTPS probe receives HTTP 302 redirecting to a login page. TCP connectivity works. Why is the probe unhealthy?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Correct:** The HTTP/HTTPS probe needs HTTP 200 rather than a redirect. A non-200 response marks the HTTP health check down.
+- **B. Incorrect:** HTTPS probes only accept UDP responses. HTTPS uses TCP/TLS.
+- **C. Incorrect:** Any response proves health, so the frontend IP must be wrong. The response code is part of the health decision.
+- **D. Incorrect:** A public backend IP is required for HTTPS probes. Probes can reach private backend addresses.
+
+Study: [knowledge file](../knowledge/networking/load-balancer/troubleshooting.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-diagnostics) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections) · [Microsoft source 4](https://learn.microsoft.com/en-us/troubleshoot/azure/load-balancer/troubleshoot-common-problems/load-balancer-troubleshoot)
+
+## nw-lb-probe-tag
+
+Topic: Networking › Load Balancer probes and connectivity diagnosis.
+
+Which NSG source service tag identifies Azure Load Balancer health-probe traffic?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Internet. That is not the specific probe source tag.
+- **B. Correct:** AzureLoadBalancer. This tag identifies the platform health-probe source.
+- **C. Incorrect:** AzureTrafficManager. Traffic Manager probing is a different service.
+- **D. Incorrect:** Storage. That identifies storage service addresses rather than Load Balancer probes.
+
+Study: [knowledge file](../knowledge/networking/load-balancer/troubleshooting.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-diagnostics) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections) · [Microsoft source 4](https://learn.microsoft.com/en-us/troubleshoot/azure/load-balancer/troubleshoot-common-problems/load-balancer-troubleshoot)
+
+## nw-lb-healthy-block
+
+Topic: Networking › Load Balancer probes and connectivity diagnosis.
+
+Load Balancer probes are healthy, but HTTPS clients cannot connect. The probe uses TCP 9000 while the rule sends clients to TCP 443. What is a valid next check?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Incorrect:** Assume 9000 health proves 443 is permitted and listening. Different ports can have different listeners and filters.
+- **B. Incorrect:** Remove the backend pool because probing succeeded. Pool removal would break distribution rather than diagnose the client path.
+- **C. Correct:** Inspect TCP 443 rule mapping, NSGs, guest firewall, and listener. A separate probe port does not establish the application's path.
+- **D. Incorrect:** Change the DNS TTL to make the probe test TCP 443. DNS TTL does not change probe or backend ports.
+
+Study: [knowledge file](../knowledge/networking/load-balancer/troubleshooting.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-diagnostics) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections) · [Microsoft source 4](https://learn.microsoft.com/en-us/troubleshoot/azure/load-balancer/troubleshoot-common-problems/load-balancer-troubleshoot)
+
+## nw-bastion-subnet
+
+Topic: Networking › Azure Bastion administrative access.
+
+You deploy a new dedicated Standard Bastion host. Which subnet configuration meets its requirement?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** A dedicated AzureBastionSubnet of /26 or larger. Dedicated hosts require that name and minimum subnet size.
+- **B. Incorrect:** Any workload subnet of /28. The name, dedication, and size do not meet the requirement.
+- **C. Incorrect:** GatewaySubnet shared with a VPN gateway. Bastion requires its own named subnet.
+- **D. Incorrect:** AzureBastionSubnet /27 for a newly created host. The legacy /27 exception does not apply to this new deployment.
+
+Study: [knowledge file](../knowledge/networking/security/bastion.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/bastion/bastion-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/bastion/configuration-settings) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/bastion/bastion-nsg) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/bastion/bastion-connect-vm-rdp-windows)
+
+## nw-bastion-target
+
+Topic: Networking › Azure Bastion administrative access.
+
+You use browser RDP through a dedicated Bastion host to a VM reachable by private IP. Which target-VM configuration is sufficient for the network path?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** A public IP and Internet-wide RDP allow. The Bastion path uses the VM's private IP.
+- **B. Correct:** Private-IP reachability and permitted Bastion-to-VM RDP traffic. This supplies the target-side path without exposing its RDP port publicly.
+- **C. Incorrect:** No RDP listener because Bastion supplies the guest desktop service. Bastion transports the connection; the guest must support RDP.
+- **D. Incorrect:** Only a DNS label on a target public IP. A DNS label does not establish the Bastion-to-VM path.
+
+Study: [knowledge file](../knowledge/networking/security/bastion.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/bastion/bastion-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/bastion/configuration-settings) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/bastion/bastion-nsg) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/bastion/bastion-connect-vm-rdp-windows)
+
+## nw-bastion-reader
+
+Topic: Networking › Azure Bastion administrative access.
+
+A user can read the VM, NIC, and Bastion resources but lacks valid guest RDP login rights. Does Azure Reader grant those rights?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Yes, Reader becomes guest administrator through Bastion. Resource visibility does not grant guest administration.
+- **B. Incorrect:** Yes, if Bastion is Standard. The SKU does not create guest login rights.
+- **C. Correct:** No; resource read permissions and guest authentication are separate. The user still needs a supported guest login and rights.
+- **D. Incorrect:** Yes, if the VM has no public IP. Private networking does not change authentication rights.
+
+Study: [knowledge file](../knowledge/networking/security/bastion.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/bastion/bastion-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/bastion/configuration-settings) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/bastion/bastion-nsg) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/bastion/bastion-connect-vm-rdp-windows)
+
+## nw-effective-layers
+
+Topic: Networking › Effective NSG rules and flow evaluation.
+
+A new inbound TCP 443 flow matches Allow priority 100 in the subnet NSG and Deny priority 200 in the NIC NSG. No security-admin rule applies. What happens?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Allowed because 100 wins globally. Priorities apply within each NSG, not across both as one list.
+- **B. Correct:** Denied by the NIC NSG. Both NSG layers must permit the flow.
+- **C. Incorrect:** Allowed because the subnet is evaluated first. Passing the subnet does not bypass NIC evaluation.
+- **D. Incorrect:** Denied only if both rules have the same priority. A NIC deny blocks regardless of the subnet allow's number.
+
+Study: [knowledge file](../knowledge/networking/security/effective-rules.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview)
+
+## nw-effective-running
+
+Topic: Networking › Effective NSG rules and flow evaluation.
+
+A NIC has an associated NSG, but its VM is deallocated and list-effective-nsg does not return the expected effective rules. What prerequisite should you restore?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Correct:** Run the VM before retrieving effective rules. The documented effective-rule query requires a running VM.
+- **B. Incorrect:** Remove every NSG association. That removes the policy being inspected.
+- **C. Incorrect:** Add a public IP to every VM NIC. A public IP is not the effective-rule query prerequisite.
+- **D. Incorrect:** Replace its route table with an NSG. Routing and filtering resources serve different purposes.
+
+Study: [knowledge file](../knowledge/networking/security/effective-rules.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview)
+
+## nw-effective-multiple
+
+Topic: Networking › Effective NSG rules and flow evaluation.
+
+A VM has two NICs in different subnets. You inspected the first NIC's effective NSG rules. What is needed before concluding both paths have identical filtering?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Only compare the VM size. VM size does not establish NSG associations.
+- **B. Incorrect:** Only check their DNS suffix. DNS suffixes do not determine filtering policy.
+- **C. Correct:** Inspect effective rules and associations for the second NIC. Each NIC can inherit a different subnet/NIC combination.
+- **D. Incorrect:** Assume a VM shares one effective NSG across all NICs. Effective filtering is evaluated for each NIC's path.
+
+Study: [knowledge file](../knowledge/networking/security/effective-rules.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview)
+
+## nw-nsg-priority
+
+Topic: Networking › Network and application security groups.
+
+An inbound NSG has a matching TCP 443 Deny at priority 200 and matching Allow at priority 300. For a new connection, which rule decides?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Deny at 200. The lower number is evaluated first and ends processing.
+- **B. Incorrect:** Allow at 300 because allows override denies. The deciding factor is first matching priority, not action type.
+- **C. Incorrect:** Both combine into an allow. Matching rules are not combined into a permissive union.
+- **D. Incorrect:** The newest rule regardless of priority. Creation time does not determine precedence.
+
+Study: [knowledge file](../knowledge/networking/security/nsg-asg.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works)
+
+## nw-asg-membership
+
+Topic: Networking › Network and application security groups.
+
+An administrator wants one ASG containing NICs in two peered VNets. Is this valid?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Yes, peering merges their ASG scope. Peering connects networks but does not merge ASG membership scope.
+- **B. Correct:** No; an ASG's NICs must belong to the same VNet. This is an ASG membership constraint.
+- **C. Incorrect:** Yes, if both VNets use the same DNS server. DNS settings do not change ASG constraints.
+- **D. Incorrect:** Yes, if the ASG has no NSG rules yet. The membership constraint exists independently of rules.
+
+Study: [knowledge file](../knowledge/networking/security/nsg-asg.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works)
+
+## nw-nsg-state
+
+Topic: Networking › Network and application security groups.
+
+An SSH session survives removal of its NSG allow rule, but a new SSH connection is denied. What explains this?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Incorrect:** NSGs filter only UDP. NSGs also filter TCP, including SSH.
+- **B. Incorrect:** Rule removal requires deleting the NIC. NSG changes do not require NIC deletion.
+- **C. Correct:** NSGs retain state for existing flows; new connections use the changed rules. This explains the different outcomes.
+- **D. Incorrect:** SSH automatically bypasses NSGs after one login. Application login does not grant a firewall bypass for new sessions.
+
+Study: [knowledge file](../knowledge/networking/security/nsg-asg.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works)
+
+## nw-pe-public
+
+Topic: Networking › Private endpoints, approval, and DNS.
+
+You create an approved blob private endpoint on a storage account whose public access still allows all networks. Is the public endpoint now blocked?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Yes, approval disables the public endpoint. Approval enables the private path; it does not disable public access.
+- **B. Correct:** No; configure public network access separately. Both paths can exist until public access is restricted.
+- **C. Incorrect:** Yes, if the endpoint uses a static private IP. Private address allocation does not control public access.
+- **D. Incorrect:** Yes, because a private DNS zone acts as a public firewall. DNS selection is not public-endpoint firewall enforcement.
+
+Study: [knowledge file](../knowledge/networking/security/private-endpoints.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/private-link/disable-private-endpoint-network-policy)
+
+## nw-pe-dns
+
+Topic: Networking › Private endpoints, approval, and DNS.
+
+A VM can reach a blob private endpoint IP, but the account's normal hostname resolves publicly from that VM. Public access is disabled. What should you repair?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Correct:** Private DNS records, VNet links, or the client's DNS forwarding. The normal hostname must resolve to the endpoint's private address.
+- **B. Incorrect:** Grant the VM a public IP. That does not repair private name resolution.
+- **C. Incorrect:** Replace the blob endpoint with a file endpoint. The target must still be the blob service.
+- **D. Incorrect:** Add Internet-wide inbound rules to the VM. Inbound VM exposure does not fix its service-name lookup.
+
+Study: [knowledge file](../knowledge/networking/security/private-endpoints.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/private-link/disable-private-endpoint-network-policy)
+
+## nw-pe-subresource
+
+Topic: Networking › Private endpoints, approval, and DNS.
+
+An account has a blob private endpoint. A workload also needs SMB Azure Files access through Private Link. What is additionally needed?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Only change the blob DNS A record to the file hostname. DNS cannot change the endpoint's target subresource.
+- **B. Incorrect:** Only grant Blob Data Reader. That role does not provide the file network path.
+- **C. Correct:** A file private endpoint and appropriate file DNS/access configuration. Storage subresources require their own private endpoints.
+- **D. Incorrect:** Use the blob endpoint IP as an SMB proxy. A blob endpoint is not a general-purpose file proxy.
+
+Study: [knowledge file](../knowledge/networking/security/private-endpoints.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/private-link/disable-private-endpoint-network-policy)
+
+## nw-se-two-sides
+
+Topic: Networking › Service endpoints and subnet authorization.
+
+A subnet has Microsoft.Storage enabled as a service endpoint. A storage account still allows all public networks. What change restricts its intended ordinary access to that subnet?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Configure the account's selected-network rules to allow the subnet. The service-side rule is needed in addition to the subnet endpoint.
+- **B. Incorrect:** Only rename the subnet to StorageSubnet. A name does not enforce a service firewall rule.
+- **C. Incorrect:** Add a CNAME record for the storage hostname. DNS aliases do not restrict permitted networks.
+- **D. Incorrect:** Grant the VM Owner on its resource group. Management authorization does not restrict account network access.
+
+Study: [knowledge file](../knowledge/networking/security/service-endpoints.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-restrict-network-access-to-resources)
+
+## nw-se-private
+
+Topic: Networking › Service endpoints and subnet authorization.
+
+Which statement describes a classic service endpoint for an Azure Storage subnet?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** It creates a dedicated private IP for the storage account in that subnet. That describes a private endpoint.
+- **B. Correct:** It identifies the subnet to the service while using the service's public endpoint. It extends network identity without creating a private endpoint NIC.
+- **C. Incorrect:** It automatically grants blob read permission to subnet users. Data authorization remains separate.
+- **D. Incorrect:** It turns every on-premises VPN client into a member of the allowed subnet. On-premises traffic does not gain that endpoint identity.
+
+Study: [knowledge file](../knowledge/networking/security/service-endpoints.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-restrict-network-access-to-resources)
+
+## nw-se-auth
+
+Topic: Networking › Service endpoints and subnet authorization.
+
+A VM's subnet endpoint and storage network rule are correct, but its identity has no blob data permission. Can it read a private blob using Entra authentication?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Incorrect:** Yes; service endpoints grant Blob Data Reader. The endpoint supplies a network path, not that role.
+- **B. Incorrect:** Yes; an NSG allow grants storage data access. NSGs filter packets rather than authorize blobs.
+- **C. Correct:** No; assign the appropriate blob data authorization too. Network permission and data permission are separate requirements.
+- **D. Incorrect:** Yes; selected networks make private containers anonymous. Container access level is independent of the selected-network rule.
+
+Study: [knowledge file](../knowledge/networking/security/service-endpoints.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-restrict-network-access-to-resources)
+
+## nw-peering-transitive
+
+Topic: Networking › VNet peering, forwarding, and gateway transit.
+
+VNet A peers with B, and B peers with C. No direct A–C peering or transit routing is configured. What should be expected?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** A and C do not gain connectivity merely from these two peerings. Traditional peering is nontransitive.
+- **B. Incorrect:** A and C automatically connect through B. A hub connection alone does not create transit routing.
+- **C. Incorrect:** A–C connectivity appears after changing only the peering names. Names do not create network paths.
+- **D. Incorrect:** A and C share one address space automatically. Peering does not merge or renumber their address spaces.
+
+Study: [knowledge file](../knowledge/networking/virtual-networks/peering.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-peering) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-peering-gateway-transit)
+
+## nw-peering-transit
+
+Topic: Networking › VNet peering, forwarding, and gateway transit.
+
+A spoke without its own gateway must use a supported VPN gateway in a peered hub. Which TWO peering settings are required on the respective sides?
+
+Select **2**. Difficulty: applied.
+
+- **A. Correct:** Allow gateway transit on the hub-side peering The hub permits use of its gateway.
+- **B. Correct:** Use remote gateways on the spoke-side peering The spoke chooses to use the permitted remote gateway.
+- **C. Incorrect:** Use remote gateways on every spoke peering simultaneously A VNet can use a remote gateway through only one peering.
+- **D. Incorrect:** Only allow forwarded traffic and omit both gateway settings Forwarded traffic permission alone does not configure gateway transit.
+
+Study: [knowledge file](../knowledge/networking/virtual-networks/peering.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-peering) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-peering-gateway-transit)
+
+## nw-peering-forward
+
+Topic: Networking › VNet peering, forwarding, and gateway transit.
+
+What does enabling Allow forwarded traffic on a VNet peering do?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Permit eligible traffic forwarded through the peered network. The setting allows forwarded packets but does not build their routing path.
+- **B. Incorrect:** Automatically create an NVA and all required UDRs. Those resources and routes must be configured separately.
+- **C. Incorrect:** Automatically share every private DNS zone. DNS configuration is separate from forwarded traffic permission.
+- **D. Incorrect:** Remove NSG filtering from the connection. NSGs continue to apply.
+
+Study: [knowledge file](../knowledge/networking/virtual-networks/peering.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-peering) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-peering-gateway-transit)
+
+## nw-ip-inbound
+
+Topic: Networking › Public IP resources and allocation.
+
+A VM has a Standard public IP, a running HTTPS listener, and a guest firewall allowing TCP 443. Its effective NSG rules deny inbound Internet traffic. What must change to accept HTTPS from an approved client range?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Add an NSG allow rule for that range and TCP 443. Standard public IP access still requires an NSG permit.
+- **B. Incorrect:** Set public IP allocation to dynamic. Standard uses static allocation; allocation does not authorize traffic.
+- **C. Incorrect:** Add a DNS label to the public IP. A DNS name does not override the NSG deny.
+- **D. Incorrect:** Create a second public IP for the NIC. Another address does not remove the filtering rule.
+
+Study: [knowledge file](../knowledge/networking/virtual-networks/public-ips.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/create-public-ip-portal)
+
+## nw-ip-release
+
+Topic: Networking › Public IP resources and allocation.
+
+You delete a Standard public IP resource and recreate a resource with the same name. What can you rely on?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Azure restores the old numeric address. Deletion releases it; the old address cannot be requested back.
+- **B. Correct:** Azure allocates an address from its available pool. The resource name does not reserve its former numeric address.
+- **C. Incorrect:** The resource starts with dynamic allocation until first use. Standard allocation is static.
+- **D. Incorrect:** An unchanged DNS A record automatically tracks the new address. A manually managed A record must be updated when its target changes.
+
+Study: [knowledge file](../knowledge/networking/virtual-networks/public-ips.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/create-public-ip-portal)
+
+## nw-ip-create
+
+Topic: Networking › Public IP resources and allocation.
+
+You are creating a new Standard public IPv4 resource in the portal for a regional frontend. Which configuration is valid?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** Choose dynamic allocation and a private subnet address. Standard uses static public allocation, outside the subnet's private pool.
+- **B. Incorrect:** Enter any unused public IPv4 address as its allocation. Azure allocates the numeric address from its pool.
+- **C. Correct:** Select Standard with static allocation and compatible region/zone settings. These settings match the supported creation model.
+- **D. Incorrect:** Create a DNS label instead of allocating a public IP. The label is an optional property of the address resource.
+
+Study: [knowledge file](../knowledge/networking/virtual-networks/public-ips.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/create-public-ip-portal)
+
+## nw-route-prefix
+
+Topic: Networking › User-defined routes and next hops.
+
+A VM's effective routes include an active system route 10.50.0.0/16 to Virtual network and a UDR 0.0.0.0/0 to a virtual appliance. With no other matching route, where does traffic to 10.50.2.8 go?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** Directly through the Virtual network route. The /16 match is more specific than /0.
+- **B. Incorrect:** Through the appliance because all UDRs beat all system routes. Route-type priority is not a replacement for prefix selection.
+- **C. Incorrect:** To the Internet because the destination is outside the VM subnet. The active VNet route covers the destination.
+- **D. Incorrect:** It is dropped because the route table lacks a matching UDR. System routes remain part of effective routing.
+
+Study: [knowledge file](../knowledge/networking/virtual-networks/routes.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/manage-route-table)
+
+## nw-route-association
+
+Topic: Networking › User-defined routes and next hops.
+
+You create a route table and a route, but a workload subnet's effective routes are unchanged. The table is not associated with any subnet. What is missing?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Incorrect:** Associate the table with the VM's managed disk. Route tables are associated with subnets.
+- **B. Correct:** Associate the table with the workload subnet. Creating a table alone does not apply it.
+- **C. Incorrect:** Add the table name as an NSG service tag. NSG service tags do not apply route tables.
+- **D. Incorrect:** Replace the VNet's DNS server list with the next-hop IP. DNS settings do not select the subnet route table.
+
+Study: [knowledge file](../knowledge/networking/virtual-networks/routes.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/manage-route-table)
+
+## nw-route-forward
+
+Topic: Networking › User-defined routes and next hops.
+
+A UDR sends app-subnet traffic to a firewall VM in another subnet. NSGs permit it, but the firewall does not forward packets. Which two forwarding settings must you check?
+
+Select **2**. Difficulty: troubleshooting.
+
+- **A. Correct:** IP forwarding on the firewall's Azure NIC. The NIC must be allowed to handle traffic for other addresses.
+- **B. Incorrect:** Dynamic allocation on the firewall's public IP. Public IP allocation does not enable forwarding.
+- **C. Correct:** Forwarding within the firewall operating system/appliance. The guest must actually route the packets.
+- **D. Incorrect:** A DNS label on the application VM. A DNS label does not enable appliance forwarding.
+
+Study: [knowledge file](../knowledge/networking/virtual-networks/routes.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/manage-route-table)
+
+## nw-subnet-reserved
+
+Topic: Networking › Virtual network address spaces and subnets.
+
+How many IPv4 addresses are available for assignment in a normal Azure /27 subnet before service-specific allocations?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** 27 The subnet has 32 addresses; Azure reserves five.
+- **B. Incorrect:** 30 Subtracting only network and broadcast misses three other Azure reservations.
+- **C. Incorrect:** 32 Azure reserves addresses and does not allow all 32 to be assigned.
+- **D. Incorrect:** 24 Eight reserved addresses is not the ordinary Azure IPv4 reservation count.
+
+Study: [knowledge file](../knowledge/networking/virtual-networks/subnets.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access)
+
+## nw-vnet-region
+
+Topic: Networking › Virtual network address spaces and subnets.
+
+Which statement describes an Azure virtual network location boundary?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** A VNet is regional and can span availability zones within that region. The network belongs to one region while serving its zones.
+- **B. Incorrect:** A VNet automatically spans every Azure region. Cross-region connectivity requires separate networks and a connection.
+- **C. Incorrect:** A VNet is confined to one availability zone. A VNet spans availability zones in its region.
+- **D. Incorrect:** Changing the resource-group location moves the VNet to another region. Resource-group metadata does not relocate the VNet.
+
+Study: [knowledge file](../knowledge/networking/virtual-networks/subnets.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access)
+
+## nw-vnet-egress
+
+Topic: Networking › Virtual network address spaces and subnets.
+
+A VM is deployed into a new private subnet with defaultOutboundAccess false. It needs Internet access for updates. What should be configured?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** A supported explicit outbound method, such as a NAT gateway. A private subnet does not supply implicit default outbound access.
+- **B. Incorrect:** Assume the platform always assigns usable default outbound access. The subnet setting explicitly prevents relying on that behavior.
+- **C. Incorrect:** Only add an NSG allow rule without any outbound method. Permission to send traffic does not provide the required public egress translation.
+- **D. Incorrect:** Only add a private DNS zone. DNS resolution does not supply an Internet egress path.
+
+Study: [knowledge file](../knowledge/networking/virtual-networks/subnets.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access)
+
+## nw-diag-allowed
+
+Topic: Networking › Diagnosing VNet connectivity.
+
+IP flow verify reports Allow for a VM's inbound TCP 443 flow, but the client cannot connect. What does the result establish?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Correct:** The evaluated Azure security rules permit that flow. The tool checks filtering rules, not successful application responses.
+- **B. Incorrect:** The guest HTTPS service is listening. A listener is outside this rule evaluation.
+- **C. Incorrect:** The VM's guest firewall permits TCP 443. Guest filtering must be checked separately.
+- **D. Incorrect:** DNS resolves the client's hostname correctly. The flow evaluation does not establish client DNS resolution.
+
+Study: [knowledge file](../knowledge/networking/virtual-networks/troubleshooting.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/next-hop-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/connection-troubleshoot-overview)
+
+## nw-diag-next
+
+Topic: Networking › Diagnosing VNet connectivity.
+
+You suspect a subnet UDR directs a VM's traffic to the wrong appliance. Which Network Watcher tool directly reports the selected next hop for a destination IP?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** IP flow verify. It evaluates security filtering rather than selected next hop.
+- **B. Incorrect:** NSG rule editor. It changes filtering rules rather than reporting routing.
+- **C. Correct:** Next hop. It reports the selected next-hop type/address for the flow destination.
+- **D. Incorrect:** Public IP DNS label settings. Those manage a name for a public address, not route selection.
+
+Study: [knowledge file](../knowledge/networking/virtual-networks/troubleshooting.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/next-hop-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/connection-troubleshoot-overview)
+
+## nw-diag-name
+
+Topic: Networking › Diagnosing VNet connectivity.
+
+A VM connects to a service's IP on TCP 443, but connections using its hostname fail. What should you investigate first?
+
+Select **1**. Difficulty: troubleshooting.
+
+- **A. Incorrect:** Replace its working route with a None next hop. That drops traffic instead of addressing name failure.
+- **B. Correct:** DNS resolution of the hostname from that VM. The difference between name and IP points first to name resolution.
+- **C. Incorrect:** Delete the subnet's NSG immediately. Working IP connectivity is not evidence that every NSG must be removed.
+- **D. Incorrect:** Change the service's frontend to a dynamic public IP. Allocation changes do not repair a bad DNS response.
+
+Study: [knowledge file](../knowledge/networking/virtual-networks/troubleshooting.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/next-hop-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/connection-troubleshoot-overview)
+
+## nw-private-registration-enabled-variant
+
+Topic: Networking › Private DNS zones and VNet links.
+
+A VNet uses Azure-provided DNS and is linked to an Azure private DNS zone with autoregistration enabled. What does that link provide for VMs in the VNet?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Automatic VM-name registration in that zone and resolution of its records. An autoregistration link creates VM records and makes the private zone available to the linked VNet.
+- **B. Incorrect:** Only resolution, with automatic registration always prohibited. That describes a resolution-only link with autoregistration disabled.
+- **C. Incorrect:** Automatic publication of those VM records to Internet resolvers. A private-zone link does not turn the zone into public DNS.
+- **D. Incorrect:** Automatic network peering to every other linked VNet. DNS links do not create network peerings.
+
+Study: [knowledge file](../knowledge/networking/dns/private-zones.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/private-dns-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview)
+
+## nw-route-specific-variant
+
+Topic: Networking › User-defined routes and next hops.
+
+A VM's active effective routes include system 10.50.0.0/16 to Virtual network and UDR 10.50.2.0/24 to a virtual appliance. There are no other matching routes. Which next hop is selected for 10.50.2.8?
+
+Select **1**. Difficulty: applied.
+
+- **A. Correct:** The virtual appliance from the /24 UDR. The /24 is the longest matching prefix for this destination.
+- **B. Incorrect:** Virtual network from the /16 system route. The /16 is less specific than the matching /24.
+- **C. Incorrect:** Internet because the destination is outside the /24. 10.50.2.8 is inside 10.50.2.0/24, and no Internet route wins.
+- **D. Incorrect:** Both next hops simultaneously because both prefixes match. Route selection chooses the matching route with the longest prefix, rather than duplicating traffic across these routes.
+
+Study: [knowledge file](../knowledge/networking/virtual-networks/routes.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/manage-route-table)
+
 ## st-container-001
+
+Topic: Storage › Blob containers.
 
 A container previously allowed anonymous blob reads. An administrator now disables anonymous access on its storage account. Network connectivity is unchanged. What happens to subsequent anonymous blob requests?
 
@@ -1791,6 +4154,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Eviden
 
 ## st-container-002
 
+Topic: Storage › Blob containers.
+
 An operator has the management-plane Reader role on a storage account but no blob data role. They must create a container through the Blob service using Azure CLI with --auth-mode login. Which additional built-in role is the least privileged of these choices that supports the operation? Assume network access works.
 
 Select **1**. Difficulty: troubleshooting.
@@ -1805,6 +4170,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Eviden
 [Microsoft source 1](https://learn.microsoft.com/en-us/rest/api/storageservices/create-container) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/assign-azure-role-data-access)
 
 ## st-container-003
+
+Topic: Storage › Blob containers.
 
 An account permits anonymous access, but a newly created container retains its Private access level. What must an anonymous client expect when requesting a blob from that container?
 
@@ -1821,6 +4188,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Eviden
 
 ## st-container-004
 
+Topic: Storage › Blob containers.
+
 You are signed in to Azure CLI and have the required blob data role. You want a container command to explicitly use your Entra identity rather than attempt account-key authorization. Which argument selects that behavior?
 
 Select **1**. Difficulty: applied.
@@ -1835,6 +4204,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Eviden
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-data-operations-cli)
 
 ## st-container-005
+
+Topic: Storage › Blob containers.
 
 A user has no existing Azure role assignments. They must navigate to a storage account in the Portal and read its blob data using Entra credentials. Which two roles provide the required management visibility and read-only data access? Assume network access is already allowed.
 
@@ -1851,6 +4222,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Eviden
 
 ## st-tier-001
 
+Topic: Storage › Blob access tiers.
+
 A design review compares only cool and archive for an infrequently read block-blob dataset. The application must read any object immediately, without waiting for rehydration. Which choice satisfies that requirement?
 
 Select **1**. Difficulty: applied.
@@ -1865,6 +4238,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/access-tiers.md). Evid
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview)
 
 ## st-tier-002
+
+Topic: Storage › Blob access tiers.
 
 A block blob in a general-purpose v2 account is deleted from the cool tier after 12 days. Soft delete is disabled and no retention protection applies. What does the cool tier's 30-day minimum mean?
 
@@ -1881,6 +4256,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/access-tiers.md). Evid
 
 ## st-tier-003
 
+Topic: Storage › Blob access tiers.
+
 Blob A inherits its account's hot default tier. Blob B is explicitly set to hot. The account default is changed to cool. Which blob follows the new default without a separate blob-level tier operation?
 
 Select **1**. Difficulty: applied.
@@ -1895,6 +4272,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/access-tiers.md). Evid
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview)
 
 ## st-tier-004
+
+Topic: Storage › Blob access tiers.
 
 A standard general-purpose v2 account uses ZRS. An administrator wants to put a block blob into archive without changing the account's redundancy. What is the relevant limitation?
 
@@ -1911,6 +4290,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/access-tiers.md). Evid
 
 ## st-tier-005
 
+Topic: Storage › Blob access tiers.
+
 A team wants to reduce blob storage spending. Which two considerations follow Microsoft's guidance for choosing tiers?
 
 Select **2**. Difficulty: applied.
@@ -1925,6 +4306,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/access-tiers.md). Evid
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-best-practices)
 
 ## st-life-001
+
+Topic: Storage › Blob lifecycle management.
 
 A lifecycle rule must target block blobs whose names begin with reports/ inside the study-records container. Which prefixMatch value targets that path?
 
@@ -1941,6 +4324,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/lifecycle-management.m
 
 ## st-life-001b
 
+Topic: Storage › Blob lifecycle management.
+
 A lifecycle rule uses prefixMatch invoices/2026/*.csv. The container is invoices and the actual blob name is 2026/march.csv. Why does the intended wildcard rule not match that blob?
 
 Select **1**. Difficulty: troubleshooting.
@@ -1955,6 +4340,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/lifecycle-management.m
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-structure)
 
 ## st-life-002
+
+Topic: Storage › Blob lifecycle management.
 
 Can a Blob lifecycle policy automatically rehydrate archived data into an online tier?
 
@@ -1971,6 +4358,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/lifecycle-management.m
 
 ## st-life-003
 
+Topic: Storage › Blob lifecycle management.
+
 An enabled rule tiers a current block blob to cool when daysAfterModificationGreaterThan is 45. The blob was last modified 60 days ago and was read yesterday. It matches every filter and tiering is supported. Does yesterday's read make it ineligible under this condition?
 
 Select **1**. Difficulty: applied.
@@ -1985,6 +4374,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/lifecycle-management.m
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-structure)
 
 ## st-life-004
+
+Topic: Storage › Blob lifecycle management.
 
 A storage account already has several required lifecycle rules. You are updating its management policy through the API-backed CLI workflow to add another rule. Which approach preserves the existing behavior?
 
@@ -2001,6 +4392,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/lifecycle-management.m
 
 ## st-life-005
 
+Topic: Storage › Blob lifecycle management.
+
 You saved a valid lifecycle rule ten minutes ago. Eligible blobs still show their original tier. Which two statements should guide the investigation?
 
 Select **2**. Difficulty: troubleshooting.
@@ -2015,6 +4408,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/lifecycle-management.m
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-structure)
 
 ## st-blob-delete-001
+
+Topic: Storage › Blob soft deletion.
 
 In a flat-namespace Blob Storage account with versioning disabled, a blob is deleted while blob soft-delete retention is 7 days. Two days later, an administrator changes retention to 30 days. Which interval applies to that already-deleted blob?
 
@@ -2031,6 +4426,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/blob-soft-delete.md). 
 
 ## st-blob-delete-002
 
+Topic: Storage › Blob soft deletion.
+
 A team wants in-account recovery for two accidental operations in Azure Blob Storage: deleting an individual blob while its container remains, and deleting the entire container. Which two settings directly address these respective recovery scopes?
 
 Select **2**. Difficulty: applied.
@@ -2045,6 +4442,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/blob-soft-delete.md). 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/data-protection-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview)
 
 ## st-blob-delete-003
+
+Topic: Storage › Blob soft deletion.
 
 An application overwrites a block blob using Put Blob in a flat-namespace account. Blob soft delete was enabled before the overwrite, versioning is disabled, and the retention window is still active. Undelete recovers the soft-deleted snapshot, but the current blob still contains the unwanted data. What additional action restores the earlier contents as current?
 
@@ -2061,6 +4460,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/blob-soft-delete.md). 
 
 ## st-blob-delete-004
 
+Topic: Storage › Blob soft deletion.
+
 A Blob Storage account has retained soft-deleted blobs that have not expired. An administrator disables blob soft delete to change future protection behavior. What happens to those already-retained blobs?
 
 Select **1**. Difficulty: applied.
@@ -2075,6 +4476,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/blob-soft-delete.md). 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview)
 
 ## st-container-delete-001
+
+Topic: Storage › Container soft deletion.
 
 A container named invoices was soft-deleted yesterday. Its retention period has not expired, but another process created a new active invoices container. Why can the old container not be restored now?
 
@@ -2091,6 +4494,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/container-soft-delete.
 
 ## st-container-delete-002
 
+Topic: Storage › Container soft deletion.
+
 An Azure storage account had container soft delete enabled, but no blob soft delete, versioning, snapshots, or backup. A user deletes one blob while leaving its container intact. Can container soft delete restore that blob by itself?
 
 Select **1**. Difficulty: applied.
@@ -2105,6 +4510,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/container-soft-delete.
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-container-overview)
 
 ## st-container-delete-003
+
+Topic: Storage › Container soft deletion.
 
 You must verify that a storage account retains deleted containers. Its Blob service properties show deleteRetentionPolicy.enabled as true. Which additional property specifically verifies container protection?
 
@@ -2121,6 +4528,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/container-soft-delete.
 
 ## st-container-delete-004
 
+Topic: Storage › Container soft deletion.
+
 A design enables container soft delete and claims this alone will recover every container if the entire storage account is accidentally deleted. Which statement correctly identifies the gap?
 
 Select **1**. Difficulty: applied.
@@ -2135,6 +4544,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/container-soft-delete.
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-container-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/data-protection-overview)
 
 ## st-version-001
+
+Topic: Storage › Blob versioning.
 
 Blob versioning is enabled in a supported flat-namespace account. A client deletes a block blob without supplying a version ID. What is the immediate versioning result?
 
@@ -2151,6 +4562,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/versioning.md). Eviden
 
 ## st-version-002
 
+Topic: Storage › Blob versioning.
+
 An administrator wants Azure Blob versioning on a storage account whose hierarchical namespace is enabled for Data Lake Storage. What does the currently documented feature support imply?
 
 Select **1**. Difficulty: troubleshooting.
@@ -2165,6 +4578,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/versioning.md). Eviden
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview)
 
 ## st-version-003
+
+Topic: Storage › Blob versioning.
 
 A supported Blob Storage account has versioning and blob soft delete enabled. A desired previous version was explicitly deleted and is still retained. There is no current blob. Which two operations form the recovery sequence to restore its contents as current?
 
@@ -2181,6 +4596,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/versioning.md). Eviden
 
 ## st-version-004
 
+Topic: Storage › Blob versioning.
+
 A frequently overwritten block blob has accumulated many historical versions. The team wants to control retained storage and listing latency while keeping recent recovery points. Which approach follows Microsoft's version-management guidance?
 
 Select **1**. Difficulty: applied.
@@ -2195,6 +4612,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/versioning.md). Eviden
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview)
 
 ## st-file-snapshot-001
+
+Topic: Storage › Azure Files share snapshots.
 
 A classic SMB Azure file share has a snapshot from before an unwanted file overwrite. The live share still exists. How should an administrator recover the earlier file contents?
 
@@ -2211,6 +4630,8 @@ Study: [knowledge file](../knowledge/storage/azure-files/snapshots.md). Evidence
 
 ## st-file-snapshot-002
 
+Topic: Storage › Azure Files share snapshots.
+
 An Azure file share has three snapshots. An administrator deletes the oldest one while retaining the newest. Because snapshots store changes incrementally, must the oldest snapshot be kept for the newest snapshot's files to remain recoverable?
 
 Select **1**. Difficulty: applied.
@@ -2225,6 +4646,8 @@ Study: [knowledge file](../knowledge/storage/azure-files/snapshots.md). Evidence
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-snapshots-files)
 
 ## st-file-snapshot-003
+
+Topic: Storage › Azure Files share snapshots.
 
 A classic Azure file share has snapshots, but share soft delete and backup are disabled. An administrator proposes deleting the share and all its snapshots to free capacity, while relying on those snapshots for later recovery. What is wrong with the proposal?
 
@@ -2241,6 +4664,8 @@ Study: [knowledge file](../knowledge/storage/azure-files/snapshots.md). Evidence
 
 ## st-file-snapshot-004
 
+Topic: Storage › Azure Files share snapshots.
+
 An application deployment will change files on a classic SMB Azure file share. The administrator wants a recovery point for the pre-deployment contents. Which two actions support that goal?
 
 Select **2**. Difficulty: applied.
@@ -2255,6 +4680,8 @@ Study: [knowledge file](../knowledge/storage/azure-files/snapshots.md). Evidence
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-snapshots-files) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning)
 
 ## st-file-delete-001
+
+Topic: Storage › Azure Files share soft deletion.
 
 Share soft delete is enabled for a classic Azure file share. A user deletes a single file, but the share remains active. A snapshot containing that file was taken earlier. Which recovery source applies?
 
@@ -2271,6 +4698,8 @@ Study: [knowledge file](../knowledge/storage/azure-files/soft-delete.md). Eviden
 
 ## st-file-delete-002
 
+Topic: Storage › Azure Files share soft deletion.
+
 You want a 14-day soft-delete window for classic Azure file shares in a storage account. Which configuration operation targets that protection?
 
 Select **1**. Difficulty: applied.
@@ -2285,6 +4714,8 @@ Study: [knowledge file](../knowledge/storage/azure-files/soft-delete.md). Eviden
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-prevent-file-share-deletion)
 
 ## st-file-delete-003
+
+Topic: Storage › Azure Files share soft deletion.
 
 A classic Azure file share was deleted while share soft delete was enabled. Its retention window remains active, and the retained share contains files and snapshots. What does undeleting that share restore?
 
@@ -2301,6 +4732,8 @@ Study: [knowledge file](../knowledge/storage/azure-files/soft-delete.md). Eviden
 
 ## st-file-delete-004
 
+Topic: Storage › Azure Files share soft deletion.
+
 You will restore a retained classic Azure file share using az storage share-rm restore. You know the account, resource group, and original share name. What additional value should you obtain from listing deleted shares?
 
 Select **1**. Difficulty: applied.
@@ -2314,7 +4747,43 @@ Study: [knowledge file](../knowledge/storage/azure-files/soft-delete.md). Eviden
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-prevent-file-share-deletion)
 
+## st-container-anonymous-level-variant
+
+Topic: Storage › Blob containers.
+
+A storage account allows anonymous blob access, and an ordinary container's anonymous access level is Blob. Networking permits the requests. Which operation is available to an anonymous client?
+
+Select **1**. Difficulty: foundation.
+
+- **A. Correct:** Read a known blob URL, but not list the container's blobs. Blob-level anonymous access permits reads of individual blobs without anonymous container listing.
+- **B. Incorrect:** List all blobs and read their contents. Anonymous listing requires Container-level access, not Blob-level access.
+- **C. Incorrect:** Upload blobs without a credential. Anonymous access levels grant reads, not unauthenticated writes.
+- **D. Incorrect:** No blob reads because anonymous access always requires a SAS. Under the stated account/container settings, anonymous individual-blob reads do not require a SAS.
+
+Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-configure)
+
+## st-container-key-mode-variant
+
+Topic: Storage › Blob containers.
+
+An approved legacy Azure CLI operation must use a supplied storage account key, with Shared Key access enabled. Which --auth-mode value explicitly selects this authorization method?
+
+Select **1**. Difficulty: applied.
+
+- **A. Incorrect:** login Login selects the signed-in Entra identity, not the supplied account key.
+- **B. Correct:** key Key mode selects account-key authorization; --account-key supplies the credential.
+- **C. Incorrect:** off Off is an anonymous-access setting value, not this authorization mode.
+- **D. Incorrect:** The storage account name. The account name selects the target account, not the authorization method.
+
+Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Evidence checked: 2026-10-02.
+
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-data-operations-cli)
+
 ## st-key-rotation-order
+
+Topic: Storage › Storage account access keys.
 
 All known consumers of an Azure storage account currently use key1. You need to rotate both keys while maintaining service. What should happen before regenerating key1?
 
@@ -2331,6 +4800,8 @@ Study: [knowledge file](../knowledge/storage/access/account-keys.md). Evidence c
 
 ## st-key-blob-disable
 
+Topic: Storage › Storage account access keys.
+
 Shared Key access is disabled on an Azure storage account. Which credential can still authorize a Blob read when its permissions, lifetime, and network path are valid?
 
 Select **1**. Difficulty: foundation.
@@ -2345,6 +4816,8 @@ Study: [knowledge file](../knowledge/storage/access/account-keys.md). Evidence c
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage)
 
 ## st-key-admin-role
+
+Topic: Storage › Storage account access keys.
 
 An operator must regenerate storage account keys. Which built-in role specifically includes this task?
 
@@ -2361,6 +4834,8 @@ Study: [knowledge file](../knowledge/storage/access/account-keys.md). Evidence c
 
 ## st-net-sas-denied
 
+Topic: Storage › Storage firewalls and network access.
+
 An external client's valid Blob SAS fails after the storage firewall is restricted to selected networks. Its IP is not allowed. What addresses the network problem without broadening SAS permissions?
 
 Select **1**. Difficulty: troubleshooting.
@@ -2375,6 +4850,8 @@ Study: [knowledge file](../knowledge/storage/access/network-rules.md). Evidence 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-set-default-access) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-limitations)
 
 ## st-net-default-allow
+
+Topic: Storage › Storage firewalls and network access.
 
 A storage account has an approved subnet rule, but defaultAction is Allow. Other internet clients with valid authorization can still read blobs. Which change enforces the selected-network allowlist?
 
@@ -2391,6 +4868,8 @@ Study: [knowledge file](../knowledge/storage/access/network-rules.md). Evidence 
 
 ## st-net-subnet-requirements
 
+Topic: Storage › Storage firewalls and network access.
+
 A VM subnet must access Blob Storage through a service endpoint while the storage firewall defaults to Deny. Which two configurations are required for this network path?
 
 Select **2**. Difficulty: applied.
@@ -2405,6 +4884,8 @@ Study: [knowledge file](../knowledge/storage/access/network-rules.md). Evidence 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-set-default-access) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-limitations)
 
 ## st-net-arm-data
+
+Topic: Storage › Storage firewalls and network access.
 
 A user can view a storage account's ARM properties but cannot download blobs from an unlisted network. What explains this difference?
 
@@ -2421,6 +4902,8 @@ Study: [knowledge file](../knowledge/storage/access/network-rules.md). Evidence 
 
 ## st-sas-private-download
 
+Topic: Storage › Shared access signatures.
+
 A contractor needs to download one private Azure blob for 20 minutes. The issuing application can authenticate through Microsoft Entra ID. Which approach follows Microsoft's recommended SAS signing method?
 
 Select **1**. Difficulty: applied.
@@ -2435,6 +4918,8 @@ Study: [knowledge file](../knowledge/storage/access/shared-access-signatures.md)
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli) · [Microsoft source 3](https://learn.microsoft.com/en-us/cli/azure/storage/blob#az-storage-blob-generate-sas)
 
 ## st-sas-cli-user
+
+Topic: Storage › Shared access signatures.
 
 Which two Azure CLI options select Entra-backed user delegation when generating a Blob SAS with az storage blob generate-sas?
 
@@ -2451,6 +4936,8 @@ Study: [knowledge file](../knowledge/storage/access/shared-access-signatures.md)
 
 ## st-sas-key-expiry
 
+Topic: Storage › Shared access signatures.
+
 A Blob user delegation SAS declares an expiry three days from now, but its signing delegation key expires tonight. Network access and permissions are correct. What happens after the key expires?
 
 Select **1**. Difficulty: troubleshooting.
@@ -2465,6 +4952,8 @@ Study: [knowledge file](../knowledge/storage/access/shared-access-signatures.md)
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli) · [Microsoft source 3](https://learn.microsoft.com/en-us/cli/azure/storage/blob#az-storage-blob-generate-sas)
 
 ## st-sas-delegator-scope
+
+Topic: Storage › Shared access signatures.
 
 An identity has Storage Blob Data Reader only on one container. It cannot obtain a user delegation key for the storage account. Which additional scoped grant addresses key generation while retaining narrow data access?
 
@@ -2481,6 +4970,8 @@ Study: [knowledge file](../knowledge/storage/access/shared-access-signatures.md)
 
 ## st-policy-revoke-group
 
+Topic: Storage › Stored access policies.
+
 A Blob container has service SAS credentials bound to policy contractor-read. Other clients use a different policy and must keep working. Which action revokes the contractor group without rotating an account key?
 
 Select **1**. Difficulty: applied.
@@ -2495,6 +4986,8 @@ Study: [knowledge file](../knowledge/storage/access/stored-access-policies.md). 
 [Microsoft source 1](https://learn.microsoft.com/en-us/rest/api/storageservices/define-stored-access-policy) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/sas-service-create-dotnet) · [Microsoft source 3](https://learn.microsoft.com/en-us/rest/api/storageservices/set-container-acl)
 
 ## st-policy-compatible
+
+Topic: Storage › Stored access policies.
 
 Which Azure Storage credential can reference a stored access policy on a blob container?
 
@@ -2511,6 +5004,8 @@ Study: [knowledge file](../knowledge/storage/access/stored-access-policies.md). 
 
 ## st-policy-sixth
 
+Topic: Storage › Stored access policies.
+
 An administrator tries to add a sixth stored access policy to a Blob container. The existing five policies must remain. Why does Azure reject the request?
 
 Select **1**. Difficulty: troubleshooting.
@@ -2525,6 +5020,8 @@ Study: [knowledge file](../knowledge/storage/access/stored-access-policies.md). 
 [Microsoft source 1](https://learn.microsoft.com/en-us/rest/api/storageservices/define-stored-access-policy) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/sas-service-create-dotnet) · [Microsoft source 3](https://learn.microsoft.com/en-us/rest/api/storageservices/set-container-acl)
 
 ## st-account-general-purpose
+
+Topic: Storage › Storage account creation and configuration.
 
 A new Azure account must host standard Blob, Queue, Table, and File storage services. Which account type is the usual fit?
 
@@ -2541,6 +5038,8 @@ Study: [knowledge file](../knowledge/storage/accounts/configuration.md). Evidenc
 
 ## st-account-name-scope
 
+Topic: Storage › Storage account creation and configuration.
+
 A valid storage account name is already used by another customer in another region. Your deployment fails. What must change?
 
 Select **1**. Difficulty: troubleshooting.
@@ -2555,6 +5054,8 @@ Study: [knowledge file](../knowledge/storage/accounts/configuration.md). Evidenc
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/storage-require-secure-transfer)
 
 ## st-account-transfer-tls
+
+Topic: Storage › Storage account creation and configuration.
 
 For Azure Storage REST clients, which two settings separately enforce encrypted transport and the minimum permitted TLS protocol version?
 
@@ -2571,6 +5072,8 @@ Study: [knowledge file](../knowledge/storage/accounts/configuration.md). Evidenc
 
 ## st-encryption-default
 
+Topic: Storage › Storage encryption and customer-managed keys.
+
 A new Azure storage account uses default encryption settings. What protects its persisted data?
 
 Select **1**. Difficulty: foundation.
@@ -2585,6 +5088,8 @@ Study: [knowledge file](../knowledge/storage/accounts/encryption.md). Evidence c
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-existing-account) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview)
 
 ## st-encryption-identity
+
+Topic: Storage › Storage encryption and customer-managed keys.
 
 A storage account using CMK cannot access its Key Vault key. The operator can view the key, but the account's managed identity has no key permissions. What addresses the service's missing permission?
 
@@ -2601,6 +5106,8 @@ Study: [knowledge file](../knowledge/storage/accounts/encryption.md). Evidence c
 
 ## st-encryption-vault-protection
 
+Topic: Storage › Storage encryption and customer-managed keys.
+
 Which two Key Vault protections are required by the documented Azure Storage CMK configuration?
 
 Select **2**. Difficulty: applied.
@@ -2615,6 +5122,8 @@ Study: [knowledge file](../knowledge/storage/accounts/encryption.md). Evidence c
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-existing-account) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview)
 
 ## st-redundancy-zones-only
+
+Topic: Storage › Storage redundancy and failover planning.
 
 A supported standard storage account must remain available during a single availability-zone outage, and policy prohibits storing replicas outside its primary region. Which option fits?
 
@@ -2631,6 +5140,8 @@ Study: [knowledge file](../knowledge/storage/accounts/redundancy.md). Evidence c
 
 ## st-redundancy-secondary-read
 
+Topic: Storage › Storage redundancy and failover planning.
+
 A Blob application needs zone redundancy in the primary region and read access to the secondary region before any failover. Which supported configuration fits?
 
 Select **1**. Difficulty: applied.
@@ -2645,6 +5156,8 @@ Study: [knowledge file](../knowledge/storage/accounts/redundancy.md). Evidence c
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/geo-redundant-design) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/redundancy-migration)
 
 ## st-redundancy-stale-secondary
+
+Topic: Storage › Storage redundancy and failover planning.
 
 A blob was just created in an RA-GRS account. A secondary-endpoint read cannot find it, while the primary read succeeds. What is the likely explanation?
 
@@ -2661,6 +5174,8 @@ Study: [knowledge file](../knowledge/storage/accounts/redundancy.md). Evidence c
 
 ## st-scope-enforced
 
+Topic: Storage › Blob encryption scopes.
+
 A new Blob container must require encryption scope tenant-a for every upload. Which configuration enforces that?
 
 Select **1**. Difficulty: applied.
@@ -2675,6 +5190,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/encryption-scopes.md).
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/authentication/storage-troubleshoot-403-errors)
 
 ## st-scope-disabled
+
+Topic: Storage › Blob encryption scopes.
 
 A previously readable blob starts returning 403 immediately after its encryption scope is disabled. Permissions and network paths are unchanged. What should be checked?
 
@@ -2691,6 +5208,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/encryption-scopes.md).
 
 ## st-scope-vs-rbac
 
+Topic: Storage › Blob encryption scopes.
+
 A team configures different Blob encryption scopes for two customers. What still needs separate configuration?
 
 Select **1**. Difficulty: foundation.
@@ -2705,6 +5224,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/encryption-scopes.md).
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/authentication/storage-troubleshoot-403-errors)
 
 ## st-or-prerequisites
+
+Topic: Storage › Blob object replication.
 
 Two supported Blob accounts will use object replication. Which two prerequisite configurations are needed?
 
@@ -2721,6 +5242,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/object-replication.md)
 
 ## st-or-existing-scope
 
+Topic: Storage › Blob object replication.
+
 New block blobs replicate successfully, but files uploaded last month do not. The policy was created today with its default copy scope. What should you inspect first?
 
 Select **1**. Difficulty: troubleshooting.
@@ -2735,6 +5258,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/object-replication.md)
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-configure) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-change-feed)
 
 ## st-or-destination-writes
+
+Topic: Storage › Blob object replication.
 
 An application wants to write directly into a destination container governed by Azure Blob object replication. What must the design account for?
 
@@ -2751,6 +5276,8 @@ Study: [knowledge file](../knowledge/storage/blob-storage/object-replication.md)
 
 ## st-files-protocol
 
+Topic: Storage › Azure file share provisioning and configuration.
+
 A team wants Windows SMB clients and NFS clients to access one Azure file share through both protocols. What constraint matters?
 
 Select **1**. Difficulty: foundation.
@@ -2765,6 +5292,8 @@ Study: [knowledge file](../knowledge/storage/azure-files/configuration.md). Evid
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/files/create-classic-file-share) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/files/modify-file-share) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows)
 
 ## st-files-port
+
+Topic: Storage › Azure file share provisioning and configuration.
 
 A Windows client resolves the Azure Files endpoint but cannot establish an SMB connection. Which outbound port should be checked first?
 
@@ -2781,6 +5310,8 @@ Study: [knowledge file](../knowledge/storage/azure-files/configuration.md). Evid
 
 ## st-files-provisioned-v2
 
+Topic: Storage › Azure file share provisioning and configuration.
+
 A new classic Azure file share must use Microsoft's current recommended billing model where supported and allow separate capacity, IOPS, and throughput provisioning. Which model fits?
 
 Select **1**. Difficulty: applied.
@@ -2795,6 +5326,8 @@ Study: [knowledge file](../knowledge/storage/azure-files/configuration.md). Evid
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/files/create-classic-file-share) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/files/modify-file-share) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows)
 
 ## st-files-two-layers
+
+Topic: Storage › Azure Files identity-based SMB access.
 
 A user authenticates successfully to an Azure SMB file share and has Storage File Data SMB Share Contributor. A directory ACL denies the user access. What is the expected result?
 
@@ -2811,6 +5344,8 @@ Study: [knowledge file](../knowledge/storage/azure-files/identity-based-access.m
 
 ## st-files-share-role
 
+Topic: Storage › Azure Files identity-based SMB access.
+
 A group needs to read files through identity-based Azure Files SMB. Its directory ACLs already allow read. Which share-level role supplies the required read access?
 
 Select **1**. Difficulty: applied.
@@ -2825,6 +5360,8 @@ Study: [knowledge file](../knowledge/storage/azure-files/identity-based-access.m
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-assign-share-level-permissions) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-configure-file-level-permissions)
 
 ## st-files-source-count
+
+Topic: Storage › Azure Files identity-based SMB access.
 
 A storage account uses AD DS for identity-based Azure Files SMB authentication. Can one share in that same account independently use Entra Domain Services as a second simultaneous identity source?
 
@@ -2841,6 +5378,8 @@ Study: [knowledge file](../knowledge/storage/azure-files/identity-based-access.m
 
 ## st-azcopy-one-way
 
+Topic: Storage › AzCopy transfers and synchronization.
+
 An AzCopy sync job uses a local directory as source and a Blob container as destination. A file is added only to the destination. Does that operation copy it back to the local source?
 
 Select **1**. Difficulty: foundation.
@@ -2855,6 +5394,8 @@ Study: [knowledge file](../knowledge/storage/transfers/azcopy.md). Evidence chec
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-synchronize) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-configure) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-upload)
 
 ## st-azcopy-delete-destination
+
+Topic: Storage › AzCopy transfers and synchronization.
 
 A team wants AzCopy to upload newer local files while preserving destination-only blobs. Which approach follows Microsoft's suggestion when synchronization deletion is unnecessary?
 
@@ -2871,6 +5412,8 @@ Study: [knowledge file](../knowledge/storage/transfers/azcopy.md). Evidence chec
 
 ## st-azcopy-resume
 
+Topic: Storage › AzCopy transfers and synchronization.
+
 A SAS-authenticated AzCopy job stops after some transfers. You retain the job plan, but the SAS expired. What is the appropriate recovery?
 
 Select **1**. Difficulty: troubleshooting.
@@ -2885,6 +5428,8 @@ Study: [knowledge file](../knowledge/storage/transfers/azcopy.md). Evidence chec
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-synchronize) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-configure) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-upload)
 
 ## st-explorer-data-only
+
+Topic: Storage › Storage Explorer connections and data management.
 
 A user has Storage Blob Data Reader on one container but cannot browse the subscription's storage accounts. How can Storage Explorer access that container without broad management permissions?
 
@@ -2901,6 +5446,8 @@ Study: [knowledge file](../knowledge/storage/transfers/storage-explorer.md). Evi
 
 ## st-explorer-reader-data
 
+Topic: Storage › Storage Explorer connections and data management.
+
 Storage Explorer shows an account after a user receives Azure Reader, but Entra-authenticated Blob downloads still fail. Which permission should be checked?
 
 Select **1**. Difficulty: troubleshooting.
@@ -2915,6 +5462,8 @@ Study: [knowledge file](../knowledge/storage/transfers/storage-explorer.md). Evi
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer) · [Microsoft source 2](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-explorer-troubleshooting) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-explorer-blobs)
 
 ## st-explorer-detach
+
+Topic: Storage › Storage Explorer connections and data management.
 
 You detach a SAS-connected Blob container from Storage Explorer. What does this action do?
 

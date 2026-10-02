@@ -29,3 +29,8 @@ Thumbs.db
 *.swp
 
 # Generated content is committed; rebuild with npm run build.
+
+# Study notes must remain tracked even when a user's global ignore lists
+# exclude directories named Backup or Logs (including case-insensitive matches).
+!knowledge/**/
+!knowledge/**/*.md

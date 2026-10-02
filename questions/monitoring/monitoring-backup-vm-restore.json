@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-restore-deleted",
+      "family": "mo-restore-deleted",
+      "revision": 1,
+      "topic": "monitoring.backup.vm-restore",
+      "objectives": [
+        "mo-10"
+      ],
+      "difficulty": "applied",
+      "prompt": "A backed-up Azure VM has been deleted. You want to recover it from a valid point. Which mode fits this situation?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Create new VM, or restore disks and construct a VM.",
+          "explanation": "These modes do not require the original VM resource to exist."
+        },
+        {
+          "id": "b",
+          "text": "Replace existing disks on the deleted VM.",
+          "explanation": "Replace existing requires an existing target VM."
+        },
+        {
+          "id": "c",
+          "text": "Only change the backup schedule.",
+          "explanation": "A schedule does not recreate the deleted resource."
+        },
+        {
+          "id": "d",
+          "text": "Only acknowledge its alert.",
+          "explanation": "Alert response state does not restore the VM."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/backup/virtual-machines.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-restore-consistency",
+      "family": "mo-restore-consistency",
+      "revision": 1,
+      "topic": "monitoring.backup.vm-restore",
+      "objectives": [
+        "mo-10"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A recovery point is crash-consistent. What should you expect during recovery?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Every in-memory write is guaranteed present.",
+          "explanation": "Crash consistency captures on-disk state, not all pending memory writes."
+        },
+        {
+          "id": "b",
+          "text": "Application/OS recovery may be needed for the captured disk state.",
+          "explanation": "Crash-consistent recovery can require checks or transaction recovery."
+        },
+        {
+          "id": "c",
+          "text": "The point cannot contain any disk data.",
+          "explanation": "It does capture disk state."
+        },
+        {
+          "id": "d",
+          "text": "It is automatically a database transaction-log backup.",
+          "explanation": "VM consistency is not equivalent to database log backup."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/backup/virtual-machines.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-restore-verify",
+      "family": "mo-restore-verify",
+      "revision": 1,
+      "topic": "monitoring.backup.vm-restore",
+      "objectives": [
+        "mo-10"
+      ],
+      "difficulty": "applied",
+      "prompt": "Azure reports a VM restore job completed. Which two checks establish practical recovery better than the job state alone?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "Verify the restored VM boots with its intended disks/network.",
+          "explanation": "Infrastructure usability needs a direct check."
+        },
+        {
+          "id": "b",
+          "text": "Assume every external DNS entry changed automatically.",
+          "explanation": "External references may need independent repair."
+        },
+        {
+          "id": "c",
+          "text": "Verify guest data and application behavior at the restored point.",
+          "explanation": "Business recovery requires more than resource creation."
+        },
+        {
+          "id": "d",
+          "text": "Delete the recovery points immediately before checking the app.",
+          "explanation": "That removes fallback without establishing usability."
+        }
+      ],
+      "correct": [
+        "a",
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/backup/virtual-machines.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

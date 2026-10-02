@@ -4,9 +4,10 @@ English study notes and original multiple-choice practice for the Microsoft
 Azure Administrator certification. Designed for a learner with some Azure
 experience preparing for an exam around December 2026–January 2027.
 
-**Current scope: storage, identity/governance, and compute; networking and monitoring are in progress.**
+**All 82 exam objectives now have documented coverage across five domains.**
 See [STATUS.md](STATUS.md) for progress and [the coverage matrix](exam/coverage.md)
-for the remaining objectives.
+for topic mappings. The bank currently contains 322 questions across 311
+families and 99 topics, including reviewed variants in all five domains.
 
 ## Start studying
 
@@ -35,6 +36,12 @@ automatically and show your selections plus the correct options; correct
 results remain collapsed. Multiple-answer questions require the exact answer set.
 Progress stays in this browser. Export it before clearing browser storage or
 moving to a different browser. Imported progress replaces current progress.
+
+Choose **Mixed · exam domain weights** for practice across all five domains.
+The app normalizes the published ranges' midpoints and rounds to whole
+questions; restricted missed-question sessions use available families.
+**All topics · random selection** samples the bank without domain weighting.
+These practice percentages do not predict Microsoft's scaled exam score.
 
 You can also study without the app:
 

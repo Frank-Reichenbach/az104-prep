@@ -18,13 +18,14 @@
     <section id="setup" class="card" hidden>
       <h2>Your next session</h2>
       <form id="start-form">
-        <label for="topic">Topic</label><select id="topic"><option value="all">All available topics</option></select>
+        <label for="topic">Topic</label><select id="topic"><option value="weighted">Mixed · exam domain weights</option><option value="all">All topics · random selection</option></select>
         <div class="row">
           <div><label for="count">Questions</label><input id="count" type="number" value="10" min="1" max="100" required></div>
           <div><label for="mode">Mode</label><select id="mode"><option value="practice">Practice · feedback after each answer</option><option value="test">Test · feedback at the end</option></select></div>
         </div>
         <label class="inline"><input id="missed" type="checkbox"> Review currently missed question families</label>
         <p class="muted">Select the stated number of answers. Multiple-answer questions require an exact match. A session uses at most one variant per family.</p>
+        <p class="muted">Mixed sessions balance questions across the exam domains. Short sessions and missed-question review can differ from the published proportions.</p>
         <button type="submit">Start session</button>
       </form>
       <p id="progress"></p>
@@ -38,7 +39,7 @@
       <button id="next" type="button" hidden>Next question</button>
       <button id="end" class="secondary" type="button">End session</button>
     </section>
-    <section id="results" class="card" hidden><h2 id="result-title" tabindex="-1">Session results</h2><p id="result-score"></p><p class="muted">This measures the completed sample questions, not Microsoft's exam score or readiness across all domains.</p><div id="review"></div><button id="again" type="button">Choose another session</button></section>
+    <section id="results" class="card" hidden><h2 id="result-title" tabindex="-1">Session results</h2><p id="result-score"></p><p class="muted">This percentage measures your answers in this session. It does not predict Microsoft's scaled exam score or exam readiness.</p><div id="review"></div><button id="again" type="button">Choose another session</button></section>
     <footer>Independent study material · English · No account or cloud service required</footer>
   </main>
 </body>

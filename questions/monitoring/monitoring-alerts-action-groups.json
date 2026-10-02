@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-action-reuse",
+      "family": "mo-action-reuse",
+      "revision": 1,
+      "topic": "monitoring.alerts.action-groups",
+      "objectives": [
+        "mo-04"
+      ],
+      "difficulty": "foundation",
+      "prompt": "CPU and log alerts should notify the same operations team. What reusable Azure Monitor resource defines those recipients?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "An action group.",
+          "explanation": "It can be reused by multiple alert rules."
+        },
+        {
+          "id": "b",
+          "text": "A metric dimension.",
+          "explanation": "Dimensions segment telemetry rather than define recipients."
+        },
+        {
+          "id": "c",
+          "text": "A DCR association.",
+          "explanation": "That applies collection settings to a resource."
+        },
+        {
+          "id": "d",
+          "text": "A private DNS zone.",
+          "explanation": "DNS resolution does not define alert recipients."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/alerts/action-groups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-action-test",
+      "family": "mo-action-test",
+      "revision": 1,
+      "topic": "monitoring.alerts.action-groups",
+      "objectives": [
+        "mo-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "An action group's sample notification test succeeds. What remains to verify for an actual CPU alert?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Nothing; the sample forces the real CPU rule to fire.",
+          "explanation": "A response-path test does not evaluate the actual condition."
+        },
+        {
+          "id": "b",
+          "text": "The real alert rule's scope/condition and group attachment.",
+          "explanation": "A correct group still needs a firing rule or processing-rule attachment."
+        },
+        {
+          "id": "c",
+          "text": "That the group stores CPU samples.",
+          "explanation": "An action group is not a telemetry store."
+        },
+        {
+          "id": "d",
+          "text": "That the sample changed the VM size.",
+          "explanation": "Sending a sample notification is not VM scaling."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/alerts/action-groups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-action-no-message",
+      "family": "mo-action-no-message",
+      "revision": 1,
+      "topic": "monitoring.alerts.action-groups",
+      "objectives": [
+        "mo-04"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A real alert fired but no email arrived. Which two response-path checks are relevant?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "Inspect attached/enabled action groups and recipient validation.",
+          "explanation": "Those affect email delivery."
+        },
+        {
+          "id": "b",
+          "text": "Assume the condition never fired despite the alert instance.",
+          "explanation": "The instance is evidence of firing; delivery is a separate stage."
+        },
+        {
+          "id": "c",
+          "text": "Check whether a processing rule suppressed its action groups.",
+          "explanation": "Suppression can leave the alert visible without notifications."
+        },
+        {
+          "id": "d",
+          "text": "Add a DCR filter to rewrite the recipient email.",
+          "explanation": "DCRs configure telemetry collection rather than notification recipients."
+        }
+      ],
+      "correct": [
+        "a",
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/alerts/action-groups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

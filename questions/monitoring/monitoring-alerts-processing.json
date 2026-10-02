@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-processing-maintenance",
+      "family": "mo-processing-maintenance",
+      "revision": 1,
+      "topic": "monitoring.alerts.processing",
+      "objectives": [
+        "mo-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "You want scheduled maintenance to suppress notifications for one VM while preserving fired-alert records. Which approach fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A scheduled alert processing rule suppressing its action groups.",
+          "explanation": "This processes fired alerts without disabling condition evaluation."
+        },
+        {
+          "id": "b",
+          "text": "Disable every alert rule in the subscription.",
+          "explanation": "That stops evaluation broadly and loses intended alert firing."
+        },
+        {
+          "id": "c",
+          "text": "Delete the collected metrics during maintenance.",
+          "explanation": "Suppression does not require data deletion."
+        },
+        {
+          "id": "d",
+          "text": "Remove the VM's DCR permanently.",
+          "explanation": "That changes collection rather than a scheduled response policy."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/alerts/processing-rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-processing-scope",
+      "family": "mo-processing-scope",
+      "revision": 1,
+      "topic": "monitoring.alerts.processing",
+      "objectives": [
+        "mo-04"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Can one alert processing rule directly scope resources from a different subscription than its own?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes, any subscription in the tenant.",
+          "explanation": "The documented scope stays within its subscription."
+        },
+        {
+          "id": "b",
+          "text": "No; its scoped resources must be in the same subscription.",
+          "explanation": "Create suitable processing rules in the relevant subscriptions."
+        },
+        {
+          "id": "c",
+          "text": "Yes, if they have identical resource-group names.",
+          "explanation": "Matching names do not override subscription scope."
+        },
+        {
+          "id": "d",
+          "text": "Yes, if the action group uses email.",
+          "explanation": "Response type does not change processing-rule scope."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/alerts/processing-rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-processing-service-health",
+      "family": "mo-processing-service-health",
+      "revision": 1,
+      "topic": "monitoring.alerts.processing",
+      "objectives": [
+        "mo-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "Will an Azure Monitor alert processing rule suppress Azure Service Health alerts?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes, all alert sources are affected without exception.",
+          "explanation": "Service Health is a documented exception."
+        },
+        {
+          "id": "b",
+          "text": "Yes, if the schedule is recurring.",
+          "explanation": "Schedule type does not remove that exception."
+        },
+        {
+          "id": "c",
+          "text": "No; processing rules do not affect Service Health alerts.",
+          "explanation": "Plan Service Health notification behavior separately."
+        },
+        {
+          "id": "d",
+          "text": "Yes, if its scope is the whole subscription.",
+          "explanation": "Broad scope does not override the exclusion."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/alerts/processing-rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

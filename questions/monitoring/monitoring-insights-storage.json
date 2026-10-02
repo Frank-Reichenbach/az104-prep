@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-storage-color",
+      "family": "mo-storage-color",
+      "revision": 1,
+      "topic": "monitoring.insights.storage",
+      "objectives": [
+        "mo-05"
+      ],
+      "difficulty": "foundation",
+      "prompt": "You change Storage Insights' availability color threshold in a copied workbook. What changes?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The workbook's visual classification.",
+          "explanation": "Workbook formatting does not change service availability or create a rule."
+        },
+        {
+          "id": "b",
+          "text": "The storage service's guaranteed availability.",
+          "explanation": "A display threshold does not change a service guarantee."
+        },
+        {
+          "id": "c",
+          "text": "An alert rule is automatically created with that threshold.",
+          "explanation": "Workbook coloring and alert configuration are separate."
+        },
+        {
+          "id": "d",
+          "text": "The account's replication mode.",
+          "explanation": "The workbook setting does not configure redundancy."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/insights/storage.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-insights-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-storage-log-target",
+      "family": "mo-storage-log-target",
+      "revision": 1,
+      "topic": "monitoring.insights.storage",
+      "objectives": [
+        "mo-05"
+      ],
+      "difficulty": "applied",
+      "prompt": "You want Blob resource logs archived in Azure Storage. May the diagnostic setting target the same account it monitors?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes; recursive logging is required.",
+          "explanation": "Recursive logging is precisely the reason this is not supported."
+        },
+        {
+          "id": "b",
+          "text": "No; use a different destination account.",
+          "explanation": "This avoids logs describing their own writes."
+        },
+        {
+          "id": "c",
+          "text": "Yes; rename the destination container.",
+          "explanation": "A different container does not remove the same-account restriction."
+        },
+        {
+          "id": "d",
+          "text": "Yes; use a CNAME for the account.",
+          "explanation": "An alias still targets the same account."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/insights/storage.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-insights-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-storage-no-agent",
+      "family": "mo-storage-no-agent",
+      "revision": 1,
+      "topic": "monitoring.insights.storage",
+      "objectives": [
+        "mo-05"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Do Storage Insights' platform metrics require installing AMA on a client VM?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes; every transaction metric is collected from that guest.",
+          "explanation": "Platform storage metrics originate from the service."
+        },
+        {
+          "id": "b",
+          "text": "Yes; AMA must be installed inside the storage account.",
+          "explanation": "A storage account is not a VM guest for AMA installation."
+        },
+        {
+          "id": "c",
+          "text": "No; platform metrics are collected by Azure.",
+          "explanation": "Additional resource logs have their own collection configuration."
+        },
+        {
+          "id": "d",
+          "text": "Yes; Dependency Agent supplies storage capacity.",
+          "explanation": "That agent is not the platform storage metric source."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/insights/storage.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-insights-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

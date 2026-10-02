@@ -39,6 +39,39 @@ test('topic and missed filters are applied together; empty review is explicit', 
   assert.throws(() => makeQuiz(questions, { count: 1.5 }));
 });
 
+test('mixed sessions approximate normalized domain ranges without duplicate families', async () => {
+  const bank = JSON.parse(await readFile(new URL('../app/data.json', import.meta.url), 'utf8'));
+  const before = JSON.stringify(bank);
+  const quiz = makeQuiz(bank.questions, { topic: 'weighted', count: 100,
+    domains: bank.domains, topics: bank.topics }, () => 0.4);
+  assert.equal(quiz.length, 100);
+  assert.equal(new Set(quiz.map(q => q.family)).size, 100);
+  const domainFor = new Map(bank.topics.map(t => [t.id, t.domain]));
+  const total = bank.domains.reduce((sum, d) => sum + (d.weight[0] + d.weight[1]) / 2, 0);
+  for (const d of bank.domains) {
+    const actual = quiz.filter(q => domainFor.get(q.topic) === d.id).length;
+    const target = 100 * (d.weight[0] + d.weight[1]) / 2 / total;
+    assert.ok(Math.abs(actual - target) < 1, `${d.id}: ${actual} differs from ${target}`);
+  }
+  assert.equal(JSON.stringify(bank), before);
+});
+
+test('mixed missed review fills available capacity even when a domain is scarce', () => {
+  const pool = Array.from({ length: 6 }, (_, i) => ({ ...single, id: `case-${i}`,
+    family: `family-${i}`, topic: i === 0 ? 'high.topic' : 'low.topic' }));
+  pool.push({ ...pool[0], id: 'reviewed-variant' });
+  const options = { topic: 'weighted', count: 20,
+    domains: [{ id: 'high', weight: [80, 90] }, { id: 'low', weight: [10, 20] }],
+    topics: [{ id: 'high.topic', domain: 'high' }, { id: 'low.topic', domain: 'low' }],
+    missed: new Set(['family-0', 'family-1', 'family-2']) };
+  const quiz = makeQuiz(pool, options, () => 0.2);
+  assert.equal(quiz.length, 3);
+  assert.deepEqual(new Set(quiz.map(q => q.family)), options.missed);
+  assert.equal(makeQuiz(pool, { ...options, missed: new Set() }).length, 0);
+  assert.throws(() => makeQuiz(pool, { ...options, topics: [] }), /Missing exam domain/);
+  assert.throws(() => makeQuiz(pool, { ...options, domains: [] }), /valid exam domain weights/);
+});
+
 test('missed review uses latest family result, including across variants and unordered history', () => {
   const variants = questions.filter(q => q.family === 'st-life-prefix');
   const wrong = variants[0].options.find(o => !variants[0].correct.includes(o.id)).id;

@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-network-topology",
+      "family": "mo-network-topology",
+      "revision": 1,
+      "topic": "monitoring.insights.networks",
+      "objectives": [
+        "mo-05"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A VM and subnet appear connected in Network Insights topology. What does this establish?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Their represented resource relationship.",
+          "explanation": "Topology does not by itself prove application-level reachability."
+        },
+        {
+          "id": "b",
+          "text": "Every TCP port on the VM is reachable.",
+          "explanation": "Listeners and filtering must be tested separately."
+        },
+        {
+          "id": "c",
+          "text": "The VM's guest login succeeds.",
+          "explanation": "Topology does not validate guest credentials."
+        },
+        {
+          "id": "d",
+          "text": "Continuous probes have automatically been configured.",
+          "explanation": "Inventory visibility does not create those tests."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/insights/networks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/network-watcher/network-insights-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-network-continuous",
+      "family": "mo-network-continuous",
+      "revision": 1,
+      "topic": "monitoring.insights.networks",
+      "objectives": [
+        "mo-05"
+      ],
+      "difficulty": "applied",
+      "prompt": "Network Insights shows your resources, but you need recurring latency/reachability measurements between two endpoints. What should you configure?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Only rename the topology resources.",
+          "explanation": "Names do not start probes."
+        },
+        {
+          "id": "b",
+          "text": "Connection Monitor tests for those endpoints.",
+          "explanation": "Continuous connection tests need explicit configuration."
+        },
+        {
+          "id": "c",
+          "text": "Only change dashboard colors.",
+          "explanation": "Formatting does not collect measurements."
+        },
+        {
+          "id": "d",
+          "text": "A resource lock on the source VM.",
+          "explanation": "A lock does not initiate network tests."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/insights/networks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/network-watcher/network-insights-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-network-flow-new",
+      "family": "mo-network-flow-new",
+      "revision": 1,
+      "topic": "monitoring.insights.networks",
+      "objectives": [
+        "mo-05"
+      ],
+      "difficulty": "applied",
+      "prompt": "You are selecting traffic logging for a new VNet deployment under current Microsoft guidance. Which choice fits the NSG flow-log retirement?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Create new NSG flow logs indefinitely.",
+          "explanation": "New creation is no longer supported."
+        },
+        {
+          "id": "b",
+          "text": "Use the Activity Log as a record of every IP flow.",
+          "explanation": "Management events are not IP traffic-flow records."
+        },
+        {
+          "id": "c",
+          "text": "Use virtual network flow logs.",
+          "explanation": "Microsoft directs new/migrating designs to VNet flow logs."
+        },
+        {
+          "id": "d",
+          "text": "Use only DNS records to count all network flows.",
+          "explanation": "DNS records do not provide flow logging."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/insights/networks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/network-watcher/network-insights-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

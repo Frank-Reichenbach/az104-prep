@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "nw-effective-layers",
+      "family": "nw-effective-layers",
+      "revision": 1,
+      "topic": "networking.security.effective-rules",
+      "objectives": [
+        "nw-07"
+      ],
+      "difficulty": "applied",
+      "prompt": "A new inbound TCP 443 flow matches Allow priority 100 in the subnet NSG and Deny priority 200 in the NIC NSG. No security-admin rule applies. What happens?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Allowed because 100 wins globally.",
+          "explanation": "Priorities apply within each NSG, not across both as one list."
+        },
+        {
+          "id": "b",
+          "text": "Denied by the NIC NSG.",
+          "explanation": "Both NSG layers must permit the flow."
+        },
+        {
+          "id": "c",
+          "text": "Allowed because the subnet is evaluated first.",
+          "explanation": "Passing the subnet does not bypass NIC evaluation."
+        },
+        {
+          "id": "d",
+          "text": "Denied only if both rules have the same priority.",
+          "explanation": "A NIC deny blocks regardless of the subnet allow's number."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/networking/security/effective-rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-effective-running",
+      "family": "nw-effective-running",
+      "revision": 1,
+      "topic": "networking.security.effective-rules",
+      "objectives": [
+        "nw-07"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A NIC has an associated NSG, but its VM is deallocated and list-effective-nsg does not return the expected effective rules. What prerequisite should you restore?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Run the VM before retrieving effective rules.",
+          "explanation": "The documented effective-rule query requires a running VM."
+        },
+        {
+          "id": "b",
+          "text": "Remove every NSG association.",
+          "explanation": "That removes the policy being inspected."
+        },
+        {
+          "id": "c",
+          "text": "Add a public IP to every VM NIC.",
+          "explanation": "A public IP is not the effective-rule query prerequisite."
+        },
+        {
+          "id": "d",
+          "text": "Replace its route table with an NSG.",
+          "explanation": "Routing and filtering resources serve different purposes."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/networking/security/effective-rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-effective-multiple",
+      "family": "nw-effective-multiple",
+      "revision": 1,
+      "topic": "networking.security.effective-rules",
+      "objectives": [
+        "nw-07"
+      ],
+      "difficulty": "applied",
+      "prompt": "A VM has two NICs in different subnets. You inspected the first NIC's effective NSG rules. What is needed before concluding both paths have identical filtering?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Only compare the VM size.",
+          "explanation": "VM size does not establish NSG associations."
+        },
+        {
+          "id": "b",
+          "text": "Only check their DNS suffix.",
+          "explanation": "DNS suffixes do not determine filtering policy."
+        },
+        {
+          "id": "c",
+          "text": "Inspect effective rules and associations for the second NIC.",
+          "explanation": "Each NIC can inherit a different subnet/NIC combination."
+        },
+        {
+          "id": "d",
+          "text": "Assume a VM shares one effective NSG across all NICs.",
+          "explanation": "Effective filtering is evaluated for each NIC's path."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/networking/security/effective-rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

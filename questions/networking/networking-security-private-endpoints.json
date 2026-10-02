@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "nw-pe-public",
+      "family": "nw-pe-public",
+      "revision": 1,
+      "topic": "networking.security.private-endpoints",
+      "objectives": [
+        "nw-10"
+      ],
+      "difficulty": "applied",
+      "prompt": "You create an approved blob private endpoint on a storage account whose public access still allows all networks. Is the public endpoint now blocked?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes, approval disables the public endpoint.",
+          "explanation": "Approval enables the private path; it does not disable public access."
+        },
+        {
+          "id": "b",
+          "text": "No; configure public network access separately.",
+          "explanation": "Both paths can exist until public access is restricted."
+        },
+        {
+          "id": "c",
+          "text": "Yes, if the endpoint uses a static private IP.",
+          "explanation": "Private address allocation does not control public access."
+        },
+        {
+          "id": "d",
+          "text": "Yes, because a private DNS zone acts as a public firewall.",
+          "explanation": "DNS selection is not public-endpoint firewall enforcement."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/networking/security/private-endpoints.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints",
+        "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns",
+        "https://learn.microsoft.com/en-us/azure/private-link/disable-private-endpoint-network-policy"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-pe-dns",
+      "family": "nw-pe-dns",
+      "revision": 1,
+      "topic": "networking.security.private-endpoints",
+      "objectives": [
+        "nw-10"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A VM can reach a blob private endpoint IP, but the account's normal hostname resolves publicly from that VM. Public access is disabled. What should you repair?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Private DNS records, VNet links, or the client's DNS forwarding.",
+          "explanation": "The normal hostname must resolve to the endpoint's private address."
+        },
+        {
+          "id": "b",
+          "text": "Grant the VM a public IP.",
+          "explanation": "That does not repair private name resolution."
+        },
+        {
+          "id": "c",
+          "text": "Replace the blob endpoint with a file endpoint.",
+          "explanation": "The target must still be the blob service."
+        },
+        {
+          "id": "d",
+          "text": "Add Internet-wide inbound rules to the VM.",
+          "explanation": "Inbound VM exposure does not fix its service-name lookup."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/networking/security/private-endpoints.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints",
+        "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns",
+        "https://learn.microsoft.com/en-us/azure/private-link/disable-private-endpoint-network-policy"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-pe-subresource",
+      "family": "nw-pe-subresource",
+      "revision": 1,
+      "topic": "networking.security.private-endpoints",
+      "objectives": [
+        "nw-10"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An account has a blob private endpoint. A workload also needs SMB Azure Files access through Private Link. What is additionally needed?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Only change the blob DNS A record to the file hostname.",
+          "explanation": "DNS cannot change the endpoint's target subresource."
+        },
+        {
+          "id": "b",
+          "text": "Only grant Blob Data Reader.",
+          "explanation": "That role does not provide the file network path."
+        },
+        {
+          "id": "c",
+          "text": "A file private endpoint and appropriate file DNS/access configuration.",
+          "explanation": "Storage subresources require their own private endpoints."
+        },
+        {
+          "id": "d",
+          "text": "Use the blob endpoint IP as an SMB proxy.",
+          "explanation": "A blob endpoint is not a general-purpose file proxy."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/networking/security/private-endpoints.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints",
+        "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns",
+        "https://learn.microsoft.com/en-us/azure/private-link/disable-private-endpoint-network-policy"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

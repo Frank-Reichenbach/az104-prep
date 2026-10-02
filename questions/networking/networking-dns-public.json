@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "nw-dns-delegate",
+      "family": "nw-dns-delegate",
+      "revision": 1,
+      "topic": "networking.dns.public",
+      "objectives": [
+        "nw-11"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "You created the correct public Azure DNS zone and A record, but Internet resolvers still use the previous provider. What configuration should you inspect?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Parent/registrar NS delegation to the zone's assigned name servers.",
+          "explanation": "Creating the zone does not change external delegation."
+        },
+        {
+          "id": "b",
+          "text": "A private VNet link for the public zone.",
+          "explanation": "Public delegation does not use private-zone VNet links."
+        },
+        {
+          "id": "c",
+          "text": "The VM's NSG priority.",
+          "explanation": "VM filtering does not select the domain's authoritative provider."
+        },
+        {
+          "id": "d",
+          "text": "A new MX record for the website.",
+          "explanation": "MX routes mail rather than delegates DNS hosting."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/networking/dns/public-zones.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns",
+        "https://learn.microsoft.com/en-us/azure/dns/dns-zones-records",
+        "https://learn.microsoft.com/en-us/azure/dns/dns-alias"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-dns-apex",
+      "family": "nw-dns-apex",
+      "revision": 1,
+      "topic": "networking.dns.public",
+      "objectives": [
+        "nw-11"
+      ],
+      "difficulty": "applied",
+      "prompt": "You want the apex of a public Azure DNS zone to track a supported Azure public IP resource. Which approach avoids an invalid apex CNAME?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Delete the apex SOA and NS and create a CNAME.",
+          "explanation": "Those apex records are required for the zone."
+        },
+        {
+          "id": "b",
+          "text": "Create an apex A alias record set targeting the public IP.",
+          "explanation": "Azure DNS aliases support suitable Azure targets at the apex."
+        },
+        {
+          "id": "c",
+          "text": "Use an MX record pointing at the public IP.",
+          "explanation": "MX is for mail routing and does not provide an IPv4 website answer."
+        },
+        {
+          "id": "d",
+          "text": "Add a private-zone autoregistration link.",
+          "explanation": "That does not create the public apex mapping."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/networking/dns/public-zones.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns",
+        "https://learn.microsoft.com/en-us/azure/dns/dns-zones-records",
+        "https://learn.microsoft.com/en-us/azure/dns/dns-alias"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-dns-ttl",
+      "family": "nw-dns-ttl",
+      "revision": 1,
+      "topic": "networking.dns.public",
+      "objectives": [
+        "nw-11"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "Authoritative Azure DNS servers return your new A record, but a recursive resolver still returns the old answer within its cached TTL. What is the likely explanation?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Azure DNS has changed the VM's private address.",
+          "explanation": "DNS records do not control VM address allocation."
+        },
+        {
+          "id": "b",
+          "text": "The zone must be recreated for any A-record change.",
+          "explanation": "Record updates do not require zone recreation."
+        },
+        {
+          "id": "c",
+          "text": "The recursive resolver still holds an unexpired cached answer.",
+          "explanation": "Cached answers can outlive the authoritative update until expiry."
+        },
+        {
+          "id": "d",
+          "text": "An NSG rule has rewritten the DNS A record.",
+          "explanation": "An NSG filters traffic; it does not rewrite authoritative records."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/networking/dns/public-zones.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns",
+        "https://learn.microsoft.com/en-us/azure/dns/dns-zones-records",
+        "https://learn.microsoft.com/en-us/azure/dns/dns-alias"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

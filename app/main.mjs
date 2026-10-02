@@ -84,6 +84,7 @@ $('start-form').addEventListener('submit', event => {
   event.preventDefault(); message();
   try {
     active = makeQuiz(bank.questions, { topic: $('topic').value, count: Number($('count').value),
+      domains: bank.domains, topics: bank.topics,
       missed: $('missed').checked ? missedFamilies(attempts, bank.questions) : null });
     if (!active.length) { message('No question families match this selection. Change the topic or turn off missed-question review.'); return; }
     if (active.length < Number($('count').value)) message(`This selection has ${active.length} available families; the session uses all of them.`);
@@ -129,7 +130,10 @@ try {
   if (!response.ok) throw new Error('Question data could not be loaded. Run npm run build.');
   bank = await response.json();
   if (bank.schemaVersion !== 1 || !Array.isArray(bank.questions)) throw new Error('Unsupported question bank.');
-  bank.topics.forEach(topic => { const option = el('option', topic.title); option.value = topic.id; $('topic').append(option); });
+  bank.topics.forEach(topic => {
+    const domain = bank.domains.find(d => d.id === topic.domain);
+    const option = el('option', `${domain.title} › ${topic.title}`); option.value = topic.id; $('topic').append(option);
+  });
   $('coverage').textContent = `${bank.questions.length} questions, ${new Set(bank.questions.map(q => q.family)).size} families · ${bank.coverage.covered}/${bank.coverage.total} objectives documented. ${bank.coverage.covered < bank.coverage.total ? 'Full exam coverage is still in progress.' : 'Documentation coverage does not measure exam readiness.'}`;
   try {
     const saved = localStorage.getItem(STORAGE);

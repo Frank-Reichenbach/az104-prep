@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-vm-guest",
+      "family": "mo-vm-guest",
+      "revision": 1,
+      "topic": "monitoring.insights.vms",
+      "objectives": [
+        "mo-05"
+      ],
+      "difficulty": "applied",
+      "prompt": "A VM's host CPU chart works, but guest memory details are absent. What should you investigate?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Enhanced guest monitoring: AMA, DCR association, and destination.",
+          "explanation": "Host metrics alone do not collect all guest counters."
+        },
+        {
+          "id": "b",
+          "text": "Only a public DNS record for the VM.",
+          "explanation": "DNS does not select guest monitoring streams."
+        },
+        {
+          "id": "c",
+          "text": "Assume guest memory is automatically zero.",
+          "explanation": "Missing telemetry is not a zero-memory reading."
+        },
+        {
+          "id": "d",
+          "text": "Delete the VM's host metrics.",
+          "explanation": "Removing evidence does not enable guest collection."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/insights/virtual-machines.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/monitor-vm",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vm-enable-monitoring",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/tutorial-enable-monitoring",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vminsights-maps"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-vm-map",
+      "family": "mo-vm-map",
+      "revision": 1,
+      "topic": "monitoring.insights.vms",
+      "objectives": [
+        "mo-05"
+      ],
+      "difficulty": "applied",
+      "prompt": "For a new deployment, a legacy guide recommends enabling VM Insights Map and Dependency Agent. What does current Microsoft guidance say?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Dependency Agent is mandatory for all host metrics.",
+          "explanation": "Host metrics do not require it."
+        },
+        {
+          "id": "b",
+          "text": "Do not enable this deprecated feature for new deployments.",
+          "explanation": "Current documentation gives that guidance and a retirement timeline."
+        },
+        {
+          "id": "c",
+          "text": "Map has replaced every DCR and workspace.",
+          "explanation": "Current monitoring still uses collection rules and destinations."
+        },
+        {
+          "id": "d",
+          "text": "Install both legacy Log Analytics Agent and AMA to guarantee accuracy.",
+          "explanation": "Duplicate collection is not the recommended repair."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/insights/virtual-machines.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/monitor-vm",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vm-enable-monitoring",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/tutorial-enable-monitoring",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vminsights-maps"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-vm-destination",
+      "family": "mo-vm-destination",
+      "revision": 1,
+      "topic": "monitoring.insights.vms",
+      "objectives": [
+        "mo-05"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which destination matches the current supported OpenTelemetry VM metrics experience?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Only a Storage container containing arbitrary text files.",
+          "explanation": "That is not the described metric destination."
+        },
+        {
+          "id": "b",
+          "text": "An action group.",
+          "explanation": "An action group handles responses rather than stores metrics."
+        },
+        {
+          "id": "c",
+          "text": "An Azure Monitor workspace.",
+          "explanation": "The current metrics experience uses this workspace type."
+        },
+        {
+          "id": "d",
+          "text": "A Recovery Services vault.",
+          "explanation": "That vault provides recovery services rather than VM metric storage."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/insights/virtual-machines.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/monitor-vm",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vm-enable-monitoring",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/tutorial-enable-monitoring",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vminsights-maps"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

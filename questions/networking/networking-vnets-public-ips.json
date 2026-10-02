@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "nw-ip-inbound",
+      "family": "nw-ip-inbound",
+      "revision": 1,
+      "topic": "networking.vnets.public-ips",
+      "objectives": [
+        "nw-03"
+      ],
+      "difficulty": "applied",
+      "prompt": "A VM has a Standard public IP, a running HTTPS listener, and a guest firewall allowing TCP 443. Its effective NSG rules deny inbound Internet traffic. What must change to accept HTTPS from an approved client range?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Add an NSG allow rule for that range and TCP 443.",
+          "explanation": "Standard public IP access still requires an NSG permit."
+        },
+        {
+          "id": "b",
+          "text": "Set public IP allocation to dynamic.",
+          "explanation": "Standard uses static allocation; allocation does not authorize traffic."
+        },
+        {
+          "id": "c",
+          "text": "Add a DNS label to the public IP.",
+          "explanation": "A DNS name does not override the NSG deny."
+        },
+        {
+          "id": "d",
+          "text": "Create a second public IP for the NIC.",
+          "explanation": "Another address does not remove the filtering rule."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/networking/virtual-networks/public-ips.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/create-public-ip-portal"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-ip-release",
+      "family": "nw-ip-release",
+      "revision": 1,
+      "topic": "networking.vnets.public-ips",
+      "objectives": [
+        "nw-03"
+      ],
+      "difficulty": "foundation",
+      "prompt": "You delete a Standard public IP resource and recreate a resource with the same name. What can you rely on?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Azure restores the old numeric address.",
+          "explanation": "Deletion releases it; the old address cannot be requested back."
+        },
+        {
+          "id": "b",
+          "text": "Azure allocates an address from its available pool.",
+          "explanation": "The resource name does not reserve its former numeric address."
+        },
+        {
+          "id": "c",
+          "text": "The resource starts with dynamic allocation until first use.",
+          "explanation": "Standard allocation is static."
+        },
+        {
+          "id": "d",
+          "text": "An unchanged DNS A record automatically tracks the new address.",
+          "explanation": "A manually managed A record must be updated when its target changes."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/networking/virtual-networks/public-ips.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/create-public-ip-portal"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-ip-create",
+      "family": "nw-ip-create",
+      "revision": 1,
+      "topic": "networking.vnets.public-ips",
+      "objectives": [
+        "nw-03"
+      ],
+      "difficulty": "applied",
+      "prompt": "You are creating a new Standard public IPv4 resource in the portal for a regional frontend. Which configuration is valid?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Choose dynamic allocation and a private subnet address.",
+          "explanation": "Standard uses static public allocation, outside the subnet's private pool."
+        },
+        {
+          "id": "b",
+          "text": "Enter any unused public IPv4 address as its allocation.",
+          "explanation": "Azure allocates the numeric address from its pool."
+        },
+        {
+          "id": "c",
+          "text": "Select Standard with static allocation and compatible region/zone settings.",
+          "explanation": "These settings match the supported creation model."
+        },
+        {
+          "id": "d",
+          "text": "Create a DNS label instead of allocating a public IP.",
+          "explanation": "The label is an optional property of the address resource."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/networking/virtual-networks/public-ips.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/create-public-ip-portal"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

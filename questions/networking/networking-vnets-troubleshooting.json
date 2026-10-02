@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "nw-diag-allowed",
+      "family": "nw-diag-allowed",
+      "revision": 1,
+      "topic": "networking.vnets.troubleshooting",
+      "objectives": [
+        "nw-05"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "IP flow verify reports Allow for a VM's inbound TCP 443 flow, but the client cannot connect. What does the result establish?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The evaluated Azure security rules permit that flow.",
+          "explanation": "The tool checks filtering rules, not successful application responses."
+        },
+        {
+          "id": "b",
+          "text": "The guest HTTPS service is listening.",
+          "explanation": "A listener is outside this rule evaluation."
+        },
+        {
+          "id": "c",
+          "text": "The VM's guest firewall permits TCP 443.",
+          "explanation": "Guest filtering must be checked separately."
+        },
+        {
+          "id": "d",
+          "text": "DNS resolves the client's hostname correctly.",
+          "explanation": "The flow evaluation does not establish client DNS resolution."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/networking/virtual-networks/troubleshooting.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/next-hop-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-troubleshoot-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-diag-next",
+      "family": "nw-diag-next",
+      "revision": 1,
+      "topic": "networking.vnets.troubleshooting",
+      "objectives": [
+        "nw-05"
+      ],
+      "difficulty": "applied",
+      "prompt": "You suspect a subnet UDR directs a VM's traffic to the wrong appliance. Which Network Watcher tool directly reports the selected next hop for a destination IP?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "IP flow verify.",
+          "explanation": "It evaluates security filtering rather than selected next hop."
+        },
+        {
+          "id": "b",
+          "text": "NSG rule editor.",
+          "explanation": "It changes filtering rules rather than reporting routing."
+        },
+        {
+          "id": "c",
+          "text": "Next hop.",
+          "explanation": "It reports the selected next-hop type/address for the flow destination."
+        },
+        {
+          "id": "d",
+          "text": "Public IP DNS label settings.",
+          "explanation": "Those manage a name for a public address, not route selection."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/networking/virtual-networks/troubleshooting.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/next-hop-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-troubleshoot-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-diag-name",
+      "family": "nw-diag-name",
+      "revision": 1,
+      "topic": "networking.vnets.troubleshooting",
+      "objectives": [
+        "nw-05"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A VM connects to a service's IP on TCP 443, but connections using its hostname fail. What should you investigate first?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Replace its working route with a None next hop.",
+          "explanation": "That drops traffic instead of addressing name failure."
+        },
+        {
+          "id": "b",
+          "text": "DNS resolution of the hostname from that VM.",
+          "explanation": "The difference between name and IP points first to name resolution."
+        },
+        {
+          "id": "c",
+          "text": "Delete the subnet's NSG immediately.",
+          "explanation": "Working IP connectivity is not evidence that every NSG must be removed."
+        },
+        {
+          "id": "d",
+          "text": "Change the service's frontend to a dynamic public IP.",
+          "explanation": "Allocation changes do not repair a bad DNS response."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/networking/virtual-networks/troubleshooting.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/next-hop-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-troubleshoot-overview"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

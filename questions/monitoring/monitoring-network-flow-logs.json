@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-flow-payload",
+      "family": "mo-flow-payload",
+      "revision": 1,
+      "topic": "monitoring.network.flow-logs",
+      "objectives": [
+        "mo-06"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Can VNet flow logs alone reveal the complete HTTPS request body?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "No; they record flow metadata rather than packet payloads.",
+          "explanation": "Addresses/counts do not contain the full application body."
+        },
+        {
+          "id": "b",
+          "text": "Yes; every byte count includes the complete body text.",
+          "explanation": "A numeric byte count is not stored body content."
+        },
+        {
+          "id": "c",
+          "text": "Yes; the flow state decrypts TLS.",
+          "explanation": "Flow state does not decrypt application traffic."
+        },
+        {
+          "id": "d",
+          "text": "Yes; traffic analytics grants the client's private key.",
+          "explanation": "Analytics does not provide TLS private keys."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/network/flow-logs.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-manage"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-flow-retention",
+      "family": "mo-flow-retention",
+      "revision": 1,
+      "topic": "monitoring.network.flow-logs",
+      "objectives": [
+        "mo-06"
+      ],
+      "difficulty": "applied",
+      "prompt": "In the supported VNet flow-log retention setting, what does 0 days mean?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Delete each log immediately.",
+          "explanation": "Zero is not immediate expiry in this setting."
+        },
+        {
+          "id": "b",
+          "text": "Retain indefinitely until manually removed.",
+          "explanation": "This is the documented meaning of zero."
+        },
+        {
+          "id": "c",
+          "text": "Disable flow collection.",
+          "explanation": "Retention is different from enabled state."
+        },
+        {
+          "id": "d",
+          "text": "Keep only denied flows.",
+          "explanation": "Retention does not select the flow action."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/network/flow-logs.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-manage"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-flow-analytics",
+      "family": "mo-flow-analytics",
+      "revision": 1,
+      "topic": "monitoring.network.flow-logs",
+      "objectives": [
+        "mo-06"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "VNet flow-log blobs are arriving, but you want processed traffic visualizations in Log Analytics. What additional configuration should you inspect?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Only the public IP DNS label.",
+          "explanation": "It does not configure analytics ingestion."
+        },
+        {
+          "id": "b",
+          "text": "Only the VM's disk caching.",
+          "explanation": "Disk caching does not enable flow analytics."
+        },
+        {
+          "id": "c",
+          "text": "Traffic analytics enablement, selected workspace, and processing interval.",
+          "explanation": "Analytics is a separate configured processing stage."
+        },
+        {
+          "id": "d",
+          "text": "Remove the log storage destination.",
+          "explanation": "Removing the source data does not enable processing."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/network/flow-logs.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-manage"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

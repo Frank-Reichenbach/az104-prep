@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-connection-continuous",
+      "family": "mo-connection-continuous",
+      "revision": 1,
+      "topic": "monitoring.network.connection-monitor",
+      "objectives": [
+        "mo-06"
+      ],
+      "difficulty": "applied",
+      "prompt": "You need a week of recurring reachability and latency evidence between a VM and an HTTPS endpoint. Which tool fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Connection Monitor.",
+          "explanation": "It runs recurring tests and keeps historical measurements."
+        },
+        {
+          "id": "b",
+          "text": "One Next hop query.",
+          "explanation": "That reports a route decision at a point in time."
+        },
+        {
+          "id": "c",
+          "text": "Only IP flow verify once.",
+          "explanation": "That evaluates a filtering decision rather than a week's measurements."
+        },
+        {
+          "id": "d",
+          "text": "Only create an NSG allow rule.",
+          "explanation": "Permission to pass traffic is not ongoing measurement."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/network/connection-monitor.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-connection-test",
+      "family": "mo-connection-test",
+      "revision": 1,
+      "topic": "monitoring.network.connection-monitor",
+      "objectives": [
+        "mo-06"
+      ],
+      "difficulty": "foundation",
+      "prompt": "What combines sources, destinations, and test configurations within Connection Monitor?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A public DNS alias.",
+          "explanation": "A DNS record does not define monitor test membership."
+        },
+        {
+          "id": "b",
+          "text": "A test group.",
+          "explanation": "It groups these components into monitored tests."
+        },
+        {
+          "id": "c",
+          "text": "An Azure RBAC role definition.",
+          "explanation": "Roles authorize operations rather than define protocol tests."
+        },
+        {
+          "id": "d",
+          "text": "A managed disk snapshot.",
+          "explanation": "Snapshots do not group connection probes."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/network/connection-monitor.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-connection-port",
+      "family": "mo-connection-port",
+      "revision": 1,
+      "topic": "monitoring.network.connection-monitor",
+      "objectives": [
+        "mo-06"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "ICMP succeeds between a VM and destination, but the business app uses TCP 443. What should you configure to test that app path?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Only increase the ICMP packet count.",
+          "explanation": "More ICMP probes still do not test TCP 443."
+        },
+        {
+          "id": "b",
+          "text": "Assume ICMP success proves HTTPS is healthy.",
+          "explanation": "Ports, filtering, and application behavior can differ."
+        },
+        {
+          "id": "c",
+          "text": "A TCP/HTTP test configuration using the intended HTTPS port and endpoint.",
+          "explanation": "This measures the relevant path rather than just ICMP."
+        },
+        {
+          "id": "d",
+          "text": "A DNS TXT record with the port number.",
+          "explanation": "That does not configure the monitor's probe."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/network/connection-monitor.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

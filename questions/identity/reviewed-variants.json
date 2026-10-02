@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "id-lock-freeze-variant",
+      "family": "id-lock-delete-only",
+      "revision": 1,
+      "topic": "identity.governance.locks",
+      "objectives": [
+        "id-10"
+      ],
+      "difficulty": "applied",
+      "prompt": "A resource group must reject authorized ARM updates as well as ARM deletion during a configuration freeze. Which management lock meets both requirements while it remains in place?",
+      "select": 1,
+      "options": [
+        {
+          "id": "readonly",
+          "text": "ReadOnly.",
+          "explanation": "It blocks ARM updates and deletions for authorized users while effective."
+        },
+        {
+          "id": "delete",
+          "text": "CanNotDelete.",
+          "explanation": "This permits authorized updates, which the freeze prohibits."
+        },
+        {
+          "id": "reader",
+          "text": "Add Reader to users who already have Contributor.",
+          "explanation": "An additional read grant does not subtract existing write permissions."
+        },
+        {
+          "id": "tag",
+          "text": "Apply a Freeze=true tag without a policy.",
+          "explanation": "A tag alone does not enforce the required restriction."
+        }
+      ],
+      "correct": [
+        "readonly"
+      ],
+      "knowledge": "knowledge/identity/governance/locks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-lock-data-write-variant",
+      "family": "id-lock-blob-data",
+      "revision": 1,
+      "topic": "identity.governance.locks",
+      "objectives": [
+        "id-10"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A storage account has a ReadOnly management lock. A client has valid blob data-plane write authorization, networking works, and no blob immutability policy applies. Does the lock alone block overwriting a blob through the Blob service?",
+      "select": 1,
+      "options": [
+        {
+          "id": "no",
+          "text": "No; the management lock restricts control-plane operations.",
+          "explanation": "A permitted Blob-service data write is a data-plane operation, outside the management lock's scope."
+        },
+        {
+          "id": "yes",
+          "text": "Yes; ReadOnly makes every stored blob immutable.",
+          "explanation": "Management locks and blob immutability are different controls."
+        },
+        {
+          "id": "role",
+          "text": "Yes; the lock automatically removes the client's blob data role.",
+          "explanation": "The lock does not convert the client's data role into a read-only data assignment."
+        },
+        {
+          "id": "key",
+          "text": "Only if the client uses the second storage account key.",
+          "explanation": "The distinction is control plane versus data plane, not the selected key number."
+        }
+      ],
+      "correct": [
+        "no"
+      ],
+      "knowledge": "knowledge/identity/governance/locks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-drill-network",
+      "family": "mo-drill-network",
+      "revision": 1,
+      "topic": "monitoring.recovery.test-failover",
+      "objectives": [
+        "mo-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "You are planning a Site Recovery disaster recovery drill while production remains active. Which target network does Microsoft recommend for the test VMs?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The production recovery network regardless of address conflicts.",
+          "explanation": "Microsoft recommends a non-production network for drills to protect production networking availability."
+        },
+        {
+          "id": "b",
+          "text": "A suitable non-production network in the target region.",
+          "explanation": "This supports testing without competing with production addresses and network components."
+        },
+        {
+          "id": "c",
+          "text": "Only the source VM's original subnet in the source region.",
+          "explanation": "The drill recovers the VM into the chosen target-region network."
+        },
+        {
+          "id": "d",
+          "text": "No VNet because test failover uses only an offline disk.",
+          "explanation": "Test failover creates a VM connected to the selected target VNet."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/site-recovery/test-failover.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-drill-cleanup",
+      "family": "mo-drill-cleanup",
+      "revision": 1,
+      "topic": "monitoring.recovery.test-failover",
+      "objectives": [
+        "mo-12"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A Site Recovery test failover is finished and its observations have been recorded. How should you end the drill and remove its test VMs?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Use Cleanup test failover and confirm Testing is complete.",
+          "explanation": "This is the documented cleanup workflow, including saving observations and deleting test VMs."
+        },
+        {
+          "id": "b",
+          "text": "Disable replication permanently for the source VM.",
+          "explanation": "Ending a drill does not require removing the source VM's disaster recovery protection."
+        },
+        {
+          "id": "c",
+          "text": "Commit a production failover.",
+          "explanation": "A production failover commit is a different workflow from test cleanup."
+        },
+        {
+          "id": "d",
+          "text": "Delete the Recovery Services vault immediately.",
+          "explanation": "Deleting the vault is neither necessary nor the drill cleanup procedure."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/site-recovery/test-failover.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-drill-role",
+      "family": "mo-drill-role",
+      "revision": 1,
+      "topic": "monitoring.recovery.test-failover",
+      "objectives": [
+        "mo-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "A team member should run Site Recovery drills and failover/failback operations, but must not enable or disable replication. Which recovery role fits, with required linked-resource read access supplied separately?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Site Recovery Reader.",
+          "explanation": "Reader can inspect recovery state but cannot perform the requested operations."
+        },
+        {
+          "id": "b",
+          "text": "Site Recovery Contributor.",
+          "explanation": "Contributor includes replication management, exceeding the stated recovery-operation scope."
+        },
+        {
+          "id": "c",
+          "text": "Site Recovery Operator.",
+          "explanation": "Operator supports failover/failback operations while excluding enable/disable replication."
+        },
+        {
+          "id": "d",
+          "text": "Storage Blob Data Reader.",
+          "explanation": "Blob data access does not authorize Site Recovery operations."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/site-recovery/test-failover.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

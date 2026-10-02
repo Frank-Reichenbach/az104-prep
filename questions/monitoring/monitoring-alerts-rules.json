@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-alert-signal",
+      "family": "mo-alert-signal",
+      "revision": 1,
+      "topic": "monitoring.alerts.rules",
+      "objectives": [
+        "mo-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "You need an alert when Azure records a resource deletion management event. Which signal type fits directly?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Activity Log alert.",
+          "explanation": "The Activity Log records management operations."
+        },
+        {
+          "id": "b",
+          "text": "CPU metric alert.",
+          "explanation": "CPU values do not directly represent the deletion event."
+        },
+        {
+          "id": "c",
+          "text": "Only an action group with no alert rule.",
+          "explanation": "An action group defines responses but does not evaluate that event."
+        },
+        {
+          "id": "d",
+          "text": "A DNS TXT record change.",
+          "explanation": "DNS records do not configure management-event detection."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/alerts/rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-alert-window",
+      "family": "mo-alert-window",
+      "revision": 1,
+      "topic": "monitoring.alerts.rules",
+      "objectives": [
+        "mo-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "A metric alert uses a five-minute evaluation window and one-minute evaluation frequency. What does that mean?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "It evaluates once every five minutes using one minute of data.",
+          "explanation": "This reverses frequency and window."
+        },
+        {
+          "id": "b",
+          "text": "It evaluates each minute using the previous five minutes of data.",
+          "explanation": "Frequency is how often; window is the examined period."
+        },
+        {
+          "id": "c",
+          "text": "It waits one minute after deleting the five-minute data.",
+          "explanation": "Evaluation does not delete metric data."
+        },
+        {
+          "id": "d",
+          "text": "It sends five notifications for every sample.",
+          "explanation": "The settings do not define that notification count."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/alerts/rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-alert-ack",
+      "family": "mo-alert-ack",
+      "revision": 1,
+      "topic": "monitoring.alerts.rules",
+      "objectives": [
+        "mo-04"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An operator marks an Azure Monitor alert as Acknowledged. Does that repair its underlying condition?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes; acknowledgement rescales the resource.",
+          "explanation": "Response state does not automatically perform that repair."
+        },
+        {
+          "id": "b",
+          "text": "Yes; it resets the monitored metric to zero.",
+          "explanation": "Acknowledgement does not rewrite telemetry."
+        },
+        {
+          "id": "c",
+          "text": "No; it records operator response while remediation is separate.",
+          "explanation": "User response state and service condition are distinct."
+        },
+        {
+          "id": "d",
+          "text": "Yes; it deletes the rule and its condition.",
+          "explanation": "Acknowledgement does not delete the rule."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/alerts/rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

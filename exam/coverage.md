@@ -2,9 +2,9 @@
 
 # Objective coverage
 
-Outline: 2026-04-17. Source checked: 2026-10-01.
+Outline: 2026-04-17. Source checked: 2026-10-02.
 
-56/82 objectives have documented topic coverage. This measures presence of researched content, not mastery or exhaustive scenario coverage.
+82/82 objectives have documented topic coverage. This measures presence of researched content, not mastery or exhaustive scenario coverage.
 
 [Microsoft scope source](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-104). IDs below are local identifiers.
 
@@ -33,7 +33,7 @@ Outline: 2026-04-17. Source checked: 2026-10-01.
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
 | id-09 | Apply and maintain Azure Policy | [Azure Policy assignments and remediation](../knowledge/identity/governance/policy.md) | 3 | Documented; not lab-tested |
-| id-10 | Protect resources with locks | [Resource locks](../knowledge/identity/governance/locks.md) | 3 | Documented; not lab-tested |
+| id-10 | Protect resources with locks | [Resource locks](../knowledge/identity/governance/locks.md) | 5 | Documented; not lab-tested |
 | id-11 | Organize resources with tags | [Resource tags and tag governance](../knowledge/identity/governance/tags.md) | 3 | Documented; not lab-tested |
 | id-12 | Administer resource groups | [Resource group lifecycle and moves](../knowledge/identity/governance/resource-groups.md) | 3 | Documented; not lab-tested |
 | id-13 | Administer subscriptions | [Subscription administration and provider registration](../knowledge/identity/governance/subscriptions.md) | 3 | Documented; not lab-tested |
@@ -67,7 +67,7 @@ Outline: 2026-04-17. Source checked: 2026-10-01.
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
 | st-11 | Provision and configure Azure file shares | [Azure file share provisioning and configuration](../knowledge/storage/azure-files/configuration.md) | 3 | Documented; not lab-tested |
-| st-12 | Provision and configure blob containers | [Blob containers](../knowledge/storage/blob-storage/containers.md) | 5 | Documented; not lab-tested |
+| st-12 | Provision and configure blob containers | [Blob containers](../knowledge/storage/blob-storage/containers.md) | 7 | Documented; not lab-tested |
 | st-13 | Choose and configure access tiers | [Blob access tiers](../knowledge/storage/blob-storage/access-tiers.md) | 5 | Documented; not lab-tested |
 | st-14 | Recover blobs and containers using soft deletion | [Blob soft deletion](../knowledge/storage/blob-storage/blob-soft-delete.md), [Container soft deletion](../knowledge/storage/blob-storage/container-soft-delete.md) | 8 | Documented; not lab-tested |
 | st-15 | Protect Azure Files with snapshots and soft deletion | [Azure Files share snapshots](../knowledge/storage/azure-files/snapshots.md), [Azure Files share soft deletion](../knowledge/storage/azure-files/soft-delete.md) | 8 | Documented; not lab-tested |
@@ -117,7 +117,7 @@ Outline: 2026-04-17. Source checked: 2026-10-01.
 | co-20 | Set up application certificates and TLS | [App Service certificates and TLS bindings](../knowledge/compute/app-service/tls.md) | 3 | Documented; not lab-tested |
 | co-21 | Attach an existing custom DNS name | [App Service custom DNS names and ownership verification](../knowledge/compute/app-service/domains.md) | 3 | Documented; not lab-tested |
 | co-22 | Configure application backups | [App Service backup configuration and restoration](../knowledge/compute/app-service/backups.md) | 3 | Documented; not lab-tested |
-| co-23 | Configure App Service network connectivity | [App Service inbound and outbound networking](../knowledge/compute/app-service/networking.md) | 3 | Documented; not lab-tested |
+| co-23 | Configure App Service network connectivity | [App Service inbound and outbound networking](../knowledge/compute/app-service/networking.md) | 5 | Documented; not lab-tested |
 | co-24 | Use deployment slots | [App Service deployment slots and swaps](../knowledge/compute/app-service/slots.md) | 3 | Documented; not lab-tested |
 
 ## Networking (15–20%)
@@ -126,29 +126,29 @@ Outline: 2026-04-17. Source checked: 2026-10-01.
 
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
-| nw-01 | Build virtual networks and subnets | — | 0 | Planned |
-| nw-02 | Connect networks through peering | — | 0 | Planned |
-| nw-03 | Configure public IP resources | — | 0 | Planned |
-| nw-04 | Control traffic with custom routes | — | 0 | Planned |
-| nw-05 | Diagnose connectivity problems | — | 0 | Planned |
+| nw-01 | Build virtual networks and subnets | [Virtual network address spaces and subnets](../knowledge/networking/virtual-networks/subnets.md) | 3 | Documented; not lab-tested |
+| nw-02 | Connect networks through peering | [VNet peering, forwarding, and gateway transit](../knowledge/networking/virtual-networks/peering.md) | 3 | Documented; not lab-tested |
+| nw-03 | Configure public IP resources | [Public IP resources and allocation](../knowledge/networking/virtual-networks/public-ips.md) | 3 | Documented; not lab-tested |
+| nw-04 | Control traffic with custom routes | [User-defined routes and next hops](../knowledge/networking/virtual-networks/routes.md) | 4 | Documented; not lab-tested |
+| nw-05 | Diagnose connectivity problems | [Diagnosing VNet connectivity](../knowledge/networking/virtual-networks/troubleshooting.md) | 3 | Documented; not lab-tested |
 
 ### Network access controls
 
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
-| nw-06 | Configure network and application security groups | — | 0 | Planned |
-| nw-07 | Determine effective NSG rules | — | 0 | Planned |
-| nw-08 | Provide administrative access through Bastion | — | 0 | Planned |
-| nw-09 | Use service endpoints for platform services | — | 0 | Planned |
-| nw-10 | Use private endpoints for platform services | — | 0 | Planned |
+| nw-06 | Configure network and application security groups | [Network and application security groups](../knowledge/networking/security/nsg-asg.md) | 3 | Documented; not lab-tested |
+| nw-07 | Determine effective NSG rules | [Effective NSG rules and flow evaluation](../knowledge/networking/security/effective-rules.md) | 3 | Documented; not lab-tested |
+| nw-08 | Provide administrative access through Bastion | [Azure Bastion administrative access](../knowledge/networking/security/bastion.md) | 3 | Documented; not lab-tested |
+| nw-09 | Use service endpoints for platform services | [Service endpoints and subnet authorization](../knowledge/networking/security/service-endpoints.md) | 3 | Documented; not lab-tested |
+| nw-10 | Use private endpoints for platform services | [Private endpoints, approval, and DNS](../knowledge/networking/security/private-endpoints.md) | 3 | Documented; not lab-tested |
 
 ### DNS and load balancing
 
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
-| nw-11 | Administer Azure DNS | — | 0 | Planned |
-| nw-12 | Set up public and internal load balancers | — | 0 | Planned |
-| nw-13 | Diagnose load balancer behavior | — | 0 | Planned |
+| nw-11 | Administer Azure DNS | [Public DNS zones, delegation, and records](../knowledge/networking/dns/public-zones.md), [Private DNS zones and VNet links](../knowledge/networking/dns/private-zones.md), [DNS Private Resolver and hybrid forwarding](../knowledge/networking/dns/private-resolver.md) | 10 | Documented; not lab-tested |
+| nw-12 | Set up public and internal load balancers | [Public and internal Standard Load Balancer](../knowledge/networking/load-balancer/configuration.md) | 3 | Documented; not lab-tested |
+| nw-13 | Diagnose load balancer behavior | [Load Balancer probes and connectivity diagnosis](../knowledge/networking/load-balancer/troubleshooting.md) | 3 | Documented; not lab-tested |
 
 ## Monitoring and recovery (10–15%)
 
@@ -156,21 +156,21 @@ Outline: 2026-04-17. Source checked: 2026-10-01.
 
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
-| mo-01 | Read and interpret Azure Monitor metrics | — | 0 | Planned |
-| mo-02 | Configure collection of monitoring logs | — | 0 | Planned |
-| mo-03 | Query logs and interpret results | — | 0 | Planned |
-| mo-04 | Configure alerts, action groups, and processing rules | — | 0 | Planned |
-| mo-05 | Use Insights for VMs, storage, and networks | — | 0 | Planned |
-| mo-06 | Use Network Watcher and Connection Monitor | — | 0 | Planned |
+| mo-01 | Read and interpret Azure Monitor metrics | [Azure Monitor metric aggregation and dimensions](../knowledge/monitoring/metrics/analysis.md) | 3 | Documented; not lab-tested |
+| mo-02 | Configure collection of monitoring logs | [Resource logs and diagnostic settings](../knowledge/monitoring/logs/diagnostic-settings.md), [Azure Monitor Agent and data collection rules](../knowledge/monitoring/logs/agent-dcr.md) | 6 | Documented; not lab-tested |
+| mo-03 | Query logs and interpret results | [KQL filtering, aggregation, and interpretation](../knowledge/monitoring/logs/kql.md) | 3 | Documented; not lab-tested |
+| mo-04 | Configure alerts, action groups, and processing rules | [Alert rules, signals, and evaluation](../knowledge/monitoring/alerts/rules.md), [Action groups and notification delivery](../knowledge/monitoring/alerts/action-groups.md), [Alert processing rules and maintenance suppression](../knowledge/monitoring/alerts/processing-rules.md) | 11 | Documented; not lab-tested |
+| mo-05 | Use Insights for VMs, storage, and networks | [VM Insights and enhanced guest monitoring](../knowledge/monitoring/insights/virtual-machines.md), [Storage Insights performance and capacity](../knowledge/monitoring/insights/storage.md), [Network Insights topology, health, and traffic](../knowledge/monitoring/insights/networks.md) | 9 | Documented; not lab-tested |
+| mo-06 | Use Network Watcher and Connection Monitor | [Network Watcher and continuous Connection Monitor](../knowledge/monitoring/network/connection-monitor.md), [VNet flow logs and traffic analytics](../knowledge/monitoring/network/flow-logs.md) | 6 | Documented; not lab-tested |
 
 ### Backup and disaster recovery
 
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
-| mo-07 | Provision a Recovery Services vault | — | 0 | Planned |
-| mo-08 | Provision a Backup vault | — | 0 | Planned |
-| mo-09 | Define backup policies | — | 0 | Planned |
-| mo-10 | Back up and restore using Azure Backup | — | 0 | Planned |
-| mo-11 | Configure Site Recovery replication | — | 0 | Planned |
-| mo-12 | Fail over Azure resources to a secondary region | — | 0 | Planned |
-| mo-13 | Read and configure backup reports and alerts | — | 0 | Planned |
+| mo-07 | Provision a Recovery Services vault | [Recovery Services vault configuration](../knowledge/monitoring/backup/recovery-services-vault.md), [Backup soft deletion and vault immutability](../knowledge/monitoring/backup/protection.md) | 6 | Documented; not lab-tested |
+| mo-08 | Provision a Backup vault | [Backup vaults and workload identity permissions](../knowledge/monitoring/backup/backup-vault.md), [Backup soft deletion and vault immutability](../knowledge/monitoring/backup/protection.md) | 6 | Documented; not lab-tested |
+| mo-09 | Define backup policies | [Backup schedules, retention, and policy selection](../knowledge/monitoring/backup/policies.md) | 3 | Documented; not lab-tested |
+| mo-10 | Back up and restore using Azure Backup | [Azure VM backup and restore operations](../knowledge/monitoring/backup/virtual-machines.md), [Azure Files backup and item recovery](../knowledge/monitoring/backup/azure-files.md) | 6 | Documented; not lab-tested |
+| mo-11 | Configure Site Recovery replication | [Site Recovery replication for Azure virtual machines](../knowledge/monitoring/site-recovery/replication.md) | 3 | Documented; not lab-tested |
+| mo-12 | Fail over Azure resources to a secondary region | [Site Recovery test failover and drill cleanup](../knowledge/monitoring/site-recovery/test-failover.md), [Site Recovery production failover and recovery points](../knowledge/monitoring/site-recovery/failover.md), [Site Recovery reprotection and failback](../knowledge/monitoring/site-recovery/failback.md) | 9 | Documented; not lab-tested |
+| mo-13 | Read and configure backup reports and alerts | [Azure Backup reports and diagnostic data](../knowledge/monitoring/backup/reports.md), [Azure Backup alerts and notification routing](../knowledge/monitoring/backup/alerts.md) | 6 | Documented; not lab-tested |

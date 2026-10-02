@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "nw-se-two-sides",
+      "family": "nw-se-two-sides",
+      "revision": 1,
+      "topic": "networking.security.service-endpoints",
+      "objectives": [
+        "nw-09"
+      ],
+      "difficulty": "applied",
+      "prompt": "A subnet has Microsoft.Storage enabled as a service endpoint. A storage account still allows all public networks. What change restricts its intended ordinary access to that subnet?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Configure the account's selected-network rules to allow the subnet.",
+          "explanation": "The service-side rule is needed in addition to the subnet endpoint."
+        },
+        {
+          "id": "b",
+          "text": "Only rename the subnet to StorageSubnet.",
+          "explanation": "A name does not enforce a service firewall rule."
+        },
+        {
+          "id": "c",
+          "text": "Add a CNAME record for the storage hostname.",
+          "explanation": "DNS aliases do not restrict permitted networks."
+        },
+        {
+          "id": "d",
+          "text": "Grant the VM Owner on its resource group.",
+          "explanation": "Management authorization does not restrict account network access."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/networking/security/service-endpoints.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-restrict-network-access-to-resources"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-se-private",
+      "family": "nw-se-private",
+      "revision": 1,
+      "topic": "networking.security.service-endpoints",
+      "objectives": [
+        "nw-09"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which statement describes a classic service endpoint for an Azure Storage subnet?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "It creates a dedicated private IP for the storage account in that subnet.",
+          "explanation": "That describes a private endpoint."
+        },
+        {
+          "id": "b",
+          "text": "It identifies the subnet to the service while using the service's public endpoint.",
+          "explanation": "It extends network identity without creating a private endpoint NIC."
+        },
+        {
+          "id": "c",
+          "text": "It automatically grants blob read permission to subnet users.",
+          "explanation": "Data authorization remains separate."
+        },
+        {
+          "id": "d",
+          "text": "It turns every on-premises VPN client into a member of the allowed subnet.",
+          "explanation": "On-premises traffic does not gain that endpoint identity."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/networking/security/service-endpoints.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-restrict-network-access-to-resources"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-se-auth",
+      "family": "nw-se-auth",
+      "revision": 1,
+      "topic": "networking.security.service-endpoints",
+      "objectives": [
+        "nw-09"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A VM's subnet endpoint and storage network rule are correct, but its identity has no blob data permission. Can it read a private blob using Entra authentication?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes; service endpoints grant Blob Data Reader.",
+          "explanation": "The endpoint supplies a network path, not that role."
+        },
+        {
+          "id": "b",
+          "text": "Yes; an NSG allow grants storage data access.",
+          "explanation": "NSGs filter packets rather than authorize blobs."
+        },
+        {
+          "id": "c",
+          "text": "No; assign the appropriate blob data authorization too.",
+          "explanation": "Network permission and data permission are separate requirements."
+        },
+        {
+          "id": "d",
+          "text": "Yes; selected networks make private containers anonymous.",
+          "explanation": "Container access level is independent of the selected-network rule."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/networking/security/service-endpoints.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-restrict-network-access-to-resources"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-metric-peak",
+      "family": "mo-metric-peak",
+      "revision": 1,
+      "topic": "monitoring.metrics.analysis",
+      "objectives": [
+        "mo-01"
+      ],
+      "difficulty": "applied",
+      "prompt": "A supported CPU metric's 30-minute Average chart hides brief spikes. Which change helps examine peak values?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Use Maximum with a smaller time grain.",
+          "explanation": "This exposes interval peaks with finer time resolution."
+        },
+        {
+          "id": "b",
+          "text": "Use Count to measure peak CPU percentage.",
+          "explanation": "Count measures samples, not their largest CPU value."
+        },
+        {
+          "id": "c",
+          "text": "Use Sum and call it the maximum percentage.",
+          "explanation": "Sum and maximum have different meanings."
+        },
+        {
+          "id": "d",
+          "text": "Change only the chart title.",
+          "explanation": "The title does not change aggregation."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/metrics/analysis.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/analyze-metrics",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-aggregation-explained"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-metric-split",
+      "family": "mo-metric-split",
+      "revision": 1,
+      "topic": "monitoring.metrics.analysis",
+      "objectives": [
+        "mo-01"
+      ],
+      "difficulty": "applied",
+      "prompt": "A metric supports an instance dimension. You need separate series for each worker rather than one combined average. What should you use?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Only a longer time range.",
+          "explanation": "That changes the period rather than separates instances."
+        },
+        {
+          "id": "b",
+          "text": "Dimension splitting by instance.",
+          "explanation": "Splitting displays the dimension values as separate series."
+        },
+        {
+          "id": "c",
+          "text": "A sum without dimensions.",
+          "explanation": "That combines rather than separates instance data."
+        },
+        {
+          "id": "d",
+          "text": "A resource lock.",
+          "explanation": "Locks do not control chart dimensions."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/metrics/analysis.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/analyze-metrics",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-aggregation-explained"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-metric-count",
+      "family": "mo-metric-count",
+      "revision": 1,
+      "topic": "monitoring.metrics.analysis",
+      "objectives": [
+        "mo-01"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A metric records three values: 4, 6, and 10 in one interval. Which statement is correct when Count and Sum are supported?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Count and Sum both equal 20.",
+          "explanation": "Count measures the three samples."
+        },
+        {
+          "id": "b",
+          "text": "Count equals the highest value, 10.",
+          "explanation": "That is Maximum, not Count."
+        },
+        {
+          "id": "c",
+          "text": "Count is 3 and Sum is 20.",
+          "explanation": "Samples and total measured values are different quantities."
+        },
+        {
+          "id": "d",
+          "text": "Average is 20.",
+          "explanation": "Average divides the sum by the sample count."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/metrics/analysis.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/analyze-metrics",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-aggregation-explained"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

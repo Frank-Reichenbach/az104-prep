@@ -75,6 +75,8 @@ try {
     await waitFor(`location.href === ${JSON.stringify(target)} && document.readyState === 'complete'`);
     await waitFor('document.getElementById("setup") && !document.getElementById("setup").hidden');
     await evaluate(`window.testBank = await (await fetch(new URL('./data.json', location.href))).json();
+      window.testAnswers = [];
+      document.getElementById('topic').value = 'weighted';
       document.getElementById('mode').value = 'test'; document.getElementById('count').value = '100';
       document.getElementById('start-form').requestSubmit();`);
     const state = await evaluate(`({position: document.getElementById('position').textContent, topic: document.getElementById('question-topic').textContent})`);
@@ -103,6 +105,13 @@ try {
       answered++;
     }
     assert.ok(multiSeen, 'Multiple-answer questions exercised');
+    const mix = await evaluate(`testBank.domains.map(d => ({
+      id: d.id, weight: (d.weight[0] + d.weight[1]) / 2,
+      actual: testAnswers.filter(a => testBank.topics.find(t => t.id === a.q.topic).domain === d.id).length
+    }))`);
+    const totalWeight = mix.reduce((sum, d) => sum + d.weight, 0);
+    for (const d of mix) assert.ok(Math.abs(d.actual - answered * d.weight / totalWeight) < 1,
+      `${d.id} weighted question count`);
     const reviews = await evaluate(`[...document.querySelectorAll('#review details')].map((detail, i) => {
       const a = testAnswers[i]; const correct = a.q.correct.every(id => a.chosen.includes(id));
       return { open: detail.open, correct, count: detail.querySelectorAll('.explanation').length,

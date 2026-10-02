@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-backup-notifications",
+      "family": "mo-backup-notifications",
+      "revision": 1,
+      "topic": "monitoring.backup.alerts",
+      "objectives": [
+        "mo-13"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A built-in Azure Monitor backup failure alert appears in the portal, but the on-call team receives no email. Which configuration should you check?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Only the backup recovery-point retention period.",
+          "explanation": "Retention does not configure email routing for fired alerts."
+        },
+        {
+          "id": "b",
+          "text": "Only the restore VM's network interface.",
+          "explanation": "A restore NIC does not determine Azure Monitor email notifications."
+        },
+        {
+          "id": "c",
+          "text": "Whether Backup Reports contains the current partial day.",
+          "explanation": "Report timing is separate from action routing for fired alerts."
+        },
+        {
+          "id": "d",
+          "text": "The matching alert processing rule and its action group's email receiver.",
+          "explanation": "Azure Backup uses processing rules and action groups to route built-in alert notifications."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "knowledge": "knowledge/monitoring/backup/alerts.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-monitoring-alerts",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-backup-suppression",
+      "family": "mo-backup-suppression",
+      "revision": 1,
+      "topic": "monitoring.backup.alerts",
+      "objectives": [
+        "mo-13"
+      ],
+      "difficulty": "applied",
+      "prompt": "You suppress Azure Backup alert actions during planned maintenance using an alert processing rule. What does this accomplish?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Suppresses matching notifications/actions without repairing backup failures.",
+          "explanation": "Processing rules govern actions; the underlying backup job and alert condition remain separate."
+        },
+        {
+          "id": "b",
+          "text": "Automatically retries every failed backup until successful.",
+          "explanation": "An action-suppression rule does not implement backup retry."
+        },
+        {
+          "id": "c",
+          "text": "Deletes failed-job records and their alerts permanently.",
+          "explanation": "Suppressing actions does not delete the underlying alert/job history."
+        },
+        {
+          "id": "d",
+          "text": "Disables the backup policy's scheduled jobs.",
+          "explanation": "Alert-action processing does not change the backup schedule."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/backup/alerts.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-monitoring-alerts",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-backup-custom-logs",
+      "family": "mo-backup-custom-logs",
+      "revision": 1,
+      "topic": "monitoring.backup.alerts",
+      "objectives": [
+        "mo-13"
+      ],
+      "difficulty": "applied",
+      "prompt": "You want a custom Azure Backup alert based on a Log Analytics query over vault diagnostic records. Which prerequisite must be satisfied?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Only a Recovery Services vault's existence is required.",
+          "explanation": "A vault existing does not make its diagnostic records available in the chosen workspace."
+        },
+        {
+          "id": "b",
+          "text": "The required vault diagnostics must reach the queried Log Analytics workspace.",
+          "explanation": "Custom log alerts evaluate ingested records, with diagnostic-delivery delay considered."
+        },
+        {
+          "id": "c",
+          "text": "Every protected VM must use the same public IP address.",
+          "explanation": "Public IP sharing is neither required nor relevant to diagnostic-log ingestion."
+        },
+        {
+          "id": "d",
+          "text": "An action group must generate the raw backup-job diagnostic records.",
+          "explanation": "Action groups deliver actions; they do not collect the vault's diagnostic records."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/backup/alerts.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-monitoring-alerts",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

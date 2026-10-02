@@ -29,7 +29,9 @@ generated.set('exam/coverage.md', matrix);
 let questionnaire = `${banner}# AZ-104 practice questions\n\nSelect the stated number of answers. Multiple-answer questions use exact-match scoring. This printable list includes variants; the app selects only one per family per quiz.\n\n[Answer key](answers.md)\n\n`;
 let answers = `${banner}# AZ-104 answer explanations\n\n[Questions without answers](questions.md)\n\n`;
 for (const q of questions) {
-  const heading = `## ${q.id}\n\n${q.prompt}\n\nSelect **${q.select}**. Difficulty: ${q.difficulty}.\n\n`;
+  const topic = topics.find(t => t.id === q.topic);
+  const domain = outline.domains.find(d => d.id === topic.domain);
+  const heading = `## ${q.id}\n\nTopic: ${domain.title} › ${topic.title}.\n\n${q.prompt}\n\nSelect **${q.select}**. Difficulty: ${q.difficulty}.\n\n`;
   questionnaire += heading + q.options.map((o, i) => `${String.fromCharCode(65 + i)}. ${o.text}`).join('\n') + '\n\n';
   answers += heading;
   answers += q.options.map((o, i) => `- **${String.fromCharCode(65 + i)}. ${q.correct.includes(o.id) ? 'Correct' : 'Incorrect'}:** ${o.text} ${o.explanation}`).join('\n') + '\n\n';
@@ -39,7 +41,8 @@ for (const q of questions) {
 generated.set('generated/questions.md', questionnaire);
 generated.set('generated/answers.md', answers);
 generated.set('app/data.json', JSON.stringify({ schemaVersion: 1, outlineEffective: outline.outlineEffective,
-  coverage: { covered, total: objectives.length }, topics, questions }, null, 2) + '\n');
+  coverage: { covered, total: objectives.length },
+  domains: outline.domains.map(({ id, title, weight }) => ({ id, title, weight })), topics, questions }, null, 2) + '\n');
 
 for (const [name, rawContent] of generated) {
   const content = rawContent.trimEnd() + '\n';

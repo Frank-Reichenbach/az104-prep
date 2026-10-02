@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "st-container-anonymous-level-variant",
+      "family": "st-container-enable-account",
+      "revision": 1,
+      "topic": "storage.blobs.containers",
+      "objectives": [
+        "st-12"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A storage account allows anonymous blob access, and an ordinary container's anonymous access level is Blob. Networking permits the requests. Which operation is available to an anonymous client?",
+      "select": 1,
+      "options": [
+        {
+          "id": "read",
+          "text": "Read a known blob URL, but not list the container's blobs.",
+          "explanation": "Blob-level anonymous access permits reads of individual blobs without anonymous container listing."
+        },
+        {
+          "id": "list",
+          "text": "List all blobs and read their contents.",
+          "explanation": "Anonymous listing requires Container-level access, not Blob-level access."
+        },
+        {
+          "id": "write",
+          "text": "Upload blobs without a credential.",
+          "explanation": "Anonymous access levels grant reads, not unauthenticated writes."
+        },
+        {
+          "id": "none",
+          "text": "No blob reads because anonymous access always requires a SAS.",
+          "explanation": "Under the stated account/container settings, anonymous individual-blob reads do not require a SAS."
+        }
+      ],
+      "correct": [
+        "read"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/containers.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-configure"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-container-key-mode-variant",
+      "family": "st-container-cli-auth",
+      "revision": 1,
+      "topic": "storage.blobs.containers",
+      "objectives": [
+        "st-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "An approved legacy Azure CLI operation must use a supplied storage account key, with Shared Key access enabled. Which --auth-mode value explicitly selects this authorization method?",
+      "select": 1,
+      "options": [
+        {
+          "id": "login",
+          "text": "login",
+          "explanation": "Login selects the signed-in Entra identity, not the supplied account key."
+        },
+        {
+          "id": "key",
+          "text": "key",
+          "explanation": "Key mode selects account-key authorization; --account-key supplies the credential."
+        },
+        {
+          "id": "private",
+          "text": "off",
+          "explanation": "Off is an anonymous-access setting value, not this authorization mode."
+        },
+        {
+          "id": "account",
+          "text": "The storage account name.",
+          "explanation": "The account name selects the target account, not the authorization method."
+        }
+      ],
+      "correct": [
+        "key"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/containers.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-data-operations-cli"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

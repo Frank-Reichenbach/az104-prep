@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-files-tier",
+      "family": "mo-files-tier",
+      "revision": 1,
+      "topic": "monitoring.backup.files-restore",
+      "objectives": [
+        "mo-10"
+      ],
+      "difficulty": "applied",
+      "prompt": "An Azure Files backup policy uses only the Snapshot tier. Where is that recovery data stored?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "In snapshots in the source storage account.",
+          "explanation": "Snapshot-only protection does not copy this data to vault storage."
+        },
+        {
+          "id": "b",
+          "text": "Always in a geo-redundant vaulted copy.",
+          "explanation": "Vault redundancy does not apply to snapshot-only points."
+        },
+        {
+          "id": "c",
+          "text": "Only in the client VM's memory.",
+          "explanation": "Share snapshots are stored by the storage service."
+        },
+        {
+          "id": "d",
+          "text": "Inside the action group.",
+          "explanation": "Action groups do not store backup data."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/backup/azure-files.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-files",
+        "https://learn.microsoft.com/en-us/azure/backup/restore-afs"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-files-alternate",
+      "family": "mo-files-alternate",
+      "revision": 1,
+      "topic": "monitoring.backup.files-restore",
+      "objectives": [
+        "mo-10"
+      ],
+      "difficulty": "applied",
+      "prompt": "You want to inspect recovered files without overwriting the live original share. Which supported restore choice fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Original location with overwrite.",
+          "explanation": "That can replace live files."
+        },
+        {
+          "id": "b",
+          "text": "Alternate location and a test folder/share.",
+          "explanation": "This preserves the original contents while allowing review."
+        },
+        {
+          "id": "c",
+          "text": "Delete the live share before selecting a point.",
+          "explanation": "Deletion is unnecessary for this inspection goal."
+        },
+        {
+          "id": "d",
+          "text": "Change the share's DNS name.",
+          "explanation": "DNS changes do not restore the selected backup contents."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/backup/azure-files.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-files",
+        "https://learn.microsoft.com/en-us/azure/backup/restore-afs"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-files-conflict",
+      "family": "mo-files-conflict",
+      "revision": 1,
+      "topic": "monitoring.backup.files-restore",
+      "objectives": [
+        "mo-10"
+      ],
+      "difficulty": "foundation",
+      "prompt": "During an original-location Azure Files restore, which setting controls behavior when a file already exists?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "The public IP allocation method.",
+          "explanation": "It does not determine restore file conflicts."
+        },
+        {
+          "id": "b",
+          "text": "The NSG priority.",
+          "explanation": "Filtering rules do not select restore overwrite behavior."
+        },
+        {
+          "id": "c",
+          "text": "The restore operation's skip/overwrite conflict choice.",
+          "explanation": "That controls existing-file handling."
+        },
+        {
+          "id": "d",
+          "text": "The vault's display name.",
+          "explanation": "Names do not define conflict resolution."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/backup/azure-files.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-files",
+        "https://learn.microsoft.com/en-us/azure/backup/restore-afs"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

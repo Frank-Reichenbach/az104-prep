@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "nw-peering-transitive",
+      "family": "nw-peering-transitive",
+      "revision": 1,
+      "topic": "networking.vnets.peering",
+      "objectives": [
+        "nw-02"
+      ],
+      "difficulty": "applied",
+      "prompt": "VNet A peers with B, and B peers with C. No direct A–C peering or transit routing is configured. What should be expected?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A and C do not gain connectivity merely from these two peerings.",
+          "explanation": "Traditional peering is nontransitive."
+        },
+        {
+          "id": "b",
+          "text": "A and C automatically connect through B.",
+          "explanation": "A hub connection alone does not create transit routing."
+        },
+        {
+          "id": "c",
+          "text": "A–C connectivity appears after changing only the peering names.",
+          "explanation": "Names do not create network paths."
+        },
+        {
+          "id": "d",
+          "text": "A and C share one address space automatically.",
+          "explanation": "Peering does not merge or renumber their address spaces."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/networking/virtual-networks/peering.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-peering",
+        "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-peering-gateway-transit"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-peering-transit",
+      "family": "nw-peering-transit",
+      "revision": 1,
+      "topic": "networking.vnets.peering",
+      "objectives": [
+        "nw-02"
+      ],
+      "difficulty": "applied",
+      "prompt": "A spoke without its own gateway must use a supported VPN gateway in a peered hub. Which TWO peering settings are required on the respective sides?",
+      "select": 2,
+      "options": [
+        {
+          "id": "a",
+          "text": "Allow gateway transit on the hub-side peering",
+          "explanation": "The hub permits use of its gateway."
+        },
+        {
+          "id": "b",
+          "text": "Use remote gateways on the spoke-side peering",
+          "explanation": "The spoke chooses to use the permitted remote gateway."
+        },
+        {
+          "id": "c",
+          "text": "Use remote gateways on every spoke peering simultaneously",
+          "explanation": "A VNet can use a remote gateway through only one peering."
+        },
+        {
+          "id": "d",
+          "text": "Only allow forwarded traffic and omit both gateway settings",
+          "explanation": "Forwarded traffic permission alone does not configure gateway transit."
+        }
+      ],
+      "correct": [
+        "a",
+        "b"
+      ],
+      "knowledge": "knowledge/networking/virtual-networks/peering.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-peering",
+        "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-peering-gateway-transit"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-peering-forward",
+      "family": "nw-peering-forward",
+      "revision": 1,
+      "topic": "networking.vnets.peering",
+      "objectives": [
+        "nw-02"
+      ],
+      "difficulty": "foundation",
+      "prompt": "What does enabling Allow forwarded traffic on a VNet peering do?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Permit eligible traffic forwarded through the peered network.",
+          "explanation": "The setting allows forwarded packets but does not build their routing path."
+        },
+        {
+          "id": "b",
+          "text": "Automatically create an NVA and all required UDRs.",
+          "explanation": "Those resources and routes must be configured separately."
+        },
+        {
+          "id": "c",
+          "text": "Automatically share every private DNS zone.",
+          "explanation": "DNS configuration is separate from forwarded traffic permission."
+        },
+        {
+          "id": "d",
+          "text": "Remove NSG filtering from the connection.",
+          "explanation": "NSGs continue to apply."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/networking/virtual-networks/peering.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-peering",
+        "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-peering-gateway-transit"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

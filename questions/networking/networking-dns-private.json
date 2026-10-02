@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "nw-private-link",
+      "family": "nw-private-link",
+      "revision": 1,
+      "topic": "networking.dns.private",
+      "objectives": [
+        "nw-11"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "Two VNets are peered. A private zone is linked only to VNet A; VNet B uses Azure-provided DNS and cannot resolve its records. What is missing?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A private-zone link to VNet B.",
+          "explanation": "Peering does not automatically add DNS-zone resolution links."
+        },
+        {
+          "id": "b",
+          "text": "A second public NS delegation at the registrar.",
+          "explanation": "Private-zone visibility is not set by public delegation."
+        },
+        {
+          "id": "c",
+          "text": "An Internet-wide NSG allow rule.",
+          "explanation": "That does not attach the zone to VNet B."
+        },
+        {
+          "id": "d",
+          "text": "A public IP on every VM in VNet B.",
+          "explanation": "Public IPs are not required for linked private-zone resolution."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/networking/dns/private-zones.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links",
+        "https://learn.microsoft.com/en-us/azure/dns/private-dns-overview",
+        "https://learn.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal",
+        "https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-private-registration",
+      "family": "nw-private-registration",
+      "revision": 1,
+      "topic": "networking.dns.private",
+      "objectives": [
+        "nw-11"
+      ],
+      "difficulty": "foundation",
+      "prompt": "You link a VNet to a private zone with autoregistration disabled. What does this link provide?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Automatic registration of every VM name.",
+          "explanation": "That requires autoregistration enabled."
+        },
+        {
+          "id": "b",
+          "text": "Resolution of records in the linked zone without automatic VM registration.",
+          "explanation": "This is a resolution-only link."
+        },
+        {
+          "id": "c",
+          "text": "Public Internet resolution of the zone.",
+          "explanation": "The link serves private-network resolution."
+        },
+        {
+          "id": "d",
+          "text": "Automatic VNet peering to all other linked networks.",
+          "explanation": "DNS links do not create network peerings."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/networking/dns/private-zones.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links",
+        "https://learn.microsoft.com/en-us/azure/dns/private-dns-overview",
+        "https://learn.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal",
+        "https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-private-one",
+      "family": "nw-private-one",
+      "revision": 1,
+      "topic": "networking.dns.private",
+      "objectives": [
+        "nw-11"
+      ],
+      "difficulty": "applied",
+      "prompt": "A VNet already autoregisters VM names in zone alpha.example. You want it to resolve beta.example without changing that registration. Which link is suitable?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A second autoregistration link to beta.example.",
+          "explanation": "One VNet can have only one registration zone."
+        },
+        {
+          "id": "b",
+          "text": "A registrar NS record for beta.example.",
+          "explanation": "Public delegation does not provide this private link."
+        },
+        {
+          "id": "c",
+          "text": "A resolution-only link to beta.example.",
+          "explanation": "Multiple resolution links can coexist with the registration zone."
+        },
+        {
+          "id": "d",
+          "text": "A CNAME at alpha.example's apex to beta.example.",
+          "explanation": "That neither links the zone nor meets apex record constraints."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/networking/dns/private-zones.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links",
+        "https://learn.microsoft.com/en-us/azure/dns/private-dns-overview",
+        "https://learn.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal",
+        "https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

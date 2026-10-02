@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "mo-log-default",
+      "family": "mo-log-default",
+      "revision": 1,
+      "topic": "monitoring.logs.diagnostic-settings",
+      "objectives": [
+        "mo-02"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A resource has platform metrics visible but no resource-operation logs in your workspace. No diagnostic setting exists. What should you configure?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "A diagnostic setting with the required resource log categories and workspace destination.",
+          "explanation": "Resource logs generally require explicit collection/export."
+        },
+        {
+          "id": "b",
+          "text": "Only change the metric chart's color.",
+          "explanation": "Chart appearance does not collect logs."
+        },
+        {
+          "id": "c",
+          "text": "Only add a resource tag named LogAnalytics.",
+          "explanation": "Tags do not configure telemetry export."
+        },
+        {
+          "id": "d",
+          "text": "Only create a DNS alias for the workspace.",
+          "explanation": "DNS aliases do not configure the resource's logging path."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/monitoring/logs/diagnostic-settings.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/diagnostic-settings",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/resource-logs",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-log-two-workspaces",
+      "family": "mo-log-two-workspaces",
+      "revision": 1,
+      "topic": "monitoring.logs.diagnostic-settings",
+      "objectives": [
+        "mo-02"
+      ],
+      "difficulty": "applied",
+      "prompt": "You need the same resource logs sent to two Log Analytics workspaces. Which diagnostic-settings design is supported?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Two workspace destinations inside one setting.",
+          "explanation": "A setting supports one destination of each type."
+        },
+        {
+          "id": "b",
+          "text": "Two diagnostic settings, each naming one workspace.",
+          "explanation": "Separate settings support multiple destinations of the same type."
+        },
+        {
+          "id": "c",
+          "text": "One setting with a comma-separated workspace ID.",
+          "explanation": "The destination field does not represent multiple workspace IDs."
+        },
+        {
+          "id": "d",
+          "text": "An NSG rule listing both workspace names.",
+          "explanation": "Filtering rules do not configure log export."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/monitoring/logs/diagnostic-settings.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/diagnostic-settings",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/resource-logs",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "mo-log-guest",
+      "family": "mo-log-guest",
+      "revision": 1,
+      "topic": "monitoring.logs.diagnostic-settings",
+      "objectives": [
+        "mo-02"
+      ],
+      "difficulty": "applied",
+      "prompt": "You need Linux guest Syslog from Azure VMs. Does a resource diagnostic setting alone select their Syslog facilities and severities?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes; AllMetrics contains all Syslog messages.",
+          "explanation": "Metrics are numeric telemetry rather than Syslog messages."
+        },
+        {
+          "id": "b",
+          "text": "Yes; the Activity Log contains every guest message.",
+          "explanation": "The Activity Log records management events."
+        },
+        {
+          "id": "c",
+          "text": "No; configure a supported guest-agent/data collection rule path.",
+          "explanation": "Guest log collection differs from resource diagnostics."
+        },
+        {
+          "id": "d",
+          "text": "Yes; a resource tag sets Syslog severity.",
+          "explanation": "Tags do not configure the guest collector."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/monitoring/logs/diagnostic-settings.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/diagnostic-settings",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/resource-logs",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

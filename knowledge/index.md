@@ -1,8 +1,8 @@
 # Knowledge index
 
-Read [exam coverage](../exam/coverage.md) for objective-level status. Storage,
-identity/governance, and compute have documented coverage. Expansion continues
-through networking and monitoring/recovery.
+Read [exam coverage](../exam/coverage.md) for objective-level status. All five
+domains have researched guides and practice questions. Coverage measures
+documented content, not exhaustive scenarios or exam readiness.
 
 - [Identity and governance](identity/index.md)
 - [Storage](storage/index.md)

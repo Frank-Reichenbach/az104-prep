@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "nw-lb-private",
+      "family": "nw-lb-private",
+      "revision": 1,
+      "topic": "networking.load-balancer.configuration",
+      "objectives": [
+        "nw-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "An application must accept TCP connections only over privately routed networks. Which regional Load Balancer frontend fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "An internal frontend with a private subnet IP.",
+          "explanation": "This provides the privately reachable frontend."
+        },
+        {
+          "id": "b",
+          "text": "A public frontend plus a public DNS name only.",
+          "explanation": "A DNS name does not make a public frontend private."
+        },
+        {
+          "id": "c",
+          "text": "An outbound rule without any frontend.",
+          "explanation": "An outbound rule does not supply this inbound service endpoint."
+        },
+        {
+          "id": "d",
+          "text": "A probe-only configuration without a load-balancing rule.",
+          "explanation": "A probe monitors backends but does not distribute client traffic."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "knowledge": "knowledge/networking/load-balancer/configuration.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview",
+        "https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-public-portal",
+        "https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-internal-portal",
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-lb-components",
+      "family": "nw-lb-components",
+      "revision": 1,
+      "topic": "networking.load-balancer.configuration",
+      "objectives": [
+        "nw-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "A Standard public Load Balancer has a frontend and backend pool but no load-balancing rule. Healthy backend listeners exist. What configuration maps client TCP 443 to their TCP 8443?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Only a DNS CNAME from 443 to 8443.",
+          "explanation": "DNS aliases do not translate TCP ports."
+        },
+        {
+          "id": "b",
+          "text": "A load-balancing rule linking frontend, pool, protocol/ports, and probe.",
+          "explanation": "That rule defines the distribution and port mapping."
+        },
+        {
+          "id": "c",
+          "text": "Only an NSG outbound allow on 8443.",
+          "explanation": "Filtering permission does not configure the frontend mapping."
+        },
+        {
+          "id": "d",
+          "text": "Only a route table pointing to the public IP.",
+          "explanation": "Routing does not define this load-balancing rule."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "knowledge": "knowledge/networking/load-balancer/configuration.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview",
+        "https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-public-portal",
+        "https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-internal-portal",
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-lb-layer",
+      "family": "nw-lb-layer",
+      "revision": 1,
+      "topic": "networking.load-balancer.configuration",
+      "objectives": [
+        "nw-12"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A team wants requests for /images and /api sent to different backend pools according to URL path. Does Azure Load Balancer alone provide this?",
+      "select": 1,
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes, by changing its TCP idle timeout.",
+          "explanation": "Idle timeout does not parse HTTP paths."
+        },
+        {
+          "id": "b",
+          "text": "Yes, by setting the health-probe path to both prefixes.",
+          "explanation": "Probe paths test health; they do not route client URLs."
+        },
+        {
+          "id": "c",
+          "text": "No; its layer-4 rules do not inspect URL paths.",
+          "explanation": "An HTTP-aware routing service is needed for that decision."
+        },
+        {
+          "id": "d",
+          "text": "Yes, by adding a second public IP to each backend.",
+          "explanation": "Additional addresses do not add HTTP path inspection."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "knowledge": "knowledge/networking/load-balancer/configuration.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview",
+        "https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-public-portal",
+        "https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-internal-portal",
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

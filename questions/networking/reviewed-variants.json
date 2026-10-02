@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "nw-private-registration-enabled-variant",
+      "family": "nw-private-registration",
+      "revision": 1,
+      "topic": "networking.dns.private",
+      "objectives": [
+        "nw-11"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A VNet uses Azure-provided DNS and is linked to an Azure private DNS zone with autoregistration enabled. What does that link provide for VMs in the VNet?",
+      "select": 1,
+      "options": [
+        {
+          "id": "register",
+          "text": "Automatic VM-name registration in that zone and resolution of its records.",
+          "explanation": "An autoregistration link creates VM records and makes the private zone available to the linked VNet."
+        },
+        {
+          "id": "resolve",
+          "text": "Only resolution, with automatic registration always prohibited.",
+          "explanation": "That describes a resolution-only link with autoregistration disabled."
+        },
+        {
+          "id": "internet",
+          "text": "Automatic publication of those VM records to Internet resolvers.",
+          "explanation": "A private-zone link does not turn the zone into public DNS."
+        },
+        {
+          "id": "peer",
+          "text": "Automatic network peering to every other linked VNet.",
+          "explanation": "DNS links do not create network peerings."
+        }
+      ],
+      "correct": [
+        "register"
+      ],
+      "knowledge": "knowledge/networking/dns/private-zones.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links",
+        "https://learn.microsoft.com/en-us/azure/dns/private-dns-overview",
+        "https://learn.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal",
+        "https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "nw-route-specific-variant",
+      "family": "nw-route-prefix",
+      "revision": 1,
+      "topic": "networking.vnets.routes",
+      "objectives": [
+        "nw-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "A VM's active effective routes include system 10.50.0.0/16 to Virtual network and UDR 10.50.2.0/24 to a virtual appliance. There are no other matching routes. Which next hop is selected for 10.50.2.8?",
+      "select": 1,
+      "options": [
+        {
+          "id": "appliance",
+          "text": "The virtual appliance from the /24 UDR.",
+          "explanation": "The /24 is the longest matching prefix for this destination."
+        },
+        {
+          "id": "vnet",
+          "text": "Virtual network from the /16 system route.",
+          "explanation": "The /16 is less specific than the matching /24."
+        },
+        {
+          "id": "internet",
+          "text": "Internet because the destination is outside the /24.",
+          "explanation": "10.50.2.8 is inside 10.50.2.0/24, and no Internet route wins."
+        },
+        {
+          "id": "both",
+          "text": "Both next hops simultaneously because both prefixes match.",
+          "explanation": "Route selection chooses the matching route with the longest prefix, rather than duplicating traffic across these routes."
+        }
+      ],
+      "correct": [
+        "appliance"
+      ],
+      "knowledge": "knowledge/networking/virtual-networks/routes.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/manage-route-table"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

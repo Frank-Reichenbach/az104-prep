@@ -660,5 +660,435 @@
     ],
     "status": "documented",
     "verified": "2026-10-02"
+  },
+  {
+    "id": "networking.vnets.subnets",
+    "domain": "networking",
+    "title": "Virtual network address spaces and subnets",
+    "path": "knowledge/networking/virtual-networks/subnets.md",
+    "objectives": [
+      "nw-01"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "networking.vnets.peering",
+    "domain": "networking",
+    "title": "VNet peering, forwarding, and gateway transit",
+    "path": "knowledge/networking/virtual-networks/peering.md",
+    "objectives": [
+      "nw-02"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "networking.vnets.public-ips",
+    "domain": "networking",
+    "title": "Public IP resources and allocation",
+    "path": "knowledge/networking/virtual-networks/public-ips.md",
+    "objectives": [
+      "nw-03"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "networking.vnets.routes",
+    "domain": "networking",
+    "title": "User-defined routes and next hops",
+    "path": "knowledge/networking/virtual-networks/routes.md",
+    "objectives": [
+      "nw-04"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "networking.vnets.troubleshooting",
+    "domain": "networking",
+    "title": "Diagnosing VNet connectivity",
+    "path": "knowledge/networking/virtual-networks/troubleshooting.md",
+    "objectives": [
+      "nw-05"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "networking.security.nsg-asg",
+    "domain": "networking",
+    "title": "Network and application security groups",
+    "path": "knowledge/networking/security/nsg-asg.md",
+    "objectives": [
+      "nw-06"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "networking.security.effective-rules",
+    "domain": "networking",
+    "title": "Effective NSG rules and flow evaluation",
+    "path": "knowledge/networking/security/effective-rules.md",
+    "objectives": [
+      "nw-07"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "networking.security.bastion",
+    "domain": "networking",
+    "title": "Azure Bastion administrative access",
+    "path": "knowledge/networking/security/bastion.md",
+    "objectives": [
+      "nw-08"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "networking.security.service-endpoints",
+    "domain": "networking",
+    "title": "Service endpoints and subnet authorization",
+    "path": "knowledge/networking/security/service-endpoints.md",
+    "objectives": [
+      "nw-09"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "networking.security.private-endpoints",
+    "domain": "networking",
+    "title": "Private endpoints, approval, and DNS",
+    "path": "knowledge/networking/security/private-endpoints.md",
+    "objectives": [
+      "nw-10"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "networking.dns.public",
+    "domain": "networking",
+    "title": "Public DNS zones, delegation, and records",
+    "path": "knowledge/networking/dns/public-zones.md",
+    "objectives": [
+      "nw-11"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "networking.dns.private",
+    "domain": "networking",
+    "title": "Private DNS zones and VNet links",
+    "path": "knowledge/networking/dns/private-zones.md",
+    "objectives": [
+      "nw-11"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "networking.dns.resolver",
+    "domain": "networking",
+    "title": "DNS Private Resolver and hybrid forwarding",
+    "path": "knowledge/networking/dns/private-resolver.md",
+    "objectives": [
+      "nw-11"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "networking.load-balancer.configuration",
+    "domain": "networking",
+    "title": "Public and internal Standard Load Balancer",
+    "path": "knowledge/networking/load-balancer/configuration.md",
+    "objectives": [
+      "nw-12"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "networking.load-balancer.troubleshooting",
+    "domain": "networking",
+    "title": "Load Balancer probes and connectivity diagnosis",
+    "path": "knowledge/networking/load-balancer/troubleshooting.md",
+    "objectives": [
+      "nw-13"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.metrics.analysis",
+    "domain": "monitoring",
+    "title": "Azure Monitor metric aggregation and dimensions",
+    "path": "knowledge/monitoring/metrics/analysis.md",
+    "objectives": [
+      "mo-01"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.logs.diagnostic-settings",
+    "domain": "monitoring",
+    "title": "Resource logs and diagnostic settings",
+    "path": "knowledge/monitoring/logs/diagnostic-settings.md",
+    "objectives": [
+      "mo-02"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.logs.agent-dcr",
+    "domain": "monitoring",
+    "title": "Azure Monitor Agent and data collection rules",
+    "path": "knowledge/monitoring/logs/agent-dcr.md",
+    "objectives": [
+      "mo-02"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.logs.kql",
+    "domain": "monitoring",
+    "title": "KQL filtering, aggregation, and interpretation",
+    "path": "knowledge/monitoring/logs/kql.md",
+    "objectives": [
+      "mo-03"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.alerts.rules",
+    "domain": "monitoring",
+    "title": "Alert rules, signals, and evaluation",
+    "path": "knowledge/monitoring/alerts/rules.md",
+    "objectives": [
+      "mo-04"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.alerts.action-groups",
+    "domain": "monitoring",
+    "title": "Action groups and notification delivery",
+    "path": "knowledge/monitoring/alerts/action-groups.md",
+    "objectives": [
+      "mo-04"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.alerts.processing",
+    "domain": "monitoring",
+    "title": "Alert processing rules and maintenance suppression",
+    "path": "knowledge/monitoring/alerts/processing-rules.md",
+    "objectives": [
+      "mo-04"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.insights.vms",
+    "domain": "monitoring",
+    "title": "VM Insights and enhanced guest monitoring",
+    "path": "knowledge/monitoring/insights/virtual-machines.md",
+    "objectives": [
+      "mo-05"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.insights.storage",
+    "domain": "monitoring",
+    "title": "Storage Insights performance and capacity",
+    "path": "knowledge/monitoring/insights/storage.md",
+    "objectives": [
+      "mo-05"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.insights.networks",
+    "domain": "monitoring",
+    "title": "Network Insights topology, health, and traffic",
+    "path": "knowledge/monitoring/insights/networks.md",
+    "objectives": [
+      "mo-05"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.network.connection-monitor",
+    "domain": "monitoring",
+    "title": "Network Watcher and continuous Connection Monitor",
+    "path": "knowledge/monitoring/network/connection-monitor.md",
+    "objectives": [
+      "mo-06"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.network.flow-logs",
+    "domain": "monitoring",
+    "title": "VNet flow logs and traffic analytics",
+    "path": "knowledge/monitoring/network/flow-logs.md",
+    "objectives": [
+      "mo-06"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.backup.recovery-vault",
+    "domain": "monitoring",
+    "title": "Recovery Services vault configuration",
+    "path": "knowledge/monitoring/backup/recovery-services-vault.md",
+    "objectives": [
+      "mo-07"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.backup.backup-vault",
+    "domain": "monitoring",
+    "title": "Backup vaults and workload identity permissions",
+    "path": "knowledge/monitoring/backup/backup-vault.md",
+    "objectives": [
+      "mo-08"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.backup.protection",
+    "domain": "monitoring",
+    "title": "Backup soft deletion and vault immutability",
+    "path": "knowledge/monitoring/backup/protection.md",
+    "objectives": [
+      "mo-07",
+      "mo-08"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.backup.policies",
+    "domain": "monitoring",
+    "title": "Backup schedules, retention, and policy selection",
+    "path": "knowledge/monitoring/backup/policies.md",
+    "objectives": [
+      "mo-09"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.backup.vm-restore",
+    "domain": "monitoring",
+    "title": "Azure VM backup and restore operations",
+    "path": "knowledge/monitoring/backup/virtual-machines.md",
+    "objectives": [
+      "mo-10"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.backup.files-restore",
+    "domain": "monitoring",
+    "title": "Azure Files backup and item recovery",
+    "path": "knowledge/monitoring/backup/azure-files.md",
+    "objectives": [
+      "mo-10"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.recovery.replication",
+    "domain": "monitoring",
+    "title": "Site Recovery replication for Azure virtual machines",
+    "path": "knowledge/monitoring/site-recovery/replication.md",
+    "objectives": [
+      "mo-11"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.recovery.test-failover",
+    "domain": "monitoring",
+    "title": "Site Recovery test failover and drill cleanup",
+    "path": "knowledge/monitoring/site-recovery/test-failover.md",
+    "objectives": [
+      "mo-12"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.recovery.failover",
+    "domain": "monitoring",
+    "title": "Site Recovery production failover and recovery points",
+    "path": "knowledge/monitoring/site-recovery/failover.md",
+    "objectives": [
+      "mo-12"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.recovery.failback",
+    "domain": "monitoring",
+    "title": "Site Recovery reprotection and failback",
+    "path": "knowledge/monitoring/site-recovery/failback.md",
+    "objectives": [
+      "mo-12"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.backup.reports",
+    "domain": "monitoring",
+    "title": "Azure Backup reports and diagnostic data",
+    "path": "knowledge/monitoring/backup/reports.md",
+    "objectives": [
+      "mo-13"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "monitoring.backup.alerts",
+    "domain": "monitoring",
+    "title": "Azure Backup alerts and notification routing",
+    "path": "knowledge/monitoring/backup/alerts.md",
+    "objectives": [
+      "mo-13"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
   }
 ]
