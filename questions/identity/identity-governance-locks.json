@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "id-lock-delete-only",
+      "family": "id-lock-delete-only",
+      "revision": 1,
+      "topic": "identity.governance.locks",
+      "objectives": [
+        "id-10"
+      ],
+      "difficulty": "applied",
+      "prompt": "A resource group must permit authorized configuration changes but reject accidental ARM deletion. Which lock fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "delete",
+          "text": "CanNotDelete.",
+          "explanation": "It blocks deletion while permitting authorized updates."
+        },
+        {
+          "id": "readonly",
+          "text": "ReadOnly.",
+          "explanation": "It also blocks updates, contrary to the requirement."
+        },
+        {
+          "id": "reader",
+          "text": "An extra Reader role assignment.",
+          "explanation": "A weaker role grant does not subtract existing delete permission."
+        },
+        {
+          "id": "tag",
+          "text": "A tag named DoNotDelete.",
+          "explanation": "A tag alone does not enforce deletion protection."
+        }
+      ],
+      "correct": [
+        "delete"
+      ],
+      "knowledge": "knowledge/identity/governance/locks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-lock-blob-data",
+      "family": "id-lock-blob-data",
+      "revision": 1,
+      "topic": "identity.governance.locks",
+      "objectives": [
+        "id-10"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A storage account has a CanNotDelete lock. A client has valid data-plane authorization to delete a blob. Does the account lock alone prevent that data operation?",
+      "select": 1,
+      "options": [
+        {
+          "id": "no",
+          "text": "No; management locks do not generally block data-plane blob deletion.",
+          "explanation": "Data recovery/protection needs service-level controls."
+        },
+        {
+          "id": "yes",
+          "text": "Yes; every byte under a locked account becomes immutable.",
+          "explanation": "A management lock is not blob immutability."
+        },
+        {
+          "id": "tier",
+          "text": "Only blobs in Hot are protected by the lock.",
+          "explanation": "Lock scope is not determined by access tier."
+        },
+        {
+          "id": "key",
+          "text": "Only key2-authorized blob deletes are blocked.",
+          "explanation": "The distinction is operation plane, not which account key is used."
+        }
+      ],
+      "correct": [
+        "no"
+      ],
+      "knowledge": "knowledge/identity/governance/locks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-lock-owner",
+      "family": "id-lock-owner",
+      "revision": 1,
+      "topic": "identity.governance.locks",
+      "objectives": [
+        "id-10"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "An Owner's ARM delete request fails because a resource has a Delete lock. What is the appropriate deliberate-deletion sequence?",
+      "select": 1,
+      "options": [
+        {
+          "id": "remove",
+          "text": "Review and remove the lock with authorization, then delete the resource.",
+          "explanation": "Owner does not silently bypass a still-effective lock."
+        },
+        {
+          "id": "repeat",
+          "text": "Retry until Owner overrides the lock automatically.",
+          "explanation": "Repeated identical requests do not remove the lock."
+        },
+        {
+          "id": "contributor",
+          "text": "Replace Owner with Contributor.",
+          "explanation": "Reducing RBAC permission does not bypass the lock."
+        },
+        {
+          "id": "region",
+          "text": "Change the resource group's metadata region.",
+          "explanation": "That is not a lock-removal operation."
+        }
+      ],
+      "correct": [
+        "remove"
+      ],
+      "knowledge": "knowledge/identity/governance/locks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

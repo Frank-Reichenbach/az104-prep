@@ -4,7 +4,7 @@
 
 Outline: 2026-04-17. Source checked: 2026-10-01.
 
-17/82 objectives have documented topic coverage. This measures presence of researched content, not mastery or exhaustive scenario coverage.
+32/82 objectives have documented topic coverage. This measures presence of researched content, not mastery or exhaustive scenario coverage.
 
 [Microsoft scope source](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-104). IDs below are local identifiers.
 
@@ -14,31 +14,31 @@ Outline: 2026-04-17. Source checked: 2026-10-01.
 
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
-| id-01 | Provision users and groups | — | 0 | Planned |
-| id-02 | Maintain user and group properties | — | 0 | Planned |
-| id-03 | Administer Entra license assignments | — | 0 | Planned |
-| id-04 | Administer external identities | — | 0 | Planned |
-| id-05 | Set up self-service password reset | — | 0 | Planned |
+| id-01 | Provision users and groups | [Entra user provisioning and properties](../knowledge/identity/users/user-management.md), [Entra groups and dynamic membership](../knowledge/identity/groups/group-management.md) | 7 | Documented; not lab-tested |
+| id-02 | Maintain user and group properties | [Entra user provisioning and properties](../knowledge/identity/users/user-management.md), [Entra groups and dynamic membership](../knowledge/identity/groups/group-management.md) | 7 | Documented; not lab-tested |
+| id-03 | Administer Entra license assignments | [User and group license assignments](../knowledge/identity/users/licenses.md) | 3 | Documented; not lab-tested |
+| id-04 | Administer external identities | [External users and B2B collaboration](../knowledge/identity/users/external-users.md) | 3 | Documented; not lab-tested |
+| id-05 | Set up self-service password reset | [Self-service password reset](../knowledge/identity/users/self-service-password-reset.md) | 3 | Documented; not lab-tested |
 
 ### Resource authorization
 
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
-| id-06 | Use Azure built-in roles | — | 0 | Planned |
-| id-07 | Apply role assignments at appropriate scopes | — | 0 | Planned |
-| id-08 | Determine effective access from assignments | — | 0 | Planned |
+| id-06 | Use Azure built-in roles | [Azure built-in roles and permission definitions](../knowledge/identity/rbac/built-in-roles.md) | 3 | Documented; not lab-tested |
+| id-07 | Apply role assignments at appropriate scopes | [Azure role assignments and scopes](../knowledge/identity/rbac/assignments-and-scopes.md) | 3 | Documented; not lab-tested |
+| id-08 | Determine effective access from assignments | [Effective access and RBAC troubleshooting](../knowledge/identity/rbac/effective-access.md) | 3 | Documented; not lab-tested |
 
 ### Subscriptions and governance
 
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
-| id-09 | Apply and maintain Azure Policy | — | 0 | Planned |
-| id-10 | Protect resources with locks | — | 0 | Planned |
-| id-11 | Organize resources with tags | — | 0 | Planned |
-| id-12 | Administer resource groups | — | 0 | Planned |
-| id-13 | Administer subscriptions | — | 0 | Planned |
-| id-14 | Control spending through budgets, alerts, and Advisor | — | 0 | Planned |
-| id-15 | Arrange management groups | — | 0 | Planned |
+| id-09 | Apply and maintain Azure Policy | [Azure Policy assignments and remediation](../knowledge/identity/governance/policy.md) | 3 | Documented; not lab-tested |
+| id-10 | Protect resources with locks | [Resource locks](../knowledge/identity/governance/locks.md) | 3 | Documented; not lab-tested |
+| id-11 | Organize resources with tags | [Resource tags and tag governance](../knowledge/identity/governance/tags.md) | 3 | Documented; not lab-tested |
+| id-12 | Administer resource groups | [Resource group lifecycle and moves](../knowledge/identity/governance/resource-groups.md) | 3 | Documented; not lab-tested |
+| id-13 | Administer subscriptions | [Subscription administration and provider registration](../knowledge/identity/governance/subscriptions.md) | 3 | Documented; not lab-tested |
+| id-14 | Control spending through budgets, alerts, and Advisor | [Budgets, cost alerts, and Advisor](../knowledge/identity/governance/cost-management.md) | 3 | Documented; not lab-tested |
+| id-15 | Arrange management groups | [Management groups and inherited governance](../knowledge/identity/governance/management-groups.md) | 3 | Documented; not lab-tested |
 
 ## Storage (15–20%)
 

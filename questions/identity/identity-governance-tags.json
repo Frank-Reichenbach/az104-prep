@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "id-tag-inheritance",
+      "family": "id-tag-inheritance",
+      "revision": 1,
+      "topic": "identity.governance.tags",
+      "objectives": [
+        "id-11"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A resource group has CostCenter=Finance. A new VM inside it has no tag policy or other tagging automation. Does the VM automatically receive that resource tag?",
+      "select": 1,
+      "options": [
+        {
+          "id": "no",
+          "text": "No; resource tags do not automatically inherit.",
+          "explanation": "Use an explicit assignment or policy if the VM must carry the value."
+        },
+        {
+          "id": "yes",
+          "text": "Yes; every resource-group tag is automatically copied.",
+          "explanation": "That is not the default resource-tag behavior."
+        },
+        {
+          "id": "billing",
+          "text": "Yes; billing tags and resource properties are always identical.",
+          "explanation": "Cost-data inheritance and resource mutation are different mechanisms."
+        },
+        {
+          "id": "owner",
+          "text": "Only when the VM creator is the resource-group Owner.",
+          "explanation": "The creator's role does not enable automatic tag inheritance."
+        }
+      ],
+      "correct": [
+        "no"
+      ],
+      "knowledge": "knowledge/identity/governance/tags.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-policies",
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag-inheritance"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-tag-merge",
+      "family": "id-tag-merge",
+      "revision": 1,
+      "topic": "identity.governance.tags",
+      "objectives": [
+        "id-11"
+      ],
+      "difficulty": "applied",
+      "prompt": "A resource already has ServiceOwner=Ops. You must add Environment=Training without removing ServiceOwner. Which CLI operation fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "merge",
+          "text": "az tag update with --operation Merge.",
+          "explanation": "It preserves unrelated existing keys."
+        },
+        {
+          "id": "create",
+          "text": "az tag create with only Environment=Training.",
+          "explanation": "Create replaces the tag collection."
+        },
+        {
+          "id": "replace",
+          "text": "az tag update with --operation Replace and only Environment=Training.",
+          "explanation": "Replace would omit the existing ServiceOwner key."
+        },
+        {
+          "id": "delete",
+          "text": "az tag delete followed by no additional operation.",
+          "explanation": "Deleting tags cannot add the required new value."
+        }
+      ],
+      "correct": [
+        "merge"
+      ],
+      "knowledge": "knowledge/identity/governance/tags.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-policies",
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag-inheritance"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-tag-policy-existing",
+      "family": "id-tag-policy-existing",
+      "revision": 1,
+      "topic": "identity.governance.tags",
+      "objectives": [
+        "id-11"
+      ],
+      "difficulty": "applied",
+      "prompt": "Existing supported resources need the CostCenter resource tag copied from their resource group. Which approach can apply that change across the existing population?",
+      "select": 1,
+      "options": [
+        {
+          "id": "modify",
+          "text": "A suitable Modify tag policy and remediation task.",
+          "explanation": "It can apply the parent-derived value to existing noncompliant resources."
+        },
+        {
+          "id": "audit",
+          "text": "An Audit-only tag policy.",
+          "explanation": "Audit can identify missing tags but does not write them."
+        },
+        {
+          "id": "cost",
+          "text": "Only enable cost-report tag inheritance.",
+          "explanation": "That affects cost records, not necessarily the resources' tag properties."
+        },
+        {
+          "id": "parent",
+          "text": "Retag the resource group and assume automatic propagation.",
+          "explanation": "Parent resource tags do not automatically copy to children."
+        }
+      ],
+      "correct": [
+        "modify"
+      ],
+      "knowledge": "knowledge/identity/governance/tags.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-policies",
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag-inheritance"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

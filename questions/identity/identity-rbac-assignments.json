@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "id-scope-one-group",
+      "family": "id-scope-one-group",
+      "revision": 1,
+      "topic": "identity.rbac.assignments",
+      "objectives": [
+        "id-07"
+      ],
+      "difficulty": "applied",
+      "prompt": "An operations group needs Contributor on resources only in rg-training. It should receive no access to sibling groups. Which assignment scope fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "rg",
+          "text": "rg-training resource group.",
+          "explanation": "The role reaches that group's resources without granting sibling scope."
+        },
+        {
+          "id": "sub",
+          "text": "The subscription containing rg-training.",
+          "explanation": "That would include other resource groups."
+        },
+        {
+          "id": "mg",
+          "text": "The tenant's root management group.",
+          "explanation": "That is much broader than the requested boundary."
+        },
+        {
+          "id": "vm",
+          "text": "One VM inside rg-training.",
+          "explanation": "That does not cover all requested resources in the group."
+        }
+      ],
+      "correct": [
+        "rg"
+      ],
+      "knowledge": "knowledge/identity/rbac/assignments-and-scopes.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-scope-inherited-remove",
+      "family": "id-scope-inherited-remove",
+      "revision": 1,
+      "topic": "identity.rbac.assignments",
+      "objectives": [
+        "id-07"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A user's Contributor assignment is inherited from the subscription. You want to remove that grant. Where must the assignment itself be removed?",
+      "select": 1,
+      "options": [
+        {
+          "id": "parent",
+          "text": "At the subscription where it was created.",
+          "explanation": "The assignment is defined at its parent scope."
+        },
+        {
+          "id": "child",
+          "text": "Only from one child VM's IAM page as a local assignment.",
+          "explanation": "A parent grant is not a separate editable child assignment."
+        },
+        {
+          "id": "reader",
+          "text": "Add Reader on the VM to cancel Contributor.",
+          "explanation": "A weaker grant does not subtract a stronger inherited grant."
+        },
+        {
+          "id": "tag",
+          "text": "Delete the VM's owner tag.",
+          "explanation": "Tags do not define Azure RBAC assignments."
+        }
+      ],
+      "correct": [
+        "parent"
+      ],
+      "knowledge": "knowledge/identity/rbac/assignments-and-scopes.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-scope-triplet",
+      "family": "id-scope-triplet",
+      "revision": 1,
+      "topic": "identity.rbac.assignments",
+      "objectives": [
+        "id-07"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which three elements define an Azure RBAC assignment? Select the option containing the complete set.",
+      "select": 1,
+      "options": [
+        {
+          "id": "set",
+          "text": "Security principal, role definition, and scope.",
+          "explanation": "They specify who, what permissions, and where."
+        },
+        {
+          "id": "cost",
+          "text": "Security principal, role display name, and resource region.",
+          "explanation": "A region does not substitute for the assignment's resource scope."
+        },
+        {
+          "id": "network",
+          "text": "Role definition, resource tag, and subscription display name.",
+          "explanation": "This omits the assigned security principal and an unambiguous scope."
+        },
+        {
+          "id": "directory",
+          "text": "Security principal, authentication method, and tenant domain.",
+          "explanation": "Authentication details do not replace a role definition and Azure resource scope."
+        }
+      ],
+      "correct": [
+        "set"
+      ],
+      "knowledge": "knowledge/identity/rbac/assignments-and-scopes.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

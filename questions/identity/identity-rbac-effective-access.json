@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "id-effective-additive",
+      "family": "id-effective-additive",
+      "revision": 1,
+      "topic": "identity.rbac.effective-access",
+      "objectives": [
+        "id-08"
+      ],
+      "difficulty": "applied",
+      "prompt": "A user has Contributor at subscription scope and Reader on rg-app inside that subscription. No deny, condition, policy, or lock blocks an operation. Can the user manage resources in rg-app?",
+      "select": 1,
+      "options": [
+        {
+          "id": "yes",
+          "text": "Yes, through inherited Contributor.",
+          "explanation": "The child Reader grant does not subtract inherited permissions."
+        },
+        {
+          "id": "reader",
+          "text": "No, because the most specific Reader grant replaces Contributor.",
+          "explanation": "Azure RBAC grants are additive, not most-specific-role wins."
+        },
+        {
+          "id": "recent",
+          "text": "Only if Contributor was assigned more recently.",
+          "explanation": "Assignment time is not the deciding precedence."
+        },
+        {
+          "id": "owner",
+          "text": "Only if Owner is also assigned on every resource.",
+          "explanation": "Contributor already supplies the relevant management grant."
+        }
+      ],
+      "correct": [
+        "yes"
+      ],
+      "knowledge": "knowledge/identity/rbac/effective-access.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-effective-deny",
+      "family": "id-effective-deny",
+      "revision": 1,
+      "topic": "identity.rbac.effective-access",
+      "objectives": [
+        "id-08"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An applicable Azure deny assignment blocks an operation that a user's Owner role would otherwise permit. What does RBAC evaluation do?",
+      "select": 1,
+      "options": [
+        {
+          "id": "deny",
+          "text": "Blocks the operation.",
+          "explanation": "An applicable deny assignment takes precedence over the matching grant."
+        },
+        {
+          "id": "owner",
+          "text": "Ignores the deny because Owner always bypasses it.",
+          "explanation": "Owner does not universally bypass deny assignments."
+        },
+        {
+          "id": "latest",
+          "text": "Uses whichever object was created last.",
+          "explanation": "Creation order is not the evaluation rule."
+        },
+        {
+          "id": "reader",
+          "text": "Converts the deny into Reader.",
+          "explanation": "Deny assignments are not converted into weaker allow roles."
+        }
+      ],
+      "correct": [
+        "deny"
+      ],
+      "knowledge": "knowledge/identity/rbac/effective-access.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-effective-check-path",
+      "family": "id-effective-check-path",
+      "revision": 1,
+      "topic": "identity.rbac.effective-access",
+      "objectives": [
+        "id-08"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A user has no direct role assignment on a VM but can read its configuration. Which two paths should an administrator inspect?",
+      "select": 2,
+      "options": [
+        {
+          "id": "parent",
+          "text": "Assignments inherited from parent scopes.",
+          "explanation": "A subscription or resource-group grant can reach the VM."
+        },
+        {
+          "id": "group",
+          "text": "Applicable assignments to the user's groups.",
+          "explanation": "Access can come through group membership."
+        },
+        {
+          "id": "tags",
+          "text": "The VM's cost-center tag as an automatic Reader grant.",
+          "explanation": "Tags do not automatically confer RBAC permission."
+        },
+        {
+          "id": "name",
+          "text": "A display name matching the VM name.",
+          "explanation": "Matching names do not establish an authorization relationship."
+        }
+      ],
+      "correct": [
+        "parent",
+        "group"
+      ],
+      "knowledge": "knowledge/identity/rbac/effective-access.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

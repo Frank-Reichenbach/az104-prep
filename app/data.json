@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "outlineEffective": "2026-04-17",
   "coverage": {
-    "covered": 17,
+    "covered": 32,
     "total": 82
   },
   "topics": [
@@ -236,9 +236,2211 @@
       ],
       "status": "documented",
       "verified": "2026-10-02"
+    },
+    {
+      "id": "identity.users.management",
+      "domain": "identity",
+      "title": "Entra user provisioning and properties",
+      "path": "knowledge/identity/users/user-management.md",
+      "objectives": [
+        "id-01",
+        "id-02"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "identity.groups.management",
+      "domain": "identity",
+      "title": "Entra groups and dynamic membership",
+      "path": "knowledge/identity/groups/group-management.md",
+      "objectives": [
+        "id-01",
+        "id-02"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "identity.users.licenses",
+      "domain": "identity",
+      "title": "User and group license assignments",
+      "path": "knowledge/identity/users/licenses.md",
+      "objectives": [
+        "id-03"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "identity.users.external",
+      "domain": "identity",
+      "title": "External users and B2B collaboration",
+      "path": "knowledge/identity/users/external-users.md",
+      "objectives": [
+        "id-04"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "identity.users.sspr",
+      "domain": "identity",
+      "title": "Self-service password reset",
+      "path": "knowledge/identity/users/self-service-password-reset.md",
+      "objectives": [
+        "id-05"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "identity.rbac.roles",
+      "domain": "identity",
+      "title": "Azure built-in roles and permission definitions",
+      "path": "knowledge/identity/rbac/built-in-roles.md",
+      "objectives": [
+        "id-06"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "identity.rbac.assignments",
+      "domain": "identity",
+      "title": "Azure role assignments and scopes",
+      "path": "knowledge/identity/rbac/assignments-and-scopes.md",
+      "objectives": [
+        "id-07"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "identity.rbac.effective-access",
+      "domain": "identity",
+      "title": "Effective access and RBAC troubleshooting",
+      "path": "knowledge/identity/rbac/effective-access.md",
+      "objectives": [
+        "id-08"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "identity.governance.policy",
+      "domain": "identity",
+      "title": "Azure Policy assignments and remediation",
+      "path": "knowledge/identity/governance/policy.md",
+      "objectives": [
+        "id-09"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "identity.governance.locks",
+      "domain": "identity",
+      "title": "Resource locks",
+      "path": "knowledge/identity/governance/locks.md",
+      "objectives": [
+        "id-10"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "identity.governance.tags",
+      "domain": "identity",
+      "title": "Resource tags and tag governance",
+      "path": "knowledge/identity/governance/tags.md",
+      "objectives": [
+        "id-11"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "identity.governance.resource-groups",
+      "domain": "identity",
+      "title": "Resource group lifecycle and moves",
+      "path": "knowledge/identity/governance/resource-groups.md",
+      "objectives": [
+        "id-12"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "identity.governance.subscriptions",
+      "domain": "identity",
+      "title": "Subscription administration and provider registration",
+      "path": "knowledge/identity/governance/subscriptions.md",
+      "objectives": [
+        "id-13"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "identity.governance.costs",
+      "domain": "identity",
+      "title": "Budgets, cost alerts, and Advisor",
+      "path": "knowledge/identity/governance/cost-management.md",
+      "objectives": [
+        "id-14"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "identity.governance.management-groups",
+      "domain": "identity",
+      "title": "Management groups and inherited governance",
+      "path": "knowledge/identity/governance/management-groups.md",
+      "objectives": [
+        "id-15"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
     }
   ],
   "questions": [
+    {
+      "id": "id-budget-not-cap",
+      "family": "id-budget-not-cap",
+      "revision": 1,
+      "topic": "identity.governance.costs",
+      "objectives": [
+        "id-14"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A monthly Azure budget reaches 100% and sends an alert. No automation is attached. What happens to running resources?",
+      "select": 1,
+      "options": [
+        {
+          "id": "continue",
+          "text": "They continue running and can incur more charges.",
+          "explanation": "A budget notification alone is not a spending cap."
+        },
+        {
+          "id": "stop",
+          "text": "All resources stop immediately.",
+          "explanation": "That would require separate supported automation or another control."
+        },
+        {
+          "id": "delete",
+          "text": "The subscription and all resources are deleted.",
+          "explanation": "Budgets do not perform automatic resource deletion."
+        },
+        {
+          "id": "free",
+          "text": "Further usage becomes free until the next month.",
+          "explanation": "A threshold does not waive charges."
+        }
+      ],
+      "correct": [
+        "continue"
+      ],
+      "knowledge": "knowledge/identity/governance/cost-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending",
+        "https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-budget-forecast",
+      "family": "id-budget-forecast",
+      "revision": 1,
+      "topic": "identity.governance.costs",
+      "objectives": [
+        "id-14"
+      ],
+      "difficulty": "applied",
+      "prompt": "A team wants a warning when projected month-end cost exceeds its plan even though actual spending is still below it. Which budget threshold fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "forecast",
+          "text": "A forecast cost threshold.",
+          "explanation": "It evaluates projected spending."
+        },
+        {
+          "id": "actual",
+          "text": "Only an actual-spend 100% threshold.",
+          "explanation": "It waits for measured spending to reach that threshold."
+        },
+        {
+          "id": "invoice",
+          "text": "Only inspect the final monthly invoice.",
+          "explanation": "That cannot provide the requested advance warning."
+        },
+        {
+          "id": "quota",
+          "text": "A VM vCPU quota alert alone.",
+          "explanation": "A compute capacity limit is not a month-end cost forecast."
+        }
+      ],
+      "correct": [
+        "forecast"
+      ],
+      "knowledge": "knowledge/identity/governance/cost-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending",
+        "https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-advisor-rightsize",
+      "family": "id-advisor-rightsize",
+      "revision": 1,
+      "topic": "identity.governance.costs",
+      "objectives": [
+        "id-14"
+      ],
+      "difficulty": "applied",
+      "prompt": "Advisor suggests resizing a lightly utilized production VM. What should an administrator do before applying the change?",
+      "select": 1,
+      "options": [
+        {
+          "id": "review",
+          "text": "Review utilization and workload requirements, then plan and verify the resize.",
+          "explanation": "Estimated savings must be balanced with service requirements."
+        },
+        {
+          "id": "automatic",
+          "text": "Apply every recommendation without checking the workload.",
+          "explanation": "A recommendation does not establish that the change is safe for every workload."
+        },
+        {
+          "id": "budget",
+          "text": "Increase the budget and assume the VM becomes smaller.",
+          "explanation": "Changing an alert threshold does not resize compute."
+        },
+        {
+          "id": "reserve",
+          "text": "Buy a long-term commitment before checking actual usage.",
+          "explanation": "A commitment should follow an assessment of stable demand."
+        }
+      ],
+      "correct": [
+        "review"
+      ],
+      "knowledge": "knowledge/identity/governance/cost-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending",
+        "https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-lock-delete-only",
+      "family": "id-lock-delete-only",
+      "revision": 1,
+      "topic": "identity.governance.locks",
+      "objectives": [
+        "id-10"
+      ],
+      "difficulty": "applied",
+      "prompt": "A resource group must permit authorized configuration changes but reject accidental ARM deletion. Which lock fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "delete",
+          "text": "CanNotDelete.",
+          "explanation": "It blocks deletion while permitting authorized updates."
+        },
+        {
+          "id": "readonly",
+          "text": "ReadOnly.",
+          "explanation": "It also blocks updates, contrary to the requirement."
+        },
+        {
+          "id": "reader",
+          "text": "An extra Reader role assignment.",
+          "explanation": "A weaker role grant does not subtract existing delete permission."
+        },
+        {
+          "id": "tag",
+          "text": "A tag named DoNotDelete.",
+          "explanation": "A tag alone does not enforce deletion protection."
+        }
+      ],
+      "correct": [
+        "delete"
+      ],
+      "knowledge": "knowledge/identity/governance/locks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-lock-blob-data",
+      "family": "id-lock-blob-data",
+      "revision": 1,
+      "topic": "identity.governance.locks",
+      "objectives": [
+        "id-10"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A storage account has a CanNotDelete lock. A client has valid data-plane authorization to delete a blob. Does the account lock alone prevent that data operation?",
+      "select": 1,
+      "options": [
+        {
+          "id": "no",
+          "text": "No; management locks do not generally block data-plane blob deletion.",
+          "explanation": "Data recovery/protection needs service-level controls."
+        },
+        {
+          "id": "yes",
+          "text": "Yes; every byte under a locked account becomes immutable.",
+          "explanation": "A management lock is not blob immutability."
+        },
+        {
+          "id": "tier",
+          "text": "Only blobs in Hot are protected by the lock.",
+          "explanation": "Lock scope is not determined by access tier."
+        },
+        {
+          "id": "key",
+          "text": "Only key2-authorized blob deletes are blocked.",
+          "explanation": "The distinction is operation plane, not which account key is used."
+        }
+      ],
+      "correct": [
+        "no"
+      ],
+      "knowledge": "knowledge/identity/governance/locks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-lock-owner",
+      "family": "id-lock-owner",
+      "revision": 1,
+      "topic": "identity.governance.locks",
+      "objectives": [
+        "id-10"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "An Owner's ARM delete request fails because a resource has a Delete lock. What is the appropriate deliberate-deletion sequence?",
+      "select": 1,
+      "options": [
+        {
+          "id": "remove",
+          "text": "Review and remove the lock with authorization, then delete the resource.",
+          "explanation": "Owner does not silently bypass a still-effective lock."
+        },
+        {
+          "id": "repeat",
+          "text": "Retry until Owner overrides the lock automatically.",
+          "explanation": "Repeated identical requests do not remove the lock."
+        },
+        {
+          "id": "contributor",
+          "text": "Replace Owner with Contributor.",
+          "explanation": "Reducing RBAC permission does not bypass the lock."
+        },
+        {
+          "id": "region",
+          "text": "Change the resource group's metadata region.",
+          "explanation": "That is not a lock-removal operation."
+        }
+      ],
+      "correct": [
+        "remove"
+      ],
+      "knowledge": "knowledge/identity/governance/locks.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-mg-parent-policy",
+      "family": "id-mg-parent-policy",
+      "revision": 1,
+      "topic": "identity.governance.management-groups",
+      "objectives": [
+        "id-15"
+      ],
+      "difficulty": "applied",
+      "prompt": "An allowed-locations policy is assigned to management group Production. A subscription beneath it has no exclusion or exemption. Where is the policy relevant?",
+      "select": 1,
+      "options": [
+        {
+          "id": "child",
+          "text": "Applicable resources in the descendant subscription.",
+          "explanation": "Governance assignments inherit down the hierarchy."
+        },
+        {
+          "id": "only",
+          "text": "Only the management group display-name property.",
+          "explanation": "The purpose is governing descendant resources."
+        },
+        {
+          "id": "siblings",
+          "text": "Only subscriptions outside Production.",
+          "explanation": "Sibling branches are not the assignment's descendants."
+        },
+        {
+          "id": "tenant",
+          "text": "Every subscription in every Entra tenant.",
+          "explanation": "Management-group scope does not span unrelated tenants."
+        }
+      ],
+      "correct": [
+        "child"
+      ],
+      "knowledge": "knowledge/identity/governance/management-groups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/governance/management-groups/overview",
+        "https://learn.microsoft.com/en-us/azure/governance/management-groups/manage",
+        "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-mg-one-parent",
+      "family": "id-mg-one-parent",
+      "revision": 1,
+      "topic": "identity.governance.management-groups",
+      "objectives": [
+        "id-15"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Can one Azure subscription simultaneously be a direct child of two management groups?",
+      "select": 1,
+      "options": [
+        {
+          "id": "no",
+          "text": "No; it has one parent in the hierarchy.",
+          "explanation": "Use a hierarchy and assignments consistent with that single-parent model."
+        },
+        {
+          "id": "yes",
+          "text": "Yes, one parent for Policy and another for RBAC.",
+          "explanation": "Those controls use the same management hierarchy."
+        },
+        {
+          "id": "billing",
+          "text": "Yes, if it has two billing contacts.",
+          "explanation": "Billing contacts do not create multiple hierarchy parents."
+        },
+        {
+          "id": "region",
+          "text": "Yes, one parent for every Azure region it uses.",
+          "explanation": "Resource regions do not determine management-group parent count."
+        }
+      ],
+      "correct": [
+        "no"
+      ],
+      "knowledge": "knowledge/identity/governance/management-groups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/governance/management-groups/overview",
+        "https://learn.microsoft.com/en-us/azure/governance/management-groups/manage",
+        "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-mg-move-impact",
+      "family": "id-mg-move-impact",
+      "revision": 1,
+      "topic": "identity.governance.management-groups",
+      "objectives": [
+        "id-15"
+      ],
+      "difficulty": "applied",
+      "prompt": "A subscription moves from Sandbox to Production management group in the same tenant. Which effect should be reviewed?",
+      "select": 1,
+      "options": [
+        {
+          "id": "inherit",
+          "text": "Changes to inherited Policy and RBAC assignments.",
+          "explanation": "The new ancestor chain can change effective governance."
+        },
+        {
+          "id": "region",
+          "text": "Automatic regional relocation of its VMs.",
+          "explanation": "The hierarchy move is not a data-center move."
+        },
+        {
+          "id": "tenant",
+          "text": "Automatic creation of a new Entra directory.",
+          "explanation": "The scenario remains within the existing tenant."
+        },
+        {
+          "id": "ids",
+          "text": "Replacement of every resource's subscription ID.",
+          "explanation": "A management-group move does not create a new subscription."
+        }
+      ],
+      "correct": [
+        "inherit"
+      ],
+      "knowledge": "knowledge/identity/governance/management-groups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/governance/management-groups/overview",
+        "https://learn.microsoft.com/en-us/azure/governance/management-groups/manage",
+        "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-policy-audit-deny",
+      "family": "id-policy-audit-deny",
+      "revision": 1,
+      "topic": "identity.governance.policy",
+      "objectives": [
+        "id-09"
+      ],
+      "difficulty": "applied",
+      "prompt": "A team wants to measure resources outside its allowed regions before blocking deployments. Which policy effect reports violations without rejecting requests?",
+      "select": 1,
+      "options": [
+        {
+          "id": "audit",
+          "text": "Audit.",
+          "explanation": "It records noncompliance without acting as Deny."
+        },
+        {
+          "id": "deny",
+          "text": "Deny.",
+          "explanation": "It can reject noncompliant create/update requests."
+        },
+        {
+          "id": "modify",
+          "text": "Modify.",
+          "explanation": "It changes supported properties rather than only observing."
+        },
+        {
+          "id": "deploy",
+          "text": "DeployIfNotExists.",
+          "explanation": "It can deploy related configuration and is not purely reporting."
+        }
+      ],
+      "correct": [
+        "audit"
+      ],
+      "knowledge": "knowledge/identity/governance/policy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+        "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics",
+        "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-policy-remediation",
+      "family": "id-policy-remediation",
+      "revision": 1,
+      "topic": "identity.governance.policy",
+      "objectives": [
+        "id-09"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A Modify policy assignment identifies existing untagged resources, but they remain unchanged after evaluation. Which action applies the supported modification to those existing resources?",
+      "select": 1,
+      "options": [
+        {
+          "id": "task",
+          "text": "Create a remediation task using an appropriately authorized assignment identity.",
+          "explanation": "Existing-resource correction is performed through remediation."
+        },
+        {
+          "id": "scan",
+          "text": "Wait for an Audit-only policy to rewrite every resource.",
+          "explanation": "Audit reports; it does not apply modifications."
+        },
+        {
+          "id": "reader",
+          "text": "Assign Reader to every resource owner.",
+          "explanation": "Read permission does not execute policy modification."
+        },
+        {
+          "id": "delete",
+          "text": "Delete the resource group to clear noncompliance.",
+          "explanation": "Deleting the workload does not implement the requested correction."
+        }
+      ],
+      "correct": [
+        "task"
+      ],
+      "knowledge": "knowledge/identity/governance/policy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+        "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics",
+        "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-policy-removal",
+      "family": "id-policy-removal",
+      "revision": 1,
+      "topic": "identity.governance.policy",
+      "objectives": [
+        "id-09"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A DeployIfNotExists policy deployed diagnostic settings. The policy assignment is later removed. What happens to the settings solely because of assignment removal?",
+      "select": 1,
+      "options": [
+        {
+          "id": "remain",
+          "text": "They are not automatically rolled back.",
+          "explanation": "Policy removal does not undo its earlier deployments."
+        },
+        {
+          "id": "delete",
+          "text": "Every deployed setting is automatically deleted.",
+          "explanation": "Assignment lifecycle is separate from deployed-resource cleanup."
+        },
+        {
+          "id": "role",
+          "text": "They become Azure RBAC role assignments.",
+          "explanation": "Diagnostic configuration is not converted into authorization."
+        },
+        {
+          "id": "deny",
+          "text": "They become permanent deny assignments.",
+          "explanation": "Removing Policy does not produce that transformation."
+        }
+      ],
+      "correct": [
+        "remain"
+      ],
+      "knowledge": "knowledge/identity/governance/policy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+        "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics",
+        "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-rg-location",
+      "family": "id-rg-location",
+      "revision": 1,
+      "topic": "identity.governance.resource-groups",
+      "objectives": [
+        "id-12"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A resource group's metadata location is West Europe. Can it contain a supported resource deployed in North Europe?",
+      "select": 1,
+      "options": [
+        {
+          "id": "yes",
+          "text": "Yes; resource location can differ from group location.",
+          "explanation": "The group's location governs its management metadata."
+        },
+        {
+          "id": "no",
+          "text": "No; every resource inherits the group's physical region.",
+          "explanation": "That is not the resource-group model."
+        },
+        {
+          "id": "move",
+          "text": "Only after renaming the group to North Europe.",
+          "explanation": "The name does not change regional placement rules."
+        },
+        {
+          "id": "nested",
+          "text": "Only by nesting another resource group inside it.",
+          "explanation": "Resource groups do not nest."
+        }
+      ],
+      "correct": [
+        "yes"
+      ],
+      "knowledge": "knowledge/identity/governance/resource-groups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-rg-move-region",
+      "family": "id-rg-move-region",
+      "revision": 1,
+      "topic": "identity.governance.resource-groups",
+      "objectives": [
+        "id-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "An administrator moves a supported VM from rg-old to rg-new in the same subscription. What should they expect from this management move?",
+      "select": 1,
+      "options": [
+        {
+          "id": "id",
+          "text": "Its resource ID changes while its Azure region stays the same.",
+          "explanation": "Changing groups is not a regional relocation."
+        },
+        {
+          "id": "region",
+          "text": "It automatically relocates to rg-new's metadata region.",
+          "explanation": "Group metadata location does not drive physical movement."
+        },
+        {
+          "id": "both",
+          "text": "It belongs to both groups afterward.",
+          "explanation": "A resource has one resource-group membership at a time."
+        },
+        {
+          "id": "copy",
+          "text": "A complete second VM is created and the original remains.",
+          "explanation": "An ARM group move is not a VM cloning operation."
+        }
+      ],
+      "correct": [
+        "id"
+      ],
+      "knowledge": "knowledge/identity/governance/resource-groups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-rg-delete",
+      "family": "id-rg-delete",
+      "revision": 1,
+      "topic": "identity.governance.resource-groups",
+      "objectives": [
+        "id-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "A study resource group contains a VM, NIC, and storage resources that are no longer needed. What does deleting that group do, assuming no protection blocks deletion?",
+      "select": 1,
+      "options": [
+        {
+          "id": "all",
+          "text": "Deletes the resources contained in the group.",
+          "explanation": "Group deletion is a lifecycle operation over its contents."
+        },
+        {
+          "id": "folder",
+          "text": "Removes only the group label and leaves all resources ungrouped.",
+          "explanation": "Azure resources do not become ungrouped through group deletion."
+        },
+        {
+          "id": "move",
+          "text": "Moves everything into the subscription's default group.",
+          "explanation": "There is no automatic relocation of all contents to a default group."
+        },
+        {
+          "id": "stop",
+          "text": "Only stops the VM while retaining every resource.",
+          "explanation": "Stopping compute is a different operation."
+        }
+      ],
+      "correct": [
+        "all"
+      ],
+      "knowledge": "knowledge/identity/governance/resource-groups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-sub-context",
+      "family": "id-sub-context",
+      "revision": 1,
+      "topic": "identity.governance.subscriptions",
+      "objectives": [
+        "id-13"
+      ],
+      "difficulty": "foundation",
+      "prompt": "What does az account set --subscription change?",
+      "select": 1,
+      "options": [
+        {
+          "id": "context",
+          "text": "The active Azure CLI subscription context.",
+          "explanation": "Subsequent commands use that context unless overridden."
+        },
+        {
+          "id": "move",
+          "text": "The subscription of every existing resource.",
+          "explanation": "Context selection does not move resources."
+        },
+        {
+          "id": "tenant",
+          "text": "The directory associated with the subscription.",
+          "explanation": "Directory association is a separate operation."
+        },
+        {
+          "id": "owner",
+          "text": "The subscription's billing owner.",
+          "explanation": "Selecting a context does not transfer billing responsibility."
+        }
+      ],
+      "correct": [
+        "context"
+      ],
+      "knowledge": "knowledge/identity/governance/subscriptions.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/cli/azure/manage-azure-subscriptions-azure-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/transfer-subscription"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-sub-provider",
+      "family": "id-sub-provider",
+      "revision": 1,
+      "topic": "identity.governance.subscriptions",
+      "objectives": [
+        "id-13"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A deployment reports that Microsoft.Storage is not registered in the selected subscription. The operator has registration permission. What should be done?",
+      "select": 1,
+      "options": [
+        {
+          "id": "register",
+          "text": "Register Microsoft.Storage in that subscription and inspect its state.",
+          "explanation": "This addresses the named provider-registration prerequisite."
+        },
+        {
+          "id": "quota",
+          "text": "Request more VM-family vCPUs.",
+          "explanation": "That does not register the Storage provider."
+        },
+        {
+          "id": "name",
+          "text": "Rename the subscription.",
+          "explanation": "The display name does not determine provider registration."
+        },
+        {
+          "id": "tenant",
+          "text": "Move the subscription to a different tenant immediately.",
+          "explanation": "A directory transfer is unnecessary for this stated error."
+        }
+      ],
+      "correct": [
+        "register"
+      ],
+      "knowledge": "knowledge/identity/governance/subscriptions.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/cli/azure/manage-azure-subscriptions-azure-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/transfer-subscription"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-sub-directory-transfer",
+      "family": "id-sub-directory-transfer",
+      "revision": 1,
+      "topic": "identity.governance.subscriptions",
+      "objectives": [
+        "id-13"
+      ],
+      "difficulty": "applied",
+      "prompt": "A team plans to change an Azure subscription's Entra directory. Which dependency requires explicit planning?",
+      "select": 1,
+      "options": [
+        {
+          "id": "rbac",
+          "text": "Reestablishing resource access and affected managed identity relationships.",
+          "explanation": "Directory-bound principals and assignments do not simply remain equivalent."
+        },
+        {
+          "id": "display",
+          "text": "Only changing the subscription display name.",
+          "explanation": "A directory transfer has authorization effects beyond naming."
+        },
+        {
+          "id": "region",
+          "text": "Every resource automatically moves to the new tenant's region.",
+          "explanation": "Tenants do not supply an automatic regional relocation target."
+        },
+        {
+          "id": "billing",
+          "text": "All resource roles become billing roles.",
+          "explanation": "Those role systems remain distinct."
+        }
+      ],
+      "correct": [
+        "rbac"
+      ],
+      "knowledge": "knowledge/identity/governance/subscriptions.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/cli/azure/manage-azure-subscriptions-azure-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/transfer-subscription"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-tag-inheritance",
+      "family": "id-tag-inheritance",
+      "revision": 1,
+      "topic": "identity.governance.tags",
+      "objectives": [
+        "id-11"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A resource group has CostCenter=Finance. A new VM inside it has no tag policy or other tagging automation. Does the VM automatically receive that resource tag?",
+      "select": 1,
+      "options": [
+        {
+          "id": "no",
+          "text": "No; resource tags do not automatically inherit.",
+          "explanation": "Use an explicit assignment or policy if the VM must carry the value."
+        },
+        {
+          "id": "yes",
+          "text": "Yes; every resource-group tag is automatically copied.",
+          "explanation": "That is not the default resource-tag behavior."
+        },
+        {
+          "id": "billing",
+          "text": "Yes; billing tags and resource properties are always identical.",
+          "explanation": "Cost-data inheritance and resource mutation are different mechanisms."
+        },
+        {
+          "id": "owner",
+          "text": "Only when the VM creator is the resource-group Owner.",
+          "explanation": "The creator's role does not enable automatic tag inheritance."
+        }
+      ],
+      "correct": [
+        "no"
+      ],
+      "knowledge": "knowledge/identity/governance/tags.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-policies",
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag-inheritance"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-tag-merge",
+      "family": "id-tag-merge",
+      "revision": 1,
+      "topic": "identity.governance.tags",
+      "objectives": [
+        "id-11"
+      ],
+      "difficulty": "applied",
+      "prompt": "A resource already has ServiceOwner=Ops. You must add Environment=Training without removing ServiceOwner. Which CLI operation fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "merge",
+          "text": "az tag update with --operation Merge.",
+          "explanation": "It preserves unrelated existing keys."
+        },
+        {
+          "id": "create",
+          "text": "az tag create with only Environment=Training.",
+          "explanation": "Create replaces the tag collection."
+        },
+        {
+          "id": "replace",
+          "text": "az tag update with --operation Replace and only Environment=Training.",
+          "explanation": "Replace would omit the existing ServiceOwner key."
+        },
+        {
+          "id": "delete",
+          "text": "az tag delete followed by no additional operation.",
+          "explanation": "Deleting tags cannot add the required new value."
+        }
+      ],
+      "correct": [
+        "merge"
+      ],
+      "knowledge": "knowledge/identity/governance/tags.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-policies",
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag-inheritance"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-tag-policy-existing",
+      "family": "id-tag-policy-existing",
+      "revision": 1,
+      "topic": "identity.governance.tags",
+      "objectives": [
+        "id-11"
+      ],
+      "difficulty": "applied",
+      "prompt": "Existing supported resources need the CostCenter resource tag copied from their resource group. Which approach can apply that change across the existing population?",
+      "select": 1,
+      "options": [
+        {
+          "id": "modify",
+          "text": "A suitable Modify tag policy and remediation task.",
+          "explanation": "It can apply the parent-derived value to existing noncompliant resources."
+        },
+        {
+          "id": "audit",
+          "text": "An Audit-only tag policy.",
+          "explanation": "Audit can identify missing tags but does not write them."
+        },
+        {
+          "id": "cost",
+          "text": "Only enable cost-report tag inheritance.",
+          "explanation": "That affects cost records, not necessarily the resources' tag properties."
+        },
+        {
+          "id": "parent",
+          "text": "Retag the resource group and assume automatic propagation.",
+          "explanation": "Parent resource tags do not automatically copy to children."
+        }
+      ],
+      "correct": [
+        "modify"
+      ],
+      "knowledge": "knowledge/identity/governance/tags.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-policies",
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag-inheritance"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-group-dynamic-department",
+      "family": "id-group-dynamic-department",
+      "revision": 1,
+      "topic": "identity.groups.management",
+      "objectives": [
+        "id-01",
+        "id-02"
+      ],
+      "difficulty": "applied",
+      "prompt": "An Entra security group should automatically include enabled users whose department is Operations. Which membership approach fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "dynamic",
+          "text": "Dynamic User with a department and accountEnabled rule.",
+          "explanation": "Membership follows the stated user attributes after processing."
+        },
+        {
+          "id": "assigned",
+          "text": "Assigned membership with no automation.",
+          "explanation": "It requires explicit member maintenance rather than attribute evaluation."
+        },
+        {
+          "id": "device",
+          "text": "Dynamic Device using device operating system.",
+          "explanation": "Device properties cannot express this set of user departments."
+        },
+        {
+          "id": "tag",
+          "text": "An Azure resource tag named Operations.",
+          "explanation": "Resource tags are not Entra group membership rules."
+        }
+      ],
+      "correct": [
+        "dynamic"
+      ],
+      "knowledge": "knowledge/identity/groups/group-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups",
+        "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership",
+        "https://learn.microsoft.com/en-us/entra/identity/users/groups-create-rule"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-group-dynamic-exception",
+      "family": "id-group-dynamic-exception",
+      "revision": 1,
+      "topic": "identity.groups.management",
+      "objectives": [
+        "id-01",
+        "id-02"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "An administrator cannot manually add a user to an Entra Dynamic User group. The user does not match its rule. What should be reviewed?",
+      "select": 1,
+      "options": [
+        {
+          "id": "rule",
+          "text": "The rule and authoritative user attributes.",
+          "explanation": "Dynamic membership is computed from eligibility rather than manual exceptions."
+        },
+        {
+          "id": "owner",
+          "text": "Make the user the group owner to guarantee membership.",
+          "explanation": "Ownership is not a substitute for satisfying the dynamic rule."
+        },
+        {
+          "id": "rename",
+          "text": "Rename the group to the user's name.",
+          "explanation": "The display name does not determine rule evaluation."
+        },
+        {
+          "id": "license",
+          "text": "Assign Azure subscription Owner to the user.",
+          "explanation": "Azure resource permissions do not override a directory membership rule."
+        }
+      ],
+      "correct": [
+        "rule"
+      ],
+      "knowledge": "knowledge/identity/groups/group-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups",
+        "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership",
+        "https://learn.microsoft.com/en-us/entra/identity/users/groups-create-rule"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-group-license",
+      "family": "id-group-license",
+      "revision": 1,
+      "topic": "identity.groups.management",
+      "objectives": [
+        "id-01",
+        "id-02"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A tenant has 120 unique users across several Entra dynamic user groups. Which licensing approach matches the documented requirement?",
+      "select": 1,
+      "options": [
+        {
+          "id": "users",
+          "text": "Ensure eligible dynamic-membership licensing for all 120 unique users.",
+          "explanation": "The requirement follows unique users covered by the feature."
+        },
+        {
+          "id": "admin",
+          "text": "License only the group administrator.",
+          "explanation": "An administrator license alone does not cover the members."
+        },
+        {
+          "id": "group",
+          "text": "Buy one user license per group regardless of membership.",
+          "explanation": "The requirement is not based only on group count."
+        },
+        {
+          "id": "double",
+          "text": "Count the same user again for every dynamic group they join.",
+          "explanation": "The documented count is unique users, not memberships."
+        }
+      ],
+      "correct": [
+        "users"
+      ],
+      "knowledge": "knowledge/identity/groups/group-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups",
+        "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership",
+        "https://learn.microsoft.com/en-us/entra/identity/users/groups-create-rule"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-group-properties",
+      "family": "id-group-properties",
+      "revision": 1,
+      "topic": "identity.groups.management",
+      "objectives": [
+        "id-01",
+        "id-02"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A cloud-managed Entra security group's description needs updating while applications must keep referring to the same group. Which action fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "edit",
+          "text": "Edit the existing group's properties.",
+          "explanation": "Its identity remains the existing object ID."
+        },
+        {
+          "id": "recreate",
+          "text": "Delete the group and recreate the same name.",
+          "explanation": "A recreated object has a different ID and can break assignments."
+        },
+        {
+          "id": "user",
+          "text": "Change every member's UPN.",
+          "explanation": "User names do not update group description."
+        },
+        {
+          "id": "tenant",
+          "text": "Create a new Entra tenant.",
+          "explanation": "A tenant migration is unnecessary for a property edit."
+        }
+      ],
+      "correct": [
+        "edit"
+      ],
+      "knowledge": "knowledge/identity/groups/group-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups",
+        "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership",
+        "https://learn.microsoft.com/en-us/entra/identity/users/groups-create-rule"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-scope-one-group",
+      "family": "id-scope-one-group",
+      "revision": 1,
+      "topic": "identity.rbac.assignments",
+      "objectives": [
+        "id-07"
+      ],
+      "difficulty": "applied",
+      "prompt": "An operations group needs Contributor on resources only in rg-training. It should receive no access to sibling groups. Which assignment scope fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "rg",
+          "text": "rg-training resource group.",
+          "explanation": "The role reaches that group's resources without granting sibling scope."
+        },
+        {
+          "id": "sub",
+          "text": "The subscription containing rg-training.",
+          "explanation": "That would include other resource groups."
+        },
+        {
+          "id": "mg",
+          "text": "The tenant's root management group.",
+          "explanation": "That is much broader than the requested boundary."
+        },
+        {
+          "id": "vm",
+          "text": "One VM inside rg-training.",
+          "explanation": "That does not cover all requested resources in the group."
+        }
+      ],
+      "correct": [
+        "rg"
+      ],
+      "knowledge": "knowledge/identity/rbac/assignments-and-scopes.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-scope-inherited-remove",
+      "family": "id-scope-inherited-remove",
+      "revision": 1,
+      "topic": "identity.rbac.assignments",
+      "objectives": [
+        "id-07"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A user's Contributor assignment is inherited from the subscription. You want to remove that grant. Where must the assignment itself be removed?",
+      "select": 1,
+      "options": [
+        {
+          "id": "parent",
+          "text": "At the subscription where it was created.",
+          "explanation": "The assignment is defined at its parent scope."
+        },
+        {
+          "id": "child",
+          "text": "Only from one child VM's IAM page as a local assignment.",
+          "explanation": "A parent grant is not a separate editable child assignment."
+        },
+        {
+          "id": "reader",
+          "text": "Add Reader on the VM to cancel Contributor.",
+          "explanation": "A weaker grant does not subtract a stronger inherited grant."
+        },
+        {
+          "id": "tag",
+          "text": "Delete the VM's owner tag.",
+          "explanation": "Tags do not define Azure RBAC assignments."
+        }
+      ],
+      "correct": [
+        "parent"
+      ],
+      "knowledge": "knowledge/identity/rbac/assignments-and-scopes.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-scope-triplet",
+      "family": "id-scope-triplet",
+      "revision": 1,
+      "topic": "identity.rbac.assignments",
+      "objectives": [
+        "id-07"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which three elements define an Azure RBAC assignment? Select the option containing the complete set.",
+      "select": 1,
+      "options": [
+        {
+          "id": "set",
+          "text": "Security principal, role definition, and scope.",
+          "explanation": "They specify who, what permissions, and where."
+        },
+        {
+          "id": "cost",
+          "text": "Security principal, role display name, and resource region.",
+          "explanation": "A region does not substitute for the assignment's resource scope."
+        },
+        {
+          "id": "network",
+          "text": "Role definition, resource tag, and subscription display name.",
+          "explanation": "This omits the assigned security principal and an unambiguous scope."
+        },
+        {
+          "id": "directory",
+          "text": "Security principal, authentication method, and tenant domain.",
+          "explanation": "Authentication details do not replace a role definition and Azure resource scope."
+        }
+      ],
+      "correct": [
+        "set"
+      ],
+      "knowledge": "knowledge/identity/rbac/assignments-and-scopes.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-effective-additive",
+      "family": "id-effective-additive",
+      "revision": 1,
+      "topic": "identity.rbac.effective-access",
+      "objectives": [
+        "id-08"
+      ],
+      "difficulty": "applied",
+      "prompt": "A user has Contributor at subscription scope and Reader on rg-app inside that subscription. No deny, condition, policy, or lock blocks an operation. Can the user manage resources in rg-app?",
+      "select": 1,
+      "options": [
+        {
+          "id": "yes",
+          "text": "Yes, through inherited Contributor.",
+          "explanation": "The child Reader grant does not subtract inherited permissions."
+        },
+        {
+          "id": "reader",
+          "text": "No, because the most specific Reader grant replaces Contributor.",
+          "explanation": "Azure RBAC grants are additive, not most-specific-role wins."
+        },
+        {
+          "id": "recent",
+          "text": "Only if Contributor was assigned more recently.",
+          "explanation": "Assignment time is not the deciding precedence."
+        },
+        {
+          "id": "owner",
+          "text": "Only if Owner is also assigned on every resource.",
+          "explanation": "Contributor already supplies the relevant management grant."
+        }
+      ],
+      "correct": [
+        "yes"
+      ],
+      "knowledge": "knowledge/identity/rbac/effective-access.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-effective-deny",
+      "family": "id-effective-deny",
+      "revision": 1,
+      "topic": "identity.rbac.effective-access",
+      "objectives": [
+        "id-08"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An applicable Azure deny assignment blocks an operation that a user's Owner role would otherwise permit. What does RBAC evaluation do?",
+      "select": 1,
+      "options": [
+        {
+          "id": "deny",
+          "text": "Blocks the operation.",
+          "explanation": "An applicable deny assignment takes precedence over the matching grant."
+        },
+        {
+          "id": "owner",
+          "text": "Ignores the deny because Owner always bypasses it.",
+          "explanation": "Owner does not universally bypass deny assignments."
+        },
+        {
+          "id": "latest",
+          "text": "Uses whichever object was created last.",
+          "explanation": "Creation order is not the evaluation rule."
+        },
+        {
+          "id": "reader",
+          "text": "Converts the deny into Reader.",
+          "explanation": "Deny assignments are not converted into weaker allow roles."
+        }
+      ],
+      "correct": [
+        "deny"
+      ],
+      "knowledge": "knowledge/identity/rbac/effective-access.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-effective-check-path",
+      "family": "id-effective-check-path",
+      "revision": 1,
+      "topic": "identity.rbac.effective-access",
+      "objectives": [
+        "id-08"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A user has no direct role assignment on a VM but can read its configuration. Which two paths should an administrator inspect?",
+      "select": 2,
+      "options": [
+        {
+          "id": "parent",
+          "text": "Assignments inherited from parent scopes.",
+          "explanation": "A subscription or resource-group grant can reach the VM."
+        },
+        {
+          "id": "group",
+          "text": "Applicable assignments to the user's groups.",
+          "explanation": "Access can come through group membership."
+        },
+        {
+          "id": "tags",
+          "text": "The VM's cost-center tag as an automatic Reader grant.",
+          "explanation": "Tags do not automatically confer RBAC permission."
+        },
+        {
+          "id": "name",
+          "text": "A display name matching the VM name.",
+          "explanation": "Matching names do not establish an authorization relationship."
+        }
+      ],
+      "correct": [
+        "parent",
+        "group"
+      ],
+      "knowledge": "knowledge/identity/rbac/effective-access.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-role-contributor-access",
+      "family": "id-role-contributor-access",
+      "revision": 1,
+      "topic": "identity.rbac.roles",
+      "objectives": [
+        "id-06"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An operator has Contributor on a resource group and no other roles. Can they assign Owner to another user there?",
+      "select": 1,
+      "options": [
+        {
+          "id": "no",
+          "text": "No; Contributor does not grant role-assignment administration.",
+          "explanation": "Resource management and granting Azure RBAC access are separate capabilities."
+        },
+        {
+          "id": "yes",
+          "text": "Yes; all resource write permission includes access delegation.",
+          "explanation": "Contributor explicitly excludes this authorization administration."
+        },
+        {
+          "id": "reader",
+          "text": "Only after adding Reader at the same scope.",
+          "explanation": "Reader does not grant roleAssignments/write."
+        },
+        {
+          "id": "entra",
+          "text": "Only after becoming the resource group's guest inviter.",
+          "explanation": "Guest invitation is a directory task, not Azure RBAC delegation."
+        }
+      ],
+      "correct": [
+        "no"
+      ],
+      "knowledge": "knowledge/identity/rbac/built-in-roles.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-role-notactions",
+      "family": "id-role-notactions",
+      "revision": 1,
+      "topic": "identity.rbac.roles",
+      "objectives": [
+        "id-06"
+      ],
+      "difficulty": "applied",
+      "prompt": "Role A excludes an operation through NotActions. Role B assigned to the same user and scope grants that operation. No deny assignment or other restriction applies. What follows?",
+      "select": 1,
+      "options": [
+        {
+          "id": "grant",
+          "text": "Role B can still grant the operation.",
+          "explanation": "NotActions is a subtraction within Role A, not a global deny."
+        },
+        {
+          "id": "deny",
+          "text": "Role A's NotActions always cancels Role B.",
+          "explanation": "NotActions does not have deny-assignment semantics."
+        },
+        {
+          "id": "recent",
+          "text": "Only the most recently assigned role counts.",
+          "explanation": "Azure roles are not evaluated by last assignment wins."
+        },
+        {
+          "id": "name",
+          "text": "The alphabetically first role decides.",
+          "explanation": "Role display names do not determine permission precedence."
+        }
+      ],
+      "correct": [
+        "grant"
+      ],
+      "knowledge": "knowledge/identity/rbac/built-in-roles.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-role-data-reader",
+      "family": "id-role-data-reader",
+      "revision": 1,
+      "topic": "identity.rbac.roles",
+      "objectives": [
+        "id-06"
+      ],
+      "difficulty": "applied",
+      "prompt": "A user must download private blobs using Entra authentication but should not manage storage account configuration. Which listed role matches the data task?",
+      "select": 1,
+      "options": [
+        {
+          "id": "data",
+          "text": "Storage Blob Data Reader.",
+          "explanation": "It grants the required Blob read data operations."
+        },
+        {
+          "id": "reader",
+          "text": "Reader.",
+          "explanation": "Resource configuration read does not include Blob data read."
+        },
+        {
+          "id": "owner",
+          "text": "Owner.",
+          "explanation": "It grants much broader resource and access administration."
+        },
+        {
+          "id": "vm",
+          "text": "Virtual Machine Contributor.",
+          "explanation": "VM management does not authorize these Blob data reads."
+        }
+      ],
+      "correct": [
+        "data"
+      ],
+      "knowledge": "knowledge/identity/rbac/built-in-roles.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-guest-resource-role",
+      "family": "id-guest-resource-role",
+      "revision": 1,
+      "topic": "identity.users.external",
+      "objectives": [
+        "id-04"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A partner redeems an Entra B2B invitation successfully but cannot manage the Azure resource group they are meant to administer. No resource role has been assigned. What is missing?",
+      "select": 1,
+      "options": [
+        {
+          "id": "rbac",
+          "text": "An appropriate Azure RBAC assignment at the intended scope.",
+          "explanation": "Invitation redemption establishes identity, not resource-management permission."
+        },
+        {
+          "id": "global",
+          "text": "Global Administrator for every guest.",
+          "explanation": "Directory-wide administration is unnecessary for this resource group task."
+        },
+        {
+          "id": "password",
+          "text": "A new internal account with a shared password.",
+          "explanation": "B2B supports using the partner's existing identity."
+        },
+        {
+          "id": "rename",
+          "text": "Change the guest display name to the resource group name.",
+          "explanation": "Names do not create authorization."
+        }
+      ],
+      "correct": [
+        "rbac"
+      ],
+      "knowledge": "knowledge/identity/users/external-users.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/external-id/add-users-administrator",
+        "https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-settings-b2b-collaboration",
+        "https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-guest-inbound",
+      "family": "id-guest-inbound",
+      "revision": 1,
+      "topic": "identity.users.external",
+      "objectives": [
+        "id-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "Your tenant must control which partner-tenant users and applications may access your resources through B2B collaboration. Which cross-tenant direction governs that incoming access?",
+      "select": 1,
+      "options": [
+        {
+          "id": "inbound",
+          "text": "Inbound access settings.",
+          "explanation": "They govern external identities entering your resource tenant."
+        },
+        {
+          "id": "outbound",
+          "text": "Only outbound access settings.",
+          "explanation": "Outbound governs your users accessing external organizations."
+        },
+        {
+          "id": "tag",
+          "text": "Only an external-collaboration invitation domain allowlist.",
+          "explanation": "Invitation domain filtering is separate from the requested partner user/application inbound access control."
+        },
+        {
+          "id": "budget",
+          "text": "Only the partner's group display-name policy.",
+          "explanation": "Naming groups does not configure your tenant's inbound B2B access."
+        }
+      ],
+      "correct": [
+        "inbound"
+      ],
+      "knowledge": "knowledge/identity/users/external-users.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/external-id/add-users-administrator",
+        "https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-settings-b2b-collaboration",
+        "https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-guest-invite-vs-block",
+      "family": "id-guest-invite-vs-block",
+      "revision": 1,
+      "topic": "identity.users.external",
+      "objectives": [
+        "id-04"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A partner domain is allowed in external collaboration settings, but a cross-tenant B2B rule blocks the requested access. Does the invitation allowlist override that block?",
+      "select": 1,
+      "options": [
+        {
+          "id": "no",
+          "text": "No; the relevant cross-tenant access policy must also permit access.",
+          "explanation": "Invitation restrictions and resource access policies are separate checks."
+        },
+        {
+          "id": "yes",
+          "text": "Yes; an allowed invitation always overrides every access control.",
+          "explanation": "Inviting a guest does not bypass other security policy."
+        },
+        {
+          "id": "owner",
+          "text": "Yes, if the guest owns any group.",
+          "explanation": "Group ownership does not universally bypass cross-tenant restrictions."
+        },
+        {
+          "id": "location",
+          "text": "Yes, if the usage location matches.",
+          "explanation": "A licensing property does not override B2B policy."
+        }
+      ],
+      "correct": [
+        "no"
+      ],
+      "knowledge": "knowledge/identity/users/external-users.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/external-id/add-users-administrator",
+        "https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-settings-b2b-collaboration",
+        "https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-license-nested",
+      "family": "id-license-nested",
+      "revision": 1,
+      "topic": "identity.users.licenses",
+      "objectives": [
+        "id-03"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A product is assigned to Entra group Parent. A user belongs only to Child, which is nested in Parent, and receives no license. What explains this?",
+      "select": 1,
+      "options": [
+        {
+          "id": "direct",
+          "text": "Group-based licensing does not process users only through nested groups.",
+          "explanation": "Assign through a group containing the user directly."
+        },
+        {
+          "id": "owner",
+          "text": "Only Parent's owners can receive its product.",
+          "explanation": "Licensing is not restricted to group owners."
+        },
+        {
+          "id": "azure",
+          "text": "The user must first become Azure subscription Owner.",
+          "explanation": "Azure resource administration is not a licensing prerequisite."
+        },
+        {
+          "id": "name",
+          "text": "Parent and Child must have identical names.",
+          "explanation": "Matching names do not change membership-processing support."
+        }
+      ],
+      "correct": [
+        "direct"
+      ],
+      "knowledge": "knowledge/identity/users/licenses.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/fundamentals/license-users-groups",
+        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-group-advanced",
+        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-powershell-graph-examples"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-license-retained",
+      "family": "id-license-retained",
+      "revision": 1,
+      "topic": "identity.users.licenses",
+      "objectives": [
+        "id-03"
+      ],
+      "difficulty": "applied",
+      "prompt": "A user receives a product directly and through a licensing group. The group assignment is removed, but the direct assignment remains. Why can the user retain the product?",
+      "select": 1,
+      "options": [
+        {
+          "id": "path",
+          "text": "The direct assignment is still an effective licensing path.",
+          "explanation": "Removing one source does not remove the other."
+        },
+        {
+          "id": "forever",
+          "text": "Licenses become permanent after first sign-in.",
+          "explanation": "Assignments can be removed; they are not permanent grants."
+        },
+        {
+          "id": "reader",
+          "text": "Azure Reader automatically reassigns the product.",
+          "explanation": "Azure resource roles do not supply this product license."
+        },
+        {
+          "id": "owner",
+          "text": "Any group ownership supplies all tenant licenses.",
+          "explanation": "Ownership does not provide universal product entitlement."
+        }
+      ],
+      "correct": [
+        "path"
+      ],
+      "knowledge": "knowledge/identity/users/licenses.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/fundamentals/license-users-groups",
+        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-group-advanced",
+        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-powershell-graph-examples"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-license-location",
+      "family": "id-license-location",
+      "revision": 1,
+      "topic": "identity.users.licenses",
+      "objectives": [
+        "id-03"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A license assignment reports an invalid usage location despite available seats. What should an administrator correct?",
+      "select": 1,
+      "options": [
+        {
+          "id": "usage",
+          "text": "The user's usage location based on where the service is used.",
+          "explanation": "Product availability is evaluated using this licensing property."
+        },
+        {
+          "id": "tag",
+          "text": "The user's office street address only.",
+          "explanation": "The address field is distinct from the usage-location licensing property."
+        },
+        {
+          "id": "display",
+          "text": "The user's preferred language only.",
+          "explanation": "Interface language does not determine the usage location used for product availability."
+        },
+        {
+          "id": "role",
+          "text": "Assign Global Administrator to the user.",
+          "explanation": "Extra privilege does not correct invalid licensing data."
+        }
+      ],
+      "correct": [
+        "usage"
+      ],
+      "knowledge": "knowledge/identity/users/licenses.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/fundamentals/license-users-groups",
+        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-group-advanced",
+        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-powershell-graph-examples"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-user-role",
+      "family": "id-user-role",
+      "revision": 1,
+      "topic": "identity.users.management",
+      "objectives": [
+        "id-01",
+        "id-02"
+      ],
+      "difficulty": "applied",
+      "prompt": "An administrator must create ordinary cloud-only users in Microsoft Entra ID without assigning directory administrator roles. Which listed role is the least-privileged fit?",
+      "select": 1,
+      "options": [
+        {
+          "id": "user",
+          "text": "User Administrator.",
+          "explanation": "It supports ordinary user lifecycle administration."
+        },
+        {
+          "id": "global",
+          "text": "Global Administrator.",
+          "explanation": "It is broader than required for this task."
+        },
+        {
+          "id": "contributor",
+          "text": "Contributor on an Azure resource group.",
+          "explanation": "Azure resource management permission is not Entra user administration."
+        },
+        {
+          "id": "guest",
+          "text": "Guest Inviter.",
+          "explanation": "Inviting external guests is different from creating internal cloud accounts."
+        }
+      ],
+      "correct": [
+        "user"
+      ],
+      "knowledge": "knowledge/identity/users/user-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-create-delete-users",
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-user-profile-info",
+        "https://learn.microsoft.com/en-us/entra/identity/users/directory-overview-user-model"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-user-source",
+      "family": "id-user-source",
+      "revision": 1,
+      "topic": "identity.users.management",
+      "objectives": [
+        "id-01",
+        "id-02"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A user's department is synchronized from on-premises Active Directory. Routine cloud edits are rejected or later overwritten. Where should the normal department update be made?",
+      "select": 1,
+      "options": [
+        {
+          "id": "ad",
+          "text": "At the authoritative on-premises directory source.",
+          "explanation": "Synchronization should carry the maintained attribute into Entra."
+        },
+        {
+          "id": "tag",
+          "text": "In a tag on the Azure subscription.",
+          "explanation": "Resource tags do not change user directory attributes."
+        },
+        {
+          "id": "license",
+          "text": "In the user's product license assignment.",
+          "explanation": "Licensing does not set the authoritative department."
+        },
+        {
+          "id": "object",
+          "text": "Create a second cloud user with the same display name.",
+          "explanation": "A duplicate identity does not repair the existing object's source attribute."
+        }
+      ],
+      "correct": [
+        "ad"
+      ],
+      "knowledge": "knowledge/identity/users/user-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-create-delete-users",
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-user-profile-info",
+        "https://learn.microsoft.com/en-us/entra/identity/users/directory-overview-user-model"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-user-stable-id",
+      "family": "id-user-stable-id",
+      "revision": 1,
+      "topic": "identity.users.management",
+      "objectives": [
+        "id-01",
+        "id-02"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An Entra cloud user's display name changes. Which value should an existing application use to continue identifying that same directory object?",
+      "select": 1,
+      "options": [
+        {
+          "id": "id",
+          "text": "The existing object ID.",
+          "explanation": "It identifies the object independently of a display-name edit."
+        },
+        {
+          "id": "display",
+          "text": "Only the new display name.",
+          "explanation": "Display names can change and need not be unique."
+        },
+        {
+          "id": "department",
+          "text": "The department string.",
+          "explanation": "Many users can share a department."
+        },
+        {
+          "id": "location",
+          "text": "The usage location.",
+          "explanation": "A licensing-related location is not a unique object identifier."
+        }
+      ],
+      "correct": [
+        "id"
+      ],
+      "knowledge": "knowledge/identity/users/user-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-create-delete-users",
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-user-profile-info",
+        "https://learn.microsoft.com/en-us/entra/identity/users/directory-overview-user-model"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-sspr-unregistered",
+      "family": "id-sspr-unregistered",
+      "revision": 1,
+      "topic": "identity.users.sspr",
+      "objectives": [
+        "id-05"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "An ordinary user belongs to the SSPR pilot group but has not registered enough methods permitted by the policy. Why can the user not complete a forgotten-password reset?",
+      "select": 1,
+      "options": [
+        {
+          "id": "methods",
+          "text": "Scope inclusion alone does not provide the required identity-verification methods.",
+          "explanation": "The user must register enough permitted methods."
+        },
+        {
+          "id": "owner",
+          "text": "Every SSPR user must be an Azure subscription Owner.",
+          "explanation": "Resource ownership is not an SSPR requirement."
+        },
+        {
+          "id": "group",
+          "text": "Selected-group pilots cannot support password reset.",
+          "explanation": "Selected groups are a supported rollout approach."
+        },
+        {
+          "id": "password",
+          "text": "SSPR only changes display names.",
+          "explanation": "SSPR specifically supports eligible password-reset operations."
+        }
+      ],
+      "correct": [
+        "methods"
+      ],
+      "knowledge": "knowledge/identity/users/self-service-password-reset.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr",
+        "https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr-writeback",
+        "https://learn.microsoft.com/en-us/entra/identity/authentication/troubleshoot-sspr"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-sspr-writeback",
+      "family": "id-sspr-writeback",
+      "revision": 1,
+      "topic": "identity.users.sspr",
+      "objectives": [
+        "id-05"
+      ],
+      "difficulty": "applied",
+      "prompt": "A synchronized user's cloud password reset must update on-premises AD DS. Which capability is required beyond ordinary password hash synchronization?",
+      "select": 1,
+      "options": [
+        {
+          "id": "writeback",
+          "text": "Supported password writeback with its permissions and policy enabled.",
+          "explanation": "It sends the reset back to the on-premises directory."
+        },
+        {
+          "id": "hash",
+          "text": "Only the existing password hash synchronization.",
+          "explanation": "That does not provide the required reverse reset path."
+        },
+        {
+          "id": "sas",
+          "text": "Enable combined security-information registration only.",
+          "explanation": "Registration supplies verification methods; it does not configure the cloud-to-AD password writeback path."
+        },
+        {
+          "id": "license",
+          "text": "Enable SSPR for the user but leave writeback disabled.",
+          "explanation": "SSPR eligibility alone does not send resets to on-premises AD."
+        }
+      ],
+      "correct": [
+        "writeback"
+      ],
+      "knowledge": "knowledge/identity/users/self-service-password-reset.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr",
+        "https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr-writeback",
+        "https://learn.microsoft.com/en-us/entra/identity/authentication/troubleshoot-sspr"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-sspr-method-policy",
+      "family": "id-sspr-method-policy",
+      "revision": 1,
+      "topic": "identity.users.sspr",
+      "objectives": [
+        "id-05"
+      ],
+      "difficulty": "foundation",
+      "prompt": "You are configuring recovery authentication methods for a new Entra SSPR deployment after the legacy-method policy deprecation. Which policy should you use?",
+      "select": 1,
+      "options": [
+        {
+          "id": "current",
+          "text": "The Authentication methods policy.",
+          "explanation": "It replaces legacy MFA/SSPR method management."
+        },
+        {
+          "id": "legacy",
+          "text": "Only the deprecated legacy SSPR methods policy.",
+          "explanation": "Current guidance directs administrators to the unified methods policy."
+        },
+        {
+          "id": "nsg",
+          "text": "Only a Conditional Access policy requiring MFA.",
+          "explanation": "Conditional Access can require authentication but does not replace the method-enablement policy."
+        },
+        {
+          "id": "budget",
+          "text": "Only the user's registered Security info entries.",
+          "explanation": "Registration records available methods; policy determines which methods are permitted."
+        }
+      ],
+      "correct": [
+        "current"
+      ],
+      "knowledge": "knowledge/identity/users/self-service-password-reset.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr",
+        "https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr-writeback",
+        "https://learn.microsoft.com/en-us/entra/identity/authentication/troubleshoot-sspr"
+      ],
+      "verified": "2026-10-02"
+    },
     {
       "id": "st-container-001",
       "family": "st-container-account-gate",

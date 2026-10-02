@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "id-budget-not-cap",
+      "family": "id-budget-not-cap",
+      "revision": 1,
+      "topic": "identity.governance.costs",
+      "objectives": [
+        "id-14"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A monthly Azure budget reaches 100% and sends an alert. No automation is attached. What happens to running resources?",
+      "select": 1,
+      "options": [
+        {
+          "id": "continue",
+          "text": "They continue running and can incur more charges.",
+          "explanation": "A budget notification alone is not a spending cap."
+        },
+        {
+          "id": "stop",
+          "text": "All resources stop immediately.",
+          "explanation": "That would require separate supported automation or another control."
+        },
+        {
+          "id": "delete",
+          "text": "The subscription and all resources are deleted.",
+          "explanation": "Budgets do not perform automatic resource deletion."
+        },
+        {
+          "id": "free",
+          "text": "Further usage becomes free until the next month.",
+          "explanation": "A threshold does not waive charges."
+        }
+      ],
+      "correct": [
+        "continue"
+      ],
+      "knowledge": "knowledge/identity/governance/cost-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending",
+        "https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-budget-forecast",
+      "family": "id-budget-forecast",
+      "revision": 1,
+      "topic": "identity.governance.costs",
+      "objectives": [
+        "id-14"
+      ],
+      "difficulty": "applied",
+      "prompt": "A team wants a warning when projected month-end cost exceeds its plan even though actual spending is still below it. Which budget threshold fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "forecast",
+          "text": "A forecast cost threshold.",
+          "explanation": "It evaluates projected spending."
+        },
+        {
+          "id": "actual",
+          "text": "Only an actual-spend 100% threshold.",
+          "explanation": "It waits for measured spending to reach that threshold."
+        },
+        {
+          "id": "invoice",
+          "text": "Only inspect the final monthly invoice.",
+          "explanation": "That cannot provide the requested advance warning."
+        },
+        {
+          "id": "quota",
+          "text": "A VM vCPU quota alert alone.",
+          "explanation": "A compute capacity limit is not a month-end cost forecast."
+        }
+      ],
+      "correct": [
+        "forecast"
+      ],
+      "knowledge": "knowledge/identity/governance/cost-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending",
+        "https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-advisor-rightsize",
+      "family": "id-advisor-rightsize",
+      "revision": 1,
+      "topic": "identity.governance.costs",
+      "objectives": [
+        "id-14"
+      ],
+      "difficulty": "applied",
+      "prompt": "Advisor suggests resizing a lightly utilized production VM. What should an administrator do before applying the change?",
+      "select": 1,
+      "options": [
+        {
+          "id": "review",
+          "text": "Review utilization and workload requirements, then plan and verify the resize.",
+          "explanation": "Estimated savings must be balanced with service requirements."
+        },
+        {
+          "id": "automatic",
+          "text": "Apply every recommendation without checking the workload.",
+          "explanation": "A recommendation does not establish that the change is safe for every workload."
+        },
+        {
+          "id": "budget",
+          "text": "Increase the budget and assume the VM becomes smaller.",
+          "explanation": "Changing an alert threshold does not resize compute."
+        },
+        {
+          "id": "reserve",
+          "text": "Buy a long-term commitment before checking actual usage.",
+          "explanation": "A commitment should follow an assessment of stable demand."
+        }
+      ],
+      "correct": [
+        "review"
+      ],
+      "knowledge": "knowledge/identity/governance/cost-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending",
+        "https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

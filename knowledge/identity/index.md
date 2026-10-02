@@ -1,11 +1,12 @@
 # Identity and governance
 
-Status: research planned. This is an index, not completed study material.
+All 15 identity/governance objectives have documented guides and questions.
+Directory administration, Azure resource access, and billing are separate
+systems; identify which one a scenario changes before selecting a role or tool.
 
-Planned subtopics are Entra users, groups, licensing, external identities,
-password reset, Azure role assignments, policy, locks, tags, resource groups,
-subscriptions, management groups, and cost controls.
+- [Users and groups](users/index.md)
+- [Azure RBAC](rbac/index.md)
+- [Governance and cost](governance/index.md)
 
 See [the objective checklist](../../exam/coverage.md) for IDs id-01 through id-15.
-Create detailed subtopic files as research proceeds; use the
-[topic template](../../templates/topic.md).
+The examples have not been executed in an Azure tenant.

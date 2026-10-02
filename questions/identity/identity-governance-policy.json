@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "id-policy-audit-deny",
+      "family": "id-policy-audit-deny",
+      "revision": 1,
+      "topic": "identity.governance.policy",
+      "objectives": [
+        "id-09"
+      ],
+      "difficulty": "applied",
+      "prompt": "A team wants to measure resources outside its allowed regions before blocking deployments. Which policy effect reports violations without rejecting requests?",
+      "select": 1,
+      "options": [
+        {
+          "id": "audit",
+          "text": "Audit.",
+          "explanation": "It records noncompliance without acting as Deny."
+        },
+        {
+          "id": "deny",
+          "text": "Deny.",
+          "explanation": "It can reject noncompliant create/update requests."
+        },
+        {
+          "id": "modify",
+          "text": "Modify.",
+          "explanation": "It changes supported properties rather than only observing."
+        },
+        {
+          "id": "deploy",
+          "text": "DeployIfNotExists.",
+          "explanation": "It can deploy related configuration and is not purely reporting."
+        }
+      ],
+      "correct": [
+        "audit"
+      ],
+      "knowledge": "knowledge/identity/governance/policy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+        "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics",
+        "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-policy-remediation",
+      "family": "id-policy-remediation",
+      "revision": 1,
+      "topic": "identity.governance.policy",
+      "objectives": [
+        "id-09"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A Modify policy assignment identifies existing untagged resources, but they remain unchanged after evaluation. Which action applies the supported modification to those existing resources?",
+      "select": 1,
+      "options": [
+        {
+          "id": "task",
+          "text": "Create a remediation task using an appropriately authorized assignment identity.",
+          "explanation": "Existing-resource correction is performed through remediation."
+        },
+        {
+          "id": "scan",
+          "text": "Wait for an Audit-only policy to rewrite every resource.",
+          "explanation": "Audit reports; it does not apply modifications."
+        },
+        {
+          "id": "reader",
+          "text": "Assign Reader to every resource owner.",
+          "explanation": "Read permission does not execute policy modification."
+        },
+        {
+          "id": "delete",
+          "text": "Delete the resource group to clear noncompliance.",
+          "explanation": "Deleting the workload does not implement the requested correction."
+        }
+      ],
+      "correct": [
+        "task"
+      ],
+      "knowledge": "knowledge/identity/governance/policy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+        "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics",
+        "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-policy-removal",
+      "family": "id-policy-removal",
+      "revision": 1,
+      "topic": "identity.governance.policy",
+      "objectives": [
+        "id-09"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A DeployIfNotExists policy deployed diagnostic settings. The policy assignment is later removed. What happens to the settings solely because of assignment removal?",
+      "select": 1,
+      "options": [
+        {
+          "id": "remain",
+          "text": "They are not automatically rolled back.",
+          "explanation": "Policy removal does not undo its earlier deployments."
+        },
+        {
+          "id": "delete",
+          "text": "Every deployed setting is automatically deleted.",
+          "explanation": "Assignment lifecycle is separate from deployed-resource cleanup."
+        },
+        {
+          "id": "role",
+          "text": "They become Azure RBAC role assignments.",
+          "explanation": "Diagnostic configuration is not converted into authorization."
+        },
+        {
+          "id": "deny",
+          "text": "They become permanent deny assignments.",
+          "explanation": "Removing Policy does not produce that transformation."
+        }
+      ],
+      "correct": [
+        "remain"
+      ],
+      "knowledge": "knowledge/identity/governance/policy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+        "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics",
+        "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

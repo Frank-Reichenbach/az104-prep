@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "id-license-nested",
+      "family": "id-license-nested",
+      "revision": 1,
+      "topic": "identity.users.licenses",
+      "objectives": [
+        "id-03"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A product is assigned to Entra group Parent. A user belongs only to Child, which is nested in Parent, and receives no license. What explains this?",
+      "select": 1,
+      "options": [
+        {
+          "id": "direct",
+          "text": "Group-based licensing does not process users only through nested groups.",
+          "explanation": "Assign through a group containing the user directly."
+        },
+        {
+          "id": "owner",
+          "text": "Only Parent's owners can receive its product.",
+          "explanation": "Licensing is not restricted to group owners."
+        },
+        {
+          "id": "azure",
+          "text": "The user must first become Azure subscription Owner.",
+          "explanation": "Azure resource administration is not a licensing prerequisite."
+        },
+        {
+          "id": "name",
+          "text": "Parent and Child must have identical names.",
+          "explanation": "Matching names do not change membership-processing support."
+        }
+      ],
+      "correct": [
+        "direct"
+      ],
+      "knowledge": "knowledge/identity/users/licenses.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/fundamentals/license-users-groups",
+        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-group-advanced",
+        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-powershell-graph-examples"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-license-retained",
+      "family": "id-license-retained",
+      "revision": 1,
+      "topic": "identity.users.licenses",
+      "objectives": [
+        "id-03"
+      ],
+      "difficulty": "applied",
+      "prompt": "A user receives a product directly and through a licensing group. The group assignment is removed, but the direct assignment remains. Why can the user retain the product?",
+      "select": 1,
+      "options": [
+        {
+          "id": "path",
+          "text": "The direct assignment is still an effective licensing path.",
+          "explanation": "Removing one source does not remove the other."
+        },
+        {
+          "id": "forever",
+          "text": "Licenses become permanent after first sign-in.",
+          "explanation": "Assignments can be removed; they are not permanent grants."
+        },
+        {
+          "id": "reader",
+          "text": "Azure Reader automatically reassigns the product.",
+          "explanation": "Azure resource roles do not supply this product license."
+        },
+        {
+          "id": "owner",
+          "text": "Any group ownership supplies all tenant licenses.",
+          "explanation": "Ownership does not provide universal product entitlement."
+        }
+      ],
+      "correct": [
+        "path"
+      ],
+      "knowledge": "knowledge/identity/users/licenses.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/fundamentals/license-users-groups",
+        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-group-advanced",
+        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-powershell-graph-examples"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-license-location",
+      "family": "id-license-location",
+      "revision": 1,
+      "topic": "identity.users.licenses",
+      "objectives": [
+        "id-03"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A license assignment reports an invalid usage location despite available seats. What should an administrator correct?",
+      "select": 1,
+      "options": [
+        {
+          "id": "usage",
+          "text": "The user's usage location based on where the service is used.",
+          "explanation": "Product availability is evaluated using this licensing property."
+        },
+        {
+          "id": "tag",
+          "text": "The user's office street address only.",
+          "explanation": "The address field is distinct from the usage-location licensing property."
+        },
+        {
+          "id": "display",
+          "text": "The user's preferred language only.",
+          "explanation": "Interface language does not determine the usage location used for product availability."
+        },
+        {
+          "id": "role",
+          "text": "Assign Global Administrator to the user.",
+          "explanation": "Extra privilege does not correct invalid licensing data."
+        }
+      ],
+      "correct": [
+        "usage"
+      ],
+      "knowledge": "knowledge/identity/users/licenses.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/fundamentals/license-users-groups",
+        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-group-advanced",
+        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-powershell-graph-examples"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

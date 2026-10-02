@@ -130,7 +130,7 @@ try {
   bank = await response.json();
   if (bank.schemaVersion !== 1 || !Array.isArray(bank.questions)) throw new Error('Unsupported question bank.');
   bank.topics.forEach(topic => { const option = el('option', topic.title); option.value = topic.id; $('topic').append(option); });
-  $('coverage').textContent = `Storage sample · ${bank.questions.length} questions, ${new Set(bank.questions.map(q => q.family)).size} families · ${bank.coverage.covered}/${bank.coverage.total} objectives documented. Full exam coverage is still in progress.`;
+  $('coverage').textContent = `${bank.questions.length} questions, ${new Set(bank.questions.map(q => q.family)).size} families · ${bank.coverage.covered}/${bank.coverage.total} objectives documented. ${bank.coverage.covered < bank.coverage.total ? 'Full exam coverage is still in progress.' : 'Documentation coverage does not measure exam readiness.'}`;
   try {
     const saved = localStorage.getItem(STORAGE);
     if (saved) {

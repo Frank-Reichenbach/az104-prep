@@ -26,8 +26,8 @@ for (const domain of outline.domains) {
 }
 generated.set('exam/coverage.md', matrix);
 
-let questionnaire = `${banner}# Storage sample: questions\n\nSelect the stated number of answers. Multiple-answer questions use exact-match scoring. This printable list includes variants; the app selects only one per family per quiz.\n\n[Answer key](answers.md)\n\n`;
-let answers = `${banner}# Storage sample: answer explanations\n\n[Questions without answers](questions.md)\n\n`;
+let questionnaire = `${banner}# AZ-104 practice questions\n\nSelect the stated number of answers. Multiple-answer questions use exact-match scoring. This printable list includes variants; the app selects only one per family per quiz.\n\n[Answer key](answers.md)\n\n`;
+let answers = `${banner}# AZ-104 answer explanations\n\n[Questions without answers](questions.md)\n\n`;
 for (const q of questions) {
   const heading = `## ${q.id}\n\n${q.prompt}\n\nSelect **${q.select}**. Difficulty: ${q.difficulty}.\n\n`;
   questionnaire += heading + q.options.map((o, i) => `${String.fromCharCode(65 + i)}. ${o.text}`).join('\n') + '\n\n';

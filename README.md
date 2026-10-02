@@ -4,7 +4,7 @@ English study notes and original multiple-choice practice for the Microsoft
 Azure Administrator certification. Designed for a learner with some Azure
 experience preparing for an exam around December 2026–January 2027.
 
-**Current scope: storage-domain coverage; the remaining AZ-104 domains are in progress.**
+**Current scope: storage and identity/governance; the remaining domains are in progress.**
 See [STATUS.md](STATUS.md) for progress and [the coverage matrix](exam/coverage.md)
 for the remaining objectives.
 

@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "id-user-role",
+      "family": "id-user-role",
+      "revision": 1,
+      "topic": "identity.users.management",
+      "objectives": [
+        "id-01",
+        "id-02"
+      ],
+      "difficulty": "applied",
+      "prompt": "An administrator must create ordinary cloud-only users in Microsoft Entra ID without assigning directory administrator roles. Which listed role is the least-privileged fit?",
+      "select": 1,
+      "options": [
+        {
+          "id": "user",
+          "text": "User Administrator.",
+          "explanation": "It supports ordinary user lifecycle administration."
+        },
+        {
+          "id": "global",
+          "text": "Global Administrator.",
+          "explanation": "It is broader than required for this task."
+        },
+        {
+          "id": "contributor",
+          "text": "Contributor on an Azure resource group.",
+          "explanation": "Azure resource management permission is not Entra user administration."
+        },
+        {
+          "id": "guest",
+          "text": "Guest Inviter.",
+          "explanation": "Inviting external guests is different from creating internal cloud accounts."
+        }
+      ],
+      "correct": [
+        "user"
+      ],
+      "knowledge": "knowledge/identity/users/user-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-create-delete-users",
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-user-profile-info",
+        "https://learn.microsoft.com/en-us/entra/identity/users/directory-overview-user-model"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-user-source",
+      "family": "id-user-source",
+      "revision": 1,
+      "topic": "identity.users.management",
+      "objectives": [
+        "id-01",
+        "id-02"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A user's department is synchronized from on-premises Active Directory. Routine cloud edits are rejected or later overwritten. Where should the normal department update be made?",
+      "select": 1,
+      "options": [
+        {
+          "id": "ad",
+          "text": "At the authoritative on-premises directory source.",
+          "explanation": "Synchronization should carry the maintained attribute into Entra."
+        },
+        {
+          "id": "tag",
+          "text": "In a tag on the Azure subscription.",
+          "explanation": "Resource tags do not change user directory attributes."
+        },
+        {
+          "id": "license",
+          "text": "In the user's product license assignment.",
+          "explanation": "Licensing does not set the authoritative department."
+        },
+        {
+          "id": "object",
+          "text": "Create a second cloud user with the same display name.",
+          "explanation": "A duplicate identity does not repair the existing object's source attribute."
+        }
+      ],
+      "correct": [
+        "ad"
+      ],
+      "knowledge": "knowledge/identity/users/user-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-create-delete-users",
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-user-profile-info",
+        "https://learn.microsoft.com/en-us/entra/identity/users/directory-overview-user-model"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-user-stable-id",
+      "family": "id-user-stable-id",
+      "revision": 1,
+      "topic": "identity.users.management",
+      "objectives": [
+        "id-01",
+        "id-02"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An Entra cloud user's display name changes. Which value should an existing application use to continue identifying that same directory object?",
+      "select": 1,
+      "options": [
+        {
+          "id": "id",
+          "text": "The existing object ID.",
+          "explanation": "It identifies the object independently of a display-name edit."
+        },
+        {
+          "id": "display",
+          "text": "Only the new display name.",
+          "explanation": "Display names can change and need not be unique."
+        },
+        {
+          "id": "department",
+          "text": "The department string.",
+          "explanation": "Many users can share a department."
+        },
+        {
+          "id": "location",
+          "text": "The usage location.",
+          "explanation": "A licensing-related location is not a unique object identifier."
+        }
+      ],
+      "correct": [
+        "id"
+      ],
+      "knowledge": "knowledge/identity/users/user-management.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-create-delete-users",
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-user-profile-info",
+        "https://learn.microsoft.com/en-us/entra/identity/users/directory-overview-user-model"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "id-sub-context",
+      "family": "id-sub-context",
+      "revision": 1,
+      "topic": "identity.governance.subscriptions",
+      "objectives": [
+        "id-13"
+      ],
+      "difficulty": "foundation",
+      "prompt": "What does az account set --subscription change?",
+      "select": 1,
+      "options": [
+        {
+          "id": "context",
+          "text": "The active Azure CLI subscription context.",
+          "explanation": "Subsequent commands use that context unless overridden."
+        },
+        {
+          "id": "move",
+          "text": "The subscription of every existing resource.",
+          "explanation": "Context selection does not move resources."
+        },
+        {
+          "id": "tenant",
+          "text": "The directory associated with the subscription.",
+          "explanation": "Directory association is a separate operation."
+        },
+        {
+          "id": "owner",
+          "text": "The subscription's billing owner.",
+          "explanation": "Selecting a context does not transfer billing responsibility."
+        }
+      ],
+      "correct": [
+        "context"
+      ],
+      "knowledge": "knowledge/identity/governance/subscriptions.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/cli/azure/manage-azure-subscriptions-azure-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/transfer-subscription"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-sub-provider",
+      "family": "id-sub-provider",
+      "revision": 1,
+      "topic": "identity.governance.subscriptions",
+      "objectives": [
+        "id-13"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A deployment reports that Microsoft.Storage is not registered in the selected subscription. The operator has registration permission. What should be done?",
+      "select": 1,
+      "options": [
+        {
+          "id": "register",
+          "text": "Register Microsoft.Storage in that subscription and inspect its state.",
+          "explanation": "This addresses the named provider-registration prerequisite."
+        },
+        {
+          "id": "quota",
+          "text": "Request more VM-family vCPUs.",
+          "explanation": "That does not register the Storage provider."
+        },
+        {
+          "id": "name",
+          "text": "Rename the subscription.",
+          "explanation": "The display name does not determine provider registration."
+        },
+        {
+          "id": "tenant",
+          "text": "Move the subscription to a different tenant immediately.",
+          "explanation": "A directory transfer is unnecessary for this stated error."
+        }
+      ],
+      "correct": [
+        "register"
+      ],
+      "knowledge": "knowledge/identity/governance/subscriptions.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/cli/azure/manage-azure-subscriptions-azure-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/transfer-subscription"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-sub-directory-transfer",
+      "family": "id-sub-directory-transfer",
+      "revision": 1,
+      "topic": "identity.governance.subscriptions",
+      "objectives": [
+        "id-13"
+      ],
+      "difficulty": "applied",
+      "prompt": "A team plans to change an Azure subscription's Entra directory. Which dependency requires explicit planning?",
+      "select": 1,
+      "options": [
+        {
+          "id": "rbac",
+          "text": "Reestablishing resource access and affected managed identity relationships.",
+          "explanation": "Directory-bound principals and assignments do not simply remain equivalent."
+        },
+        {
+          "id": "display",
+          "text": "Only changing the subscription display name.",
+          "explanation": "A directory transfer has authorization effects beyond naming."
+        },
+        {
+          "id": "region",
+          "text": "Every resource automatically moves to the new tenant's region.",
+          "explanation": "Tenants do not supply an automatic regional relocation target."
+        },
+        {
+          "id": "billing",
+          "text": "All resource roles become billing roles.",
+          "explanation": "Those role systems remain distinct."
+        }
+      ],
+      "correct": [
+        "rbac"
+      ],
+      "knowledge": "knowledge/identity/governance/subscriptions.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/cli/azure/manage-azure-subscriptions-azure-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/transfer-subscription"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

@@ -229,5 +229,172 @@
     ],
     "status": "documented",
     "verified": "2026-10-02"
+  },
+  {
+    "id": "identity.users.management",
+    "domain": "identity",
+    "title": "Entra user provisioning and properties",
+    "path": "knowledge/identity/users/user-management.md",
+    "objectives": [
+      "id-01",
+      "id-02"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "identity.groups.management",
+    "domain": "identity",
+    "title": "Entra groups and dynamic membership",
+    "path": "knowledge/identity/groups/group-management.md",
+    "objectives": [
+      "id-01",
+      "id-02"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "identity.users.licenses",
+    "domain": "identity",
+    "title": "User and group license assignments",
+    "path": "knowledge/identity/users/licenses.md",
+    "objectives": [
+      "id-03"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "identity.users.external",
+    "domain": "identity",
+    "title": "External users and B2B collaboration",
+    "path": "knowledge/identity/users/external-users.md",
+    "objectives": [
+      "id-04"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "identity.users.sspr",
+    "domain": "identity",
+    "title": "Self-service password reset",
+    "path": "knowledge/identity/users/self-service-password-reset.md",
+    "objectives": [
+      "id-05"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "identity.rbac.roles",
+    "domain": "identity",
+    "title": "Azure built-in roles and permission definitions",
+    "path": "knowledge/identity/rbac/built-in-roles.md",
+    "objectives": [
+      "id-06"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "identity.rbac.assignments",
+    "domain": "identity",
+    "title": "Azure role assignments and scopes",
+    "path": "knowledge/identity/rbac/assignments-and-scopes.md",
+    "objectives": [
+      "id-07"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "identity.rbac.effective-access",
+    "domain": "identity",
+    "title": "Effective access and RBAC troubleshooting",
+    "path": "knowledge/identity/rbac/effective-access.md",
+    "objectives": [
+      "id-08"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "identity.governance.policy",
+    "domain": "identity",
+    "title": "Azure Policy assignments and remediation",
+    "path": "knowledge/identity/governance/policy.md",
+    "objectives": [
+      "id-09"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "identity.governance.locks",
+    "domain": "identity",
+    "title": "Resource locks",
+    "path": "knowledge/identity/governance/locks.md",
+    "objectives": [
+      "id-10"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "identity.governance.tags",
+    "domain": "identity",
+    "title": "Resource tags and tag governance",
+    "path": "knowledge/identity/governance/tags.md",
+    "objectives": [
+      "id-11"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "identity.governance.resource-groups",
+    "domain": "identity",
+    "title": "Resource group lifecycle and moves",
+    "path": "knowledge/identity/governance/resource-groups.md",
+    "objectives": [
+      "id-12"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "identity.governance.subscriptions",
+    "domain": "identity",
+    "title": "Subscription administration and provider registration",
+    "path": "knowledge/identity/governance/subscriptions.md",
+    "objectives": [
+      "id-13"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "identity.governance.costs",
+    "domain": "identity",
+    "title": "Budgets, cost alerts, and Advisor",
+    "path": "knowledge/identity/governance/cost-management.md",
+    "objectives": [
+      "id-14"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "identity.governance.management-groups",
+    "domain": "identity",
+    "title": "Management groups and inherited governance",
+    "path": "knowledge/identity/governance/management-groups.md",
+    "objectives": [
+      "id-15"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
   }
 ]

@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "id-rg-location",
+      "family": "id-rg-location",
+      "revision": 1,
+      "topic": "identity.governance.resource-groups",
+      "objectives": [
+        "id-12"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A resource group's metadata location is West Europe. Can it contain a supported resource deployed in North Europe?",
+      "select": 1,
+      "options": [
+        {
+          "id": "yes",
+          "text": "Yes; resource location can differ from group location.",
+          "explanation": "The group's location governs its management metadata."
+        },
+        {
+          "id": "no",
+          "text": "No; every resource inherits the group's physical region.",
+          "explanation": "That is not the resource-group model."
+        },
+        {
+          "id": "move",
+          "text": "Only after renaming the group to North Europe.",
+          "explanation": "The name does not change regional placement rules."
+        },
+        {
+          "id": "nested",
+          "text": "Only by nesting another resource group inside it.",
+          "explanation": "Resource groups do not nest."
+        }
+      ],
+      "correct": [
+        "yes"
+      ],
+      "knowledge": "knowledge/identity/governance/resource-groups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-rg-move-region",
+      "family": "id-rg-move-region",
+      "revision": 1,
+      "topic": "identity.governance.resource-groups",
+      "objectives": [
+        "id-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "An administrator moves a supported VM from rg-old to rg-new in the same subscription. What should they expect from this management move?",
+      "select": 1,
+      "options": [
+        {
+          "id": "id",
+          "text": "Its resource ID changes while its Azure region stays the same.",
+          "explanation": "Changing groups is not a regional relocation."
+        },
+        {
+          "id": "region",
+          "text": "It automatically relocates to rg-new's metadata region.",
+          "explanation": "Group metadata location does not drive physical movement."
+        },
+        {
+          "id": "both",
+          "text": "It belongs to both groups afterward.",
+          "explanation": "A resource has one resource-group membership at a time."
+        },
+        {
+          "id": "copy",
+          "text": "A complete second VM is created and the original remains.",
+          "explanation": "An ARM group move is not a VM cloning operation."
+        }
+      ],
+      "correct": [
+        "id"
+      ],
+      "knowledge": "knowledge/identity/governance/resource-groups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-rg-delete",
+      "family": "id-rg-delete",
+      "revision": 1,
+      "topic": "identity.governance.resource-groups",
+      "objectives": [
+        "id-12"
+      ],
+      "difficulty": "applied",
+      "prompt": "A study resource group contains a VM, NIC, and storage resources that are no longer needed. What does deleting that group do, assuming no protection blocks deletion?",
+      "select": 1,
+      "options": [
+        {
+          "id": "all",
+          "text": "Deletes the resources contained in the group.",
+          "explanation": "Group deletion is a lifecycle operation over its contents."
+        },
+        {
+          "id": "folder",
+          "text": "Removes only the group label and leaves all resources ungrouped.",
+          "explanation": "Azure resources do not become ungrouped through group deletion."
+        },
+        {
+          "id": "move",
+          "text": "Moves everything into the subscription's default group.",
+          "explanation": "There is no automatic relocation of all contents to a default group."
+        },
+        {
+          "id": "stop",
+          "text": "Only stops the VM while retaining every resource.",
+          "explanation": "Stopping compute is a different operation."
+        }
+      ],
+      "correct": [
+        "all"
+      ],
+      "knowledge": "knowledge/identity/governance/resource-groups.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

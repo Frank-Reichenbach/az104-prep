@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "id-role-contributor-access",
+      "family": "id-role-contributor-access",
+      "revision": 1,
+      "topic": "identity.rbac.roles",
+      "objectives": [
+        "id-06"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An operator has Contributor on a resource group and no other roles. Can they assign Owner to another user there?",
+      "select": 1,
+      "options": [
+        {
+          "id": "no",
+          "text": "No; Contributor does not grant role-assignment administration.",
+          "explanation": "Resource management and granting Azure RBAC access are separate capabilities."
+        },
+        {
+          "id": "yes",
+          "text": "Yes; all resource write permission includes access delegation.",
+          "explanation": "Contributor explicitly excludes this authorization administration."
+        },
+        {
+          "id": "reader",
+          "text": "Only after adding Reader at the same scope.",
+          "explanation": "Reader does not grant roleAssignments/write."
+        },
+        {
+          "id": "entra",
+          "text": "Only after becoming the resource group's guest inviter.",
+          "explanation": "Guest invitation is a directory task, not Azure RBAC delegation."
+        }
+      ],
+      "correct": [
+        "no"
+      ],
+      "knowledge": "knowledge/identity/rbac/built-in-roles.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-role-notactions",
+      "family": "id-role-notactions",
+      "revision": 1,
+      "topic": "identity.rbac.roles",
+      "objectives": [
+        "id-06"
+      ],
+      "difficulty": "applied",
+      "prompt": "Role A excludes an operation through NotActions. Role B assigned to the same user and scope grants that operation. No deny assignment or other restriction applies. What follows?",
+      "select": 1,
+      "options": [
+        {
+          "id": "grant",
+          "text": "Role B can still grant the operation.",
+          "explanation": "NotActions is a subtraction within Role A, not a global deny."
+        },
+        {
+          "id": "deny",
+          "text": "Role A's NotActions always cancels Role B.",
+          "explanation": "NotActions does not have deny-assignment semantics."
+        },
+        {
+          "id": "recent",
+          "text": "Only the most recently assigned role counts.",
+          "explanation": "Azure roles are not evaluated by last assignment wins."
+        },
+        {
+          "id": "name",
+          "text": "The alphabetically first role decides.",
+          "explanation": "Role display names do not determine permission precedence."
+        }
+      ],
+      "correct": [
+        "grant"
+      ],
+      "knowledge": "knowledge/identity/rbac/built-in-roles.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "id-role-data-reader",
+      "family": "id-role-data-reader",
+      "revision": 1,
+      "topic": "identity.rbac.roles",
+      "objectives": [
+        "id-06"
+      ],
+      "difficulty": "applied",
+      "prompt": "A user must download private blobs using Entra authentication but should not manage storage account configuration. Which listed role matches the data task?",
+      "select": 1,
+      "options": [
+        {
+          "id": "data",
+          "text": "Storage Blob Data Reader.",
+          "explanation": "It grants the required Blob read data operations."
+        },
+        {
+          "id": "reader",
+          "text": "Reader.",
+          "explanation": "Resource configuration read does not include Blob data read."
+        },
+        {
+          "id": "owner",
+          "text": "Owner.",
+          "explanation": "It grants much broader resource and access administration."
+        },
+        {
+          "id": "vm",
+          "text": "Virtual Machine Contributor.",
+          "explanation": "VM management does not authorize these Blob data reads."
+        }
+      ],
+      "correct": [
+        "data"
+      ],
+      "knowledge": "knowledge/identity/rbac/built-in-roles.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

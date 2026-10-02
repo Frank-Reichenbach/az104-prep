@@ -79,7 +79,7 @@ try {
       document.getElementById('start-form').requestSubmit();`);
     const state = await evaluate(`({position: document.getElementById('position').textContent, topic: document.getElementById('question-topic').textContent})`);
     assert.match(state.position, /Question 1 of/);
-    assert.match(state.topic, /Storage/);
+    assert.ok(state.topic.includes(' › '), 'Question includes domain and topic context');
     // Invalid submissions must not advance; valid ones must not need Next.
     await evaluate(`document.getElementById('answer-form').requestSubmit()`);
     assert.equal(await evaluate(`document.getElementById('position').textContent`), state.position);

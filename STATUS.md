@@ -4,8 +4,8 @@ Updated: 2026-10-02. Approved scope: [PLAN.md](PLAN.md).
 
 ## Current increment
 
-Storage domain expansion. The knowledge base now has 17 documented
-objectives out of 82, with 77 questions across 76 families and 21 topics.
+Identity/governance expansion. The knowledge base now has 32 documented
+objectives out of 82, with 123 questions across 122 families and 36 topics.
 Azure command examples remain documentation-checked, not lab-tested.
 
 All 17 storage objectives now have guides and original questions. The latest
@@ -14,6 +14,12 @@ provisioning, account creation, redundancy, object replication, encryption,
 encryption scopes, AzCopy, and Storage Explorer. Documentation nuances include
 newer Files provisioned v2 models and storage firewall exceptions that can
 remain effective with public access disabled.
+
+All 15 identity/governance objectives now also have guides and questions:
+users/groups, licenses, external users, SSPR, RBAC, Policy, locks, tags,
+resource groups, subscriptions, costs, and management groups. App labels and
+browser context checks now support multiple domains. Recent identity questions
+use related alternative answers rather than unrelated service distractors.
 
 Continue one topic at a time without stopping between batches. Report each
 completed topic as "Done: <topic>." The user explicitly requested this workflow.
@@ -44,10 +50,10 @@ published app commit d43ce77. GitHub's automatically created main-only
 environment rule initially blocked deployment; feature/github-pages was added
 to the explicit allowlist and the deployment rerun succeeded.
 
-The data-protection expansion passed local content, Node, and Chrome checks.
-It publishes through the Pages workflow on the same ongoing feature branch;
-no merge is involved. Use the latest successful Actions run to identify the
-current deployment, rather than treating a local commit as publication.
+The complete storage domain deployed from d3dcaeb in successful Actions run
+36959628423. The live site was also checked in Chrome. Identity/governance
+changes are being validated and published on the same ongoing feature branch;
+no merge is involved. Verify the latest run before claiming its publication.
 
 ## Verification
 
@@ -56,7 +62,7 @@ current deployment, rather than treating a local commit as publication.
 - Ten Node tests cover scoring, variants, progress validation, content
   rejection cases, and local HTTP routing.
 - Chrome automation checked both local-root and project-path hosting. It
-  exercised all available families, valid/invalid submissions, partially
+  exercised sessions up to the UI's 100-question limit, valid/invalid submissions, partially
   correct multiple answers, direct advancement, final results, topic context,
   compact results, expansion state, preparation feedback, internal HTTP links,
   and browser history persistence after reload.
@@ -66,15 +72,15 @@ current deployment, rather than treating a local commit as publication.
 
 ## Next task
 
-Publish the completed storage domain, then research identity/governance
-starting with Entra users and groups (id-01). Continue through compute,
-networking, and monitoring/recovery. Domain-weighted mixed quizzes
+Publish identity/governance, then research compute starting with ARM/Bicep
+interpretation and editing (co-01 through co-05). Continue through networking
+and monitoring/recovery. Domain-weighted mixed quizzes
 remain deferred until every domain has enough questions. A skill remains an
 optional later interface.
 
 ## Limits
 
-- The app covers the storage domain, not yet complete exam preparation.
+- The app covers storage and identity/governance; other domains remain.
 - Study progress is browser-local; transfer it using export/import.
 - Reloading ends an unfinished quiz but preserves submitted answers when
   browser storage is available.
