@@ -87,6 +87,12 @@ and import work. Main deployment runs are recorded in the
 
 ## Verification
 
+Dark mode (uncommitted, 2026-10-03): the moon/sun toggle sits in the header
+menu, follows the system theme by default, and stores the choice in the
+browser (`az104-theme`). `npm run check` and the 13 Node tests passed; the
+toggle was checked manually in the built-in browser. `npm run test:browser`
+could not launch Chrome in this environment, so it was not run.
+
 Content build/check has validated all 82 objective mappings, question formats,
 three or more families per topic, internal links, and generated output.
 All 13 Node tests passed, including weighted domain allocation, scarce/missed

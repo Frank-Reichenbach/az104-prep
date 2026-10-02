@@ -9,6 +9,14 @@ function el(tag, text, className) {
   if (className) node.className = className;
   return node;
 }
+function applyTheme(theme, persist = false) {
+  document.documentElement.dataset.theme = theme;
+  const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+  $('theme-toggle').setAttribute('aria-label', label); $('theme-toggle').title = label;
+  if (persist) { try { localStorage.setItem('az104-theme', theme); } catch { /* preference stays session-only */ } }
+}
+$('theme-toggle').addEventListener('click', () => applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark', true));
+applyTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
 function message(text = '') { $('message').textContent = text; }
 function show(id) { for (const name of ['setup', 'session', 'results']) $(name).hidden = name !== id; }
 function save() {
@@ -53,7 +61,7 @@ function renderQuestion() {
   $('instruction').textContent = `Select ${q.select} answer${q.select === 1 ? '' : 's'}.`;
   $('choices').replaceChildren($('instruction'));
   q.options.forEach((option, i) => {
-    const label = el('label', undefined, 'my-3 flex cursor-pointer gap-3 rounded-md border border-[#bdcdd5] p-4 font-normal has-checked:border-brand has-checked:bg-[#e6f2f5]');
+    const label = el('label', undefined, 'my-3 flex cursor-pointer gap-3 rounded-md border border-edge p-4 font-normal has-checked:border-brand has-checked:bg-selected');
     const input = document.createElement('input'); input.type = q.select === 1 ? 'radio' : 'checkbox';
     input.className = 'mt-1.5 shrink-0'; input.name = 'answer'; input.value = option.id;
     label.append(input, el('span', `${String.fromCharCode(65 + i)}. ${option.text}`));

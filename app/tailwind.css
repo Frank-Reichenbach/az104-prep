@@ -1,5 +1,5 @@
 /* Tailwind source. `npm run build:css` compiles it to the committed app/style.css. */
-@import "tailwindcss";
+@import "tailwindcss" source(none);
 @source "./index.html";
 @source "./main.mjs";
 
@@ -14,18 +14,61 @@
   --color-link: #075b89;
   --color-good: #247442;
   --color-bad: #a24824;
+  --color-surface: #fff;
+  --color-edge: #bdcdd5;
+  --color-field: #8b9da9;
+  --color-eyebrow: #365a70;
+  --color-notice: #e0edf1;
+  --color-notice-line: #177d92;
+  --color-selected: #e6f2f5;
+  --color-warn: #fff1df;
+  --color-warn-ink: #754010;
+  --color-secondary: #086078;
+  --color-on-brand: #fff;
+  --color-focus: #a65108;
+}
+
+/* Dark palette: overrides the theme tokens when <html data-theme="dark"> is set. */
+:root[data-theme=dark] {
+  --color-page: #0f1a22;
+  --color-ink: #e2ebf0;
+  --color-line: #2c3f4c;
+  --color-soft: #a3b6c2;
+  --color-brand: #2a95ad;
+  --color-brand-dark: #3aa5bb;
+  --color-link: #6cc4ea;
+  --color-good: #5cc283;
+  --color-bad: #f08a5f;
+  --color-surface: #17252f;
+  --color-edge: #3d5565;
+  --color-field: #6b8394;
+  --color-eyebrow: #9bbccd;
+  --color-notice: #17313b;
+  --color-notice-line: #3aa5bb;
+  --color-selected: #1c3a46;
+  --color-warn: #3a2a16;
+  --color-warn-ink: #f3c48b;
+  --color-secondary: #7fd0e6;
+  --color-on-brand: #06141b;
+  --color-focus: #f0a04b;
 }
 
 @layer base {
   html { font-size: 17px; line-height: 1.55; color-scheme: light; }
+  :root[data-theme=dark] { color-scheme: dark; }
   body { @apply m-0 bg-page font-sans text-ink; }
   a { @apply text-link underline-offset-[.2em]; }
-  :focus-visible { outline: 3px solid #a65108; outline-offset: 3px; }
+  :focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
   [hidden] { display: none !important; }
 }
 
 @layer components {
-  .field { @apply w-full rounded-[5px] border border-[#8b9da9] bg-white p-2.5 text-inherit; }
-  .btn { @apply my-2 mr-1.5 cursor-pointer rounded-[5px] border border-brand bg-brand px-4.5 py-2.5 text-white hover:bg-brand-dark disabled:cursor-default disabled:opacity-55; }
-  .btn-secondary { @apply bg-white text-[#086078] hover:bg-[#e6f2f5]; }
+  .field { @apply w-full rounded-[5px] border border-field bg-surface p-2.5 text-inherit; }
+  .btn { @apply my-2 mr-1.5 cursor-pointer rounded-[5px] border border-brand bg-brand px-4.5 py-2.5 text-on-brand hover:bg-brand-dark disabled:cursor-default disabled:opacity-55; }
+  .btn-secondary { @apply bg-surface text-secondary hover:bg-selected; }
+  .theme-toggle { @apply m-0 ml-1.5 inline-flex size-10 items-center justify-center rounded-full p-0; }
+  .theme-toggle svg { @apply size-5 fill-none stroke-current; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .theme-toggle .sun { display: none; }
+  :root[data-theme=dark] .theme-toggle .sun { display: block; }
+  :root[data-theme=dark] .theme-toggle .moon { display: none; }
 }

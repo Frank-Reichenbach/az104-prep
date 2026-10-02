@@ -4,18 +4,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AZ-104 Practice</title>
+  <script>
+    // Apply the saved or system theme before first paint to avoid a flash.
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem('az104-theme'); } catch (e) {}
+      if (theme !== 'light' && theme !== 'dark') theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./main.mjs"></script>
 </head>
 <body>
   <main class="mx-auto w-full max-w-[850px] px-3 py-6 sm:px-5 sm:py-10">
-    <header><p class="text-xs font-bold tracking-[.12em] text-[#365a70]">AZURE ADMINISTRATOR · SELF-STUDY</p><h1 class="mt-1 mb-4 text-[clamp(2rem,6vw,3rem)] leading-[1.1] font-bold tracking-tighter">AZ-104 Practice</h1>
+    <header><p class="text-xs font-bold tracking-[.12em] text-eyebrow">AZURE ADMINISTRATOR · SELF-STUDY</p><h1 class="mt-1 mb-4 text-[clamp(2rem,6vw,3rem)] leading-[1.1] font-bold tracking-tighter">AZ-104 Practice</h1>
       <p>Understand the choice. Learn from every option.</p>
-      <p id="coverage" class="my-4 border-l-4 border-[#177d92] bg-[#e0edf1] px-4 py-3">Loading question bank…</p>
-      <nav class="mt-3"><a href="./exam/coverage.md" target="_blank" rel="noopener">Coverage</a> · <a href="./knowledge/index.md" target="_blank" rel="noopener">Knowledge index</a> · <a href="./generated/questions.md" target="_blank" rel="noopener">Printable questions</a></nav>
+      <p id="coverage" class="my-4 border-l-4 border-notice-line bg-notice px-4 py-3">Loading question bank…</p>
+      <nav class="mt-3 flex flex-wrap items-center"><a href="./exam/coverage.md" target="_blank" rel="noopener">Coverage</a><span aria-hidden="true" class="mx-1.5">·</span><a href="./knowledge/index.md" target="_blank" rel="noopener">Knowledge index</a><span aria-hidden="true" class="mx-1.5">·</span><a href="./generated/questions.md" target="_blank" rel="noopener">Printable questions</a>
+        <button id="theme-toggle" class="btn btn-secondary theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button></nav>
     </header>
-    <p id="message" role="status" aria-live="polite" class="bg-[#fff1df] p-3 text-[#754010] empty:hidden"></p>
-    <section id="setup" class="my-6 rounded-xl border border-line bg-white p-4 sm:p-6.5" hidden>
+    <p id="message" role="status" aria-live="polite" class="bg-warn p-3 text-warn-ink empty:hidden"></p>
+    <section id="setup" class="my-6 rounded-xl border border-line bg-surface p-4 sm:p-6.5" hidden>
       <h2 class="text-[1.35rem] leading-snug font-bold">Your next session</h2>
       <form id="start-form">
         <label class="mt-3 block font-semibold" for="topic">Topic</label><select id="topic" class="field"><option value="weighted">Mixed · exam domain weights</option><option value="all">All topics · random selection</option></select>
@@ -32,14 +45,14 @@
       <div class="flex flex-wrap gap-4"><button class="btn btn-secondary" id="export" type="button">Export progress</button><button class="btn btn-secondary" id="import-button" type="button">Import progress</button><input id="import" type="file" accept=".json,application/json" hidden></div>
       <p class="text-[.86rem] text-soft">Progress stays in this browser. Import replaces it after confirmation. Export before clearing browser storage.</p>
     </section>
-    <section id="session" class="my-6 rounded-xl border border-line bg-white p-4 sm:p-6.5" hidden>
-      <p id="position" class="text-xs font-bold tracking-[.12em] text-[#365a70]"></p><p id="question-topic" class="text-[.86rem] text-soft"></p><h2 id="prompt" tabindex="-1" class="text-[1.35rem] leading-snug font-bold"></h2>
+    <section id="session" class="my-6 rounded-xl border border-line bg-surface p-4 sm:p-6.5" hidden>
+      <p id="position" class="text-xs font-bold tracking-[.12em] text-eyebrow"></p><p id="question-topic" class="text-[.86rem] text-soft"></p><h2 id="prompt" tabindex="-1" class="text-[1.35rem] leading-snug font-bold"></h2>
       <form id="answer-form"><fieldset id="choices" class="my-4 border-0 p-0"><legend id="instruction" class="mb-2"></legend></fieldset><button class="btn" id="submit-answer" type="submit">Check answer</button></form>
       <div id="feedback" aria-live="polite"></div>
       <button class="btn" id="next" type="button" hidden>Next question</button>
       <button class="btn btn-secondary" id="end" type="button">End session</button>
     </section>
-    <section id="results" class="my-6 rounded-xl border border-line bg-white p-4 sm:p-6.5" hidden><h2 id="result-title" tabindex="-1" class="text-[1.35rem] leading-snug font-bold">Session results</h2><p id="result-score"></p><p class="text-[.86rem] text-soft">This percentage measures your answers in this session. It does not predict Microsoft's scaled exam score or exam readiness.</p><div id="review"></div><button class="btn" id="again" type="button">Choose another session</button></section>
+    <section id="results" class="my-6 rounded-xl border border-line bg-surface p-4 sm:p-6.5" hidden><h2 id="result-title" tabindex="-1" class="text-[1.35rem] leading-snug font-bold">Session results</h2><p id="result-score"></p><p class="text-[.86rem] text-soft">This percentage measures your answers in this session. It does not predict Microsoft's scaled exam score or exam readiness.</p><div id="review"></div><button class="btn" id="again" type="button">Choose another session</button></section>
     <footer class="mt-8 text-[.86rem] text-soft">Independent study material · English · No account or cloud service required</footer>
   </main>
 </body>
