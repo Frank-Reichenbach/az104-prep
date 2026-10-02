@@ -53,7 +53,10 @@ export function makeQuiz(questions, { topic = 'all', count = 10, missed = null, 
     .map(q => ({ ...q, options: shuffle(q.options, random) }));
 }
 
-export function missedFamilies(attempts, questions) {
+export const isUnsure = attempt => attempt.unsure === true;
+
+// Latest attempt per family (same revision only) -> 'correct' | 'wrong' | 'unsure'.
+export function familyStatus(attempts, questions) {
   const bank = new Map(questions.map(q => [q.id, q]));
   const latest = new Map();
   for (const attempt of attempts) {
@@ -62,8 +65,17 @@ export function missedFamilies(attempts, questions) {
     const previous = latest.get(q.family);
     if (!previous || attempt.at >= previous.at) latest.set(q.family, { ...attempt, q });
   }
-  return new Set([...latest.entries()].filter(([, a]) => !score(a.q, a.selected)).map(([family]) => family));
+  return new Map([...latest.entries()].map(([family, a]) =>
+    [family, isUnsure(a) ? 'unsure' : score(a.q, a.selected) ? 'correct' : 'wrong']));
 }
+
+// kind: 'wrong' | 'unsure' | 'both'
+export function reviewFamilies(attempts, questions, kind = 'wrong') {
+  const wanted = kind === 'both' ? ['wrong', 'unsure'] : [kind];
+  return new Set([...familyStatus(attempts, questions)].filter(([, s]) => wanted.includes(s)).map(([family]) => family));
+}
+
+export const missedFamilies = (attempts, questions) => reviewFamilies(attempts, questions, 'wrong');
 
 export function parseProgress(input, questions) {
   if (!input || input.version !== 1 || !Array.isArray(input.attempts) || input.attempts.length > 10000)
@@ -76,8 +88,14 @@ export function parseProgress(input, questions) {
       || !Array.isArray(a.selected) || !a.selected.every(id => typeof id === 'string')
       || typeof a.at !== 'string' || !/^\d{4}-\d{2}-\d{2}T/.test(a.at) || !Number.isFinite(Date.parse(a.at)))
       throw new Error('An attempt has an invalid ID, revision, selection, or timestamp.');
+    if (a.unsure !== undefined && a.unsure !== true) throw new Error('An attempt has an invalid unsure flag.');
     const q = bank.get(a.id);
     if (!q || q.revision !== a.revision) { skipped++; continue; }
+    if (a.unsure) {
+      if (a.selected.length) throw new Error(`Unsure answer for ${q.id} must not include selections.`);
+      attempts.push({ id: a.id, revision: a.revision, selected: [], unsure: true, at: new Date(a.at).toISOString() });
+      continue;
+    }
     if (a.selected.length !== q.select || new Set(a.selected).size !== a.selected.length
       || a.selected.some(id => !q.options.some(o => o.id === id)))
       throw new Error(`Invalid answer selection for ${q.id}.`);

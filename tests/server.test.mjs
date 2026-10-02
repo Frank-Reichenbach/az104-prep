@@ -12,14 +12,21 @@ test('local server serves the study app and sources but does not expose reposito
   const base = `http://127.0.0.1:${server.address().port}`;
   const response = await fetch(base);
   assert.equal(response.status, 200);
-  assert.match(await response.text(), /AZ-104 Practice/);
+  const html = await response.text();
+  assert.match(html, /AZ-104 Practice/);
   assert.match(response.headers.get('content-security-policy'), /default-src 'self'/);
+  assert.doesNotMatch(html, /<script(?![^>]*\ssrc=)/, 'inline scripts violate the CSP');
+  const theme = await fetch(base + '/theme.js');
+  assert.equal(theme.status, 200);
+  assert.match(theme.headers.get('content-type'), /text\/javascript/);
   const bank = await (await fetch(base + '/data.json')).json();
   assert.ok(bank.questions.length > 0);
   assert.ok(bank.coverage.total >= bank.coverage.covered);
   const md = await fetch(base + '/knowledge/storage/blob-storage/containers.md');
   assert.equal(md.status, 200);
   assert.match(md.headers.get('content-type'), /text\/plain/);
+  assert.equal((await fetch(base + '/markdown.mjs')).status, 200);
+  assert.equal((await fetch(base + '/README.md')).status, 200);
   for (const target of ['/.git/config', '/package.json', '/%2e%2e/package.json', '/knowledge/%2e%2e/AGENTS.md', '/missing', '/%ZZ']) {
     assert.equal((await fetch(base + target)).status, 404, target);
   }

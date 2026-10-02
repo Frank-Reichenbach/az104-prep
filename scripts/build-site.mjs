@@ -7,7 +7,7 @@ export async function buildSite(destination = path.join(ROOT, '_site')) {
   // Output only an explicit content allowlist, never the whole repository.
   await rm(destination, { recursive: true, force: true });
   await mkdir(destination, { recursive: true });
-  for (const name of ['index.html', 'style.css', 'main.mjs', 'quiz.mjs', 'data.json', 'version.json'])
+  for (const name of ['index.html', 'style.css', 'main.mjs', 'theme.js', 'quiz.mjs', 'markdown.mjs', 'data.json', 'version.json'])
     await cp(path.join(ROOT, 'app', name), path.join(destination, name));
   for (const dir of ['knowledge', 'generated', 'questions', 'examples', 'exam', 'docs', 'templates']) {
     for (const file of await filesUnder(path.join(ROOT, dir))) {

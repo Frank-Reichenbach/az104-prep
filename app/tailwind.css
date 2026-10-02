@@ -2,6 +2,7 @@
 @import "tailwindcss" source(none);
 @source "./index.html";
 @source "./main.mjs";
+@source "./markdown.mjs";
 
 @theme {
   --font-sans: system-ui, sans-serif;
@@ -71,6 +72,56 @@
   .theme-toggle .sun { display: none; }
   :root[data-theme=dark] .theme-toggle .sun { display: block; }
   :root[data-theme=dark] .theme-toggle .moon { display: none; }
+  /* Rendered Markdown documents (see markdown.mjs). */
+  .md { @apply outline-none; overflow-wrap: anywhere; }
+  .md h1 { @apply mt-4 mb-3 text-[1.8rem] leading-tight font-bold tracking-tight; }
+  .md h2 { @apply mt-8 mb-2 text-[1.35rem] leading-snug font-bold; }
+  .md h3, .md h4, .md h5, .md h6 { @apply mt-6 mb-2 font-bold; }
+  .md p, .md ul, .md ol, .md pre, .md blockquote, .md .md-table { @apply my-3; }
+  .md ul { @apply list-disc pl-6; }
+  .md ol { @apply list-decimal pl-6; }
+  .md li > ul, .md li > ol { @apply my-1; }
+  .md code { @apply rounded-sm bg-notice px-1 text-[.9em]; }
+  .md pre { @apply overflow-x-auto rounded-md border border-line bg-notice p-3 text-[.86rem]; }
+  .md pre code { @apply bg-transparent p-0; }
+  .md blockquote { @apply border-l-4 border-notice-line bg-notice px-4 py-1; }
+  .md hr { @apply my-6 border-line; }
+  .md .md-table { @apply overflow-x-auto; }
+  .md table { @apply w-full border-collapse text-[.9rem]; }
+  .md th, .md td { @apply border border-line px-2.5 py-1.5 text-left align-top; }
+  .md th { @apply bg-selected; }
+}
+
+/* Animations: short, transform/opacity only, disabled for reduced-motion users. */
+@theme {
+  --animate-rise: rise .35s ease-out both;
+  --animate-fade: fade .25s ease-out both;
+  --animate-pop: pop .3s cubic-bezier(.34, 1.56, .64, 1) both;
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes pop { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+}
+
+@layer components {
+  /* Sections replay on every show() because [hidden] switches display off and on. */
+  #setup, #session, #results { @apply animate-rise; }
+  #message:not(:empty) { @apply animate-pop; }
+  #feedback > * { @apply animate-rise; }
+  #review details { @apply animate-fade; }
+  .choice { @apply animate-rise transition-[border-color,background-color,transform] duration-150 hover:border-brand hover:translate-x-0.5; }
+  .choice:nth-of-type(2) { animation-delay: 50ms; }
+  .choice:nth-of-type(3) { animation-delay: 100ms; }
+  .choice:nth-of-type(4) { animation-delay: 150ms; }
+  .choice:nth-of-type(n+5) { animation-delay: 200ms; }
+  .btn { @apply transition-[background-color,transform,opacity] duration-150 active:not-disabled:scale-[.97]; }
+  .theme-toggle svg { @apply transition-transform duration-300; }
+  .theme-toggle:hover svg { @apply rotate-12; }
+  .theme-toggle:active svg { @apply rotate-45; }
+  #coverage { @apply animate-fade; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after { animation: none !important; transition-duration: .01ms !important; }
 }
 
 /* Animations: short, transform/opacity only, disabled for reduced-motion users. */

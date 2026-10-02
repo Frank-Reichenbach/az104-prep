@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { makeQuiz, score, shuffle, parseProgress, missedFamilies } from '../app/quiz.mjs';
+import { makeQuiz, score, shuffle, parseProgress, missedFamilies, familyStatus, reviewFamilies } from '../app/quiz.mjs';
 
 const { questions } = JSON.parse(await readFile(new URL('../questions/storage/blob-storage.json', import.meta.url), 'utf8'));
 const single = questions.find(q => q.select === 1);
@@ -119,4 +119,24 @@ test('import rejects malformed records rather than corrupting current progress',
   ]) assert.throws(() => parseProgress({ version: 1, attempts: [attempt] }, questions));
   assert.throws(() => parseProgress({ version: 2, attempts: [] }, questions));
   assert.throws(() => parseProgress({ version: 1, attempts: Array(10001).fill(record(single, single.correct)) }, questions));
+});
+
+test('unsure attempts are tracked per family and cleared by a later correct answer', () => {
+  const unsure = { ...record(single, [], '2026-10-01T12:00:00.000Z'), unsure: true };
+  assert.equal(familyStatus([unsure], questions).get(single.family), 'unsure');
+  assert.equal(reviewFamilies([unsure], questions, 'unsure').has(single.family), true);
+  assert.equal(missedFamilies([unsure], questions).has(single.family), false);
+  assert.equal(reviewFamilies([unsure], questions, 'both').has(single.family), true);
+  const fixed = [unsure, record(single, single.correct, '2026-10-02T12:00:00.000Z')];
+  assert.equal(familyStatus(fixed, questions).get(single.family), 'correct');
+  assert.equal(reviewFamilies(fixed, questions, 'both').size, 0);
+});
+
+test('progress import accepts unsure attempts and old exports, rejects inconsistent ones', () => {
+  const unsure = { ...record(single, []), unsure: true };
+  assert.equal(parseProgress({ version: 1, attempts: [unsure] }, questions).attempts[0].unsure, true);
+  assert.equal(parseProgress({ version: 1, attempts: [record(single, single.correct)] }, questions).attempts[0].unsure, undefined);
+  assert.throws(() => parseProgress({ version: 1, attempts: [{ ...unsure, selected: single.correct }] }, questions));
+  assert.throws(() => parseProgress({ version: 1, attempts: [{ ...unsure, unsure: 'yes' }] }, questions));
+  assert.throws(() => parseProgress({ version: 1, attempts: [record(single, [])] }, questions));
 });
