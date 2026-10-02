@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "st-policy-revoke-group",
+      "family": "st-policy-revoke-group",
+      "revision": 1,
+      "topic": "storage.access.stored-policies",
+      "objectives": [
+        "st-03"
+      ],
+      "difficulty": "applied",
+      "prompt": "A Blob container has service SAS credentials bound to policy contractor-read. Other clients use a different policy and must keep working. Which action revokes the contractor group without rotating an account key?",
+      "select": 1,
+      "options": [
+        {
+          "id": "delete",
+          "text": "Delete the contractor-read policy identifier.",
+          "explanation": "The group's credentials lose their referenced server-side policy."
+        },
+        {
+          "id": "key",
+          "text": "Regenerate both storage account keys.",
+          "explanation": "This is broader than requested and disrupts other key-signed clients."
+        },
+        {
+          "id": "rbac",
+          "text": "Remove the contractors' Azure Reader roles.",
+          "explanation": "These requests use a key-signed SAS, not their Azure Reader assignments."
+        },
+        {
+          "id": "tier",
+          "text": "Move the blobs to Cool.",
+          "explanation": "An access tier does not revoke authorization."
+        }
+      ],
+      "correct": [
+        "delete"
+      ],
+      "knowledge": "knowledge/storage/access/stored-access-policies.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/rest/api/storageservices/define-stored-access-policy",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/sas-service-create-dotnet",
+        "https://learn.microsoft.com/en-us/rest/api/storageservices/set-container-acl"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-policy-compatible",
+      "family": "st-policy-compatible",
+      "revision": 1,
+      "topic": "storage.access.stored-policies",
+      "objectives": [
+        "st-03"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which Azure Storage credential can reference a stored access policy on a blob container?",
+      "select": 1,
+      "options": [
+        {
+          "id": "service",
+          "text": "A service SAS for a blob in that container.",
+          "explanation": "Service SAS supports the container's signed policy identifier."
+        },
+        {
+          "id": "account",
+          "text": "An account SAS for Blob and Queue.",
+          "explanation": "Account SAS does not support stored access policies."
+        },
+        {
+          "id": "delegation",
+          "text": "A Blob user delegation SAS.",
+          "explanation": "User delegation SAS cannot reference this policy."
+        },
+        {
+          "id": "oauth",
+          "text": "A Microsoft Entra OAuth access token.",
+          "explanation": "OAuth authorization does not use SAS stored policy identifiers."
+        }
+      ],
+      "correct": [
+        "service"
+      ],
+      "knowledge": "knowledge/storage/access/stored-access-policies.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/rest/api/storageservices/define-stored-access-policy",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/sas-service-create-dotnet",
+        "https://learn.microsoft.com/en-us/rest/api/storageservices/set-container-acl"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-policy-sixth",
+      "family": "st-policy-sixth",
+      "revision": 1,
+      "topic": "storage.access.stored-policies",
+      "objectives": [
+        "st-03"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "An administrator tries to add a sixth stored access policy to a Blob container. The existing five policies must remain. Why does Azure reject the request?",
+      "select": 1,
+      "options": [
+        {
+          "id": "limit",
+          "text": "The container supports at most five stored access policies.",
+          "explanation": "The quota applies to policy entries per resource."
+        },
+        {
+          "id": "sas",
+          "text": "The account has already issued five SAS tokens.",
+          "explanation": "Issued SAS count is not this policy quota."
+        },
+        {
+          "id": "blob",
+          "text": "The container contains more than five blobs.",
+          "explanation": "Blob count does not control the stored-policy limit."
+        },
+        {
+          "id": "key",
+          "text": "Only one stored policy is allowed per account key.",
+          "explanation": "Policies are resource-scoped, not one entry per signing key."
+        }
+      ],
+      "correct": [
+        "limit"
+      ],
+      "knowledge": "knowledge/storage/access/stored-access-policies.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/rest/api/storageservices/define-stored-access-policy",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/sas-service-create-dotnet",
+        "https://learn.microsoft.com/en-us/rest/api/storageservices/set-container-acl"
+      ],
+      "verified": "2026-10-01"
+    }
+  ]
+}

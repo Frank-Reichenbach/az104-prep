@@ -4,7 +4,7 @@
 
 Outline: 2026-04-17. Source checked: 2026-10-01.
 
-6/82 objectives have documented topic coverage. This measures presence of researched content, not mastery or exhaustive scenario coverage.
+17/82 objectives have documented topic coverage. This measures presence of researched content, not mastery or exhaustive scenario coverage.
 
 [Microsoft scope source](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-104). IDs below are local identifiers.
 
@@ -46,27 +46,27 @@ Outline: 2026-04-17. Source checked: 2026-10-01.
 
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
-| st-01 | Restrict storage access through network rules | — | 0 | Planned |
-| st-02 | Delegate access using shared access signatures | — | 0 | Planned |
-| st-03 | Control SAS access with stored policies | — | 0 | Planned |
-| st-04 | Administer storage account keys | — | 0 | Planned |
-| st-05 | Enable identity-based Azure Files access | — | 0 | Planned |
+| st-01 | Restrict storage access through network rules | [Storage firewalls and network access](../knowledge/storage/access/network-rules.md) | 4 | Documented; not lab-tested |
+| st-02 | Delegate access using shared access signatures | [Shared access signatures](../knowledge/storage/access/shared-access-signatures.md) | 4 | Documented; not lab-tested |
+| st-03 | Control SAS access with stored policies | [Stored access policies](../knowledge/storage/access/stored-access-policies.md) | 3 | Documented; not lab-tested |
+| st-04 | Administer storage account keys | [Storage account access keys](../knowledge/storage/access/account-keys.md) | 3 | Documented; not lab-tested |
+| st-05 | Enable identity-based Azure Files access | [Azure Files identity-based SMB access](../knowledge/storage/azure-files/identity-based-access.md) | 3 | Documented; not lab-tested |
 
 ### Storage accounts
 
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
-| st-06 | Provision and configure storage accounts | — | 0 | Planned |
-| st-07 | Select and configure redundancy | — | 0 | Planned |
-| st-08 | Set up object replication | — | 0 | Planned |
-| st-09 | Configure storage encryption | — | 0 | Planned |
-| st-10 | Transfer and manage data with AzCopy and Storage Explorer | — | 0 | Planned |
+| st-06 | Provision and configure storage accounts | [Storage account creation and configuration](../knowledge/storage/accounts/configuration.md) | 3 | Documented; not lab-tested |
+| st-07 | Select and configure redundancy | [Storage redundancy and failover planning](../knowledge/storage/accounts/redundancy.md) | 3 | Documented; not lab-tested |
+| st-08 | Set up object replication | [Blob object replication](../knowledge/storage/blob-storage/object-replication.md) | 3 | Documented; not lab-tested |
+| st-09 | Configure storage encryption | [Storage encryption and customer-managed keys](../knowledge/storage/accounts/encryption.md), [Blob encryption scopes](../knowledge/storage/blob-storage/encryption-scopes.md) | 6 | Documented; not lab-tested |
+| st-10 | Transfer and manage data with AzCopy and Storage Explorer | [AzCopy transfers and synchronization](../knowledge/storage/transfers/azcopy.md), [Storage Explorer connections and data management](../knowledge/storage/transfers/storage-explorer.md) | 6 | Documented; not lab-tested |
 
 ### Files and blobs
 
 | ID | Task | Knowledge | Questions | Status |
 | --- | --- | --- | --- | --- |
-| st-11 | Provision and configure Azure file shares | — | 0 | Planned |
+| st-11 | Provision and configure Azure file shares | [Azure file share provisioning and configuration](../knowledge/storage/azure-files/configuration.md) | 3 | Documented; not lab-tested |
 | st-12 | Provision and configure blob containers | [Blob containers](../knowledge/storage/blob-storage/containers.md) | 5 | Documented; not lab-tested |
 | st-13 | Choose and configure access tiers | [Blob access tiers](../knowledge/storage/blob-storage/access-tiers.md) | 5 | Documented; not lab-tested |
 | st-14 | Recover blobs and containers using soft deletion | [Blob soft deletion](../knowledge/storage/blob-storage/blob-soft-delete.md), [Container soft deletion](../knowledge/storage/blob-storage/container-soft-delete.md) | 8 | Documented; not lab-tested |

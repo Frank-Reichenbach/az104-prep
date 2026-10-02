@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "st-account-general-purpose",
+      "family": "st-account-general-purpose",
+      "revision": 1,
+      "topic": "storage.accounts.configuration",
+      "objectives": [
+        "st-06"
+      ],
+      "difficulty": "applied",
+      "prompt": "A new Azure account must host standard Blob, Queue, Table, and File storage services. Which account type is the usual fit?",
+      "select": 1,
+      "options": [
+        {
+          "id": "v2",
+          "text": "Standard general-purpose v2.",
+          "explanation": "It supports the four listed storage services."
+        },
+        {
+          "id": "block",
+          "text": "Premium block blob account.",
+          "explanation": "It does not host all four requested services."
+        },
+        {
+          "id": "file",
+          "text": "Premium file share account.",
+          "explanation": "A file-only account cannot provide Blob, Queue, and Table storage."
+        },
+        {
+          "id": "page",
+          "text": "Premium page blob account.",
+          "explanation": "Page blob specialization does not satisfy the multi-service requirement."
+        }
+      ],
+      "correct": [
+        "v2"
+      ],
+      "knowledge": "knowledge/storage/accounts/configuration.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-require-secure-transfer"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-account-name-scope",
+      "family": "st-account-name-scope",
+      "revision": 1,
+      "topic": "storage.accounts.configuration",
+      "objectives": [
+        "st-06"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A valid storage account name is already used by another customer in another region. Your deployment fails. What must change?",
+      "select": 1,
+      "options": [
+        {
+          "id": "name",
+          "text": "Choose a different globally unique account name.",
+          "explanation": "The storage namespace is not scoped only to your subscription or region."
+        },
+        {
+          "id": "group",
+          "text": "Move the request to a different resource group but keep the name.",
+          "explanation": "A resource group change does not resolve global uniqueness."
+        },
+        {
+          "id": "tag",
+          "text": "Add a unique Environment tag.",
+          "explanation": "Tags do not change the service namespace."
+        },
+        {
+          "id": "tier",
+          "text": "Select Cool as the default Blob tier.",
+          "explanation": "An access tier does not affect account-name availability."
+        }
+      ],
+      "correct": [
+        "name"
+      ],
+      "knowledge": "knowledge/storage/accounts/configuration.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-require-secure-transfer"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-account-transfer-tls",
+      "family": "st-account-transfer-tls",
+      "revision": 1,
+      "topic": "storage.accounts.configuration",
+      "objectives": [
+        "st-06"
+      ],
+      "difficulty": "foundation",
+      "prompt": "For Azure Storage REST clients, which two settings separately enforce encrypted transport and the minimum permitted TLS protocol version?",
+      "select": 2,
+      "options": [
+        {
+          "id": "https",
+          "text": "Secure transfer required.",
+          "explanation": "This rejects insecure HTTP requests."
+        },
+        {
+          "id": "tls",
+          "text": "Minimum TLS version.",
+          "explanation": "This controls the minimum TLS protocol accepted."
+        },
+        {
+          "id": "cool",
+          "text": "Default Blob access tier.",
+          "explanation": "A storage tier is unrelated to transport encryption."
+        },
+        {
+          "id": "lrs",
+          "text": "Locally redundant storage.",
+          "explanation": "Replication placement does not set TLS requirements."
+        }
+      ],
+      "correct": [
+        "https",
+        "tls"
+      ],
+      "knowledge": "knowledge/storage/accounts/configuration.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-require-secure-transfer"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

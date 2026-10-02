@@ -6,6 +6,8 @@ Pages. Implementation is tracked in [STATUS.md](STATUS.md).
 ## User decisions
 
 - English throughout.
+- Continue topic by topic without pausing between batches; report each completed
+  topic with a brief "Done: <topic>." update.
 - Some hands-on Azure experience; studying for the exam in 2–3 months
   (approximately December 2026–January 2027).
 - A local browser app first. Keep the question bank reusable by a later skill.

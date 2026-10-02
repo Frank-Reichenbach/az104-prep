@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "st-key-rotation-order",
+      "family": "st-key-rotation-order",
+      "revision": 1,
+      "topic": "storage.access.keys",
+      "objectives": [
+        "st-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "All known consumers of an Azure storage account currently use key1. You need to rotate both keys while maintaining service. What should happen before regenerating key1?",
+      "select": 1,
+      "options": [
+        {
+          "id": "switch",
+          "text": "Move all consumers to valid key2 and verify requests.",
+          "explanation": "The second key provides continuity while key1 changes."
+        },
+        {
+          "id": "both",
+          "text": "Regenerate both keys at the same time.",
+          "explanation": "Both existing credentials would become invalid."
+        },
+        {
+          "id": "delete",
+          "text": "Delete and recreate the storage account.",
+          "explanation": "Credential rotation does not require deleting stored data."
+        },
+        {
+          "id": "sas",
+          "text": "Generate a long-lived SAS signed with the old key1.",
+          "explanation": "That SAS also depends on the key being regenerated."
+        }
+      ],
+      "correct": [
+        "switch"
+      ],
+      "knowledge": "knowledge/storage/access/account-keys.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage",
+        "https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-key-blob-disable",
+      "family": "st-key-blob-disable",
+      "revision": 1,
+      "topic": "storage.access.keys",
+      "objectives": [
+        "st-04"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Shared Key access is disabled on an Azure storage account. Which credential can still authorize a Blob read when its permissions, lifetime, and network path are valid?",
+      "select": 1,
+      "options": [
+        {
+          "id": "user",
+          "text": "A user delegation SAS.",
+          "explanation": "Its signing authority is Entra-backed rather than an account key."
+        },
+        {
+          "id": "service",
+          "text": "A service SAS signed by key1.",
+          "explanation": "Blob service SAS authorization relies on Shared Key."
+        },
+        {
+          "id": "account",
+          "text": "An account SAS signed by key2.",
+          "explanation": "Changing which account key signed it does not bypass the restriction."
+        },
+        {
+          "id": "connection",
+          "text": "A connection string containing key1.",
+          "explanation": "Embedding the key in a connection string does not change authorization type."
+        }
+      ],
+      "correct": [
+        "user"
+      ],
+      "knowledge": "knowledge/storage/access/account-keys.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage",
+        "https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-key-admin-role",
+      "family": "st-key-admin-role",
+      "revision": 1,
+      "topic": "storage.access.keys",
+      "objectives": [
+        "st-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "An operator must regenerate storage account keys. Which built-in role specifically includes this task?",
+      "select": 1,
+      "options": [
+        {
+          "id": "operator",
+          "text": "Storage Account Key Operator Service Role.",
+          "explanation": "It includes listing and regenerating storage account keys."
+        },
+        {
+          "id": "reader",
+          "text": "Storage Blob Data Reader.",
+          "explanation": "Reading blob data does not grant account-key management."
+        },
+        {
+          "id": "queue",
+          "text": "Storage Queue Data Message Sender.",
+          "explanation": "Sending queue messages is unrelated to key regeneration."
+        },
+        {
+          "id": "delegator",
+          "text": "Storage Blob Delegator.",
+          "explanation": "Generating a user delegation key is different from rotating account keys."
+        }
+      ],
+      "correct": [
+        "operator"
+      ],
+      "knowledge": "knowledge/storage/access/account-keys.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage",
+        "https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
+      ],
+      "verified": "2026-10-01"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "st-files-protocol",
+      "family": "st-files-protocol",
+      "revision": 1,
+      "topic": "storage.files.configuration",
+      "objectives": [
+        "st-11"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A team wants Windows SMB clients and NFS clients to access one Azure file share through both protocols. What constraint matters?",
+      "select": 1,
+      "options": [
+        {
+          "id": "single",
+          "text": "An Azure file share uses one protocol, SMB or NFS.",
+          "explanation": "Use a design that respects the per-share protocol choice."
+        },
+        {
+          "id": "dual",
+          "text": "Every share simultaneously supports both protocols.",
+          "explanation": "The account can host supported shares, but each share has its selected protocol."
+        },
+        {
+          "id": "blob",
+          "text": "Enable Blob NFS 3.0 to add NFS to an SMB file share.",
+          "explanation": "That setting belongs to Blob Storage, not the Files share protocol."
+        },
+        {
+          "id": "tier",
+          "text": "Move the share to the Hot Blob access tier.",
+          "explanation": "Blob tier settings do not change Azure Files protocols."
+        }
+      ],
+      "correct": [
+        "single"
+      ],
+      "knowledge": "knowledge/storage/azure-files/configuration.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning",
+        "https://learn.microsoft.com/en-us/azure/storage/files/create-classic-file-share",
+        "https://learn.microsoft.com/en-us/azure/storage/files/modify-file-share",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-files-port",
+      "family": "st-files-port",
+      "revision": 1,
+      "topic": "storage.files.configuration",
+      "objectives": [
+        "st-11"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A Windows client resolves the Azure Files endpoint but cannot establish an SMB connection. Which outbound port should be checked first?",
+      "select": 1,
+      "options": [
+        {
+          "id": "smb",
+          "text": "TCP 445.",
+          "explanation": "SMB mounting requires this network path."
+        },
+        {
+          "id": "https",
+          "text": "Only TCP 443.",
+          "explanation": "HTTPS management or REST access does not prove SMB connectivity."
+        },
+        {
+          "id": "rdp",
+          "text": "TCP 3389.",
+          "explanation": "That is associated with RDP, not the SMB share endpoint."
+        },
+        {
+          "id": "ssh",
+          "text": "TCP 22.",
+          "explanation": "SSH access is not the Windows SMB mounting protocol."
+        }
+      ],
+      "correct": [
+        "smb"
+      ],
+      "knowledge": "knowledge/storage/azure-files/configuration.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning",
+        "https://learn.microsoft.com/en-us/azure/storage/files/create-classic-file-share",
+        "https://learn.microsoft.com/en-us/azure/storage/files/modify-file-share",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-files-provisioned-v2",
+      "family": "st-files-provisioned-v2",
+      "revision": 1,
+      "topic": "storage.files.configuration",
+      "objectives": [
+        "st-11"
+      ],
+      "difficulty": "applied",
+      "prompt": "A new classic Azure file share must use Microsoft's current recommended billing model where supported and allow separate capacity, IOPS, and throughput provisioning. Which model fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "v2",
+          "text": "Provisioned v2 in a suitable FileStorage account.",
+          "explanation": "It provides the stated independent provisioning model."
+        },
+        {
+          "id": "blob",
+          "text": "Standard Blob Hot tier.",
+          "explanation": "Blob access tiers are not file-share billing models."
+        },
+        {
+          "id": "payg",
+          "text": "StorageV2 pay-as-you-go.",
+          "explanation": "It is supported but is not the requested provisioned v2 model."
+        },
+        {
+          "id": "v1",
+          "text": "Provisioned v1 solely because all FileStorage accounts require it.",
+          "explanation": "Current FileStorage accounts also support provisioned v2."
+        }
+      ],
+      "correct": [
+        "v2"
+      ],
+      "knowledge": "knowledge/storage/azure-files/configuration.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning",
+        "https://learn.microsoft.com/en-us/azure/storage/files/create-classic-file-share",
+        "https://learn.microsoft.com/en-us/azure/storage/files/modify-file-share",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

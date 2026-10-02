@@ -12,6 +12,9 @@ user-provided Frank-Reichenbach/az104-prep repository.
 Read PLAN.md, STATUS.md, and exam/coverage.md before continuing work. Resume the
 next unfinished task. These documents preserve decisions across sessions.
 Do not ask for approval again for work already authorized in PLAN.md.
+Continue the approved expansion one topic at a time without stopping after
+each batch. After completing a topic, report only "Done: <topic>." and proceed
+to the next unfinished topic. Keep the persistent handoff current.
 
 ## Content
 

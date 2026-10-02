@@ -1,5 +1,8 @@
 # Blob Storage
 
+- [Object replication](object-replication.md): asynchronous container copies.
+- [Encryption scopes](encryption-scopes.md): container/blob encryption boundaries.
+
 Available administrative tasks:
 
 1. [Containers](containers.md): create a namespace for blobs and control access.

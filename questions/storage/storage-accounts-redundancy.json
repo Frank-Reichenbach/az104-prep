@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "st-redundancy-zones-only",
+      "family": "st-redundancy-zones-only",
+      "revision": 1,
+      "topic": "storage.accounts.redundancy",
+      "objectives": [
+        "st-07"
+      ],
+      "difficulty": "applied",
+      "prompt": "A supported standard storage account must remain available during a single availability-zone outage, and policy prohibits storing replicas outside its primary region. Which option fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "zrs",
+          "text": "ZRS.",
+          "explanation": "It distributes replicas across zones inside the primary region."
+        },
+        {
+          "id": "lrs",
+          "text": "LRS.",
+          "explanation": "Local copies do not provide the requested zone isolation."
+        },
+        {
+          "id": "grs",
+          "text": "GRS.",
+          "explanation": "It includes a second region and does not provide ZRS in the primary."
+        },
+        {
+          "id": "gzrs",
+          "text": "GZRS.",
+          "explanation": "It adds a remote regional copy, violating the stated boundary."
+        }
+      ],
+      "correct": [
+        "zrs"
+      ],
+      "knowledge": "knowledge/storage/accounts/redundancy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
+        "https://learn.microsoft.com/en-us/azure/storage/common/geo-redundant-design",
+        "https://learn.microsoft.com/en-us/azure/storage/common/redundancy-migration"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-redundancy-secondary-read",
+      "family": "st-redundancy-secondary-read",
+      "revision": 1,
+      "topic": "storage.accounts.redundancy",
+      "objectives": [
+        "st-07"
+      ],
+      "difficulty": "applied",
+      "prompt": "A Blob application needs zone redundancy in the primary region and read access to the secondary region before any failover. Which supported configuration fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "ragzrs",
+          "text": "RA-GZRS.",
+          "explanation": "It combines primary zone replication, geo-replication, and secondary read access."
+        },
+        {
+          "id": "gzrs",
+          "text": "GZRS.",
+          "explanation": "Without RA, the secondary is not available for ordinary pre-failover reads."
+        },
+        {
+          "id": "ragrs",
+          "text": "RA-GRS.",
+          "explanation": "It provides secondary reads but not zonal replication in the primary."
+        },
+        {
+          "id": "zrs",
+          "text": "ZRS.",
+          "explanation": "It has no secondary regional replica."
+        }
+      ],
+      "correct": [
+        "ragzrs"
+      ],
+      "knowledge": "knowledge/storage/accounts/redundancy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
+        "https://learn.microsoft.com/en-us/azure/storage/common/geo-redundant-design",
+        "https://learn.microsoft.com/en-us/azure/storage/common/redundancy-migration"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-redundancy-stale-secondary",
+      "family": "st-redundancy-stale-secondary",
+      "revision": 1,
+      "topic": "storage.accounts.redundancy",
+      "objectives": [
+        "st-07"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A blob was just created in an RA-GRS account. A secondary-endpoint read cannot find it, while the primary read succeeds. What is the likely explanation?",
+      "select": 1,
+      "options": [
+        {
+          "id": "async",
+          "text": "The asynchronous geo-copy has not yet reached the secondary.",
+          "explanation": "Secondary reads can lag primary writes."
+        },
+        {
+          "id": "sync",
+          "text": "Every primary write is synchronously committed in both regions.",
+          "explanation": "Geo-replication does not provide that guarantee."
+        },
+        {
+          "id": "write",
+          "text": "The client must upload the blob directly to the secondary.",
+          "explanation": "The secondary read endpoint is not writable."
+        },
+        {
+          "id": "tier",
+          "text": "All secondary blobs are automatically archived.",
+          "explanation": "RA-GRS does not automatically change every blob to Archive."
+        }
+      ],
+      "correct": [
+        "async"
+      ],
+      "knowledge": "knowledge/storage/accounts/redundancy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
+        "https://learn.microsoft.com/en-us/azure/storage/common/geo-redundant-design",
+        "https://learn.microsoft.com/en-us/azure/storage/common/redundancy-migration"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

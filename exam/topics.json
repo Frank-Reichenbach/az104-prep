@@ -1,10 +1,233 @@
 [
-  {"id":"storage.blobs.containers","domain":"storage","title":"Blob containers","path":"knowledge/storage/blob-storage/containers.md","objectives":["st-12"],"status":"documented","verified":"2026-10-01"},
-  {"id":"storage.blobs.access-tiers","domain":"storage","title":"Blob access tiers","path":"knowledge/storage/blob-storage/access-tiers.md","objectives":["st-13"],"status":"documented","verified":"2026-10-01"},
-  {"id":"storage.blobs.lifecycle","domain":"storage","title":"Blob lifecycle management","path":"knowledge/storage/blob-storage/lifecycle-management.md","objectives":["st-16"],"status":"documented","verified":"2026-10-01"},
-  {"id":"storage.blobs.soft-delete","domain":"storage","title":"Blob soft deletion","path":"knowledge/storage/blob-storage/blob-soft-delete.md","objectives":["st-14"],"status":"documented","verified":"2026-10-01"},
-  {"id":"storage.blobs.container-soft-delete","domain":"storage","title":"Container soft deletion","path":"knowledge/storage/blob-storage/container-soft-delete.md","objectives":["st-14"],"status":"documented","verified":"2026-10-01"},
-  {"id":"storage.blobs.versioning","domain":"storage","title":"Blob versioning","path":"knowledge/storage/blob-storage/versioning.md","objectives":["st-17"],"status":"documented","verified":"2026-10-01"},
-  {"id":"storage.files.snapshots","domain":"storage","title":"Azure Files share snapshots","path":"knowledge/storage/azure-files/snapshots.md","objectives":["st-15"],"status":"documented","verified":"2026-10-01"},
-  {"id":"storage.files.soft-delete","domain":"storage","title":"Azure Files share soft deletion","path":"knowledge/storage/azure-files/soft-delete.md","objectives":["st-15"],"status":"documented","verified":"2026-10-01"}
+  {
+    "id": "storage.blobs.containers",
+    "domain": "storage",
+    "title": "Blob containers",
+    "path": "knowledge/storage/blob-storage/containers.md",
+    "objectives": [
+      "st-12"
+    ],
+    "status": "documented",
+    "verified": "2026-10-01"
+  },
+  {
+    "id": "storage.blobs.access-tiers",
+    "domain": "storage",
+    "title": "Blob access tiers",
+    "path": "knowledge/storage/blob-storage/access-tiers.md",
+    "objectives": [
+      "st-13"
+    ],
+    "status": "documented",
+    "verified": "2026-10-01"
+  },
+  {
+    "id": "storage.blobs.lifecycle",
+    "domain": "storage",
+    "title": "Blob lifecycle management",
+    "path": "knowledge/storage/blob-storage/lifecycle-management.md",
+    "objectives": [
+      "st-16"
+    ],
+    "status": "documented",
+    "verified": "2026-10-01"
+  },
+  {
+    "id": "storage.blobs.soft-delete",
+    "domain": "storage",
+    "title": "Blob soft deletion",
+    "path": "knowledge/storage/blob-storage/blob-soft-delete.md",
+    "objectives": [
+      "st-14"
+    ],
+    "status": "documented",
+    "verified": "2026-10-01"
+  },
+  {
+    "id": "storage.blobs.container-soft-delete",
+    "domain": "storage",
+    "title": "Container soft deletion",
+    "path": "knowledge/storage/blob-storage/container-soft-delete.md",
+    "objectives": [
+      "st-14"
+    ],
+    "status": "documented",
+    "verified": "2026-10-01"
+  },
+  {
+    "id": "storage.blobs.versioning",
+    "domain": "storage",
+    "title": "Blob versioning",
+    "path": "knowledge/storage/blob-storage/versioning.md",
+    "objectives": [
+      "st-17"
+    ],
+    "status": "documented",
+    "verified": "2026-10-01"
+  },
+  {
+    "id": "storage.files.snapshots",
+    "domain": "storage",
+    "title": "Azure Files share snapshots",
+    "path": "knowledge/storage/azure-files/snapshots.md",
+    "objectives": [
+      "st-15"
+    ],
+    "status": "documented",
+    "verified": "2026-10-01"
+  },
+  {
+    "id": "storage.files.soft-delete",
+    "domain": "storage",
+    "title": "Azure Files share soft deletion",
+    "path": "knowledge/storage/azure-files/soft-delete.md",
+    "objectives": [
+      "st-15"
+    ],
+    "status": "documented",
+    "verified": "2026-10-01"
+  },
+  {
+    "id": "storage.access.sas",
+    "domain": "storage",
+    "title": "Shared access signatures",
+    "path": "knowledge/storage/access/shared-access-signatures.md",
+    "objectives": [
+      "st-02"
+    ],
+    "status": "documented",
+    "verified": "2026-10-01"
+  },
+  {
+    "id": "storage.access.stored-policies",
+    "domain": "storage",
+    "title": "Stored access policies",
+    "path": "knowledge/storage/access/stored-access-policies.md",
+    "objectives": [
+      "st-03"
+    ],
+    "status": "documented",
+    "verified": "2026-10-01"
+  },
+  {
+    "id": "storage.access.keys",
+    "domain": "storage",
+    "title": "Storage account access keys",
+    "path": "knowledge/storage/access/account-keys.md",
+    "objectives": [
+      "st-04"
+    ],
+    "status": "documented",
+    "verified": "2026-10-01"
+  },
+  {
+    "id": "storage.access.network",
+    "domain": "storage",
+    "title": "Storage firewalls and network access",
+    "path": "knowledge/storage/access/network-rules.md",
+    "objectives": [
+      "st-01"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "storage.files.identity",
+    "domain": "storage",
+    "title": "Azure Files identity-based SMB access",
+    "path": "knowledge/storage/azure-files/identity-based-access.md",
+    "objectives": [
+      "st-05"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "storage.accounts.configuration",
+    "domain": "storage",
+    "title": "Storage account creation and configuration",
+    "path": "knowledge/storage/accounts/configuration.md",
+    "objectives": [
+      "st-06"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "storage.accounts.redundancy",
+    "domain": "storage",
+    "title": "Storage redundancy and failover planning",
+    "path": "knowledge/storage/accounts/redundancy.md",
+    "objectives": [
+      "st-07"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "storage.blobs.object-replication",
+    "domain": "storage",
+    "title": "Blob object replication",
+    "path": "knowledge/storage/blob-storage/object-replication.md",
+    "objectives": [
+      "st-08"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "storage.accounts.encryption",
+    "domain": "storage",
+    "title": "Storage encryption and customer-managed keys",
+    "path": "knowledge/storage/accounts/encryption.md",
+    "objectives": [
+      "st-09"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "storage.blobs.encryption-scopes",
+    "domain": "storage",
+    "title": "Blob encryption scopes",
+    "path": "knowledge/storage/blob-storage/encryption-scopes.md",
+    "objectives": [
+      "st-09"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "storage.transfers.azcopy",
+    "domain": "storage",
+    "title": "AzCopy transfers and synchronization",
+    "path": "knowledge/storage/transfers/azcopy.md",
+    "objectives": [
+      "st-10"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "storage.transfers.explorer",
+    "domain": "storage",
+    "title": "Storage Explorer connections and data management",
+    "path": "knowledge/storage/transfers/storage-explorer.md",
+    "objectives": [
+      "st-10"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  },
+  {
+    "id": "storage.files.configuration",
+    "domain": "storage",
+    "title": "Azure file share provisioning and configuration",
+    "path": "knowledge/storage/azure-files/configuration.md",
+    "objectives": [
+      "st-11"
+    ],
+    "status": "documented",
+    "verified": "2026-10-02"
+  }
 ]

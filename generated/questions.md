@@ -401,3 +401,454 @@ A. The deleted share version used by --deleted-version
 B. A Blob Storage version ID from az storage blob list
 C. A SAS expiry date to use as the deleted version
 D. Any snapshot timestamp from any active share
+
+## st-key-rotation-order
+
+All known consumers of an Azure storage account currently use key1. You need to rotate both keys while maintaining service. What should happen before regenerating key1?
+
+Select **1**. Difficulty: applied.
+
+A. Move all consumers to valid key2 and verify requests.
+B. Regenerate both keys at the same time.
+C. Delete and recreate the storage account.
+D. Generate a long-lived SAS signed with the old key1.
+
+## st-key-blob-disable
+
+Shared Key access is disabled on an Azure storage account. Which credential can still authorize a Blob read when its permissions, lifetime, and network path are valid?
+
+Select **1**. Difficulty: foundation.
+
+A. A user delegation SAS.
+B. A service SAS signed by key1.
+C. An account SAS signed by key2.
+D. A connection string containing key1.
+
+## st-key-admin-role
+
+An operator must regenerate storage account keys. Which built-in role specifically includes this task?
+
+Select **1**. Difficulty: applied.
+
+A. Storage Account Key Operator Service Role.
+B. Storage Blob Data Reader.
+C. Storage Queue Data Message Sender.
+D. Storage Blob Delegator.
+
+## st-net-sas-denied
+
+An external client's valid Blob SAS fails after the storage firewall is restricted to selected networks. Its IP is not allowed. What addresses the network problem without broadening SAS permissions?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. Allow the client's approved public egress IP in the storage firewall.
+B. Add write permission to the SAS.
+C. Replace the SAS with the storage account key.
+D. Extend the SAS expiry by a week.
+
+## st-net-default-allow
+
+A storage account has an approved subnet rule, but defaultAction is Allow. Other internet clients with valid authorization can still read blobs. Which change enforces the selected-network allowlist?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. Set defaultAction to Deny.
+B. Assign the approved subnet Azure Reader.
+C. Raise the minimum TLS version.
+D. Switch the account from LRS to ZRS.
+
+## st-net-subnet-requirements
+
+A VM subnet must access Blob Storage through a service endpoint while the storage firewall defaults to Deny. Which two configurations are required for this network path?
+
+Select **2**. Difficulty: applied.
+
+A. Enable the appropriate Storage service endpoint on the subnet.
+B. Add that subnet to the storage account's virtual network rules.
+C. Create a Blob private endpoint as well.
+D. Enable anonymous Blob access.
+
+## st-net-arm-data
+
+A user can view a storage account's ARM properties but cannot download blobs from an unlisted network. What explains this difference?
+
+Select **1**. Difficulty: foundation.
+
+A. Storage firewall rules govern data-plane requests, while ARM management has separate authorization.
+B. Viewing ARM properties automatically grants blob read access.
+C. Only Archive blobs are subject to the firewall.
+D. Every portal visit automatically issues a firewall-bypassing SAS.
+
+## st-sas-private-download
+
+A contractor needs to download one private Azure blob for 20 minutes. The issuing application can authenticate through Microsoft Entra ID. Which approach follows Microsoft's recommended SAS signing method?
+
+Select **1**. Difficulty: applied.
+
+A. Issue a read-only user delegation SAS for that blob.
+B. Issue an account-key-signed service SAS.
+C. Send an account SAS permitting all storage services.
+D. Send storage account key1.
+
+## st-sas-cli-user
+
+Which two Azure CLI options select Entra-backed user delegation when generating a Blob SAS with az storage blob generate-sas?
+
+Select **2**. Difficulty: foundation.
+
+A. --auth-mode login
+B. --as-user
+C. --account-key
+D. --policy-name
+
+## st-sas-key-expiry
+
+A Blob user delegation SAS declares an expiry three days from now, but its signing delegation key expires tonight. Network access and permissions are correct. What happens after the key expires?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. The SAS can no longer authorize requests.
+B. Storage automatically renews the key for the remaining three days.
+C. The SAS switches to account key2.
+D. A container stored access policy extends the key.
+
+## st-sas-delegator-scope
+
+An identity has Storage Blob Data Reader only on one container. It cannot obtain a user delegation key for the storage account. Which additional scoped grant addresses key generation while retaining narrow data access?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. Storage Blob Delegator on the storage account.
+B. Storage Blob Data Reader on another container.
+C. Enable anonymous read on the container.
+D. Create a stored access policy on the container.
+
+## st-policy-revoke-group
+
+A Blob container has service SAS credentials bound to policy contractor-read. Other clients use a different policy and must keep working. Which action revokes the contractor group without rotating an account key?
+
+Select **1**. Difficulty: applied.
+
+A. Delete the contractor-read policy identifier.
+B. Regenerate both storage account keys.
+C. Remove the contractors' Azure Reader roles.
+D. Move the blobs to Cool.
+
+## st-policy-compatible
+
+Which Azure Storage credential can reference a stored access policy on a blob container?
+
+Select **1**. Difficulty: foundation.
+
+A. A service SAS for a blob in that container.
+B. An account SAS for Blob and Queue.
+C. A Blob user delegation SAS.
+D. A Microsoft Entra OAuth access token.
+
+## st-policy-sixth
+
+An administrator tries to add a sixth stored access policy to a Blob container. The existing five policies must remain. Why does Azure reject the request?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. The container supports at most five stored access policies.
+B. The account has already issued five SAS tokens.
+C. The container contains more than five blobs.
+D. Only one stored policy is allowed per account key.
+
+## st-account-general-purpose
+
+A new Azure account must host standard Blob, Queue, Table, and File storage services. Which account type is the usual fit?
+
+Select **1**. Difficulty: applied.
+
+A. Standard general-purpose v2.
+B. Premium block blob account.
+C. Premium file share account.
+D. Premium page blob account.
+
+## st-account-name-scope
+
+A valid storage account name is already used by another customer in another region. Your deployment fails. What must change?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. Choose a different globally unique account name.
+B. Move the request to a different resource group but keep the name.
+C. Add a unique Environment tag.
+D. Select Cool as the default Blob tier.
+
+## st-account-transfer-tls
+
+For Azure Storage REST clients, which two settings separately enforce encrypted transport and the minimum permitted TLS protocol version?
+
+Select **2**. Difficulty: foundation.
+
+A. Secure transfer required.
+B. Minimum TLS version.
+C. Default Blob access tier.
+D. Locally redundant storage.
+
+## st-encryption-default
+
+A new Azure storage account uses default encryption settings. What protects its persisted data?
+
+Select **1**. Difficulty: foundation.
+
+A. Service-side encryption with Microsoft-managed keys.
+B. No encryption until a SAS is created.
+C. Only TLS encrypts stored blobs.
+D. The account access key is the customer-managed encryption key.
+
+## st-encryption-identity
+
+A storage account using CMK cannot access its Key Vault key. The operator can view the key, but the account's managed identity has no key permissions. What addresses the service's missing permission?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. Grant the storage identity Key Vault Crypto Service Encryption User.
+B. Grant the operator Reader on the storage account.
+C. Regenerate storage account key1.
+D. Create a user delegation SAS.
+
+## st-encryption-vault-protection
+
+Which two Key Vault protections are required by the documented Azure Storage CMK configuration?
+
+Select **2**. Difficulty: applied.
+
+A. Soft delete.
+B. Purge protection.
+C. Anonymous key access.
+D. Blob container soft deletion on the vault.
+
+## st-redundancy-zones-only
+
+A supported standard storage account must remain available during a single availability-zone outage, and policy prohibits storing replicas outside its primary region. Which option fits?
+
+Select **1**. Difficulty: applied.
+
+A. ZRS.
+B. LRS.
+C. GRS.
+D. GZRS.
+
+## st-redundancy-secondary-read
+
+A Blob application needs zone redundancy in the primary region and read access to the secondary region before any failover. Which supported configuration fits?
+
+Select **1**. Difficulty: applied.
+
+A. RA-GZRS.
+B. GZRS.
+C. RA-GRS.
+D. ZRS.
+
+## st-redundancy-stale-secondary
+
+A blob was just created in an RA-GRS account. A secondary-endpoint read cannot find it, while the primary read succeeds. What is the likely explanation?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. The asynchronous geo-copy has not yet reached the secondary.
+B. Every primary write is synchronously committed in both regions.
+C. The client must upload the blob directly to the secondary.
+D. All secondary blobs are automatically archived.
+
+## st-scope-enforced
+
+A new Blob container must require encryption scope tenant-a for every upload. Which configuration enforces that?
+
+Select **1**. Difficulty: applied.
+
+A. Set tenant-a as default and prevent encryption-scope overrides.
+B. Set tenant-a as default but permit overrides.
+C. Add a container metadata entry named tenant-a.
+D. Assign Storage Blob Data Reader to tenant-a.
+
+## st-scope-disabled
+
+A previously readable blob starts returning 403 immediately after its encryption scope is disabled. Permissions and network paths are unchanged. What should be checked?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. Re-enable the required scope after confirming the change was unintended.
+B. Rotate the account access keys.
+C. Enable anonymous access.
+D. Rename the blob's version ID.
+
+## st-scope-vs-rbac
+
+A team configures different Blob encryption scopes for two customers. What still needs separate configuration?
+
+Select **1**. Difficulty: foundation.
+
+A. Authorization deciding which customer may read each blob.
+B. No authorization is needed because scope names authenticate users.
+C. Every scope automatically issues a customer SAS.
+D. Each scope automatically creates its own storage firewall.
+
+## st-or-prerequisites
+
+Two supported Blob accounts will use object replication. Which two prerequisite configurations are needed?
+
+Select **2**. Difficulty: applied.
+
+A. Enable Blob versioning on source and destination.
+B. Enable Blob change feed on the source.
+C. Set both accounts' default tier to Archive.
+D. Create one stored access policy on every source blob.
+
+## st-or-existing-scope
+
+New block blobs replicate successfully, but files uploaded last month do not. The policy was created today with its default copy scope. What should you inspect first?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. Whether the copy scope includes existing objects.
+B. Whether both accounts use identical access keys.
+C. Whether both accounts have LRS disabled.
+D. Whether every source blob has the destination account's name.
+
+## st-or-destination-writes
+
+An application wants to write directly into a destination container governed by Azure Blob object replication. What must the design account for?
+
+Select **1**. Difficulty: foundation.
+
+A. Ordinary writes to that destination container are blocked while the policy applies.
+B. Writes automatically merge into the source container.
+C. Every destination write synchronously updates all source versions.
+D. Selecting Hot automatically makes the destination writable.
+
+## st-files-protocol
+
+A team wants Windows SMB clients and NFS clients to access one Azure file share through both protocols. What constraint matters?
+
+Select **1**. Difficulty: foundation.
+
+A. An Azure file share uses one protocol, SMB or NFS.
+B. Every share simultaneously supports both protocols.
+C. Enable Blob NFS 3.0 to add NFS to an SMB file share.
+D. Move the share to the Hot Blob access tier.
+
+## st-files-port
+
+A Windows client resolves the Azure Files endpoint but cannot establish an SMB connection. Which outbound port should be checked first?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. TCP 445.
+B. Only TCP 443.
+C. TCP 3389.
+D. TCP 22.
+
+## st-files-provisioned-v2
+
+A new classic Azure file share must use Microsoft's current recommended billing model where supported and allow separate capacity, IOPS, and throughput provisioning. Which model fits?
+
+Select **1**. Difficulty: applied.
+
+A. Provisioned v2 in a suitable FileStorage account.
+B. Standard Blob Hot tier.
+C. StorageV2 pay-as-you-go.
+D. Provisioned v1 solely because all FileStorage accounts require it.
+
+## st-files-two-layers
+
+A user authenticates successfully to an Azure SMB file share and has Storage File Data SMB Share Contributor. A directory ACL denies the user access. What is the expected result?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. Access to that directory is denied.
+B. The Contributor assignment overrides every directory ACL.
+C. Azure automatically retries with the storage account key.
+D. The directory becomes anonymously accessible.
+
+## st-files-share-role
+
+A group needs to read files through identity-based Azure Files SMB. Its directory ACLs already allow read. Which share-level role supplies the required read access?
+
+Select **1**. Difficulty: applied.
+
+A. Storage File Data SMB Share Reader.
+B. Storage Blob Data Reader.
+C. Reader on the storage account.
+D. Storage Blob Delegator.
+
+## st-files-source-count
+
+A storage account uses AD DS for identity-based Azure Files SMB authentication. Can one share in that same account independently use Entra Domain Services as a second simultaneous identity source?
+
+Select **1**. Difficulty: foundation.
+
+A. No; one identity source is configured per storage account.
+B. Yes; every share independently selects its identity source.
+C. Yes; adding an ACL switches the authentication provider.
+D. Yes; a stored access policy selects the provider.
+
+## st-azcopy-one-way
+
+An AzCopy sync job uses a local directory as source and a Blob container as destination. A file is added only to the destination. Does that operation copy it back to the local source?
+
+Select **1**. Difficulty: foundation.
+
+A. No; sync follows the configured source-to-destination direction.
+B. Yes; every sync is bidirectional.
+C. Only if an account SAS is used.
+D. Only if the storage account uses ZRS.
+
+## st-azcopy-delete-destination
+
+A team wants AzCopy to upload newer local files while preserving destination-only blobs. Which approach follows Microsoft's suggestion when synchronization deletion is unnecessary?
+
+Select **1**. Difficulty: applied.
+
+A. Use copy with --overwrite=ifSourceNewer.
+B. Use sync with --delete-destination=true.
+C. Use remove before every copy.
+D. Reverse source and destination and enable deletion.
+
+## st-azcopy-resume
+
+A SAS-authenticated AzCopy job stops after some transfers. You retain the job plan, but the SAS expired. What is the appropriate recovery?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. Obtain a valid SAS and resume the job with its ID.
+B. Resume without credentials because plans permanently save SAS tokens.
+C. Delete all successfully copied data before retrying.
+D. Grant Azure Reader and reuse the expired SAS.
+
+## st-explorer-data-only
+
+A user has Storage Blob Data Reader on one container but cannot browse the subscription's storage accounts. How can Storage Explorer access that container without broad management permissions?
+
+Select **1**. Difficulty: applied.
+
+A. Attach the container URL using Microsoft Entra ID.
+B. Require Owner on the entire subscription.
+C. Make every blob anonymous.
+D. Rename the local connection to the subscription ID.
+
+## st-explorer-reader-data
+
+Storage Explorer shows an account after a user receives Azure Reader, but Entra-authenticated Blob downloads still fail. Which permission should be checked?
+
+Select **1**. Difficulty: troubleshooting.
+
+A. A Blob data role at the container or an inherited scope.
+B. Permission to change account tags.
+C. Permission to create management-group policy definitions.
+D. Permission to create public DNS zones.
+
+## st-explorer-detach
+
+You detach a SAS-connected Blob container from Storage Explorer. What does this action do?
+
+Select **1**. Difficulty: foundation.
+
+A. Removes the local connection entry.
+B. Deletes the container and all versions.
+C. Revokes every copy of the SAS.
+D. Regenerates the storage account signing key.

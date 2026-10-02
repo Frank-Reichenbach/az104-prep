@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "st-sas-private-download",
+      "family": "st-sas-private-download",
+      "revision": 1,
+      "topic": "storage.access.sas",
+      "objectives": [
+        "st-02"
+      ],
+      "difficulty": "applied",
+      "prompt": "A contractor needs to download one private Azure blob for 20 minutes. The issuing application can authenticate through Microsoft Entra ID. Which approach follows Microsoft's recommended SAS signing method?",
+      "select": 1,
+      "options": [
+        {
+          "id": "delegation",
+          "text": "Issue a read-only user delegation SAS for that blob.",
+          "explanation": "Entra-backed delegation avoids sharing or storing an account signing key."
+        },
+        {
+          "id": "service",
+          "text": "Issue an account-key-signed service SAS.",
+          "explanation": "It can delegate access, but does not use the recommended available Entra-backed signing method."
+        },
+        {
+          "id": "account",
+          "text": "Send an account SAS permitting all storage services.",
+          "explanation": "This expands both scope and signing-key exposure beyond the scenario."
+        },
+        {
+          "id": "key",
+          "text": "Send storage account key1.",
+          "explanation": "An account key is not constrained to one blob or 20 minutes."
+        }
+      ],
+      "correct": [
+        "delegation"
+      ],
+      "knowledge": "knowledge/storage/access/shared-access-signatures.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli",
+        "https://learn.microsoft.com/en-us/cli/azure/storage/blob#az-storage-blob-generate-sas"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-sas-cli-user",
+      "family": "st-sas-cli-user",
+      "revision": 1,
+      "topic": "storage.access.sas",
+      "objectives": [
+        "st-02"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which two Azure CLI options select Entra-backed user delegation when generating a Blob SAS with az storage blob generate-sas?",
+      "select": 2,
+      "options": [
+        {
+          "id": "login",
+          "text": "--auth-mode login",
+          "explanation": "This selects the signed-in Entra identity."
+        },
+        {
+          "id": "user",
+          "text": "--as-user",
+          "explanation": "This selects user delegation SAS generation."
+        },
+        {
+          "id": "key",
+          "text": "--account-key",
+          "explanation": "This supplies a Shared Key credential instead."
+        },
+        {
+          "id": "policy",
+          "text": "--policy-name",
+          "explanation": "A stored access policy applies to a service SAS, not user delegation."
+        }
+      ],
+      "correct": [
+        "login",
+        "user"
+      ],
+      "knowledge": "knowledge/storage/access/shared-access-signatures.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli",
+        "https://learn.microsoft.com/en-us/cli/azure/storage/blob#az-storage-blob-generate-sas"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-sas-key-expiry",
+      "family": "st-sas-key-expiry",
+      "revision": 1,
+      "topic": "storage.access.sas",
+      "objectives": [
+        "st-02"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A Blob user delegation SAS declares an expiry three days from now, but its signing delegation key expires tonight. Network access and permissions are correct. What happens after the key expires?",
+      "select": 1,
+      "options": [
+        {
+          "id": "expire",
+          "text": "The SAS can no longer authorize requests.",
+          "explanation": "A SAS cannot remain usable beyond its signing delegation key."
+        },
+        {
+          "id": "renew",
+          "text": "Storage automatically renews the key for the remaining three days.",
+          "explanation": "The service does not renew the issuer's delegation key automatically."
+        },
+        {
+          "id": "switch",
+          "text": "The SAS switches to account key2.",
+          "explanation": "The existing signature cannot change signing keys."
+        },
+        {
+          "id": "policy",
+          "text": "A container stored access policy extends the key.",
+          "explanation": "Stored policies do not apply to user delegation SAS."
+        }
+      ],
+      "correct": [
+        "expire"
+      ],
+      "knowledge": "knowledge/storage/access/shared-access-signatures.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli",
+        "https://learn.microsoft.com/en-us/cli/azure/storage/blob#az-storage-blob-generate-sas"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-sas-delegator-scope",
+      "family": "st-sas-delegator-scope",
+      "revision": 1,
+      "topic": "storage.access.sas",
+      "objectives": [
+        "st-02"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "An identity has Storage Blob Data Reader only on one container. It cannot obtain a user delegation key for the storage account. Which additional scoped grant addresses key generation while retaining narrow data access?",
+      "select": 1,
+      "options": [
+        {
+          "id": "delegator",
+          "text": "Storage Blob Delegator on the storage account.",
+          "explanation": "The account-level delegation action can be combined with the existing container data role."
+        },
+        {
+          "id": "repeat",
+          "text": "Storage Blob Data Reader on another container.",
+          "explanation": "A container assignment does not grant the account-level key-generation action."
+        },
+        {
+          "id": "anonymous",
+          "text": "Enable anonymous read on the container.",
+          "explanation": "Public reading does not authorize delegation-key generation."
+        },
+        {
+          "id": "policy",
+          "text": "Create a stored access policy on the container.",
+          "explanation": "A stored policy controls service SAS, not this Entra operation."
+        }
+      ],
+      "correct": [
+        "delegator"
+      ],
+      "knowledge": "knowledge/storage/access/shared-access-signatures.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli",
+        "https://learn.microsoft.com/en-us/cli/azure/storage/blob#az-storage-blob-generate-sas"
+      ],
+      "verified": "2026-10-01"
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "st-net-sas-denied",
+      "family": "st-net-sas-denied",
+      "revision": 1,
+      "topic": "storage.access.network",
+      "objectives": [
+        "st-01"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "An external client's valid Blob SAS fails after the storage firewall is restricted to selected networks. Its IP is not allowed. What addresses the network problem without broadening SAS permissions?",
+      "select": 1,
+      "options": [
+        {
+          "id": "rule",
+          "text": "Allow the client's approved public egress IP in the storage firewall.",
+          "explanation": "The request needs an allowed network path as well as valid authorization."
+        },
+        {
+          "id": "write",
+          "text": "Add write permission to the SAS.",
+          "explanation": "More data permissions do not override the firewall."
+        },
+        {
+          "id": "key",
+          "text": "Replace the SAS with the storage account key.",
+          "explanation": "A key does not exempt this client from network filtering."
+        },
+        {
+          "id": "expiry",
+          "text": "Extend the SAS expiry by a week.",
+          "explanation": "The token is already valid; duration is not the failing condition."
+        }
+      ],
+      "correct": [
+        "rule"
+      ],
+      "knowledge": "knowledge/storage/access/network-rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-set-default-access",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-limitations"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-net-default-allow",
+      "family": "st-net-default-allow",
+      "revision": 1,
+      "topic": "storage.access.network",
+      "objectives": [
+        "st-01"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A storage account has an approved subnet rule, but defaultAction is Allow. Other internet clients with valid authorization can still read blobs. Which change enforces the selected-network allowlist?",
+      "select": 1,
+      "options": [
+        {
+          "id": "deny",
+          "text": "Set defaultAction to Deny.",
+          "explanation": "Unmatched public-endpoint traffic is then denied."
+        },
+        {
+          "id": "rbac",
+          "text": "Assign the approved subnet Azure Reader.",
+          "explanation": "Subnets do not gain data-plane network exclusivity through Reader."
+        },
+        {
+          "id": "tls",
+          "text": "Raise the minimum TLS version.",
+          "explanation": "TLS policy does not enforce a subnet allowlist."
+        },
+        {
+          "id": "replication",
+          "text": "Switch the account from LRS to ZRS.",
+          "explanation": "Redundancy is unrelated to client network admission."
+        }
+      ],
+      "correct": [
+        "deny"
+      ],
+      "knowledge": "knowledge/storage/access/network-rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-set-default-access",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-limitations"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-net-subnet-requirements",
+      "family": "st-net-subnet-requirements",
+      "revision": 1,
+      "topic": "storage.access.network",
+      "objectives": [
+        "st-01"
+      ],
+      "difficulty": "applied",
+      "prompt": "A VM subnet must access Blob Storage through a service endpoint while the storage firewall defaults to Deny. Which two configurations are required for this network path?",
+      "select": 2,
+      "options": [
+        {
+          "id": "endpoint",
+          "text": "Enable the appropriate Storage service endpoint on the subnet.",
+          "explanation": "The endpoint supplies the subnet identity and service route."
+        },
+        {
+          "id": "rule",
+          "text": "Add that subnet to the storage account's virtual network rules.",
+          "explanation": "The account must explicitly allow the subnet."
+        },
+        {
+          "id": "private",
+          "text": "Create a Blob private endpoint as well.",
+          "explanation": "Private Link is an alternative path, not a requirement for this service-endpoint design."
+        },
+        {
+          "id": "anonymous",
+          "text": "Enable anonymous Blob access.",
+          "explanation": "Network connectivity does not require removing data authorization."
+        }
+      ],
+      "correct": [
+        "endpoint",
+        "rule"
+      ],
+      "knowledge": "knowledge/storage/access/network-rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-set-default-access",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-limitations"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-net-arm-data",
+      "family": "st-net-arm-data",
+      "revision": 1,
+      "topic": "storage.access.network",
+      "objectives": [
+        "st-01"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A user can view a storage account's ARM properties but cannot download blobs from an unlisted network. What explains this difference?",
+      "select": 1,
+      "options": [
+        {
+          "id": "planes",
+          "text": "Storage firewall rules govern data-plane requests, while ARM management has separate authorization.",
+          "explanation": "Viewing resource configuration does not prove blob network reachability."
+        },
+        {
+          "id": "inherit",
+          "text": "Viewing ARM properties automatically grants blob read access.",
+          "explanation": "Management visibility does not provide data authorization or bypass filtering."
+        },
+        {
+          "id": "tier",
+          "text": "Only Archive blobs are subject to the firewall.",
+          "explanation": "The firewall is not restricted to one access tier."
+        },
+        {
+          "id": "sas",
+          "text": "Every portal visit automatically issues a firewall-bypassing SAS.",
+          "explanation": "Portal use does not establish a universal network bypass."
+        }
+      ],
+      "correct": [
+        "planes"
+      ],
+      "knowledge": "knowledge/storage/access/network-rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-set-default-access",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-limitations"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

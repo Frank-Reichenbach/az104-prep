@@ -1,8 +1,7 @@
 # Knowledge index
 
-Read [exam coverage](../exam/coverage.md) for objective-level status. The initial
-material contains eight detailed storage topics; the remaining domains are
-inventoried but not researched yet.
+Read [exam coverage](../exam/coverage.md) for objective-level status. Storage
+has documented coverage; expansion continues through the remaining domains.
 
 - [Identity and governance](identity/index.md)
 - [Storage](storage/index.md)

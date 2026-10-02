@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "st-files-two-layers",
+      "family": "st-files-two-layers",
+      "revision": 1,
+      "topic": "storage.files.identity",
+      "objectives": [
+        "st-05"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A user authenticates successfully to an Azure SMB file share and has Storage File Data SMB Share Contributor. A directory ACL denies the user access. What is the expected result?",
+      "select": 1,
+      "options": [
+        {
+          "id": "deny",
+          "text": "Access to that directory is denied.",
+          "explanation": "Share access does not override the directory's Windows ACL."
+        },
+        {
+          "id": "allow",
+          "text": "The Contributor assignment overrides every directory ACL.",
+          "explanation": "Both authorization layers matter."
+        },
+        {
+          "id": "key",
+          "text": "Azure automatically retries with the storage account key.",
+          "explanation": "Identity access does not silently become an administrative key mount."
+        },
+        {
+          "id": "public",
+          "text": "The directory becomes anonymously accessible.",
+          "explanation": "Neither share RBAC nor an ACL enables anonymous SMB access."
+        }
+      ],
+      "correct": [
+        "deny"
+      ],
+      "knowledge": "knowledge/storage/azure-files/identity-based-access.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-assign-share-level-permissions",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-configure-file-level-permissions"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-files-share-role",
+      "family": "st-files-share-role",
+      "revision": 1,
+      "topic": "storage.files.identity",
+      "objectives": [
+        "st-05"
+      ],
+      "difficulty": "applied",
+      "prompt": "A group needs to read files through identity-based Azure Files SMB. Its directory ACLs already allow read. Which share-level role supplies the required read access?",
+      "select": 1,
+      "options": [
+        {
+          "id": "smb",
+          "text": "Storage File Data SMB Share Reader.",
+          "explanation": "This role grants the SMB share-level read permission."
+        },
+        {
+          "id": "blob",
+          "text": "Storage Blob Data Reader.",
+          "explanation": "Blob roles do not authorize Azure Files SMB reads."
+        },
+        {
+          "id": "reader",
+          "text": "Reader on the storage account.",
+          "explanation": "ARM resource visibility is not SMB data access."
+        },
+        {
+          "id": "delegator",
+          "text": "Storage Blob Delegator.",
+          "explanation": "Blob delegation-key generation is unrelated to SMB share access."
+        }
+      ],
+      "correct": [
+        "smb"
+      ],
+      "knowledge": "knowledge/storage/azure-files/identity-based-access.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-assign-share-level-permissions",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-configure-file-level-permissions"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-files-source-count",
+      "family": "st-files-source-count",
+      "revision": 1,
+      "topic": "storage.files.identity",
+      "objectives": [
+        "st-05"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A storage account uses AD DS for identity-based Azure Files SMB authentication. Can one share in that same account independently use Entra Domain Services as a second simultaneous identity source?",
+      "select": 1,
+      "options": [
+        {
+          "id": "one",
+          "text": "No; one identity source is configured per storage account.",
+          "explanation": "Separate identity-source requirements require a different account design."
+        },
+        {
+          "id": "share",
+          "text": "Yes; every share independently selects its identity source.",
+          "explanation": "The source is configured at the account level."
+        },
+        {
+          "id": "acl",
+          "text": "Yes; adding an ACL switches the authentication provider.",
+          "explanation": "ACLs authorize files after authentication."
+        },
+        {
+          "id": "sas",
+          "text": "Yes; a stored access policy selects the provider.",
+          "explanation": "SAS policies do not select SMB Kerberos identity sources."
+        }
+      ],
+      "correct": [
+        "one"
+      ],
+      "knowledge": "knowledge/storage/azure-files/identity-based-access.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-assign-share-level-permissions",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-configure-file-level-permissions"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

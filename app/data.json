@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "outlineEffective": "2026-04-17",
   "coverage": {
-    "covered": 6,
+    "covered": 17,
     "total": 82
   },
   "topics": [
@@ -93,6 +93,149 @@
       ],
       "status": "documented",
       "verified": "2026-10-01"
+    },
+    {
+      "id": "storage.access.sas",
+      "domain": "storage",
+      "title": "Shared access signatures",
+      "path": "knowledge/storage/access/shared-access-signatures.md",
+      "objectives": [
+        "st-02"
+      ],
+      "status": "documented",
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "storage.access.stored-policies",
+      "domain": "storage",
+      "title": "Stored access policies",
+      "path": "knowledge/storage/access/stored-access-policies.md",
+      "objectives": [
+        "st-03"
+      ],
+      "status": "documented",
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "storage.access.keys",
+      "domain": "storage",
+      "title": "Storage account access keys",
+      "path": "knowledge/storage/access/account-keys.md",
+      "objectives": [
+        "st-04"
+      ],
+      "status": "documented",
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "storage.access.network",
+      "domain": "storage",
+      "title": "Storage firewalls and network access",
+      "path": "knowledge/storage/access/network-rules.md",
+      "objectives": [
+        "st-01"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "storage.files.identity",
+      "domain": "storage",
+      "title": "Azure Files identity-based SMB access",
+      "path": "knowledge/storage/azure-files/identity-based-access.md",
+      "objectives": [
+        "st-05"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "storage.accounts.configuration",
+      "domain": "storage",
+      "title": "Storage account creation and configuration",
+      "path": "knowledge/storage/accounts/configuration.md",
+      "objectives": [
+        "st-06"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "storage.accounts.redundancy",
+      "domain": "storage",
+      "title": "Storage redundancy and failover planning",
+      "path": "knowledge/storage/accounts/redundancy.md",
+      "objectives": [
+        "st-07"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "storage.blobs.object-replication",
+      "domain": "storage",
+      "title": "Blob object replication",
+      "path": "knowledge/storage/blob-storage/object-replication.md",
+      "objectives": [
+        "st-08"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "storage.accounts.encryption",
+      "domain": "storage",
+      "title": "Storage encryption and customer-managed keys",
+      "path": "knowledge/storage/accounts/encryption.md",
+      "objectives": [
+        "st-09"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "storage.blobs.encryption-scopes",
+      "domain": "storage",
+      "title": "Blob encryption scopes",
+      "path": "knowledge/storage/blob-storage/encryption-scopes.md",
+      "objectives": [
+        "st-09"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "storage.transfers.azcopy",
+      "domain": "storage",
+      "title": "AzCopy transfers and synchronization",
+      "path": "knowledge/storage/transfers/azcopy.md",
+      "objectives": [
+        "st-10"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "storage.transfers.explorer",
+      "domain": "storage",
+      "title": "Storage Explorer connections and data management",
+      "path": "knowledge/storage/transfers/storage-explorer.md",
+      "objectives": [
+        "st-10"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "storage.files.configuration",
+      "domain": "storage",
+      "title": "Azure file share provisioning and configuration",
+      "path": "knowledge/storage/azure-files/configuration.md",
+      "objectives": [
+        "st-11"
+      ],
+      "status": "documented",
+      "verified": "2026-10-02"
     }
   ],
   "questions": [
@@ -1620,6 +1763,1825 @@
         "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-prevent-file-share-deletion"
       ],
       "verified": "2026-10-01"
+    },
+    {
+      "id": "st-key-rotation-order",
+      "family": "st-key-rotation-order",
+      "revision": 1,
+      "topic": "storage.access.keys",
+      "objectives": [
+        "st-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "All known consumers of an Azure storage account currently use key1. You need to rotate both keys while maintaining service. What should happen before regenerating key1?",
+      "select": 1,
+      "options": [
+        {
+          "id": "switch",
+          "text": "Move all consumers to valid key2 and verify requests.",
+          "explanation": "The second key provides continuity while key1 changes."
+        },
+        {
+          "id": "both",
+          "text": "Regenerate both keys at the same time.",
+          "explanation": "Both existing credentials would become invalid."
+        },
+        {
+          "id": "delete",
+          "text": "Delete and recreate the storage account.",
+          "explanation": "Credential rotation does not require deleting stored data."
+        },
+        {
+          "id": "sas",
+          "text": "Generate a long-lived SAS signed with the old key1.",
+          "explanation": "That SAS also depends on the key being regenerated."
+        }
+      ],
+      "correct": [
+        "switch"
+      ],
+      "knowledge": "knowledge/storage/access/account-keys.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage",
+        "https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-key-blob-disable",
+      "family": "st-key-blob-disable",
+      "revision": 1,
+      "topic": "storage.access.keys",
+      "objectives": [
+        "st-04"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Shared Key access is disabled on an Azure storage account. Which credential can still authorize a Blob read when its permissions, lifetime, and network path are valid?",
+      "select": 1,
+      "options": [
+        {
+          "id": "user",
+          "text": "A user delegation SAS.",
+          "explanation": "Its signing authority is Entra-backed rather than an account key."
+        },
+        {
+          "id": "service",
+          "text": "A service SAS signed by key1.",
+          "explanation": "Blob service SAS authorization relies on Shared Key."
+        },
+        {
+          "id": "account",
+          "text": "An account SAS signed by key2.",
+          "explanation": "Changing which account key signed it does not bypass the restriction."
+        },
+        {
+          "id": "connection",
+          "text": "A connection string containing key1.",
+          "explanation": "Embedding the key in a connection string does not change authorization type."
+        }
+      ],
+      "correct": [
+        "user"
+      ],
+      "knowledge": "knowledge/storage/access/account-keys.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage",
+        "https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-key-admin-role",
+      "family": "st-key-admin-role",
+      "revision": 1,
+      "topic": "storage.access.keys",
+      "objectives": [
+        "st-04"
+      ],
+      "difficulty": "applied",
+      "prompt": "An operator must regenerate storage account keys. Which built-in role specifically includes this task?",
+      "select": 1,
+      "options": [
+        {
+          "id": "operator",
+          "text": "Storage Account Key Operator Service Role.",
+          "explanation": "It includes listing and regenerating storage account keys."
+        },
+        {
+          "id": "reader",
+          "text": "Storage Blob Data Reader.",
+          "explanation": "Reading blob data does not grant account-key management."
+        },
+        {
+          "id": "queue",
+          "text": "Storage Queue Data Message Sender.",
+          "explanation": "Sending queue messages is unrelated to key regeneration."
+        },
+        {
+          "id": "delegator",
+          "text": "Storage Blob Delegator.",
+          "explanation": "Generating a user delegation key is different from rotating account keys."
+        }
+      ],
+      "correct": [
+        "operator"
+      ],
+      "knowledge": "knowledge/storage/access/account-keys.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage",
+        "https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-net-sas-denied",
+      "family": "st-net-sas-denied",
+      "revision": 1,
+      "topic": "storage.access.network",
+      "objectives": [
+        "st-01"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "An external client's valid Blob SAS fails after the storage firewall is restricted to selected networks. Its IP is not allowed. What addresses the network problem without broadening SAS permissions?",
+      "select": 1,
+      "options": [
+        {
+          "id": "rule",
+          "text": "Allow the client's approved public egress IP in the storage firewall.",
+          "explanation": "The request needs an allowed network path as well as valid authorization."
+        },
+        {
+          "id": "write",
+          "text": "Add write permission to the SAS.",
+          "explanation": "More data permissions do not override the firewall."
+        },
+        {
+          "id": "key",
+          "text": "Replace the SAS with the storage account key.",
+          "explanation": "A key does not exempt this client from network filtering."
+        },
+        {
+          "id": "expiry",
+          "text": "Extend the SAS expiry by a week.",
+          "explanation": "The token is already valid; duration is not the failing condition."
+        }
+      ],
+      "correct": [
+        "rule"
+      ],
+      "knowledge": "knowledge/storage/access/network-rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-set-default-access",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-limitations"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-net-default-allow",
+      "family": "st-net-default-allow",
+      "revision": 1,
+      "topic": "storage.access.network",
+      "objectives": [
+        "st-01"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A storage account has an approved subnet rule, but defaultAction is Allow. Other internet clients with valid authorization can still read blobs. Which change enforces the selected-network allowlist?",
+      "select": 1,
+      "options": [
+        {
+          "id": "deny",
+          "text": "Set defaultAction to Deny.",
+          "explanation": "Unmatched public-endpoint traffic is then denied."
+        },
+        {
+          "id": "rbac",
+          "text": "Assign the approved subnet Azure Reader.",
+          "explanation": "Subnets do not gain data-plane network exclusivity through Reader."
+        },
+        {
+          "id": "tls",
+          "text": "Raise the minimum TLS version.",
+          "explanation": "TLS policy does not enforce a subnet allowlist."
+        },
+        {
+          "id": "replication",
+          "text": "Switch the account from LRS to ZRS.",
+          "explanation": "Redundancy is unrelated to client network admission."
+        }
+      ],
+      "correct": [
+        "deny"
+      ],
+      "knowledge": "knowledge/storage/access/network-rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-set-default-access",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-limitations"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-net-subnet-requirements",
+      "family": "st-net-subnet-requirements",
+      "revision": 1,
+      "topic": "storage.access.network",
+      "objectives": [
+        "st-01"
+      ],
+      "difficulty": "applied",
+      "prompt": "A VM subnet must access Blob Storage through a service endpoint while the storage firewall defaults to Deny. Which two configurations are required for this network path?",
+      "select": 2,
+      "options": [
+        {
+          "id": "endpoint",
+          "text": "Enable the appropriate Storage service endpoint on the subnet.",
+          "explanation": "The endpoint supplies the subnet identity and service route."
+        },
+        {
+          "id": "rule",
+          "text": "Add that subnet to the storage account's virtual network rules.",
+          "explanation": "The account must explicitly allow the subnet."
+        },
+        {
+          "id": "private",
+          "text": "Create a Blob private endpoint as well.",
+          "explanation": "Private Link is an alternative path, not a requirement for this service-endpoint design."
+        },
+        {
+          "id": "anonymous",
+          "text": "Enable anonymous Blob access.",
+          "explanation": "Network connectivity does not require removing data authorization."
+        }
+      ],
+      "correct": [
+        "endpoint",
+        "rule"
+      ],
+      "knowledge": "knowledge/storage/access/network-rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-set-default-access",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-limitations"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-net-arm-data",
+      "family": "st-net-arm-data",
+      "revision": 1,
+      "topic": "storage.access.network",
+      "objectives": [
+        "st-01"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A user can view a storage account's ARM properties but cannot download blobs from an unlisted network. What explains this difference?",
+      "select": 1,
+      "options": [
+        {
+          "id": "planes",
+          "text": "Storage firewall rules govern data-plane requests, while ARM management has separate authorization.",
+          "explanation": "Viewing resource configuration does not prove blob network reachability."
+        },
+        {
+          "id": "inherit",
+          "text": "Viewing ARM properties automatically grants blob read access.",
+          "explanation": "Management visibility does not provide data authorization or bypass filtering."
+        },
+        {
+          "id": "tier",
+          "text": "Only Archive blobs are subject to the firewall.",
+          "explanation": "The firewall is not restricted to one access tier."
+        },
+        {
+          "id": "sas",
+          "text": "Every portal visit automatically issues a firewall-bypassing SAS.",
+          "explanation": "Portal use does not establish a universal network bypass."
+        }
+      ],
+      "correct": [
+        "planes"
+      ],
+      "knowledge": "knowledge/storage/access/network-rules.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-set-default-access",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-limitations"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-sas-private-download",
+      "family": "st-sas-private-download",
+      "revision": 1,
+      "topic": "storage.access.sas",
+      "objectives": [
+        "st-02"
+      ],
+      "difficulty": "applied",
+      "prompt": "A contractor needs to download one private Azure blob for 20 minutes. The issuing application can authenticate through Microsoft Entra ID. Which approach follows Microsoft's recommended SAS signing method?",
+      "select": 1,
+      "options": [
+        {
+          "id": "delegation",
+          "text": "Issue a read-only user delegation SAS for that blob.",
+          "explanation": "Entra-backed delegation avoids sharing or storing an account signing key."
+        },
+        {
+          "id": "service",
+          "text": "Issue an account-key-signed service SAS.",
+          "explanation": "It can delegate access, but does not use the recommended available Entra-backed signing method."
+        },
+        {
+          "id": "account",
+          "text": "Send an account SAS permitting all storage services.",
+          "explanation": "This expands both scope and signing-key exposure beyond the scenario."
+        },
+        {
+          "id": "key",
+          "text": "Send storage account key1.",
+          "explanation": "An account key is not constrained to one blob or 20 minutes."
+        }
+      ],
+      "correct": [
+        "delegation"
+      ],
+      "knowledge": "knowledge/storage/access/shared-access-signatures.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli",
+        "https://learn.microsoft.com/en-us/cli/azure/storage/blob#az-storage-blob-generate-sas"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-sas-cli-user",
+      "family": "st-sas-cli-user",
+      "revision": 1,
+      "topic": "storage.access.sas",
+      "objectives": [
+        "st-02"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which two Azure CLI options select Entra-backed user delegation when generating a Blob SAS with az storage blob generate-sas?",
+      "select": 2,
+      "options": [
+        {
+          "id": "login",
+          "text": "--auth-mode login",
+          "explanation": "This selects the signed-in Entra identity."
+        },
+        {
+          "id": "user",
+          "text": "--as-user",
+          "explanation": "This selects user delegation SAS generation."
+        },
+        {
+          "id": "key",
+          "text": "--account-key",
+          "explanation": "This supplies a Shared Key credential instead."
+        },
+        {
+          "id": "policy",
+          "text": "--policy-name",
+          "explanation": "A stored access policy applies to a service SAS, not user delegation."
+        }
+      ],
+      "correct": [
+        "login",
+        "user"
+      ],
+      "knowledge": "knowledge/storage/access/shared-access-signatures.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli",
+        "https://learn.microsoft.com/en-us/cli/azure/storage/blob#az-storage-blob-generate-sas"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-sas-key-expiry",
+      "family": "st-sas-key-expiry",
+      "revision": 1,
+      "topic": "storage.access.sas",
+      "objectives": [
+        "st-02"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A Blob user delegation SAS declares an expiry three days from now, but its signing delegation key expires tonight. Network access and permissions are correct. What happens after the key expires?",
+      "select": 1,
+      "options": [
+        {
+          "id": "expire",
+          "text": "The SAS can no longer authorize requests.",
+          "explanation": "A SAS cannot remain usable beyond its signing delegation key."
+        },
+        {
+          "id": "renew",
+          "text": "Storage automatically renews the key for the remaining three days.",
+          "explanation": "The service does not renew the issuer's delegation key automatically."
+        },
+        {
+          "id": "switch",
+          "text": "The SAS switches to account key2.",
+          "explanation": "The existing signature cannot change signing keys."
+        },
+        {
+          "id": "policy",
+          "text": "A container stored access policy extends the key.",
+          "explanation": "Stored policies do not apply to user delegation SAS."
+        }
+      ],
+      "correct": [
+        "expire"
+      ],
+      "knowledge": "knowledge/storage/access/shared-access-signatures.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli",
+        "https://learn.microsoft.com/en-us/cli/azure/storage/blob#az-storage-blob-generate-sas"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-sas-delegator-scope",
+      "family": "st-sas-delegator-scope",
+      "revision": 1,
+      "topic": "storage.access.sas",
+      "objectives": [
+        "st-02"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "An identity has Storage Blob Data Reader only on one container. It cannot obtain a user delegation key for the storage account. Which additional scoped grant addresses key generation while retaining narrow data access?",
+      "select": 1,
+      "options": [
+        {
+          "id": "delegator",
+          "text": "Storage Blob Delegator on the storage account.",
+          "explanation": "The account-level delegation action can be combined with the existing container data role."
+        },
+        {
+          "id": "repeat",
+          "text": "Storage Blob Data Reader on another container.",
+          "explanation": "A container assignment does not grant the account-level key-generation action."
+        },
+        {
+          "id": "anonymous",
+          "text": "Enable anonymous read on the container.",
+          "explanation": "Public reading does not authorize delegation-key generation."
+        },
+        {
+          "id": "policy",
+          "text": "Create a stored access policy on the container.",
+          "explanation": "A stored policy controls service SAS, not this Entra operation."
+        }
+      ],
+      "correct": [
+        "delegator"
+      ],
+      "knowledge": "knowledge/storage/access/shared-access-signatures.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli",
+        "https://learn.microsoft.com/en-us/cli/azure/storage/blob#az-storage-blob-generate-sas"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-policy-revoke-group",
+      "family": "st-policy-revoke-group",
+      "revision": 1,
+      "topic": "storage.access.stored-policies",
+      "objectives": [
+        "st-03"
+      ],
+      "difficulty": "applied",
+      "prompt": "A Blob container has service SAS credentials bound to policy contractor-read. Other clients use a different policy and must keep working. Which action revokes the contractor group without rotating an account key?",
+      "select": 1,
+      "options": [
+        {
+          "id": "delete",
+          "text": "Delete the contractor-read policy identifier.",
+          "explanation": "The group's credentials lose their referenced server-side policy."
+        },
+        {
+          "id": "key",
+          "text": "Regenerate both storage account keys.",
+          "explanation": "This is broader than requested and disrupts other key-signed clients."
+        },
+        {
+          "id": "rbac",
+          "text": "Remove the contractors' Azure Reader roles.",
+          "explanation": "These requests use a key-signed SAS, not their Azure Reader assignments."
+        },
+        {
+          "id": "tier",
+          "text": "Move the blobs to Cool.",
+          "explanation": "An access tier does not revoke authorization."
+        }
+      ],
+      "correct": [
+        "delete"
+      ],
+      "knowledge": "knowledge/storage/access/stored-access-policies.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/rest/api/storageservices/define-stored-access-policy",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/sas-service-create-dotnet",
+        "https://learn.microsoft.com/en-us/rest/api/storageservices/set-container-acl"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-policy-compatible",
+      "family": "st-policy-compatible",
+      "revision": 1,
+      "topic": "storage.access.stored-policies",
+      "objectives": [
+        "st-03"
+      ],
+      "difficulty": "foundation",
+      "prompt": "Which Azure Storage credential can reference a stored access policy on a blob container?",
+      "select": 1,
+      "options": [
+        {
+          "id": "service",
+          "text": "A service SAS for a blob in that container.",
+          "explanation": "Service SAS supports the container's signed policy identifier."
+        },
+        {
+          "id": "account",
+          "text": "An account SAS for Blob and Queue.",
+          "explanation": "Account SAS does not support stored access policies."
+        },
+        {
+          "id": "delegation",
+          "text": "A Blob user delegation SAS.",
+          "explanation": "User delegation SAS cannot reference this policy."
+        },
+        {
+          "id": "oauth",
+          "text": "A Microsoft Entra OAuth access token.",
+          "explanation": "OAuth authorization does not use SAS stored policy identifiers."
+        }
+      ],
+      "correct": [
+        "service"
+      ],
+      "knowledge": "knowledge/storage/access/stored-access-policies.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/rest/api/storageservices/define-stored-access-policy",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/sas-service-create-dotnet",
+        "https://learn.microsoft.com/en-us/rest/api/storageservices/set-container-acl"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-policy-sixth",
+      "family": "st-policy-sixth",
+      "revision": 1,
+      "topic": "storage.access.stored-policies",
+      "objectives": [
+        "st-03"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "An administrator tries to add a sixth stored access policy to a Blob container. The existing five policies must remain. Why does Azure reject the request?",
+      "select": 1,
+      "options": [
+        {
+          "id": "limit",
+          "text": "The container supports at most five stored access policies.",
+          "explanation": "The quota applies to policy entries per resource."
+        },
+        {
+          "id": "sas",
+          "text": "The account has already issued five SAS tokens.",
+          "explanation": "Issued SAS count is not this policy quota."
+        },
+        {
+          "id": "blob",
+          "text": "The container contains more than five blobs.",
+          "explanation": "Blob count does not control the stored-policy limit."
+        },
+        {
+          "id": "key",
+          "text": "Only one stored policy is allowed per account key.",
+          "explanation": "Policies are resource-scoped, not one entry per signing key."
+        }
+      ],
+      "correct": [
+        "limit"
+      ],
+      "knowledge": "knowledge/storage/access/stored-access-policies.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/rest/api/storageservices/define-stored-access-policy",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/sas-service-create-dotnet",
+        "https://learn.microsoft.com/en-us/rest/api/storageservices/set-container-acl"
+      ],
+      "verified": "2026-10-01"
+    },
+    {
+      "id": "st-account-general-purpose",
+      "family": "st-account-general-purpose",
+      "revision": 1,
+      "topic": "storage.accounts.configuration",
+      "objectives": [
+        "st-06"
+      ],
+      "difficulty": "applied",
+      "prompt": "A new Azure account must host standard Blob, Queue, Table, and File storage services. Which account type is the usual fit?",
+      "select": 1,
+      "options": [
+        {
+          "id": "v2",
+          "text": "Standard general-purpose v2.",
+          "explanation": "It supports the four listed storage services."
+        },
+        {
+          "id": "block",
+          "text": "Premium block blob account.",
+          "explanation": "It does not host all four requested services."
+        },
+        {
+          "id": "file",
+          "text": "Premium file share account.",
+          "explanation": "A file-only account cannot provide Blob, Queue, and Table storage."
+        },
+        {
+          "id": "page",
+          "text": "Premium page blob account.",
+          "explanation": "Page blob specialization does not satisfy the multi-service requirement."
+        }
+      ],
+      "correct": [
+        "v2"
+      ],
+      "knowledge": "knowledge/storage/accounts/configuration.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-require-secure-transfer"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-account-name-scope",
+      "family": "st-account-name-scope",
+      "revision": 1,
+      "topic": "storage.accounts.configuration",
+      "objectives": [
+        "st-06"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A valid storage account name is already used by another customer in another region. Your deployment fails. What must change?",
+      "select": 1,
+      "options": [
+        {
+          "id": "name",
+          "text": "Choose a different globally unique account name.",
+          "explanation": "The storage namespace is not scoped only to your subscription or region."
+        },
+        {
+          "id": "group",
+          "text": "Move the request to a different resource group but keep the name.",
+          "explanation": "A resource group change does not resolve global uniqueness."
+        },
+        {
+          "id": "tag",
+          "text": "Add a unique Environment tag.",
+          "explanation": "Tags do not change the service namespace."
+        },
+        {
+          "id": "tier",
+          "text": "Select Cool as the default Blob tier.",
+          "explanation": "An access tier does not affect account-name availability."
+        }
+      ],
+      "correct": [
+        "name"
+      ],
+      "knowledge": "knowledge/storage/accounts/configuration.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-require-secure-transfer"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-account-transfer-tls",
+      "family": "st-account-transfer-tls",
+      "revision": 1,
+      "topic": "storage.accounts.configuration",
+      "objectives": [
+        "st-06"
+      ],
+      "difficulty": "foundation",
+      "prompt": "For Azure Storage REST clients, which two settings separately enforce encrypted transport and the minimum permitted TLS protocol version?",
+      "select": 2,
+      "options": [
+        {
+          "id": "https",
+          "text": "Secure transfer required.",
+          "explanation": "This rejects insecure HTTP requests."
+        },
+        {
+          "id": "tls",
+          "text": "Minimum TLS version.",
+          "explanation": "This controls the minimum TLS protocol accepted."
+        },
+        {
+          "id": "cool",
+          "text": "Default Blob access tier.",
+          "explanation": "A storage tier is unrelated to transport encryption."
+        },
+        {
+          "id": "lrs",
+          "text": "Locally redundant storage.",
+          "explanation": "Replication placement does not set TLS requirements."
+        }
+      ],
+      "correct": [
+        "https",
+        "tls"
+      ],
+      "knowledge": "knowledge/storage/accounts/configuration.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-require-secure-transfer"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-encryption-default",
+      "family": "st-encryption-default",
+      "revision": 1,
+      "topic": "storage.accounts.encryption",
+      "objectives": [
+        "st-09"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A new Azure storage account uses default encryption settings. What protects its persisted data?",
+      "select": 1,
+      "options": [
+        {
+          "id": "managed",
+          "text": "Service-side encryption with Microsoft-managed keys.",
+          "explanation": "At-rest encryption is automatic by default."
+        },
+        {
+          "id": "none",
+          "text": "No encryption until a SAS is created.",
+          "explanation": "SAS authorizes requests; it does not enable default at-rest encryption."
+        },
+        {
+          "id": "tls",
+          "text": "Only TLS encrypts stored blobs.",
+          "explanation": "TLS protects transport, not persisted data."
+        },
+        {
+          "id": "account",
+          "text": "The account access key is the customer-managed encryption key.",
+          "explanation": "An authorization credential is not the vault-backed CMK."
+        }
+      ],
+      "correct": [
+        "managed"
+      ],
+      "knowledge": "knowledge/storage/accounts/encryption.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption",
+        "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-existing-account",
+        "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-encryption-identity",
+      "family": "st-encryption-identity",
+      "revision": 1,
+      "topic": "storage.accounts.encryption",
+      "objectives": [
+        "st-09"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A storage account using CMK cannot access its Key Vault key. The operator can view the key, but the account's managed identity has no key permissions. What addresses the service's missing permission?",
+      "select": 1,
+      "options": [
+        {
+          "id": "role",
+          "text": "Grant the storage identity Key Vault Crypto Service Encryption User.",
+          "explanation": "The service needs its own authorization to use the wrapping key."
+        },
+        {
+          "id": "reader",
+          "text": "Grant the operator Reader on the storage account.",
+          "explanation": "Operator resource visibility does not grant the service key access."
+        },
+        {
+          "id": "rotate",
+          "text": "Regenerate storage account key1.",
+          "explanation": "An account access key does not repair Key Vault authorization."
+        },
+        {
+          "id": "sas",
+          "text": "Create a user delegation SAS.",
+          "explanation": "SAS does not authorize the storage service to unwrap its encryption key."
+        }
+      ],
+      "correct": [
+        "role"
+      ],
+      "knowledge": "knowledge/storage/accounts/encryption.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption",
+        "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-existing-account",
+        "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-encryption-vault-protection",
+      "family": "st-encryption-vault-protection",
+      "revision": 1,
+      "topic": "storage.accounts.encryption",
+      "objectives": [
+        "st-09"
+      ],
+      "difficulty": "applied",
+      "prompt": "Which two Key Vault protections are required by the documented Azure Storage CMK configuration?",
+      "select": 2,
+      "options": [
+        {
+          "id": "soft",
+          "text": "Soft delete.",
+          "explanation": "It protects recoverability of deleted key material."
+        },
+        {
+          "id": "purge",
+          "text": "Purge protection.",
+          "explanation": "It prevents immediate permanent removal during retention."
+        },
+        {
+          "id": "anonymous",
+          "text": "Anonymous key access.",
+          "explanation": "Key operations must be authorized."
+        },
+        {
+          "id": "blob",
+          "text": "Blob container soft deletion on the vault.",
+          "explanation": "Key Vault is not a Blob container and does not use this setting."
+        }
+      ],
+      "correct": [
+        "soft",
+        "purge"
+      ],
+      "knowledge": "knowledge/storage/accounts/encryption.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption",
+        "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-existing-account",
+        "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-redundancy-zones-only",
+      "family": "st-redundancy-zones-only",
+      "revision": 1,
+      "topic": "storage.accounts.redundancy",
+      "objectives": [
+        "st-07"
+      ],
+      "difficulty": "applied",
+      "prompt": "A supported standard storage account must remain available during a single availability-zone outage, and policy prohibits storing replicas outside its primary region. Which option fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "zrs",
+          "text": "ZRS.",
+          "explanation": "It distributes replicas across zones inside the primary region."
+        },
+        {
+          "id": "lrs",
+          "text": "LRS.",
+          "explanation": "Local copies do not provide the requested zone isolation."
+        },
+        {
+          "id": "grs",
+          "text": "GRS.",
+          "explanation": "It includes a second region and does not provide ZRS in the primary."
+        },
+        {
+          "id": "gzrs",
+          "text": "GZRS.",
+          "explanation": "It adds a remote regional copy, violating the stated boundary."
+        }
+      ],
+      "correct": [
+        "zrs"
+      ],
+      "knowledge": "knowledge/storage/accounts/redundancy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
+        "https://learn.microsoft.com/en-us/azure/storage/common/geo-redundant-design",
+        "https://learn.microsoft.com/en-us/azure/storage/common/redundancy-migration"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-redundancy-secondary-read",
+      "family": "st-redundancy-secondary-read",
+      "revision": 1,
+      "topic": "storage.accounts.redundancy",
+      "objectives": [
+        "st-07"
+      ],
+      "difficulty": "applied",
+      "prompt": "A Blob application needs zone redundancy in the primary region and read access to the secondary region before any failover. Which supported configuration fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "ragzrs",
+          "text": "RA-GZRS.",
+          "explanation": "It combines primary zone replication, geo-replication, and secondary read access."
+        },
+        {
+          "id": "gzrs",
+          "text": "GZRS.",
+          "explanation": "Without RA, the secondary is not available for ordinary pre-failover reads."
+        },
+        {
+          "id": "ragrs",
+          "text": "RA-GRS.",
+          "explanation": "It provides secondary reads but not zonal replication in the primary."
+        },
+        {
+          "id": "zrs",
+          "text": "ZRS.",
+          "explanation": "It has no secondary regional replica."
+        }
+      ],
+      "correct": [
+        "ragzrs"
+      ],
+      "knowledge": "knowledge/storage/accounts/redundancy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
+        "https://learn.microsoft.com/en-us/azure/storage/common/geo-redundant-design",
+        "https://learn.microsoft.com/en-us/azure/storage/common/redundancy-migration"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-redundancy-stale-secondary",
+      "family": "st-redundancy-stale-secondary",
+      "revision": 1,
+      "topic": "storage.accounts.redundancy",
+      "objectives": [
+        "st-07"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A blob was just created in an RA-GRS account. A secondary-endpoint read cannot find it, while the primary read succeeds. What is the likely explanation?",
+      "select": 1,
+      "options": [
+        {
+          "id": "async",
+          "text": "The asynchronous geo-copy has not yet reached the secondary.",
+          "explanation": "Secondary reads can lag primary writes."
+        },
+        {
+          "id": "sync",
+          "text": "Every primary write is synchronously committed in both regions.",
+          "explanation": "Geo-replication does not provide that guarantee."
+        },
+        {
+          "id": "write",
+          "text": "The client must upload the blob directly to the secondary.",
+          "explanation": "The secondary read endpoint is not writable."
+        },
+        {
+          "id": "tier",
+          "text": "All secondary blobs are automatically archived.",
+          "explanation": "RA-GRS does not automatically change every blob to Archive."
+        }
+      ],
+      "correct": [
+        "async"
+      ],
+      "knowledge": "knowledge/storage/accounts/redundancy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
+        "https://learn.microsoft.com/en-us/azure/storage/common/geo-redundant-design",
+        "https://learn.microsoft.com/en-us/azure/storage/common/redundancy-migration"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-scope-enforced",
+      "family": "st-scope-enforced",
+      "revision": 1,
+      "topic": "storage.blobs.encryption-scopes",
+      "objectives": [
+        "st-09"
+      ],
+      "difficulty": "applied",
+      "prompt": "A new Blob container must require encryption scope tenant-a for every upload. Which configuration enforces that?",
+      "select": 1,
+      "options": [
+        {
+          "id": "prevent",
+          "text": "Set tenant-a as default and prevent encryption-scope overrides.",
+          "explanation": "Uploads cannot choose a different encryption boundary."
+        },
+        {
+          "id": "default",
+          "text": "Set tenant-a as default but permit overrides.",
+          "explanation": "Clients could select another scope."
+        },
+        {
+          "id": "tag",
+          "text": "Add a container metadata entry named tenant-a.",
+          "explanation": "Metadata does not enforce encryption selection."
+        },
+        {
+          "id": "rbac",
+          "text": "Assign Storage Blob Data Reader to tenant-a.",
+          "explanation": "A role assignment does not set the container encryption scope."
+        }
+      ],
+      "correct": [
+        "prevent"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/encryption-scopes.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-manage",
+        "https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/authentication/storage-troubleshoot-403-errors"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-scope-disabled",
+      "family": "st-scope-disabled",
+      "revision": 1,
+      "topic": "storage.blobs.encryption-scopes",
+      "objectives": [
+        "st-09"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A previously readable blob starts returning 403 immediately after its encryption scope is disabled. Permissions and network paths are unchanged. What should be checked?",
+      "select": 1,
+      "options": [
+        {
+          "id": "scope",
+          "text": "Re-enable the required scope after confirming the change was unintended.",
+          "explanation": "Disabled scopes prevent operations that depend on them."
+        },
+        {
+          "id": "key",
+          "text": "Rotate the account access keys.",
+          "explanation": "Authorization key rotation does not re-enable an encryption scope."
+        },
+        {
+          "id": "public",
+          "text": "Enable anonymous access.",
+          "explanation": "Anonymous authorization cannot restore a disabled encryption dependency."
+        },
+        {
+          "id": "version",
+          "text": "Rename the blob's version ID.",
+          "explanation": "Version IDs are not an encryption-scope availability control."
+        }
+      ],
+      "correct": [
+        "scope"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/encryption-scopes.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-manage",
+        "https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/authentication/storage-troubleshoot-403-errors"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-scope-vs-rbac",
+      "family": "st-scope-vs-rbac",
+      "revision": 1,
+      "topic": "storage.blobs.encryption-scopes",
+      "objectives": [
+        "st-09"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A team configures different Blob encryption scopes for two customers. What still needs separate configuration?",
+      "select": 1,
+      "options": [
+        {
+          "id": "access",
+          "text": "Authorization deciding which customer may read each blob.",
+          "explanation": "Encryption-key boundaries do not replace access-control assignments."
+        },
+        {
+          "id": "automatic",
+          "text": "No authorization is needed because scope names authenticate users.",
+          "explanation": "A scope name is not an identity credential."
+        },
+        {
+          "id": "sas",
+          "text": "Every scope automatically issues a customer SAS.",
+          "explanation": "Scope creation does not distribute access tokens."
+        },
+        {
+          "id": "firewall",
+          "text": "Each scope automatically creates its own storage firewall.",
+          "explanation": "Network rules belong to a separate account/network configuration."
+        }
+      ],
+      "correct": [
+        "access"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/encryption-scopes.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-manage",
+        "https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/authentication/storage-troubleshoot-403-errors"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-or-prerequisites",
+      "family": "st-or-prerequisites",
+      "revision": 1,
+      "topic": "storage.blobs.object-replication",
+      "objectives": [
+        "st-08"
+      ],
+      "difficulty": "applied",
+      "prompt": "Two supported Blob accounts will use object replication. Which two prerequisite configurations are needed?",
+      "select": 2,
+      "options": [
+        {
+          "id": "versions",
+          "text": "Enable Blob versioning on source and destination.",
+          "explanation": "Both accounts need versions for this replication feature."
+        },
+        {
+          "id": "feed",
+          "text": "Enable Blob change feed on the source.",
+          "explanation": "Replication tracks source changes through the change feed."
+        },
+        {
+          "id": "archive",
+          "text": "Set both accounts' default tier to Archive.",
+          "explanation": "Archive is not a prerequisite or a default account tier."
+        },
+        {
+          "id": "sas",
+          "text": "Create one stored access policy on every source blob.",
+          "explanation": "Stored policies are not per-blob objects or replication prerequisites."
+        }
+      ],
+      "correct": [
+        "versions",
+        "feed"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/object-replication.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-configure",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-change-feed"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-or-existing-scope",
+      "family": "st-or-existing-scope",
+      "revision": 1,
+      "topic": "storage.blobs.object-replication",
+      "objectives": [
+        "st-08"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "New block blobs replicate successfully, but files uploaded last month do not. The policy was created today with its default copy scope. What should you inspect first?",
+      "select": 1,
+      "options": [
+        {
+          "id": "scope",
+          "text": "Whether the copy scope includes existing objects.",
+          "explanation": "The default new-object scope does not backfill all earlier blobs."
+        },
+        {
+          "id": "keys",
+          "text": "Whether both accounts use identical access keys.",
+          "explanation": "Replication does not require matching account keys."
+        },
+        {
+          "id": "lrs",
+          "text": "Whether both accounts have LRS disabled.",
+          "explanation": "LRS alone does not explain successful new-only replication."
+        },
+        {
+          "id": "name",
+          "text": "Whether every source blob has the destination account's name.",
+          "explanation": "Blob names do not need to contain an account name."
+        }
+      ],
+      "correct": [
+        "scope"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/object-replication.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-configure",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-change-feed"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-or-destination-writes",
+      "family": "st-or-destination-writes",
+      "revision": 1,
+      "topic": "storage.blobs.object-replication",
+      "objectives": [
+        "st-08"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An application wants to write directly into a destination container governed by Azure Blob object replication. What must the design account for?",
+      "select": 1,
+      "options": [
+        {
+          "id": "readonly",
+          "text": "Ordinary writes to that destination container are blocked while the policy applies.",
+          "explanation": "Object replication is not an active-active write mechanism."
+        },
+        {
+          "id": "both",
+          "text": "Writes automatically merge into the source container.",
+          "explanation": "The configured replication direction does not supply two-way merging."
+        },
+        {
+          "id": "sync",
+          "text": "Every destination write synchronously updates all source versions.",
+          "explanation": "Object replication is asynchronous and not a reverse write path."
+        },
+        {
+          "id": "tier",
+          "text": "Selecting Hot automatically makes the destination writable.",
+          "explanation": "Access tier does not remove replication write restrictions."
+        }
+      ],
+      "correct": [
+        "readonly"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/object-replication.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-configure",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-change-feed"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-files-protocol",
+      "family": "st-files-protocol",
+      "revision": 1,
+      "topic": "storage.files.configuration",
+      "objectives": [
+        "st-11"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A team wants Windows SMB clients and NFS clients to access one Azure file share through both protocols. What constraint matters?",
+      "select": 1,
+      "options": [
+        {
+          "id": "single",
+          "text": "An Azure file share uses one protocol, SMB or NFS.",
+          "explanation": "Use a design that respects the per-share protocol choice."
+        },
+        {
+          "id": "dual",
+          "text": "Every share simultaneously supports both protocols.",
+          "explanation": "The account can host supported shares, but each share has its selected protocol."
+        },
+        {
+          "id": "blob",
+          "text": "Enable Blob NFS 3.0 to add NFS to an SMB file share.",
+          "explanation": "That setting belongs to Blob Storage, not the Files share protocol."
+        },
+        {
+          "id": "tier",
+          "text": "Move the share to the Hot Blob access tier.",
+          "explanation": "Blob tier settings do not change Azure Files protocols."
+        }
+      ],
+      "correct": [
+        "single"
+      ],
+      "knowledge": "knowledge/storage/azure-files/configuration.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning",
+        "https://learn.microsoft.com/en-us/azure/storage/files/create-classic-file-share",
+        "https://learn.microsoft.com/en-us/azure/storage/files/modify-file-share",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-files-port",
+      "family": "st-files-port",
+      "revision": 1,
+      "topic": "storage.files.configuration",
+      "objectives": [
+        "st-11"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A Windows client resolves the Azure Files endpoint but cannot establish an SMB connection. Which outbound port should be checked first?",
+      "select": 1,
+      "options": [
+        {
+          "id": "smb",
+          "text": "TCP 445.",
+          "explanation": "SMB mounting requires this network path."
+        },
+        {
+          "id": "https",
+          "text": "Only TCP 443.",
+          "explanation": "HTTPS management or REST access does not prove SMB connectivity."
+        },
+        {
+          "id": "rdp",
+          "text": "TCP 3389.",
+          "explanation": "That is associated with RDP, not the SMB share endpoint."
+        },
+        {
+          "id": "ssh",
+          "text": "TCP 22.",
+          "explanation": "SSH access is not the Windows SMB mounting protocol."
+        }
+      ],
+      "correct": [
+        "smb"
+      ],
+      "knowledge": "knowledge/storage/azure-files/configuration.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning",
+        "https://learn.microsoft.com/en-us/azure/storage/files/create-classic-file-share",
+        "https://learn.microsoft.com/en-us/azure/storage/files/modify-file-share",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-files-provisioned-v2",
+      "family": "st-files-provisioned-v2",
+      "revision": 1,
+      "topic": "storage.files.configuration",
+      "objectives": [
+        "st-11"
+      ],
+      "difficulty": "applied",
+      "prompt": "A new classic Azure file share must use Microsoft's current recommended billing model where supported and allow separate capacity, IOPS, and throughput provisioning. Which model fits?",
+      "select": 1,
+      "options": [
+        {
+          "id": "v2",
+          "text": "Provisioned v2 in a suitable FileStorage account.",
+          "explanation": "It provides the stated independent provisioning model."
+        },
+        {
+          "id": "blob",
+          "text": "Standard Blob Hot tier.",
+          "explanation": "Blob access tiers are not file-share billing models."
+        },
+        {
+          "id": "payg",
+          "text": "StorageV2 pay-as-you-go.",
+          "explanation": "It is supported but is not the requested provisioned v2 model."
+        },
+        {
+          "id": "v1",
+          "text": "Provisioned v1 solely because all FileStorage accounts require it.",
+          "explanation": "Current FileStorage accounts also support provisioned v2."
+        }
+      ],
+      "correct": [
+        "v2"
+      ],
+      "knowledge": "knowledge/storage/azure-files/configuration.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning",
+        "https://learn.microsoft.com/en-us/azure/storage/files/create-classic-file-share",
+        "https://learn.microsoft.com/en-us/azure/storage/files/modify-file-share",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-files-two-layers",
+      "family": "st-files-two-layers",
+      "revision": 1,
+      "topic": "storage.files.identity",
+      "objectives": [
+        "st-05"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A user authenticates successfully to an Azure SMB file share and has Storage File Data SMB Share Contributor. A directory ACL denies the user access. What is the expected result?",
+      "select": 1,
+      "options": [
+        {
+          "id": "deny",
+          "text": "Access to that directory is denied.",
+          "explanation": "Share access does not override the directory's Windows ACL."
+        },
+        {
+          "id": "allow",
+          "text": "The Contributor assignment overrides every directory ACL.",
+          "explanation": "Both authorization layers matter."
+        },
+        {
+          "id": "key",
+          "text": "Azure automatically retries with the storage account key.",
+          "explanation": "Identity access does not silently become an administrative key mount."
+        },
+        {
+          "id": "public",
+          "text": "The directory becomes anonymously accessible.",
+          "explanation": "Neither share RBAC nor an ACL enables anonymous SMB access."
+        }
+      ],
+      "correct": [
+        "deny"
+      ],
+      "knowledge": "knowledge/storage/azure-files/identity-based-access.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-assign-share-level-permissions",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-configure-file-level-permissions"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-files-share-role",
+      "family": "st-files-share-role",
+      "revision": 1,
+      "topic": "storage.files.identity",
+      "objectives": [
+        "st-05"
+      ],
+      "difficulty": "applied",
+      "prompt": "A group needs to read files through identity-based Azure Files SMB. Its directory ACLs already allow read. Which share-level role supplies the required read access?",
+      "select": 1,
+      "options": [
+        {
+          "id": "smb",
+          "text": "Storage File Data SMB Share Reader.",
+          "explanation": "This role grants the SMB share-level read permission."
+        },
+        {
+          "id": "blob",
+          "text": "Storage Blob Data Reader.",
+          "explanation": "Blob roles do not authorize Azure Files SMB reads."
+        },
+        {
+          "id": "reader",
+          "text": "Reader on the storage account.",
+          "explanation": "ARM resource visibility is not SMB data access."
+        },
+        {
+          "id": "delegator",
+          "text": "Storage Blob Delegator.",
+          "explanation": "Blob delegation-key generation is unrelated to SMB share access."
+        }
+      ],
+      "correct": [
+        "smb"
+      ],
+      "knowledge": "knowledge/storage/azure-files/identity-based-access.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-assign-share-level-permissions",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-configure-file-level-permissions"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-files-source-count",
+      "family": "st-files-source-count",
+      "revision": 1,
+      "topic": "storage.files.identity",
+      "objectives": [
+        "st-05"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A storage account uses AD DS for identity-based Azure Files SMB authentication. Can one share in that same account independently use Entra Domain Services as a second simultaneous identity source?",
+      "select": 1,
+      "options": [
+        {
+          "id": "one",
+          "text": "No; one identity source is configured per storage account.",
+          "explanation": "Separate identity-source requirements require a different account design."
+        },
+        {
+          "id": "share",
+          "text": "Yes; every share independently selects its identity source.",
+          "explanation": "The source is configured at the account level."
+        },
+        {
+          "id": "acl",
+          "text": "Yes; adding an ACL switches the authentication provider.",
+          "explanation": "ACLs authorize files after authentication."
+        },
+        {
+          "id": "sas",
+          "text": "Yes; a stored access policy selects the provider.",
+          "explanation": "SAS policies do not select SMB Kerberos identity sources."
+        }
+      ],
+      "correct": [
+        "one"
+      ],
+      "knowledge": "knowledge/storage/azure-files/identity-based-access.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-assign-share-level-permissions",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-configure-file-level-permissions"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-azcopy-one-way",
+      "family": "st-azcopy-one-way",
+      "revision": 1,
+      "topic": "storage.transfers.azcopy",
+      "objectives": [
+        "st-10"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An AzCopy sync job uses a local directory as source and a Blob container as destination. A file is added only to the destination. Does that operation copy it back to the local source?",
+      "select": 1,
+      "options": [
+        {
+          "id": "no",
+          "text": "No; sync follows the configured source-to-destination direction.",
+          "explanation": "It is not a bidirectional conflict-resolution service."
+        },
+        {
+          "id": "yes",
+          "text": "Yes; every sync is bidirectional.",
+          "explanation": "The command has an explicit one-way direction."
+        },
+        {
+          "id": "sas",
+          "text": "Only if an account SAS is used.",
+          "explanation": "Credential type does not reverse synchronization direction."
+        },
+        {
+          "id": "zrs",
+          "text": "Only if the storage account uses ZRS.",
+          "explanation": "Replication placement does not change AzCopy semantics."
+        }
+      ],
+      "correct": [
+        "no"
+      ],
+      "knowledge": "knowledge/storage/transfers/azcopy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-synchronize",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-configure",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-upload"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-azcopy-delete-destination",
+      "family": "st-azcopy-delete-destination",
+      "revision": 1,
+      "topic": "storage.transfers.azcopy",
+      "objectives": [
+        "st-10"
+      ],
+      "difficulty": "applied",
+      "prompt": "A team wants AzCopy to upload newer local files while preserving destination-only blobs. Which approach follows Microsoft's suggestion when synchronization deletion is unnecessary?",
+      "select": 1,
+      "options": [
+        {
+          "id": "copy",
+          "text": "Use copy with --overwrite=ifSourceNewer.",
+          "explanation": "This updates newer source items without requesting destination-only deletion."
+        },
+        {
+          "id": "delete",
+          "text": "Use sync with --delete-destination=true.",
+          "explanation": "This explicitly removes destination-only objects."
+        },
+        {
+          "id": "remove",
+          "text": "Use remove before every copy.",
+          "explanation": "Deleting the destination contradicts preservation."
+        },
+        {
+          "id": "reverse",
+          "text": "Reverse source and destination and enable deletion.",
+          "explanation": "That changes which data is authoritative and does not implement the requested upload."
+        }
+      ],
+      "correct": [
+        "copy"
+      ],
+      "knowledge": "knowledge/storage/transfers/azcopy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-synchronize",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-configure",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-upload"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-azcopy-resume",
+      "family": "st-azcopy-resume",
+      "revision": 1,
+      "topic": "storage.transfers.azcopy",
+      "objectives": [
+        "st-10"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A SAS-authenticated AzCopy job stops after some transfers. You retain the job plan, but the SAS expired. What is the appropriate recovery?",
+      "select": 1,
+      "options": [
+        {
+          "id": "resume",
+          "text": "Obtain a valid SAS and resume the job with its ID.",
+          "explanation": "The plan identifies pending work; credentials must be valid again."
+        },
+        {
+          "id": "cached",
+          "text": "Resume without credentials because plans permanently save SAS tokens.",
+          "explanation": "SAS tokens are not persisted in job plans."
+        },
+        {
+          "id": "delete",
+          "text": "Delete all successfully copied data before retrying.",
+          "explanation": "Resuming does not require destroying completed transfers."
+        },
+        {
+          "id": "role",
+          "text": "Grant Azure Reader and reuse the expired SAS.",
+          "explanation": "Reader does not extend a signed token's expiry."
+        }
+      ],
+      "correct": [
+        "resume"
+      ],
+      "knowledge": "knowledge/storage/transfers/azcopy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-synchronize",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-configure",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-upload"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-explorer-data-only",
+      "family": "st-explorer-data-only",
+      "revision": 1,
+      "topic": "storage.transfers.explorer",
+      "objectives": [
+        "st-10"
+      ],
+      "difficulty": "applied",
+      "prompt": "A user has Storage Blob Data Reader on one container but cannot browse the subscription's storage accounts. How can Storage Explorer access that container without broad management permissions?",
+      "select": 1,
+      "options": [
+        {
+          "id": "attach",
+          "text": "Attach the container URL using Microsoft Entra ID.",
+          "explanation": "Direct attachment can use the user's data-layer access."
+        },
+        {
+          "id": "owner",
+          "text": "Require Owner on the entire subscription.",
+          "explanation": "That is unnecessary privilege for reading a known container."
+        },
+        {
+          "id": "anonymous",
+          "text": "Make every blob anonymous.",
+          "explanation": "Anonymous publication is not required for the authorized user."
+        },
+        {
+          "id": "rename",
+          "text": "Rename the local connection to the subscription ID.",
+          "explanation": "A display label does not grant discovery permission."
+        }
+      ],
+      "correct": [
+        "attach"
+      ],
+      "knowledge": "knowledge/storage/transfers/storage-explorer.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer",
+        "https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-explorer-troubleshooting",
+        "https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-explorer-blobs"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-explorer-reader-data",
+      "family": "st-explorer-reader-data",
+      "revision": 1,
+      "topic": "storage.transfers.explorer",
+      "objectives": [
+        "st-10"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "Storage Explorer shows an account after a user receives Azure Reader, but Entra-authenticated Blob downloads still fail. Which permission should be checked?",
+      "select": 1,
+      "options": [
+        {
+          "id": "data",
+          "text": "A Blob data role at the container or an inherited scope.",
+          "explanation": "Management read and Blob data access are separate permissions."
+        },
+        {
+          "id": "tag",
+          "text": "Permission to change account tags.",
+          "explanation": "Tag management does not authorize blob downloads."
+        },
+        {
+          "id": "policy",
+          "text": "Permission to create management-group policy definitions.",
+          "explanation": "Governance authoring is unrelated to this data read."
+        },
+        {
+          "id": "dns",
+          "text": "Permission to create public DNS zones.",
+          "explanation": "DNS administration is not a Blob data role."
+        }
+      ],
+      "correct": [
+        "data"
+      ],
+      "knowledge": "knowledge/storage/transfers/storage-explorer.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer",
+        "https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-explorer-troubleshooting",
+        "https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-explorer-blobs"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-explorer-detach",
+      "family": "st-explorer-detach",
+      "revision": 1,
+      "topic": "storage.transfers.explorer",
+      "objectives": [
+        "st-10"
+      ],
+      "difficulty": "foundation",
+      "prompt": "You detach a SAS-connected Blob container from Storage Explorer. What does this action do?",
+      "select": 1,
+      "options": [
+        {
+          "id": "local",
+          "text": "Removes the local connection entry.",
+          "explanation": "Detaching does not delete the remote resource."
+        },
+        {
+          "id": "delete",
+          "text": "Deletes the container and all versions.",
+          "explanation": "Remote deletion is a separate data operation."
+        },
+        {
+          "id": "revoke",
+          "text": "Revokes every copy of the SAS.",
+          "explanation": "Removing a local attachment does not revoke a credential held elsewhere."
+        },
+        {
+          "id": "rotate",
+          "text": "Regenerates the storage account signing key.",
+          "explanation": "Local connection management does not rotate account keys."
+        }
+      ],
+      "correct": [
+        "local"
+      ],
+      "knowledge": "knowledge/storage/transfers/storage-explorer.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer",
+        "https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-explorer-troubleshooting",
+        "https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-explorer-blobs"
+      ],
+      "verified": "2026-10-02"
     }
   ]
 }

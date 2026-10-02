@@ -7,12 +7,12 @@ shares, and blob administration. [Exam scope](../../exam/az-104.md)
 
 - [Blob Storage](blob-storage/index.md): containers, access tiers, lifecycle,
   blob/container soft deletion, and versioning.
-- [Azure Files](azure-files/index.md): share snapshots and share soft deletion.
+- [Azure Files](azure-files/index.md): provisioning, identity, snapshots, and soft deletion.
+- [Access](access/index.md): SAS, policies, keys, and network rules.
+- [Accounts](accounts/index.md): creation, redundancy, and encryption.
+- [Transfers](transfers/index.md): AzCopy and Storage Explorer.
 
-## Research remaining
-
-Network restrictions; SAS and stored access policies; keys; identity-based
-Azure Files access; account creation; redundancy; object replication;
-encryption; AzCopy and Storage Explorer; file-share provisioning and configuration.
+All 17 storage objectives have documented coverage and questions. This is an
+initial scenario set, not a claim of exhaustive service coverage or lab testing.
 
 See [coverage](../../exam/coverage.md) for status and task IDs.

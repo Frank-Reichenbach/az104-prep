@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "st-encryption-default",
+      "family": "st-encryption-default",
+      "revision": 1,
+      "topic": "storage.accounts.encryption",
+      "objectives": [
+        "st-09"
+      ],
+      "difficulty": "foundation",
+      "prompt": "A new Azure storage account uses default encryption settings. What protects its persisted data?",
+      "select": 1,
+      "options": [
+        {
+          "id": "managed",
+          "text": "Service-side encryption with Microsoft-managed keys.",
+          "explanation": "At-rest encryption is automatic by default."
+        },
+        {
+          "id": "none",
+          "text": "No encryption until a SAS is created.",
+          "explanation": "SAS authorizes requests; it does not enable default at-rest encryption."
+        },
+        {
+          "id": "tls",
+          "text": "Only TLS encrypts stored blobs.",
+          "explanation": "TLS protects transport, not persisted data."
+        },
+        {
+          "id": "account",
+          "text": "The account access key is the customer-managed encryption key.",
+          "explanation": "An authorization credential is not the vault-backed CMK."
+        }
+      ],
+      "correct": [
+        "managed"
+      ],
+      "knowledge": "knowledge/storage/accounts/encryption.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption",
+        "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-existing-account",
+        "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-encryption-identity",
+      "family": "st-encryption-identity",
+      "revision": 1,
+      "topic": "storage.accounts.encryption",
+      "objectives": [
+        "st-09"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A storage account using CMK cannot access its Key Vault key. The operator can view the key, but the account's managed identity has no key permissions. What addresses the service's missing permission?",
+      "select": 1,
+      "options": [
+        {
+          "id": "role",
+          "text": "Grant the storage identity Key Vault Crypto Service Encryption User.",
+          "explanation": "The service needs its own authorization to use the wrapping key."
+        },
+        {
+          "id": "reader",
+          "text": "Grant the operator Reader on the storage account.",
+          "explanation": "Operator resource visibility does not grant the service key access."
+        },
+        {
+          "id": "rotate",
+          "text": "Regenerate storage account key1.",
+          "explanation": "An account access key does not repair Key Vault authorization."
+        },
+        {
+          "id": "sas",
+          "text": "Create a user delegation SAS.",
+          "explanation": "SAS does not authorize the storage service to unwrap its encryption key."
+        }
+      ],
+      "correct": [
+        "role"
+      ],
+      "knowledge": "knowledge/storage/accounts/encryption.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption",
+        "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-existing-account",
+        "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-encryption-vault-protection",
+      "family": "st-encryption-vault-protection",
+      "revision": 1,
+      "topic": "storage.accounts.encryption",
+      "objectives": [
+        "st-09"
+      ],
+      "difficulty": "applied",
+      "prompt": "Which two Key Vault protections are required by the documented Azure Storage CMK configuration?",
+      "select": 2,
+      "options": [
+        {
+          "id": "soft",
+          "text": "Soft delete.",
+          "explanation": "It protects recoverability of deleted key material."
+        },
+        {
+          "id": "purge",
+          "text": "Purge protection.",
+          "explanation": "It prevents immediate permanent removal during retention."
+        },
+        {
+          "id": "anonymous",
+          "text": "Anonymous key access.",
+          "explanation": "Key operations must be authorized."
+        },
+        {
+          "id": "blob",
+          "text": "Blob container soft deletion on the vault.",
+          "explanation": "Key Vault is not a Blob container and does not use this setting."
+        }
+      ],
+      "correct": [
+        "soft",
+        "purge"
+      ],
+      "knowledge": "knowledge/storage/accounts/encryption.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption",
+        "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-existing-account",
+        "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

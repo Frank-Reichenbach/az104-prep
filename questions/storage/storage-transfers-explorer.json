@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "st-explorer-data-only",
+      "family": "st-explorer-data-only",
+      "revision": 1,
+      "topic": "storage.transfers.explorer",
+      "objectives": [
+        "st-10"
+      ],
+      "difficulty": "applied",
+      "prompt": "A user has Storage Blob Data Reader on one container but cannot browse the subscription's storage accounts. How can Storage Explorer access that container without broad management permissions?",
+      "select": 1,
+      "options": [
+        {
+          "id": "attach",
+          "text": "Attach the container URL using Microsoft Entra ID.",
+          "explanation": "Direct attachment can use the user's data-layer access."
+        },
+        {
+          "id": "owner",
+          "text": "Require Owner on the entire subscription.",
+          "explanation": "That is unnecessary privilege for reading a known container."
+        },
+        {
+          "id": "anonymous",
+          "text": "Make every blob anonymous.",
+          "explanation": "Anonymous publication is not required for the authorized user."
+        },
+        {
+          "id": "rename",
+          "text": "Rename the local connection to the subscription ID.",
+          "explanation": "A display label does not grant discovery permission."
+        }
+      ],
+      "correct": [
+        "attach"
+      ],
+      "knowledge": "knowledge/storage/transfers/storage-explorer.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer",
+        "https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-explorer-troubleshooting",
+        "https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-explorer-blobs"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-explorer-reader-data",
+      "family": "st-explorer-reader-data",
+      "revision": 1,
+      "topic": "storage.transfers.explorer",
+      "objectives": [
+        "st-10"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "Storage Explorer shows an account after a user receives Azure Reader, but Entra-authenticated Blob downloads still fail. Which permission should be checked?",
+      "select": 1,
+      "options": [
+        {
+          "id": "data",
+          "text": "A Blob data role at the container or an inherited scope.",
+          "explanation": "Management read and Blob data access are separate permissions."
+        },
+        {
+          "id": "tag",
+          "text": "Permission to change account tags.",
+          "explanation": "Tag management does not authorize blob downloads."
+        },
+        {
+          "id": "policy",
+          "text": "Permission to create management-group policy definitions.",
+          "explanation": "Governance authoring is unrelated to this data read."
+        },
+        {
+          "id": "dns",
+          "text": "Permission to create public DNS zones.",
+          "explanation": "DNS administration is not a Blob data role."
+        }
+      ],
+      "correct": [
+        "data"
+      ],
+      "knowledge": "knowledge/storage/transfers/storage-explorer.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer",
+        "https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-explorer-troubleshooting",
+        "https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-explorer-blobs"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-explorer-detach",
+      "family": "st-explorer-detach",
+      "revision": 1,
+      "topic": "storage.transfers.explorer",
+      "objectives": [
+        "st-10"
+      ],
+      "difficulty": "foundation",
+      "prompt": "You detach a SAS-connected Blob container from Storage Explorer. What does this action do?",
+      "select": 1,
+      "options": [
+        {
+          "id": "local",
+          "text": "Removes the local connection entry.",
+          "explanation": "Detaching does not delete the remote resource."
+        },
+        {
+          "id": "delete",
+          "text": "Deletes the container and all versions.",
+          "explanation": "Remote deletion is a separate data operation."
+        },
+        {
+          "id": "revoke",
+          "text": "Revokes every copy of the SAS.",
+          "explanation": "Removing a local attachment does not revoke a credential held elsewhere."
+        },
+        {
+          "id": "rotate",
+          "text": "Regenerates the storage account signing key.",
+          "explanation": "Local connection management does not rotate account keys."
+        }
+      ],
+      "correct": [
+        "local"
+      ],
+      "knowledge": "knowledge/storage/transfers/storage-explorer.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer",
+        "https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-explorer-troubleshooting",
+        "https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-explorer-blobs"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

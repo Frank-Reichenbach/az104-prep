@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "st-azcopy-one-way",
+      "family": "st-azcopy-one-way",
+      "revision": 1,
+      "topic": "storage.transfers.azcopy",
+      "objectives": [
+        "st-10"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An AzCopy sync job uses a local directory as source and a Blob container as destination. A file is added only to the destination. Does that operation copy it back to the local source?",
+      "select": 1,
+      "options": [
+        {
+          "id": "no",
+          "text": "No; sync follows the configured source-to-destination direction.",
+          "explanation": "It is not a bidirectional conflict-resolution service."
+        },
+        {
+          "id": "yes",
+          "text": "Yes; every sync is bidirectional.",
+          "explanation": "The command has an explicit one-way direction."
+        },
+        {
+          "id": "sas",
+          "text": "Only if an account SAS is used.",
+          "explanation": "Credential type does not reverse synchronization direction."
+        },
+        {
+          "id": "zrs",
+          "text": "Only if the storage account uses ZRS.",
+          "explanation": "Replication placement does not change AzCopy semantics."
+        }
+      ],
+      "correct": [
+        "no"
+      ],
+      "knowledge": "knowledge/storage/transfers/azcopy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-synchronize",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-configure",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-upload"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-azcopy-delete-destination",
+      "family": "st-azcopy-delete-destination",
+      "revision": 1,
+      "topic": "storage.transfers.azcopy",
+      "objectives": [
+        "st-10"
+      ],
+      "difficulty": "applied",
+      "prompt": "A team wants AzCopy to upload newer local files while preserving destination-only blobs. Which approach follows Microsoft's suggestion when synchronization deletion is unnecessary?",
+      "select": 1,
+      "options": [
+        {
+          "id": "copy",
+          "text": "Use copy with --overwrite=ifSourceNewer.",
+          "explanation": "This updates newer source items without requesting destination-only deletion."
+        },
+        {
+          "id": "delete",
+          "text": "Use sync with --delete-destination=true.",
+          "explanation": "This explicitly removes destination-only objects."
+        },
+        {
+          "id": "remove",
+          "text": "Use remove before every copy.",
+          "explanation": "Deleting the destination contradicts preservation."
+        },
+        {
+          "id": "reverse",
+          "text": "Reverse source and destination and enable deletion.",
+          "explanation": "That changes which data is authoritative and does not implement the requested upload."
+        }
+      ],
+      "correct": [
+        "copy"
+      ],
+      "knowledge": "knowledge/storage/transfers/azcopy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-synchronize",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-configure",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-upload"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-azcopy-resume",
+      "family": "st-azcopy-resume",
+      "revision": 1,
+      "topic": "storage.transfers.azcopy",
+      "objectives": [
+        "st-10"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "A SAS-authenticated AzCopy job stops after some transfers. You retain the job plan, but the SAS expired. What is the appropriate recovery?",
+      "select": 1,
+      "options": [
+        {
+          "id": "resume",
+          "text": "Obtain a valid SAS and resume the job with its ID.",
+          "explanation": "The plan identifies pending work; credentials must be valid again."
+        },
+        {
+          "id": "cached",
+          "text": "Resume without credentials because plans permanently save SAS tokens.",
+          "explanation": "SAS tokens are not persisted in job plans."
+        },
+        {
+          "id": "delete",
+          "text": "Delete all successfully copied data before retrying.",
+          "explanation": "Resuming does not require destroying completed transfers."
+        },
+        {
+          "id": "role",
+          "text": "Grant Azure Reader and reuse the expired SAS.",
+          "explanation": "Reader does not extend a signed token's expiry."
+        }
+      ],
+      "correct": [
+        "resume"
+      ],
+      "knowledge": "knowledge/storage/transfers/azcopy.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-synchronize",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-configure",
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-upload"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

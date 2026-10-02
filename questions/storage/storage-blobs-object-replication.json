@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "questions": [
+    {
+      "id": "st-or-prerequisites",
+      "family": "st-or-prerequisites",
+      "revision": 1,
+      "topic": "storage.blobs.object-replication",
+      "objectives": [
+        "st-08"
+      ],
+      "difficulty": "applied",
+      "prompt": "Two supported Blob accounts will use object replication. Which two prerequisite configurations are needed?",
+      "select": 2,
+      "options": [
+        {
+          "id": "versions",
+          "text": "Enable Blob versioning on source and destination.",
+          "explanation": "Both accounts need versions for this replication feature."
+        },
+        {
+          "id": "feed",
+          "text": "Enable Blob change feed on the source.",
+          "explanation": "Replication tracks source changes through the change feed."
+        },
+        {
+          "id": "archive",
+          "text": "Set both accounts' default tier to Archive.",
+          "explanation": "Archive is not a prerequisite or a default account tier."
+        },
+        {
+          "id": "sas",
+          "text": "Create one stored access policy on every source blob.",
+          "explanation": "Stored policies are not per-blob objects or replication prerequisites."
+        }
+      ],
+      "correct": [
+        "versions",
+        "feed"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/object-replication.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-configure",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-change-feed"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-or-existing-scope",
+      "family": "st-or-existing-scope",
+      "revision": 1,
+      "topic": "storage.blobs.object-replication",
+      "objectives": [
+        "st-08"
+      ],
+      "difficulty": "troubleshooting",
+      "prompt": "New block blobs replicate successfully, but files uploaded last month do not. The policy was created today with its default copy scope. What should you inspect first?",
+      "select": 1,
+      "options": [
+        {
+          "id": "scope",
+          "text": "Whether the copy scope includes existing objects.",
+          "explanation": "The default new-object scope does not backfill all earlier blobs."
+        },
+        {
+          "id": "keys",
+          "text": "Whether both accounts use identical access keys.",
+          "explanation": "Replication does not require matching account keys."
+        },
+        {
+          "id": "lrs",
+          "text": "Whether both accounts have LRS disabled.",
+          "explanation": "LRS alone does not explain successful new-only replication."
+        },
+        {
+          "id": "name",
+          "text": "Whether every source blob has the destination account's name.",
+          "explanation": "Blob names do not need to contain an account name."
+        }
+      ],
+      "correct": [
+        "scope"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/object-replication.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-configure",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-change-feed"
+      ],
+      "verified": "2026-10-02"
+    },
+    {
+      "id": "st-or-destination-writes",
+      "family": "st-or-destination-writes",
+      "revision": 1,
+      "topic": "storage.blobs.object-replication",
+      "objectives": [
+        "st-08"
+      ],
+      "difficulty": "foundation",
+      "prompt": "An application wants to write directly into a destination container governed by Azure Blob object replication. What must the design account for?",
+      "select": 1,
+      "options": [
+        {
+          "id": "readonly",
+          "text": "Ordinary writes to that destination container are blocked while the policy applies.",
+          "explanation": "Object replication is not an active-active write mechanism."
+        },
+        {
+          "id": "both",
+          "text": "Writes automatically merge into the source container.",
+          "explanation": "The configured replication direction does not supply two-way merging."
+        },
+        {
+          "id": "sync",
+          "text": "Every destination write synchronously updates all source versions.",
+          "explanation": "Object replication is asynchronous and not a reverse write path."
+        },
+        {
+          "id": "tier",
+          "text": "Selecting Hot automatically makes the destination writable.",
+          "explanation": "Access tier does not remove replication write restrictions."
+        }
+      ],
+      "correct": [
+        "readonly"
+      ],
+      "knowledge": "knowledge/storage/blob-storage/object-replication.md",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-configure",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-change-feed"
+      ],
+      "verified": "2026-10-02"
+    }
+  ]
+}

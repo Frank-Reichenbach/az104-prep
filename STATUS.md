@@ -1,19 +1,22 @@
 # Session handoff
 
-Updated: 2026-10-01. Approved scope: [PLAN.md](PLAN.md).
+Updated: 2026-10-02. Approved scope: [PLAN.md](PLAN.md).
 
 ## Current increment
 
-Storage data-protection expansion. The knowledge base now has six documented
-objectives out of 82, with 36 questions across 35 families and eight topics.
+Storage domain expansion. The knowledge base now has 17 documented
+objectives out of 82, with 77 questions across 76 families and 21 topics.
 Azure command examples remain documentation-checked, not lab-tested.
 
-New content covers blob soft deletion, container soft deletion, blob versioning,
-Azure Files share snapshots, and classic share soft deletion. There are four
-new question families per topic. Files distinguish recovery scope, retention,
-feature prerequisites, implementation, verification, and cleanup. The snapshot
-topic records an ambiguity in introductory Microsoft wording and follows the
-dedicated soft-delete reference's explicit share-level scope.
+All 17 storage objectives now have guides and original questions. The latest
+topics cover SAS, stored policies, keys, network rules, Files identity and
+provisioning, account creation, redundancy, object replication, encryption,
+encryption scopes, AzCopy, and Storage Explorer. Documentation nuances include
+newer Files provisioned v2 models and storage firewall exceptions that can
+remain effective with public access disabled.
+
+Continue one topic at a time without stopping between batches. Report each
+completed topic as "Done: <topic>." The user explicitly requested this workflow.
 
 Implemented:
 
@@ -63,19 +66,15 @@ current deployment, rather than treating a local commit as publication.
 
 ## Next task
 
-After publishing the data-protection expansion, research storage access:
-shared access signatures, stored access policies, access keys, and storage
-network rules (st-02, st-03, st-04, st-01). Add specific topic files and 3–5
-original question families per topic, update exam/topics.json, and rebuild.
-
-Complete the remaining storage objectives, followed by identity/governance,
-compute, networking, and monitoring/recovery. Domain-weighted mixed quizzes
+Publish the completed storage domain, then research identity/governance
+starting with Entra users and groups (id-01). Continue through compute,
+networking, and monitoring/recovery. Domain-weighted mixed quizzes
 remain deferred until every domain has enough questions. A skill remains an
 optional later interface.
 
 ## Limits
 
-- The app has the storage sample, not complete exam preparation.
+- The app covers the storage domain, not yet complete exam preparation.
 - Study progress is browser-local; transfer it using export/import.
 - Reloading ends an unfinished quiz but preserves submitted answers when
   browser storage is available.
