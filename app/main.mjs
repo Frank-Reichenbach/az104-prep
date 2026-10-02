@@ -39,18 +39,18 @@ function topicContext(q) {
 }
 function explain(q, selected, compact = false) {
   const box = el('div');
-  box.append(el('p', score(q, selected) ? 'Correct answer set.' : 'Incorrect answer set.', score(q, selected) ? 'correct' : 'incorrect'));
+  box.append(el('p', score(q, selected) ? 'Correct answer set.' : 'Incorrect answer set.', `border-l-4 pl-3.5 ${score(q, selected) ? 'border-good' : 'border-bad'}`));
   for (const option of q.options) {
     const good = q.correct.includes(option.id);
     if (compact && !selected.includes(option.id) && !good) continue;
-    const p = el('p', undefined, `explanation ${good ? 'correct' : 'incorrect'}`);
+    const p = el('p', undefined, `explanation my-3 border-l-4 pb-1.5 pl-3.5 ${good ? 'border-good' : 'border-bad'}`);
     p.dataset.optionId = option.id;
     p.append(el('strong', `${good ? 'Correct' : 'Incorrect'} option${selected.includes(option.id) ? ' · selected' : ''}: ${option.text} `), document.createTextNode(option.explanation));
     box.append(p);
   }
   const links = el('p'); links.append(reference(new URL(q.knowledge, new URL('.', import.meta.url)).href, 'Study this topic'));
   q.sources.forEach((url, i) => links.append(document.createTextNode(' · '), reference(url, `Microsoft source ${i + 1}`)));
-  box.append(links, el('p', `Evidence checked ${q.verified} · ${q.id}`, 'muted'));
+  box.append(links, el('p', `Evidence checked ${q.verified} · ${q.id}`, 'text-[.86rem] text-soft'));
   return box;
 }
 function renderQuestion() {
@@ -61,9 +61,9 @@ function renderQuestion() {
   $('instruction').textContent = `Select ${q.select} answer${q.select === 1 ? '' : 's'}.`;
   $('choices').replaceChildren($('instruction'));
   q.options.forEach((option, i) => {
-    const label = el('label', undefined, 'choice');
+    const label = el('label', undefined, 'my-3 flex cursor-pointer gap-3 rounded-md border border-edge p-4 font-normal has-checked:border-brand has-checked:bg-selected');
     const input = document.createElement('input'); input.type = q.select === 1 ? 'radio' : 'checkbox';
-    input.name = 'answer'; input.value = option.id;
+    input.className = 'mt-1.5 shrink-0'; input.name = 'answer'; input.value = option.id;
     label.append(input, el('span', `${String.fromCharCode(65 + i)}. ${option.text}`));
     $('choices').append(label);
   });
@@ -79,10 +79,10 @@ function finish() {
     : 'No questions answered in this session.';
   $('review').replaceChildren();
   answers.forEach((a, i) => {
-    const details = el('details');
+    const details = el('details', undefined, 'border-t border-line py-4');
     details.open = !score(a.q, a.selected);
-    details.append(el('summary', `${i + 1}. ${score(a.q, a.selected) ? 'Correct' : 'Review'} — ${a.q.prompt}`),
-      el('p', topicContext(a.q), 'muted'), explain(a.q, a.selected, true));
+    details.append(el('summary', `${i + 1}. ${score(a.q, a.selected) ? 'Correct' : 'Review'} — ${a.q.prompt}`, 'cursor-pointer font-semibold'),
+      el('p', topicContext(a.q), 'text-[.86rem] text-soft'), explain(a.q, a.selected, true));
     $('review').append(details);
   });
   show('results'); $('result-title').focus();

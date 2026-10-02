@@ -19,6 +19,10 @@ jobs:
         with:
           node-version: '24'
           package-manager-cache: false
+      - run: npm ci
+      - run: npm run build:css
+      - name: Verify committed stylesheet is current
+        run: git diff --exit-code app/style.css
       - run: npm run check
       - run: npm test
       - run: npm run build:site
