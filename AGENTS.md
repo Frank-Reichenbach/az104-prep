@@ -1,5 +1,14 @@
 # Project instructions
 
+## Rule 1: Commits and branch hygiene
+
+1. Use Conventional Commits for every commit (`type(scope): subject`, e.g.
+   `docs: clarify scope`). Allowed types follow the branch prefixes in the Git
+   section: `chore`, `docs`, `feat`, `fix`, plus `test`, `refactor`, `ci`.
+2. After a merge (pull request or local), switch to `main` automatically
+   (`git checkout main`) and update it (`git pull --ff-only`). Do not keep
+   working on the merged branch. Start follow-up work on a new prefixed branch.
+
 ## Purpose and approved scope
 
 Build an English AZ-104 knowledge base and original multiple-choice practice
