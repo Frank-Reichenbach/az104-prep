@@ -9,6 +9,14 @@ function el(tag, text, className) {
   if (className) node.className = className;
   return node;
 }
+function applyTheme(theme, persist = false) {
+  document.documentElement.dataset.theme = theme;
+  const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+  $('theme-toggle').setAttribute('aria-label', label); $('theme-toggle').title = label;
+  if (persist) { try { localStorage.setItem('az104-theme', theme); } catch { /* preference stays session-only */ } }
+}
+$('theme-toggle').addEventListener('click', () => applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark', true));
+applyTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
 function message(text = '') { $('message').textContent = text; }
 function show(id) { for (const name of ['setup', 'session', 'results']) $(name).hidden = name !== id; }
 function save() {
