@@ -33,7 +33,9 @@ npm run test:browser -- --url https://frank-reichenbach.github.io/az104-prep/
 
 The repository was empty before this first publication. The initial published
 branch is feature/github-pages. This lets the user test the feature without
-merging it into main. Future merges still follow project approval conventions.
+merging it into main. It is currently the default and only remote branch;
+there is no main branch or merged pull request. Future merges still follow
+project approval conventions.
 
 The Pages workflow runs validation, tests, a static build, and Chrome checks
 on a standard ubuntu-latest runner. Pushes to feature/github-pages or main can
@@ -41,6 +43,12 @@ deploy. Pull requests targeting either branch validate without deployment.
 The github-pages environment receives the artifact using Pages and OIDC
 permissions; no separate deployment secret is needed. In repository Settings
 → Pages, the build source must be GitHub Actions.
+
+Pages publication does not require a release or Git tag: the configured Actions
+workflow deploys on a push to an allowed branch. The repository's About website
+field points to the live Pages URL. Repository topics help discovery and are
+separate from version tags. See [publishing sources](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+and [repository topics](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics).
 
 After a later approved transition to main, remove feature/github-pages from
 the workflow's deployment branch list and update the environment's allowed
@@ -57,6 +65,7 @@ origin and github.io origin have separate history; export/import transfers it.
 Export before switching browsers or clearing storage. Questions and answer
 keys are public, as expected for a self-study app.
 
-The site has only the current storage sample. Deployment does not imply full
-exam coverage. Knowledge links expose the original Markdown files; formatted
+The site has 322 questions across 99 detailed topics, with documented coverage
+of all 82 objectives. Coverage does not establish mastery or exhaustive scenario
+coverage. Knowledge links expose the original Markdown files; formatted
 document browsing can be added separately.

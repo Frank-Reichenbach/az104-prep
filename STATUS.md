@@ -43,6 +43,12 @@ Origin: https://github.com/Frank-Reichenbach/az104-prep.git.
 Public repository; default/deployment branch: feature/github-pages.
 Initial publication required no merge. Future merges still require approval.
 
+Only feature/github-pages currently exists on the remote; no pull request or
+merge has occurred. The repository's About website field now links the live
+app, and its topics are azure, az-104, exam, preparation, and exam-preparation.
+The README starts with an unofficial-study-material notice. See the phase
+status table in [PLAN.md](PLAN.md) for the original plan's delivered work.
+
 Live app: https://frank-reichenbach.github.io/az104-prep/.
 
 The complete 322-question bank and weighted sessions deployed from e0a31df in
@@ -53,7 +59,16 @@ preparation feedback, study links, and saved progress against the live URL.
 The branch also includes a follow-up correction that shuffles unique families
 before weighted selection so families with extra variants have equal selection
 opportunity. Its regression test and local browser checks passed.
-For subsequent deployment commits, use the repository's Actions history.
+The correction deployed from 6b96c34 in successful
+[Actions run 37025987214](https://github.com/Frank-Reichenbach/az104-prep/actions/runs/37025987214),
+and Chrome checked the live app and confirmed its quiz module matched the local
+revision. For subsequent commits, use the repository's Actions history.
+
+The publishing audit added browser checks for native Tab/Space/Enter operation
+and actual progress download/import with the confirmation dialog. Local checks
+also transfer a downloaded history file between the root and project-path
+origins and verify imported history survives reload.
+These checks completed at both local URLs and against the live Pages site.
 
 ## Verification
 
@@ -71,6 +86,9 @@ Earlier ten-test Node and Chrome checks passed for the 240-question networking
 increment at the local root and project path. Live checks passed for previous
 published increments. Browser sessions are limited to 100 questions; they do
 not evaluate every Azure claim.
+
+The keyboard/file-transfer checks close verification gaps in the original plan;
+they do not add a new app feature or change question content.
 
 ## Documentation uncertainties
 

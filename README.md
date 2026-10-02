@@ -1,5 +1,9 @@
 # AZ-104 study workspace
 
+> **Unofficial study material.** This is not an official Microsoft study guide
+> and is not affiliated with or endorsed by Microsoft. The practice questions
+> are original; they are not official exam questions.
+
 English study notes and original multiple-choice practice for the Microsoft
 Azure Administrator certification. Designed for a learner with some Azure
 experience preparing for an exam around December 2026–January 2027.

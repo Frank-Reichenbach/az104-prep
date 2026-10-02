@@ -4,6 +4,26 @@ Status: approved on 2026-10-01; updated to include quiz refinements and GitHub
 Pages. Initial implementation completed on 2026-10-02; coverage, verification,
 and maintenance are tracked in [STATUS.md](STATUS.md).
 
+## Phase status
+
+| Phase | Status | Delivered |
+| --- | --- | --- |
+| 1. Repository setup | Complete | Local Git, project instructions, conventions, and origin |
+| 2. Exam inventory | Complete | Overview, domain weights, 82 objective IDs, and coverage matrix |
+| 3. Knowledge base | Complete initial coverage | 99 researched specific guides with sources, implementation, and limitations |
+| 4. Question bank | Complete initial bank | Original questions, option explanations, reviewed variants, and generated Markdown |
+| 5. Domain expansion | Complete | All five domains and all 82 objectives documented |
+| 6. Study app | Complete | Preparation/test, weighted sessions, missed review, topic context, results, and local history transfer |
+| 7. GitHub Pages | Complete | Public static app, Actions deployment, repository website link, and browser checks |
+| 8. Maintenance/review | Ongoing | Study feedback, source refresh, and revisions before the exam |
+
+The app satisfies the approved first interface choice. A quiz skill is optional;
+it is not an unfinished requirement. A formatted Markdown reader is also an
+optional enhancement. Moving the default branch from feature/github-pages to
+main is repository housekeeping, separate from Pages publication, and has not
+been requested or performed. Releases and version tags are not deployment
+requirements.
+
 ## User decisions
 
 - English throughout.
