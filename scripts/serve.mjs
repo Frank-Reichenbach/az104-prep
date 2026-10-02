@@ -4,7 +4,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT } from './content.mjs';
 
-const assets = new Set(['/index.html', '/style.css', '/main.mjs', '/quiz.mjs', '/data.json']);
+const assets = new Set(['/index.html', '/style.css', '/main.mjs', '/quiz.mjs', '/data.json', '/version.json']);
 const mime = { '.html': 'text/html', '.css': 'text/css', '.mjs': 'text/javascript', '.json': 'application/json', '.md': 'text/plain' };
 
 export function createStudyServer(root = ROOT, { basePath = '/', staticSite = false } = {}) {
@@ -20,6 +20,7 @@ export function createStudyServer(root = ROOT, { basePath = '/', staticSite = fa
       if (pathname === '/') pathname = '/index.html';
       let file;
       if (assets.has(pathname)) file = path.join(root, staticSite ? '' : 'app', pathname.slice(1));
+      else if (pathname === '/CHANGELOG.md') file = path.join(root, 'CHANGELOG.md');
       else if (/^\/(knowledge|generated|questions|examples|exam|docs|templates)\/[a-zA-Z0-9_/-]+\.(md|json)$/.test(pathname)) file = path.join(root, pathname.slice(1));
       else { res.writeHead(404); res.end('Not found'); return; }
       const actual = await realpath(file);

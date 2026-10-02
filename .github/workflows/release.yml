@@ -1,0 +1,22 @@
+name: Release
+
+# release-please keeps a release pull request up to date from Conventional
+# Commits. Merging that PR (human approval, see AGENTS.md) bumps the version in
+# package.json and app/version.json, updates CHANGELOG.md, tags vX.Y.Z, and
+# creates the GitHub release. The Pages workflow then publishes the new version.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

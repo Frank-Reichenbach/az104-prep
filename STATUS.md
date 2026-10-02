@@ -85,6 +85,15 @@ and Chrome checks at both local hosting paths. The user also confirmed export
 and import work. Main deployment runs are recorded in the
 [Actions history](https://github.com/Frank-Reichenbach/az104-prep/actions?query=branch%3Amain).
 
+## Releases
+
+Release automation (release-please, `.github/workflows/release.yml`) is
+implemented on `feature/release-automation` but not yet merged or run. The app
+footer reads `app/version.json` and links `CHANGELOG.md`. Baseline version is
+0.1.0; the changelog starts after commit 6b3c651. `npm run test:browser` was
+not run locally (Chrome not installed at the default path); `npm run check` and
+`npm test` pass.
+
 ## Verification
 
 Dark mode (uncommitted, 2026-10-03): the moon/sun toggle sits in the header

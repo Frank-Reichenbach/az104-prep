@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { once } from 'node:events';
 import { createStudyServer } from '../scripts/serve.mjs';
 
@@ -26,4 +27,10 @@ test('local server serves the study app and sources but does not expose reposito
   const head = await fetch(base, { method: 'HEAD' });
   assert.equal(head.status, 200);
   assert.equal(await head.text(), '');
+  // The footer version must match package.json and the changelog must be reachable.
+  const pkg = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
+  assert.deepEqual(await (await fetch(base + '/version.json')).json(), { version: pkg.version });
+  const changelog = await fetch(base + '/CHANGELOG.md');
+  assert.equal(changelog.status, 200);
+  assert.match(await changelog.text(), /^# Changelog/);
 });

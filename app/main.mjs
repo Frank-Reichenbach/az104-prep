@@ -133,6 +133,12 @@ $('import').addEventListener('change', async event => {
   finally { event.target.value = ''; }
 });
 
+// The version is informational; a failed lookup must not block the quiz.
+try {
+  const { version } = await (await fetch(new URL('./version.json', import.meta.url))).json();
+  if (typeof version === 'string' && /^\d+\.\d+\.\d+/.test(version)) $('version').textContent = `Version ${version}`;
+} catch { $('version').textContent = ''; }
+
 try {
   const response = await fetch(new URL('./data.json', import.meta.url));
   if (!response.ok) throw new Error('Question data could not be loaded. Run pnpm run build.');

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "bootstrap-sha": "6b3c6513dbff4c51194765a5291a19db12d08b88",
+  "packages": {
+    ".": {
+      "release-type": "node",
+      "package-name": "az-104-study",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": false,
+      "include-v-in-tag": true,
+      "changelog-path": "CHANGELOG.md",
+      "extra-files": [
+        { "type": "json", "path": "app/version.json", "jsonpath": "$.version" }
+      ]
+    }
+  }
+}
