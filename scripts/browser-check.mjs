@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { mkdtemp, readFile, rm } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { once } from 'node:events';
@@ -35,9 +35,11 @@ try {
   let sequence = 0;
   const pending = new Map();
   const exceptions = [];
+  const dialogs = [];
   socket.onmessage = event => {
     const data = JSON.parse(event.data);
     if (data.method === 'Runtime.exceptionThrown') exceptions.push(data.params.exceptionDetails.text);
+    if (data.method === 'Page.javascriptDialogOpening') dialogs.push(data.params);
     if (!data.id) return;
     const request = pending.get(data.id); if (!request) return;
     pending.delete(data.id); clearTimeout(request.timer);
@@ -57,6 +59,13 @@ try {
     for (let i = 0; i < 150; i++) { if (await evaluate(expression)) return; await pause(100); }
     throw new Error(`Browser condition timed out: ${expression}`);
   };
+  const key = async (name, code, value) => {
+    for (const type of ['keyDown', 'keyUp']) await call('Input.dispatchKeyEvent', {
+      type, key: name, code, windowsVirtualKeyCode: value, nativeVirtualKeyCode: value,
+      ...(type === 'keyDown' && ['Enter', ' '].includes(name)
+        ? { text: name === 'Enter' ? '\r' : ' ', unmodifiedText: name === 'Enter' ? '\r' : ' ' } : {})
+    });
+  };
   await call('Runtime.enable');
   await call('Page.enable');
   const externalURL = process.argv.includes('--url') ? process.argv[process.argv.indexOf('--url') + 1] : null;
@@ -70,7 +79,8 @@ try {
       targets.push(`http://127.0.0.1:${server.address().port}${options.basePath || '/'}`);
     }
   }
-  for (const target of targets) {
+  let transferFile, transferProgress;
+  for (const [targetIndex, target] of targets.entries()) {
     await call('Page.navigate', { url: target });
     await waitFor(`location.href === ${JSON.stringify(target)} && document.readyState === 'complete'`);
     await waitFor('document.getElementById("setup") && !document.getElementById("setup").hidden');
@@ -143,7 +153,67 @@ try {
     await call('Page.reload');
     await waitFor('document.getElementById("setup") && !document.getElementById("setup").hidden');
     assert.match(await evaluate(`document.getElementById('progress').textContent`), new RegExp(`^${recorded} recorded answers`));
-    console.log(`Browser verified ${target}: direct test navigation, context, compact/open results, preparation feedback, links, and persistent progress.`);
+
+    // Exercise native keyboard focus, answer selection, and form submission.
+    await evaluate(`window.testBank = await (await fetch(new URL('./data.json', location.href))).json();
+      document.getElementById('count').value = '1';
+      document.getElementById('mode').value = 'test';
+      document.getElementById('missed').focus();`);
+    await key('Tab', 'Tab', 9);
+    assert.equal(await evaluate(`document.activeElement === document.querySelector('#start-form button[type="submit"]')`), true);
+    await key('Enter', 'Enter', 13);
+    await waitFor(`!document.getElementById('session').hidden`);
+    const correctIDs = await evaluate(`testBank.questions.find(q => q.prompt === document.getElementById('prompt').textContent).correct`);
+    for (const id of correctIDs) {
+      await evaluate(`[...document.querySelectorAll('#choices input')].find(input => input.value === ${JSON.stringify(id)}).focus()`);
+      await key(' ', 'Space', 32);
+    }
+    for (let i = 0; i < 10 && !(await evaluate(`document.activeElement.id === 'submit-answer'`)); i++)
+      await key('Tab', 'Tab', 9);
+    assert.equal(await evaluate(`document.activeElement.id`), 'submit-answer');
+    await key('Enter', 'Enter', 13);
+    await waitFor(`!document.getElementById('results').hidden`);
+    assert.match(await evaluate(`document.getElementById('result-score').textContent`), /^1\/1 correct/);
+    const expectedCount = recorded + 1;
+
+    // Download through the real Export button, then import that file through
+    // the native file input and confirmation dialog into fresh browser storage.
+    const downloadDir = path.join(profile, `downloads-${targetIndex}`);
+    await mkdir(downloadDir);
+    await call('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: downloadDir });
+    await evaluate(`document.getElementById('again').click(); document.getElementById('export').click()`);
+    const exportFile = path.join(downloadDir, 'az104-progress.json');
+    let exported;
+    for (let i = 0; i < 150; i++) {
+      try { exported = JSON.parse(await readFile(exportFile, 'utf8')); break; }
+      catch { await pause(100); }
+    }
+    assert.equal(exported?.version, 1, 'Downloaded a valid progress file');
+    assert.equal(exported.attempts.length, expectedCount);
+    assert.deepEqual(exported, await evaluate(`JSON.parse(localStorage.getItem('az104-progress-v1'))`));
+    transferFile ??= exportFile;
+    transferProgress ??= exported;
+    await evaluate(`localStorage.removeItem('az104-progress-v1')`);
+    await call('Page.reload');
+    await waitFor(`document.getElementById('setup') && !document.getElementById('setup').hidden
+      && document.getElementById('progress').textContent.startsWith('0 recorded answers')`);
+    assert.match(await evaluate(`document.getElementById('progress').textContent`), /^0 recorded answers/);
+    const { root } = await call('DOM.getDocument');
+    const { nodeId } = await call('DOM.querySelector', { nodeId: root.nodeId, selector: '#import' });
+    const dialogCount = dialogs.length;
+    await call('DOM.setFileInputFiles', { nodeId, files: [transferFile] });
+    for (let i = 0; i < 150 && dialogs.length === dialogCount; i++) await pause(100);
+    assert.equal(dialogs.length, dialogCount + 1, 'Import asks before replacing progress');
+    assert.equal(dialogs.at(-1).type, 'confirm');
+    assert.match(dialogs.at(-1).message, /Replace current progress/);
+    await call('Page.handleJavaScriptDialog', { accept: true });
+    await waitFor(`document.getElementById('progress').textContent.startsWith('${transferProgress.attempts.length} recorded answers')`);
+    assert.deepEqual(await evaluate(`JSON.parse(localStorage.getItem('az104-progress-v1'))`), transferProgress);
+    await call('Page.reload');
+    await waitFor(`!document.getElementById('setup').hidden`);
+    assert.match(await evaluate(`document.getElementById('progress').textContent`),
+      new RegExp(`^${transferProgress.attempts.length} recorded answers`));
+    console.log(`Browser verified ${target}: test/preparation flows, context/results, links, keyboard operation, and progress export/import with persistence.`);
   }
   assert.deepEqual(exceptions, []);
 } finally {
