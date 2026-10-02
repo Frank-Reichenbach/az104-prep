@@ -89,8 +89,8 @@ and import work. Main deployment runs are recorded in the
 
 Dark mode (uncommitted, 2026-10-03): the moon/sun toggle sits in the header
 menu, follows the system theme by default, and stores the choice in the
-browser (`az104-theme`). `npm run check` and the 13 Node tests passed; the
-toggle was checked manually in the built-in browser. `npm run test:browser`
+browser (`az104-theme`). `pnpm run check` and the 13 Node tests passed; the
+toggle was checked manually in the built-in browser. `pnpm run test:browser`
 could not launch Chrome in this environment, so it was not run.
 
 Content build/check has validated all 82 objective mappings, question formats,
@@ -125,9 +125,9 @@ retirement are documented with current alternatives.
 
 The app UI uses Tailwind CSS v4, compiled at build time (devDependencies only;
 no runtime dependency, CDN, or CSP change). Edit app/tailwind.css, index.html,
-or main.mjs, then run `npm run build:css` and commit the generated app/style.css.
-CI fails if the committed stylesheet is stale. `npm ci` is now required before
-building. Verified 2026-10-03: npm test (13 pass) and the browser check at both
+or main.mjs, then run `pnpm run build:css` and commit the generated app/style.css.
+CI fails if the committed stylesheet is stale. `pnpm install --frozen-lockfile` is now required before
+building. Verified 2026-10-03: pnpm test (13 pass) and the browser check at both
 base paths passed (Edge via BROWSER_BIN); a visual check was done on desktop width only.
 
 CSS animations (2026-10-03, branch feature/css-animations): section fade-in,

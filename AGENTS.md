@@ -67,7 +67,7 @@ to the next unfinished topic. Keep the persistent handoff current.
 
 ## Working and verification
 
-- Run npm run build, npm run check, and npm test after relevant changes.
+- Run pnpm run build, pnpm run check, and pnpm test after relevant changes.
 - Automated checks validate structure and behavior; they do not establish
   Azure technical correctness. Review sources separately.
 - Update STATUS.md with actual results, remaining work, and the next task.

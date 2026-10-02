@@ -7,11 +7,11 @@ to the deployment directory; no domain-specific settings are needed.
 ## Build and validate
 
 ```sh
-npm run build
-npm run check
-npm test
-npm run build:site
-npm run test:browser
+pnpm run build
+pnpm run check
+pnpm test
+pnpm run build:site
+pnpm run test:browser
 ```
 
 The static build creates ignored _site/ from an explicit allowlist. It includes
@@ -26,7 +26,7 @@ Tests exercise the local root and the /az104-prep/ deployment path.
 To check the deployed site in an isolated browser:
 
 ```sh
-npm run test:browser -- --url https://frank-reichenbach.github.io/az104-prep/
+pnpm run test:browser -- --url https://frank-reichenbach.github.io/az104-prep/
 ```
 
 ## Deployment

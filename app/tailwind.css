@@ -1,4 +1,4 @@
-/* Tailwind source. `npm run build:css` compiles it to the committed app/style.css. */
+/* Tailwind source. `pnpm run build:css` compiles it to the committed app/style.css. */
 @import "tailwindcss" source(none);
 @source "./index.html";
 @source "./main.mjs";

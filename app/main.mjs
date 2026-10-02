@@ -135,7 +135,7 @@ $('import').addEventListener('change', async event => {
 
 try {
   const response = await fetch(new URL('./data.json', import.meta.url));
-  if (!response.ok) throw new Error('Question data could not be loaded. Run npm run build.');
+  if (!response.ok) throw new Error('Question data could not be loaded. Run pnpm run build.');
   bank = await response.json();
   if (bank.schemaVersion !== 1 || !Array.isArray(bank.questions)) throw new Error('Unsupported question bank.');
   bank.topics.forEach(topic => {

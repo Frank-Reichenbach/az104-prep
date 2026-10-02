@@ -11,6 +11,7 @@ credentials.json
 
 # Dependencies, temporary output, and personal study history
 node_modules/
+.pnpm-store/
 coverage/
 _site/
 tmp/
@@ -28,7 +29,7 @@ Thumbs.db
 .vscode/
 *.swp
 
-# Generated content is committed; rebuild with npm run build.
+# Generated content is committed; rebuild with pnpm run build.
 
 # Study notes must remain tracked even when a user's global ignore lists
 # exclude directories named Backup or Logs (including case-insensitive matches).

@@ -25,7 +25,7 @@ To run locally:
 Use Node.js 22 or newer. There are no third-party packages to install.
 
 ```sh
-npm start
+pnpm start
 ```
 
 Open <http://127.0.0.1:8080>. Stop the server with Ctrl+C. The server binds only
@@ -75,11 +75,11 @@ You can also study without the app:
 ## Maintain the content
 
 ```sh
-npm run build   # also compiles Tailwind: app/tailwind.css -> app/style.css
-npm run check
-npm test
-npm run build:site
-npm run test:browser
+pnpm run build   # also compiles Tailwind: app/tailwind.css -> app/style.css
+pnpm run check
+pnpm test
+pnpm run build:site
+pnpm run test:browser
 ```
 
 Edit questions in questions/, then rebuild. Do not hand-edit generated/
