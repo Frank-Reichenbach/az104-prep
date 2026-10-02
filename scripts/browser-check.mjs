@@ -210,7 +210,7 @@ try {
     await waitFor(`document.getElementById('progress').textContent.startsWith('${transferProgress.attempts.length} recorded answers')`);
     assert.deepEqual(await evaluate(`JSON.parse(localStorage.getItem('az104-progress-v1'))`), transferProgress);
     await call('Page.reload');
-    await waitFor(`!document.getElementById('setup').hidden`);
+    await waitFor(`document.getElementById('setup') && !document.getElementById('setup').hidden`);
     assert.match(await evaluate(`document.getElementById('progress').textContent`),
       new RegExp(`^${transferProgress.attempts.length} recorded answers`));
     console.log(`Browser verified ${target}: test/preparation flows, context/results, links, keyboard operation, and progress export/import with persistence.`);

@@ -100,7 +100,7 @@ $('start-form').addEventListener('submit', event => {
   try {
     active = makeQuiz(bank.questions, { topic: $('topic').value, count: Number($('count').value),
       domains: bank.domains, topics: bank.topics,
-      missed: $('review').value === 'none' ? null : reviewFamilies(attempts, bank.questions, $('review').value) });
+      missed: $('missed').value === 'none' ? null : reviewFamilies(attempts, bank.questions, $('missed').value) });
     if (!active.length) { message('No question families match this selection. Change the topic or the review filter.'); return; }
     if (active.length < Number($('count').value)) message(`This selection has ${active.length} available families; the session uses all of them.`);
     mode = $('mode').value; position = 0; answers = []; show('session'); renderQuestion();
