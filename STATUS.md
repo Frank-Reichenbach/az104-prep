@@ -4,6 +4,32 @@ Updated: 2026-10-02. Approved scope: [PLAN.md](PLAN.md).
 
 ## Current increment
 
+The requested official-question-style research is complete on
+docs/official-question-style-research. The
+[research inventory](docs/research/official-question-inventory.md) preserves
+69 paraphrased public Microsoft training questions from 23 pages, plus 47
+distinct technical oral prompts/themes from five official preparation videos.
+The five current AZ-104 learning paths and their 26 modules were inspected;
+an additional Log Analytics module supplied three of the 69 questions.
+The interactive Practice Assessment yielded no readable items; its access
+limit is recorded. These are public preparation resources, not live exam items.
+
+The [style guide](docs/az-104-question-style.md) separates documented exam
+formats, observed public-example patterns, and repository authoring rules.
+AGENTS.md requires future question work to read it. Research entries have no
+bank IDs or objective/topic/family mappings and remain unscored. No existing
+questions, generated data, quiz behavior, or coverage mappings changed.
+Review flags preserve broad, ambiguous, or changing Microsoft wording rather
+than treating the collected alternatives as verified answer keys.
+This documentation branch has not been merged or deployed.
+
+Research verification: build/check validated the unchanged 322-question bank,
+99 topics, and 82/82 coverage. All 13 Node tests completed with localhost
+binding allowed; the initial restricted run could not bind its server socket.
+The static build checked the new documentation's internal links. An inventory
+audit confirmed 69 unique sequential OBS IDs, 47 unique sequential VID IDs,
+23 question-page sections, and five video sections. No Azure lab was executed.
+
 All 82 objectives from the April 17, 2026 outline now have researched guides
 and original questions. The outline was rechecked against Microsoft on
 October 2, 2026 and remains unchanged.
@@ -116,6 +142,12 @@ direction wording. VM Insights Map/Dependency Agent deprecation and NSG flow-log
 retirement are documented with current alternatives.
 
 ## Next task
+
+Wait for the user's later request before reviewing, updating, or adding the
+preserved research questions. At that point, recheck current Microsoft service
+documentation and write original scenarios using the new style guide. Do not
+automatically map or import the inventory. Reviewing an authenticated Practice
+Assessment remains an optional source follow-up, not a claimed completed survey.
 
 The approved initial knowledge base and basic app are complete. There are no
 unfinished exam objectives. Next work is maintenance driven by study feedback,

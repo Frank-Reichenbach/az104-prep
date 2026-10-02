@@ -18,6 +18,11 @@ to the next unfinished topic. Keep the persistent handoff current.
 
 ## Content
 
+- Before writing or reviewing questions, read
+  [the question-style guide](docs/az-104-question-style.md).
+  docs/research/official-question-inventory.md is preserved research only.
+  Do not map it to existing questions or import it into the bank until the
+  user explicitly requests that later review/addition step.
 - Follow the April 17, 2026 exam outline until a documented refresh changes it.
 - Research Microsoft primary sources before writing technical claims. Cite
   supporting pages beside the claim and record the verification date.

@@ -83,8 +83,9 @@ npm run test:browser
 ```
 
 Edit questions in questions/, then rebuild. Do not hand-edit generated/
-or app/data.json. Read [the question format](docs/question-format.md) and
-[research conventions](docs/research.md) before adding material.
+or app/data.json. Read [the question format](docs/question-format.md),
+[research conventions](docs/research.md), and
+[the question-style guide](docs/az-104-question-style.md) before adding material.
 
 Azure examples are documentation-checked, not lab-tested. This workspace does
 not require an Azure subscription. The study material is independent of
