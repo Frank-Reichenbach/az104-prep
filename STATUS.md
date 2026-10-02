@@ -130,6 +130,11 @@ CI fails if the committed stylesheet is stale. `npm ci` is now required before
 building. Verified 2026-10-03: npm test (13 pass) and the browser check at both
 base paths passed (Edge via BROWSER_BIN); a visual check was done on desktop width only.
 
+CSS animations (2026-10-03, branch feature/css-animations): section fade-in,
+staggered answer choices, feedback and message entrances, button/toggle
+transitions. All are disabled under prefers-reduced-motion. Verified: npm run
+build, check, and test (13 pass). Not checked in a browser.
+
 ## Next task
 
 The approved initial knowledge base and basic app are complete. There are no

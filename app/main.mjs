@@ -61,7 +61,7 @@ function renderQuestion() {
   $('instruction').textContent = `Select ${q.select} answer${q.select === 1 ? '' : 's'}.`;
   $('choices').replaceChildren($('instruction'));
   q.options.forEach((option, i) => {
-    const label = el('label', undefined, 'my-3 flex cursor-pointer gap-3 rounded-md border border-edge p-4 font-normal has-checked:border-brand has-checked:bg-selected');
+    const label = el('label', undefined, 'choice my-3 flex cursor-pointer gap-3 rounded-md border border-edge p-4 font-normal has-checked:border-brand has-checked:bg-selected');
     const input = document.createElement('input'); input.type = q.select === 1 ? 'radio' : 'checkbox';
     input.className = 'mt-1.5 shrink-0'; input.name = 'answer'; input.value = option.id;
     label.append(input, el('span', `${String.fromCharCode(65 + i)}. ${option.text}`));
