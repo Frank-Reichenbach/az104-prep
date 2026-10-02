@@ -19,10 +19,10 @@ and maintenance are tracked in [STATUS.md](STATUS.md).
 
 The app satisfies the approved first interface choice. A quiz skill is optional;
 it is not an unfinished requirement. A formatted Markdown reader is also an
-optional enhancement. Moving the default branch from feature/github-pages to
-main is repository housekeeping, separate from Pages publication, and has not
-been requested or performed. Releases and version tags are not deployment
-requirements.
+optional enhancement. The user authorized migrating the default/deployment
+branch to main on 2026-10-02. Initial publication used feature/github-pages;
+the migration preserves that history through a branch rename. Releases and
+version tags are not deployment requirements.
 
 ## User decisions
 
@@ -44,6 +44,9 @@ requirements.
   so they can test the hosted app. Check STATUS.md for deployment results.
 - Apply the requested test navigation, topic context, and result display
   refinements before expanding the question bank further.
+- Rename the initial publication branch to main, update local tracking,
+  workflow triggers, deployment permissions, and repository-wide references,
+  and verify Pages publication from main. Use pull requests for future changes.
 
 ## Outcome
 

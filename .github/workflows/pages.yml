@@ -2,9 +2,9 @@ name: Validate and deploy Pages
 
 on:
   push:
-    branches: [main, feature/github-pages]
+    branches: [main]
   pull_request:
-    branches: [main, feature/github-pages]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -28,7 +28,7 @@ jobs:
         with:
           path: _site
   deploy:
-    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/feature/github-pages')
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: validate
     runs-on: ubuntu-latest
     permissions:

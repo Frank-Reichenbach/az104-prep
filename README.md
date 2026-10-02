@@ -92,6 +92,8 @@ Microsoft and does not contain official exam questions.
 
 The GitHub repository is
 [Frank-Reichenbach/az104-prep](https://github.com/Frank-Reichenbach/az104-prep).
+The default and Pages deployment branch is main. Future changes use work
+branches and pull requests; merges require approval.
 See [hosting instructions](docs/hosting.md) for the static build and deployment
 workflow, [PLAN.md](PLAN.md) for the scope, and [STATUS.md](STATUS.md) for the
 next task. Browser tests require Google Chrome (or BROWSER_BIN pointing to a

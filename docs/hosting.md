@@ -31,15 +31,14 @@ npm run test:browser -- --url https://frank-reichenbach.github.io/az104-prep/
 
 ## Deployment
 
-The repository was empty before this first publication. The initial published
-branch is feature/github-pages. This lets the user test the feature without
-merging it into main. It is currently the default and only remote branch;
-there is no main branch or merged pull request. Future merges still follow
-project approval conventions.
+The repository's default branch is main. Initial publication used
+feature/github-pages because the remote was empty. The user authorized renaming
+that branch to main on October 2, 2026, preserving all commits without a merge.
 
 The Pages workflow runs validation, tests, a static build, and Chrome checks
-on a standard ubuntu-latest runner. Pushes to feature/github-pages or main can
-deploy. Pull requests targeting either branch validate without deployment.
+on a standard ubuntu-latest runner. Pushes to main and manual dispatches from
+main can deploy. Pull requests targeting main validate without deployment.
+The github-pages environment permits only the main branch, with no tag policy.
 The github-pages environment receives the artifact using Pages and OIDC
 permissions; no separate deployment secret is needed. In repository Settings
 → Pages, the build source must be GitHub Actions.
@@ -50,9 +49,31 @@ field points to the live Pages URL. Repository topics help discovery and are
 separate from version tags. See [publishing sources](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 and [repository topics](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics).
 
-After a later approved transition to main, remove feature/github-pages from
-the workflow's deployment branch list and update the environment's allowed
-branches. Do not merge automatically just because checks succeed.
+Create a prefixed work branch for future changes, push it, and open a pull
+request to main. Merge only after an explicit request or approval. Do not push
+directly to main. A manual deployment can be started with:
+
+```sh
+gh workflow run pages.yml --repo Frank-Reichenbach/az104-prep --ref main
+```
+
+## Update an older clone
+
+For a clone still checked out on the former publication branch, update its
+local name and upstream:
+
+```sh
+git branch -m feature/github-pages main
+git fetch origin --prune
+git branch --set-upstream-to=origin/main main
+git remote set-head origin -a
+```
+
+GitHub redirects normal branch file links after a rename; old raw-file URLs
+and Git pull references require updates. Workflow filters and explicit
+environment branch policies must also be checked. This repository's workflow,
+project instructions, plan, and handoff now use main for current operations.
+[GitHub branch-renaming guidance](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-branches-in-your-repository/renaming-a-branch).
 
 GitHub provides [Pages for public repositories on its free plan](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages)
 and [free standard Actions runners for public repositories](https://docs.github.com/en/billing/concepts/product-billing/github-actions).

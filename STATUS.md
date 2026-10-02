@@ -40,11 +40,14 @@ Repository ignore exceptions now keep all knowledge Markdown/indexes trackable.
 ## Publication
 
 Origin: https://github.com/Frank-Reichenbach/az104-prep.git.
-Public repository; default/deployment branch: feature/github-pages.
-Initial publication required no merge. Future merges still require approval.
+Public repository; default/deployment branch: main. The user authorized the
+migration on 2026-10-02. Initial publication used feature/github-pages, whose
+history is preserved by renaming the branch. No merge was needed. Future work
+uses prefixed branches and pull requests; merges still require approval.
 
-Only feature/github-pages currently exists on the remote; no pull request or
-merge has occurred. The repository's About website field now links the live
+The Pages workflow and environment allow deployment only from main. The local
+main branch tracks origin/main, and origin/HEAD resolves to origin/main.
+The repository's About website field links the live
 app, and its topics are azure, az-104, exam, preparation, and exam-preparation.
 The README starts with an unofficial-study-material notice. See the phase
 status table in [PLAN.md](PLAN.md) for the original plan's delivered work.
@@ -69,6 +72,18 @@ and actual progress download/import with the confirmation dialog. Local checks
 also transfer a downloaded history file between the root and project-path
 origins and verify imported history survives reload.
 These checks completed at both local URLs and against the live Pages site.
+
+The pre-migration head was ce1c0fd. The workflow/docs migration commit was
+prepared and checked on the initial publication branch before the rename,
+retaining all history without a direct push to main. The repository-wide audit
+found no webhooks, rulesets, branch protections, open PRs, or hard-coded content
+URLs depending on the old branch. Its remaining mentions are historical notes
+and older-clone update instructions in docs/hosting.md.
+
+Migration preflight included build/check, all 13 Node tests, the static build,
+and Chrome checks at both local hosting paths. The user also confirmed export
+and import work. Main deployment runs are recorded in the
+[Actions history](https://github.com/Frank-Reichenbach/az104-prep/actions?query=branch%3Amain).
 
 ## Verification
 

@@ -77,9 +77,12 @@ to the next unfinished topic. Keep the persistent handoff current.
 - Use chore/, docs/, feature/, or fix/ branch prefixes and Conventional Commits.
 - Attribute AI-generated changes with an Assisted-by model trailer. Do not
   invent a human co-author or reviewer.
-- The initial setup branch is chore/initial-setup. No merge is authorized.
-- The user authorized publishing and activating GitHub Pages to test the app.
-  The empty remote is initially published from feature/github-pages; deployment
-  does not require a merge. Keep future merges subject to explicit approval.
+- main is the default branch and the only Pages deployment branch. Use a
+  prefixed work branch and a pull request for future changes; do not push
+  directly to main. Merging requires an explicit request or human approval.
+- The user authorized Pages publication and the migration to main on
+  2026-10-02. Initial publication used feature/github-pages; renaming that
+  branch preserved its history without a merge. The local chore/initial-setup
+  and docs/github-pages-plan branches are historical setup branches.
 - Do not change global Git configuration. Use the existing Git identity; report
   a missing identity rather than inventing one.
