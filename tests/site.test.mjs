@@ -20,3 +20,30 @@ test('static site output is self-contained, project-path safe, and excludes repo
   assert.ok(files.every(f => !/(^|\/)(package\.json|pnpm-lock\.yaml|AGENTS\.md)$/.test(f)));
   await assert.rejects(access(path.join(dir, 'progress')));
 });
+
+test('site output is an installable, fully precached PWA', async t => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'az104-pwa-'));
+  t.after(() => rm(dir, { recursive: true, force: true }));
+  await buildSite(dir);
+  const manifest = JSON.parse(await readFile(path.join(dir, 'manifest.webmanifest'), 'utf8'));
+  for (const key of ['name', 'short_name', 'start_url', 'scope', 'display', 'theme_color', 'background_color'])
+    assert.ok(manifest[key], `manifest.${key}`);
+  assert.equal(manifest.start_url, './');
+  assert.ok(manifest.icons.some(i => i.sizes === '192x192') && manifest.icons.some(i => i.sizes === '512x512'));
+  assert.ok(manifest.icons.some(i => i.purpose === 'maskable'));
+  for (const icon of manifest.icons) {
+    assert.doesNotMatch(icon.src, /^\//, 'icon paths must be relative');
+    await access(path.join(dir, icon.src));
+  }
+  const html = await readFile(path.join(dir, 'index.html'), 'utf8');
+  assert.match(html, /rel="manifest"/);
+  assert.match(html, /name="theme-color"/);
+  // Every shipped file except the worker and .nojekyll must be precached.
+  const sw = await readFile(path.join(dir, 'sw.js'), 'utf8');
+  assert.doesNotMatch(sw, /__VERSION__|__PRECACHE__/);
+  const list = JSON.parse(sw.match(/JSON\.parse\('(.*)'\)/)[1]);
+  const files = (await filesUnder(dir)).map(f => path.relative(dir, f).split(path.sep).join('/'));
+  for (const file of files.filter(f => f !== 'sw.js' && f !== '.nojekyll')) assert.ok(list.includes(file), `${file} not precached`);
+  assert.ok(list.includes('./'));
+  assert.ok(list.every(f => !f.startsWith('/')), 'precache paths must be relative');
+});

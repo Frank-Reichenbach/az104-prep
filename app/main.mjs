@@ -10,14 +10,56 @@ function el(tag, text, className) {
   if (className) node.className = className;
   return node;
 }
-function applyTheme(theme, persist = false) {
-  document.documentElement.dataset.theme = theme;
-  const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+// Theme preference cycles system → light → dark; "system" follows the OS setting live.
+const THEMES = ['system', 'light', 'dark'];
+const systemDark = matchMedia('(prefers-color-scheme: dark)');
+function applyTheme(pref, persist = false) {
+  const dark = pref === 'dark' || (pref === 'system' && systemDark.matches);
+  const root = document.documentElement;
+  root.dataset.theme = dark ? 'dark' : 'light';
+  root.dataset.themePref = pref;
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.content = dark ? '#0f1a22' : '#f0f4f6';
+  const next = THEMES[(THEMES.indexOf(pref) + 1) % THEMES.length];
+  const label = `Theme: ${pref} (switch to ${next})`;
   $('theme-toggle').setAttribute('aria-label', label); $('theme-toggle').title = label;
-  if (persist) { try { localStorage.setItem('az104-theme', theme); } catch { /* preference stays session-only */ } }
+  if (persist) {
+    try { pref === 'system' ? localStorage.removeItem('az104-theme') : localStorage.setItem('az104-theme', pref); }
+    catch { /* preference stays session-only */ }
+  }
 }
-$('theme-toggle').addEventListener('click', () => applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark', true));
-applyTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+$('theme-toggle').addEventListener('click', () => applyTheme(THEMES[(THEMES.indexOf(document.documentElement.dataset.themePref) + 1) % THEMES.length], true));
+systemDark.addEventListener('change', () => { if (document.documentElement.dataset.themePref === 'system') applyTheme('system'); });
+applyTheme(THEMES.includes(document.documentElement.dataset.themePref) ? document.documentElement.dataset.themePref : 'system');
+// Offline support: the worker precaches the whole site. A new version waits until the user
+// reloads, so a running session is never replaced mid-way. The app works without a worker.
+async function registerWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  try {
+    const hadController = !!navigator.serviceWorker.controller;
+    const registration = await navigator.serviceWorker.register('./sw.js');
+    const offerUpdate = worker => {
+      $('update').hidden = false;
+      $('update-reload').onclick = () => worker.postMessage('SKIP_WAITING');
+    };
+    if (registration.waiting && hadController) offerUpdate(registration.waiting);
+    registration.addEventListener('updatefound', () => {
+      const worker = registration.installing;
+      worker?.addEventListener('statechange', () => {
+        if (worker.state !== 'installed') return;
+        if (hadController) offerUpdate(worker); else $('offline').textContent = ' · Available offline';
+      });
+    });
+    let reloading = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (hadController && !reloading) { reloading = true; location.reload(); }
+    });
+    await navigator.serviceWorker.ready;
+    $('offline').textContent = ' · Available offline';
+    navigator.storage?.persist?.().catch(() => {});
+  } catch { /* offline support is optional */ }
+}
+registerWorker();
 function message(text = '') { $('message').textContent = text; }
 let view = 'setup';
 function show(id) { view = id; for (const name of ['setup', 'session', 'results', 'doc']) $(name).hidden = name !== id; }

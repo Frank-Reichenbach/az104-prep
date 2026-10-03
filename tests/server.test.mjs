@@ -26,6 +26,13 @@ test('local server serves the study app and sources but does not expose reposito
   assert.equal(md.status, 200);
   assert.match(md.headers.get('content-type'), /text\/plain/);
   assert.equal((await fetch(base + '/markdown.mjs')).status, 200);
+  const manifest = await fetch(base + '/manifest.webmanifest');
+  assert.match(manifest.headers.get('content-type'), /application\/manifest\+json/);
+  assert.match((await fetch(base + '/icons/icon-192.png')).headers.get('content-type'), /image\/png/);
+  const worker = await fetch(base + '/sw.js');
+  assert.match(worker.headers.get('content-type'), /text\/javascript/);
+  assert.doesNotMatch(await worker.text(), /__VERSION__|__PRECACHE__/);
+  assert.equal((await fetch(base + '/icons/../package.json')).status, 404);
   assert.equal((await fetch(base + '/README.md')).status, 200);
   for (const target of ['/.git/config', '/package.json', '/%2e%2e/package.json', '/knowledge/%2e%2e/AGENTS.md', '/missing', '/%ZZ']) {
     assert.equal((await fetch(base + target)).status, 404, target);

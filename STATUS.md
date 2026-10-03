@@ -147,6 +147,21 @@ staggered answer choices, feedback and message entrances, button/toggle
 transitions. All are disabled under prefers-reduced-motion. Verified: npm run
 build, check, and test (13 pass). Not checked in a browser.
 
+## PWA and offline use
+
+Added 2026-10-03 (branch feature/pwa-offline): web app manifest, icons
+(app/icons/, source icon.svg, PNGs rendered once with rsvg-convert), and a
+service worker (app/sw.js, filled by scripts/sw.mjs) that precaches the whole
+site, including all Markdown documents, under a content-hash cache name. A new
+version waits until the user clicks "Reload to update", so a running session is
+never swapped. Theme preference is now system / light / dark (default system,
+follows OS changes live) and updates the theme-color meta tag. Verified: pnpm
+run build, check, test (27 pass), build:site, and the browser check (Edge via
+BROWSER_BIN) at both base paths, which reloads with the network off, opens a
+document offline, and cycles the theme. Not verified: installation on a real
+phone/desktop, Lighthouse, and the live Pages deployment (GitHub Pages sends
+`Cache-Control: max-age=600` for sw.js, so updates can lag up to ~10 minutes).
+
 ## Next task
 
 The approved initial knowledge base and basic app are complete. There are no

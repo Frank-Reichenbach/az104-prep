@@ -213,7 +213,36 @@ try {
     await waitFor(`document.getElementById('setup') && !document.getElementById('setup').hidden`);
     assert.match(await evaluate(`document.getElementById('progress').textContent`),
       new RegExp(`^${transferProgress.attempts.length} recorded answers`));
-    console.log(`Browser verified ${target}: test/preparation flows, context/results, links, keyboard operation, and progress export/import with persistence.`);
+    // Theme preference cycles system → light → dark and updates theme-color.
+    await evaluate(`localStorage.removeItem('az104-theme')`);
+    await call('Page.reload');
+    await waitFor(`document.getElementById('setup') && !document.getElementById('setup').hidden`);
+    const themes = [];
+    for (let i = 0; i < 3; i++) {
+      await evaluate(`document.getElementById('theme-toggle').click()`);
+      themes.push(await evaluate(`({ pref: document.documentElement.dataset.themePref, theme: document.documentElement.dataset.theme,
+        color: document.querySelector('meta[name="theme-color"]').content, stored: localStorage.getItem('az104-theme') })`));
+    }
+    assert.deepEqual(themes.map(t => t.pref), ['light', 'dark', 'system']);
+    assert.deepEqual(themes.map(t => t.stored), ['light', 'dark', null]);
+    assert.equal(themes[0].color, '#f0f4f6'); assert.equal(themes[1].color, '#0f1a22');
+    assert.equal(themes[1].theme, 'dark');
+
+    // PWA: the worker precaches the site; the app must then work with the network off.
+    assert.equal(await evaluate(`(await fetch(new URL('./manifest.webmanifest', location.href))).ok`), true);
+    await waitFor(`document.getElementById('offline').textContent.includes('Available offline')`);
+    await call('Network.enable');
+    await call('Network.emulateNetworkConditions', { offline: true, latency: 0, downloadThroughput: 0, uploadThroughput: 0 });
+    try {
+      await call('Page.reload');
+      await waitFor(`document.getElementById('setup') && !document.getElementById('setup').hidden`);
+      assert.match(await evaluate(`document.getElementById('coverage').textContent`), /\d/);
+      await evaluate(`location.hash = '#/doc/knowledge/index.md'`);
+      await waitFor(`!document.getElementById('doc').hidden && document.getElementById('doc-body').textContent.length > 100`);
+    } finally {
+      await call('Network.emulateNetworkConditions', { offline: false, latency: 0, downloadThroughput: -1, uploadThroughput: -1 });
+    }
+    console.log(`Browser verified ${target}: test/preparation flows, context/results, links, keyboard operation, progress export/import with persistence, theme cycle, and offline use.`);
   }
   assert.deepEqual(exceptions, []);
 } finally {

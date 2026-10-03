@@ -79,6 +79,23 @@ GitHub provides [Pages for public repositories on its free plan](https://docs.gi
 and [free standard Actions runners for public repositories](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
 The setup uses the included github.io address and no paid service.
 
+## Installation and offline use
+
+The app is a progressive web app. After the first visit over HTTPS (or on
+localhost) a service worker caches every file of the site, including all
+Markdown documents, so quiz, bank, and document viewer work without a network.
+Use the browser's "Install" action to add it as an app.
+
+- The cache name contains a hash of all shipped files. A new deployment is
+  fetched in the background and activated only after you click "Reload to
+  update", so a running session is not interrupted.
+- GitHub Pages cannot set custom headers and serves `sw.js` with a short cache
+  lifetime (about 10 minutes), so a new version may appear with that delay.
+- Clearing site data removes the offline cache and local progress. Export
+  progress first; the app asks the browser for persistent storage to reduce the
+  risk of automatic eviction.
+- Theme preference is system (default), light, or dark.
+
 ## Data and limitations
 
 Progress stays in the browser's local storage, not on GitHub. The localhost

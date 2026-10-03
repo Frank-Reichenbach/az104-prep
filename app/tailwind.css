@@ -69,9 +69,10 @@
   .btn-secondary { @apply bg-surface text-secondary hover:bg-selected; }
   .theme-toggle { @apply m-0 inline-flex shrink-0 size-10 items-center justify-center rounded-full p-0; }
   .theme-toggle svg { @apply size-5 fill-none stroke-current; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .theme-toggle .sun { display: none; }
-  :root[data-theme=dark] .theme-toggle .sun { display: block; }
-  :root[data-theme=dark] .theme-toggle .moon { display: none; }
+  /* The icon shows the chosen preference: system (default), light or dark. */
+  .theme-toggle .sun, .theme-toggle .moon { display: none; }
+  :root[data-theme-pref=light] .theme-toggle .sun, :root[data-theme-pref=dark] .theme-toggle .moon { display: block; }
+  :root[data-theme-pref=light] .theme-toggle .auto, :root[data-theme-pref=dark] .theme-toggle .auto { display: none; }
   /* Rendered Markdown documents (see markdown.mjs). */
   .md { @apply outline-none; overflow-wrap: anywhere; }
   .md h1 { @apply mt-4 mb-3 text-[1.8rem] leading-tight font-bold tracking-tight; }

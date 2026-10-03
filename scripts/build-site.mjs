@@ -2,13 +2,19 @@ import { cp, mkdir, rm, writeFile, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT, filesUnder } from './content.mjs';
+import { hashFiles, renderServiceWorker } from './sw.mjs';
 
 export async function buildSite(destination = path.join(ROOT, '_site')) {
   // Output only an explicit content allowlist, never the whole repository.
   await rm(destination, { recursive: true, force: true });
   await mkdir(destination, { recursive: true });
-  for (const name of ['index.html', 'style.css', 'main.mjs', 'theme.js', 'quiz.mjs', 'markdown.mjs', 'data.json', 'version.json'])
+  for (const name of ['index.html', 'style.css', 'main.mjs', 'theme.js', 'quiz.mjs', 'markdown.mjs', 'data.json', 'version.json', 'manifest.webmanifest'])
     await cp(path.join(ROOT, 'app', name), path.join(destination, name));
+  for (const file of await filesUnder(path.join(ROOT, 'app', 'icons'))) {
+    const target = path.join(destination, path.relative(path.join(ROOT, 'app'), file));
+    await mkdir(path.dirname(target), { recursive: true });
+    await cp(file, target);
+  }
   for (const dir of ['knowledge', 'generated', 'questions', 'examples', 'exam', 'docs', 'templates']) {
     for (const file of await filesUnder(path.join(ROOT, dir))) {
       if (!/\.(md|json)$/.test(file)) continue;
@@ -32,6 +38,11 @@ export async function buildSite(destination = path.join(ROOT, '_site')) {
       await readFile(target);
     }
   }
+  // Precache every file of the site (scope-relative); the worker itself is not cached.
+  const precache = (await filesUnder(destination)).map(f => path.relative(destination, f).split(path.sep).join('/')).filter(f => f !== '.nojekyll');
+  const version = await hashFiles(destination, precache);
+  const template = await readFile(path.join(ROOT, 'app', 'sw.js'), 'utf8');
+  await writeFile(path.join(destination, 'sw.js'), renderServiceWorker(template, ['./', ...precache], version));
   return destination;
 }
 

@@ -20,6 +20,9 @@ The GitHub Pages address is
 in [STATUS.md](STATUS.md). Browser progress is separate from localhost; use
 export/import to move your history between them.
 
+The app is installable and works offline after the first visit; see
+[installation and offline use](docs/hosting.md#installation-and-offline-use).
+
 To run locally:
 
 Use Node.js 22 or newer. There are no third-party packages to install.
