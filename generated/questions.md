@@ -4040,14 +4040,14 @@ D. The write succeeds because notes/new.txt falls outside the rule's reports/ pr
 
 Topic: Storage › Azure file share provisioning and configuration.
 
-A team wants Windows SMB clients and NFS clients to access one Azure file share through both protocols. What constraint matters?
+A supported premium FileStorage account will serve Windows SMB clients and Linux NFS clients using classic Azure file shares. Which protocol boundary must the design respect?
 
 Select **1**. Difficulty: foundation.
 
-A. An Azure file share uses one protocol, SMB or NFS.
-B. Every share simultaneously supports both protocols.
-C. Enable Blob NFS 3.0 to add NFS to an SMB file share.
-D. Move the share to the Hot Blob access tier.
+A. Each file share selects SMB or NFS; use separate shares for the two protocols.
+B. A premium account allows one file share to serve SMB and NFS simultaneously.
+C. Enabling Blob NFS 3.0 adds NFS access to an existing SMB file share.
+D. SMB and NFS shares must always use separate storage accounts.
 
 ## st-files-port
 
@@ -4066,14 +4066,14 @@ D. TCP 22.
 
 Topic: Storage › Azure file share provisioning and configuration.
 
-A new classic Azure file share must use Microsoft's current recommended billing model where supported and allow separate capacity, IOPS, and throughput provisioning. Which model fits?
+A new classic Azure file share must allow capacity, IOPS, and throughput to be provisioned independently. The chosen region supports Microsoft's currently recommended billing model for new classic shares. Which billing-model and storage-account-kind combination should you select?
 
 Select **1**. Difficulty: applied.
 
-A. Provisioned v2 in a suitable FileStorage account.
-B. Standard Blob Hot tier.
-C. StorageV2 pay-as-you-go.
-D. Provisioned v1 solely because all FileStorage accounts require it.
+A. Provisioned v2 in a FileStorage account.
+B. Provisioned v2 in a StorageV2 account.
+C. Pay-as-you-go in a StorageV2 account.
+D. Provisioned v1 in a FileStorage account.
 
 ## st-files-two-layers
 

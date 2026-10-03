@@ -5278,18 +5278,18 @@ Study: [knowledge file](../knowledge/storage/blob-storage/object-replication.md)
 
 Topic: Storage › Azure file share provisioning and configuration.
 
-A team wants Windows SMB clients and NFS clients to access one Azure file share through both protocols. What constraint matters?
+A supported premium FileStorage account will serve Windows SMB clients and Linux NFS clients using classic Azure file shares. Which protocol boundary must the design respect?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** An Azure file share uses one protocol, SMB or NFS. Use a design that respects the per-share protocol choice.
-- **B. Incorrect:** Every share simultaneously supports both protocols. The account can host supported shares, but each share has its selected protocol.
-- **C. Incorrect:** Enable Blob NFS 3.0 to add NFS to an SMB file share. That setting belongs to Blob Storage, not the Files share protocol.
-- **D. Incorrect:** Move the share to the Hot Blob access tier. Blob tier settings do not change Azure Files protocols.
+- **A. Correct:** Each file share selects SMB or NFS; use separate shares for the two protocols. Azure Files does not support SMB and NFS on the same share. A supported storage account can contain separate shares using each protocol.
+- **B. Incorrect:** A premium account allows one file share to serve SMB and NFS simultaneously. Premium account capability does not remove the per-share protocol choice. Simultaneous SMB/NFS access to one share is unsupported.
+- **C. Incorrect:** Enabling Blob NFS 3.0 adds NFS access to an existing SMB file share. Blob NFS 3.0 configures Blob Storage, not Azure Files. It does not add a second protocol to an SMB file share.
+- **D. Incorrect:** SMB and NFS shares must always use separate storage accounts. The separation is required per share, not necessarily per account. The supported account in this scenario can host an SMB share and an NFS share.
 
-Study: [knowledge file](../knowledge/storage/azure-files/configuration.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/azure-files/configuration.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/files/create-classic-file-share) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/files/modify-file-share) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/files/create-classic-file-share) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/blobs/network-file-system-protocol-support)
 
 ## st-files-port
 
@@ -5304,7 +5304,7 @@ Select **1**. Difficulty: troubleshooting.
 - **C. Incorrect:** TCP 3389. That is associated with RDP, not the SMB share endpoint.
 - **D. Incorrect:** TCP 22. SSH access is not the Windows SMB mounting protocol.
 
-Study: [knowledge file](../knowledge/storage/azure-files/configuration.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/azure-files/configuration.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/files/create-classic-file-share) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/files/modify-file-share) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows)
 
@@ -5312,16 +5312,16 @@ Study: [knowledge file](../knowledge/storage/azure-files/configuration.md). Evid
 
 Topic: Storage › Azure file share provisioning and configuration.
 
-A new classic Azure file share must use Microsoft's current recommended billing model where supported and allow separate capacity, IOPS, and throughput provisioning. Which model fits?
+A new classic Azure file share must allow capacity, IOPS, and throughput to be provisioned independently. The chosen region supports Microsoft's currently recommended billing model for new classic shares. Which billing-model and storage-account-kind combination should you select?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Provisioned v2 in a suitable FileStorage account. It provides the stated independent provisioning model.
-- **B. Incorrect:** Standard Blob Hot tier. Blob access tiers are not file-share billing models.
-- **C. Incorrect:** StorageV2 pay-as-you-go. It is supported but is not the requested provisioned v2 model.
-- **D. Incorrect:** Provisioned v1 solely because all FileStorage accounts require it. Current FileStorage accounts also support provisioned v2.
+- **A. Correct:** Provisioned v2 in a FileStorage account. Provisioned v2 uses FileStorage accounts and supports independent capacity, IOPS, and throughput provisioning. It meets the requested model and performance controls.
+- **B. Incorrect:** Provisioned v2 in a StorageV2 account. The similarly named StorageV2 account kind does not host classic provisioned-v2 file shares. That billing model requires FileStorage.
+- **C. Incorrect:** Pay-as-you-go in a StorageV2 account. This is a supported file-share configuration, but its consumption-based billing does not provide the requested independent provisioned-v2 controls.
+- **D. Incorrect:** Provisioned v1 in a FileStorage account. Provisioned v1 is supported, but performance is tied to provisioned capacity rather than independently provisioned using the requested v2 model.
 
-Study: [knowledge file](../knowledge/storage/azure-files/configuration.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/azure-files/configuration.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/files/create-classic-file-share) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/files/modify-file-share) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows)
 

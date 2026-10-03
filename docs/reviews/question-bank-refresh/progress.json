@@ -1549,9 +1549,9 @@
     {
       "id": "storage.files.configuration",
       "title": "Azure file share provisioning and configuration",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.files.configuration.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-files-protocol",
@@ -1566,9 +1566,9 @@
           ],
           "baselineHash": "ad5358a454fd501557f9e8e064881d5253da1ed805c6a60ee042608c119dbe72",
           "baselineContentHash": "cd4657679a5e28be6336e8ed20f1191d1c61c04cb19c066436dd5fbaba5b4e9c",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "50aabf50e553fb436c3a834ab2cc77c13bdba86912e1e2c4169cfde0c8c10e51"
         },
         {
           "id": "st-files-port",
@@ -1583,9 +1583,9 @@
           ],
           "baselineHash": "e6632bb762466471c0b7601a815b6cbcf5a048d973acfc4ed9609deb27d59249",
           "baselineContentHash": "e7d258d436772c33a546b51ff6fde17317a71f89b9ed0c4e0356c6047e69681b",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "42fb88c3cad098cdcde42575e596c957e8bb83ecb2d8e133627e72e1289bf87a"
         },
         {
           "id": "st-files-provisioned-v2",
@@ -1600,9 +1600,9 @@
           ],
           "baselineHash": "be74ebcffba62cae835199039b8f5b17a69fa81c72179b10e18fa3ad31ff4ad3",
           "baselineContentHash": "9cb3922b138bc3f2b6ea4d9ed88cda454d34675361e5f10a6c23137d0e3404b7",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "a39264ec2907e7f355c13a7d30dcaa0433444c7b071957e2b380ddddee746afa"
         }
       ]
     },
