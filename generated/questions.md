@@ -3234,27 +3234,27 @@ D. Contributor at the storage account scope
 
 Topic: Storage › Blob access tiers.
 
-A design review compares only cool and archive for an infrequently read block-blob dataset. The application must read any object immediately, without waiting for rehydration. Which choice satisfies that requirement?
+A standard general-purpose v2 account stores block blobs that are rarely read but must remain immediately readable. Each blob will be deleted 45 days after upload. Which listed tier has lower capacity costs than hot and allows that deletion without an early-deletion charge?
 
 Select **1**. Difficulty: applied.
 
-A. Cool, because it remains an online tier
-B. Archive, because infrequent access eliminates rehydration
-C. Archive, because high-priority rehydration makes all reads immediately available
-D. Neither, because cool also requires rehydration before each read
+A. Cool
+B. Archive
+C. Cold
+D. Hot
 
 ## st-tier-002
 
 Topic: Storage › Blob access tiers.
 
-A block blob in a general-purpose v2 account is deleted from the cool tier after 12 days. Soft delete is disabled and no retention protection applies. What does the cool tier's 30-day minimum mean?
+A block blob is uploaded directly to cool in a general-purpose v2 account and deleted exactly 12 days later. Soft delete is disabled and no retention protection applies. How many additional days of cool storage does the early-deletion charge cover?
 
 Select **1**. Difficulty: applied.
 
-A. Deletion is possible, but an early-deletion charge can cover the remaining 18 days.
-B. Azure refuses deletion until day 30.
-C. Deletion is free of any remaining-duration charge because the blob no longer exists.
-D. Azure automatically archives the blob until day 30.
+A. 18 days
+B. 30 days
+C. 0 days
+D. 12 days
 
 ## st-tier-003
 
@@ -3273,27 +3273,27 @@ D. Neither blob; defaults only affect future uploads
 
 Topic: Storage › Blob access tiers.
 
-A standard general-purpose v2 account uses ZRS. An administrator wants to put a block blob into archive without changing the account's redundancy. What is the relevant limitation?
+A Set Blob Tier request to archive fails for a block blob in a standard general-purpose v2 account using ZRS. The blob has no encryption scope. The request explicitly sets the individual blob tier; network access and data permissions are valid. Which configuration explains the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Archive is not supported with ZRS.
-B. The blob must first spend 30 days in hot.
-C. The container must permit anonymous reads.
-D. Enabling last-access-time tracking enables archive on ZRS.
+A. The account uses a redundancy configuration that does not support archive.
+B. The account is a premium block blob account that does not support standard access tiers.
+C. The object is an append blob, which does not support access-tier changes.
+D. The request attempts to make archive the account default tier.
 
 ## st-tier-005
 
 Topic: Storage › Blob access tiers.
 
-A team wants to reduce blob storage spending. Which two considerations follow Microsoft's guidance for choosing tiers?
+A team will migrate block blobs to a standard general-purpose v2 account. The known workload is suitable for cool and will retain the blobs for at least 60 days. Which two independent recommendations help the team control total tier-related costs?
 
 Select **2**. Difficulty: applied.
 
-A. Evaluate expected read frequency and retrieval charges alongside capacity prices.
-B. Upload directly to the appropriate tier when the expected usage is known.
-C. Always choose the tier with the lowest per-GB capacity price.
-D. Cycle blobs through every tier daily to avoid minimum-duration charges.
+A. Estimate read frequency and retrieval charges together with capacity and operation charges.
+B. Upload the blobs directly to cool rather than first uploading to hot and immediately changing tiers.
+C. Use the cool capacity price as the complete cost estimate because the minimum duration will be met.
+D. Upload to hot and immediately move to cool to avoid paying for a cool-tier write.
 
 ## st-life-001
 

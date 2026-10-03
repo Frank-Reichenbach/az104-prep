@@ -219,34 +219,34 @@
     {
       "id": "st-tier-001",
       "family": "st-tier-online",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.access-tiers",
       "objectives": [
         "st-13"
       ],
       "difficulty": "applied",
-      "prompt": "A design review compares only cool and archive for an infrequently read block-blob dataset. The application must read any object immediately, without waiting for rehydration. Which choice satisfies that requirement?",
+      "prompt": "A standard general-purpose v2 account stores block blobs that are rarely read but must remain immediately readable. Each blob will be deleted 45 days after upload. Which listed tier has lower capacity costs than hot and allows that deletion without an early-deletion charge?",
       "select": 1,
       "options": [
         {
           "id": "cool",
-          "text": "Cool, because it remains an online tier",
-          "explanation": "Cool permits immediate reads. The question restricts the comparison to cool and archive and does not assert cool is universally cheapest."
+          "text": "Cool",
+          "explanation": "Cool remains online, has lower capacity costs than hot, and has a 30-day minimum billed duration. Deletion after 45 days meets all three requirements."
         },
         {
           "id": "archive",
-          "text": "Archive, because infrequent access eliminates rehydration",
-          "explanation": "Low access frequency does not remove archive's offline retrieval behavior."
+          "text": "Archive",
+          "explanation": "Archive is offline and requires rehydration before content reads. It also has a 180-day minimum billed duration, so deletion after 45 days would incur an early-deletion charge."
         },
         {
           "id": "archive-priority",
-          "text": "Archive, because high-priority rehydration makes all reads immediately available",
-          "explanation": "Higher rehydration priority does not turn archived data into always-online data."
+          "text": "Cold",
+          "explanation": "Cold supports immediate reads and lower capacity costs, but its 90-day minimum billed duration exceeds the specified 45 days. Early deletion would incur a charge."
         },
         {
           "id": "neither",
-          "text": "Neither, because cool also requires rehydration before each read",
-          "explanation": "Cool is an online tier and does not require archive-style rehydration."
+          "text": "Hot",
+          "explanation": "Hot provides immediate reads without a minimum billed duration. However, the requirement explicitly asks for lower capacity costs than hot; hot itself does not meet that comparison."
         }
       ],
       "correct": [
@@ -256,39 +256,39 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-tier-002",
       "family": "st-tier-minimum",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.access-tiers",
       "objectives": [
         "st-13"
       ],
       "difficulty": "applied",
-      "prompt": "A block blob in a general-purpose v2 account is deleted from the cool tier after 12 days. Soft delete is disabled and no retention protection applies. What does the cool tier's 30-day minimum mean?",
+      "prompt": "A block blob is uploaded directly to cool in a general-purpose v2 account and deleted exactly 12 days later. Soft delete is disabled and no retention protection applies. How many additional days of cool storage does the early-deletion charge cover?",
       "select": 1,
       "options": [
         {
           "id": "billing",
-          "text": "Deletion is possible, but an early-deletion charge can cover the remaining 18 days.",
-          "explanation": "The minimum is a billing duration. In this scenario, 30 minus 12 leaves 18 days of early-deletion charges."
+          "text": "18 days",
+          "explanation": "Cool has a 30-day minimum billed duration in this account type. The blob was stored for 12 days, so the additional charge covers 30 minus 12, or 18 days."
         },
         {
           "id": "locked",
-          "text": "Azure refuses deletion until day 30.",
-          "explanation": "A tier's billing minimum is not an immutability or retention lock."
+          "text": "30 days",
+          "explanation": "Thirty days is the total minimum billed duration, not an additional 30 days on top of the 12 already stored. The remaining duration is 18 days."
         },
         {
           "id": "no-cost",
-          "text": "Deletion is free of any remaining-duration charge because the blob no longer exists.",
-          "explanation": "Early removal is precisely the circumstance in which a minimum-duration charge applies."
+          "text": "0 days",
+          "explanation": "Deletion is permitted, but it does not waive the minimum-duration charge. Removing the blob after 12 days leaves 18 billable days."
         },
         {
           "id": "archive",
-          "text": "Azure automatically archives the blob until day 30.",
-          "explanation": "Deleting a cool-tier blob does not implicitly move it into archive."
+          "text": "12 days",
+          "explanation": "Twelve days is the elapsed storage period. The early-deletion charge covers the unfulfilled portion of the 30-day minimum, which is 18 days."
         }
       ],
       "correct": [
@@ -298,7 +298,7 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-tier-003",
@@ -340,39 +340,39 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-tier-004",
       "family": "st-tier-archive-redundancy",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.access-tiers",
       "objectives": [
         "st-13"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A standard general-purpose v2 account uses ZRS. An administrator wants to put a block blob into archive without changing the account's redundancy. What is the relevant limitation?",
+      "prompt": "A Set Blob Tier request to archive fails for a block blob in a standard general-purpose v2 account using ZRS. The blob has no encryption scope. The request explicitly sets the individual blob tier; network access and data permissions are valid. Which configuration explains the failure?",
       "select": 1,
       "options": [
         {
           "id": "unsupported",
-          "text": "Archive is not supported with ZRS.",
-          "explanation": "The documented archive redundancy choices are LRS, GRS, and RA-GRS; ZRS is excluded."
+          "text": "The account uses a redundancy configuration that does not support archive.",
+          "explanation": "Archive supports LRS, GRS, and RA-GRS, but not ZRS. The account redundancy therefore prevents this explicit blob-level transition."
         },
         {
           "id": "wait",
-          "text": "The blob must first spend 30 days in hot.",
-          "explanation": "A waiting period in hot does not resolve an unsupported redundancy combination."
+          "text": "The account is a premium block blob account that does not support standard access tiers.",
+          "explanation": "Premium block blob accounts have this tiering limitation, but the stated account is standard general-purpose v2. That otherwise valid limitation does not explain this failure."
         },
         {
           "id": "container",
-          "text": "The container must permit anonymous reads.",
-          "explanation": "Anonymous access settings do not determine archive redundancy support."
+          "text": "The object is an append blob, which does not support access-tier changes.",
+          "explanation": "Access-tier changes apply to block blobs rather than append blobs. This object is explicitly a block blob, so the blob-type restriction does not explain the failure."
         },
         {
           "id": "tracking",
-          "text": "Enabling last-access-time tracking enables archive on ZRS.",
-          "explanation": "Tracking supplies lifecycle conditions; it does not change archive's redundancy constraints."
+          "text": "The request attempts to make archive the account default tier.",
+          "explanation": "Archive cannot be an account default, but this request explicitly changes an individual blob. The unsupported account-default setting is not being requested."
         }
       ],
       "correct": [
@@ -382,39 +382,39 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-tier-005",
       "family": "st-tier-cost-inputs",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.access-tiers",
       "objectives": [
         "st-13"
       ],
       "difficulty": "applied",
-      "prompt": "A team wants to reduce blob storage spending. Which two considerations follow Microsoft's guidance for choosing tiers?",
+      "prompt": "A team will migrate block blobs to a standard general-purpose v2 account. The known workload is suitable for cool and will retain the blobs for at least 60 days. Which two independent recommendations help the team control total tier-related costs?",
       "select": 2,
       "options": [
         {
           "id": "access-cost",
-          "text": "Evaluate expected read frequency and retrieval charges alongside capacity prices.",
-          "explanation": "Lower capacity prices can be offset by higher access costs."
+          "text": "Estimate read frequency and retrieval charges together with capacity and operation charges.",
+          "explanation": "Microsoft recommends comparing total costs using the expected read pattern. Cool has lower capacity costs than hot but higher access costs, so capacity price alone is insufficient."
         },
         {
           "id": "upload",
-          "text": "Upload directly to the appropriate tier when the expected usage is known.",
-          "explanation": "Choosing the suitable tier at upload can avoid extra operations from a later transition."
+          "text": "Upload the blobs directly to cool rather than first uploading to hot and immediately changing tiers.",
+          "explanation": "When the appropriate tier is known, direct upload avoids the additional tier-change operation and the initial-tier capacity interval described in Microsoft guidance."
         },
         {
           "id": "lowest-capacity",
-          "text": "Always choose the tier with the lowest per-GB capacity price.",
-          "explanation": "Capacity price alone ignores retrieval requirements, operations, and access charges."
+          "text": "Use the cool capacity price as the complete cost estimate because the minimum duration will be met.",
+          "explanation": "Meeting the minimum duration avoids an early-deletion charge for that retention plan. It does not remove cool retrieval or operation charges, which still belong in the estimate."
         },
         {
           "id": "daily-cycle",
-          "text": "Cycle blobs through every tier daily to avoid minimum-duration charges.",
-          "explanation": "Repeated transitions can introduce operations and early-deletion charges instead of avoiding them."
+          "text": "Upload to hot and immediately move to cool to avoid paying for a cool-tier write.",
+          "explanation": "Moving to a cooler tier is billed as a write to the destination tier. Uploading first to hot adds the initial write rather than eliminating the later cool-tier operation."
         }
       ],
       "correct": [
@@ -423,9 +423,10 @@
       ],
       "knowledge": "knowledge/storage/blob-storage/access-tiers.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-best-practices"
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-best-practices",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-life-001",

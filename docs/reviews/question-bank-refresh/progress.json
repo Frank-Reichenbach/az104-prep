@@ -316,9 +316,9 @@
     {
       "id": "storage.blobs.access-tiers",
       "title": "Blob access tiers",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.blobs.access-tiers.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-tier-001",
@@ -333,9 +333,9 @@
           ],
           "baselineHash": "7f6e52ffeb721fb5183a3753341973b252b3527aa388706a4228fb48823c6e73",
           "baselineContentHash": "8924827ff03232d055b2a74598d247382f26b236b05d08a146b2207432241501",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "70889ab85c72c5996e0073de852604912b4a0fc89a866035bfb16939019636ff"
         },
         {
           "id": "st-tier-002",
@@ -350,9 +350,9 @@
           ],
           "baselineHash": "35cea18e86e14651c62c2e40e61c262bfdf78acb5bee776b5e4984b2ab1aa4af",
           "baselineContentHash": "d014a64dddd7c09c8288849363fdb10eb071aeb53a8865483e6b2146d7b2a943",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "b0f51022a5d3b7a5b6c5b0cabf3834d85099c33f3b3b82743dd29fc78c43d196"
         },
         {
           "id": "st-tier-003",
@@ -367,9 +367,9 @@
           ],
           "baselineHash": "852f7a616ef3575942ae78ffc44ea3ce07742a0302a03f9b844fc5da85c530b4",
           "baselineContentHash": "71c2e802f32bf9b6df2f326f93246a090e315cfcc137a5b02431cd7c9adfe81d",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "8877fa2943fa1d41518727e02836b7899222a67f811975f7639945bef25e0187"
         },
         {
           "id": "st-tier-004",
@@ -384,9 +384,9 @@
           ],
           "baselineHash": "e2451abf292146cc3e4c2822b16d12fcb599c1597cb81b89371b6bb236abef1b",
           "baselineContentHash": "35d27e88b4062b55e2f54dff8bdd4b003863416126cc3fe4691b5132e6abb687",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "bb799a5b29ba82c2cc901b21981b71e24ff8340b5f00a2280a41062753f2d2a7"
         },
         {
           "id": "st-tier-005",
@@ -401,9 +401,9 @@
           ],
           "baselineHash": "7e1543544542e632ca429a5d93919de08d64b0c539336473e8ee2049b7c70a0e",
           "baselineContentHash": "af025ed30d4c03a5b241124f9e96393f6c0b8ef249fad8a3cde3e3807102d924",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "4bd6ea85e22cc386cebf9cd04a754328747efa18bdd6b71ae7547966997758a1"
         }
       ]
     },
