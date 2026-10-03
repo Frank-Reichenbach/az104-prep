@@ -1609,9 +1609,9 @@
     {
       "id": "identity.users.management",
       "title": "Entra user provisioning and properties",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/identity.users.management.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "id-user-role",
@@ -1626,9 +1626,9 @@
           ],
           "baselineHash": "749c5fd4ac4992200e1b10fa9a2e3ad8455aa7c14591232da64a3adaacc9efdd",
           "baselineContentHash": "76a6a74c9ac80f51d487fab2f9551e8d508edb3f46bd181c6229f42c37f95086",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "73e1978b247a9e8a164f6d2679b150940c0096e930270ec217ea99ae3edc6a4f"
         },
         {
           "id": "id-user-source",
@@ -1643,9 +1643,9 @@
           ],
           "baselineHash": "591ed6d68a20b886c58dad62037bed2f3e4035f280819b4f5f04fb549f7ad05e",
           "baselineContentHash": "36dc12c5e272c1f2ad77f81e0f1335011741281e0fd7bf1bc7b2bc8418d6ad39",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "bedafcf88039529668122e10294f8fc3b228a93cc410fd775a6c4b1e93ba4f06"
         },
         {
           "id": "id-user-stable-id",
@@ -1660,9 +1660,9 @@
           ],
           "baselineHash": "a2d1e30ca41cd09b6b9a380056a47baaec4e176ec4d1bcfc9bb2111dd6c00e54",
           "baselineContentHash": "46e574e9233fd3895435c71c51d3e0f66ab7ab97597f76c5fabb7570d7e2f0d8",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "3b5bd5e7f6d393b986a361c95cea3b59b2c2c856d9ffd671ac5fbd651069a498"
         }
       ]
     },

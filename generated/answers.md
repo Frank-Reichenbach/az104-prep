@@ -1955,7 +1955,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** Contributor on an Azure resource group. Azure resource management permission is not Entra user administration.
 - **D. Incorrect:** Guest Inviter. Inviting external guests is different from creating internal cloud accounts.
 
-Study: [knowledge file](../knowledge/identity/users/user-management.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/users/user-management.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-create-delete-users) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-user-profile-info) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/users/directory-overview-user-model)
 
@@ -1963,16 +1963,16 @@ Study: [knowledge file](../knowledge/identity/users/user-management.md). Evidenc
 
 Topic: Identity and governance › Entra user provisioning and properties.
 
-A user's department is synchronized from on-premises Active Directory. Routine cloud edits are rejected or later overwritten. Where should the normal department update be made?
+An employee's department synchronizes from on-premises Active Directory into Microsoft Entra ID. A cloud profile edit is rejected or overwritten on the next synchronization. AD remains authoritative for this attribute, and the existing synchronization mappings must remain unchanged. Which procedure makes the normal lasting department update?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** At the authoritative on-premises directory source. Synchronization should carry the maintained attribute into Entra.
-- **B. Incorrect:** In a tag on the Azure subscription. Resource tags do not change user directory attributes.
-- **C. Incorrect:** In the user's product license assignment. Licensing does not set the authoritative department.
-- **D. Incorrect:** Create a second cloud user with the same display name. A duplicate identity does not repair the existing object's source attribute.
+- **A. Correct:** Update the user's department in on-premises AD and allow synchronization to run. The attribute's authoritative value is in AD. Updating that source lets the existing synchronization mapping carry the intended department into Entra ID.
+- **B. Incorrect:** Update the user's department in the Entra admin center and wait for synchronization. A cloud-side edit does not change the authoritative AD value. The same synchronization process that rejected or overwrote the edit will not make it the maintained source.
+- **C. Incorrect:** Update the cloud department through Microsoft Graph instead of the admin center. Using an API changes the editing interface, not this attribute's source of authority. It does not replace the required update to the AD source under the unchanged mapping.
+- **D. Incorrect:** Grant the cloud operator Global Administrator and repeat the cloud profile edit. A broader cloud administrator role does not transfer this attribute's authority from AD. The normal maintained update still belongs at its on-premises source.
 
-Study: [knowledge file](../knowledge/identity/users/user-management.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/users/user-management.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-create-delete-users) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-user-profile-info) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/users/directory-overview-user-model)
 
@@ -1980,18 +1980,18 @@ Study: [knowledge file](../knowledge/identity/users/user-management.md). Evidenc
 
 Topic: Identity and governance › Entra user provisioning and properties.
 
-An Entra cloud user's display name changes. Which value should an existing application use to continue identifying that same directory object?
+An application stores a reference to an existing Microsoft Entra cloud user. The user's display name, sign-in name, and email address may change, but the directory object will not be deleted or recreated. Which property provides the stable reference to that same object?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** The existing object ID. It identifies the object independently of a display-name edit.
-- **B. Incorrect:** Only the new display name. Display names can change and need not be unique.
-- **C. Incorrect:** The department string. Many users can share a department.
-- **D. Incorrect:** The usage location. A licensing-related location is not a unique object identifier.
+- **A. Correct:** Object ID (id). The object ID is the user's read-only unique directory identifier. Editing profile or sign-in fields does not replace the existing directory object or its ID.
+- **B. Incorrect:** Display name (displayName). The display name is editable user-visible profile data. A stored old name does not provide a stable reference after the stated rename.
+- **C. Incorrect:** User principal name (userPrincipalName). The UPN is the sign-in name and can change in this scenario. It identifies a sign-in address, rather than providing the unchanged object key.
+- **D. Incorrect:** Email address (mail). The email address is a user property that may change here. Keeping the old address is not the same as retaining the stable directory object identifier.
 
-Study: [knowledge file](../knowledge/identity/users/user-management.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/users/user-management.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-create-delete-users) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-user-profile-info) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/users/directory-overview-user-model)
+[Microsoft source 1](https://learn.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-user-profile-info)
 
 ## id-sspr-unregistered
 

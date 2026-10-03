@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 82/322 questions reviewed, 66 revised and 16 kept; 22/99 topics complete.
-Latest: [Azure file share provisioning and configuration](docs/reviews/question-bank-refresh/storage.files.configuration.md). Each completed topic has item decisions,
+Checkpoint: 85/322 questions reviewed, 68 revised and 17 kept; 23/99 topics complete.
+Latest: [Entra user provisioning and properties](docs/reviews/question-bank-refresh/identity.users.management.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `identity.users.management` (Entra user provisioning and properties).
+Next: `identity.groups.management` (Entra groups and dynamic membership).
 The changes are on the work branch; the live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
 refresh PR needs explicit approval; do not reuse the earlier skill PR approval.
@@ -293,8 +293,8 @@ retirement are documented with current alternatives.
 ## Next task
 
 Continue the authorized existing-bank review from `npm run review:status`.
-Current checkpoint: 82/322 questions, 22/99 topics complete.
-Next: `identity.users.management` (Entra user provisioning and properties).
+Current checkpoint: 85/322 questions, 23/99 topics complete.
+Next: `identity.groups.management` (Entra groups and dynamic membership).
 Record real source checks and repair decisions in its report; do not mark a
 topic complete based on schema checks alone.
 
