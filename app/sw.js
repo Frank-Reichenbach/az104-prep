@@ -7,7 +7,15 @@ const scope = self.registration.scope;
 
 self.addEventListener('install', event => {
   // Do not skipWaiting automatically: a running quiz session must not be swapped mid-way.
-  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(PRECACHE.map(path => new URL(path, scope).href))));
+  // cache: 'reload' bypasses the browser HTTP cache, so the new version never stores stale copies.
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE);
+    await Promise.all(PRECACHE.map(async path => {
+      const response = await fetch(new URL(path, scope).href, { cache: 'reload' });
+      if (!response.ok) throw new Error(`Precache failed: ${path} (${response.status})`);
+      await cache.put(new URL(path, scope).href, response);
+    }));
+  })());
 });
 
 self.addEventListener('activate', event => {

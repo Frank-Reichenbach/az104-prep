@@ -39,22 +39,28 @@ async function registerWorker() {
   try {
     const hadController = !!navigator.serviceWorker.controller;
     const registration = await navigator.serviceWorker.register('./sw.js');
-    const offerUpdate = worker => {
+    let reloading = false;
+    const reloadOnce = () => { if (!reloading) { reloading = true; location.reload(); } };
+    const offerUpdate = () => {
       $('update').hidden = false;
-      $('update-reload').onclick = () => worker.postMessage('SKIP_WAITING');
+      $('update-reload').onclick = async () => {
+        // Always target the worker that is waiting right now; the one seen earlier may be redundant.
+        const waiting = (await navigator.serviceWorker.getRegistration())?.waiting || registration.waiting;
+        if (!waiting) { reloadOnce(); return; }
+        waiting.postMessage('SKIP_WAITING');
+        // Fallback if controllerchange never fires (e.g. the worker was already activated).
+        setTimeout(reloadOnce, 1500);
+      };
     };
-    if (registration.waiting && hadController) offerUpdate(registration.waiting);
+    if (registration.waiting && hadController) offerUpdate();
     registration.addEventListener('updatefound', () => {
       const worker = registration.installing;
       worker?.addEventListener('statechange', () => {
         if (worker.state !== 'installed') return;
-        if (hadController) offerUpdate(worker); else $('offline').textContent = ' · Available offline';
+        if (hadController) offerUpdate(); else $('offline').textContent = ' · Available offline';
       });
     });
-    let reloading = false;
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (hadController && !reloading) { reloading = true; location.reload(); }
-    });
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if (hadController) reloadOnce(); });
     await navigator.serviceWorker.ready;
     $('offline').textContent = ' · Available offline';
     navigator.storage?.persist?.().catch(() => {});
