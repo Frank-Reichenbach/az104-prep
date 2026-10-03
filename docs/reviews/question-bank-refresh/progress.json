@@ -718,9 +718,9 @@
     {
       "id": "storage.files.soft-delete",
       "title": "Azure Files share soft deletion",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.files.soft-delete.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-file-delete-001",
@@ -735,9 +735,9 @@
           ],
           "baselineHash": "56449aef5142a07b8eea19b31616a971e99886610e7cf2377b21ea23fe3bcb81",
           "baselineContentHash": "8a3ff9d4e2f92881fda0d28b625b82bfc00a57a6dba8f093094b06c504b80187",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "d8a202a634c2c6663d87209d6f3e51f8209d8de9c841ca0ef2283c4ea1ef430f"
         },
         {
           "id": "st-file-delete-002",
@@ -752,9 +752,9 @@
           ],
           "baselineHash": "eefbc5543019ee438e9863d656b6ab62e5c8d40e08583196946920a32266ef6d",
           "baselineContentHash": "252f7e784ccdcb3f02b6ccfc9a4a69c0627b8e6b91e1cc8a23de9f90b24dd6a6",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "52236374961256daaef791e351dcc0deddb2008b57173d3469083a77ee3e5379"
         },
         {
           "id": "st-file-delete-003",
@@ -769,9 +769,9 @@
           ],
           "baselineHash": "3989359066636a54cf97e56c1e4f298da2334a28bb5124279f2250e065d8cc3b",
           "baselineContentHash": "a0db48b21323986928f41587e608dd439bdca8c996aa71507288928aef60d77b",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f78534f0aad630a991bef0728922d6fa6261e3e1497c24774e9bfcc196e75af8"
         },
         {
           "id": "st-file-delete-004",
@@ -786,9 +786,9 @@
           ],
           "baselineHash": "5d4c50ff3244c0977fb9da1d48b93cbf428eebc33f37d9ab787e01e18400dfec",
           "baselineContentHash": "7a69edbdda116077b8a904de3f7c33347f4d4bd447dd88997171347d08340950",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "eab7f3c1f966a7abcf820304104e9a03b0693d4244c1e63f93309c63f396d32d"
         }
       ]
     },

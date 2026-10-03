@@ -13189,13 +13189,13 @@
     {
       "id": "st-file-delete-001",
       "family": "st-file-delete-individual",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.files.soft-delete",
       "objectives": [
         "st-15"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "Share soft delete is enabled for a classic Azure file share. A user deletes a single file, but the share remains active. A snapshot containing that file was taken earlier. Which recovery source applies?",
+      "prompt": "Share soft delete is enabled for a classic SMB Azure file share. A user deletes one file, but the share remains Active and has no deleted-share entry to undelete. A snapshot containing the file was taken earlier. Which recovery source applies?",
       "select": 1,
       "options": [
         {
@@ -13210,8 +13210,8 @@
         },
         {
           "id": "retention",
-          "text": "Increase share retention to recreate the file automatically",
-          "explanation": "Changing retention does not reconstruct individual file content."
+          "text": "Create a new share snapshot after the deletion and recover the file from it",
+          "explanation": "A new snapshot captures the current state, in which the file is missing. It does not reconstruct the earlier file contents; the existing pre-deletion snapshot is the applicable source."
         },
         {
           "id": "blob-version",
@@ -13227,12 +13227,12 @@
         "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-prevent-file-share-deletion",
         "https://learn.microsoft.com/en-us/azure/storage/files/storage-snapshots-files"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-file-delete-002",
       "family": "st-file-delete-config-scope",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.files.soft-delete",
       "objectives": [
         "st-15"
@@ -13243,23 +13243,23 @@
       "options": [
         {
           "id": "file-service",
-          "text": "Update the account's File service properties and enable share delete retention for 14 days",
-          "explanation": "Classic share soft deletion is configured on the File service, applying to shares in that account."
+          "text": "Enable delete retention for 14 days in the account's File service properties.",
+          "explanation": "Classic file-share soft delete is enabled through File service properties and applies across the shares in that account. This configures the requested 14-day recovery window."
         },
         {
           "id": "blob-service",
-          "text": "Enable blob delete retention on the account's Blob service",
-          "explanation": "This protects Blob Storage objects rather than classic Azure file shares."
+          "text": "Enable blob delete retention for 14 days in the account's Blob service properties.",
+          "explanation": "Blob delete retention protects Blob Storage objects, not Azure file shares. The correct duration on the wrong service does not activate the required protection."
         },
         {
           "id": "container-service",
-          "text": "Enable container delete retention on the account's Blob service",
-          "explanation": "Blob containers and Azure file shares have different protection settings."
+          "text": "Enable container delete retention for 14 days in the account's Blob service properties.",
+          "explanation": "Container delete retention protects Blob containers. A classic Azure file share belongs to the File service and requires its own share protection."
         },
         {
           "id": "tag",
-          "text": "Add a retention=14 tag to each share",
-          "explanation": "A tag does not by itself enable the File service's soft-delete behavior."
+          "text": "Set File service delete retention to 14 days while leaving its enabled flag false.",
+          "explanation": "A configured duration does not enable protection when the policy remains disabled. The requested recovery window requires both activation and the 14-day duration."
         }
       ],
       "correct": [
@@ -13267,14 +13267,16 @@
       ],
       "knowledge": "knowledge/storage/azure-files/soft-delete.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-prevent-file-share-deletion"
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-prevent-file-share-deletion",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-container-overview"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-file-delete-003",
       "family": "st-file-delete-restored-contents",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.files.soft-delete",
       "objectives": [
         "st-15"
@@ -13300,8 +13302,8 @@
         },
         {
           "id": "all-accounts",
-          "text": "All shares deleted from every account in the subscription",
-          "explanation": "Restoring a specific deleted share is not a subscription-wide restore operation."
+          "text": "The share and its snapshots, but not the retained live files",
+          "explanation": "Undelete restores the retained share contents from before deletion, including both its files and snapshots. It does not restore only the historical snapshots while omitting the retained live files."
         }
       ],
       "correct": [
@@ -13311,12 +13313,12 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-prevent-file-share-deletion"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-file-delete-004",
       "family": "st-file-delete-version-identifier",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.files.soft-delete",
       "objectives": [
         "st-15"
@@ -13327,23 +13329,23 @@
       "options": [
         {
           "id": "deleted-version",
-          "text": "The deleted share version used by --deleted-version",
-          "explanation": "This identifies the deleted share instance to restore through the management-plane command."
+          "text": "The deleted share version returned for the retained share instance.",
+          "explanation": "The --deleted-version argument identifies which retained deleted share instance to restore. The account, resource group, and name identify the resource context but do not replace that deletion version."
         },
         {
           "id": "blob-version",
-          "text": "A Blob Storage version ID from az storage blob list",
-          "explanation": "A blob version ID refers to a different service and is not the deleted file share identifier."
+          "text": "The Azure resource ID of the original file share.",
+          "explanation": "A resource ID identifies a management resource, not the particular deleted share version required by --deleted-version. The restore operation separately requires the retained instance's version value."
         },
         {
           "id": "sas-expiry",
-          "text": "A SAS expiry date to use as the deleted version",
-          "explanation": "Delegated access expiry is not a share deletion version."
+          "text": "The original file-share name.",
+          "explanation": "The name is supplied through --name and is already known in the scenario. It does not replace the separate --deleted-version value returned by listing deleted shares."
         },
         {
           "id": "snapshot",
-          "text": "Any snapshot timestamp from any active share",
-          "explanation": "A snapshot timestamp on another share does not identify the retained deleted share instance."
+          "text": "A snapshot timestamp belonging to that same share.",
+          "explanation": "A share snapshot identifies a file-share point-in-time source. It is a different identifier from the deleted-share version used by the whole-share restore command."
         }
       ],
       "correct": [
@@ -13351,9 +13353,11 @@
       ],
       "knowledge": "knowledge/storage/azure-files/soft-delete.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-prevent-file-share-deletion"
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-prevent-file-share-deletion",
+        "https://learn.microsoft.com/en-us/cli/azure/storage/share-rm?view=azure-cli-latest#az-storage-share-rm-restore",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-snapshots-files"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-container-anonymous-level-variant",

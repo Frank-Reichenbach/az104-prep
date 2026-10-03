@@ -3585,13 +3585,13 @@ D. Enable only share soft delete instead of preserving earlier file contents
 
 Topic: Storage › Azure Files share soft deletion.
 
-Share soft delete is enabled for a classic Azure file share. A user deletes a single file, but the share remains active. A snapshot containing that file was taken earlier. Which recovery source applies?
+Share soft delete is enabled for a classic SMB Azure file share. A user deletes one file, but the share remains Active and has no deleted-share entry to undelete. A snapshot containing the file was taken earlier. Which recovery source applies?
 
 Select **1**. Difficulty: troubleshooting.
 
 A. The earlier share snapshot containing the file
 B. Undelete the still-active share to reverse the individual file deletion
-C. Increase share retention to recreate the file automatically
+C. Create a new share snapshot after the deletion and recover the file from it
 D. Use the file's automatically created Azure Blob version
 
 ## st-file-delete-002
@@ -3602,10 +3602,10 @@ You want a 14-day soft-delete window for classic Azure file shares in a storage 
 
 Select **1**. Difficulty: applied.
 
-A. Update the account's File service properties and enable share delete retention for 14 days
-B. Enable blob delete retention on the account's Blob service
-C. Enable container delete retention on the account's Blob service
-D. Add a retention=14 tag to each share
+A. Enable delete retention for 14 days in the account's File service properties.
+B. Enable blob delete retention for 14 days in the account's Blob service properties.
+C. Enable container delete retention for 14 days in the account's Blob service properties.
+D. Set File service delete retention to 14 days while leaving its enabled flag false.
 
 ## st-file-delete-003
 
@@ -3618,7 +3618,7 @@ Select **1**. Difficulty: applied.
 A. The share and its retained contents, including snapshots
 B. Only an empty share with the original name
 C. The files, but never the snapshots
-D. All shares deleted from every account in the subscription
+D. The share and its snapshots, but not the retained live files
 
 ## st-file-delete-004
 
@@ -3628,10 +3628,10 @@ You will restore a retained classic Azure file share using az storage share-rm r
 
 Select **1**. Difficulty: applied.
 
-A. The deleted share version used by --deleted-version
-B. A Blob Storage version ID from az storage blob list
-C. A SAS expiry date to use as the deleted version
-D. Any snapshot timestamp from any active share
+A. The deleted share version returned for the retained share instance.
+B. The Azure resource ID of the original file share.
+C. The original file-share name.
+D. A snapshot timestamp belonging to that same share.
 
 ## st-container-anonymous-level-variant
 
