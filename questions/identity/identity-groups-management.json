@@ -4,35 +4,35 @@
     {
       "id": "id-group-dynamic-department",
       "family": "id-group-dynamic-department",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.groups.management",
       "objectives": [
         "id-01",
         "id-02"
       ],
       "difficulty": "applied",
-      "prompt": "An Entra security group should automatically include enabled users whose department is Operations. Which membership approach fits?",
+      "prompt": "An Entra Dynamic User security group must include only enabled users whose department is Operations. The tenant has the required licensing. Which membership rule implements both conditions?",
       "select": 1,
       "options": [
         {
           "id": "dynamic",
-          "text": "Dynamic User with a department and accountEnabled rule.",
-          "explanation": "Membership follows the stated user attributes after processing."
+          "text": "(user.department -eq \"Operations\") -and (user.accountEnabled -eq true)",
+          "explanation": "AND requires both the Operations department and an enabled account."
         },
         {
           "id": "assigned",
-          "text": "Assigned membership with no automation.",
-          "explanation": "It requires explicit member maintenance rather than attribute evaluation."
+          "text": "(user.department -eq \"Operations\") -or (user.accountEnabled -eq true)",
+          "explanation": "OR also admits enabled users from other departments and disabled Operations users."
         },
         {
           "id": "device",
-          "text": "Dynamic Device using device operating system.",
-          "explanation": "Device properties cannot express this set of user departments."
+          "text": "user.department -eq \"Operations\"",
+          "explanation": "This omits the enabled-account condition and can admit disabled Operations users."
         },
         {
           "id": "tag",
-          "text": "An Azure resource tag named Operations.",
-          "explanation": "Resource tags are not Entra group membership rules."
+          "text": "(user.department -ne \"Operations\") -and (user.accountEnabled -eq true)",
+          "explanation": "This selects enabled users outside Operations, reversing the department requirement."
         }
       ],
       "correct": [
@@ -44,40 +44,40 @@
         "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership",
         "https://learn.microsoft.com/en-us/entra/identity/users/groups-create-rule"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "id-group-dynamic-exception",
       "family": "id-group-dynamic-exception",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.groups.management",
       "objectives": [
         "id-01",
         "id-02"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "An administrator cannot manually add a user to an Entra Dynamic User group. The user does not match its rule. What should be reviewed?",
+      "prompt": "A Groups Administrator cannot manually add a user to an Entra Dynamic User group. The user's current attributes do not match its membership rule, and processing is active. The group must remain dynamic. Which next step addresses this membership problem?",
       "select": 1,
       "options": [
         {
           "id": "rule",
-          "text": "The rule and authoritative user attributes.",
-          "explanation": "Dynamic membership is computed from eligibility rather than manual exceptions."
+          "text": "Review the membership rule and the user's authoritative attribute values.",
+          "explanation": "Dynamic membership follows rule eligibility. Review whether the intended criteria or maintained user attributes need correction, then allow evaluation to process."
         },
         {
           "id": "owner",
-          "text": "Make the user the group owner to guarantee membership.",
-          "explanation": "Ownership is not a substitute for satisfying the dynamic rule."
+          "text": "Make the user a group owner to bypass the membership rule.",
+          "explanation": "Group ownership permits management tasks; it does not make a nonmatching user satisfy a dynamic membership rule."
         },
         {
           "id": "rename",
-          "text": "Rename the group to the user's name.",
-          "explanation": "The display name does not determine rule evaluation."
+          "text": "Run Validate Rules to force the user into the group.",
+          "explanation": "Validate Rules tests whether a user meets the rule. It does not manually insert a nonmatching member or alter the eligibility criteria."
         },
         {
           "id": "license",
-          "text": "Assign Azure subscription Owner to the user.",
-          "explanation": "Azure resource permissions do not override a directory membership rule."
+          "text": "Use a Microsoft Graph add-member request to bypass the portal restriction.",
+          "explanation": "Manual additions to dynamic groups are unsupported through Graph as well. Changing the interface does not bypass computed membership."
         }
       ],
       "correct": [
@@ -85,11 +85,12 @@
       ],
       "knowledge": "knowledge/identity/groups/group-management.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups",
         "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership",
-        "https://learn.microsoft.com/en-us/entra/identity/users/groups-create-rule"
+        "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups",
+        "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-rule-validation",
+        "https://learn.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "id-group-license",
@@ -134,40 +135,40 @@
         "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership",
         "https://learn.microsoft.com/en-us/entra/identity/users/groups-create-rule"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "id-group-properties",
       "family": "id-group-properties",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.groups.management",
       "objectives": [
         "id-01",
         "id-02"
       ],
       "difficulty": "foundation",
-      "prompt": "A cloud-managed Entra security group's description needs updating while applications must keep referring to the same group. Which action fits?",
+      "prompt": "A cloud-managed Entra security group's description must change. Applications must continue using that group's existing object ID. Which action meets both requirements?",
       "select": 1,
       "options": [
         {
           "id": "edit",
-          "text": "Edit the existing group's properties.",
-          "explanation": "Its identity remains the existing object ID."
+          "text": "Edit the description on the existing group.",
+          "explanation": "Description is an editable group property. Updating it retains the existing group and its read-only object ID."
         },
         {
           "id": "recreate",
-          "text": "Delete the group and recreate the same name.",
-          "explanation": "A recreated object has a different ID and can break assignments."
+          "text": "Delete the group and recreate it with the same name and new description.",
+          "explanation": "The replacement is a new directory object. Reusing the display name does not retain the object ID used by the applications."
         },
         {
           "id": "user",
-          "text": "Change every member's UPN.",
-          "explanation": "User names do not update group description."
+          "text": "Set the existing group's display name to the desired description.",
+          "explanation": "Display name and description are separate properties. Editing the name retains the ID but leaves the requested description unchanged."
         },
         {
           "id": "tenant",
-          "text": "Create a new Entra tenant.",
-          "explanation": "A tenant migration is unnecessary for a property edit."
+          "text": "Create a second group with the new description and copy the membership.",
+          "explanation": "The second group has a different object ID. Matching membership does not update the description of the original group referenced by the applications."
         }
       ],
       "correct": [
@@ -176,10 +177,9 @@
       "knowledge": "knowledge/identity/groups/group-management.md",
       "sources": [
         "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups",
-        "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership",
-        "https://learn.microsoft.com/en-us/entra/identity/users/groups-create-rule"
+        "https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     }
   ]
 }

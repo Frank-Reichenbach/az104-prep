@@ -1623,16 +1623,16 @@ Study: [knowledge file](../knowledge/identity/governance/tags.md). Evidence chec
 
 Topic: Identity and governance › Entra groups and dynamic membership.
 
-An Entra security group should automatically include enabled users whose department is Operations. Which membership approach fits?
+An Entra Dynamic User security group must include only enabled users whose department is Operations. The tenant has the required licensing. Which membership rule implements both conditions?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Dynamic User with a department and accountEnabled rule. Membership follows the stated user attributes after processing.
-- **B. Incorrect:** Assigned membership with no automation. It requires explicit member maintenance rather than attribute evaluation.
-- **C. Incorrect:** Dynamic Device using device operating system. Device properties cannot express this set of user departments.
-- **D. Incorrect:** An Azure resource tag named Operations. Resource tags are not Entra group membership rules.
+- **A. Correct:** (user.department -eq "Operations") -and (user.accountEnabled -eq true) AND requires both the Operations department and an enabled account.
+- **B. Incorrect:** (user.department -eq "Operations") -or (user.accountEnabled -eq true) OR also admits enabled users from other departments and disabled Operations users.
+- **C. Incorrect:** user.department -eq "Operations" This omits the enabled-account condition and can admit disabled Operations users.
+- **D. Incorrect:** (user.department -ne "Operations") -and (user.accountEnabled -eq true) This selects enabled users outside Operations, reversing the department requirement.
 
-Study: [knowledge file](../knowledge/identity/groups/group-management.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/groups/group-management.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/users/groups-create-rule)
 
@@ -1640,18 +1640,18 @@ Study: [knowledge file](../knowledge/identity/groups/group-management.md). Evide
 
 Topic: Identity and governance › Entra groups and dynamic membership.
 
-An administrator cannot manually add a user to an Entra Dynamic User group. The user does not match its rule. What should be reviewed?
+A Groups Administrator cannot manually add a user to an Entra Dynamic User group. The user's current attributes do not match its membership rule, and processing is active. The group must remain dynamic. Which next step addresses this membership problem?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** The rule and authoritative user attributes. Dynamic membership is computed from eligibility rather than manual exceptions.
-- **B. Incorrect:** Make the user the group owner to guarantee membership. Ownership is not a substitute for satisfying the dynamic rule.
-- **C. Incorrect:** Rename the group to the user's name. The display name does not determine rule evaluation.
-- **D. Incorrect:** Assign Azure subscription Owner to the user. Azure resource permissions do not override a directory membership rule.
+- **A. Correct:** Review the membership rule and the user's authoritative attribute values. Dynamic membership follows rule eligibility. Review whether the intended criteria or maintained user attributes need correction, then allow evaluation to process.
+- **B. Incorrect:** Make the user a group owner to bypass the membership rule. Group ownership permits management tasks; it does not make a nonmatching user satisfy a dynamic membership rule.
+- **C. Incorrect:** Run Validate Rules to force the user into the group. Validate Rules tests whether a user meets the rule. It does not manually insert a nonmatching member or alter the eligibility criteria.
+- **D. Incorrect:** Use a Microsoft Graph add-member request to bypass the portal restriction. Manual additions to dynamic groups are unsupported through Graph as well. Changing the interface does not bypass computed membership.
 
-Study: [knowledge file](../knowledge/identity/groups/group-management.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/groups/group-management.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/users/groups-create-rule)
+[Microsoft source 1](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-rule-validation) · [Microsoft source 4](https://learn.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0)
 
 ## id-group-license
 
@@ -1666,7 +1666,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** Buy one user license per group regardless of membership. The requirement is not based only on group count.
 - **D. Incorrect:** Count the same user again for every dynamic group they join. The documented count is unique users, not memberships.
 
-Study: [knowledge file](../knowledge/identity/groups/group-management.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/groups/group-management.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/users/groups-create-rule)
 
@@ -1674,18 +1674,18 @@ Study: [knowledge file](../knowledge/identity/groups/group-management.md). Evide
 
 Topic: Identity and governance › Entra groups and dynamic membership.
 
-A cloud-managed Entra security group's description needs updating while applications must keep referring to the same group. Which action fits?
+A cloud-managed Entra security group's description must change. Applications must continue using that group's existing object ID. Which action meets both requirements?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** Edit the existing group's properties. Its identity remains the existing object ID.
-- **B. Incorrect:** Delete the group and recreate the same name. A recreated object has a different ID and can break assignments.
-- **C. Incorrect:** Change every member's UPN. User names do not update group description.
-- **D. Incorrect:** Create a new Entra tenant. A tenant migration is unnecessary for a property edit.
+- **A. Correct:** Edit the description on the existing group. Description is an editable group property. Updating it retains the existing group and its read-only object ID.
+- **B. Incorrect:** Delete the group and recreate it with the same name and new description. The replacement is a new directory object. Reusing the display name does not retain the object ID used by the applications.
+- **C. Incorrect:** Set the existing group's display name to the desired description. Display name and description are separate properties. Editing the name retains the ID but leaves the requested description unchanged.
+- **D. Incorrect:** Create a second group with the new description and copy the membership. The second group has a different object ID. Matching membership does not update the description of the original group referenced by the applications.
 
-Study: [knowledge file](../knowledge/identity/groups/group-management.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/groups/group-management.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/users/groups-create-rule)
+[Microsoft source 1](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0)
 
 ## id-scope-one-group
 

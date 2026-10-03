@@ -1669,9 +1669,9 @@
     {
       "id": "identity.groups.management",
       "title": "Entra groups and dynamic membership",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/identity.groups.management.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "id-group-dynamic-department",
@@ -1686,9 +1686,9 @@
           ],
           "baselineHash": "a6eff149fa975a55c4bfce9fec50bb4a8cb252f8610a1f05257aa08fd529d945",
           "baselineContentHash": "3dd9dee9f997fb45c79d86345aa1e21b523d2b4fe6456747b4e0d4398d8c7a7b",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "eba30e908e17f0c95faa72d07702535bb9fba2994a5483eb5bcbaf2c09cec602"
         },
         {
           "id": "id-group-dynamic-exception",
@@ -1703,9 +1703,9 @@
           ],
           "baselineHash": "932b1556c3df34d937347fa2915b5eb061f21db00fdc64588d6a7f28f28093d6",
           "baselineContentHash": "43a0543b4da0d2e9e3d0f9e9e59d56269f5988abf7ec7bd9411d25537e8f9ce6",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "5e2c2fb4a4652b23efac4045c4d9d2b842d39f90db125998d1e00c9927600d7a"
         },
         {
           "id": "id-group-license",
@@ -1720,9 +1720,9 @@
           ],
           "baselineHash": "79eb9880b2595db178520fbfdfacb17bb6604c24bc4a0a88c8111e063e87a26e",
           "baselineContentHash": "a4ca4fb916fdc03a181c63959fd2bd6860130934ef779fcf3b5193ff7c74638c",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "3648c5d34dc1dd3fc12ca2a98b3c40eb76fbf22a4fedc8a04b21d3487cbe0780"
         },
         {
           "id": "id-group-properties",
@@ -1737,9 +1737,9 @@
           ],
           "baselineHash": "716e5e05fb8d4d0f10033b8902314fadde20d14e596ce1ed0f94c997f96373e9",
           "baselineContentHash": "292d45d5dd4b8d66f5afa4373f84cb9b606ddd1b23058239bd3e572546466a2d",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "e721f4799fe3d372f0f73c0bd60a316ca4a4e5071df71fba0b12fb9cd98d83a3"
         }
       ]
     },

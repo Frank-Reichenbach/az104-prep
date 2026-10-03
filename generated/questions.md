@@ -1245,27 +1245,27 @@ D. Retag the resource group and assume automatic propagation.
 
 Topic: Identity and governance › Entra groups and dynamic membership.
 
-An Entra security group should automatically include enabled users whose department is Operations. Which membership approach fits?
+An Entra Dynamic User security group must include only enabled users whose department is Operations. The tenant has the required licensing. Which membership rule implements both conditions?
 
 Select **1**. Difficulty: applied.
 
-A. Dynamic User with a department and accountEnabled rule.
-B. Assigned membership with no automation.
-C. Dynamic Device using device operating system.
-D. An Azure resource tag named Operations.
+A. (user.department -eq "Operations") -and (user.accountEnabled -eq true)
+B. (user.department -eq "Operations") -or (user.accountEnabled -eq true)
+C. user.department -eq "Operations"
+D. (user.department -ne "Operations") -and (user.accountEnabled -eq true)
 
 ## id-group-dynamic-exception
 
 Topic: Identity and governance › Entra groups and dynamic membership.
 
-An administrator cannot manually add a user to an Entra Dynamic User group. The user does not match its rule. What should be reviewed?
+A Groups Administrator cannot manually add a user to an Entra Dynamic User group. The user's current attributes do not match its membership rule, and processing is active. The group must remain dynamic. Which next step addresses this membership problem?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. The rule and authoritative user attributes.
-B. Make the user the group owner to guarantee membership.
-C. Rename the group to the user's name.
-D. Assign Azure subscription Owner to the user.
+A. Review the membership rule and the user's authoritative attribute values.
+B. Make the user a group owner to bypass the membership rule.
+C. Run Validate Rules to force the user into the group.
+D. Use a Microsoft Graph add-member request to bypass the portal restriction.
 
 ## id-group-license
 
@@ -1284,14 +1284,14 @@ D. Count the same user again for every dynamic group they join.
 
 Topic: Identity and governance › Entra groups and dynamic membership.
 
-A cloud-managed Entra security group's description needs updating while applications must keep referring to the same group. Which action fits?
+A cloud-managed Entra security group's description must change. Applications must continue using that group's existing object ID. Which action meets both requirements?
 
 Select **1**. Difficulty: foundation.
 
-A. Edit the existing group's properties.
-B. Delete the group and recreate the same name.
-C. Change every member's UPN.
-D. Create a new Entra tenant.
+A. Edit the description on the existing group.
+B. Delete the group and recreate it with the same name and new description.
+C. Set the existing group's display name to the desired description.
+D. Create a second group with the new description and copy the membership.
 
 ## id-scope-one-group
 
