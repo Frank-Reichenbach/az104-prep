@@ -3312,66 +3312,66 @@ D. study-records/
 
 Topic: Storage › Blob lifecycle management.
 
-A lifecycle rule uses prefixMatch invoices/2026/*.csv. The container is invoices and the actual blob name is 2026/march.csv. Why does the intended wildcard rule not match that blob?
+An enabled Blob lifecycle rule in a standard storage account uses prefixMatch invoices/2026/*.csv. The container is invoices, and a matching-type blob is named 2026/march.csv. Its age exceeds the configured threshold, but the rule does not select it. Which filter behavior explains this?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. The asterisk is treated literally; use invoices/2026/ to target that whole prefix.
-B. The prefix must begin with the storage account name.
-C. The prefix must be a complete HTTPS blob URL.
-D. CSV blobs are excluded unless the container is anonymous.
+A. The filter interprets * as a literal character in the prefix.
+B. The filter expects the account name before the container name.
+C. The filter expects a complete HTTPS URL rather than a relative prefix.
+D. The filter compares the file extension instead of the beginning of the name.
 
 ## st-life-002
 
 Topic: Storage › Blob lifecycle management.
 
-Can a Blob lifecycle policy automatically rehydrate archived data into an online tier?
+A standard Blob Storage account contains a block blob explicitly assigned to the archive tier. You need to bring that existing blob into the hot tier. Which action starts rehydration?
 
 Select **1**. Difficulty: foundation.
 
-A. No; archive rehydration requires a separate supported operation.
-B. Yes, by setting an age condition on an archive-to-hot lifecycle action.
-C. Yes, by enabling last-access-time tracking.
-D. Yes, if the rule targets only one container.
+A. Request Set Blob Tier with hot as the target tier.
+B. Set the storage account's default access tier to hot.
+C. Enable lifecycle auto-tier-to-hot when the blob is accessed.
+D. Issue a Get Blob request for the archived blob.
 
 ## st-life-003
 
 Topic: Storage › Blob lifecycle management.
 
-An enabled rule tiers a current block blob to cool when daysAfterModificationGreaterThan is 45. The blob was last modified 60 days ago and was read yesterday. It matches every filter and tiering is supported. Does yesterday's read make it ineligible under this condition?
+An enabled Blob lifecycle rule transitions current block blobs to cool when daysAfterModificationGreaterThan is 45. A matching blob was last modified 60 days ago, was read yesterday, and entered its current tier five days ago. No other age condition applies, and the tier transition is supported. Which assessment of its eligibility is correct?
 
 Select **1**. Difficulty: applied.
 
-A. No; eligibility here depends on last modification, not last read.
-B. Yes; every read resets the last-modified timestamp.
-C. Yes; the condition always uses the container's creation date.
-D. Yes; reading a blob disables lifecycle rules for that container.
+A. It is eligible because its modification age exceeds 45 days.
+B. It is ineligible because its last read was fewer than 45 days ago.
+C. It is ineligible because its current-tier age is fewer than 45 days.
+D. It is ineligible because its modification age must equal 45 days.
 
 ## st-life-004
 
 Topic: Storage › Blob lifecycle management.
 
-A storage account already has several required lifecycle rules. You are updating its management policy through the API-backed CLI workflow to add another rule. Which approach preserves the existing behavior?
+A storage account has three enabled lifecycle rules that must keep running. You are using Azure CLI to add a fourth rule through the account's management-policy API. The new rule has a distinct name. Which submitted policy preserves the existing rules and adds the new behavior?
 
 Select **1**. Difficulty: applied.
 
-A. Read the existing policy and submit a complete policy containing the retained rules and the new rule.
-B. Submit only the new rule and rely on an implicit merge.
-C. Attach a second independent lifecycle management policy to the same account.
-D. Store the new rule as container metadata.
+A. A complete policy with all three existing rules and the new rule enabled.
+B. A policy containing only the new enabled rule, relying on rule-name merging.
+C. A policy containing the most recent existing rule and the new rule enabled.
+D. A complete policy with the three existing rules disabled and the new rule enabled.
 
 ## st-life-005
 
 Topic: Storage › Blob lifecycle management.
 
-You saved a valid lifecycle rule ten minutes ago. Eligible blobs still show their original tier. Which two statements should guide the investigation?
+You saved an enabled Blob lifecycle rule to transition eligible current block blobs from hot to cool ten minutes ago. The policy was accepted, but inspected blobs still have their original tier. Which two statements are correct when assessing this observation?
 
 Select **2**. Difficulty: troubleshooting.
 
-A. Policy changes can take up to 24 hours to take effect and start the first run.
-B. Inspect filters and time conditions as well as allowing for execution time.
-C. Every eligible blob must finish changing tier within ten minutes of saving.
-D. Enable anonymous reads to allow lifecycle management to process the blobs.
+A. A policy change can take up to 24 hours to take effect and start execution.
+B. The rule's filters and age conditions determine which blobs can be processed.
+C. The 24-hour window guarantees completion for every eligible blob.
+D. A read of an eligible hot blob triggers this tier-to-cool action immediately.
 
 ## st-blob-delete-001
 

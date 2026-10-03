@@ -17,9 +17,9 @@
     {
       "id": "storage.blobs.lifecycle",
       "title": "Blob lifecycle management",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.blobs.lifecycle.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-life-001",
@@ -34,9 +34,9 @@
           ],
           "baselineHash": "7ee4919e7a418062f60c2b6547187d2e6e811faa0c17dba1ed83bd3f738583d9",
           "baselineContentHash": "2f6be45def40fb336840f740bab65689d63583c136dc21be49cb62b14f06a558",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "d10681eb66f961fe919af60b6d25f7aa4a251760942480d41fdad261a8a4daa3"
         },
         {
           "id": "st-life-001b",
@@ -51,9 +51,9 @@
           ],
           "baselineHash": "ee7dac07bac07d327c3bd8cd4a290431ddc010de86f3c998c0daf11cc1890138",
           "baselineContentHash": "86ebe711c2cabf6247a5737dff2eb1c2968a3330d2350adbaa139bdacdbf554d",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "e40117982d4b2a3016560304dcbe9a6b5cc5de6f495edbd370be86726dad54ee"
         },
         {
           "id": "st-life-002",
@@ -68,9 +68,9 @@
           ],
           "baselineHash": "ccb9828107177c8fa285a0b82babf2dfb2c5a7e71fed08d7deacb0be9c690c56",
           "baselineContentHash": "7959bfd99b78afcd81208c14943e759ca4f9d721407f7030d21e672d66893dfd",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "53f43bc1b4cbd040f713512161534046bb1b14149855e738aacac912aab44166"
         },
         {
           "id": "st-life-003",
@@ -85,9 +85,9 @@
           ],
           "baselineHash": "34f56416588e2ea87b6cf463cf48dfe132084ceb18ecddbd95a19f738dd59bf4",
           "baselineContentHash": "6e85173d20fd5e3e05595d974ed5eb3f76f5566aed8fe47f98d1117650b0ca6e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "e3425fd3d37eaedc41f3538856e20388e84f24af652e3b33bb3895c8069ec56f"
         },
         {
           "id": "st-life-004",
@@ -102,9 +102,9 @@
           ],
           "baselineHash": "4549b4ae6512028760b978a5f59eaf3fe47946c241cf0c45a0c8d117b012a96c",
           "baselineContentHash": "0904ecb3a7fadc385aafc3eac1113fe415df060025260ca9060142a068bf29b2",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "e896eae460d4e053aadedd05f332b93d79ad525ed6bca5a242f3203df5c95626"
         },
         {
           "id": "st-life-005",
@@ -119,9 +119,9 @@
           ],
           "baselineHash": "927227dc9dc48b26e4f858cd10c74a516b727806f5cc99f414515beaee4e9b91",
           "baselineContentHash": "d69fbfcc11ea30c3b4213d9d6d5c5838d74b2fa2fe9cdff939664e2e537f2c11",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "ec183b3457c9c002fc9c934891fa489e89aa49fb5d417cc9054ed82947d1c541"
         }
       ]
     },

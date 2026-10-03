@@ -5,15 +5,20 @@ Updated: 2026-10-03. Approved scope: [PLAN.md](PLAN.md).
 ## Current increment
 
 The full existing live-bank style review/update is authorized on 2026-10-03.
-Work branch: `fix/question-bank-style-refresh`. The
+Work branch: `fix/question-bank-style-refresh`. Read the
 [resume guide](docs/reviews/question-bank-refresh/README.md) and
-[ledger](docs/reviews/question-bank-refresh/progress.json) track all 322
-questions and 99 topics, with baseline/final hashes and per-question decisions.
-Run `npm run review:status` to detect stale reviews and find the next topic.
-No question has yet been marked reviewed. Start with Blob lifecycle management,
-then the NSG/ASG topic, then the remaining topics in ledger order. Complete
-and commit one topic before continuing; do not redo unchanged completed work.
-Source changes remain on the work branch until an explicitly approved PR merge.
+[ledger](docs/reviews/question-bank-refresh/progress.json); run
+`npm run review:status` before resuming. Completed reviews have final hashes;
+unchanged completed questions must not be reviewed again.
+
+Checkpoint: 6/322 questions reviewed, 5 revised and 1 kept; 1/99 topics complete.
+[Blob lifecycle review](docs/reviews/question-bank-refresh/storage.blobs.lifecycle.md)
+records defects, six item decisions, variants, and primary sources checked
+October 3. Build/check, all 13 Node tests, site links, review hashes, a negative
+stale-hash fixture, and whitespace checks passed. Examples were not run in Azure.
+Next: `networking.security.nsg-asg`; no work in that topic is yet complete.
+The changes are on the work branch; the live main bank still has the baseline
+questions. The preserved research inventory remains separate.
 
 ## Previous skill publication
 
@@ -286,8 +291,8 @@ retirement are documented with current alternatives.
 ## Next task
 
 Continue the authorized existing-bank review from `npm run review:status`.
-At initialization: 0/322 questions, 0/99 topics complete. First topic:
-`storage.blobs.lifecycle`. Record real source checks and repair decisions in
+Current checkpoint: 6/322 questions, 1/99 topics complete. Next topic:
+`networking.security.nsg-asg`. Record real source checks and repair decisions in
 its report; do not mark a topic complete based on schema checks alone.
 
 The skill-review findings are resolved. Use the revised workflow for the next
