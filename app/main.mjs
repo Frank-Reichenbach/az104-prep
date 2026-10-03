@@ -1,5 +1,5 @@
 import { renderMarkdown, resolveDoc, isDocPath, slugify } from './markdown.mjs';
-import { makeQuiz, score, familyStatus, reviewFamilies, isUnsure, parseProgress, EXAM_DEFAULTS, PRACTICE_DEFAULT_COUNT, examMinutes, formatClock } from './quiz.mjs';
+import { makeQuiz, splitPrompt, score, familyStatus, reviewFamilies, isUnsure, parseProgress, EXAM_DEFAULTS, PRACTICE_DEFAULT_COUNT, examMinutes, formatClock } from './quiz.mjs';
 import { renderAnalysis, unmount } from './analysis.mjs';
 
 const $ = id => document.getElementById(id);
@@ -108,11 +108,22 @@ function explain(q, selected, compact = false, unsure = false) {
   box.append(links, el('p', `Evidence checked ${q.verified} · ${q.id}`, 'text-[.86rem] text-soft'));
   return box;
 }
+// Scenario sentences read calmly; the final sentence (the task) is emphasised. The heading's text
+// content stays exactly the prompt, so screen readers and the focus target are unchanged.
+function renderPrompt(q) {
+  const { scenario, task } = splitPrompt(q.prompt);
+  const nodes = [];
+  scenario.forEach(sentence => nodes.push(el('span', sentence, 'q-scenario'), document.createTextNode(' ')));
+  nodes.push(el('span', task, 'q-task'));
+  $('prompt').replaceChildren(...nodes);
+}
 function renderQuestion() {
   const q = active[position]; submitted = false;
   $('position').textContent = `${mode} · Question ${position + 1} of ${active.length}`;
   $('question-topic').textContent = topicContext(q);
-  $('prompt').textContent = q.prompt;
+  renderPrompt(q);
+  $('q-progress-bar').style.width = `${(position + 1) / active.length * 100}%`;
+  $('q-progress-bar').parentElement.setAttribute('aria-valuenow', Math.round((position + 1) / active.length * 100));
   $('instruction').textContent = `Select ${q.select} answer${q.select === 1 ? '' : 's'}.`;
   $('choices').replaceChildren($('instruction'));
   q.options.forEach((option, i) => {

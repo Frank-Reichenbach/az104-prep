@@ -77,7 +77,9 @@
     </section>
     <section id="session" class="my-6 rounded-xl border border-line bg-surface p-4 sm:p-6.5" hidden>
       <div id="timer" class="mb-4" hidden><div class="mb-1 flex items-center justify-between text-[.86rem] text-soft"><span>Time remaining</span><span id="timer-text" class="font-semibold tabular-nums"></span></div><div class="timer-track"><div id="timer-bar" class="timer-bar" role="progressbar" aria-label="Exam time remaining" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" data-level="ok"></div></div><p id="timer-announce" class="sr-only" role="status" aria-live="polite"></p></div>
-      <p id="position" class="text-xs font-bold tracking-[.12em] text-eyebrow"></p><p id="question-topic" class="text-[.86rem] text-soft"></p><h2 id="prompt" tabindex="-1" class="text-[1.35rem] leading-snug font-bold"></h2>
+      <div class="q-progress" role="progressbar" aria-label="Session progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="q-progress-bar" class="q-progress-bar"></div></div>
+      <div class="q-meta"><p id="position" class="q-position"></p><p id="question-topic" class="q-topic"></p></div>
+      <h2 id="prompt" tabindex="-1" class="q-prompt"></h2>
       <form id="answer-form"><fieldset id="choices" class="my-4 border-0 p-0"><legend id="instruction" class="mb-2"></legend></fieldset><div class="flex items-center justify-between gap-3"><button class="btn btn-secondary m-0" id="unsure-answer" type="button" aria-keyshortcuts="U">I'm unsure</button><button class="btn m-0" id="submit-answer" type="submit">Check answer</button></div></form>
       <div id="feedback" aria-live="polite"></div>
       <div class="flex justify-end"><button class="btn m-0" id="next" type="button" hidden>Next question</button></div>
