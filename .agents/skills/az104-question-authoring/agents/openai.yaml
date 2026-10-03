@@ -1,0 +1,4 @@
+interface:
+  display_name: "AZ-104 Question Authoring"
+  short_description: "Author and review original AZ-104 practice questions"
+  default_prompt: "Use $az104-question-authoring to draft or review original AZ-104 practice questions using this repository's style guide."
