@@ -4118,14 +4118,14 @@ D. Azure subscription.
 
 Topic: Storage › AzCopy transfers and synchronization.
 
-An AzCopy sync job uses a local directory as source and a Blob container as destination. A file is added only to the destination. Does that operation copy it back to the local source?
+A local directory contains only local.txt. A Blob container contains only remote.txt. AzCopy sync runs with that local directory as source, the container as destination, and --delete-destination=false. There are no filters, other files, or concurrent changes, and the job succeeds. Which final state should you expect?
 
-Select **1**. Difficulty: foundation.
+Select **1**. Difficulty: applied.
 
-A. No; sync follows the configured source-to-destination direction.
-B. Yes; every sync is bidirectional.
-C. Only if an account SAS is used.
-D. Only if the storage account uses ZRS.
+A. Local: local.txt only. Container: local.txt and remote.txt.
+B. Local: local.txt and remote.txt. Container: local.txt and remote.txt.
+C. Local: local.txt only. Container: local.txt only.
+D. Local: local.txt and remote.txt. Container: remote.txt only.
 
 ## st-azcopy-delete-destination
 
@@ -4144,14 +4144,14 @@ D. Reverse source and destination and enable deletion.
 
 Topic: Storage › AzCopy transfers and synchronization.
 
-A SAS-authenticated AzCopy job stops after some transfers. You retain the job plan, but the SAS expired. What is the appropriate recovery?
+An AzCopy local-to-Blob upload using only a destination SAS stops after some transfers. The SAS has expired, and the original job plan and ID are retained. You need to resume that original job's unfinished transfers without starting a new enumeration. Which recovery procedure meets this requirement?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Obtain a valid SAS and resume the job with its ID.
-B. Resume without credentials because plans permanently save SAS tokens.
-C. Delete all successfully copied data before retrying.
-D. Grant Azure Reader and reuse the expired SAS.
+A. Obtain a valid destination SAS and supply it when resuming the original job ID.
+B. Resume the original job ID without a SAS, relying on the token stored in its plan.
+C. Obtain a valid destination SAS and start a new copy command over the local directory.
+D. Clean the stored job plans, then obtain a valid SAS and resume the original job ID.
 
 ## st-explorer-data-only
 

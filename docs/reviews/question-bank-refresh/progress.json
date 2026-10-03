@@ -1429,9 +1429,9 @@
     {
       "id": "storage.transfers.azcopy",
       "title": "AzCopy transfers and synchronization",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.transfers.azcopy.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-azcopy-one-way",
@@ -1446,9 +1446,9 @@
           ],
           "baselineHash": "8925ef5113e187763688d517b337e9ff69755b0a9c734459982a8b74c32a94d1",
           "baselineContentHash": "05a223ec9dd299eaaa15b96a5b5f55140bcf02116e38c32a22d87a7768ad9091",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "6f3a628ea2fbee1acf92cd6d290abdab17e3cc034060611281145d7c04b2d96f"
         },
         {
           "id": "st-azcopy-delete-destination",
@@ -1463,9 +1463,9 @@
           ],
           "baselineHash": "44e54c6b25307eba1551ec9229cc19d968aeb1e9d4d887ccb5c95552d4d7c6d4",
           "baselineContentHash": "bf6af3eb107afe090bf70382b8cc875e22aa68cacfa2ffd49b6b10986bcc56e4",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "05f6e97df255997f6834d60cfb952dad0a34141581613804b795c80e8c0b9b8d"
         },
         {
           "id": "st-azcopy-resume",
@@ -1480,9 +1480,9 @@
           ],
           "baselineHash": "af95cc0fa4721d7f00ac0f7a248620a5c6bdf53b35b46ae4e661910e8df11b28",
           "baselineContentHash": "0946bfb0406cbbb231fcf5b85475afc9871cf67d6a553c163a5631a1670977eb",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "27225795dcfc464d50619a88bad19d606cf8665e06dbcbe50c98b40fa942d500"
         }
       ]
     },
