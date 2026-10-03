@@ -1489,9 +1489,9 @@
     {
       "id": "storage.transfers.explorer",
       "title": "Storage Explorer connections and data management",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.transfers.explorer.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-explorer-data-only",
@@ -1506,9 +1506,9 @@
           ],
           "baselineHash": "c39b142268af7437ea51875c4b7da6d53616e237c4567e563cee47bd97d8d7f3",
           "baselineContentHash": "6c39b554c065a7783e491f49a0d8c03e2da9c00dfae6c64506922626c6bddd50",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "7d885f0c5328c7097bb6619df8f78c7da13885ed1af19ba11e916bbfe70a7d7b"
         },
         {
           "id": "st-explorer-reader-data",
@@ -1523,9 +1523,9 @@
           ],
           "baselineHash": "3726a74baecc5ed2593da0e33707a77326bc4a161731cbb942ef44a0c8fb76e0",
           "baselineContentHash": "0a170c98d21ca0ee9791863667b8e88f1c5499f54a997dce29b4ca452588b133",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "06a207f568794c0137d06b26006dbbea8df914676ce57242a12468bdbb27d58e"
         },
         {
           "id": "st-explorer-detach",
@@ -1540,9 +1540,9 @@
           ],
           "baselineHash": "2de2bf11d86ddb5811c9101201e4d9b0e84c23ced2382032ae0e9e2a1859cae4",
           "baselineContentHash": "b2c7e1e5241b4d842e1bc1e3f1d259f032366692a0fc095d8292fcb4dbeca17d",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "f350ea7189bfc7482fbd372b89c25dd42b1d79438956592f8b50e4b8ad8bfa3f"
         }
       ]
     },

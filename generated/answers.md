@@ -5431,16 +5431,16 @@ Study: [knowledge file](../knowledge/storage/transfers/azcopy.md). Evidence chec
 
 Topic: Storage › Storage Explorer connections and data management.
 
-A user has Storage Blob Data Reader on one container but cannot browse the subscription's storage accounts. How can Storage Explorer access that container without broad management permissions?
+A user has Storage Blob Data Reader on one private container and knows its URL, but has no management-layer permissions. Storage Explorer cannot browse the subscription's storage accounts. The network path is allowed. The user must read this container using the existing Entra identity without any new role grant or supplied account key. Which approach meets these constraints?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Attach the container URL using Microsoft Entra ID. Direct attachment can use the user's data-layer access.
-- **B. Incorrect:** Require Owner on the entire subscription. That is unnecessary privilege for reading a known container.
-- **C. Incorrect:** Make every blob anonymous. Anonymous publication is not required for the authorized user.
-- **D. Incorrect:** Rename the local connection to the subscription ID. A display label does not grant discovery permission.
+- **A. Correct:** Attach the container URL using Sign in using Microsoft Entra ID. Direct Entra attachment uses the known resource URL and existing container data permission, avoiding management-layer discovery.
+- **B. Incorrect:** Assign Reader on the storage account, then browse through the subscription. Management Reader can help account discovery, but this procedure requires a new role grant. The scenario explicitly requires using the existing permissions.
+- **C. Incorrect:** Attach the container URL using public anonymous access. The container is private. Anonymous attachment cannot use the user's existing Entra data-role permission to authorize reads.
+- **D. Incorrect:** Attach the storage account using its account name and access key. Account-key attachment is supported, but it needs a supplied account key. That additional authorization method violates the stated connection constraints.
 
-Study: [knowledge file](../knowledge/storage/transfers/storage-explorer.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/transfers/storage-explorer.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer) · [Microsoft source 2](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-explorer-troubleshooting) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-explorer-blobs)
 
@@ -5448,18 +5448,18 @@ Study: [knowledge file](../knowledge/storage/transfers/storage-explorer.md). Evi
 
 Topic: Storage › Storage Explorer connections and data management.
 
-Storage Explorer shows an account after a user receives Azure Reader, but Entra-authenticated Blob downloads still fail. Which permission should be checked?
+Storage Explorer can discover an account after a user receives Azure Reader. The user signs in to the correct tenant, but an Entra-authenticated download of an existing private blob is denied for insufficient data permissions. The network path is allowed. Which additional role at the blob's container scope supplies the missing read permission?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** A Blob data role at the container or an inherited scope. Management read and Blob data access are separate permissions.
-- **B. Incorrect:** Permission to change account tags. Tag management does not authorize blob downloads.
-- **C. Incorrect:** Permission to create management-group policy definitions. Governance authoring is unrelated to this data read.
-- **D. Incorrect:** Permission to create public DNS zones. DNS administration is not a Blob data role.
+- **A. Correct:** Storage Blob Data Reader. This role grants blob data-read access at the container scope. It repairs the missing data permission that management Reader does not supply.
+- **B. Incorrect:** Reader. Reader supplies management-plane visibility, which already allows account discovery here. It has no blob data-read actions.
+- **C. Incorrect:** Storage Blob Delegator. Delegator grants generation of a user delegation key when assigned at an appropriate account or higher scope. It does not itself grant this client's OAuth blob-read permission.
+- **D. Incorrect:** Storage Queue Data Reader. Queue Data Reader authorizes Queue service reads. Its data actions do not authorize reading blobs from this container.
 
-Study: [knowledge file](../knowledge/storage/transfers/storage-explorer.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/transfers/storage-explorer.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer) · [Microsoft source 2](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-explorer-troubleshooting) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-explorer-blobs)
+[Microsoft source 1](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-explorer-troubleshooting) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general#reader)
 
 ## st-explorer-detach
 
@@ -5474,6 +5474,6 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** Revokes every copy of the SAS. Removing a local attachment does not revoke a credential held elsewhere.
 - **D. Incorrect:** Regenerates the storage account signing key. Local connection management does not rotate account keys.
 
-Study: [knowledge file](../knowledge/storage/transfers/storage-explorer.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/transfers/storage-explorer.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer) · [Microsoft source 2](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/alerts/storage-explorer-troubleshooting) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-explorer-blobs)

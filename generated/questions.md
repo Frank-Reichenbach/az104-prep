@@ -4157,27 +4157,27 @@ D. Clean the stored job plans, then obtain a valid SAS and resume the original j
 
 Topic: Storage › Storage Explorer connections and data management.
 
-A user has Storage Blob Data Reader on one container but cannot browse the subscription's storage accounts. How can Storage Explorer access that container without broad management permissions?
+A user has Storage Blob Data Reader on one private container and knows its URL, but has no management-layer permissions. Storage Explorer cannot browse the subscription's storage accounts. The network path is allowed. The user must read this container using the existing Entra identity without any new role grant or supplied account key. Which approach meets these constraints?
 
 Select **1**. Difficulty: applied.
 
-A. Attach the container URL using Microsoft Entra ID.
-B. Require Owner on the entire subscription.
-C. Make every blob anonymous.
-D. Rename the local connection to the subscription ID.
+A. Attach the container URL using Sign in using Microsoft Entra ID.
+B. Assign Reader on the storage account, then browse through the subscription.
+C. Attach the container URL using public anonymous access.
+D. Attach the storage account using its account name and access key.
 
 ## st-explorer-reader-data
 
 Topic: Storage › Storage Explorer connections and data management.
 
-Storage Explorer shows an account after a user receives Azure Reader, but Entra-authenticated Blob downloads still fail. Which permission should be checked?
+Storage Explorer can discover an account after a user receives Azure Reader. The user signs in to the correct tenant, but an Entra-authenticated download of an existing private blob is denied for insufficient data permissions. The network path is allowed. Which additional role at the blob's container scope supplies the missing read permission?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. A Blob data role at the container or an inherited scope.
-B. Permission to change account tags.
-C. Permission to create management-group policy definitions.
-D. Permission to create public DNS zones.
+A. Storage Blob Data Reader.
+B. Reader.
+C. Storage Blob Delegator.
+D. Storage Queue Data Reader.
 
 ## st-explorer-detach
 
