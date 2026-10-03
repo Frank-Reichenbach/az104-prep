@@ -3429,27 +3429,27 @@ D. Their expiry clocks pause until blob soft delete is enabled again
 
 Topic: Storage › Container soft deletion.
 
-A container named invoices was soft-deleted yesterday. Its retention period has not expired, but another process created a new active invoices container. Why can the old container not be restored now?
+A container named invoices was soft-deleted yesterday. Its retention period has not expired, but another process created a new active invoices container. Blob soft delete is disabled. An attempt to restore the old container fails. Which stated condition explains the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
 A. Container restoration requires the original name, which is already in use
 B. Containers cannot be restored until the final day of retention
-C. The replacement container must first use the archive tier
+C. Blob soft delete is disabled, so container restoration is unavailable
 D. The old container must be restored under an arbitrary new name
 
 ## st-container-delete-002
 
 Topic: Storage › Container soft deletion.
 
-An Azure storage account had container soft delete enabled, but no blob soft delete, versioning, snapshots, or backup. A user deletes one blob while leaving its container intact. Can container soft delete restore that blob by itself?
+An Azure storage account had container soft delete enabled, but no blob soft delete, versioning, snapshots, or backup. A user deletes one blob while leaving its container intact. Which recovery outcome applies to the deleted blob?
 
 Select **1**. Difficulty: applied.
 
-A. No; it protects deletion of the container, not individual deletions inside an existing container
-B. Yes; every container keeps a rolling copy of all prior blob contents
-C. Yes; deleting the container now recreates the earlier missing blob
-D. Yes; extending container retention reconstructs the blob
+A. Container soft delete cannot recover this individual deletion.
+B. Restoring the active container rolls it back to its state before the blob deletion.
+C. Deleting and restoring the parent now recovers its state from before the blob deletion.
+D. Enabling blob soft delete now makes the earlier deletion recoverable.
 
 ## st-container-delete-003
 
@@ -3461,8 +3461,8 @@ Select **1**. Difficulty: applied.
 
 A. containerDeleteRetentionPolicy.enabled
 B. isVersioningEnabled
-C. allowBlobPublicAccess
-D. accessTier
+C. deleteRetentionPolicy.days
+D. restorePolicy.enabled
 
 ## st-container-delete-004
 
@@ -3475,7 +3475,7 @@ Select **1**. Difficulty: applied.
 A. Container soft delete does not protect deletion of the storage account itself
 B. The design works whenever container retention is at least 30 days
 C. Enabling blob versioning guarantees restoration of the deleted account
-D. Only anonymous containers are protected from account deletion
+D. Containers already soft-deleted are protected from account deletion, but active containers are not
 
 ## st-version-001
 

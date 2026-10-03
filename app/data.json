@@ -12674,13 +12674,13 @@
     {
       "id": "st-container-delete-001",
       "family": "st-container-delete-name",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.container-soft-delete",
       "objectives": [
         "st-14"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A container named invoices was soft-deleted yesterday. Its retention period has not expired, but another process created a new active invoices container. Why can the old container not be restored now?",
+      "prompt": "A container named invoices was soft-deleted yesterday. Its retention period has not expired, but another process created a new active invoices container. Blob soft delete is disabled. An attempt to restore the old container fails. Which stated condition explains the failure?",
       "select": 1,
       "options": [
         {
@@ -12695,8 +12695,8 @@
         },
         {
           "id": "tier",
-          "text": "The replacement container must first use the archive tier",
-          "explanation": "The restore failure concerns a container name collision, not the access tier of its blobs."
+          "text": "Blob soft delete is disabled, so container restoration is unavailable",
+          "explanation": "Container soft delete can restore the deleted container and its contents without blob soft delete. The account has retained this container; the active same-name replacement is the blocking condition."
         },
         {
           "id": "rename",
@@ -12711,39 +12711,39 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-container-overview"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-container-delete-002",
       "family": "st-container-delete-individual",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.container-soft-delete",
       "objectives": [
         "st-14"
       ],
       "difficulty": "applied",
-      "prompt": "An Azure storage account had container soft delete enabled, but no blob soft delete, versioning, snapshots, or backup. A user deletes one blob while leaving its container intact. Can container soft delete restore that blob by itself?",
+      "prompt": "An Azure storage account had container soft delete enabled, but no blob soft delete, versioning, snapshots, or backup. A user deletes one blob while leaving its container intact. Which recovery outcome applies to the deleted blob?",
       "select": 1,
       "options": [
         {
           "id": "no",
-          "text": "No; it protects deletion of the container, not individual deletions inside an existing container",
-          "explanation": "No retained deleted container exists in this scenario. The missing blob needed its own applicable protection."
+          "text": "Container soft delete cannot recover this individual deletion.",
+          "explanation": "The parent container was not deleted, so there is no retained container state to restore. The blob needed applicable individual protection before deletion."
         },
         {
           "id": "rollback",
-          "text": "Yes; every container keeps a rolling copy of all prior blob contents",
-          "explanation": "Container soft delete does not continuously record all changes inside a live container."
+          "text": "Restoring the active container rolls it back to its state before the blob deletion.",
+          "explanation": "Container soft delete retains a container when the container is deleted. It does not record earlier states of an active container for point-in-time rollback."
         },
         {
           "id": "delete-parent",
-          "text": "Yes; deleting the container now recreates the earlier missing blob",
-          "explanation": "Deleting the parent now cannot reconstruct data that had already been removed without protection."
+          "text": "Deleting and restoring the parent now recovers its state from before the blob deletion.",
+          "explanation": "A later container deletion retains the state at that later deletion, when this blob is already missing. It cannot reconstruct the earlier unprotected blob."
         },
         {
           "id": "longer",
-          "text": "Yes; extending container retention reconstructs the blob",
-          "explanation": "Retention settings do not create historical data that was never retained."
+          "text": "Enabling blob soft delete now makes the earlier deletion recoverable.",
+          "explanation": "Blob soft delete must protect the object when it is deleted. Enabling protection afterward does not create a retained copy of data already deleted without protection."
         }
       ],
       "correct": [
@@ -12751,14 +12751,15 @@
       ],
       "knowledge": "knowledge/storage/blob-storage/container-soft-delete.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-container-overview"
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-container-overview",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-container-delete-003",
       "family": "st-container-delete-verify",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.container-soft-delete",
       "objectives": [
         "st-14"
@@ -12770,22 +12771,22 @@
         {
           "id": "container-policy",
           "text": "containerDeleteRetentionPolicy.enabled",
-          "explanation": "Container deletion has its own retention policy, separate from the blob-level deleteRetentionPolicy."
+          "explanation": "This flag activates retention for deleted containers. The stated deleteRetentionPolicy.enabled flag instead enables individual blob protection."
         },
         {
           "id": "versioning",
           "text": "isVersioningEnabled",
-          "explanation": "Versioning preserves blob states; it does not establish that deleted containers are retained."
+          "explanation": "This saves earlier blob states; it does not activate retention of deleted parent containers. Versioning alone does not verify container protection."
         },
         {
           "id": "public",
-          "text": "allowBlobPublicAccess",
-          "explanation": "This setting governs whether anonymous container/blob read configuration is permitted."
+          "text": "deleteRetentionPolicy.days",
+          "explanation": "This is the duration for the blob-level policy, not the activation flag for container retention. Its value does not establish that container protection is enabled."
         },
         {
           "id": "tier",
-          "text": "accessTier",
-          "explanation": "The default access tier does not enable container recovery."
+          "text": "restorePolicy.enabled",
+          "explanation": "This enables point-in-time restoration of block blobs, a different recovery feature. It does not establish that whole-container deletion is retained for recovery."
         }
       ],
       "correct": [
@@ -12793,14 +12794,16 @@
       ],
       "knowledge": "knowledge/storage/blob-storage/container-soft-delete.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-container-enable"
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-container-enable",
+        "https://learn.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts/blobservices",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/data-protection-overview"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-container-delete-004",
       "family": "st-container-delete-account-boundary",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.container-soft-delete",
       "objectives": [
         "st-14"
@@ -12826,8 +12829,8 @@
         },
         {
           "id": "private",
-          "text": "Only anonymous containers are protected from account deletion",
-          "explanation": "Anonymous access is unrelated to the account-level recovery boundary."
+          "text": "Containers already soft-deleted are protected from account deletion, but active containers are not",
+          "explanation": "Retained containers are still inside the storage account. Their deleted status does not make container soft delete an account-deletion recovery feature; the boundary applies to active and retained container data alike."
         }
       ],
       "correct": [
@@ -12838,7 +12841,7 @@
         "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-container-overview",
         "https://learn.microsoft.com/en-us/azure/storage/blobs/data-protection-overview"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-version-001",

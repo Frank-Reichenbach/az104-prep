@@ -487,9 +487,9 @@
     {
       "id": "storage.blobs.container-soft-delete",
       "title": "Container soft deletion",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.blobs.container-soft-delete.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-container-delete-001",
@@ -504,9 +504,9 @@
           ],
           "baselineHash": "9d227f8e9cb5aab038adc573793bf2cdf3f194ebcccfb34973ba3439c27a22f6",
           "baselineContentHash": "4c1a12816bbdb6712537f287ba14fe1de127674098cfaa51175bddbbbe6f1e4b",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "312e723a21aef724c974eada28a4029fe854b4e66f33a97d22da732c084e990d"
         },
         {
           "id": "st-container-delete-002",
@@ -521,9 +521,9 @@
           ],
           "baselineHash": "41e4c00e6bcf01546d4b6782c5953955016fe1c366e6b1ef966dae0c2273595b",
           "baselineContentHash": "0ece65a0623dda63a65663118fc7759fff625201049ff0f8fe0954b74d271f57",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "895aafecdad26953601a2977c9f66cae54e4cfece77ba8215188320d767aa053"
         },
         {
           "id": "st-container-delete-003",
@@ -538,9 +538,9 @@
           ],
           "baselineHash": "9b695cba1fa4063a88344598fbb3af4b6e6a8837f2183ca322f8c193932365b2",
           "baselineContentHash": "109afd4fab3434ef5c42b6d6a66e5e617d1bf6cc8b7041969bed08f49e7e251c",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "886cc818c8b9c8b6715123e6ffa70a825645ec78efbac63fefc2c45569fd0384"
         },
         {
           "id": "st-container-delete-004",
@@ -555,9 +555,9 @@
           ],
           "baselineHash": "03ef03fef5ee42269e21195c752c01d15a0633131ec4132dbda97ba3e2fcb6b5",
           "baselineContentHash": "b6f1d3897fdb0807cd7a63086fd4521cd759480175427a1f44ea9fd51f26cf6b",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "4d5f2e0b1dd989f7b8d05f747244e78b192ab3fefa20a548c0ccafc204b24809"
         }
       ]
     },
