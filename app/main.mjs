@@ -251,6 +251,16 @@ function ask(text, okLabel = 'Confirm') {
   });
 }
 $('end').addEventListener('click', async () => { if (await ask('End this session? Submitted answers are saved; unanswered questions are not scored.', 'End session')) finish(); });
+// Header title: back to the start page; a running session needs confirmation first.
+const inSession = () => view === 'session' || ((view === 'doc' || view === 'analysis') && docReturn === 'session');
+$('home').addEventListener('click', async event => {
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.button) return;
+  event.preventDefault();
+  if (inSession() && !await ask('End this session and return to the start page? Submitted answers are saved; unanswered questions are not scored.', 'End session')) return;
+  stopTimer(); docReturn = 'setup';
+  history.pushState(null, '', location.pathname + location.search); // drop the route without a hashchange
+  document.title = originalTitle; message(); summarize(); show('setup'); window.scrollTo(0, 0); $('topic').focus();
+});
 $('again').addEventListener('click', () => { message(); summarize(); show('setup'); $('topic').focus(); });
 $('export').addEventListener('click', () => {
   const url = URL.createObjectURL(new Blob([JSON.stringify({ version: 1, attempts }, null, 2)], { type: 'application/json' }));
