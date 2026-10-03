@@ -5329,50 +5329,50 @@ Study: [knowledge file](../knowledge/storage/azure-files/configuration.md). Evid
 
 Topic: Storage › Azure Files identity-based SMB access.
 
-A user authenticates successfully to an Azure SMB file share and has Storage File Data SMB Share Contributor. A directory ACL denies the user access. What is the expected result?
+A user connects to an Azure Files SMB share with Kerberos and can read a file in its root directory. The user's only share-level role is Storage File Data SMB Share Contributor, and the assignment has propagated. Reading a restricted directory in the same session returns Access denied. Its effective Windows ACL explicitly denies this user read access. Which cause explains the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Access to that directory is denied. Share access does not override the directory's Windows ACL.
-- **B. Incorrect:** The Contributor assignment overrides every directory ACL. Both authorization layers matter.
-- **C. Incorrect:** Azure automatically retries with the storage account key. Identity access does not silently become an administrative key mount.
-- **D. Incorrect:** The directory becomes anonymously accessible. Neither share RBAC nor an ACL enables anonymous SMB access.
+- **A. Correct:** The directory's Windows ACL blocks the requested read operation. Both share-level permission and the directory ACL must allow the read. The regular SMB Share Contributor role grants share-level read access but does not override the explicit directory denial.
+- **B. Incorrect:** The SMB Share Contributor role lacks permission to read files. This role includes read, write, and delete access at the share level. Its read permission is sufficient for that layer; the directory ACL is the failing layer.
+- **C. Incorrect:** Kerberos authentication failed for the user's current SMB session. The user has authenticated with Kerberos and can read a root file in the same session. Those facts distinguish this directory authorization failure from an authentication failure.
+- **D. Incorrect:** The client cannot connect to the SMB endpoint on TCP port 445. SMB uses TCP 445, but the successful root-file read establishes that this session has a working SMB connection. A blocked connection does not explain the directory-specific denial.
 
-Study: [knowledge file](../knowledge/storage/azure-files/identity-based-access.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/azure-files/identity-based-access.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-assign-share-level-permissions) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-configure-file-level-permissions)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-assign-share-level-permissions) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-configure-file-level-permissions) · [Microsoft source 4](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/files/connectivity/files-troubleshoot)
 
 ## st-files-share-role
 
 Topic: Storage › Azure Files identity-based SMB access.
 
-A group needs to read files through identity-based Azure Files SMB. Its directory ACLs already allow read. Which share-level role supplies the required read access?
+An Azure Files SMB share is configured for identity-based authentication. A synchronized group needs read-only access, and its Windows ACLs already permit reading. The group has no existing share-level role, and default share permissions are disabled. You must assign a role at this file share's scope without granting share-level write, delete, or ACL modification permissions. Which role should you assign?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Storage File Data SMB Share Reader. This role grants the SMB share-level read permission.
-- **B. Incorrect:** Storage Blob Data Reader. Blob roles do not authorize Azure Files SMB reads.
-- **C. Incorrect:** Reader on the storage account. ARM resource visibility is not SMB data access.
-- **D. Incorrect:** Storage Blob Delegator. Blob delegation-key generation is unrelated to SMB share access.
+- **A. Correct:** Storage File Data SMB Share Reader. SMB Share Reader grants share-level read access without write, delete, or ACL modification permissions. Together with the existing Windows ACLs, it meets the read-only requirement.
+- **B. Incorrect:** Storage File Data SMB Share Contributor. SMB Share Contributor can authorize reads, but it also grants share-level write and delete permissions. Those additional permissions violate the stated role-assignment constraint; existing ACLs do not change which permissions the assigned role grants.
+- **C. Incorrect:** Reader. Reader grants control-plane resource visibility and has no data actions. Assigning it at the file share's scope does not supply the required SMB data-read permission.
+- **D. Incorrect:** Storage File Data SMB Share Elevated Contributor. Elevated Contributor includes read, write, delete, and ACL modification permissions. It authorizes reads but exceeds the explicitly permitted share-level operations.
 
-Study: [knowledge file](../knowledge/storage/azure-files/identity-based-access.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/azure-files/identity-based-access.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-assign-share-level-permissions) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-configure-file-level-permissions)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-assign-share-level-permissions) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-configure-file-level-permissions) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage) · [Microsoft source 5](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general#reader)
 
 ## st-files-source-count
 
 Topic: Storage › Azure Files identity-based SMB access.
 
-A storage account uses AD DS for identity-based Azure Files SMB authentication. Can one share in that same account independently use Entra Domain Services as a second simultaneous identity source?
+For Azure Files SMB user authentication, at which scope do you configure the choice between AD DS and Microsoft Entra Domain Services?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** No; one identity source is configured per storage account. Separate identity-source requirements require a different account design.
-- **B. Incorrect:** Yes; every share independently selects its identity source. The source is configured at the account level.
-- **C. Incorrect:** Yes; adding an ACL switches the authentication provider. ACLs authorize files after authentication.
-- **D. Incorrect:** Yes; a stored access policy selects the provider. SAS policies do not select SMB Kerberos identity sources.
+- **A. Correct:** Storage account. One of these user identity sources is configured per storage account and applies to all its file shares. Two shares in the same account cannot independently select AD DS and Microsoft Entra Domain Services.
+- **B. Incorrect:** Individual file share. Share-level role assignments control access to a share, but they do not give it a separate user authentication provider. The identity-source setting belongs to the storage account.
+- **C. Incorrect:** Individual directory. A directory's Windows ACL controls access after authentication. It does not select AD DS or Microsoft Entra Domain Services as a separate authentication provider.
+- **D. Incorrect:** Azure subscription. The identity-source selection is made for each storage account, rather than as one shared setting for all accounts in the subscription.
 
-Study: [knowledge file](../knowledge/storage/azure-files/identity-based-access.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/azure-files/identity-based-access.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-assign-share-level-permissions) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-configure-file-level-permissions)
 

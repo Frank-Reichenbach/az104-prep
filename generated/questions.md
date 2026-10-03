@@ -4079,40 +4079,40 @@ D. Provisioned v1 solely because all FileStorage accounts require it.
 
 Topic: Storage › Azure Files identity-based SMB access.
 
-A user authenticates successfully to an Azure SMB file share and has Storage File Data SMB Share Contributor. A directory ACL denies the user access. What is the expected result?
+A user connects to an Azure Files SMB share with Kerberos and can read a file in its root directory. The user's only share-level role is Storage File Data SMB Share Contributor, and the assignment has propagated. Reading a restricted directory in the same session returns Access denied. Its effective Windows ACL explicitly denies this user read access. Which cause explains the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Access to that directory is denied.
-B. The Contributor assignment overrides every directory ACL.
-C. Azure automatically retries with the storage account key.
-D. The directory becomes anonymously accessible.
+A. The directory's Windows ACL blocks the requested read operation.
+B. The SMB Share Contributor role lacks permission to read files.
+C. Kerberos authentication failed for the user's current SMB session.
+D. The client cannot connect to the SMB endpoint on TCP port 445.
 
 ## st-files-share-role
 
 Topic: Storage › Azure Files identity-based SMB access.
 
-A group needs to read files through identity-based Azure Files SMB. Its directory ACLs already allow read. Which share-level role supplies the required read access?
+An Azure Files SMB share is configured for identity-based authentication. A synchronized group needs read-only access, and its Windows ACLs already permit reading. The group has no existing share-level role, and default share permissions are disabled. You must assign a role at this file share's scope without granting share-level write, delete, or ACL modification permissions. Which role should you assign?
 
 Select **1**. Difficulty: applied.
 
 A. Storage File Data SMB Share Reader.
-B. Storage Blob Data Reader.
-C. Reader on the storage account.
-D. Storage Blob Delegator.
+B. Storage File Data SMB Share Contributor.
+C. Reader.
+D. Storage File Data SMB Share Elevated Contributor.
 
 ## st-files-source-count
 
 Topic: Storage › Azure Files identity-based SMB access.
 
-A storage account uses AD DS for identity-based Azure Files SMB authentication. Can one share in that same account independently use Entra Domain Services as a second simultaneous identity source?
+For Azure Files SMB user authentication, at which scope do you configure the choice between AD DS and Microsoft Entra Domain Services?
 
 Select **1**. Difficulty: foundation.
 
-A. No; one identity source is configured per storage account.
-B. Yes; every share independently selects its identity source.
-C. Yes; adding an ACL switches the authentication provider.
-D. Yes; a stored access policy selects the provider.
+A. Storage account.
+B. Individual file share.
+C. Individual directory.
+D. Azure subscription.
 
 ## st-azcopy-one-way
 

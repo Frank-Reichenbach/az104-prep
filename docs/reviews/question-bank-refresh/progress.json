@@ -1069,9 +1069,9 @@
     {
       "id": "storage.files.identity",
       "title": "Azure Files identity-based SMB access",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.files.identity.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-files-two-layers",
@@ -1086,9 +1086,9 @@
           ],
           "baselineHash": "2cf8ac67f6c4535dbd804e417c42312dd903c92b23babb30cc7d7ca9d83ef20e",
           "baselineContentHash": "ab5f63d2c470192df6be4043e1bb26812ae02ee37161bbb0e0b837fa0d0bdaa5",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "424a4f8abebce5c16747a76980323d915028d470ad2b6da25115473f0766fcf8"
         },
         {
           "id": "st-files-share-role",
@@ -1103,9 +1103,9 @@
           ],
           "baselineHash": "1c3cca5e942ceb59cc0582e76e126d17d67c5a6a7e502b0d4de6c589a6d156e4",
           "baselineContentHash": "d63d5269304e29f2b513338f5b28524ac013fa1a265326b62e25ebe5794a7a46",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "8c2a38d202b33349c11f657e1f3e541dcc163e4089815896eb071c5cb2426ab9"
         },
         {
           "id": "st-files-source-count",
@@ -1120,9 +1120,9 @@
           ],
           "baselineHash": "94915b749860dda40253b1b7e4f4ba2c767e561db42752c490431e3acbf0b7c9",
           "baselineContentHash": "291d4ba62ba8417c7a55cab24cc7301e56ea14995ca06f6a47b55d19858d8140",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "01de21ccd1341570f3d37aa1575894af82cf2c6cb3939d7897047c0744a57428"
         }
       ]
     },

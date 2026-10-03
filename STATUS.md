@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 55/322 questions reviewed, 45 revised and 10 kept; 13/99 topics complete.
-Latest: [Storage firewalls and network access](docs/reviews/question-bank-refresh/storage.access.network.md). Each completed topic has item decisions,
+Checkpoint: 58/322 questions reviewed, 48 revised and 10 kept; 14/99 topics complete.
+Latest: [Azure Files identity-based SMB access](docs/reviews/question-bank-refresh/storage.files.identity.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `storage.files.identity` (Azure Files identity-based SMB access).
+Next: `storage.accounts.configuration` (Storage account creation and configuration).
 The changes are on the work branch; the live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
 refresh PR needs explicit approval; do not reuse the earlier skill PR approval.
@@ -293,8 +293,8 @@ retirement are documented with current alternatives.
 ## Next task
 
 Continue the authorized existing-bank review from `npm run review:status`.
-Current checkpoint: 55/322 questions, 13/99 topics complete.
-Next: `storage.files.identity` (Azure Files identity-based SMB access).
+Current checkpoint: 58/322 questions, 14/99 topics complete.
+Next: `storage.accounts.configuration` (Storage account creation and configuration).
 Record real source checks and repair decisions in its report; do not mark a
 topic complete based on schema checks alone.
 
