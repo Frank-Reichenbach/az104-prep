@@ -27,6 +27,15 @@ to the next unfinished topic. Keep the persistent handoff current.
 
 ## Content
 
+- Before writing or reviewing questions, read
+  [the question-style guide](docs/az-104-question-style.md).
+  Apply the project skill at
+  `.agents/skills/az104-question-authoring/SKILL.md` when drafting, revising,
+  or reviewing question wording, answer choices, and explanations. The guide
+  remains the reference; the skill provides the authoring/review workflow.
+  docs/research/official-question-inventory.md is preserved research only.
+  Do not map it to existing questions or import it into the bank until the
+  user explicitly requests that later review/addition step.
 - Follow the April 17, 2026 exam outline until a documented refresh changes it.
 - Research Microsoft primary sources before writing technical claims. Cite
   supporting pages beside the claim and record the verification date.
