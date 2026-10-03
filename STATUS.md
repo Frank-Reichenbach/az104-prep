@@ -4,6 +4,22 @@ Updated: 2026-10-03. Approved scope: [PLAN.md](PLAN.md).
 
 ## Current increment
 
+The user requested that fresh clones include the question-authoring skill.
+Its three files are already tracked under
+`.agents/skills/az104-question-authoring/`, with repository-relative references
+and no dependency on a personal plugin installation. README.md now documents
+clone/open/invoke steps and lists the skill directory in the project map.
+The unpublished work branch was renamed to
+`feature/az104-question-authoring-skill`; the earlier `docs/` prefix named a
+Git branch, not the skill's directory. It retains the preceding research,
+skill fixes, and review reports required by this increment.
+
+Publication and fresh-clone verification are in progress. Main and the live
+question bank remain unchanged. The next step is to finish validation, push
+the work branch, and open a pull request. Merge requires explicit approval.
+
+## Three-question sample increment
+
 The requested review of three live questions is complete. The
 [sample report](docs/reviews/live-question-sample-review.md) records the
 deployed/local equality check and source-backed judgments for `st-life-003`,

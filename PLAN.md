@@ -51,6 +51,10 @@ version tags are not deployment requirements.
   requested on 2026-10-03. It applies the researched style guide; the separate
   quiz skill remains an optional interface. Preserved research questions stay
   separate until the user requests their review or adaptation.
+- Include the authoring skill and all repository references in fresh clones,
+  requested on 2026-10-03. Keep its discoverable entrypoint in `.agents/skills`,
+  document use without a separate plugin installation, and publish through a
+  pull request. Merging still requires explicit approval.
 
 ## Outcome
 
