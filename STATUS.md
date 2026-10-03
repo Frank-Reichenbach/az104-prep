@@ -4,6 +4,25 @@ Updated: 2026-10-03. Approved scope: [PLAN.md](PLAN.md).
 
 ## Current increment
 
+The requested review of three live questions is complete. The
+[sample report](docs/reviews/live-question-sample-review.md) records the
+deployed/local equality check and source-backed judgments for `st-life-003`,
+`id-effective-additive`, and `nw-nsg-state`. The downloaded live bank contained
+322 questions. All three intended keys were supported by Microsoft sources
+checked on October 3, 2026. The RBAC question can be kept; the lifecycle and NSG
+questions need targeted distractor improvements, with a stronger correct
+rationale also needed for the NSG item. No scored content was edited.
+
+Recommendation: review the full bank and retain sound items while making
+targeted repairs. Three deliberately selected questions do not establish a
+bank-wide rewrite rate or approve every other item. The preserved research
+inventory remains separate. Build/check, all 13 Node tests, static-site link
+validation, and diff whitespace checks passed. A Git audit confirmed the skill,
+question bank, knowledge, exam metadata, generated files, app, style guide, and
+inventory were unchanged. The report remains local on the work branch.
+
+## Skill finding-fix increment
+
 All four question-authoring skill findings have been addressed at the user's
 request. The [resolution record](docs/reviews/az104-question-authoring-finding-resolution.md)
 maps each finding to the corrected workflow and acceptance evidence. The skill
@@ -218,6 +237,12 @@ direction wording. VM Insights Map/Dependency Agent deprecation and NSG flow-log
 retirement are documented with current alternatives.
 
 ## Next task
+
+Proposed content follow-up: review the remaining live bank against the revised
+skill, prioritizing distractor plausibility and explanation quality; revise
+only items with identified defects. A full-bank editing pass was outside this
+three-question increment. The sample's two flagged items have not yet been
+changed.
 
 The skill-review findings are resolved. Use the revised workflow for the next
 requested authoring or review task, and retain acceptance cases for future
