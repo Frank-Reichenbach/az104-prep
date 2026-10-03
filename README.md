@@ -66,6 +66,7 @@ You can also study without the app:
 | questions/ | Authoritative JSON question files |
 | examples/ | Illustrative Azure configuration; not executed automatically |
 | docs/ | Research and question authoring conventions |
+| .agents/skills/ | Repository-local Codex skills, included in a clone |
 | templates/ | Starting point for a specific knowledge topic |
 | app/ | Local browser quiz and generated question bundle |
 | scripts/ | Build, validation, and local server |
@@ -83,8 +84,9 @@ npm run test:browser
 ```
 
 Edit questions in questions/, then rebuild. Do not hand-edit generated/
-or app/data.json. Read [the question format](docs/question-format.md) and
-[research conventions](docs/research.md) before adding material.
+or app/data.json. Read [the question format](docs/question-format.md),
+[research conventions](docs/research.md), and
+[the question-style guide](docs/az-104-question-style.md) before adding material.
 
 Azure examples are documentation-checked, not lab-tested. This workspace does
 not require an Azure subscription. The study material is independent of
@@ -100,3 +102,33 @@ next task. Browser tests require Google Chrome (or BROWSER_BIN pointing to a
 Chromium executable) and use a disposable profile.
 
 Personal progress exports can be stored under the ignored progress/ directory.
+
+## Author or review questions with Codex
+
+The `$az104-question-authoring` skill and its supporting references are tracked
+in `.agents/skills/az104-question-authoring/`. They travel with the repository;
+no separate skill installation or Frank plugin is required. Use the whole
+repository because the skill reads the shared style guide, question format,
+and research conventions.
+
+1. Clone the repository:
+
+   ```sh
+   git clone https://github.com/Frank-Reichenbach/az104-prep.git
+   cd az104-prep
+   ```
+
+2. Open that folder in Codex, or launch the Codex CLI from it. Codex discovers
+   repository skills in `.agents/skills`. If the skill does not appear, restart
+   Codex. See [OpenAI's skill documentation](https://learn.chatgpt.com/docs/build-skills)
+   (checked October 3, 2026).
+3. Invoke it in a prompt, for example:
+
+   ```text
+   Use $az104-question-authoring to review the wording and answer choices in questions/storage/blob-storage.json.
+   ```
+
+Review requests produce findings. Request edits explicitly when you want the
+bank changed. Authoring requires access to Microsoft primary sources; editing
+the bank also uses the Node.js checks listed above. The skill authors and
+reviews questions; the browser app administers practice sessions.

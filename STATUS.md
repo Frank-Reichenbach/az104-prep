@@ -1,8 +1,163 @@
 # Session handoff
 
-Updated: 2026-10-02. Approved scope: [PLAN.md](PLAN.md).
+Updated: 2026-10-03. Approved scope: [PLAN.md](PLAN.md).
 
 ## Current increment
+
+The user requested that fresh clones include the question-authoring skill.
+Its three files are already tracked under
+`.agents/skills/az104-question-authoring/`, with repository-relative references
+and no dependency on a personal plugin installation. README.md now documents
+clone/open/invoke steps and lists the skill directory in the project map.
+The unpublished work branch was renamed to
+`feature/az104-question-authoring-skill`; the earlier `docs/` prefix named a
+Git branch, not the skill's directory. It retains the preceding research,
+skill fixes, and review reports required by this increment.
+
+The user explicitly approved merging [PR #1](https://github.com/Frank-Reichenbach/az104-prep/pull/1)
+into main on October 3, 2026. That PR records publication and the merge
+revision; [main Actions runs](https://github.com/Frank-Reichenbach/az104-prep/actions?query=branch%3Amain)
+record the corresponding Pages deployment. The skill remains in
+`.agents/skills`, with clone/open/invoke instructions in README.md.
+
+A clean GitHub feature-branch clone at `c809199` contained all three tracked
+skill files, resolved all four local Markdown reference links, included the
+shared repository documents, and passed `npm run check`. Checks found no
+personal filesystem paths, plugin dependencies, or symlinked skill files.
+This verifies packaging and references, not discovery in a separate running
+Codex client. Official OpenAI documentation confirms `.agents/skills` discovery;
+README.md links that source and provides invocation instructions.
+
+Local build/check, all 13 Node tests, static-site link validation, skill
+frontmatter validation, and diff whitespace checks passed. PR validation also
+covered browser behavior. The merge publishes the skill, its required guide,
+preserved research, and review records; it changes no scored questions or app
+behavior. The merge procedure checks a fresh default-branch clone and waits
+for the main Pages deployment. No separate skill or plugin installation is
+required by the documented repository-local workflow.
+
+## Three-question sample increment
+
+The requested review of three live questions is complete. The
+[sample report](docs/reviews/live-question-sample-review.md) records the
+deployed/local equality check and source-backed judgments for `st-life-003`,
+`id-effective-additive`, and `nw-nsg-state`. The downloaded live bank contained
+322 questions. All three intended keys were supported by Microsoft sources
+checked on October 3, 2026. The RBAC question can be kept; the lifecycle and NSG
+questions need targeted distractor improvements, with a stronger correct
+rationale also needed for the NSG item. No scored content was edited.
+
+Recommendation: review the full bank and retain sound items while making
+targeted repairs. Three deliberately selected questions do not establish a
+bank-wide rewrite rate or approve every other item. The preserved research
+inventory remains separate. Build/check, all 13 Node tests, static-site link
+validation, and diff whitespace checks passed. A Git audit confirmed the skill,
+question bank, knowledge, exam metadata, generated files, app, style guide, and
+inventory were unchanged. The report remains local on the work branch.
+
+## Skill finding-fix increment
+
+All four question-authoring skill findings have been addressed at the user's
+request. The [resolution record](docs/reviews/az104-question-authoring-finding-resolution.md)
+maps each finding to the corrected workflow and acceptance evidence. The skill
+now plans batch patterns and reasoning levels, resolves rendered topic clues,
+constructs variants from decisive facts, and branches answer review between
+individual choices, joint components, and complete candidates. Rationale source
+tracing is explicit in working notes. Seven reusable acceptance cases are
+bundled with the skill; no scored JSON schema or app behavior was changed.
+
+Author-led checks produced six temporary original drafts, reviewed all seven
+acceptance cases, planned a six-item batch, and verified unique variant IDs,
+stable option IDs, changed keys, and the joint-action example's unique valid
+pair. All temporary drafts passed the real schema validator. These checks are
+not independent model-driven evaluations or Azure labs. The skill-creator
+validator, metadata/reference checks, repository build/check, all 13 Node tests,
+static-site link validation, and diff whitespace checks passed. A Git audit
+confirmed the bank, app, knowledge, outline, generated files, style guide, and
+inventory were unchanged. This revision remains local on
+`docs/az104-question-authoring-skill`; no push, merge, or deployment was performed.
+
+## Functional review increment
+
+The requested functional review of the question-authoring skill is complete.
+The [review report](docs/reviews/az104-question-authoring-functional-review.md)
+assesses the authored revision at `1dd081c`, focusing on researched question
+style and the original practice-question requirements. It records one high
+priority ambiguity in joint-action answer review and three medium priority
+workflow gaps: batch style/difficulty planning, topic-label clue resolution,
+and variant construction. The skill and bank were not revised during review.
+
+Verification includes 12 manual instruction walkthroughs, one original draft
+validated in memory, a deliberately wrong key accepted by the schema validator,
+and enumeration of the joint-action example's six possible answer pairs.
+Microsoft sources for the examples were checked on October 3, 2026. These are
+review diagnostics, not independent model-driven evaluations or Azure labs.
+Build/check validated the unchanged 322-question bank and 82/82 coverage;
+all 13 Node tests and the static-site build passed. Internal review-document
+links and diff whitespace checks passed. A Git audit confirmed the skill,
+bank, knowledge, exam metadata, generated files, app, style guide, and preserved
+inventory were unchanged. The report and handoff remain local on the work
+branch; no push, merge, or deployment was performed.
+
+## Skill creation increment
+
+The requested question-authoring skill is implemented on
+`docs/az104-question-authoring-skill`, which includes the preceding local
+research commit. Its entrypoint is
+`.agents/skills/az104-question-authoring/SKILL.md`, with Codex presentation
+metadata in `agents/openai.yaml` inside the skill directory. It reads the
+existing style guide, question format, and research conventions, then applies
+them to drafting, editing, or reviewing original questions. Review requests
+produce findings; inventory adaptation still needs the user's later request.
+
+AGENTS.md routes question-authoring work to the skill. README.md documents
+invocation and repository-local discovery, checked against official OpenAI
+documentation on October 3, 2026. This increment changes no questions, Azure
+knowledge, research inventory, generated bank data, or app behavior. This branch
+is local and has not been pushed, merged, or deployed.
+
+Skill verification: the skill-creator validator passed. Its missing PyYAML
+dependency was installed in an isolated temporary Python environment, with no
+project or global dependency changes. Additional checks verified the matching
+directory/name, UI metadata, invocation prompt, and all repository reference
+paths. The workflow was reviewed for review-only findings, ambiguous answer
+sets, and unsupported question formats. No independent model-driven evaluation
+or new Azure question trial was run; structural checks do not establish the
+quality of future questions.
+
+Repository verification: build/check validated the unchanged 322 questions,
+99 topics, and 82/82 objective coverage. All 13 Node tests passed. The static
+build checked deployment links, and a Git diff audit confirmed that the bank,
+knowledge, outline, generated content, app, inventory, and style guide were
+unchanged. No Azure lab was executed.
+
+## Previous research increment
+
+The requested official-question-style research is complete on
+docs/official-question-style-research. The
+[research inventory](docs/research/official-question-inventory.md) preserves
+69 paraphrased public Microsoft training questions from 23 pages, plus 47
+distinct technical oral prompts/themes from five official preparation videos.
+The five current AZ-104 learning paths and their 26 modules were inspected;
+an additional Log Analytics module supplied three of the 69 questions.
+The interactive Practice Assessment yielded no readable items; its access
+limit is recorded. These are public preparation resources, not live exam items.
+
+The [style guide](docs/az-104-question-style.md) separates documented exam
+formats, observed public-example patterns, and repository authoring rules.
+AGENTS.md requires future question work to read it. Research entries have no
+bank IDs or objective/topic/family mappings and remain unscored. No existing
+questions, generated data, quiz behavior, or coverage mappings changed.
+Review flags preserve broad, ambiguous, or changing Microsoft wording rather
+than treating the collected alternatives as verified answer keys.
+This documentation branch has not been merged or deployed.
+
+Research verification: build/check validated the unchanged 322-question bank,
+99 topics, and 82/82 coverage. All 13 Node tests completed with localhost
+binding allowed; the initial restricted run could not bind its server socket.
+The static build checked the new documentation's internal links. An inventory
+audit confirmed 69 unique sequential OBS IDs, 47 unique sequential VID IDs,
+23 question-page sections, and five video sections. No Azure lab was executed.
 
 All 82 objectives from the April 17, 2026 outline now have researched guides
 and original questions. The outline was rechecked against Microsoft on
@@ -117,12 +272,33 @@ retirement are documented with current alternatives.
 
 ## Next task
 
+PR #1 has explicit merge approval. Use its merge record and the main Actions
+history above for publication status; do not request approval for it again.
+
+Proposed content follow-up: review the remaining live bank against the revised
+skill, prioritizing distractor plausibility and explanation quality; revise
+only items with identified defects. A full-bank editing pass was outside this
+three-question increment. The sample's two flagged items have not yet been
+changed.
+
+The skill-review findings are resolved. Use the revised workflow for the next
+requested authoring or review task, and retain acceptance cases for future
+changes. A broader independent quality evaluation remains a possible follow-up;
+the author-led checks above do not claim one was performed.
+
+Wait for the user's later request before reviewing, updating, or adding the
+preserved research questions. At that point, recheck current Microsoft service
+documentation and write original scenarios using the new style guide. Do not
+automatically map or import the inventory. Reviewing an authenticated Practice
+Assessment remains an optional source follow-up, not a claimed completed survey.
+
 The approved initial knowledge base and basic app are complete. There are no
 unfinished exam objectives. Next work is maintenance driven by study feedback,
 additional scenario depth, and source refresh before the December–January exam
 window. Recheck the official outline and the documented service changes first.
-A skill remains an optional later interface; the basic app is the chosen first
-interface. Do not start cloud labs without authorization for that separate scope.
+The question-authoring skill is available for future content work. A quiz skill
+remains an optional later interface; the basic app is the chosen first interface.
+Do not start cloud labs without authorization for that separate scope.
 
 ## Limits
 
