@@ -3669,7 +3669,7 @@ Select **1**. Difficulty: applied.
 
 A. Move all consumers to valid key2 and verify requests.
 B. Regenerate both keys at the same time.
-C. Delete and recreate the storage account.
+C. Enable a key rotation reminder while consumers continue using key1.
 D. Generate a long-lived SAS signed with the old key1.
 
 ## st-key-blob-disable
@@ -3689,13 +3689,13 @@ D. A connection string containing key1.
 
 Topic: Storage › Storage account access keys.
 
-An operator must regenerate storage account keys. Which built-in role specifically includes this task?
+An operator must list and regenerate keys for one storage account. The additional role must not grant general storage-account configuration writes. Which listed built-in role should be assigned at that account scope?
 
 Select **1**. Difficulty: applied.
 
 A. Storage Account Key Operator Service Role.
 B. Storage Blob Data Reader.
-C. Storage Queue Data Message Sender.
+C. Storage Account Contributor.
 D. Storage Blob Delegator.
 
 ## st-net-sas-denied

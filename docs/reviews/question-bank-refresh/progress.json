@@ -932,9 +932,9 @@
     {
       "id": "storage.access.keys",
       "title": "Storage account access keys",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.access.keys.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-key-rotation-order",
@@ -949,9 +949,9 @@
           ],
           "baselineHash": "8d0d4714868fda6da17c43e74c12ded638e2ea44cd055155a8a4598ae96ef3b8",
           "baselineContentHash": "e2226988a280403062b86321429b73e2a2bc12751afe6ec4a56875d0a43abe4c",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "3103b05f87c14d0fa663f0322d2670fcfef5e5ea8927a3a6fcd938df6556b308"
         },
         {
           "id": "st-key-blob-disable",
@@ -966,9 +966,9 @@
           ],
           "baselineHash": "403391b80f690b82c56e946bee10304266d3ee9f25ebde1508db93992d4f7e7c",
           "baselineContentHash": "2cefc82161226db20d07b6d3ed9dcb39e73807189b4e50f9449d0865f2276a3a",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "e93e26677e3e1d04a91d58d479fce7e92362ed38999b96d186fb749278d8cb5e"
         },
         {
           "id": "st-key-admin-role",
@@ -983,9 +983,9 @@
           ],
           "baselineHash": "32fc63cfe401d8f871c1596cb79034f7e831d439bda02c1da9c7e266fdac9d51",
           "baselineContentHash": "1b82c5102b9cf680b363a5769533841bf86db9cbde966e00da9c5f08f9bb89db",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "aa368e8fcbac836f02cb1fbc75cde09876bd232142d2117cbd7eb27f38dab86f"
         }
       ]
     },

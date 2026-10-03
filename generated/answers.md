@@ -4789,12 +4789,12 @@ All known consumers of an Azure storage account currently use key1. You need to 
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Move all consumers to valid key2 and verify requests. The second key provides continuity while key1 changes.
+- **A. Correct:** Move all consumers to valid key2 and verify requests. Move every known key1 consumer to valid key2 and verify data requests before regenerating key1. This preserves a working credential while the old key1 value and its signed SAS become invalid.
 - **B. Incorrect:** Regenerate both keys at the same time. Both existing credentials would become invalid.
-- **C. Incorrect:** Delete and recreate the storage account. Credential rotation does not require deleting stored data.
+- **C. Incorrect:** Enable a key rotation reminder while consumers continue using key1. A rotation reminder prompts administrators; it does not update consumer connection strings or preserve the old key after regeneration. Consumers would still use invalid key1 once it is rotated.
 - **D. Incorrect:** Generate a long-lived SAS signed with the old key1. That SAS also depends on the key being regenerated.
 
-Study: [knowledge file](../knowledge/storage/access/account-keys.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/access/account-keys.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage)
 
@@ -4811,7 +4811,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** An account SAS signed by key2. Changing which account key signed it does not bypass the restriction.
 - **D. Incorrect:** A connection string containing key1. Embedding the key in a connection string does not change authorization type.
 
-Study: [knowledge file](../knowledge/storage/access/account-keys.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/access/account-keys.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage)
 
@@ -4819,16 +4819,16 @@ Study: [knowledge file](../knowledge/storage/access/account-keys.md). Evidence c
 
 Topic: Storage › Storage account access keys.
 
-An operator must regenerate storage account keys. Which built-in role specifically includes this task?
+An operator must list and regenerate keys for one storage account. The additional role must not grant general storage-account configuration writes. Which listed built-in role should be assigned at that account scope?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Storage Account Key Operator Service Role. It includes listing and regenerating storage account keys.
-- **B. Incorrect:** Storage Blob Data Reader. Reading blob data does not grant account-key management.
-- **C. Incorrect:** Storage Queue Data Message Sender. Sending queue messages is unrelated to key regeneration.
-- **D. Incorrect:** Storage Blob Delegator. Generating a user delegation key is different from rotating account keys.
+- **A. Correct:** Storage Account Key Operator Service Role. Its listed actions are listkeys and regeneratekey. Assigned at this account scope, it supports both required operations without general storage-account configuration writes.
+- **B. Incorrect:** Storage Blob Data Reader. This grants blob reads and includes delegation-key generation at an appropriate scope. It does not include storage-account listkeys or regeneratekey, so it cannot perform the requested key management.
+- **C. Incorrect:** Storage Account Contributor. This can manage the account and its keys, but its storageAccounts wildcard also grants general configuration writes. It exceeds the explicit account-management boundary.
+- **D. Incorrect:** Storage Blob Delegator. This permits generating a user delegation key for SAS signing. That is a different operation from listing or regenerating the two storage-account access keys.
 
-Study: [knowledge file](../knowledge/storage/access/account-keys.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/access/account-keys.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage)
 

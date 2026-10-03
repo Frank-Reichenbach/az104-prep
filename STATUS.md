@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 48/322 questions reviewed, 39 revised and 9 kept; 11/99 topics complete.
-Latest: [Stored access policies](docs/reviews/question-bank-refresh/storage.access.stored-policies.md). Each completed topic has item decisions,
+Checkpoint: 51/322 questions reviewed, 41 revised and 10 kept; 12/99 topics complete.
+Latest: [Storage account access keys](docs/reviews/question-bank-refresh/storage.access.keys.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `storage.access.keys` (Storage account access keys).
+Next: `storage.access.network` (Storage firewalls and network access).
 The changes are on the work branch; the live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
 refresh PR needs explicit approval; do not reuse the earlier skill PR approval.
@@ -293,8 +293,8 @@ retirement are documented with current alternatives.
 ## Next task
 
 Continue the authorized existing-bank review from `npm run review:status`.
-Current checkpoint: 48/322 questions, 11/99 topics complete.
-Next: `storage.access.keys` (Storage account access keys).
+Current checkpoint: 51/322 questions, 12/99 topics complete.
+Next: `storage.access.network` (Storage firewalls and network access).
 Record real source checks and repair decisions in its report; do not mark a
 topic complete based on schema checks alone.
 

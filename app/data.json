@@ -13447,7 +13447,7 @@
     {
       "id": "st-key-rotation-order",
       "family": "st-key-rotation-order",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.access.keys",
       "objectives": [
         "st-04"
@@ -13459,7 +13459,7 @@
         {
           "id": "switch",
           "text": "Move all consumers to valid key2 and verify requests.",
-          "explanation": "The second key provides continuity while key1 changes."
+          "explanation": "Move every known key1 consumer to valid key2 and verify data requests before regenerating key1. This preserves a working credential while the old key1 value and its signed SAS become invalid."
         },
         {
           "id": "both",
@@ -13468,8 +13468,8 @@
         },
         {
           "id": "delete",
-          "text": "Delete and recreate the storage account.",
-          "explanation": "Credential rotation does not require deleting stored data."
+          "text": "Enable a key rotation reminder while consumers continue using key1.",
+          "explanation": "A rotation reminder prompts administrators; it does not update consumer connection strings or preserve the old key after regeneration. Consumers would still use invalid key1 once it is rotated."
         },
         {
           "id": "sas",
@@ -13486,7 +13486,7 @@
         "https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent",
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-key-blob-disable",
@@ -13530,39 +13530,39 @@
         "https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent",
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-key-admin-role",
       "family": "st-key-admin-role",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.access.keys",
       "objectives": [
         "st-04"
       ],
       "difficulty": "applied",
-      "prompt": "An operator must regenerate storage account keys. Which built-in role specifically includes this task?",
+      "prompt": "An operator must list and regenerate keys for one storage account. The additional role must not grant general storage-account configuration writes. Which listed built-in role should be assigned at that account scope?",
       "select": 1,
       "options": [
         {
           "id": "operator",
           "text": "Storage Account Key Operator Service Role.",
-          "explanation": "It includes listing and regenerating storage account keys."
+          "explanation": "Its listed actions are listkeys and regeneratekey. Assigned at this account scope, it supports both required operations without general storage-account configuration writes."
         },
         {
           "id": "reader",
           "text": "Storage Blob Data Reader.",
-          "explanation": "Reading blob data does not grant account-key management."
+          "explanation": "This grants blob reads and includes delegation-key generation at an appropriate scope. It does not include storage-account listkeys or regeneratekey, so it cannot perform the requested key management."
         },
         {
           "id": "queue",
-          "text": "Storage Queue Data Message Sender.",
-          "explanation": "Sending queue messages is unrelated to key regeneration."
+          "text": "Storage Account Contributor.",
+          "explanation": "This can manage the account and its keys, but its storageAccounts wildcard also grants general configuration writes. It exceeds the explicit account-management boundary."
         },
         {
           "id": "delegator",
           "text": "Storage Blob Delegator.",
-          "explanation": "Generating a user delegation key is different from rotating account keys."
+          "explanation": "This permits generating a user delegation key for SAS signing. That is a different operation from listing or regenerating the two storage-account access keys."
         }
       ],
       "correct": [
@@ -13574,7 +13574,7 @@
         "https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent",
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-net-sas-denied",
