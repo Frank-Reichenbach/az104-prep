@@ -4,6 +4,28 @@ Updated: 2026-10-03. Approved scope: [PLAN.md](PLAN.md).
 
 ## Current increment
 
+The requested functional review of the question-authoring skill is complete.
+The [review report](docs/reviews/az104-question-authoring-functional-review.md)
+assesses the authored revision at `1dd081c`, focusing on researched question
+style and the original practice-question requirements. It records one high
+priority ambiguity in joint-action answer review and three medium priority
+workflow gaps: batch style/difficulty planning, topic-label clue resolution,
+and variant construction. The skill and bank were not revised during review.
+
+Verification includes 12 manual instruction walkthroughs, one original draft
+validated in memory, a deliberately wrong key accepted by the schema validator,
+and enumeration of the joint-action example's six possible answer pairs.
+Microsoft sources for the examples were checked on October 3, 2026. These are
+review diagnostics, not independent model-driven evaluations or Azure labs.
+Build/check validated the unchanged 322-question bank and 82/82 coverage;
+all 13 Node tests and the static-site build passed. Internal review-document
+links and diff whitespace checks passed. A Git audit confirmed the skill,
+bank, knowledge, exam metadata, generated files, app, style guide, and preserved
+inventory were unchanged. The report and handoff remain local on the work
+branch; no push, merge, or deployment was performed.
+
+## Skill creation increment
+
 The requested question-authoring skill is implemented on
 `docs/az104-question-authoring-skill`, which includes the preceding local
 research commit. Its entrypoint is
@@ -174,6 +196,10 @@ direction wording. VM Insights Map/Dependency Agent deprecation and NSG flow-log
 retirement are documented with current alternatives.
 
 ## Next task
+
+Proposed skill follow-up: address the four functional-review findings, then
+evaluate generated drafts against the report's acceptance cases. The current
+user request was review; those revisions have not been implemented.
 
 Wait for the user's later request before reviewing, updating, or adding the
 preserved research questions. At that point, recheck current Microsoft service
