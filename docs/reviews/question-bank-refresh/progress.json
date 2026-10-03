@@ -1129,9 +1129,9 @@
     {
       "id": "storage.accounts.configuration",
       "title": "Storage account creation and configuration",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.accounts.configuration.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-account-general-purpose",
@@ -1146,9 +1146,9 @@
           ],
           "baselineHash": "587ff9e901da5b186c8a2edf85147d871299c15429e15306d0de5cb0b82a0c44",
           "baselineContentHash": "bb37ee285b0ed09d6ba8f960c23260dc89141dd1ce91600e461d7f7cf764b0f6",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "3b53c091d4d8e5bd14cd0a4ced2a87f33e95bbc913f53672a70087f5404d2f91"
         },
         {
           "id": "st-account-name-scope",
@@ -1163,9 +1163,9 @@
           ],
           "baselineHash": "b4727993e00a96932db102d9786adeb9d83dc058662dca67bb7178f7368acd15",
           "baselineContentHash": "87971c9d5a1b64d3cd8921735ab0a99762a72c42a14e91d16e5fafdd4f969c19",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f252a8d09f8b75f772dbe2f545281eec580f586161eb9e17dd546175a8634029"
         },
         {
           "id": "st-account-transfer-tls",
@@ -1180,9 +1180,9 @@
           ],
           "baselineHash": "089701fbf4251b1f1bf9893050ae1db3cb01b8c0be270d3e3e0c2fb54e6be815",
           "baselineContentHash": "ad29cbdf1df583a25588e56f3237f53c8e130d21e25e6ba78d1be17191b85421",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f254530d08e91b8ed37d728c7599b1b4c9a710f4aec8c85750a7ef7a8cf58483"
         }
       ]
     },

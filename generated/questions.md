@@ -3858,14 +3858,14 @@ D. Premium page blob account.
 
 Topic: Storage › Storage account creation and configuration.
 
-A valid storage account name is already used by another customer in another region. Your deployment fails. What must change?
+You deploy a storage account in Azure public cloud. Its name meets the length and character rules, but creation returns StorageAccountAlreadyTaken. Another customer uses this name in a different region. Which change resolves this naming conflict?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Choose a different globally unique account name.
-B. Move the request to a different resource group but keep the name.
-C. Add a unique Environment tag.
-D. Select Cool as the default Blob tier.
+A. Use a different, globally unique storage account name.
+B. Keep the name and deploy into a different resource group.
+C. Keep the name and deploy into a different subscription.
+D. Keep the name and deploy into a different Azure region.
 
 ## st-account-transfer-tls
 
@@ -3877,8 +3877,8 @@ Select **2**. Difficulty: foundation.
 
 A. Secure transfer required.
 B. Minimum TLS version.
-C. Default Blob access tier.
-D. Locally redundant storage.
+C. Infrastructure encryption.
+D. Allow storage account key access.
 
 ## st-encryption-default
 
