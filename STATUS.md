@@ -4,6 +4,19 @@ Updated: 2026-10-03. Approved scope: [PLAN.md](PLAN.md).
 
 ## Current increment
 
+The full existing live-bank style review/update is authorized on 2026-10-03.
+Work branch: `fix/question-bank-style-refresh`. The
+[resume guide](docs/reviews/question-bank-refresh/README.md) and
+[ledger](docs/reviews/question-bank-refresh/progress.json) track all 322
+questions and 99 topics, with baseline/final hashes and per-question decisions.
+Run `npm run review:status` to detect stale reviews and find the next topic.
+No question has yet been marked reviewed. Start with Blob lifecycle management,
+then the NSG/ASG topic, then the remaining topics in ledger order. Complete
+and commit one topic before continuing; do not redo unchanged completed work.
+Source changes remain on the work branch until an explicitly approved PR merge.
+
+## Previous skill publication
+
 The user requested that fresh clones include the question-authoring skill.
 Its three files are already tracked under
 `.agents/skills/az104-question-authoring/`, with repository-relative references
@@ -272,14 +285,10 @@ retirement are documented with current alternatives.
 
 ## Next task
 
-PR #1 has explicit merge approval. Use its merge record and the main Actions
-history above for publication status; do not request approval for it again.
-
-Proposed content follow-up: review the remaining live bank against the revised
-skill, prioritizing distractor plausibility and explanation quality; revise
-only items with identified defects. A full-bank editing pass was outside this
-three-question increment. The sample's two flagged items have not yet been
-changed.
+Continue the authorized existing-bank review from `npm run review:status`.
+At initialization: 0/322 questions, 0/99 topics complete. First topic:
+`storage.blobs.lifecycle`. Record real source checks and repair decisions in
+its report; do not mark a topic complete based on schema checks alone.
 
 The skill-review findings are resolved. Use the revised workflow for the next
 requested authoring or review task, and retain acceptance cases for future

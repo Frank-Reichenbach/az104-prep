@@ -71,6 +71,11 @@ to the next unfinished topic. Keep the persistent handoff current.
 - Automated checks validate structure and behavior; they do not establish
   Azure technical correctness. Review sources separately.
 - Update STATUS.md with actual results, remaining work, and the next task.
+- During the existing-bank refresh, read
+  docs/reviews/question-bank-refresh/README.md and run `npm run review:status`.
+  Resume the first unfinished topic from its ledger. Preserve completed reviews
+  whose recorded question hashes still match; do not restart the full review.
+  Commit each completed topic with its evidence, generated files, and handoff.
 - Never mark an objective complete based only on a placeholder or empty file.
 - Keep study history local to the browser; exported history belongs in the
   ignored progress/ directory if saved in the repository.
