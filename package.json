@@ -1,16 +1,27 @@
 {
   "name": "az-104-study",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "Local AZ-104 knowledge base and multiple-choice practice",
-  "engines": { "node": ">=22" },
+  "packageManager": "pnpm@10.33.2",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "start": "node scripts/serve.mjs",
-    "build": "node scripts/build.mjs",
+    "build": "pnpm run build:css && pnpm run build:icons && node scripts/build.mjs",
     "check": "node scripts/build.mjs --check",
     "test": "node --test",
-    "build:site": "npm run check && node scripts/build-site.mjs",
-    "test:browser": "node scripts/browser-check.mjs"
+    "build:site": "pnpm run check && node scripts/build-site.mjs",
+    "test:browser": "node scripts/browser-check.mjs",
+    "build:icons": "node scripts/build-icons.mjs",
+    "build:css": "tailwindcss -i app/tailwind.css -o app/style.css --minify",
+    "dev:css": "tailwindcss -i app/tailwind.css -o app/style.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "lucide-static": "^1.51.0",
+    "tailwindcss": "^4.3.3"
   }
 }

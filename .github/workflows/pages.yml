@@ -15,14 +15,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v6
         with:
           node-version: '24'
           package-manager-cache: false
-      - run: npm run check
-      - run: npm test
-      - run: npm run build:site
-      - run: npm run test:browser
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build:css
+      - run: pnpm run build:icons
+      - name: Verify committed stylesheet and icon sprite are current
+        run: git diff --exit-code app/style.css app/vendor/icons.svg
+      - run: pnpm run check
+      - run: pnpm test
+      - run: pnpm run build:site
+      - run: pnpm run test:browser
       - uses: actions/upload-pages-artifact@v4
         if: github.event_name != 'pull_request'
         with:

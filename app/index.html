@@ -3,44 +3,128 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AZ-104 Practice</title>
+  <title>AZ-104 Practice: Free Azure Administrator Study Guide and Questions</title>
+  <meta name="description" content="Free, offline AZ-104 (Azure Administrator) knowledge base with original multiple-choice practice questions and explained answers.">
+  <link rel="canonical" href="%SITE_URL%">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AZ-104 Practice">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="AZ-104 Practice">
+  <meta property="og:description" content="Free, offline AZ-104 (Azure Administrator) knowledge base with original multiple-choice practice questions and explained answers.">
+  <meta property="og:url" content="%SITE_URL%">
+  <meta property="og:image" content="%SITE_URL%icons/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AZ-104 Practice: Azure Administrator self-study with original multiple-choice questions">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AZ-104 Practice: Free Azure Administrator Study Guide and Questions">
+  <meta name="twitter:description" content="Free, offline AZ-104 (Azure Administrator) knowledge base with original multiple-choice practice questions and explained answers.">
+  <meta name="twitter:image" content="%SITE_URL%icons/og-image.png">
+  <link rel="alternate" type="text/plain" href="./llms.txt" title="llms.txt">
+  <script type="application/ld+json">%JSON_LD%</script>
+  <meta name="theme-color" content="#f0f4f6">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="AZ-104">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <script src="./theme.js"></script>
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./main.mjs"></script>
 </head>
 <body>
-  <main>
-    <header><p class="eyebrow">AZURE ADMINISTRATOR · SELF-STUDY</p><h1>AZ-104 Practice</h1>
-      <p>Understand the choice. Learn from every option.</p>
-      <p id="coverage" class="notice">Loading question bank…</p>
-      <nav><a href="./exam/coverage.md" target="_blank" rel="noopener">Coverage</a> · <a href="./knowledge/index.md" target="_blank" rel="noopener">Knowledge index</a> · <a href="./generated/questions.md" target="_blank" rel="noopener">Printable questions</a></nav>
+  <main class="mx-auto w-full max-w-[850px] px-3 py-6 sm:px-5 sm:py-10">
+    <header class="flex items-start justify-between gap-3">
+      <div><p class="text-xs font-bold tracking-[.12em] text-eyebrow">AZURE ADMINISTRATOR · SELF-STUDY</p><h1 class="mt-1 mb-2 text-[clamp(2rem,6vw,3rem)] leading-[1.1] font-bold tracking-tighter"><a id="home" href="./" class="text-inherit no-underline hover:underline focus-visible:underline">AZ-104 Practice</a></h1></div>
+      <button id="theme-toggle" class="group m-0 inline-flex size-10 shrink-0 items-center justify-center rounded-full p-0 cursor-pointer border border-brand transition-[background-color,transform,opacity] duration-150 active:not-disabled:scale-[.97] disabled:cursor-default disabled:opacity-55 bg-surface text-secondary hover:bg-selected" type="button" aria-label="Theme: system" title="Theme: system">
+        <svg class="icon size-5 transition-transform duration-300 group-hover:rotate-12 group-active:rotate-45 in-data-[theme-pref=light]:hidden in-data-[theme-pref=dark]:hidden" aria-hidden="true"><use href="./vendor/icons.svg#sun-moon"/></svg>
+        <svg class="icon size-5 transition-transform duration-300 group-hover:rotate-12 group-active:rotate-45 hidden in-data-[theme-pref=dark]:block" aria-hidden="true"><use href="./vendor/icons.svg#moon"/></svg>
+        <svg class="icon size-5 transition-transform duration-300 group-hover:rotate-12 group-active:rotate-45 hidden in-data-[theme-pref=light]:block" aria-hidden="true"><use href="./vendor/icons.svg#sun"/></svg>
+      </button>
     </header>
-    <p id="message" role="status" aria-live="polite"></p>
-    <section id="setup" class="card" hidden>
-      <h2>Your next session</h2>
-      <form id="start-form">
-        <label for="topic">Topic</label><select id="topic"><option value="weighted">Mixed · exam domain weights</option><option value="all">All topics · random selection</option></select>
-        <div class="row">
-          <div><label for="count">Questions</label><input id="count" type="number" value="10" min="1" max="100" required></div>
-          <div><label for="mode">Mode</label><select id="mode"><option value="practice">Practice · feedback after each answer</option><option value="test">Test · feedback at the end</option></select></div>
+    <noscript>
+      <p>Free study material for the Microsoft AZ-104 Azure Administrator exam: topic guides and original multiple-choice questions. The interactive quiz needs JavaScript; the guides are available as Markdown:</p>
+      <ul>
+        <li><a href="./knowledge/identity/index.md">Identity and governance</a></li>
+        <li><a href="./knowledge/storage/index.md">Storage</a></li>
+        <li><a href="./knowledge/compute/index.md">Compute</a></li>
+        <li><a href="./knowledge/networking/index.md">Networking</a></li>
+        <li><a href="./knowledge/monitoring/index.md">Monitoring and maintenance</a></li>
+        <li><a href="./exam/coverage.md">Exam objective coverage</a></li>
+      </ul>
+    </noscript>
+    <p id="message" role="status" aria-live="polite" class="bg-warn p-3 text-warn-ink empty:hidden not-empty:animate-pop"></p>
+    <p id="update" role="status" class="my-3 flex flex-wrap items-center gap-3 rounded-[5px] bg-notice p-3" hidden>A new version is available. <button id="update-reload" class="m-0 cursor-pointer rounded-[5px] border border-brand px-4.5 py-2.5 transition-[background-color,transform,opacity] duration-150 active:not-disabled:scale-[.97] disabled:cursor-default disabled:opacity-55 bg-brand text-on-brand hover:bg-brand-dark" type="button">Reload to update</button></p>
+    <section id="setup" class="animate-rise my-6 rounded-xl border border-line bg-surface p-4 sm:p-6.5" hidden>
+      <div class="flex items-center justify-between gap-3">
+        <h2 class="text-[1.35rem] leading-snug font-bold">Your next session</h2>
+        <div id="progress-menu" class="relative shrink-0">
+          <button id="menu-toggle" class="group m-0 inline-flex size-9 cursor-pointer items-center justify-center rounded-full border-0 bg-transparent p-0 text-soft transition-colors hover:bg-selected hover:text-ink aria-expanded:bg-selected aria-expanded:text-ink" type="button" aria-expanded="false" aria-controls="menu-list" aria-label="Progress and analysis menu" title="Progress and analysis">
+            <svg class="icon size-5 group-aria-expanded:hidden" aria-hidden="true"><use href="./vendor/icons.svg#menu"/></svg>
+            <svg class="icon hidden size-5 group-aria-expanded:block" aria-hidden="true"><use href="./vendor/icons.svg#x"/></svg>
+          </button>
+          <div id="menu-list" class="absolute top-full right-0 z-10 mt-1.5 min-w-60 animate-pop rounded-md border border-line bg-surface p-1 shadow-lg" hidden>
+            <a class="flex w-full items-center gap-2.5 cursor-pointer rounded-[4px] border-0 bg-transparent px-3 py-2 text-left text-[1rem] text-ink no-underline hover:bg-selected" id="open-analysis" href="#/analysis"><svg class="icon size-5 shrink-0 text-soft" aria-hidden="true"><use href="./vendor/icons.svg#chart-column"/></svg>Analyse weak areas</a>
+            <button class="flex w-full items-center gap-2.5 cursor-pointer rounded-[4px] border-0 bg-transparent px-3 py-2 text-left text-[1rem] text-ink no-underline hover:bg-selected" id="export" type="button"><svg class="icon size-5 shrink-0 text-soft" aria-hidden="true"><use href="./vendor/icons.svg#download"/></svg>Export progress</button>
+            <button class="flex w-full items-center gap-2.5 cursor-pointer rounded-[4px] border-0 bg-transparent px-3 py-2 text-left text-[1rem] text-ink no-underline hover:bg-selected" id="import-button" type="button"><svg class="icon size-5 shrink-0 text-soft" aria-hidden="true"><use href="./vendor/icons.svg#upload"/></svg>Import progress</button>
+          </div>
+          <input id="import" type="file" accept=".json,application/json" hidden>
         </div>
-        <label class="inline"><input id="missed" type="checkbox"> Review currently missed question families</label>
-        <p class="muted">Select the stated number of answers. Multiple-answer questions require an exact match. A session uses at most one variant per family.</p>
-        <p class="muted">Mixed sessions balance questions across the exam domains. Short sessions and missed-question review can differ from the published proportions.</p>
-        <button type="submit">Start session</button>
+      </div>
+      <form id="start-form">
+        <label class="mt-3 block font-semibold" for="topic">Topic</label><div class="grid grid-cols-1"><select id="topic" class="col-start-1 row-start-1 w-full appearance-none rounded-[5px] border border-field bg-surface py-2.5 pr-10 pl-3 text-inherit shadow-xs transition-colors hover:border-brand focus-visible:border-brand"><option value="weighted">Mixed · exam domain weights</option><option value="all">All topics · random selection</option></select><svg class="icon pointer-events-none col-start-1 row-start-1 mr-3 size-5 self-center justify-self-end fill-none stroke-current stroke-2 text-soft [stroke-linecap:round] [stroke-linejoin:round]" aria-hidden="true"><use href="./vendor/icons.svg#chevron-down"/></svg></div>
+        <div class="flex flex-wrap gap-4">
+          <div class="min-w-[220px] flex-1"><label class="mt-3 block font-semibold" for="count">Questions</label><input id="count" class="w-full rounded-[5px] border border-field bg-surface p-2.5 text-inherit" type="number" inputmode="numeric" pattern="[0-9]*" value="10" min="1" max="100" required></div>
+          <div class="min-w-[220px] flex-1"><label class="mt-3 block font-semibold" for="mode">Mode</label><div class="grid grid-cols-1"><select id="mode" class="col-start-1 row-start-1 w-full appearance-none rounded-[5px] border border-field bg-surface py-2.5 pr-10 pl-3 text-inherit shadow-xs transition-colors hover:border-brand focus-visible:border-brand"><option value="practice">Practice · feedback after each answer</option><option value="test">Test · feedback at the end</option></select><svg class="icon pointer-events-none col-start-1 row-start-1 mr-3 size-5 self-center justify-self-end fill-none stroke-current stroke-2 text-soft [stroke-linecap:round] [stroke-linejoin:round]" aria-hidden="true"><use href="./vendor/icons.svg#chevron-down"/></svg></div></div>
+        </div>
+        <div id="time-limit-field" hidden><label class="mt-3 block font-semibold" for="minutes">Time limit (minutes)</label><input id="minutes" class="w-full rounded-[5px] border border-field bg-surface p-2.5 text-inherit" type="number" inputmode="numeric" pattern="[0-9]*" value="100" min="1" max="240"><p class="text-[.86rem] text-soft">Test mode defaults to an exam-sized session: 50 questions in 100 minutes (2 minutes per question). Microsoft publishes no fixed length — typically 40–60 questions, 100 minutes, or 120 with labs (<a href="https://learn.microsoft.com/credentials/support/exam-duration-exam-experience" target="_blank" rel="noopener">source</a>). The session ends automatically when time runs out; unanswered questions are not scored.</p></div>
+        <label class="mt-3 block font-semibold" for="missed">Review</label><div class="grid grid-cols-1"><select id="missed" class="col-start-1 row-start-1 w-full appearance-none rounded-[5px] border border-field bg-surface py-2.5 pr-10 pl-3 text-inherit shadow-xs transition-colors hover:border-brand focus-visible:border-brand"><option value="none">New selection · all questions</option><option value="wrong">Only wrong answers</option><option value="unsure">Only unsure answers</option><option value="both">Wrong and unsure answers</option></select><svg class="icon pointer-events-none col-start-1 row-start-1 mr-3 size-5 self-center justify-self-end fill-none stroke-current stroke-2 text-soft [stroke-linecap:round] [stroke-linejoin:round]" aria-hidden="true"><use href="./vendor/icons.svg#chevron-down"/></svg></div>
+        <aside class="my-4 rounded-[5px] border border-l-4 border-line border-l-notice-line bg-notice p-3.5 text-[.86rem] leading-normal" aria-labelledby="scoring-notes">
+          <h3 id="scoring-notes" class="mb-2 flex items-center gap-2 text-xs font-bold tracking-[.12em] text-eyebrow uppercase"><svg class="icon size-4 shrink-0" aria-hidden="true"><use href="./vendor/icons.svg#info"/></svg>How sessions are scored</h3>
+          <ul class="m-0 grid list-none gap-1.5 p-0 text-soft">
+            <li><strong class="font-semibold text-ink">Exact match.</strong> Select the stated number of answers; multiple-answer questions need every correct option and nothing else.</li>
+            <li><strong class="font-semibold text-ink">One variant per family.</strong> A session never shows two variants of the same question.</li>
+            <li><strong class="font-semibold text-ink">Mixed sessions</strong> balance questions across the exam domains. Short and review sessions can differ from the published proportions.</li>
+            <li><strong class="font-semibold text-ink">“Unsure”</strong> is recorded without a selection, does not count as correct, and can be reviewed later.</li>
+          </ul>
+        </aside>
+        <button class="my-2 mr-1.5 cursor-pointer rounded-[5px] border border-brand px-4.5 py-2.5 transition-[background-color,transform,opacity] duration-150 active:not-disabled:scale-[.97] disabled:cursor-default disabled:opacity-55 bg-brand text-on-brand hover:bg-brand-dark" type="submit">Start session</button>
       </form>
-      <p id="progress"></p>
-      <div class="row actions"><button id="export" class="secondary" type="button">Export progress</button><button id="import-button" class="secondary" type="button">Import progress</button><input id="import" type="file" accept=".json,application/json" hidden></div>
-      <p class="muted">Progress stays in this browser. Import replaces it after confirmation. Export before clearing browser storage.</p>
+      <div class="mt-2 flex items-start gap-2 text-[.86rem] text-soft">
+        <svg class="icon mt-[.2em] size-4 shrink-0" aria-hidden="true"><use href="./vendor/icons.svg#info"/></svg>
+        <p id="progress"></p>
+      </div>
     </section>
-    <section id="session" class="card" hidden>
-      <p id="position" class="eyebrow"></p><p id="question-topic" class="muted"></p><h2 id="prompt" tabindex="-1"></h2>
-      <form id="answer-form"><fieldset id="choices"><legend id="instruction"></legend></fieldset><button id="submit-answer" type="submit">Check answer</button></form>
-      <div id="feedback" aria-live="polite"></div>
-      <button id="next" type="button" hidden>Next question</button>
-      <button id="end" class="secondary" type="button">End session</button>
+    <section id="session" class="animate-rise my-6 rounded-xl border border-line bg-surface p-4 sm:p-6.5" hidden>
+      <div id="timer" class="mb-4" hidden><div class="mb-1 flex items-center justify-between text-[.86rem] text-soft"><span>Time remaining</span><span id="timer-text" class="font-semibold tabular-nums"></span></div><div class="h-2.5 w-full overflow-hidden rounded-full bg-line"><div id="timer-bar" class="h-full w-full origin-left rounded-full bg-brand transition-[width,background-color] duration-1000 ease-linear data-[level=warn]:bg-warn-ink data-[level=critical]:bg-bad" role="progressbar" aria-label="Exam time remaining" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" data-level="ok"></div></div><p id="timer-announce" class="sr-only" role="status" aria-live="polite"></p></div>
+      <div class="q-progress" role="progressbar" aria-label="Session progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="q-progress-bar" class="q-progress-bar"></div></div>
+      <div class="q-meta"><p id="position" class="q-position"></p><p id="question-topic" class="q-topic"></p></div>
+      <h2 id="prompt" tabindex="-1" class="q-prompt"></h2>
+      <form id="answer-form"><fieldset id="choices" class="my-4 border-0 p-0"><legend id="instruction" class="mb-2"></legend></fieldset><div class="flex items-center justify-between gap-3"><button class="m-0 cursor-pointer rounded-[5px] border border-brand px-4.5 py-2.5 transition-[background-color,transform,opacity] duration-150 active:not-disabled:scale-[.97] disabled:cursor-default disabled:opacity-55 bg-surface text-secondary hover:bg-selected" id="unsure-answer" type="button" aria-keyshortcuts="U">I'm unsure</button><button class="m-0 cursor-pointer rounded-[5px] border border-brand px-4.5 py-2.5 transition-[background-color,transform,opacity] duration-150 active:not-disabled:scale-[.97] disabled:cursor-default disabled:opacity-55 bg-brand text-on-brand hover:bg-brand-dark" id="submit-answer" type="submit">Check answer</button></div></form>
+      <div id="feedback" aria-live="polite" class="*:animate-rise"></div>
+      <div class="flex justify-end"><button class="m-0 cursor-pointer rounded-[5px] border border-brand px-4.5 py-2.5 transition-[background-color,transform,opacity] duration-150 active:not-disabled:scale-[.97] disabled:cursor-default disabled:opacity-55 bg-brand text-on-brand hover:bg-brand-dark" id="next" type="button" hidden>Next question</button></div>
+      <div class="mt-8 border-t border-line pt-3"><button class="m-0 cursor-pointer border-0 bg-transparent p-1 text-[.86rem] text-soft underline underline-offset-4 hover:text-bad" id="end" type="button">End session</button></div>
     </section>
-    <section id="results" class="card" hidden><h2 id="result-title" tabindex="-1">Session results</h2><p id="result-score"></p><p class="muted">This percentage measures your answers in this session. It does not predict Microsoft's scaled exam score or exam readiness.</p><div id="review"></div><button id="again" type="button">Choose another session</button></section>
-    <footer>Independent study material · English · No account or cloud service required</footer>
+    <section id="results" class="animate-rise my-6 rounded-xl border border-line bg-surface p-4 sm:p-6.5" hidden><h2 id="result-title" tabindex="-1" class="text-[1.35rem] leading-snug font-bold">Session results</h2><p id="result-score"></p><p class="text-[.86rem] text-soft">This percentage measures your answers in this session. It does not predict Microsoft's scaled exam score or exam readiness.</p><section aria-labelledby="result-analysis-title" class="mt-6"><h3 id="result-analysis-title" class="text-[1.1rem] font-bold">Where this test stands against your earlier learning state</h3><p class="text-[.86rem] text-soft">Hit rate per area in this test compared with your answers before it. Changes are in percentage points (pp) and only shown with at least 3 answers on both sides.</p><div id="result-analysis"></div></section><div id="review" class="*:animate-fade"></div><button class="my-2 mr-1.5 cursor-pointer rounded-[5px] border border-brand px-4.5 py-2.5 transition-[background-color,transform,opacity] duration-150 active:not-disabled:scale-[.97] disabled:cursor-default disabled:opacity-55 bg-brand text-on-brand hover:bg-brand-dark" id="again" type="button">Choose another session</button></section>
+    <section id="analysis" class="animate-rise my-6 rounded-xl border border-line bg-surface p-4 sm:p-6.5" hidden>
+      <p class="text-[.86rem]"><a href="#" id="analysis-back" class="inline-flex items-center gap-1.5"><svg class="icon size-4" aria-hidden="true"><use href="./vendor/icons.svg#arrow-left"/></svg>Back to practice</a></p>
+      <h2 id="analysis-title" tabindex="-1" class="text-[1.35rem] leading-snug font-bold">Weakest areas</h2>
+      <p class="text-[.86rem] text-soft">Error rate per area, based on the latest answer to each question family in this browser's study history. Areas with fewer than 3 answered families are left out. Unsure answers count as not correct. This is a study aid, not a prediction of the exam result.</p>
+      <div id="analysis-chart"></div>
+    </section>
+    <section id="doc" class="my-6 rounded-xl border border-line bg-surface p-4 sm:p-6.5" hidden>
+      <p class="flex flex-wrap items-center gap-x-4 text-[.86rem]"><a href="#" id="doc-back" class="inline-flex items-center gap-1.5"><svg class="icon size-4" aria-hidden="true"><use href="./vendor/icons.svg#arrow-left"/></svg>Back to practice</a><a id="doc-raw" target="_blank" rel="noopener">View raw Markdown</a></p>
+      <article id="doc-body" class="md" tabindex="-1"></article>
+    </section>
+    <dialog id="confirm-dialog" aria-labelledby="confirm-text" class="m-auto w-[min(92vw,26rem)] animate-pop rounded-xl border border-line bg-surface p-5 text-ink shadow-xl backdrop:bg-black/50">
+      <form method="dialog">
+        <p id="confirm-text" class="mb-5"></p>
+        <div class="flex justify-end gap-2"><button id="confirm-cancel" class="m-0 cursor-pointer rounded-[5px] border border-brand px-4.5 py-2.5 transition-[background-color,transform,opacity] duration-150 active:not-disabled:scale-[.97] bg-surface text-secondary hover:bg-selected" value="cancel" autofocus>Cancel</button><button id="confirm-ok" class="m-0 cursor-pointer rounded-[5px] border border-brand px-4.5 py-2.5 transition-[background-color,transform,opacity] duration-150 active:not-disabled:scale-[.97] bg-brand text-on-brand hover:bg-brand-dark" value="ok">Confirm</button></div>
+      </form>
+    </dialog>
+    <footer class="mt-8 text-[.86rem] text-soft"><p><span id="coverage" class="animate-fade">Loading question bank…</span></p><p><a href="#/analysis">Analysis</a> · <a href="#/doc/exam/coverage.md">Coverage</a> · <a href="#/doc/knowledge/index.md">Knowledge index</a> · <a href="#/doc/generated/questions.md">Printable questions</a> · <a href="#/doc/CHANGELOG.md">Changelog</a></p><p>Independent study material · English · No account or cloud service required · <span id="version">Version …</span><span id="offline"></span></p></footer>
   </main>
 </body>
 </html>

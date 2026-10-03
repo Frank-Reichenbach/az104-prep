@@ -1,0 +1,118 @@
+/* Tailwind source. `pnpm run build:css` compiles it to the committed app/style.css. */
+@import "tailwindcss" source(none);
+@source "./index.html";
+@source "./main.mjs";
+@source "./markdown.mjs";
+@source "./analysis.mjs";
+
+@theme {
+  --font-sans: system-ui, sans-serif;
+  --color-page: #f0f4f6;
+  --color-ink: #182d3d;
+  --color-line: #d4dfe5;
+  --color-soft: #4f626e;
+  --color-brand: #086b80;
+  --color-brand-dark: #064c5b;
+  --color-link: #075b89;
+  --color-good: #247442;
+  --color-bad: #a24824;
+  --color-surface: #fff;
+  --color-edge: #bdcdd5;
+  --color-field: #8b9da9;
+  --color-eyebrow: #365a70;
+  --color-notice: #e0edf1;
+  --color-notice-line: #177d92;
+  --color-selected: #e6f2f5;
+  --color-hover: #f3f8fa;
+  --color-warn: #fff1df;
+  --color-warn-ink: #754010;
+  --color-secondary: #086078;
+  --color-on-brand: #fff;
+  --color-focus: #a65108;
+}
+
+/* Dark palette: overrides the theme tokens when <html data-theme="dark"> is set. */
+:root[data-theme=dark] {
+  --color-page: #0f1a22;
+  --color-ink: #e2ebf0;
+  --color-line: #2c3f4c;
+  --color-soft: #a3b6c2;
+  --color-brand: #2a95ad;
+  --color-brand-dark: #3aa5bb;
+  --color-link: #6cc4ea;
+  --color-good: #5cc283;
+  --color-bad: #f08a5f;
+  --color-surface: #17252f;
+  --color-edge: #3d5565;
+  --color-field: #6b8394;
+  --color-eyebrow: #9bbccd;
+  --color-notice: #17313b;
+  --color-notice-line: #3aa5bb;
+  --color-selected: #1c3a46;
+  --color-hover: #1b2d38;
+  --color-warn: #3a2a16;
+  --color-warn-ink: #f3c48b;
+  --color-secondary: #7fd0e6;
+  --color-on-brand: #06141b;
+  --color-focus: #f0a04b;
+}
+
+@layer base {
+  html { font-size: 17px; line-height: 1.55; color-scheme: light; }
+  :root[data-theme=dark] { color-scheme: dark; }
+  body { @apply m-0 bg-page font-sans text-ink; }
+  a { @apply text-link underline-offset-[.2em]; }
+  :focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
+  [hidden] { display: none !important; }
+}
+
+@layer components {
+  /* Lucide icons (sprite in vendor/icons.svg): stroke styling for <svg class="icon"><use/></svg>. */
+  .icon { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  /* Rendered Markdown documents (see markdown.mjs). */
+  .md { @apply outline-none; overflow-wrap: anywhere; }
+  .md h1 { @apply mt-4 mb-3 text-[1.8rem] leading-tight font-bold tracking-tight; }
+  .md h2 { @apply mt-8 mb-2 text-[1.35rem] leading-snug font-bold; }
+  .md h3, .md h4, .md h5, .md h6 { @apply mt-6 mb-2 font-bold; }
+  .md p, .md ul, .md ol, .md pre, .md blockquote, .md .md-table { @apply my-3; }
+  .md ul { @apply list-disc pl-6; }
+  .md ol { @apply list-decimal pl-6; }
+  .md li > ul, .md li > ol { @apply my-1; }
+  .md code { @apply rounded-sm bg-notice px-1 text-[.9em]; }
+  .md pre { @apply overflow-x-auto rounded-md border border-line bg-notice p-3 text-[.86rem]; }
+  .md pre code { @apply bg-transparent p-0; }
+  .md blockquote { @apply border-l-4 border-notice-line bg-notice px-4 py-1; }
+  .md hr { @apply my-6 border-line; }
+  .md .md-table { @apply overflow-x-auto; }
+  .md table { @apply w-full border-collapse text-[.9rem]; }
+  .md th, .md td { @apply border border-line px-2.5 py-1.5 text-left align-top; }
+  .md th { @apply bg-selected; }
+}
+
+/* Animations: short, transform/opacity only, disabled for reduced-motion users. */
+@theme {
+  --animate-rise: rise .35s ease-out both;
+  --animate-fade: fade .25s ease-out both;
+  --animate-pop: pop .3s cubic-bezier(.34, 1.56, .64, 1) both;
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes pop { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after { animation: none !important; transition-duration: .01ms !important; }
+}
+
+/* Question header: quiet meta row, calm scenario text, emphasised task sentence. */
+@layer components {
+  .q-progress { @apply mb-4 h-1 w-full overflow-hidden rounded-full bg-line; }
+  .q-progress-bar { @apply h-full rounded-full bg-brand transition-[width] duration-300; }
+  .q-meta { @apply mb-5 flex flex-wrap items-center gap-x-3 gap-y-1.5; }
+  .q-position { @apply text-xs font-bold tracking-[.12em] text-eyebrow uppercase; }
+  .q-topic { @apply rounded-full border border-line px-2.5 py-0.5 text-[.8rem] text-soft; }
+  .q-prompt { @apply max-w-[62ch] text-[1.05rem] leading-[1.6] font-normal sm:text-[1.1rem]; }
+  .q-scenario { @apply text-ink; }
+  .q-task { @apply mt-3 block border-l-4 border-brand pl-3.5 text-[1.15rem] leading-snug font-semibold sm:text-[1.25rem]; }
+  .q-task:first-child { @apply mt-0; }
+  #instruction { @apply mt-5 mb-2 text-[.86rem] text-soft; }
+}

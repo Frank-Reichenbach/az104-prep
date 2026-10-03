@@ -174,10 +174,17 @@ try {
     await key('Enter', 'Enter', 13);
     await waitFor(`!document.getElementById('results').hidden`);
     assert.match(await evaluate(`document.getElementById('result-score').textContent`), /^1\/1 correct/);
+    // The session results embed the test-vs-history chart, and the analysis page is reachable.
+    await waitFor(`document.querySelector('#result-analysis canvas') && document.querySelector('#result-analysis table')`);
+    await evaluate(`location.hash = '#/analysis'`);
+    await waitFor(`!document.getElementById('analysis').hidden`);
+    assert.equal(await evaluate(`document.activeElement.id`), 'analysis-title');
+    await evaluate(`location.hash = ''`);
+    await waitFor(`!document.getElementById('results').hidden`);
     const expectedCount = recorded + 1;
 
     // Download through the real Export button, then import that file through
-    // the native file input and confirmation dialog into fresh browser storage.
+    // the native file input and the confirmation dialog into fresh browser storage.
     const downloadDir = path.join(profile, `downloads-${targetIndex}`);
     await mkdir(downloadDir);
     await call('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: downloadDir });
@@ -200,20 +207,47 @@ try {
     assert.match(await evaluate(`document.getElementById('progress').textContent`), /^0 recorded answers/);
     const { root } = await call('DOM.getDocument');
     const { nodeId } = await call('DOM.querySelector', { nodeId: root.nodeId, selector: '#import' });
-    const dialogCount = dialogs.length;
     await call('DOM.setFileInputFiles', { nodeId, files: [transferFile] });
-    for (let i = 0; i < 150 && dialogs.length === dialogCount; i++) await pause(100);
-    assert.equal(dialogs.length, dialogCount + 1, 'Import asks before replacing progress');
-    assert.equal(dialogs.at(-1).type, 'confirm');
-    assert.match(dialogs.at(-1).message, /Replace current progress/);
-    await call('Page.handleJavaScriptDialog', { accept: true });
+    // The confirmation is an in-app <dialog> (native confirm() is suppressed in embedded browsers).
+    await waitFor(`document.getElementById('confirm-dialog').open`);
+    assert.match(await evaluate(`document.getElementById('confirm-text').textContent`), /Replace current progress/, 'Import asks before replacing progress');
+    await evaluate(`document.getElementById('confirm-ok').click()`);
     await waitFor(`document.getElementById('progress').textContent.startsWith('${transferProgress.attempts.length} recorded answers')`);
     assert.deepEqual(await evaluate(`JSON.parse(localStorage.getItem('az104-progress-v1'))`), transferProgress);
     await call('Page.reload');
-    await waitFor(`!document.getElementById('setup').hidden`);
+    await waitFor(`document.getElementById('setup') && !document.getElementById('setup').hidden`);
     assert.match(await evaluate(`document.getElementById('progress').textContent`),
       new RegExp(`^${transferProgress.attempts.length} recorded answers`));
-    console.log(`Browser verified ${target}: test/preparation flows, context/results, links, keyboard operation, and progress export/import with persistence.`);
+    // Theme preference cycles system → light → dark and updates theme-color.
+    await evaluate(`localStorage.removeItem('az104-theme')`);
+    await call('Page.reload');
+    await waitFor(`document.getElementById('setup') && !document.getElementById('setup').hidden`);
+    const themes = [];
+    for (let i = 0; i < 3; i++) {
+      await evaluate(`document.getElementById('theme-toggle').click()`);
+      themes.push(await evaluate(`({ pref: document.documentElement.dataset.themePref, theme: document.documentElement.dataset.theme,
+        color: document.querySelector('meta[name="theme-color"]').content, stored: localStorage.getItem('az104-theme') })`));
+    }
+    assert.deepEqual(themes.map(t => t.pref), ['light', 'dark', 'system']);
+    assert.deepEqual(themes.map(t => t.stored), ['light', 'dark', null]);
+    assert.equal(themes[0].color, '#f0f4f6'); assert.equal(themes[1].color, '#0f1a22');
+    assert.equal(themes[1].theme, 'dark');
+
+    // PWA: the worker precaches the site; the app must then work with the network off.
+    assert.equal(await evaluate(`(await fetch(new URL('./manifest.webmanifest', location.href))).ok`), true);
+    await waitFor(`document.getElementById('offline').textContent.includes('Available offline')`);
+    await call('Network.enable');
+    await call('Network.emulateNetworkConditions', { offline: true, latency: 0, downloadThroughput: 0, uploadThroughput: 0 });
+    try {
+      await call('Page.reload');
+      await waitFor(`document.getElementById('setup') && !document.getElementById('setup').hidden`);
+      assert.match(await evaluate(`document.getElementById('coverage').textContent`), /\d/);
+      await evaluate(`location.hash = '#/doc/knowledge/index.md'`);
+      await waitFor(`!document.getElementById('doc').hidden && document.getElementById('doc-body').textContent.length > 100`);
+    } finally {
+      await call('Network.emulateNetworkConditions', { offline: false, latency: 0, downloadThroughput: -1, uploadThroughput: -1 });
+    }
+    console.log(`Browser verified ${target}: test/preparation flows, context/results, links, keyboard operation, progress export/import with persistence, theme cycle, and offline use.`);
   }
   assert.deepEqual(exceptions, []);
 } finally {

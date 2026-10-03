@@ -1,17 +1,17 @@
 # Local and GitHub Pages hosting
 
 The same HTML, CSS, JavaScript, and JSON run locally and at
-<https://frank-reichenbach.github.io/az104-prep/>. All app URLs resolve relative
+<https://vergissberlin.github.io/education-az104/>. All app URLs resolve relative
 to the deployment directory; no domain-specific settings are needed.
 
 ## Build and validate
 
 ```sh
-npm run build
-npm run check
-npm test
-npm run build:site
-npm run test:browser
+pnpm run build
+pnpm run check
+pnpm test
+pnpm run build:site
+pnpm run test:browser
 ```
 
 The static build creates ignored _site/ from an explicit allowlist. It includes
@@ -26,7 +26,7 @@ Tests exercise the local root and the /az104-prep/ deployment path.
 To check the deployed site in an isolated browser:
 
 ```sh
-npm run test:browser -- --url https://frank-reichenbach.github.io/az104-prep/
+pnpm run test:browser -- --url https://vergissberlin.github.io/education-az104/
 ```
 
 ## Deployment
@@ -79,6 +79,23 @@ GitHub provides [Pages for public repositories on its free plan](https://docs.gi
 and [free standard Actions runners for public repositories](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
 The setup uses the included github.io address and no paid service.
 
+## Installation and offline use
+
+The app is a progressive web app. After the first visit over HTTPS (or on
+localhost) a service worker caches every file of the site, including all
+Markdown documents, so quiz, bank, and document viewer work without a network.
+Use the browser's "Install" action to add it as an app.
+
+- The cache name contains a hash of all shipped files. A new deployment is
+  fetched in the background and activated only after you click "Reload to
+  update", so a running session is not interrupted.
+- GitHub Pages cannot set custom headers and serves `sw.js` with a short cache
+  lifetime (about 10 minutes), so a new version may appear with that delay.
+- Clearing site data removes the offline cache and local progress. Export
+  progress first; the app asks the browser for persistent storage to reduce the
+  risk of automatic eviction.
+- Theme preference is system (default), light, or dark.
+
 ## Data and limitations
 
 Progress stays in the browser's local storage, not on GitHub. The localhost
@@ -90,3 +107,19 @@ The site has 322 questions across 99 detailed topics, with documented coverage
 of all 82 objectives. Coverage does not establish mastery or exhaustive scenario
 coverage. Knowledge links expose the original Markdown files; formatted
 document browsing can be added separately.
+
+## Search and agent discovery
+
+`pnpm run build:site` (scripts/seo.mjs) adds `robots.txt`, `sitemap.xml` and
+`llms.txt` and fills the canonical, Open Graph, Twitter and JSON-LD URLs in
+`index.html` from `SITE_URL` (default
+<https://vergissberlin.github.io/education-az104/>).
+
+- Crawlers only read `robots.txt` at the host root. Under the project path it is
+  not honoured by search engines, but agents that fetch it directly still see the
+  `Sitemap:` line. Submit `sitemap.xml` in Google Search Console and Bing
+  Webmaster Tools manually.
+- The app is client-rendered with hash routes, so topic content is exposed to
+  crawlers and agents through the raw Markdown files listed in the sitemap and in
+  `llms.txt`, plus a `<noscript>` link list. Static HTML pages per topic would
+  improve indexing but are not implemented.

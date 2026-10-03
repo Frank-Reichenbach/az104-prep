@@ -181,8 +181,11 @@ Printable questions and answers now include domain/topic context.
 
 Implemented app behavior:
 
+- Coverage, Knowledge index, Printable questions and "Study this topic" open in an in-app Markdown viewer (`#/doc/<path>`, `app/markdown.mjs`) instead of raw `.md` files.
+- Compact header: title left, theme toggle top right. Question/family/objective counts and the Coverage, Knowledge index, Printable questions and Changelog links moved to the footer. Verified with `pnpm run build`, `pnpm run check`, `pnpm test` (24 pass) and a browser check at desktop and 375px width.
 - Test submission advances directly to the next question or final results.
 - Preparation preserves feedback for every option and the Next step.
+- "I'm unsure" (button or `U` key) records an attempt with `unsure: true` and no selection; it never counts as correct. Review filter offers wrong, unsure, or both (latest result per family). Verified by `npm test` (18 pass); not yet browser-verified by the user.
 - Every question displays its topic; incorrect results open, correct results
   stay closed. Results show selected answers and missed correct answers only.
 - One reviewed variant per family, stable option IDs, exact-match scoring.
@@ -240,7 +243,22 @@ and Chrome checks at both local hosting paths. The user also confirmed export
 and import work. Main deployment runs are recorded in the
 [Actions history](https://github.com/Frank-Reichenbach/az104-prep/actions?query=branch%3Amain).
 
+## Releases
+
+Release automation (release-please, `.github/workflows/release.yml`) is
+implemented on `feature/release-automation` but not yet merged or run. The app
+footer reads `app/version.json` and links `CHANGELOG.md`. Baseline version is
+0.1.0; the changelog starts after commit 6b3c651. `npm run test:browser` was
+not run locally (Chrome not installed at the default path); `npm run check` and
+`npm test` pass.
+
 ## Verification
+
+Dark mode (uncommitted, 2026-10-03): the moon/sun toggle sits in the header
+menu, follows the system theme by default, and stores the choice in the
+browser (`az104-theme`). `pnpm run check` and the 13 Node tests passed; the
+toggle was checked manually in the built-in browser. `pnpm run test:browser`
+could not launch Chrome in this environment, so it was not run.
 
 Content build/check has validated all 82 objective mappings, question formats,
 three or more families per topic, internal links, and generated output.
@@ -269,6 +287,81 @@ Launch/migration, secure-by-default soft delete availability, Ultra Disk
 cross-region restore, Connection Monitor agent guidance, and failback tutorial
 direction wording. VM Insights Map/Dependency Agent deprecation and NSG flow-log
 retirement are documented with current alternatives.
+
+## Styling
+
+The app UI uses Tailwind CSS v4, compiled at build time (devDependencies only;
+no runtime dependency, CDN, or CSP change). Edit app/tailwind.css, index.html,
+or main.mjs, then run `pnpm run build:css` and commit the generated app/style.css.
+CI fails if the committed stylesheet is stale. `pnpm install --frozen-lockfile` is now required before
+building. Verified 2026-10-03: pnpm test (13 pass) and the browser check at both
+base paths passed (Edge via BROWSER_BIN); a visual check was done on desktop width only.
+
+CSS animations (2026-10-03, branch feature/css-animations): section fade-in,
+staggered answer choices, feedback and message entrances, button/toggle
+transitions. All are disabled under prefers-reduced-motion. Verified: npm run
+build, check, and test (13 pass). Not checked in a browser.
+
+## PWA and offline use
+
+Added 2026-10-03 (branch feature/pwa-offline): web app manifest, icons
+(app/icons/, source icon.svg, PNGs rendered once with rsvg-convert), and a
+service worker (app/sw.js, filled by scripts/sw.mjs) that precaches the whole
+site, including all Markdown documents, under a content-hash cache name. A new
+version waits until the user clicks "Reload to update", so a running session is
+never swapped. Theme preference is now system / light / dark (default system,
+follows OS changes live) and updates the theme-color meta tag. Verified: pnpm
+run build, check, test (27 pass), build:site, and the browser check (Edge via
+BROWSER_BIN) at both base paths, which reloads with the network off, opens a
+document offline, and cycles the theme. Not verified: installation on a real
+phone/desktop, Lighthouse, and the live Pages deployment (GitHub Pages sends
+`Cache-Control: max-age=600` for sw.js, so updates can lag up to ~10 minutes).
+
+## Search and agent discovery
+
+Added 2026-10-03 (branch `feature/seo-discovery`, not yet merged or deployed):
+canonical, Twitter and JSON-LD (`Course`) metadata, a `<noscript>` link list,
+and generated `robots.txt`, `sitemap.xml` and `llms.txt` (`scripts/seo.mjs`).
+The public base URL is `SITE_URL`, default
+<https://vergissberlin.github.io/education-az104/>; AGENTS.md still names the
+Frank-Reichenbach remote, so confirm which URL is authoritative. `pnpm test`
+passes (28 tests); `pnpm run test:browser` could not run locally (Chrome not
+installed at the expected path). After deploy, submit `sitemap.xml` in Google
+Search Console and Bing Webmaster Tools and validate the JSON-LD. Topic content
+is still reachable only as raw Markdown, not as per-topic HTML pages.
+
+## Exam-sized test mode
+
+Added 2026-10-03 (branch `feature/exam-timer`, not yet merged or deployed): test
+mode defaults to 50 questions and 100 minutes (practice mode keeps 10 and has
+no timer). The time limit field is editable and follows the question count at
+2 minutes per question until edited. A countdown progress bar shrinks during the
+session, turns amber below 25% and red below 10%, and the session ends
+automatically at zero ("Time expired"); unanswered questions are not scored.
+Basis: Microsoft states "typically 40-60 questions" and 100 minutes (120 with
+labs) for associate exams (checked 2026-10-03). The 2 minutes per question is
+our assumption, not an official figure. `pnpm run build`, `pnpm run check` and
+`pnpm test` (30 tests) passed; the countdown, auto-end, defaults and practice
+mode were verified manually in the built-in browser. `pnpm run test:browser`
+was not run. `.claude/launch.json` names port 3000, but `pnpm start` serves
+port 8080.
+
+## Analysis page and charts
+
+Added 2026-10-03 (branch `feature/analysis-page`, not merged or deployed):
+`#/analysis` shows the weakest exam domains (error rate, drill-down to topics,
+at least 3 answered families per area). The results screen of every session
+embeds a grouped bar chart of this test against the learning state before it,
+with a percentage-point change per area (shown only with 3+ answers on both
+sides). Charts use Chart.js 4.5.1 (MIT), vendored in `app/vendor/` and loaded
+lazily; a data table is the accessible fallback. Statistics come from the
+latest answer per family (`topicStats`, `compareStats`, `weakest` in
+`app/quiz.mjs`). History format is unchanged. Verified manually in the built-in
+browser with synthetic history (`pnpm start` serves port 8080, not the 3000
+from `.claude/launch.json`). `pnpm run build`, `pnpm run check`, `pnpm test`
+(33 tests) and `pnpm run test:browser` (run with Microsoft Edge via
+`BROWSER_BIN`, Chrome is not installed here) passed. Not verified: dark-mode
+and 375 px rendering of the charts.
 
 ## Next task
 

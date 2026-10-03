@@ -1,5 +1,14 @@
 # Project instructions
 
+## Rule 1: Commits and branch hygiene
+
+1. Use Conventional Commits for every commit (`type(scope): subject`, e.g.
+   `docs: clarify scope`). Allowed types follow the branch prefixes in the Git
+   section: `chore`, `docs`, `feat`, `fix`, plus `test`, `refactor`, `ci`.
+2. After a merge (pull request or local), switch to `main` automatically
+   (`git checkout main`) and update it (`git pull --ff-only`). Do not keep
+   working on the merged branch. Start follow-up work on a new prefixed branch.
+
 ## Purpose and approved scope
 
 Build an English AZ-104 knowledge base and original multiple-choice practice
@@ -52,8 +61,13 @@ to the next unfinished topic. Keep the persistent handoff current.
 - Score using stable option IDs, not visible letters or array positions.
 - Do not show two variants of the same family in one quiz.
 - Use exact-match scoring for multiple-answer questions; explain this in the UI.
-- Keep one dependency-free app usable locally and on GitHub Pages, with
-  keyboard controls and links that work under the repository's project path.
+- Keep one app usable locally and on GitHub Pages without a build-time or
+  runtime package manager dependency, with keyboard controls and links that
+  work under the repository's project path. The only third-party runtime code
+  is Chart.js (MIT), vendored unmodified in app/vendor/ for the analysis charts;
+  it is loaded from the same origin, never from a CDN. Icons are Lucide (ISC):
+  scripts/build-icons.mjs generates the committed same-origin sprite
+  app/vendor/icons.svg (build-time dev dependency lucide-static); it is not code.
 - In test mode, submit advances immediately, including to results after the
   final answer. In preparation mode, preserve feedback and the Next step.
 - Display the topic/module above each question. Session results open incorrect
@@ -67,7 +81,7 @@ to the next unfinished topic. Keep the persistent handoff current.
 
 ## Working and verification
 
-- Run npm run build, npm run check, and npm test after relevant changes.
+- Run pnpm run build, pnpm run check, and pnpm test after relevant changes.
 - Automated checks validate structure and behavior; they do not establish
   Azure technical correctness. Review sources separately.
 - Update STATUS.md with actual results, remaining work, and the next task.
