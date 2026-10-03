@@ -4904,16 +4904,16 @@ Study: [knowledge file](../knowledge/storage/access/network-rules.md). Evidence 
 
 Topic: Storage › Shared access signatures.
 
-A contractor needs to download one private Azure blob for 20 minutes. The issuing application can authenticate through Microsoft Entra ID. Which approach follows Microsoft's recommended SAS signing method?
+A contractor must download one private Azure blob for 20 minutes without gaining access to other blobs. The issuing application can use Microsoft Entra ID and has the required data and delegation-key permissions. Which SAS configuration meets the scope and duration requirements while using Microsoft's recommended available signing method?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Issue a read-only user delegation SAS for that blob. Entra-backed delegation avoids sharing or storing an account signing key.
-- **B. Incorrect:** Issue an account-key-signed service SAS. It can delegate access, but does not use the recommended available Entra-backed signing method.
-- **C. Incorrect:** Send an account SAS permitting all storage services. This expands both scope and signing-key exposure beyond the scenario.
-- **D. Incorrect:** Send storage account key1. An account key is not constrained to one blob or 20 minutes.
+- **A. Correct:** A read-only user delegation SAS for that blob, valid for 20 minutes. This limits access to the specified blob and interval, while using the Entra-backed user delegation signing method Microsoft recommends when available.
+- **B. Incorrect:** A read-only account-key-signed service SAS for that blob, valid for 20 minutes. This can meet the scope and duration requirements, but uses an account key rather than the available user delegation method explicitly required by the recommendation in the question.
+- **C. Incorrect:** A read-only account SAS for Blob service objects, valid for 20 minutes. An account SAS is signed with an account key and does not identify just this one blob. It fails both the requested signing-method preference and the one-blob access boundary.
+- **D. Incorrect:** A read-only user delegation SAS for the whole container, valid for 20 minutes. This uses the recommended signing method and duration, but grants read access beyond the single required blob. The narrower blob-scoped SAS meets the stated boundary.
 
-Study: [knowledge file](../knowledge/storage/access/shared-access-signatures.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/access/shared-access-signatures.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli) · [Microsoft source 3](https://learn.microsoft.com/en-us/cli/azure/storage/blob#az-storage-blob-generate-sas)
 
@@ -4930,7 +4930,7 @@ Select **2**. Difficulty: foundation.
 - **C. Incorrect:** --account-key This supplies a Shared Key credential instead.
 - **D. Incorrect:** --policy-name A stored access policy applies to a service SAS, not user delegation.
 
-Study: [knowledge file](../knowledge/storage/access/shared-access-signatures.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/access/shared-access-signatures.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli) · [Microsoft source 3](https://learn.microsoft.com/en-us/cli/azure/storage/blob#az-storage-blob-generate-sas)
 
@@ -4938,35 +4938,35 @@ Study: [knowledge file](../knowledge/storage/access/shared-access-signatures.md)
 
 Topic: Storage › Shared access signatures.
 
-A Blob user delegation SAS declares an expiry three days from now, but its signing delegation key expires tonight. Network access and permissions are correct. What happens after the key expires?
+A Blob user delegation SAS worked yesterday. It declares expiry three days from now, but its signing delegation key expired last night. Requests now fail authorization. The issuer's data roles and network settings are unchanged, and clocks agree. Which statement correctly diagnoses this failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** The SAS can no longer authorize requests. A SAS cannot remain usable beyond its signing delegation key.
-- **B. Incorrect:** Storage automatically renews the key for the remaining three days. The service does not renew the issuer's delegation key automatically.
-- **C. Incorrect:** The SAS switches to account key2. The existing signature cannot change signing keys.
-- **D. Incorrect:** A container stored access policy extends the key. Stored policies do not apply to user delegation SAS.
+- **A. Correct:** The expired signing delegation key makes the SAS unusable despite its later declared expiry. A user delegation SAS cannot authorize requests after the key that signed it expires. Its later declared expiry does not extend the signing key lifetime.
+- **B. Incorrect:** The later SAS expiry keeps it usable because that expiry overrides the signing key expiry. Both lifetimes constrain authorization. The future SAS expiry does not override the key that expired last night, so this explanation cannot account for valid continued access.
+- **C. Incorrect:** Refreshing the issuer's Entra access token reactivates the existing SAS. A delegation key is independent of the OAuth token used to acquire it. Refreshing that token does not change the expired key or the existing SAS signature; a valid key and newly signed SAS are needed.
+- **D. Incorrect:** Extending a container stored access policy reactivates the existing user delegation SAS. Stored access policies govern service SAS, not user delegation SAS. Changing such a policy cannot extend this delegation key or reactivate its expired signature.
 
-Study: [knowledge file](../knowledge/storage/access/shared-access-signatures.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/access/shared-access-signatures.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli) · [Microsoft source 3](https://learn.microsoft.com/en-us/cli/azure/storage/blob#az-storage-blob-generate-sas)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli) · [Microsoft source 3](https://learn.microsoft.com/en-us/cli/azure/storage/blob#az-storage-blob-generate-sas) · [Microsoft source 4](https://learn.microsoft.com/en-us/rest/api/storageservices/create-user-delegation-sas)
 
 ## st-sas-delegator-scope
 
 Topic: Storage › Shared access signatures.
 
-An identity has Storage Blob Data Reader only on one container. It cannot obtain a user delegation key for the storage account. Which additional scoped grant addresses key generation while retaining narrow data access?
+An identity has Storage Blob Data Reader only on the reports container. Its Get User Delegation Key request is denied. Which additional listed role assignment permits account-level delegation-key generation without granting blob-data read access beyond reports?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Storage Blob Delegator on the storage account. The account-level delegation action can be combined with the existing container data role.
-- **B. Incorrect:** Storage Blob Data Reader on another container. A container assignment does not grant the account-level key-generation action.
-- **C. Incorrect:** Enable anonymous read on the container. Public reading does not authorize delegation-key generation.
-- **D. Incorrect:** Create a stored access policy on the container. A stored policy controls service SAS, not this Entra operation.
+- **A. Correct:** Storage Blob Delegator at the storage account scope. This grants the account-level generateUserDelegationKey action without blob DataActions. The existing reports-scoped data role continues to limit the identity's blob reads.
+- **B. Incorrect:** Storage Blob Delegator at the reports container scope. Get User Delegation Key acts at account level. A role scoped to its child container does not authorize that account-level action.
+- **C. Incorrect:** Storage Blob Data Reader at the storage account scope. This role at account scope can authorize key generation, but also grants blob-data reads across the account. That violates the requirement to retain the reports-only read boundary.
+- **D. Incorrect:** Reader at the storage account scope. Reader grants management reads, not the generateUserDelegationKey action. Account scope alone does not add an operation absent from the role.
 
-Study: [knowledge file](../knowledge/storage/access/shared-access-signatures.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/access/shared-access-signatures.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli) · [Microsoft source 3](https://learn.microsoft.com/en-us/cli/azure/storage/blob#az-storage-blob-generate-sas)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli) · [Microsoft source 3](https://learn.microsoft.com/en-us/cli/azure/storage/blob#az-storage-blob-generate-sas) · [Microsoft source 4](https://learn.microsoft.com/en-us/rest/api/storageservices/create-user-delegation-sas) · [Microsoft source 5](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage) · [Microsoft source 6](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general#reader)
 
 ## st-policy-revoke-group
 

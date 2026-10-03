@@ -795,9 +795,9 @@
     {
       "id": "storage.access.sas",
       "title": "Shared access signatures",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.access.sas.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-sas-private-download",
@@ -812,9 +812,9 @@
           ],
           "baselineHash": "3c4e16a3cfe288e73adb4bc5b1fbaf28926bf710677e4cc092093efe19a50b77",
           "baselineContentHash": "47f9dea45b99ed6c393dc404cdc6f771b647a287b2db00acd52d48429c5581f4",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "97f7386c3dfd0eec855fbab908d2cc6b9685af33bfc91a22f99e207715da6ac3"
         },
         {
           "id": "st-sas-cli-user",
@@ -829,9 +829,9 @@
           ],
           "baselineHash": "2085657c1528bc43fd09378c6c410c27c3e06698708b327aa489346b81116fc2",
           "baselineContentHash": "4b59ab31fe3427384a7f96aa8d2d543c496093639debd806db9e0cf109b3c1c3",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "bcbac62dbc44e89e2098941856719aac2625a0674c631f4fe02cde36c811c35c"
         },
         {
           "id": "st-sas-key-expiry",
@@ -846,9 +846,9 @@
           ],
           "baselineHash": "5a52777d966cfeedf9135af9443bf97a4c73f26786ee4dec749b61b8cd94bd94",
           "baselineContentHash": "835013d7b0ccdc5d118b4913caf70a1e9897808c8927892a776cfc4be613e5b2",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "59985c91c83ab50434781977cfc0473f0a329360ac8fb5aa3f2117296aefc79c"
         },
         {
           "id": "st-sas-delegator-scope",
@@ -863,9 +863,9 @@
           ],
           "baselineHash": "078a39a2ce5b54eb39c2ed75d0dcaeeb67af187ad2906d11cae338fb39df0860",
           "baselineContentHash": "e86665ef53cfc90c0b8045c71831cb673916765e81ccc86152044297b32d089e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "7277a5ca9d6ec5788060e9be8e841fe659191baa7be48a79ac221a07c65e34a1"
         }
       ]
     },

@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 41/322 questions reviewed, 34 revised and 7 kept; 9/99 topics complete.
-Latest: [Azure Files share soft deletion](docs/reviews/question-bank-refresh/storage.files.soft-delete.md). Each completed topic has item decisions,
+Checkpoint: 45/322 questions reviewed, 37 revised and 8 kept; 10/99 topics complete.
+Latest: [Shared access signatures](docs/reviews/question-bank-refresh/storage.access.sas.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `storage.access.sas` (Shared access signatures).
+Next: `storage.access.stored-policies` (Stored access policies).
 The changes are on the work branch; the live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
 refresh PR needs explicit approval; do not reuse the earlier skill PR approval.
@@ -293,8 +293,8 @@ retirement are documented with current alternatives.
 ## Next task
 
 Continue the authorized existing-bank review from `npm run review:status`.
-Current checkpoint: 41/322 questions, 9/99 topics complete.
-Next: `storage.access.sas` (Shared access signatures).
+Current checkpoint: 45/322 questions, 10/99 topics complete.
+Next: `storage.access.stored-policies` (Stored access policies).
 Record real source checks and repair decisions in its report; do not mark a
 topic complete based on schema checks alone.
 

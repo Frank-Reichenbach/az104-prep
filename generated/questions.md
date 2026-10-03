@@ -3754,14 +3754,14 @@ D. Every portal visit automatically issues a firewall-bypassing SAS.
 
 Topic: Storage › Shared access signatures.
 
-A contractor needs to download one private Azure blob for 20 minutes. The issuing application can authenticate through Microsoft Entra ID. Which approach follows Microsoft's recommended SAS signing method?
+A contractor must download one private Azure blob for 20 minutes without gaining access to other blobs. The issuing application can use Microsoft Entra ID and has the required data and delegation-key permissions. Which SAS configuration meets the scope and duration requirements while using Microsoft's recommended available signing method?
 
 Select **1**. Difficulty: applied.
 
-A. Issue a read-only user delegation SAS for that blob.
-B. Issue an account-key-signed service SAS.
-C. Send an account SAS permitting all storage services.
-D. Send storage account key1.
+A. A read-only user delegation SAS for that blob, valid for 20 minutes.
+B. A read-only account-key-signed service SAS for that blob, valid for 20 minutes.
+C. A read-only account SAS for Blob service objects, valid for 20 minutes.
+D. A read-only user delegation SAS for the whole container, valid for 20 minutes.
 
 ## st-sas-cli-user
 
@@ -3780,27 +3780,27 @@ D. --policy-name
 
 Topic: Storage › Shared access signatures.
 
-A Blob user delegation SAS declares an expiry three days from now, but its signing delegation key expires tonight. Network access and permissions are correct. What happens after the key expires?
+A Blob user delegation SAS worked yesterday. It declares expiry three days from now, but its signing delegation key expired last night. Requests now fail authorization. The issuer's data roles and network settings are unchanged, and clocks agree. Which statement correctly diagnoses this failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. The SAS can no longer authorize requests.
-B. Storage automatically renews the key for the remaining three days.
-C. The SAS switches to account key2.
-D. A container stored access policy extends the key.
+A. The expired signing delegation key makes the SAS unusable despite its later declared expiry.
+B. The later SAS expiry keeps it usable because that expiry overrides the signing key expiry.
+C. Refreshing the issuer's Entra access token reactivates the existing SAS.
+D. Extending a container stored access policy reactivates the existing user delegation SAS.
 
 ## st-sas-delegator-scope
 
 Topic: Storage › Shared access signatures.
 
-An identity has Storage Blob Data Reader only on one container. It cannot obtain a user delegation key for the storage account. Which additional scoped grant addresses key generation while retaining narrow data access?
+An identity has Storage Blob Data Reader only on the reports container. Its Get User Delegation Key request is denied. Which additional listed role assignment permits account-level delegation-key generation without granting blob-data read access beyond reports?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Storage Blob Delegator on the storage account.
-B. Storage Blob Data Reader on another container.
-C. Enable anonymous read on the container.
-D. Create a stored access policy on the container.
+A. Storage Blob Delegator at the storage account scope.
+B. Storage Blob Delegator at the reports container scope.
+C. Storage Blob Data Reader at the storage account scope.
+D. Reader at the storage account scope.
 
 ## st-policy-revoke-group
 
