@@ -5176,16 +5176,16 @@ Study: [knowledge file](../knowledge/storage/accounts/redundancy.md). Evidence c
 
 Topic: Storage › Blob encryption scopes.
 
-A new Blob container must require encryption scope tenant-a for every upload. Which configuration enforces that?
+Enabled Blob encryption scopes tenant-a and tenant-b exist in one account. A new container must require tenant-a for every upload, including uploads from clients that explicitly request tenant-b. Which creation-time configuration enforces this requirement?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Set tenant-a as default and prevent encryption-scope overrides. Uploads cannot choose a different encryption boundary.
-- **B. Incorrect:** Set tenant-a as default but permit overrides. Clients could select another scope.
-- **C. Incorrect:** Add a container metadata entry named tenant-a. Metadata does not enforce encryption selection.
-- **D. Incorrect:** Assign Storage Blob Data Reader to tenant-a. A role assignment does not set the container encryption scope.
+- **A. Correct:** Default scope tenant-a; prevent encryption-scope overrides. Uploads use tenant-a, and requests for a different scope are rejected. Both the required default and override prevention are necessary for this enforced boundary.
+- **B. Incorrect:** Default scope tenant-a; allow encryption-scope overrides. Unspecified uploads use tenant-a, but clients can select tenant-b. That violates the requirement that every accepted upload use tenant-a.
+- **C. Incorrect:** Default scope tenant-b; prevent encryption-scope overrides. This enforces a scope boundary, but it enforces tenant-b instead of the required tenant-a.
+- **D. Incorrect:** Default scope tenant-b; allow encryption-scope overrides. A client could request tenant-a, but other uploads would use tenant-b. Client choice does not enforce tenant-a for every upload.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/encryption-scopes.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/blob-storage/encryption-scopes.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/authentication/storage-troubleshoot-403-errors)
 
@@ -5193,16 +5193,16 @@ Study: [knowledge file](../knowledge/storage/blob-storage/encryption-scopes.md).
 
 Topic: Storage › Blob encryption scopes.
 
-A previously readable blob starts returning 403 immediately after its encryption scope is disabled. Permissions and network paths are unchanged. What should be checked?
+A private blob encrypted with the Microsoft-managed encryption scope reports starts returning 403 after that scope is disabled. The disable action was unintended. The client's existing blob-read authorization and network path still work, and no other configuration changed. Which action restores access to this existing blob?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Re-enable the required scope after confirming the change was unintended. Disabled scopes prevent operations that depend on them.
-- **B. Incorrect:** Rotate the account access keys. Authorization key rotation does not re-enable an encryption scope.
-- **C. Incorrect:** Enable anonymous access. Anonymous authorization cannot restore a disabled encryption dependency.
-- **D. Incorrect:** Rename the blob's version ID. Version IDs are not an encryption-scope availability control.
+- **A. Correct:** Re-enable the existing reports encryption scope. Reads that depend on a disabled scope fail with 403. Re-enabling that same scope restores its availability for the blob while the unchanged authorization and network prerequisites remain satisfied.
+- **B. Incorrect:** Regenerate the storage account's authorization keys. Account keys authorize requests; regenerating them does not change the disabled state of the reports encryption scope.
+- **C. Incorrect:** Grant the client Storage Blob Data Contributor. Additional data permissions do not re-enable an encryption scope. The client already has read authorization, so that layer is not the failing dependency.
+- **D. Incorrect:** Create a new enabled scope with a different name. Creating another scope does not replace the reports scope used to encrypt this existing blob. Its disabled dependency remains until the required scope is re-enabled.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/encryption-scopes.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/blob-storage/encryption-scopes.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/authentication/storage-troubleshoot-403-errors)
 
@@ -5210,18 +5210,18 @@ Study: [knowledge file](../knowledge/storage/blob-storage/encryption-scopes.md).
 
 Topic: Storage › Blob encryption scopes.
 
-A team configures different Blob encryption scopes for two customers. What still needs separate configuration?
+Private Azure Blob containers use different encryption scopes for two customers. Clients authenticate with Microsoft Entra OAuth tokens. Which configuration authorizes a customer's blob reads separately from those encryption-key boundaries?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** Authorization deciding which customer may read each blob. Encryption-key boundaries do not replace access-control assignments.
-- **B. Incorrect:** No authorization is needed because scope names authenticate users. A scope name is not an identity credential.
-- **C. Incorrect:** Every scope automatically issues a customer SAS. Scope creation does not distribute access tokens.
-- **D. Incorrect:** Each scope automatically creates its own storage firewall. Network rules belong to a separate account/network configuration.
+- **A. Correct:** Assign the customer Storage Blob Data Reader at its container scope. A blob data-role assignment authorizes the authenticated customer to read that container's data. Encryption scopes select encryption keys rather than granting this data permission.
+- **B. Incorrect:** Assign the customer Reader at its container scope. Reader grants control-plane resource visibility, not blob data actions. It does not authorize these OAuth blob reads.
+- **C. Incorrect:** Assign the customer Key Vault Crypto Service Encryption User. This role grants Key Vault key-metadata and wrap/unwrap operations. It does not grant the customer permission to read blobs from a storage container.
+- **D. Incorrect:** Set the customer's encryption scope as the container default. A container default chooses the encryption scope for uploads. It does not assign blob-read authorization to the customer identity.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/encryption-scopes.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/blob-storage/encryption-scopes.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/authentication/storage-troubleshoot-403-errors)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-access-azure-active-directory) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general#reader) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide)
 
 ## st-or-prerequisites
 

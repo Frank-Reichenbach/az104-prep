@@ -3962,40 +3962,40 @@ D. The secondary region requires a SAS signed with a separate account key.
 
 Topic: Storage › Blob encryption scopes.
 
-A new Blob container must require encryption scope tenant-a for every upload. Which configuration enforces that?
+Enabled Blob encryption scopes tenant-a and tenant-b exist in one account. A new container must require tenant-a for every upload, including uploads from clients that explicitly request tenant-b. Which creation-time configuration enforces this requirement?
 
 Select **1**. Difficulty: applied.
 
-A. Set tenant-a as default and prevent encryption-scope overrides.
-B. Set tenant-a as default but permit overrides.
-C. Add a container metadata entry named tenant-a.
-D. Assign Storage Blob Data Reader to tenant-a.
+A. Default scope tenant-a; prevent encryption-scope overrides.
+B. Default scope tenant-a; allow encryption-scope overrides.
+C. Default scope tenant-b; prevent encryption-scope overrides.
+D. Default scope tenant-b; allow encryption-scope overrides.
 
 ## st-scope-disabled
 
 Topic: Storage › Blob encryption scopes.
 
-A previously readable blob starts returning 403 immediately after its encryption scope is disabled. Permissions and network paths are unchanged. What should be checked?
+A private blob encrypted with the Microsoft-managed encryption scope reports starts returning 403 after that scope is disabled. The disable action was unintended. The client's existing blob-read authorization and network path still work, and no other configuration changed. Which action restores access to this existing blob?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Re-enable the required scope after confirming the change was unintended.
-B. Rotate the account access keys.
-C. Enable anonymous access.
-D. Rename the blob's version ID.
+A. Re-enable the existing reports encryption scope.
+B. Regenerate the storage account's authorization keys.
+C. Grant the client Storage Blob Data Contributor.
+D. Create a new enabled scope with a different name.
 
 ## st-scope-vs-rbac
 
 Topic: Storage › Blob encryption scopes.
 
-A team configures different Blob encryption scopes for two customers. What still needs separate configuration?
+Private Azure Blob containers use different encryption scopes for two customers. Clients authenticate with Microsoft Entra OAuth tokens. Which configuration authorizes a customer's blob reads separately from those encryption-key boundaries?
 
 Select **1**. Difficulty: foundation.
 
-A. Authorization deciding which customer may read each blob.
-B. No authorization is needed because scope names authenticate users.
-C. Every scope automatically issues a customer SAS.
-D. Each scope automatically creates its own storage firewall.
+A. Assign the customer Storage Blob Data Reader at its container scope.
+B. Assign the customer Reader at its container scope.
+C. Assign the customer Key Vault Crypto Service Encryption User.
+D. Set the customer's encryption scope as the container default.
 
 ## st-or-prerequisites
 

@@ -1369,9 +1369,9 @@
     {
       "id": "storage.blobs.encryption-scopes",
       "title": "Blob encryption scopes",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.blobs.encryption-scopes.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-scope-enforced",
@@ -1386,9 +1386,9 @@
           ],
           "baselineHash": "6f41e758a4c254f0b4768d0dbdcd7494cb3d87f44b31b0582ae5dd4d0470f938",
           "baselineContentHash": "122718be73d88264965fe1d3c0586a443129c2441d0099f5178b60655038ede1",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "a2e0f59a358aa7a88007311c4bae56b444f94fa9d4be0ef454992b02ee9e615f"
         },
         {
           "id": "st-scope-disabled",
@@ -1403,9 +1403,9 @@
           ],
           "baselineHash": "a0469d11a4d1f14ff0c58d2f5f034ff771fc3cf7990af99b581a1cb5fbf259e3",
           "baselineContentHash": "f84f71a05b3466d67f185e34ae714b4179ef70223ae1e97b83377f85aafbae6f",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "561cf12fa94011a573a2d7a0a448293b7dfd39dd72a1f06d3eecdaeb0fcc359e"
         },
         {
           "id": "st-scope-vs-rbac",
@@ -1420,9 +1420,9 @@
           ],
           "baselineHash": "18445ae33fe3299dbd675e6b48c6e3ec4b40436f3a6a01c8369cd3bd55d1b0d9",
           "baselineContentHash": "d202fa937cd7bdeb159e3c7959e772d646f4401397535e3dd980eaa5e0244cd9",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "a13a993c90eccfb2094afd10ea33f9a0d3742512feefa6e2f15d05ca0fe3e708"
         }
       ]
     },

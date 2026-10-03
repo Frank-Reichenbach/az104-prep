@@ -14474,34 +14474,34 @@
     {
       "id": "st-scope-enforced",
       "family": "st-scope-enforced",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.encryption-scopes",
       "objectives": [
         "st-09"
       ],
       "difficulty": "applied",
-      "prompt": "A new Blob container must require encryption scope tenant-a for every upload. Which configuration enforces that?",
+      "prompt": "Enabled Blob encryption scopes tenant-a and tenant-b exist in one account. A new container must require tenant-a for every upload, including uploads from clients that explicitly request tenant-b. Which creation-time configuration enforces this requirement?",
       "select": 1,
       "options": [
         {
           "id": "prevent",
-          "text": "Set tenant-a as default and prevent encryption-scope overrides.",
-          "explanation": "Uploads cannot choose a different encryption boundary."
+          "text": "Default scope tenant-a; prevent encryption-scope overrides.",
+          "explanation": "Uploads use tenant-a, and requests for a different scope are rejected. Both the required default and override prevention are necessary for this enforced boundary."
         },
         {
           "id": "default",
-          "text": "Set tenant-a as default but permit overrides.",
-          "explanation": "Clients could select another scope."
+          "text": "Default scope tenant-a; allow encryption-scope overrides.",
+          "explanation": "Unspecified uploads use tenant-a, but clients can select tenant-b. That violates the requirement that every accepted upload use tenant-a."
         },
         {
           "id": "tag",
-          "text": "Add a container metadata entry named tenant-a.",
-          "explanation": "Metadata does not enforce encryption selection."
+          "text": "Default scope tenant-b; prevent encryption-scope overrides.",
+          "explanation": "This enforces a scope boundary, but it enforces tenant-b instead of the required tenant-a."
         },
         {
           "id": "rbac",
-          "text": "Assign Storage Blob Data Reader to tenant-a.",
-          "explanation": "A role assignment does not set the container encryption scope."
+          "text": "Default scope tenant-b; allow encryption-scope overrides.",
+          "explanation": "A client could request tenant-a, but other uploads would use tenant-b. Client choice does not enforce tenant-a for every upload."
         }
       ],
       "correct": [
@@ -14513,39 +14513,39 @@
         "https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-manage",
         "https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/authentication/storage-troubleshoot-403-errors"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-scope-disabled",
       "family": "st-scope-disabled",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.encryption-scopes",
       "objectives": [
         "st-09"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A previously readable blob starts returning 403 immediately after its encryption scope is disabled. Permissions and network paths are unchanged. What should be checked?",
+      "prompt": "A private blob encrypted with the Microsoft-managed encryption scope reports starts returning 403 after that scope is disabled. The disable action was unintended. The client's existing blob-read authorization and network path still work, and no other configuration changed. Which action restores access to this existing blob?",
       "select": 1,
       "options": [
         {
           "id": "scope",
-          "text": "Re-enable the required scope after confirming the change was unintended.",
-          "explanation": "Disabled scopes prevent operations that depend on them."
+          "text": "Re-enable the existing reports encryption scope.",
+          "explanation": "Reads that depend on a disabled scope fail with 403. Re-enabling that same scope restores its availability for the blob while the unchanged authorization and network prerequisites remain satisfied."
         },
         {
           "id": "key",
-          "text": "Rotate the account access keys.",
-          "explanation": "Authorization key rotation does not re-enable an encryption scope."
+          "text": "Regenerate the storage account's authorization keys.",
+          "explanation": "Account keys authorize requests; regenerating them does not change the disabled state of the reports encryption scope."
         },
         {
           "id": "public",
-          "text": "Enable anonymous access.",
-          "explanation": "Anonymous authorization cannot restore a disabled encryption dependency."
+          "text": "Grant the client Storage Blob Data Contributor.",
+          "explanation": "Additional data permissions do not re-enable an encryption scope. The client already has read authorization, so that layer is not the failing dependency."
         },
         {
           "id": "version",
-          "text": "Rename the blob's version ID.",
-          "explanation": "Version IDs are not an encryption-scope availability control."
+          "text": "Create a new enabled scope with a different name.",
+          "explanation": "Creating another scope does not replace the reports scope used to encrypt this existing blob. Its disabled dependency remains until the required scope is re-enabled."
         }
       ],
       "correct": [
@@ -14557,39 +14557,39 @@
         "https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-manage",
         "https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/authentication/storage-troubleshoot-403-errors"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-scope-vs-rbac",
       "family": "st-scope-vs-rbac",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.encryption-scopes",
       "objectives": [
         "st-09"
       ],
       "difficulty": "foundation",
-      "prompt": "A team configures different Blob encryption scopes for two customers. What still needs separate configuration?",
+      "prompt": "Private Azure Blob containers use different encryption scopes for two customers. Clients authenticate with Microsoft Entra OAuth tokens. Which configuration authorizes a customer's blob reads separately from those encryption-key boundaries?",
       "select": 1,
       "options": [
         {
           "id": "access",
-          "text": "Authorization deciding which customer may read each blob.",
-          "explanation": "Encryption-key boundaries do not replace access-control assignments."
+          "text": "Assign the customer Storage Blob Data Reader at its container scope.",
+          "explanation": "A blob data-role assignment authorizes the authenticated customer to read that container's data. Encryption scopes select encryption keys rather than granting this data permission."
         },
         {
           "id": "automatic",
-          "text": "No authorization is needed because scope names authenticate users.",
-          "explanation": "A scope name is not an identity credential."
+          "text": "Assign the customer Reader at its container scope.",
+          "explanation": "Reader grants control-plane resource visibility, not blob data actions. It does not authorize these OAuth blob reads."
         },
         {
           "id": "sas",
-          "text": "Every scope automatically issues a customer SAS.",
-          "explanation": "Scope creation does not distribute access tokens."
+          "text": "Assign the customer Key Vault Crypto Service Encryption User.",
+          "explanation": "This role grants Key Vault key-metadata and wrap/unwrap operations. It does not grant the customer permission to read blobs from a storage container."
         },
         {
           "id": "firewall",
-          "text": "Each scope automatically creates its own storage firewall.",
-          "explanation": "Network rules belong to a separate account/network configuration."
+          "text": "Set the customer's encryption scope as the container default.",
+          "explanation": "A container default chooses the encryption scope for uploads. It does not assign blob-read authorization to the customer identity."
         }
       ],
       "correct": [
@@ -14598,10 +14598,11 @@
       "knowledge": "knowledge/storage/blob-storage/encryption-scopes.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-overview",
-        "https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-scope-manage",
-        "https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/blobs/authentication/storage-troubleshoot-403-errors"
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-access-azure-active-directory",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general#reader",
+        "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-or-prerequisites",
