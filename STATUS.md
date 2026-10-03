@@ -175,6 +175,22 @@ installed at the expected path). After deploy, submit `sitemap.xml` in Google
 Search Console and Bing Webmaster Tools and validate the JSON-LD. Topic content
 is still reachable only as raw Markdown, not as per-topic HTML pages.
 
+## Exam-sized test mode
+
+Added 2026-10-03 (branch `feature/exam-timer`, not yet merged or deployed): test
+mode defaults to 50 questions and 100 minutes (practice mode keeps 10 and has
+no timer). The time limit field is editable and follows the question count at
+2 minutes per question until edited. A countdown progress bar shrinks during the
+session, turns amber below 25% and red below 10%, and the session ends
+automatically at zero ("Time expired"); unanswered questions are not scored.
+Basis: Microsoft states "typically 40-60 questions" and 100 minutes (120 with
+labs) for associate exams (checked 2026-10-03). The 2 minutes per question is
+our assumption, not an official figure. `pnpm run build`, `pnpm run check` and
+`pnpm test` (30 tests) passed; the countdown, auto-end, defaults and practice
+mode were verified manually in the built-in browser. `pnpm run test:browser`
+was not run. `.claude/launch.json` names port 3000, but `pnpm start` serves
+port 8080.
+
 ## Next task
 
 The approved initial knowledge base and basic app are complete. There are no

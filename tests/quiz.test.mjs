@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { makeQuiz, score, shuffle, parseProgress, missedFamilies, familyStatus, reviewFamilies } from '../app/quiz.mjs';
+import { makeQuiz, score, shuffle, parseProgress, missedFamilies, familyStatus, reviewFamilies, EXAM_DEFAULTS, examMinutes, formatClock } from '../app/quiz.mjs';
 
 const { questions } = JSON.parse(await readFile(new URL('../questions/storage/blob-storage.json', import.meta.url), 'utf8'));
 const single = questions.find(q => q.select === 1);
@@ -139,4 +139,25 @@ test('progress import accepts unsure attempts and old exports, rejects inconsist
   assert.throws(() => parseProgress({ version: 1, attempts: [{ ...unsure, selected: single.correct }] }, questions));
   assert.throws(() => parseProgress({ version: 1, attempts: [{ ...unsure, unsure: 'yes' }] }, questions));
   assert.throws(() => parseProgress({ version: 1, attempts: [record(single, [])] }, questions));
+});
+
+test('exam defaults: 50 questions at 2 minutes each (100 minutes), within the published 40-60 range', async () => {
+  assert.equal(EXAM_DEFAULTS.count, 50);
+  assert.equal(examMinutes(EXAM_DEFAULTS.count), 100);
+  assert.equal(examMinutes(60), 120);
+  assert.equal(examMinutes(0), 1);
+  const bank = JSON.parse(await readFile(new URL('../app/data.json', import.meta.url), 'utf8'));
+  const quiz = makeQuiz(bank.questions, { topic: 'weighted', count: EXAM_DEFAULTS.count, domains: bank.domains, topics: bank.topics });
+  assert.equal(quiz.length, EXAM_DEFAULTS.count);
+  assert.equal(new Set(quiz.map(q => q.family)).size, EXAM_DEFAULTS.count);
+});
+
+test('formatClock renders mm:ss and h:mm:ss and never goes negative', () => {
+  assert.equal(formatClock(0), '00:00');
+  assert.equal(formatClock(-5), '00:00');
+  assert.equal(formatClock(59), '00:59');
+  assert.equal(formatClock(0.2), '00:01');
+  assert.equal(formatClock(3599), '59:59');
+  assert.equal(formatClock(3600), '1:00:00');
+  assert.equal(formatClock(6000), '1:40:00');
 });

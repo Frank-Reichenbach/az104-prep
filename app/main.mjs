@@ -1,5 +1,5 @@
 import { renderMarkdown, resolveDoc, isDocPath, slugify } from './markdown.mjs';
-import { makeQuiz, score, familyStatus, reviewFamilies, isUnsure, parseProgress } from './quiz.mjs';
+import { makeQuiz, score, familyStatus, reviewFamilies, isUnsure, parseProgress, EXAM_DEFAULTS, PRACTICE_DEFAULT_COUNT, examMinutes, formatClock } from './quiz.mjs';
 
 const $ = id => document.getElementById(id);
 const STORAGE = 'az104-progress-v1';
@@ -120,12 +120,42 @@ function renderQuestion() {
   $('feedback').replaceChildren(); $('next').hidden = true;
   $('prompt').focus();
 }
-function finish() {
+// Exam countdown (test mode only). The remaining time derives from a fixed deadline, so it neither
+// drifts nor pauses when the tab is throttled, hidden, or the device sleeps — like the real exam clock.
+let timer = null, countDirty = false, minutesDirty = false;
+const ANNOUNCE_AT = [600, 300, 60];
+function stopTimer() { if (timer) clearInterval(timer.id); timer = null; $('timer').hidden = true; }
+function tick() {
+  const remaining = Math.max(0, timer.deadline - Date.now());
+  const fraction = remaining / timer.total, seconds = Math.ceil(remaining / 1000);
+  const bar = $('timer-bar');
+  bar.style.width = `${(fraction * 100).toFixed(2)}%`;
+  bar.dataset.level = fraction < .1 ? 'critical' : fraction < .25 ? 'warn' : 'ok';
+  bar.setAttribute('aria-valuenow', String(Math.round(fraction * 100)));
+  bar.setAttribute('aria-valuetext', `${formatClock(seconds)} remaining`);
+  $('timer-text').textContent = formatClock(seconds);
+  // Screen readers hear only a few milestones, not every second.
+  for (const mark of ANNOUNCE_AT) {
+    if (seconds <= mark && timer.total / 1000 > mark && !timer.announced.has(mark)) {
+      timer.announced.add(mark); $('timer-announce').textContent = `${Math.round(mark / 60)} minute${mark === 60 ? '' : 's'} remaining.`;
+    }
+  }
+  if (remaining === 0) finish(true);
+}
+function startTimer(minutes) {
+  stopTimer();
+  timer = { total: minutes * 60000, deadline: Date.now() + minutes * 60000, announced: new Set() };
+  timer.id = setInterval(tick, 1000);
+  $('timer').hidden = false; $('timer-announce').textContent = ''; tick();
+}
+function finish(expired = false) {
+  stopTimer();
   const ok = a => !a.unsure && score(a.q, a.selected);
   const correct = answers.filter(ok).length, unsure = answers.filter(a => a.unsure).length;
-  $('result-score').textContent = answers.length
+  const summary = answers.length
     ? `${correct}/${answers.length} correct (${Math.round(correct / answers.length * 100)}%) · ${answers.length - correct - unsure} wrong · ${unsure} unsure · ${answers.length}/${active.length} planned questions answered`
     : 'No questions answered in this session.';
+  $('result-score').textContent = expired ? `Time expired. ${summary}` : summary;
   $('review').replaceChildren();
   answers.forEach((a, i) => {
     const details = el('details', undefined, 'border-t border-line py-4');
@@ -137,8 +167,18 @@ function finish() {
   show('results'); $('result-title').focus();
 }
 
+// Test mode defaults to exam size and time; edited values are kept.
+function syncExamFields() {
+  const test = $('mode').value === 'test';
+  $('time-limit-field').hidden = !test;
+  if (!countDirty) $('count').value = test ? EXAM_DEFAULTS.count : PRACTICE_DEFAULT_COUNT;
+  if (test && !minutesDirty) $('minutes').value = examMinutes(Number($('count').value) || EXAM_DEFAULTS.count);
+}
+$('mode').addEventListener('change', syncExamFields);
+$('count').addEventListener('input', () => { countDirty = true; syncExamFields(); });
+$('minutes').addEventListener('input', () => { minutesDirty = true; });
 $('start-form').addEventListener('submit', event => {
-  event.preventDefault(); message();
+  event.preventDefault(); message(); stopTimer();
   try {
     active = makeQuiz(bank.questions, { topic: $('topic').value, count: Number($('count').value),
       domains: bank.domains, topics: bank.topics,
@@ -146,6 +186,10 @@ $('start-form').addEventListener('submit', event => {
     if (!active.length) { message('No question families match this selection. Change the topic or the review filter.'); return; }
     if (active.length < Number($('count').value)) message(`This selection has ${active.length} available families; the session uses all of them.`);
     mode = $('mode').value; position = 0; answers = []; show('session'); renderQuestion();
+    if (mode === 'test') {
+      const minutes = Number($('minutes').value);
+      startTimer(Number.isFinite(minutes) && minutes >= 1 ? minutes : examMinutes(active.length));
+    }
   } catch (error) { message(error.message); }
 });
 function record(q, selected, unsure = false) {

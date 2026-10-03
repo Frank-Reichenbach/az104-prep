@@ -1,3 +1,17 @@
+// AZ-104 format: Microsoft publishes no fixed question count ("typically 40-60"), and 100 minutes for
+// associate exams without labs (120 with labs). 50 questions / 100 minutes = 2 minutes per question.
+// https://learn.microsoft.com/credentials/support/exam-duration-exam-experience
+export const EXAM_DEFAULTS = { count: 50, minutesPerQuestion: 2 };
+export const PRACTICE_DEFAULT_COUNT = 10;
+export const examMinutes = count => Math.max(1, Math.round(count * EXAM_DEFAULTS.minutesPerQuestion));
+
+export function formatClock(totalSeconds) {
+  const s = Math.max(0, Math.ceil(totalSeconds));
+  const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), sec = s % 60;
+  const two = n => String(n).padStart(2, '0');
+  return h ? `${h}:${two(m)}:${two(sec)}` : `${two(m)}:${two(sec)}`;
+}
+
 export function shuffle(items, random = Math.random) {
   const result = [...items];
   for (let i = result.length - 1; i > 0; i--) {
