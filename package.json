@@ -10,16 +10,18 @@
   },
   "scripts": {
     "start": "node scripts/serve.mjs",
-    "build": "pnpm run build:css && node scripts/build.mjs",
+    "build": "pnpm run build:css && pnpm run build:icons && node scripts/build.mjs",
     "check": "node scripts/build.mjs --check",
     "test": "node --test",
     "build:site": "pnpm run check && node scripts/build-site.mjs",
     "test:browser": "node scripts/browser-check.mjs",
+    "build:icons": "node scripts/build-icons.mjs",
     "build:css": "tailwindcss -i app/tailwind.css -o app/style.css --minify",
     "dev:css": "tailwindcss -i app/tailwind.css -o app/style.css --watch"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
+    "lucide-static": "^1.51.0",
     "tailwindcss": "^4.3.3"
   }
 }

@@ -67,16 +67,8 @@
 }
 
 @layer components {
-  .field { @apply w-full rounded-[5px] border border-field bg-surface p-2.5 text-inherit; }
-  .btn { @apply my-2 mr-1.5 cursor-pointer rounded-[5px] border border-brand bg-brand px-4.5 py-2.5 text-on-brand hover:bg-brand-dark disabled:cursor-default disabled:opacity-55; }
-  .btn-quiet { @apply m-0 cursor-pointer border-0 bg-transparent p-1 text-[.86rem] text-soft underline underline-offset-4 hover:text-bad; }
-  .btn-secondary { @apply bg-surface text-secondary hover:bg-selected; }
-  .theme-toggle { @apply m-0 inline-flex shrink-0 size-10 items-center justify-center rounded-full p-0; }
-  .theme-toggle svg { @apply size-5 fill-none stroke-current; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  /* The icon shows the chosen preference: system (default), light or dark. */
-  .theme-toggle .sun, .theme-toggle .moon { display: none; }
-  :root[data-theme-pref=light] .theme-toggle .sun, :root[data-theme-pref=dark] .theme-toggle .moon { display: block; }
-  :root[data-theme-pref=light] .theme-toggle .auto, :root[data-theme-pref=dark] .theme-toggle .auto { display: none; }
+  /* Lucide icons (sprite in vendor/icons.svg): stroke styling for <svg class="icon"><use/></svg>. */
+  .icon { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   /* Rendered Markdown documents (see markdown.mjs). */
   .md { @apply outline-none; overflow-wrap: anywhere; }
   .md h1 { @apply mt-4 mb-3 text-[1.8rem] leading-tight font-bold tracking-tight; }
@@ -107,34 +99,6 @@
   @keyframes pop { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
 }
 
-@layer components {
-  /* Sections replay on every show() because [hidden] switches display off and on. */
-  #setup, #session, #results, #analysis { @apply animate-rise; }
-  #message:not(:empty) { @apply animate-pop; }
-  #feedback > * { @apply animate-rise; }
-  #review details { @apply animate-fade; }
-  .choice { @apply animate-rise transition-[border-color,background-color] duration-500; }
-  /* Hover: a faint tint, lighter than the checked state; no movement. */
-  @media (hover: hover) { .choice:hover:not(:has(:checked)) { @apply bg-hover; } }
-  .choice:nth-of-type(2) { animation-delay: 50ms; }
-  .choice:nth-of-type(3) { animation-delay: 100ms; }
-  .choice:nth-of-type(4) { animation-delay: 150ms; }
-  .choice:nth-of-type(n+5) { animation-delay: 200ms; }
-  .btn { @apply transition-[background-color,transform,opacity] duration-150 active:not-disabled:scale-[.97]; }
-  .theme-toggle svg { @apply transition-transform duration-300; }
-  .theme-toggle:hover svg { @apply rotate-12; }
-  .theme-toggle:active svg { @apply rotate-45; }
-  #coverage { @apply animate-fade; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after { animation: none !important; transition-duration: .01ms !important; }
-}
-
-/* Exam countdown: the bar shrinks from full to empty; colour shifts as time runs low. */
-@layer components {
-  .timer-track { @apply h-2.5 w-full overflow-hidden rounded-full bg-line; }
-  .timer-bar { @apply h-full w-full origin-left rounded-full bg-brand transition-[width,background-color] duration-1000 ease-linear; }
-  .timer-bar[data-level=warn] { @apply bg-warn-ink; }
-  .timer-bar[data-level=critical] { @apply bg-bad; }
 }

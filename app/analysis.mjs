@@ -116,7 +116,7 @@ export function renderAnalysis(root, options) {
   unmount(root);
   const id = `${root.id || 'analysis'}-scope`;
   const label = el('label', 'Show', 'mr-2 font-semibold'); label.htmlFor = id;
-  const select = el('select', undefined, 'field inline-block w-auto max-w-full'); select.id = id;
+  const select = el('select', undefined, 'col-start-1 row-start-1 appearance-none rounded-[5px] border border-field bg-surface py-2.5 pr-10 pl-3 text-inherit shadow-xs transition-colors hover:border-brand focus-visible:border-brand'); select.id = id;
   select.append(new Option('All exam domains', 'domains'));
   for (const d of options.bank.domains) select.append(new Option(`Topics in ${d.title}`, d.id));
   const canvas = el('canvas'); canvas.setAttribute('role', 'img');
@@ -126,7 +126,9 @@ export function renderAnalysis(root, options) {
   const tableBox = el('div');
   const details = el('details'); details.append(el('summary', 'Show the data as a table', 'cursor-pointer text-[.86rem]'), tableBox);
   root.replaceChildren(el('div', undefined, 'my-3'), canvasBox, summary, empty, details);
-  root.firstChild.append(label, select);
+  const selectBox = el('div', undefined, 'inline-grid max-w-full grid-cols-1');
+  selectBox.append(select); selectBox.insertAdjacentHTML('beforeend', '<svg class="icon pointer-events-none col-start-1 row-start-1 mr-3 size-5 self-center justify-self-end text-soft" aria-hidden="true"><use href="./vendor/icons.svg#chevron-down"/></svg>');
+  root.firstChild.append(label, selectBox);
   const ui = { select, canvas, canvasBox, summary, empty, details, table: tableBox };
   mounted.set(root, { options, ui, chart: null });
   select.addEventListener('change', () => draw(root));

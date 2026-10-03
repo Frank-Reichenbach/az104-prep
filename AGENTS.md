@@ -65,7 +65,9 @@ to the next unfinished topic. Keep the persistent handoff current.
   runtime package manager dependency, with keyboard controls and links that
   work under the repository's project path. The only third-party runtime code
   is Chart.js (MIT), vendored unmodified in app/vendor/ for the analysis charts;
-  it is loaded from the same origin, never from a CDN.
+  it is loaded from the same origin, never from a CDN. Icons are Lucide (ISC):
+  scripts/build-icons.mjs generates the committed same-origin sprite
+  app/vendor/icons.svg (build-time dev dependency lucide-static); it is not code.
 - In test mode, submit advances immediately, including to results after the
   final answer. In preparation mode, preserve feedback and the Next step.
 - Display the topic/module above each question. Session results open incorrect

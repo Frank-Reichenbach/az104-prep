@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url';
 import { ROOT } from './content.mjs';
 import { hashFiles, renderServiceWorker } from './sw.mjs';
 
-const assets = new Set(['/index.html', '/style.css', '/main.mjs', '/theme.js', '/quiz.mjs', '/markdown.mjs', '/analysis.mjs', '/vendor/chart.umd.js', '/vendor/LICENSE-chart.js.txt', '/data.json', '/version.json', '/manifest.webmanifest', '/sw.js']);
+const assets = new Set(['/index.html', '/style.css', '/main.mjs', '/theme.js', '/quiz.mjs', '/markdown.mjs', '/analysis.mjs', '/vendor/chart.umd.js', '/vendor/LICENSE-chart.js.txt', '/vendor/icons.svg', '/vendor/LICENSE-lucide.txt', '/data.json', '/version.json', '/manifest.webmanifest', '/sw.js']);
 const mime = {
   '.html': 'text/html', '.css': 'text/css', '.mjs': 'text/javascript', '.js': 'text/javascript', '.json': 'application/json', '.md': 'text/plain',
   '.webmanifest': 'application/manifest+json', '.png': 'image/png', '.svg': 'image/svg+xml', '.txt': 'text/plain', '.xml': 'application/xml',
