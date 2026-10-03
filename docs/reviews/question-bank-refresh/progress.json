@@ -410,9 +410,9 @@
     {
       "id": "storage.blobs.soft-delete",
       "title": "Blob soft deletion",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.blobs.soft-delete.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-blob-delete-001",
@@ -427,9 +427,9 @@
           ],
           "baselineHash": "dcc1a5e28b8da352e6177560039db9e82dbf7eadb1edded14c3f09074f5a2b49",
           "baselineContentHash": "d3796d101c3b6967d3cd75d80dcf246ecb646b615cd5ce29d862b87c249fbdb9",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "497900233a0907192aaaf64e4100043c2f3d88e0aeca1af8f63c1cb56779033a"
         },
         {
           "id": "st-blob-delete-002",
@@ -444,9 +444,9 @@
           ],
           "baselineHash": "a5698f1ae708fe72fe512ded001a42e4dfeb3ff09331375555f6643c84c70880",
           "baselineContentHash": "f72990524ab9d6ce39f1dc096bbb169b6795ed81683cadc652a5d25de51276ee",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "59a7f4e4768d03dca6a2f81755f8fd2a5a31acf8a822eaa2351ee4df39ebb19f"
         },
         {
           "id": "st-blob-delete-003",
@@ -461,9 +461,9 @@
           ],
           "baselineHash": "6ea8ef11d1bd79ed21c5c69503293fec412bb04a87753cc1fff72ca6285bd44c",
           "baselineContentHash": "bff9dbc71cd215712dd0bbab805ca5c4fe655fee7f18cc7f7ae27fd036c137d7",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "a4f4fc5a2e6c90c9175312419534064b31a58089450373889e3a0da1deeb0f6d"
         },
         {
           "id": "st-blob-delete-004",
@@ -478,9 +478,9 @@
           ],
           "baselineHash": "8eec52074c034e889453e43a48b8abe4b5f58a3335bbe689c5ebc6c4aded7e29",
           "baselineContentHash": "4e63c3107ce05a264ba291338486808d7e59daca85dce169c82322dd6cbe56c0",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "013cb344267782b3c93c52f40c822a5a66f2eaf604a8d532d4d72c6f38ce6dd2"
         }
       ]
     },

@@ -3384,20 +3384,20 @@ Select **1**. Difficulty: applied.
 A. The original 7-day interval, measured from deletion
 B. 30 days, measured from the original deletion
 C. 30 days, measured from the settings change
-D. Indefinite retention until versioning is enabled
+D. 7 days, measured from the settings change
 
 ## st-blob-delete-002
 
 Topic: Storage › Blob soft deletion.
 
-A team wants in-account recovery for two accidental operations in Azure Blob Storage: deleting an individual blob while its container remains, and deleting the entire container. Which two settings directly address these respective recovery scopes?
+A flat-namespace storage account has blob and container soft delete disabled. Versioning is disabled and must remain disabled. A team must permit normal deletions, then recover either an individually deleted blob or a deleted container within seven days. Which two Blob service property changes are jointly required before those deletions occur?
 
 Select **2**. Difficulty: applied.
 
-A. Blob soft delete
-B. Container soft delete
-C. The cool default access tier
-D. Disallow anonymous blob access
+A. Enable deleteRetentionPolicy with days set to 7.
+B. Enable containerDeleteRetentionPolicy with days set to 7.
+C. Enable isVersioningEnabled.
+D. Set days to 7 on both retention policies while leaving enabled false.
 
 ## st-blob-delete-003
 
@@ -3407,10 +3407,10 @@ An application overwrites a block blob using Put Blob in a flat-namespace accoun
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Copy the desired recovered snapshot over the current blob
-B. Enable container soft delete and wait
-C. Increase the retention period to force automatic rollback
-D. Set the current blob to hot
+A. Copy the desired recovered snapshot over the current blob.
+B. Run Restore Container for the parent container.
+C. Run Undelete again on the current blob.
+D. Copy the desired recovered snapshot to a new blob name.
 
 ## st-blob-delete-004
 
@@ -3423,7 +3423,7 @@ Select **1**. Difficulty: applied.
 A. They remain recoverable until their existing retention windows expire
 B. They are immediately permanently deleted
 C. They are automatically restored to the active namespace
-D. They become archived blobs with a new 180-day retention period
+D. Their expiry clocks pause until blob soft delete is enabled again
 
 ## st-container-delete-001
 

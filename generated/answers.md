@@ -4418,9 +4418,9 @@ Select **1**. Difficulty: applied.
 - **A. Correct:** The original 7-day interval, measured from deletion The new retention setting applies to later deletions; it does not extend retention for this existing soft-deleted blob.
 - **B. Incorrect:** 30 days, measured from the original deletion Increasing retention does not retroactively apply the new interval to previously deleted blobs.
 - **C. Incorrect:** 30 days, measured from the settings change Changing account settings does not restart the retained blob's clock.
-- **D. Incorrect:** Indefinite retention until versioning is enabled Soft-delete expiry is independent of enabling versioning later.
+- **D. Incorrect:** 7 days, measured from the settings change Keeping the original duration does not restart its clock. The seven-day window remains measured from the original deletion, not from the change two days later.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/blob-soft-delete.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/blob-storage/blob-soft-delete.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview)
 
@@ -4428,18 +4428,18 @@ Study: [knowledge file](../knowledge/storage/blob-storage/blob-soft-delete.md). 
 
 Topic: Storage › Blob soft deletion.
 
-A team wants in-account recovery for two accidental operations in Azure Blob Storage: deleting an individual blob while its container remains, and deleting the entire container. Which two settings directly address these respective recovery scopes?
+A flat-namespace storage account has blob and container soft delete disabled. Versioning is disabled and must remain disabled. A team must permit normal deletions, then recover either an individually deleted blob or a deleted container within seven days. Which two Blob service property changes are jointly required before those deletions occur?
 
 Select **2**. Difficulty: applied.
 
-- **A. Correct:** Blob soft delete This retains deleted blob data for recovery when the parent container still exists.
-- **B. Correct:** Container soft delete This preserves a deleted container and its contents for recovery during retention.
-- **C. Incorrect:** The cool default access tier A tier changes access and billing behavior; it does not retain deleted containers or blobs for this recovery requirement.
-- **D. Incorrect:** Disallow anonymous blob access This controls anonymous reads, rather than providing recovery from an authorized accidental deletion.
+- **A. Correct:** Enable deleteRetentionPolicy with days set to 7. This enables blob soft delete for individual blob recovery within seven days. Container protection alone cannot restore a blob deleted while its parent container remains.
+- **B. Correct:** Enable containerDeleteRetentionPolicy with days set to 7. This enables recovery of a deleted container and its contents within seven days. Blob soft delete alone cannot recover a deleted parent container.
+- **C. Incorrect:** Enable isVersioningEnabled. Versioning can preserve earlier blob states, but enabling it violates the explicit requirement to keep versioning disabled. It also does not provide recovery of a deleted container.
+- **D. Incorrect:** Set days to 7 on both retention policies while leaving enabled false. A duration without an enabled policy does not activate soft-delete protection. Both policies must be enabled before the relevant deletion.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/blob-soft-delete.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/blob-storage/blob-soft-delete.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/data-protection-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-container-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-enable) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-container-enable)
 
 ## st-blob-delete-003
 
@@ -4449,14 +4449,14 @@ An application overwrites a block blob using Put Blob in a flat-namespace accoun
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Copy the desired recovered snapshot over the current blob Undeleting the snapshot makes its data available; copying it back restores the chosen content as the current blob.
-- **B. Incorrect:** Enable container soft delete and wait The container was not deleted, and enabling a different protection scope does not promote a recovered snapshot.
-- **C. Incorrect:** Increase the retention period to force automatic rollback Retention controls recovery availability, not which recovered snapshot becomes current.
-- **D. Incorrect:** Set the current blob to hot Changing the access tier does not replace the current contents with snapshot data.
+- **A. Correct:** Copy the desired recovered snapshot over the current blob. Undelete makes the snapshot available. Copying that snapshot over the original base blob promotes its earlier contents to the current contents, meeting the stated goal.
+- **B. Incorrect:** Run Restore Container for the parent container. Restore Container recovers a deleted container. This parent still exists, and container recovery does not promote the already recovered snapshot over the current blob.
+- **C. Incorrect:** Run Undelete again on the current blob. Undelete restores soft-deleted snapshots, which has already succeeded here. Repeating it does not overwrite the active blob with the chosen snapshot.
+- **D. Incorrect:** Copy the desired recovered snapshot to a new blob name. This can make the earlier contents available as a separate blob. It leaves the original current blob unchanged, so it does not restore the earlier contents as current at the original blob.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/blob-soft-delete.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/blob-storage/blob-soft-delete.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-manage)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-manage) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-container-overview)
 
 ## st-blob-delete-004
 
@@ -4469,9 +4469,9 @@ Select **1**. Difficulty: applied.
 - **A. Correct:** They remain recoverable until their existing retention windows expire Disabling the feature does not immediately purge data already retained under its original retention settings.
 - **B. Incorrect:** They are immediately permanently deleted The configuration change does not override the existing retained objects' expiry times.
 - **C. Incorrect:** They are automatically restored to the active namespace Disabling protection is not an Undelete operation.
-- **D. Incorrect:** They become archived blobs with a new 180-day retention period Soft-delete configuration does not convert retained objects into archive-tier data.
+- **D. Incorrect:** Their expiry clocks pause until blob soft delete is enabled again Disabling the setting does not suspend existing retention windows. The already-retained blobs remain recoverable only until their original windows expire.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/blob-soft-delete.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/blob-storage/blob-soft-delete.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview)
 
