@@ -4,6 +4,28 @@ Updated: 2026-10-03. Approved scope: [PLAN.md](PLAN.md).
 
 ## Current increment
 
+All four question-authoring skill findings have been addressed at the user's
+request. The [resolution record](docs/reviews/az104-question-authoring-finding-resolution.md)
+maps each finding to the corrected workflow and acceptance evidence. The skill
+now plans batch patterns and reasoning levels, resolves rendered topic clues,
+constructs variants from decisive facts, and branches answer review between
+individual choices, joint components, and complete candidates. Rationale source
+tracing is explicit in working notes. Seven reusable acceptance cases are
+bundled with the skill; no scored JSON schema or app behavior was changed.
+
+Author-led checks produced six temporary original drafts, reviewed all seven
+acceptance cases, planned a six-item batch, and verified unique variant IDs,
+stable option IDs, changed keys, and the joint-action example's unique valid
+pair. All temporary drafts passed the real schema validator. These checks are
+not independent model-driven evaluations or Azure labs. The skill-creator
+validator, metadata/reference checks, repository build/check, all 13 Node tests,
+static-site link validation, and diff whitespace checks passed. A Git audit
+confirmed the bank, app, knowledge, outline, generated files, style guide, and
+inventory were unchanged. This revision remains local on
+`docs/az104-question-authoring-skill`; no push, merge, or deployment was performed.
+
+## Functional review increment
+
 The requested functional review of the question-authoring skill is complete.
 The [review report](docs/reviews/az104-question-authoring-functional-review.md)
 assesses the authored revision at `1dd081c`, focusing on researched question
@@ -197,9 +219,10 @@ retirement are documented with current alternatives.
 
 ## Next task
 
-Proposed skill follow-up: address the four functional-review findings, then
-evaluate generated drafts against the report's acceptance cases. The current
-user request was review; those revisions have not been implemented.
+The skill-review findings are resolved. Use the revised workflow for the next
+requested authoring or review task, and retain acceptance cases for future
+changes. A broader independent quality evaluation remains a possible follow-up;
+the author-led checks above do not claim one was performed.
 
 Wait for the user's later request before reviewing, updating, or adding the
 preserved research questions. At that point, recheck current Microsoft service

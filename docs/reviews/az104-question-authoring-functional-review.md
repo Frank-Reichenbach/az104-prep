@@ -5,6 +5,11 @@ Scope: functionality and fit for writing questions in the researched style.
 The skill entrypoint is `.agents/skills/az104-question-authoring/SKILL.md`.
 Line references below describe that revision.
 
+Follow-up: the user authorized fixes on 2026-10-03. The subsequent
+[finding-resolution record](az104-question-authoring-finding-resolution.md)
+documents the revised workflow and acceptance results. The findings below
+remain the historical review of `1dd081c`.
+
 ## Assessment
 
 Keep the skill. Its purpose is a repeatable authoring/review workflow, while
