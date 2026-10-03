@@ -3169,20 +3169,20 @@ D. Both next hops simultaneously because both prefixes match.
 
 Topic: Storage › Blob containers.
 
-A container previously allowed anonymous blob reads. An administrator now disables anonymous access on its storage account. Network connectivity is unchanged. What happens to subsequent anonymous blob requests?
+An ordinary Blob container previously allowed anonymous blob reads. An administrator disables anonymous access on its storage account, and the change has propagated. Network connectivity is unchanged. What happens to subsequent requests to read its blobs without credentials?
 
 Select **1**. Difficulty: applied.
 
-A. They fail because the account setting overrides container-level anonymous access.
-B. They succeed because the container setting is more specific.
-C. They succeed until the storage account is restarted.
-D. Only requests signed with an account key are blocked.
+A. The reads fail because the account disallows anonymous access.
+B. The reads succeed because the container's more specific setting takes precedence.
+C. Blob reads succeed, but anonymous container listing is denied.
+D. Existing blobs remain readable anonymously, but newly uploaded blobs require credentials.
 
 ## st-container-002
 
 Topic: Storage › Blob containers.
 
-An operator has the management-plane Reader role on a storage account but no blob data role. They must create a container through the Blob service using Azure CLI with --auth-mode login. Which additional built-in role is the least privileged of these choices that supports the operation? Assume network access works.
+An operator has the management-plane Reader role on a storage account but no blob data role. A container creation request using Azure CLI with --auth-mode login fails with an authorization error. Network access is working. Which additional listed built-in role is the least privileged that supports container creation through the Blob service?
 
 Select **1**. Difficulty: troubleshooting.
 
@@ -3221,14 +3221,14 @@ D. --account-name <account>
 
 Topic: Storage › Blob containers.
 
-A user has no existing Azure role assignments. They must navigate to a storage account in the Portal and read its blob data using Entra credentials. Which two roles provide the required management visibility and read-only data access? Assume network access is already allowed.
+A user has no existing Azure roles. They must navigate to a storage account in the Azure portal and read blobs in its reports container using Entra credentials. Network access is allowed. Which two role assignments meet that goal without granting resource-management writes or blob-data writes?
 
 Select **2**. Difficulty: applied.
 
 A. Reader at the storage account scope
-B. Storage Blob Data Reader at the required data scope
+B. Storage Blob Data Reader at the reports container scope
 C. Storage Queue Data Reader at the storage account scope
-D. Billing Reader at the subscription scope
+D. Contributor at the storage account scope
 
 ## st-tier-001
 
@@ -3650,14 +3650,14 @@ D. No blob reads because anonymous access always requires a SAS.
 
 Topic: Storage › Blob containers.
 
-An approved legacy Azure CLI operation must use a supplied storage account key, with Shared Key access enabled. Which --auth-mode value explicitly selects this authorization method?
+An approved legacy Azure CLI container operation must use a supplied account key. Shared Key access is enabled; no storage credential environment variables are set. The signed-in identity has a blob data role but cannot list the account's keys. Which authorization configuration meets the requirement?
 
 Select **1**. Difficulty: applied.
 
-A. login
-B. key
-C. off
-D. The storage account name.
+A. --auth-mode login, with the signed-in identity's blob data role
+B. --auth-mode key --account-key <supplied-account-key>
+C. --auth-mode key, with no account key or SAS supplied
+D. --auth-mode key --sas-token <supplied-sas-token>
 
 ## st-key-rotation-order
 

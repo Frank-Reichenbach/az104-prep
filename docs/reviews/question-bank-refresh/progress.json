@@ -188,9 +188,9 @@
     {
       "id": "storage.blobs.containers",
       "title": "Blob containers",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.blobs.containers.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-container-001",
@@ -205,9 +205,9 @@
           ],
           "baselineHash": "f1398288bf79c7ea0e0fdd29682d65e50fba0eba3b9bc7aa828b5a544ded015c",
           "baselineContentHash": "bc5ac641b98155c4158a7cf82e6f4bbd7f9ccd6bec0e0a61a6fb85675d1b5b01",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "2f201a6e7c2c7c99c392f7205c4e231824694faa5c6b42aefdc540629370d2db"
         },
         {
           "id": "st-container-002",
@@ -222,9 +222,9 @@
           ],
           "baselineHash": "dc0f00cc3f75e69b58a40231b67976d013086306e39af68337967ee0a62e5669",
           "baselineContentHash": "f4228981acafd41f2d97ebb1a7783a57f5e2ffe17748678d262e0572f6755193",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "686d9238a54d64ed76115268b123bbf9d1037c477e032cdf5d4aca648a44fd70"
         },
         {
           "id": "st-container-003",
@@ -239,9 +239,9 @@
           ],
           "baselineHash": "13c5397fa5cc9d236c9ce5b408d66d8016d252d6566bd719eaf01fc18e94b787",
           "baselineContentHash": "838602a756c221f91f373919d4494a15a12e4c8b767ccf52a0fc029a7aba0eb0",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "eb57e503ffd3187ee9cbd1b8d35143f29632b4f1335186eac1c62ead1f3c99b4"
         },
         {
           "id": "st-container-004",
@@ -256,9 +256,9 @@
           ],
           "baselineHash": "61ba096a0246ea32b78a8ccd3fb3a52f4c2f4b8f78ac7d004fb9fc3e322cfd8c",
           "baselineContentHash": "9468617beb3d0561d581cd2e30f47fe2a2d487116d8bb00c00bf0d813e8a8a9e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "1503eec1322247764224a380898e126e627bca660272ddd3b20740177a627b4d"
         },
         {
           "id": "st-container-005",
@@ -273,9 +273,9 @@
           ],
           "baselineHash": "0996ef21b7e295b5127bf45ad63b7163cf09c033bb370cec16792a7fd8243b74",
           "baselineContentHash": "b4802d5e5a677092a9c8e42d833388cd224f69f14be035d6f72026222a827327",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "e3312389ad247457e33b55afd3f4bca76459ec210d84554a7b0b397b4d1e0957"
         },
         {
           "id": "st-container-anonymous-level-variant",
@@ -290,9 +290,9 @@
           ],
           "baselineHash": "f8d351aa26b31383370c9bfd137840b34498b9172c60b64a1794df1f747de8fa",
           "baselineContentHash": "a467df7ad8c04484cb5112de5211bee1ee51b3a79ca75e111c3136305fbfe0f5",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "77ea6230342027951a62021f7e64a829562ad771a3badf0af43c12caf5683b9f"
         },
         {
           "id": "st-container-key-mode-variant",
@@ -307,9 +307,9 @@
           ],
           "baselineHash": "c18c102876525c2375ada24481f59c7df433db2d18507205926c4b65ab4e4fc6",
           "baselineContentHash": "63ae2b584c54c68c608ffefec9c667de02489d49ac2594ff599a742c019c3dc4",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "18d01b0fe3ca5aa0f5290192fb2cb4a771484bb3199365bc6795e61f94dd47c6"
         }
       ]
     },

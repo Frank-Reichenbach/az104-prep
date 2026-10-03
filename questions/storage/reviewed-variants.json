@@ -41,39 +41,39 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-configure"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-container-key-mode-variant",
       "family": "st-container-cli-auth",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.containers",
       "objectives": [
         "st-12"
       ],
       "difficulty": "applied",
-      "prompt": "An approved legacy Azure CLI operation must use a supplied storage account key, with Shared Key access enabled. Which --auth-mode value explicitly selects this authorization method?",
+      "prompt": "An approved legacy Azure CLI container operation must use a supplied account key. Shared Key access is enabled; no storage credential environment variables are set. The signed-in identity has a blob data role but cannot list the account's keys. Which authorization configuration meets the requirement?",
       "select": 1,
       "options": [
         {
           "id": "login",
-          "text": "login",
-          "explanation": "Login selects the signed-in Entra identity, not the supplied account key."
+          "text": "--auth-mode login, with the signed-in identity's blob data role",
+          "explanation": "Login authorizes the operation with the Entra identity. It does not use the supplied account key, even though the identity has data access."
         },
         {
           "id": "key",
-          "text": "key",
-          "explanation": "Key mode selects account-key authorization; --account-key supplies the credential."
+          "text": "--auth-mode key --account-key <supplied-account-key>",
+          "explanation": "Key mode with the explicitly supplied account key uses Shared Key authorization. The caller need not retrieve a key through the management-plane listKeys operation."
         },
         {
           "id": "private",
-          "text": "off",
-          "explanation": "Off is an anonymous-access setting value, not this authorization mode."
+          "text": "--auth-mode key, with no account key or SAS supplied",
+          "explanation": "With no supplied credential or environment value, key mode attempts to obtain an account key. This identity lacks listKeys permission, so it cannot obtain the required credential."
         },
         {
           "id": "account",
-          "text": "The storage account name.",
-          "explanation": "The account name selects the target account, not the authorization method."
+          "text": "--auth-mode key --sas-token <supplied-sas-token>",
+          "explanation": "This supplies a SAS for authorization. A SAS is a different credential from the account key explicitly required by the legacy operation."
         }
       ],
       "correct": [
@@ -81,9 +81,10 @@
       ],
       "knowledge": "knowledge/storage/blob-storage/containers.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-data-operations-cli"
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-data-operations-cli",
+        "https://learn.microsoft.com/en-us/cli/azure/storage/container?view=azure-cli-latest"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     }
   ]
 }

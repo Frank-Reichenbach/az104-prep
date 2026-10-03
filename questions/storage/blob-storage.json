@@ -4,34 +4,34 @@
     {
       "id": "st-container-001",
       "family": "st-container-account-gate",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.containers",
       "objectives": [
         "st-12"
       ],
       "difficulty": "applied",
-      "prompt": "A container previously allowed anonymous blob reads. An administrator now disables anonymous access on its storage account. Network connectivity is unchanged. What happens to subsequent anonymous blob requests?",
+      "prompt": "An ordinary Blob container previously allowed anonymous blob reads. An administrator disables anonymous access on its storage account, and the change has propagated. Network connectivity is unchanged. What happens to subsequent requests to read its blobs without credentials?",
       "select": 1,
       "options": [
         {
           "id": "account-blocks",
-          "text": "They fail because the account setting overrides container-level anonymous access.",
-          "explanation": "The account-level prohibition prevents anonymous blob reads regardless of the container's previous setting."
+          "text": "The reads fail because the account disallows anonymous access.",
+          "explanation": "The account setting overrides the container's earlier anonymous-access level. Once the change has propagated, requests without credentials cannot read blobs in this ordinary container."
         },
         {
           "id": "container-wins",
-          "text": "They succeed because the container setting is more specific.",
-          "explanation": "Container specificity does not override the account's prohibition on anonymous access."
+          "text": "The reads succeed because the container's more specific setting takes precedence.",
+          "explanation": "The account's prohibition applies even when an individual container was configured for anonymous reads. A more specific container setting cannot override it."
         },
         {
           "id": "restart",
-          "text": "They succeed until the storage account is restarted.",
-          "explanation": "There is no storage-account restart step that postpones enforcement of this access setting."
+          "text": "Blob reads succeed, but anonymous container listing is denied.",
+          "explanation": "That distinction applies to Blob-level anonymous access when the account permits it. Disallowing anonymous access at the account also blocks individual-blob reads."
         },
         {
           "id": "signed-only",
-          "text": "Only requests signed with an account key are blocked.",
-          "explanation": "This setting governs anonymous reads; account-key authorization is a separate mechanism."
+          "text": "Existing blobs remain readable anonymously, but newly uploaded blobs require credentials.",
+          "explanation": "The account setting is not limited to blobs created after the change. It prohibits anonymous reads of both existing and new blobs."
         }
       ],
       "correct": [
@@ -41,18 +41,18 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-configure"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-container-002",
       "family": "st-container-data-role",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.containers",
       "objectives": [
         "st-12"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "An operator has the management-plane Reader role on a storage account but no blob data role. They must create a container through the Blob service using Azure CLI with --auth-mode login. Which additional built-in role is the least privileged of these choices that supports the operation? Assume network access works.",
+      "prompt": "An operator has the management-plane Reader role on a storage account but no blob data role. A container creation request using Azure CLI with --auth-mode login fails with an authorization error. Network access is working. Which additional listed built-in role is the least privileged that supports container creation through the Blob service?",
       "select": 1,
       "options": [
         {
@@ -84,7 +84,7 @@
         "https://learn.microsoft.com/en-us/rest/api/storageservices/create-container",
         "https://learn.microsoft.com/en-us/azure/storage/blobs/assign-azure-role-data-access"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-container-003",
@@ -126,7 +126,7 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-configure"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-container-004",
@@ -168,39 +168,39 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-data-operations-cli"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-container-005",
       "family": "st-container-portal-roles",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.containers",
       "objectives": [
         "st-12"
       ],
       "difficulty": "applied",
-      "prompt": "A user has no existing Azure role assignments. They must navigate to a storage account in the Portal and read its blob data using Entra credentials. Which two roles provide the required management visibility and read-only data access? Assume network access is already allowed.",
+      "prompt": "A user has no existing Azure roles. They must navigate to a storage account in the Azure portal and read blobs in its reports container using Entra credentials. Network access is allowed. Which two role assignments meet that goal without granting resource-management writes or blob-data writes?",
       "select": 2,
       "options": [
         {
           "id": "reader",
           "text": "Reader at the storage account scope",
-          "explanation": "Reader supplies management-plane visibility needed for Portal navigation."
+          "explanation": "Reader provides storage-account management visibility for portal navigation, without management writes. It supplies no blob-data read permission by itself."
         },
         {
           "id": "blob-reader",
-          "text": "Storage Blob Data Reader at the required data scope",
-          "explanation": "This grants blob data reads using the user's Entra identity."
+          "text": "Storage Blob Data Reader at the reports container scope",
+          "explanation": "This provides Entra read access to the required container's blobs without blob-data writes. Together with account Reader, it meets both data access and portal navigation requirements."
         },
         {
           "id": "queue-reader",
           "text": "Storage Queue Data Reader at the storage account scope",
-          "explanation": "Queue data permissions do not grant blob data reads."
+          "explanation": "This grants queue access, not read access to reports blobs. Pairing it with management Reader leaves the blob-data requirement unsatisfied."
         },
         {
           "id": "billing-reader",
-          "text": "Billing Reader at the subscription scope",
-          "explanation": "Billing information access is not the required storage resource navigation or blob data role."
+          "text": "Contributor at the storage account scope",
+          "explanation": "Contributor permits management writes, violating the requested boundary. It also does not itself grant Entra-authorized blob-data access."
         }
       ],
       "correct": [
@@ -209,9 +209,12 @@
       ],
       "knowledge": "knowledge/storage/blob-storage/containers.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/storage/blobs/assign-azure-role-data-access"
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/assign-azure-role-data-access",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged#contributor",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general#reader"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-tier-001",

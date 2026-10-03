@@ -4139,16 +4139,16 @@ Study: [knowledge file](../knowledge/networking/virtual-networks/routes.md). Evi
 
 Topic: Storage › Blob containers.
 
-A container previously allowed anonymous blob reads. An administrator now disables anonymous access on its storage account. Network connectivity is unchanged. What happens to subsequent anonymous blob requests?
+An ordinary Blob container previously allowed anonymous blob reads. An administrator disables anonymous access on its storage account, and the change has propagated. Network connectivity is unchanged. What happens to subsequent requests to read its blobs without credentials?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** They fail because the account setting overrides container-level anonymous access. The account-level prohibition prevents anonymous blob reads regardless of the container's previous setting.
-- **B. Incorrect:** They succeed because the container setting is more specific. Container specificity does not override the account's prohibition on anonymous access.
-- **C. Incorrect:** They succeed until the storage account is restarted. There is no storage-account restart step that postpones enforcement of this access setting.
-- **D. Incorrect:** Only requests signed with an account key are blocked. This setting governs anonymous reads; account-key authorization is a separate mechanism.
+- **A. Correct:** The reads fail because the account disallows anonymous access. The account setting overrides the container's earlier anonymous-access level. Once the change has propagated, requests without credentials cannot read blobs in this ordinary container.
+- **B. Incorrect:** The reads succeed because the container's more specific setting takes precedence. The account's prohibition applies even when an individual container was configured for anonymous reads. A more specific container setting cannot override it.
+- **C. Incorrect:** Blob reads succeed, but anonymous container listing is denied. That distinction applies to Blob-level anonymous access when the account permits it. Disallowing anonymous access at the account also blocks individual-blob reads.
+- **D. Incorrect:** Existing blobs remain readable anonymously, but newly uploaded blobs require credentials. The account setting is not limited to blobs created after the change. It prohibits anonymous reads of both existing and new blobs.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-configure)
 
@@ -4156,7 +4156,7 @@ Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Eviden
 
 Topic: Storage › Blob containers.
 
-An operator has the management-plane Reader role on a storage account but no blob data role. They must create a container through the Blob service using Azure CLI with --auth-mode login. Which additional built-in role is the least privileged of these choices that supports the operation? Assume network access works.
+An operator has the management-plane Reader role on a storage account but no blob data role. A container creation request using Azure CLI with --auth-mode login fails with an authorization error. Network access is working. Which additional listed built-in role is the least privileged that supports container creation through the Blob service?
 
 Select **1**. Difficulty: troubleshooting.
 
@@ -4165,7 +4165,7 @@ Select **1**. Difficulty: troubleshooting.
 - **C. Incorrect:** Reader at the subscription scope Broadening management-plane read access does not grant the required container-write operation.
 - **D. Incorrect:** Storage Blob Data Owner at the storage account scope It can support the task, but grants more privilege than the listed Data Contributor role; the question requires least privilege among these choices.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/rest/api/storageservices/create-container) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/assign-azure-role-data-access)
 
@@ -4182,7 +4182,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** The client can list blobs but cannot read their contents. Private access does not grant anonymous listing rights.
 - **D. Incorrect:** Only blobs uploaded after the account setting changed are public. Anonymous access is governed by account and container settings, not blob upload time.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-configure)
 
@@ -4199,7 +4199,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** --public-access off This configures anonymous container access; it does not select the caller's authorization mode.
 - **D. Incorrect:** --account-name <account> The account name identifies the target resource but does not select Entra authorization.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-data-operations-cli)
 
@@ -4207,18 +4207,18 @@ Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Eviden
 
 Topic: Storage › Blob containers.
 
-A user has no existing Azure role assignments. They must navigate to a storage account in the Portal and read its blob data using Entra credentials. Which two roles provide the required management visibility and read-only data access? Assume network access is already allowed.
+A user has no existing Azure roles. They must navigate to a storage account in the Azure portal and read blobs in its reports container using Entra credentials. Network access is allowed. Which two role assignments meet that goal without granting resource-management writes or blob-data writes?
 
 Select **2**. Difficulty: applied.
 
-- **A. Correct:** Reader at the storage account scope Reader supplies management-plane visibility needed for Portal navigation.
-- **B. Correct:** Storage Blob Data Reader at the required data scope This grants blob data reads using the user's Entra identity.
-- **C. Incorrect:** Storage Queue Data Reader at the storage account scope Queue data permissions do not grant blob data reads.
-- **D. Incorrect:** Billing Reader at the subscription scope Billing information access is not the required storage resource navigation or blob data role.
+- **A. Correct:** Reader at the storage account scope Reader provides storage-account management visibility for portal navigation, without management writes. It supplies no blob-data read permission by itself.
+- **B. Correct:** Storage Blob Data Reader at the reports container scope This provides Entra read access to the required container's blobs without blob-data writes. Together with account Reader, it meets both data access and portal navigation requirements.
+- **C. Incorrect:** Storage Queue Data Reader at the storage account scope This grants queue access, not read access to reports blobs. Pairing it with management Reader leaves the blob-data requirement unsatisfied.
+- **D. Incorrect:** Contributor at the storage account scope Contributor permits management writes, violating the requested boundary. It also does not itself grant Entra-authorized blob-data access.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/assign-azure-role-data-access)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/assign-azure-role-data-access) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged#contributor) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general#reader)
 
 ## st-tier-001
 
@@ -4760,7 +4760,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** Upload blobs without a credential. Anonymous access levels grant reads, not unauthenticated writes.
 - **D. Incorrect:** No blob reads because anonymous access always requires a SAS. Under the stated account/container settings, anonymous individual-blob reads do not require a SAS.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-configure)
 
@@ -4768,18 +4768,18 @@ Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Eviden
 
 Topic: Storage › Blob containers.
 
-An approved legacy Azure CLI operation must use a supplied storage account key, with Shared Key access enabled. Which --auth-mode value explicitly selects this authorization method?
+An approved legacy Azure CLI container operation must use a supplied account key. Shared Key access is enabled; no storage credential environment variables are set. The signed-in identity has a blob data role but cannot list the account's keys. Which authorization configuration meets the requirement?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** login Login selects the signed-in Entra identity, not the supplied account key.
-- **B. Correct:** key Key mode selects account-key authorization; --account-key supplies the credential.
-- **C. Incorrect:** off Off is an anonymous-access setting value, not this authorization mode.
-- **D. Incorrect:** The storage account name. The account name selects the target account, not the authorization method.
+- **A. Incorrect:** --auth-mode login, with the signed-in identity's blob data role Login authorizes the operation with the Entra identity. It does not use the supplied account key, even though the identity has data access.
+- **B. Correct:** --auth-mode key --account-key <supplied-account-key> Key mode with the explicitly supplied account key uses Shared Key authorization. The caller need not retrieve a key through the management-plane listKeys operation.
+- **C. Incorrect:** --auth-mode key, with no account key or SAS supplied With no supplied credential or environment value, key mode attempts to obtain an account key. This identity lacks listKeys permission, so it cannot obtain the required credential.
+- **D. Incorrect:** --auth-mode key --sas-token <supplied-sas-token> This supplies a SAS for authorization. A SAS is a different credential from the account key explicitly required by the legacy operation.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/blob-storage/containers.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-data-operations-cli)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-data-operations-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/cli/azure/storage/container?view=azure-cli-latest)
 
 ## st-key-rotation-order
 
