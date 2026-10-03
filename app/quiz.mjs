@@ -12,6 +12,13 @@ export function formatClock(totalSeconds) {
   return h ? `${h}:${two(m)}:${two(sec)}` : `${two(m)}:${two(sec)}`;
 }
 
+// Display-only split of a question prompt: scenario sentences plus the final sentence (the task).
+// Joining the parts with a single space always reproduces the prompt; otherwise it is not split.
+export function splitPrompt(prompt) {
+  const parts = prompt.split(/(?<=[.!?])\s+(?=[A-Z`"'(])/);
+  if (parts.length < 2 || parts.join(' ') !== prompt) return { scenario: [], task: prompt };
+  return { scenario: parts.slice(0, -1), task: parts.at(-1) };
+}
 export function shuffle(items, random = Math.random) {
   const result = [...items];
   for (let i = result.length - 1; i > 0; i--) {
