@@ -1249,9 +1249,9 @@
     {
       "id": "storage.blobs.object-replication",
       "title": "Blob object replication",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.blobs.object-replication.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-or-prerequisites",
@@ -1266,9 +1266,9 @@
           ],
           "baselineHash": "c3a27d9e7c950e650e669eb5a0f241ef64ad8e98695066534971a3867bd1d031",
           "baselineContentHash": "6472aab30390691eb01726feee9d6cded4295fdcdba01bea6117633d5bc76e07",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "680c4d500dae2d482df6e76c051e5d67a0adcffe9f525a813c36bec0801682bb"
         },
         {
           "id": "st-or-existing-scope",
@@ -1283,9 +1283,9 @@
           ],
           "baselineHash": "ac8244c848c721f36d7ca7a30056ec9320e33599918fdf3b41af2dca4e0a098c",
           "baselineContentHash": "5c9fd4ee2888615ac60016f5c030e38eeff079847f9ccffaf58cdba93d76e1c8",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "ab1f330ac4d991de3d842d053ab71f2dea430bf00ba831adc29625510d39e5ca"
         },
         {
           "id": "st-or-destination-writes",
@@ -1300,9 +1300,9 @@
           ],
           "baselineHash": "3b242c26f0d7c4ae3b1569dc0bc38e59368bbb36b0b8f522d452b4bddc652445",
           "baselineContentHash": "dd8e1790f30ae1a72331ee851e5e23e4a1d364265506d8dff2af957390a2e743",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f2f9a6180d5e7a1c512a79fd08c6e94a4632de8b45a1e6d66eb8e140af64639c"
         }
       ]
     },

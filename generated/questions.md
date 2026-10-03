@@ -4001,40 +4001,40 @@ D. Each scope automatically creates its own storage firewall.
 
 Topic: Storage › Blob object replication.
 
-Two supported Blob accounts will use object replication. Which two prerequisite configurations are needed?
+Two standard GPv2 accounts without hierarchical namespace have existing source and destination containers of Hot block blobs. You are preparing object replication; versioning and change feed are disabled. Which two configurations are jointly required before creating the replication policy?
 
 Select **2**. Difficulty: applied.
 
-A. Enable Blob versioning on source and destination.
-B. Enable Blob change feed on the source.
-C. Set both accounts' default tier to Archive.
-D. Create one stored access policy on every source blob.
+A. Enable Blob versioning on both source and destination accounts.
+B. Enable Blob change feed on the source account.
+C. Create periodic snapshots of the source blobs.
+D. Enable Blob change feed only on the destination account.
 
 ## st-or-existing-scope
 
 Topic: Storage › Blob object replication.
 
-New block blobs replicate successfully, but files uploaded last month do not. The policy was created today with its default copy scope. What should you inspect first?
+An Azure Blob object-replication rule created today copies new Hot block blobs successfully. Hot block blobs created last month in the same source container remain absent from the destination. Both groups match the same rule prefix, and versioning is enabled on both accounts. You used the default copy scope. Which configuration should you inspect first?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Whether the copy scope includes existing objects.
-B. Whether both accounts use identical access keys.
-C. Whether both accounts have LRS disabled.
-D. Whether every source blob has the destination account's name.
+A. Whether the rule's copy scope includes preexisting blobs.
+B. Whether the rule's prefix filter excludes the older blob names.
+C. Whether Blob versioning is disabled on the destination account.
+D. Whether source and destination have different replication policy IDs.
 
 ## st-or-destination-writes
 
 Topic: Storage › Blob object replication.
 
-An application wants to write directly into a destination container governed by Azure Blob object replication. What must the design account for?
+An active Azure Blob object-replication rule maps a source container's reports/ prefix to a destination container. An authorized client attempts an ordinary Put Blob write to notes/new.txt in that destination container. No other restriction prevents the request. Which outcome should you expect?
 
 Select **1**. Difficulty: foundation.
 
-A. Ordinary writes to that destination container are blocked while the policy applies.
-B. Writes automatically merge into the source container.
-C. Every destination write synchronously updates all source versions.
-D. Selecting Hot automatically makes the destination writable.
+A. The write is rejected because the destination container has an active replication rule.
+B. The write succeeds and is asynchronously replicated back to the source container.
+C. The write succeeds because the client's blob-write permission overrides the replication rule.
+D. The write succeeds because notes/new.txt falls outside the rule's reports/ prefix.
 
 ## st-files-protocol
 

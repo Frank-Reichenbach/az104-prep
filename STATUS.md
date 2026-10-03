@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 64/322 questions reviewed, 51 revised and 13 kept; 16/99 topics complete.
-Latest: [Storage redundancy and failover planning](docs/reviews/question-bank-refresh/storage.accounts.redundancy.md). Each completed topic has item decisions,
+Checkpoint: 67/322 questions reviewed, 54 revised and 13 kept; 17/99 topics complete.
+Latest: [Blob object replication](docs/reviews/question-bank-refresh/storage.blobs.object-replication.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `storage.blobs.object-replication` (Blob object replication).
+Next: `storage.accounts.encryption` (Storage encryption and customer-managed keys).
 The changes are on the work branch; the live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
 refresh PR needs explicit approval; do not reuse the earlier skill PR approval.
@@ -293,8 +293,8 @@ retirement are documented with current alternatives.
 ## Next task
 
 Continue the authorized existing-bank review from `npm run review:status`.
-Current checkpoint: 64/322 questions, 16/99 topics complete.
-Next: `storage.blobs.object-replication` (Blob object replication).
+Current checkpoint: 67/322 questions, 17/99 topics complete.
+Next: `storage.accounts.encryption` (Storage encryption and customer-managed keys).
 Record real source checks and repair decisions in its report; do not mark a
 topic complete based on schema checks alone.
 

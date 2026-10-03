@@ -5227,16 +5227,16 @@ Study: [knowledge file](../knowledge/storage/blob-storage/encryption-scopes.md).
 
 Topic: Storage › Blob object replication.
 
-Two supported Blob accounts will use object replication. Which two prerequisite configurations are needed?
+Two standard GPv2 accounts without hierarchical namespace have existing source and destination containers of Hot block blobs. You are preparing object replication; versioning and change feed are disabled. Which two configurations are jointly required before creating the replication policy?
 
 Select **2**. Difficulty: applied.
 
-- **A. Correct:** Enable Blob versioning on source and destination. Both accounts need versions for this replication feature.
-- **B. Correct:** Enable Blob change feed on the source. Replication tracks source changes through the change feed.
-- **C. Incorrect:** Set both accounts' default tier to Archive. Archive is not a prerequisite or a default account tier.
-- **D. Incorrect:** Create one stored access policy on every source blob. Stored policies are not per-blob objects or replication prerequisites.
+- **A. Correct:** Enable Blob versioning on both source and destination accounts. Object replication requires versioning at both ends to replicate blob state and versions. This supplies the versioning prerequisite; source change feed is also required.
+- **B. Correct:** Enable Blob change feed on the source account. Replication reads source changes from the source account's change feed. This supplies change tracking; versioning on both accounts is also required.
+- **C. Incorrect:** Create periodic snapshots of the source blobs. Snapshots are a recovery mechanism, but object replication does not replicate them. They do not replace the required versioning or source change feed.
+- **D. Incorrect:** Enable Blob change feed only on the destination account. Destination change tracking does not supply the source change feed that replication reads. Enabling it only at the destination leaves a required source prerequisite missing.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/object-replication.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/blob-storage/object-replication.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-configure) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-change-feed)
 
@@ -5244,16 +5244,16 @@ Study: [knowledge file](../knowledge/storage/blob-storage/object-replication.md)
 
 Topic: Storage › Blob object replication.
 
-New block blobs replicate successfully, but files uploaded last month do not. The policy was created today with its default copy scope. What should you inspect first?
+An Azure Blob object-replication rule created today copies new Hot block blobs successfully. Hot block blobs created last month in the same source container remain absent from the destination. Both groups match the same rule prefix, and versioning is enabled on both accounts. You used the default copy scope. Which configuration should you inspect first?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Whether the copy scope includes existing objects. The default new-object scope does not backfill all earlier blobs.
-- **B. Incorrect:** Whether both accounts use identical access keys. Replication does not require matching account keys.
-- **C. Incorrect:** Whether both accounts have LRS disabled. LRS alone does not explain successful new-only replication.
-- **D. Incorrect:** Whether every source blob has the destination account's name. Blob names do not need to contain an account name.
+- **A. Correct:** Whether the rule's copy scope includes preexisting blobs. The default scope copies new blobs and ignores blobs created before the rule. Including existing objects addresses the creation-time difference in this scenario.
+- **B. Incorrect:** Whether the rule's prefix filter excludes the older blob names. A prefix filter can exclude blobs, but the scenario states that both groups match this rule's prefix. Prefix mismatch does not explain their different results.
+- **C. Incorrect:** Whether Blob versioning is disabled on the destination account. Destination versioning is required for object replication, but it is explicitly enabled here. Successful new-blob replication also points away from that prerequisite failure.
+- **D. Incorrect:** Whether source and destination have different replication policy IDs. The paired policy IDs must match for replication to occur. A mismatch does not fit successful replication of new blobs under this rule.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/object-replication.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/blob-storage/object-replication.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-configure) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-change-feed)
 
@@ -5261,16 +5261,16 @@ Study: [knowledge file](../knowledge/storage/blob-storage/object-replication.md)
 
 Topic: Storage › Blob object replication.
 
-An application wants to write directly into a destination container governed by Azure Blob object replication. What must the design account for?
+An active Azure Blob object-replication rule maps a source container's reports/ prefix to a destination container. An authorized client attempts an ordinary Put Blob write to notes/new.txt in that destination container. No other restriction prevents the request. Which outcome should you expect?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** Ordinary writes to that destination container are blocked while the policy applies. Object replication is not an active-active write mechanism.
-- **B. Incorrect:** Writes automatically merge into the source container. The configured replication direction does not supply two-way merging.
-- **C. Incorrect:** Every destination write synchronously updates all source versions. Object replication is asynchronous and not a reverse write path.
-- **D. Incorrect:** Selecting Hot automatically makes the destination writable. Access tier does not remove replication write restrictions.
+- **A. Correct:** The write is rejected because the destination container has an active replication rule. Ordinary writes to a destination container are blocked while its replication rule applies, returning 409 Conflict. A blob name outside the source prefix does not exempt the destination container.
+- **B. Incorrect:** The write succeeds and is asynchronously replicated back to the source container. The configured rule copies from source to destination. It does not provide a reverse write path, and the destination write is blocked.
+- **C. Incorrect:** The write succeeds because the client's blob-write permission overrides the replication rule. Data authorization is necessary but does not remove the replication destination's write restriction. An authorized ordinary write still fails while the rule applies.
+- **D. Incorrect:** The write succeeds because notes/new.txt falls outside the rule's reports/ prefix. The prefix selects which source blobs are copied. It does not limit the destination-container write restriction to matching blob names.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/object-replication.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/blob-storage/object-replication.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-configure) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-change-feed)
 
