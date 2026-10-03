@@ -1,7 +1,7 @@
 # Local and GitHub Pages hosting
 
 The same HTML, CSS, JavaScript, and JSON run locally and at
-<https://frank-reichenbach.github.io/az104-prep/>. All app URLs resolve relative
+<https://vergissberlin.github.io/education-az104/>. All app URLs resolve relative
 to the deployment directory; no domain-specific settings are needed.
 
 ## Build and validate
@@ -26,7 +26,7 @@ Tests exercise the local root and the /az104-prep/ deployment path.
 To check the deployed site in an isolated browser:
 
 ```sh
-pnpm run test:browser -- --url https://frank-reichenbach.github.io/az104-prep/
+pnpm run test:browser -- --url https://vergissberlin.github.io/education-az104/
 ```
 
 ## Deployment
@@ -107,3 +107,19 @@ The site has 322 questions across 99 detailed topics, with documented coverage
 of all 82 objectives. Coverage does not establish mastery or exhaustive scenario
 coverage. Knowledge links expose the original Markdown files; formatted
 document browsing can be added separately.
+
+## Search and agent discovery
+
+`pnpm run build:site` (scripts/seo.mjs) adds `robots.txt`, `sitemap.xml` and
+`llms.txt` and fills the canonical, Open Graph, Twitter and JSON-LD URLs in
+`index.html` from `SITE_URL` (default
+<https://vergissberlin.github.io/education-az104/>).
+
+- Crawlers only read `robots.txt` at the host root. Under the project path it is
+  not honoured by search engines, but agents that fetch it directly still see the
+  `Sitemap:` line. Submit `sitemap.xml` in Google Search Console and Bing
+  Webmaster Tools manually.
+- The app is client-rendered with hash routes, so topic content is exposed to
+  crawlers and agents through the raw Markdown files listed in the sitemap and in
+  `llms.txt`, plus a `<noscript>` link list. Static HTML pages per topic would
+  improve indexing but are not implemented.

@@ -8,7 +8,7 @@ import { hashFiles, renderServiceWorker } from './sw.mjs';
 const assets = new Set(['/index.html', '/style.css', '/main.mjs', '/theme.js', '/quiz.mjs', '/markdown.mjs', '/data.json', '/version.json', '/manifest.webmanifest', '/sw.js']);
 const mime = {
   '.html': 'text/html', '.css': 'text/css', '.mjs': 'text/javascript', '.js': 'text/javascript', '.json': 'application/json', '.md': 'text/plain',
-  '.webmanifest': 'application/manifest+json', '.png': 'image/png', '.svg': 'image/svg+xml',
+  '.webmanifest': 'application/manifest+json', '.png': 'image/png', '.svg': 'image/svg+xml', '.txt': 'text/plain', '.xml': 'application/xml',
 };
 
 export function createStudyServer(root = ROOT, { basePath = '/', staticSite = false } = {}) {
@@ -24,6 +24,7 @@ export function createStudyServer(root = ROOT, { basePath = '/', staticSite = fa
       if (pathname === '/') pathname = '/index.html';
       let file;
       if (assets.has(pathname) || /^\/icons\/[a-z0-9-]+\.(png|svg)$/.test(pathname)) file = path.join(root, staticSite ? '' : 'app', pathname.slice(1));
+      else if (staticSite && /^\/(robots\.txt|sitemap\.xml|llms\.txt)$/.test(pathname)) file = path.join(root, pathname.slice(1));
       else if (/^\/(README|PLAN|STATUS|CHANGELOG)\.md$/.test(pathname)) file = path.join(root, pathname.slice(1));
       else if (/^\/(knowledge|generated|questions|examples|exam|docs|templates)\/[a-zA-Z0-9_/-]+\.(md|json)$/.test(pathname)) file = path.join(root, pathname.slice(1));
       else { res.writeHead(404); res.end('Not found'); return; }

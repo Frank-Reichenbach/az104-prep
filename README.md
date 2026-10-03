@@ -16,7 +16,7 @@ families and 99 topics, including reviewed variants in all five domains.
 ## Start studying
 
 The GitHub Pages address is
-<https://frank-reichenbach.github.io/az104-prep/>. Deployment status is tracked
+<https://vergissberlin.github.io/education-az104/>. Deployment status is tracked
 in [STATUS.md](STATUS.md). Browser progress is separate from localhost; use
 export/import to move your history between them.
 

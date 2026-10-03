@@ -162,6 +162,19 @@ document offline, and cycles the theme. Not verified: installation on a real
 phone/desktop, Lighthouse, and the live Pages deployment (GitHub Pages sends
 `Cache-Control: max-age=600` for sw.js, so updates can lag up to ~10 minutes).
 
+## Search and agent discovery
+
+Added 2026-10-03 (branch `feature/seo-discovery`, not yet merged or deployed):
+canonical, Twitter and JSON-LD (`Course`) metadata, a `<noscript>` link list,
+and generated `robots.txt`, `sitemap.xml` and `llms.txt` (`scripts/seo.mjs`).
+The public base URL is `SITE_URL`, default
+<https://vergissberlin.github.io/education-az104/>; AGENTS.md still names the
+Frank-Reichenbach remote, so confirm which URL is authoritative. `pnpm test`
+passes (28 tests); `pnpm run test:browser` could not run locally (Chrome not
+installed at the expected path). After deploy, submit `sitemap.xml` in Google
+Search Console and Bing Webmaster Tools and validate the JSON-LD. Topic content
+is still reachable only as raw Markdown, not as per-topic HTML pages.
+
 ## Next task
 
 The approved initial knowledge base and basic app are complete. There are no

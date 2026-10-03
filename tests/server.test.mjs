@@ -15,7 +15,7 @@ test('local server serves the study app and sources but does not expose reposito
   const html = await response.text();
   assert.match(html, /AZ-104 Practice/);
   assert.match(response.headers.get('content-security-policy'), /default-src 'self'/);
-  assert.doesNotMatch(html, /<script(?![^>]*\ssrc=)/, 'inline scripts violate the CSP');
+  assert.doesNotMatch(html, /<script(?![^>]*\ssrc=)(?![^>]*type="application\/ld\+json")/, 'inline scripts violate the CSP (JSON-LD data blocks are not executed)');
   const theme = await fetch(base + '/theme.js');
   assert.equal(theme.status, 200);
   assert.match(theme.headers.get('content-type'), /text\/javascript/);

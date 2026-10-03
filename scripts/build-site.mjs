@@ -3,6 +3,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT, filesUnder } from './content.mjs';
 import { hashFiles, renderServiceWorker } from './sw.mjs';
+import { SITE_URL, jsonLd, llmsTxt, robotsTxt, sitemapXml } from './seo.mjs';
 
 export async function buildSite(destination = path.join(ROOT, '_site')) {
   // Output only an explicit content allowlist, never the whole repository.
@@ -28,6 +29,12 @@ export async function buildSite(destination = path.join(ROOT, '_site')) {
   for (const name of ['README.md', 'PLAN.md', 'STATUS.md', 'CHANGELOG.md'])
     await cp(path.join(ROOT, name), path.join(destination, name));
   await writeFile(path.join(destination, '.nojekyll'), '');
+  // Fill the absolute-URL placeholders and add crawler/agent discovery files.
+  const html = (await readFile(path.join(destination, 'index.html'), 'utf8')).replaceAll('%SITE_URL%', SITE_URL).replace('%JSON_LD%', () => jsonLd());
+  await writeFile(path.join(destination, 'index.html'), html);
+  await writeFile(path.join(destination, 'robots.txt'), robotsTxt());
+  await writeFile(path.join(destination, 'sitemap.xml'), await sitemapXml(destination, new Date().toISOString().slice(0, 10)));
+  await writeFile(path.join(destination, 'llms.txt'), await llmsTxt(destination));
   // Verify document links still resolve in the deployment output.
   for (const file of (await filesUnder(destination)).filter(p => p.endsWith('.md'))) {
     const text = await readFile(file, 'utf8');

@@ -47,3 +47,31 @@ test('site output is an installable, fully precached PWA', async t => {
   assert.ok(list.includes('./'));
   assert.ok(list.every(f => !f.startsWith('/')), 'precache paths must be relative');
 });
+
+test('site output exposes crawler and agent discovery files', async t => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'az104-seo-'));
+  t.after(() => rm(dir, { recursive: true, force: true }));
+  await buildSite(dir);
+  const html = await readFile(path.join(dir, 'index.html'), 'utf8');
+  assert.doesNotMatch(html, /%SITE_URL%|%JSON_LD%/);
+  const base = html.match(/<link rel="canonical" href="([^"]+)"/)[1];
+  assert.match(base, /^https:\/\/.+\/$/);
+  const ld = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
+  assert.equal(ld['@type'], 'Course');
+  assert.equal(ld.url, base);
+  const robots = await readFile(path.join(dir, 'robots.txt'), 'utf8');
+  assert.ok(robots.includes(`Sitemap: ${base}sitemap.xml`));
+  // Every URL in sitemap.xml and llms.txt must resolve to a shipped file.
+  const sitemap = await readFile(path.join(dir, 'sitemap.xml'), 'utf8');
+  const llms = await readFile(path.join(dir, 'llms.txt'), 'utf8');
+  const urls = [...[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]), ...[...llms.matchAll(/\]\((https:[^)]+)\)/g)].map(m => m[1])];
+  assert.ok(urls.length > 10);
+  for (const url of urls) {
+    assert.ok(url.startsWith(base), url);
+    const rel = url.slice(base.length);
+    await access(path.join(dir, rel || 'index.html'));
+  }
+  assert.match(llms, /^# AZ-104 Practice/);
+  const sw = await readFile(path.join(dir, 'sw.js'), 'utf8');
+  for (const f of ['robots.txt', 'sitemap.xml', 'llms.txt']) assert.ok(sw.includes(f), `${f} not precached`);
+});
