@@ -14,9 +14,20 @@ The unpublished work branch was renamed to
 Git branch, not the skill's directory. It retains the preceding research,
 skill fixes, and review reports required by this increment.
 
-Publication and fresh-clone verification are in progress. Main and the live
-question bank remain unchanged. The next step is to finish validation, push
-the work branch, and open a pull request. Merge requires explicit approval.
+The feature branch is published and tracks origin. [PR #1](https://github.com/Frank-Reichenbach/az104-prep/pull/1)
+targets main. A clean GitHub clone at `c809199` contained all three tracked
+skill files, resolved all four local Markdown reference links, included the
+shared repository documents, and passed `npm run check`. Checks found no
+personal filesystem paths, plugin dependencies, or symlinked skill files.
+This verifies packaging and references, not discovery in a separate running
+Codex client. Official OpenAI documentation confirms `.agents/skills` discovery;
+README.md links that source and provides invocation instructions.
+
+Local build/check, all 13 Node tests, static-site link validation, skill
+frontmatter validation, and diff whitespace checks passed. Main and the live
+question bank remain unchanged; default clones do not yet include the skill.
+Next: obtain explicit merge approval for PR #1, then merge after green CI,
+check the resulting default-branch clone, and verify Pages deployment.
 
 ## Three-question sample increment
 
@@ -253,6 +264,11 @@ direction wording. VM Insights Map/Dependency Agent deprecation and NSG flow-log
 retirement are documented with current alternatives.
 
 ## Next task
+
+Publishing follow-up: PR #1 is open for the repository-local skill and its
+required documentation. Await explicit merge approval before merging. After
+merge, check a default-branch clone and the Pages deployment; then return to
+the content follow-up below.
 
 Proposed content follow-up: review the remaining live bank against the revised
 skill, prioritizing distractor plausibility and explanation quality; revise
