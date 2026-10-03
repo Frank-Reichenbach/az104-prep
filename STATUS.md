@@ -1,8 +1,40 @@
 # Session handoff
 
-Updated: 2026-10-02. Approved scope: [PLAN.md](PLAN.md).
+Updated: 2026-10-03. Approved scope: [PLAN.md](PLAN.md).
 
 ## Current increment
+
+The requested question-authoring skill is implemented on
+`docs/az104-question-authoring-skill`, which includes the preceding local
+research commit. Its entrypoint is
+`.agents/skills/az104-question-authoring/SKILL.md`, with Codex presentation
+metadata in `agents/openai.yaml` inside the skill directory. It reads the
+existing style guide, question format, and research conventions, then applies
+them to drafting, editing, or reviewing original questions. Review requests
+produce findings; inventory adaptation still needs the user's later request.
+
+AGENTS.md routes question-authoring work to the skill. README.md documents
+invocation and repository-local discovery, checked against official OpenAI
+documentation on October 3, 2026. This increment changes no questions, Azure
+knowledge, research inventory, generated bank data, or app behavior. This branch
+is local and has not been pushed, merged, or deployed.
+
+Skill verification: the skill-creator validator passed. Its missing PyYAML
+dependency was installed in an isolated temporary Python environment, with no
+project or global dependency changes. Additional checks verified the matching
+directory/name, UI metadata, invocation prompt, and all repository reference
+paths. The workflow was reviewed for review-only findings, ambiguous answer
+sets, and unsupported question formats. No independent model-driven evaluation
+or new Azure question trial was run; structural checks do not establish the
+quality of future questions.
+
+Repository verification: build/check validated the unchanged 322 questions,
+99 topics, and 82/82 objective coverage. All 13 Node tests passed. The static
+build checked deployment links, and a Git diff audit confirmed that the bank,
+knowledge, outline, generated content, app, inventory, and style guide were
+unchanged. No Azure lab was executed.
+
+## Previous research increment
 
 The requested official-question-style research is complete on
 docs/official-question-style-research. The
@@ -153,8 +185,9 @@ The approved initial knowledge base and basic app are complete. There are no
 unfinished exam objectives. Next work is maintenance driven by study feedback,
 additional scenario depth, and source refresh before the December–January exam
 window. Recheck the official outline and the documented service changes first.
-A skill remains an optional later interface; the basic app is the chosen first
-interface. Do not start cloud labs without authorization for that separate scope.
+The question-authoring skill is available for future content work. A quiz skill
+remains an optional later interface; the basic app is the chosen first interface.
+Do not start cloud labs without authorization for that separate scope.
 
 ## Limits
 

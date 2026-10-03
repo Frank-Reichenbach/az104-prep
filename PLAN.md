@@ -47,6 +47,10 @@ version tags are not deployment requirements.
 - Rename the initial publication branch to main, update local tracking,
   workflow triggers, deployment permissions, and repository-wide references,
   and verify Pages publication from main. Use pull requests for future changes.
+- Add a repository-local skill for authoring and reviewing question style,
+  requested on 2026-10-03. It applies the researched style guide; the separate
+  quiz skill remains an optional interface. Preserved research questions stay
+  separate until the user requests their review or adaptation.
 
 ## Outcome
 
@@ -141,7 +145,7 @@ have sufficient question coverage. Until then, label limited coverage clearly
 and avoid presenting a storage-only quiz as a full practice exam. Practice
 percentages are not Microsoft's scaled exam score.
 
-A skill remains an optional later interface, consuming the same question data.
+A quiz skill remains an optional later interface, consuming the same question data.
 Do not duplicate the bank or add a model API requirement to the app.
 
 ## 7. Publish the same app with GitHub Pages

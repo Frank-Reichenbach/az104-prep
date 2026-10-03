@@ -87,6 +87,14 @@ or app/data.json. Read [the question format](docs/question-format.md),
 [research conventions](docs/research.md), and
 [the question-style guide](docs/az-104-question-style.md) before adding material.
 
+The repository-local `$az104-question-authoring` skill applies that guide to
+drafting and reviewing questions. Its files are in
+`.agents/skills/az104-question-authoring/`. For example:
+`Use $az104-question-authoring to review the wording and answer choices in questions/storage/blob-storage.json.`
+Codex discovers repository skills in `.agents/skills`; if the skill does not
+appear, restart Codex. See [OpenAI's skill documentation](https://learn.chatgpt.com/docs/build-skills)
+(checked October 3, 2026).
+
 Azure examples are documentation-checked, not lab-tested. This workspace does
 not require an Azure subscription. The study material is independent of
 Microsoft and does not contain official exam questions.
