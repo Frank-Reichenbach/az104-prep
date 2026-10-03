@@ -641,9 +641,9 @@
     {
       "id": "storage.files.snapshots",
       "title": "Azure Files share snapshots",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.files.snapshots.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-file-snapshot-001",
@@ -658,9 +658,9 @@
           ],
           "baselineHash": "dc24151f896c9855bbcf84f466a6fa1e4649423c6e3225c9831650238328a28d",
           "baselineContentHash": "6be1713d68218e43758e86e9510d5e2649bb2be4a9801846a344f2c0b2335b66",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "455427a2ccb0f71d4a7ea5759c19a0594ac77f4aa9639ee66f42685992cccc6d"
         },
         {
           "id": "st-file-snapshot-002",
@@ -675,9 +675,9 @@
           ],
           "baselineHash": "95d72340bdadd938cb441d4203092397d14955a4d31b02cb52d825cfc5d36651",
           "baselineContentHash": "413d0ced0fc3394d4a38894b1584a73da45a04da8035bc48047241a5972cbfa3",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "0357b758139de7907c9f862182962909342bb5d3befdf472cd017d9588c4ebef"
         },
         {
           "id": "st-file-snapshot-003",
@@ -692,9 +692,9 @@
           ],
           "baselineHash": "6bb77493e9bef7fffa5422afe6233e844b3e42c7f88b067e9758704ae29c06ab",
           "baselineContentHash": "dd7fce0659f5487d645620f37f29d396b64e4debfe5940f39f3a838cdeecab54",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "a3123b020a863285b5aa9759249a4f15c83df423b07ff9c282a6c1b856e1116e"
         },
         {
           "id": "st-file-snapshot-004",
@@ -709,9 +709,9 @@
           ],
           "baselineHash": "def8ad7ee18e15c8f4b73c7835d6fb75141bd59a9c5ea264cefcde19c2364490",
           "baselineContentHash": "0b58053a75a4fe3aba2e6a323919ed560ff48fe30f9968b30794e26884cd3721",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "6b04de03bd2f4b38a6ea6de8cc10af5b068d48bb8938d4e2feb19d586ad133c2"
         }
       ]
     },

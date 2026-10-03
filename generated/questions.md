@@ -3540,20 +3540,20 @@ Select **1**. Difficulty: applied.
 A. Read the file from the snapshot and restore or copy it to a writable destination
 B. Open the snapshot and edit its file contents in place
 C. Enable share soft delete to undo the existing file overwrite
-D. Rename the live share to the snapshot timestamp
+D. Create a new snapshot now and restore the file from that new snapshot
 
 ## st-file-snapshot-002
 
 Topic: Storage › Azure Files share snapshots.
 
-An Azure file share has three snapshots. An administrator deletes the oldest one while retaining the newest. Because snapshots store changes incrementally, must the oldest snapshot be kept for the newest snapshot's files to remain recoverable?
+On a classic SMB Azure file share, snapshot S1 captured report.csv at 09:00. After a file edit, S2 captured it at 10:00. The live file was deleted at 11:00. An administrator then deletes S1 but retains S2. What can be recovered from S2?
 
 Select **1**. Difficulty: applied.
 
-A. No; the retained snapshot remains a usable recovery point
-B. Yes; deleting any earlier snapshot always breaks all later snapshots
-C. No, but the newest snapshot can recover only files still present in the live share
-D. Only if the newest snapshot is moved to the blob hot tier first
+A. The report.csv contents captured at 10:00, despite deletion of S1 and the live file.
+B. Nothing from report.csv, because removing S1 breaks the incremental snapshot chain.
+C. Nothing from report.csv, because recovery requires the file to still exist in the live share.
+D. The report.csv contents captured at 09:00, because S2 takes over the deleted snapshot's state.
 
 ## st-file-snapshot-003
 
@@ -3564,15 +3564,15 @@ A classic Azure file share has snapshots, but share soft delete and backup are d
 Select **1**. Difficulty: applied.
 
 A. Those snapshots cannot be retained independently after the share and its snapshots are deleted
-B. Nothing; snapshots automatically remain for seven days
-C. Nothing; deleting a share converts its snapshots into account backups
+B. Nothing; snapshots without an expiry setting persist even after explicit share deletion
+C. Nothing; read-only snapshots cannot be removed by an explicit delete operation
 D. Only the share name matters; recreating the name restores all snapshots
 
 ## st-file-snapshot-004
 
 Topic: Storage › Azure Files share snapshots.
 
-An application deployment will change files on a classic SMB Azure file share. The administrator wants a recovery point for the pre-deployment contents. Which two actions support that goal?
+An application deployment will change files on a classic SMB Azure file share. Before deployment, the administrator must establish a pre-deployment recovery point and confirm that the recovery operator can read its captured files and write the restoration destination. Which two actions jointly meet these readiness requirements?
 
 Select **2**. Difficulty: applied.
 

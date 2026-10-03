@@ -521,7 +521,7 @@
     {
       "id": "st-file-snapshot-001",
       "family": "st-file-snapshot-read-only",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.files.snapshots",
       "objectives": [
         "st-15"
@@ -547,8 +547,8 @@
         },
         {
           "id": "rename",
-          "text": "Rename the live share to the snapshot timestamp",
-          "explanation": "Changing a share name is not a snapshot restore operation."
+          "text": "Create a new snapshot now and restore the file from that new snapshot",
+          "explanation": "A new snapshot captures the current unwanted contents. The earlier snapshot is the required source for recovering the file state before the overwrite."
         }
       ],
       "correct": [
@@ -556,41 +556,42 @@
       ],
       "knowledge": "knowledge/storage/azure-files/snapshots.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/storage/files/storage-snapshots-files"
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-snapshots-files",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-prevent-file-share-deletion"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-file-snapshot-002",
       "family": "st-file-snapshot-incremental",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.files.snapshots",
       "objectives": [
         "st-15"
       ],
       "difficulty": "applied",
-      "prompt": "An Azure file share has three snapshots. An administrator deletes the oldest one while retaining the newest. Because snapshots store changes incrementally, must the oldest snapshot be kept for the newest snapshot's files to remain recoverable?",
+      "prompt": "On a classic SMB Azure file share, snapshot S1 captured report.csv at 09:00. After a file edit, S2 captured it at 10:00. The live file was deleted at 11:00. An administrator then deletes S1 but retains S2. What can be recovered from S2?",
       "select": 1,
       "options": [
         {
           "id": "independent",
-          "text": "No; the retained snapshot remains a usable recovery point",
-          "explanation": "Deleting one snapshot removes data unique to it. Retained snapshots still contain the information needed to restore their own point-in-time state."
+          "text": "The report.csv contents captured at 10:00, despite deletion of S1 and the live file.",
+          "explanation": "Each retained snapshot contains the information needed for its own point-in-time recovery. Deleting S1 removes only data unique to S1; S2 still preserves its captured file state."
         },
         {
           "id": "chain",
-          "text": "Yes; deleting any earlier snapshot always breaks all later snapshots",
-          "explanation": "This incorrectly treats Azure Files snapshots as a user-managed incremental backup chain."
+          "text": "Nothing from report.csv, because removing S1 breaks the incremental snapshot chain.",
+          "explanation": "Azure Files manages shared snapshot data. Its incremental storage does not require the administrator to retain every earlier snapshot for S2 to remain usable."
         },
         {
           "id": "live-only",
-          "text": "No, but the newest snapshot can recover only files still present in the live share",
-          "explanation": "The snapshot represents its captured state, including files subsequently removed from the live share."
+          "text": "Nothing from report.csv, because recovery requires the file to still exist in the live share.",
+          "explanation": "A snapshot retains its captured state independently of later individual-file deletion. The live share exists, so the deleted file can be recovered from S2."
         },
         {
           "id": "hot",
-          "text": "Only if the newest snapshot is moved to the blob hot tier first",
-          "explanation": "Blob access tiers are not a mechanism for preserving an Azure Files snapshot dependency chain."
+          "text": "The report.csv contents captured at 09:00, because S2 takes over the deleted snapshot's state.",
+          "explanation": "Deleting S1 does not change the time represented by S2. S2 remains the 10:00 recovery point and does not become the deleted 09:00 snapshot."
         }
       ],
       "correct": [
@@ -600,12 +601,12 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/files/storage-snapshots-files"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-file-snapshot-003",
       "family": "st-file-snapshot-share-lifetime",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.files.snapshots",
       "objectives": [
         "st-15"
@@ -621,13 +622,13 @@
         },
         {
           "id": "expiry",
-          "text": "Nothing; snapshots automatically remain for seven days",
-          "explanation": "The scenario disables share soft delete. Snapshots do not create an unconditional seven-day recovery window after deletion."
+          "text": "Nothing; snapshots without an expiry setting persist even after explicit share deletion",
+          "explanation": "Snapshots persist until explicitly deleted or until the share is deleted. Lack of a scheduled expiry does not preserve them after the requested share-and-snapshot deletion."
         },
         {
           "id": "account-backup",
-          "text": "Nothing; deleting a share converts its snapshots into account backups",
-          "explanation": "Deletion does not convert snapshots into a separate backup service."
+          "text": "Nothing; read-only snapshots cannot be removed by an explicit delete operation",
+          "explanation": "Read-only prevents modifying snapshot contents. It does not prevent deleting snapshots; the proposed operation removes the data needed for recovery."
         },
         {
           "id": "rename",
@@ -642,18 +643,18 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/files/storage-snapshots-files"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-file-snapshot-004",
       "family": "st-file-snapshot-before-deployment",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.files.snapshots",
       "objectives": [
         "st-15"
       ],
       "difficulty": "applied",
-      "prompt": "An application deployment will change files on a classic SMB Azure file share. The administrator wants a recovery point for the pre-deployment contents. Which two actions support that goal?",
+      "prompt": "An application deployment will change files on a classic SMB Azure file share. Before deployment, the administrator must establish a pre-deployment recovery point and confirm that the recovery operator can read its captured files and write the restoration destination. Which two actions jointly meet these readiness requirements?",
       "select": 2,
       "options": [
         {
@@ -684,9 +685,10 @@
       "knowledge": "knowledge/storage/azure-files/snapshots.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/files/storage-snapshots-files",
-        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning"
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning",
+        "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-prevent-file-share-deletion"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-file-delete-001",

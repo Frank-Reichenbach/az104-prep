@@ -4622,26 +4622,26 @@ Select **1**. Difficulty: applied.
 - **A. Correct:** Read the file from the snapshot and restore or copy it to a writable destination The snapshot provides an earlier read-only source. Recovery writes its contents to the live share or another destination.
 - **B. Incorrect:** Open the snapshot and edit its file contents in place Share snapshots are read-only and cannot be edited in place.
 - **C. Incorrect:** Enable share soft delete to undo the existing file overwrite Share soft delete protects whole-share deletion; it does not roll back an individual overwrite.
-- **D. Incorrect:** Rename the live share to the snapshot timestamp Changing a share name is not a snapshot restore operation.
+- **D. Incorrect:** Create a new snapshot now and restore the file from that new snapshot A new snapshot captures the current unwanted contents. The earlier snapshot is the required source for recovering the file state before the overwrite.
 
-Study: [knowledge file](../knowledge/storage/azure-files/snapshots.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/azure-files/snapshots.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-snapshots-files)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-snapshots-files) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-prevent-file-share-deletion)
 
 ## st-file-snapshot-002
 
 Topic: Storage › Azure Files share snapshots.
 
-An Azure file share has three snapshots. An administrator deletes the oldest one while retaining the newest. Because snapshots store changes incrementally, must the oldest snapshot be kept for the newest snapshot's files to remain recoverable?
+On a classic SMB Azure file share, snapshot S1 captured report.csv at 09:00. After a file edit, S2 captured it at 10:00. The live file was deleted at 11:00. An administrator then deletes S1 but retains S2. What can be recovered from S2?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** No; the retained snapshot remains a usable recovery point Deleting one snapshot removes data unique to it. Retained snapshots still contain the information needed to restore their own point-in-time state.
-- **B. Incorrect:** Yes; deleting any earlier snapshot always breaks all later snapshots This incorrectly treats Azure Files snapshots as a user-managed incremental backup chain.
-- **C. Incorrect:** No, but the newest snapshot can recover only files still present in the live share The snapshot represents its captured state, including files subsequently removed from the live share.
-- **D. Incorrect:** Only if the newest snapshot is moved to the blob hot tier first Blob access tiers are not a mechanism for preserving an Azure Files snapshot dependency chain.
+- **A. Correct:** The report.csv contents captured at 10:00, despite deletion of S1 and the live file. Each retained snapshot contains the information needed for its own point-in-time recovery. Deleting S1 removes only data unique to S1; S2 still preserves its captured file state.
+- **B. Incorrect:** Nothing from report.csv, because removing S1 breaks the incremental snapshot chain. Azure Files manages shared snapshot data. Its incremental storage does not require the administrator to retain every earlier snapshot for S2 to remain usable.
+- **C. Incorrect:** Nothing from report.csv, because recovery requires the file to still exist in the live share. A snapshot retains its captured state independently of later individual-file deletion. The live share exists, so the deleted file can be recovered from S2.
+- **D. Incorrect:** The report.csv contents captured at 09:00, because S2 takes over the deleted snapshot's state. Deleting S1 does not change the time represented by S2. S2 remains the 10:00 recovery point and does not become the deleted 09:00 snapshot.
 
-Study: [knowledge file](../knowledge/storage/azure-files/snapshots.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/azure-files/snapshots.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-snapshots-files)
 
@@ -4654,11 +4654,11 @@ A classic Azure file share has snapshots, but share soft delete and backup are d
 Select **1**. Difficulty: applied.
 
 - **A. Correct:** Those snapshots cannot be retained independently after the share and its snapshots are deleted Snapshots belong to the share. With no separate recovery protection in the scenario, deleting them does not leave an independent backup.
-- **B. Incorrect:** Nothing; snapshots automatically remain for seven days The scenario disables share soft delete. Snapshots do not create an unconditional seven-day recovery window after deletion.
-- **C. Incorrect:** Nothing; deleting a share converts its snapshots into account backups Deletion does not convert snapshots into a separate backup service.
+- **B. Incorrect:** Nothing; snapshots without an expiry setting persist even after explicit share deletion Snapshots persist until explicitly deleted or until the share is deleted. Lack of a scheduled expiry does not preserve them after the requested share-and-snapshot deletion.
+- **C. Incorrect:** Nothing; read-only snapshots cannot be removed by an explicit delete operation Read-only prevents modifying snapshot contents. It does not prevent deleting snapshots; the proposed operation removes the data needed for recovery.
 - **D. Incorrect:** Only the share name matters; recreating the name restores all snapshots Reusing the deleted share's name cannot reconstruct removed snapshot data.
 
-Study: [knowledge file](../knowledge/storage/azure-files/snapshots.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/azure-files/snapshots.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-snapshots-files)
 
@@ -4666,7 +4666,7 @@ Study: [knowledge file](../knowledge/storage/azure-files/snapshots.md). Evidence
 
 Topic: Storage › Azure Files share snapshots.
 
-An application deployment will change files on a classic SMB Azure file share. The administrator wants a recovery point for the pre-deployment contents. Which two actions support that goal?
+An application deployment will change files on a classic SMB Azure file share. Before deployment, the administrator must establish a pre-deployment recovery point and confirm that the recovery operator can read its captured files and write the restoration destination. Which two actions jointly meet these readiness requirements?
 
 Select **2**. Difficulty: applied.
 
@@ -4675,9 +4675,9 @@ Select **2**. Difficulty: applied.
 - **C. Incorrect:** Wait until after corruption is discovered to create the first snapshot of the earlier state A new snapshot captures the state at creation; it cannot reconstruct previously overwritten contents.
 - **D. Incorrect:** Enable only share soft delete instead of preserving earlier file contents Whole-share deletion protection does not supply the pre-overwrite file state required by this scenario.
 
-Study: [knowledge file](../knowledge/storage/azure-files/snapshots.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/azure-files/snapshots.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-snapshots-files) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/files/storage-snapshots-files) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-prevent-file-share-deletion)
 
 ## st-file-delete-001
 
