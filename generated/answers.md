@@ -5134,7 +5134,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** GRS. It includes a second region and does not provide ZRS in the primary.
 - **D. Incorrect:** GZRS. It adds a remote regional copy, violating the stated boundary.
 
-Study: [knowledge file](../knowledge/storage/accounts/redundancy.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/accounts/redundancy.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/geo-redundant-design) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/redundancy-migration)
 
@@ -5151,7 +5151,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** RA-GRS. It provides secondary reads but not zonal replication in the primary.
 - **D. Incorrect:** ZRS. It has no secondary regional replica.
 
-Study: [knowledge file](../knowledge/storage/accounts/redundancy.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/accounts/redundancy.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/geo-redundant-design) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/redundancy-migration)
 
@@ -5159,18 +5159,18 @@ Study: [knowledge file](../knowledge/storage/accounts/redundancy.md). Evidence c
 
 Topic: Storage › Storage redundancy and failover planning.
 
-A blob was just created in an RA-GRS account. A secondary-endpoint read cannot find it, while the primary read succeeds. What is the likely explanation?
+A Hot block blob has just been created in an RA-GRS account. A server read from the primary endpoint succeeds, but a read of the same container and blob path from the secondary returns BlobNotFound. An older blob in that container is readable from both endpoints using the same valid read-only account SAS. No failover has occurred. Which explanation best fits these results?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** The asynchronous geo-copy has not yet reached the secondary. Secondary reads can lag primary writes.
-- **B. Incorrect:** Every primary write is synchronously committed in both regions. Geo-replication does not provide that guarantee.
-- **C. Incorrect:** The client must upload the blob directly to the secondary. The secondary read endpoint is not writable.
-- **D. Incorrect:** All secondary blobs are automatically archived. RA-GRS does not automatically change every blob to Archive.
+- **A. Correct:** The recent write has not yet replicated to the secondary region. Geo-replication is asynchronous. A recently created blob can exist at the primary while a secondary read returns not found until that write reaches the secondary.
+- **B. Incorrect:** Read access to the secondary region has not been enabled. RA-GRS enables secondary reads before failover, and the successful older-blob read confirms that access. Disabled read access cannot explain only the recent blob being absent.
+- **C. Incorrect:** The recent blob must be uploaded directly to the secondary endpoint. The secondary endpoint is read-only before failover. Geo-replication copies primary writes; clients do not populate it with a separate upload.
+- **D. Incorrect:** The secondary region requires a SAS signed with a separate account key. The primary and secondary use the same storage account keys. The valid account SAS already reads the older blob at the secondary, so separate regional signing is not the missing prerequisite.
 
-Study: [knowledge file](../knowledge/storage/accounts/redundancy.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/accounts/redundancy.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/geo-redundant-design) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/redundancy-migration)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/geo-redundant-design) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/storage-disaster-recovery-guidance)
 
 ## st-scope-enforced
 

@@ -3949,14 +3949,14 @@ D. ZRS.
 
 Topic: Storage › Storage redundancy and failover planning.
 
-A blob was just created in an RA-GRS account. A secondary-endpoint read cannot find it, while the primary read succeeds. What is the likely explanation?
+A Hot block blob has just been created in an RA-GRS account. A server read from the primary endpoint succeeds, but a read of the same container and blob path from the secondary returns BlobNotFound. An older blob in that container is readable from both endpoints using the same valid read-only account SAS. No failover has occurred. Which explanation best fits these results?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. The asynchronous geo-copy has not yet reached the secondary.
-B. Every primary write is synchronously committed in both regions.
-C. The client must upload the blob directly to the secondary.
-D. All secondary blobs are automatically archived.
+A. The recent write has not yet replicated to the secondary region.
+B. Read access to the secondary region has not been enabled.
+C. The recent blob must be uploaded directly to the secondary endpoint.
+D. The secondary region requires a SAS signed with a separate account key.
 
 ## st-scope-enforced
 

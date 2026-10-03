@@ -1189,9 +1189,9 @@
     {
       "id": "storage.accounts.redundancy",
       "title": "Storage redundancy and failover planning",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.accounts.redundancy.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-redundancy-zones-only",
@@ -1206,9 +1206,9 @@
           ],
           "baselineHash": "cc1e4045d5534763b725106a2dd564487edbd6f4164ebf76ffe6c2ea485a1e3f",
           "baselineContentHash": "21f800c36e6f8a9ea5fa6de1f54fadc8dbf2259edc0b81692b8dfb63f369ed9b",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "ca1dd7d135ad95e6471e342fb3c2de3e5564b2d398b8863593d4fa670fbc8c89"
         },
         {
           "id": "st-redundancy-secondary-read",
@@ -1223,9 +1223,9 @@
           ],
           "baselineHash": "57ca396bc0f25b1c94628266d32dde885134aaa66c88f3acd9ec03d6863e5351",
           "baselineContentHash": "077d45b52249358de86fcced08a136a85f50615b673a379974a88bc932dad35c",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "8c3a099929043c316cd3a8159336d33eac2341c9194bd11b6b0cb04d3998ebe4"
         },
         {
           "id": "st-redundancy-stale-secondary",
@@ -1240,9 +1240,9 @@
           ],
           "baselineHash": "488ace18734e776762a53948130c3a44ee57986d4482f0cafcdb8c8816a988cb",
           "baselineContentHash": "3b816b6615db71058ef6de3e02666edff69026eaf02fb34787947c4f1b18ee24",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "394d8eb1ee028771d8c43c92819c7822e0f0a0eaac53b472bdb43d806031c85e"
         }
       ]
     },

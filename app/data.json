@@ -14383,7 +14383,7 @@
         "https://learn.microsoft.com/en-us/azure/storage/common/geo-redundant-design",
         "https://learn.microsoft.com/en-us/azure/storage/common/redundancy-migration"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-redundancy-secondary-read",
@@ -14427,39 +14427,39 @@
         "https://learn.microsoft.com/en-us/azure/storage/common/geo-redundant-design",
         "https://learn.microsoft.com/en-us/azure/storage/common/redundancy-migration"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-redundancy-stale-secondary",
       "family": "st-redundancy-stale-secondary",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.accounts.redundancy",
       "objectives": [
         "st-07"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A blob was just created in an RA-GRS account. A secondary-endpoint read cannot find it, while the primary read succeeds. What is the likely explanation?",
+      "prompt": "A Hot block blob has just been created in an RA-GRS account. A server read from the primary endpoint succeeds, but a read of the same container and blob path from the secondary returns BlobNotFound. An older blob in that container is readable from both endpoints using the same valid read-only account SAS. No failover has occurred. Which explanation best fits these results?",
       "select": 1,
       "options": [
         {
           "id": "async",
-          "text": "The asynchronous geo-copy has not yet reached the secondary.",
-          "explanation": "Secondary reads can lag primary writes."
+          "text": "The recent write has not yet replicated to the secondary region.",
+          "explanation": "Geo-replication is asynchronous. A recently created blob can exist at the primary while a secondary read returns not found until that write reaches the secondary."
         },
         {
           "id": "sync",
-          "text": "Every primary write is synchronously committed in both regions.",
-          "explanation": "Geo-replication does not provide that guarantee."
+          "text": "Read access to the secondary region has not been enabled.",
+          "explanation": "RA-GRS enables secondary reads before failover, and the successful older-blob read confirms that access. Disabled read access cannot explain only the recent blob being absent."
         },
         {
           "id": "write",
-          "text": "The client must upload the blob directly to the secondary.",
-          "explanation": "The secondary read endpoint is not writable."
+          "text": "The recent blob must be uploaded directly to the secondary endpoint.",
+          "explanation": "The secondary endpoint is read-only before failover. Geo-replication copies primary writes; clients do not populate it with a separate upload."
         },
         {
           "id": "tier",
-          "text": "All secondary blobs are automatically archived.",
-          "explanation": "RA-GRS does not automatically change every blob to Archive."
+          "text": "The secondary region requires a SAS signed with a separate account key.",
+          "explanation": "The primary and secondary use the same storage account keys. The valid account SAS already reads the older blob at the secondary, so separate regional signing is not the missing prerequisite."
         }
       ],
       "correct": [
@@ -14469,9 +14469,9 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
         "https://learn.microsoft.com/en-us/azure/storage/common/geo-redundant-design",
-        "https://learn.microsoft.com/en-us/azure/storage/common/redundancy-migration"
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-disaster-recovery-guidance"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-scope-enforced",
