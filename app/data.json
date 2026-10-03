@@ -10685,34 +10685,34 @@
     {
       "id": "nw-nsg-priority",
       "family": "nw-nsg-priority",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.security.nsg-asg",
       "objectives": [
         "nw-06"
       ],
       "difficulty": "applied",
-      "prompt": "An inbound NSG has a matching TCP 443 Deny at priority 200 and matching Allow at priority 300. For a new connection, which rule decides?",
+      "prompt": "An NSG has three custom inbound rules with matching address filters: priority 100 allows TCP 80, priority 200 denies TCP 443, and priority 300 allows TCP 443. A new connection targets TCP 443. Which rule determines the NSG's decision?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Deny at 200.",
-          "explanation": "The lower number is evaluated first and ends processing."
+          "text": "The priority-200 rule denies the connection.",
+          "explanation": "The priority-100 rule does not match destination port 443. Priority 200 is therefore the first matching rule; its deny action ends evaluation."
         },
         {
           "id": "b",
-          "text": "Allow at 300 because allows override denies.",
-          "explanation": "The deciding factor is first matching priority, not action type."
+          "text": "The priority-300 rule allows the connection.",
+          "explanation": "A matching allow does not override an earlier matching deny. The rule at 200 has already determined the result before 300 is reached."
         },
         {
           "id": "c",
-          "text": "Both combine into an allow.",
-          "explanation": "Matching rules are not combined into a permissive union."
+          "text": "The priority-100 rule allows the connection.",
+          "explanation": "The lowest number is evaluated first, but its port filter must also match. An allow for TCP 80 does not allow this new TCP 443 connection."
         },
         {
           "id": "d",
-          "text": "The newest rule regardless of priority.",
-          "explanation": "Creation time does not determine precedence."
+          "text": "The default DenyAllInbound rule denies the connection.",
+          "explanation": "The default deny is lower priority than the matching custom rule at 200. The connection is denied by that custom rule, not by the default rule."
         }
       ],
       "correct": [
@@ -10720,43 +10720,41 @@
       ],
       "knowledge": "knowledge/networking/security/nsg-asg.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview",
-        "https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups",
-        "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works"
+        "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "nw-asg-membership",
       "family": "nw-asg-membership",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.security.nsg-asg",
       "objectives": [
         "nw-06"
       ],
       "difficulty": "foundation",
-      "prompt": "An administrator wants one ASG containing NICs in two peered VNets. Is this valid?",
+      "prompt": "An application security group already contains a network interface in vnet-app. You want to add one more NIC. Which candidate meets the ASG's virtual-network membership requirement?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Yes, peering merges their ASG scope.",
-          "explanation": "Peering connects networks but does not merge ASG membership scope."
+          "text": "A NIC in a different VNet that is peered with vnet-app.",
+          "explanation": "Peering provides network connectivity; it does not make the peer VNet part of vnet-app. All NICs in this ASG must belong to the same VNet."
         },
         {
           "id": "b",
-          "text": "No; an ASG's NICs must belong to the same VNet.",
-          "explanation": "This is an ASG membership constraint."
+          "text": "A NIC in another subnet of vnet-app.",
+          "explanation": "ASG membership is constrained to one VNet, not one subnet. A NIC in another subnet of vnet-app meets this particular requirement."
         },
         {
           "id": "c",
-          "text": "Yes, if both VNets use the same DNS server.",
-          "explanation": "DNS settings do not change ASG constraints."
+          "text": "A NIC in an unpeered VNet in the same resource group.",
+          "explanation": "Sharing a resource group does not satisfy the same-VNet membership requirement. This NIC still belongs to a different VNet."
         },
         {
           "id": "d",
-          "text": "Yes, if the ASG has no NSG rules yet.",
-          "explanation": "The membership constraint exists independently of rules."
+          "text": "A NIC in an unpeered VNet in another resource group of the same subscription.",
+          "explanation": "A subscription can contain multiple VNets. Subscription membership does not permit NICs from different VNets to share this ASG."
         }
       ],
       "correct": [
@@ -10764,43 +10762,41 @@
       ],
       "knowledge": "knowledge/networking/security/nsg-asg.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview",
-        "https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups",
-        "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works"
+        "https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "nw-nsg-state",
       "family": "nw-nsg-state",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.security.nsg-asg",
       "objectives": [
         "nw-06"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "An SSH session survives removal of its NSG allow rule, but a new SSH connection is denied. What explains this?",
+      "prompt": "A VM has an active SSH connection from an external client. You remove the inbound NSG rule that allowed it; no other rule permits new SSH connections from that client. The effective rules show the change. The existing session continues, but a fresh SSH connection from the same client is denied. Which NSG behavior explains both observations?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "NSGs filter only UDP.",
-          "explanation": "NSGs also filter TCP, including SSH."
+          "text": "Rules are evaluated for each packet, but the removed allow remains cached for the client.",
+          "explanation": "A still-effective client allow would not explain why a new matching connection is denied. The observed difference follows established flow state, not an unapplied rule removal."
         },
         {
           "id": "b",
-          "text": "Rule removal requires deleting the NIC.",
-          "explanation": "NSG changes do not require NIC deletion."
+          "text": "An allowed session creates a client-IP permission that authorizes later connections.",
+          "explanation": "NSG connection state is associated with flows, not a lasting permission for every connection from the client IP. The new flow is evaluated against the changed rules."
         },
         {
           "id": "c",
-          "text": "NSGs retain state for existing flows; new connections use the changed rules.",
-          "explanation": "This explains the different outcomes."
+          "text": "Existing flows retain connection state, while new flows use the changed rules.",
+          "explanation": "The original SSH flow has an established state record and continues after the allow is removed. A new SSH flow has no such record, so the current rules deny it."
         },
         {
           "id": "d",
-          "text": "SSH automatically bypasses NSGs after one login.",
-          "explanation": "Application login does not grant a firewall bypass for new sessions."
+          "text": "An outbound allow on the VM also authorizes new inbound SSH connections.",
+          "explanation": "State permits response traffic for an allowed connection. An outbound allow is not an inbound exception for a separately initiated client connection."
         }
       ],
       "correct": [
@@ -10808,11 +10804,9 @@
       ],
       "knowledge": "knowledge/networking/security/nsg-asg.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview",
-        "https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups",
-        "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works"
+        "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "nw-pe-public",

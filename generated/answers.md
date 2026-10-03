@@ -3697,52 +3697,52 @@ Study: [knowledge file](../knowledge/networking/security/effective-rules.md). Ev
 
 Topic: Networking › Network and application security groups.
 
-An inbound NSG has a matching TCP 443 Deny at priority 200 and matching Allow at priority 300. For a new connection, which rule decides?
+An NSG has three custom inbound rules with matching address filters: priority 100 allows TCP 80, priority 200 denies TCP 443, and priority 300 allows TCP 443. A new connection targets TCP 443. Which rule determines the NSG's decision?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Deny at 200. The lower number is evaluated first and ends processing.
-- **B. Incorrect:** Allow at 300 because allows override denies. The deciding factor is first matching priority, not action type.
-- **C. Incorrect:** Both combine into an allow. Matching rules are not combined into a permissive union.
-- **D. Incorrect:** The newest rule regardless of priority. Creation time does not determine precedence.
+- **A. Correct:** The priority-200 rule denies the connection. The priority-100 rule does not match destination port 443. Priority 200 is therefore the first matching rule; its deny action ends evaluation.
+- **B. Incorrect:** The priority-300 rule allows the connection. A matching allow does not override an earlier matching deny. The rule at 200 has already determined the result before 300 is reached.
+- **C. Incorrect:** The priority-100 rule allows the connection. The lowest number is evaluated first, but its port filter must also match. An allow for TCP 80 does not allow this new TCP 443 connection.
+- **D. Incorrect:** The default DenyAllInbound rule denies the connection. The default deny is lower priority than the matching custom rule at 200. The connection is denied by that custom rule, not by the default rule.
 
-Study: [knowledge file](../knowledge/networking/security/nsg-asg.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/security/nsg-asg.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview)
 
 ## nw-asg-membership
 
 Topic: Networking › Network and application security groups.
 
-An administrator wants one ASG containing NICs in two peered VNets. Is this valid?
+An application security group already contains a network interface in vnet-app. You want to add one more NIC. Which candidate meets the ASG's virtual-network membership requirement?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Incorrect:** Yes, peering merges their ASG scope. Peering connects networks but does not merge ASG membership scope.
-- **B. Correct:** No; an ASG's NICs must belong to the same VNet. This is an ASG membership constraint.
-- **C. Incorrect:** Yes, if both VNets use the same DNS server. DNS settings do not change ASG constraints.
-- **D. Incorrect:** Yes, if the ASG has no NSG rules yet. The membership constraint exists independently of rules.
+- **A. Incorrect:** A NIC in a different VNet that is peered with vnet-app. Peering provides network connectivity; it does not make the peer VNet part of vnet-app. All NICs in this ASG must belong to the same VNet.
+- **B. Correct:** A NIC in another subnet of vnet-app. ASG membership is constrained to one VNet, not one subnet. A NIC in another subnet of vnet-app meets this particular requirement.
+- **C. Incorrect:** A NIC in an unpeered VNet in the same resource group. Sharing a resource group does not satisfy the same-VNet membership requirement. This NIC still belongs to a different VNet.
+- **D. Incorrect:** A NIC in an unpeered VNet in another resource group of the same subscription. A subscription can contain multiple VNets. Subscription membership does not permit NICs from different VNets to share this ASG.
 
-Study: [knowledge file](../knowledge/networking/security/nsg-asg.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/security/nsg-asg.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups)
 
 ## nw-nsg-state
 
 Topic: Networking › Network and application security groups.
 
-An SSH session survives removal of its NSG allow rule, but a new SSH connection is denied. What explains this?
+A VM has an active SSH connection from an external client. You remove the inbound NSG rule that allowed it; no other rule permits new SSH connections from that client. The effective rules show the change. The existing session continues, but a fresh SSH connection from the same client is denied. Which NSG behavior explains both observations?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Incorrect:** NSGs filter only UDP. NSGs also filter TCP, including SSH.
-- **B. Incorrect:** Rule removal requires deleting the NIC. NSG changes do not require NIC deletion.
-- **C. Correct:** NSGs retain state for existing flows; new connections use the changed rules. This explains the different outcomes.
-- **D. Incorrect:** SSH automatically bypasses NSGs after one login. Application login does not grant a firewall bypass for new sessions.
+- **A. Incorrect:** Rules are evaluated for each packet, but the removed allow remains cached for the client. A still-effective client allow would not explain why a new matching connection is denied. The observed difference follows established flow state, not an unapplied rule removal.
+- **B. Incorrect:** An allowed session creates a client-IP permission that authorizes later connections. NSG connection state is associated with flows, not a lasting permission for every connection from the client IP. The new flow is evaluated against the changed rules.
+- **C. Correct:** Existing flows retain connection state, while new flows use the changed rules. The original SSH flow has an established state record and continues after the allow is removed. A new SSH flow has no such record, so the current rules deny it.
+- **D. Incorrect:** An outbound allow on the VM also authorizes new inbound SSH connections. State permits response traffic for an allowed connection. An outbound allow is not an inbound exception for a separately initiated client connection.
 
-Study: [knowledge file](../knowledge/networking/security/nsg-asg.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/security/nsg-asg.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview)
 
 ## nw-pe-public
 

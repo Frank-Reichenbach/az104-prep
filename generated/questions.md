@@ -2831,40 +2831,40 @@ D. Assume a VM shares one effective NSG across all NICs.
 
 Topic: Networking › Network and application security groups.
 
-An inbound NSG has a matching TCP 443 Deny at priority 200 and matching Allow at priority 300. For a new connection, which rule decides?
+An NSG has three custom inbound rules with matching address filters: priority 100 allows TCP 80, priority 200 denies TCP 443, and priority 300 allows TCP 443. A new connection targets TCP 443. Which rule determines the NSG's decision?
 
 Select **1**. Difficulty: applied.
 
-A. Deny at 200.
-B. Allow at 300 because allows override denies.
-C. Both combine into an allow.
-D. The newest rule regardless of priority.
+A. The priority-200 rule denies the connection.
+B. The priority-300 rule allows the connection.
+C. The priority-100 rule allows the connection.
+D. The default DenyAllInbound rule denies the connection.
 
 ## nw-asg-membership
 
 Topic: Networking › Network and application security groups.
 
-An administrator wants one ASG containing NICs in two peered VNets. Is this valid?
+An application security group already contains a network interface in vnet-app. You want to add one more NIC. Which candidate meets the ASG's virtual-network membership requirement?
 
 Select **1**. Difficulty: foundation.
 
-A. Yes, peering merges their ASG scope.
-B. No; an ASG's NICs must belong to the same VNet.
-C. Yes, if both VNets use the same DNS server.
-D. Yes, if the ASG has no NSG rules yet.
+A. A NIC in a different VNet that is peered with vnet-app.
+B. A NIC in another subnet of vnet-app.
+C. A NIC in an unpeered VNet in the same resource group.
+D. A NIC in an unpeered VNet in another resource group of the same subscription.
 
 ## nw-nsg-state
 
 Topic: Networking › Network and application security groups.
 
-An SSH session survives removal of its NSG allow rule, but a new SSH connection is denied. What explains this?
+A VM has an active SSH connection from an external client. You remove the inbound NSG rule that allowed it; no other rule permits new SSH connections from that client. The effective rules show the change. The existing session continues, but a fresh SSH connection from the same client is denied. Which NSG behavior explains both observations?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. NSGs filter only UDP.
-B. Rule removal requires deleting the NIC.
-C. NSGs retain state for existing flows; new connections use the changed rules.
-D. SSH automatically bypasses NSGs after one login.
+A. Rules are evaluated for each packet, but the removed allow remains cached for the client.
+B. An allowed session creates a client-IP permission that authorizes later connections.
+C. Existing flows retain connection state, while new flows use the changed rules.
+D. An outbound allow on the VM also authorizes new inbound SSH connections.
 
 ## nw-pe-public
 

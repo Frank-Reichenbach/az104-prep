@@ -128,9 +128,9 @@
     {
       "id": "networking.security.nsg-asg",
       "title": "Network and application security groups",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/networking.security.nsg-asg.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "nw-nsg-priority",
@@ -145,9 +145,9 @@
           ],
           "baselineHash": "b6183b19273846190b9840eb90815899efe34a5d100abfeb1178942945308b91",
           "baselineContentHash": "db5c3ca4aa9a72610a6ec10080127b7527ea8a9845b2e61c7a1b3adaae3fb0fc",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "65a1da1f99584c65d0aec47355a3b08b4fe74eceea4290c9cfb053e9f54ceb89"
         },
         {
           "id": "nw-asg-membership",
@@ -162,9 +162,9 @@
           ],
           "baselineHash": "0d86f79d647442d828a2d3022634c009549d0ee55e59fa41d2dcbd2854e2deaf",
           "baselineContentHash": "c345cc42bd271945ce3fdb5c3e49099fa28844c0d3297f9ed39831dabba58e69",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f5e45ff21eb5c1f27103fe85512863b8d1afde25a6a58dfb3654239fcbd33258"
         },
         {
           "id": "nw-nsg-state",
@@ -179,9 +179,9 @@
           ],
           "baselineHash": "4de4eafba31fab270c37dadf1b5dc38006990e12d9afb6a46f44ac62adcf33fe",
           "baselineContentHash": "839f65685d0397b6ca05b569dc9303a7f66590c529f850b60e4b26d7a6a7ac06",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "22eefade5bb1680222edd280ea03233c71a4299ac91274d594056f168b3c7e24"
         }
       ]
     },

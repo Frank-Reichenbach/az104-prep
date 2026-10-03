@@ -11,14 +11,16 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 6/322 questions reviewed, 5 revised and 1 kept; 1/99 topics complete.
-[Blob lifecycle review](docs/reviews/question-bank-refresh/storage.blobs.lifecycle.md)
-records defects, six item decisions, variants, and primary sources checked
-October 3. Build/check, all 13 Node tests, site links, review hashes, a negative
-stale-hash fixture, and whitespace checks passed. Examples were not run in Azure.
-Next: `networking.security.nsg-asg`; no work in that topic is yet complete.
+Checkpoint: 9/322 questions reviewed, 8 revised and 1 kept; 2/99 topics complete.
+Latest: [Network and application security groups](docs/reviews/question-bank-refresh/networking.security.nsg-asg.md). Each completed topic has item decisions,
+repair reasons, variants where present, and primary sources checked October 3.
+Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
+validate checkpoints. The initial stale-hash fixture was rejected as expected.
+These are author-led reviews; no Azure labs were run.
+Next: `storage.blobs.containers` (Blob containers).
 The changes are on the work branch; the live main bank still has the baseline
-questions. The preserved research inventory remains separate.
+questions. The preserved research inventory remains separate. Merging this
+refresh PR needs explicit approval; do not reuse the earlier skill PR approval.
 
 ## Previous skill publication
 
@@ -291,9 +293,10 @@ retirement are documented with current alternatives.
 ## Next task
 
 Continue the authorized existing-bank review from `npm run review:status`.
-Current checkpoint: 6/322 questions, 1/99 topics complete. Next topic:
-`networking.security.nsg-asg`. Record real source checks and repair decisions in
-its report; do not mark a topic complete based on schema checks alone.
+Current checkpoint: 9/322 questions, 2/99 topics complete.
+Next: `storage.blobs.containers` (Blob containers).
+Record real source checks and repair decisions in its report; do not mark a
+topic complete based on schema checks alone.
 
 The skill-review findings are resolved. Use the revised workflow for the next
 requested authoring or review task, and retain acceptance cases for future
