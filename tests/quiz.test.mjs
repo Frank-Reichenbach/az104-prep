@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { makeQuiz, score, shuffle, parseProgress, missedFamilies, familyStatus, reviewFamilies, EXAM_DEFAULTS, examMinutes, formatClock } from '../app/quiz.mjs';
+import { makeQuiz, score, shuffle, parseProgress, missedFamilies, familyStatus, reviewFamilies, EXAM_DEFAULTS, examMinutes, formatClock, topicStats, compareStats, weakest } from '../app/quiz.mjs';
 
 const { questions } = JSON.parse(await readFile(new URL('../questions/storage/blob-storage.json', import.meta.url), 'utf8'));
 const single = questions.find(q => q.select === 1);
@@ -160,4 +160,48 @@ test('formatClock renders mm:ss and h:mm:ss and never goes negative', () => {
   assert.equal(formatClock(3599), '59:59');
   assert.equal(formatClock(3600), '1:00:00');
   assert.equal(formatClock(6000), '1:40:00');
+});
+
+// Synthetic bank: two domains, three topics, one family per question.
+const domains = [{ id: 'a', title: 'Domain A' }, { id: 'b', title: 'Domain B' }];
+const topics = [{ id: 'a.one', domain: 'a', title: 'One' }, { id: 'a.two', domain: 'a', title: 'Two' }, { id: 'b.one', domain: 'b', title: 'Three' }];
+const bank = topics.flatMap(t => [1, 2, 3, 4].map(n => ({
+  id: `${t.id}.${n}`, family: `${t.id}.${n}`, topic: t.id, revision: 1, select: 1, correct: ['x'], options: [{ id: 'x' }, { id: 'y' }],
+})));
+const answer = (id, right, at) => ({ id, revision: 1, selected: [right ? 'x' : 'y'], at });
+
+test('topicStats groups the latest answer per family by topic and domain, and ignores stale revisions', () => {
+  const attempts = [
+    answer('a.one.1', false, '2026-10-01T10:00:00Z'), answer('a.one.1', true, '2026-10-01T11:00:00Z'), // latest wins
+    answer('a.one.2', false, '2026-10-01T10:00:00Z'),
+    { ...answer('a.two.1', true, '2026-10-01T10:00:00Z'), revision: 9 }, // outdated revision
+    { id: 'b.one.1', revision: 1, selected: [], unsure: true, at: '2026-10-01T10:00:00Z' },
+  ];
+  const { byDomain, byTopic } = topicStats(attempts, bank, topics, domains);
+  const topic = id => byTopic.find(t => t.id === id), domain = id => byDomain.find(d => d.id === id);
+  assert.deepEqual([topic('a.one').answered, topic('a.one').correct, topic('a.one').rate], [2, 1, 0.5]);
+  assert.equal(topic('a.two').answered, 0);
+  assert.equal(topic('a.two').rate, null);
+  assert.deepEqual([topic('b.one').answered, topic('b.one').correct], [1, 0]); // unsure is answered, not correct
+  assert.deepEqual([domain('a').answered, domain('a').correct], [2, 1]);
+});
+
+test('compareStats reports percentage-point deltas only with enough answers on both sides', () => {
+  const unit = (id, answered, correct) => ({ id, title: id, domain: id, answered, correct, rate: answered ? correct / answered : null });
+  const rows = compareStats(
+    [unit('a', 4, 3), unit('b', 4, 1), unit('c', 2, 2), unit('d', 0, 0), unit('e', 3, 3)],
+    [unit('a', 10, 5), unit('b', 5, 4), unit('c', 9, 9), unit('d', 5, 5)]);
+  const by = id => rows.find(r => r.id === id);
+  assert.equal(by('a').delta, 25);   // 75% vs 50%
+  assert.equal(by('b').delta, -55);  // 25% vs 80%
+  assert.equal(by('c').delta, null); // too few answers in the test
+  assert.equal(by('d'), undefined);  // not part of the test
+  assert.equal(by('e').delta, null); // no earlier answers
+  assert.equal(by('e').baseline, null);
+});
+
+test('weakest orders by hit rate, drops thin samples, and breaks ties by sample size', () => {
+  const unit = (id, answered, correct) => ({ id, title: id, domain: 'a', answered, correct, rate: answered ? correct / answered : null });
+  const order = weakest([unit('ok', 10, 9), unit('thin', 2, 0), unit('small', 3, 1), unit('big', 9, 3), unit('none', 0, 0)]).map(u => u.id);
+  assert.deepEqual(order, ['big', 'small', 'ok']);
 });

@@ -72,7 +72,7 @@
         <button class="btn" type="submit">Start session</button>
       </form>
       <p id="progress"></p>
-      <div class="flex flex-wrap gap-4"><button class="btn btn-secondary" id="export" type="button">Export progress</button><button class="btn btn-secondary" id="import-button" type="button">Import progress</button><input id="import" type="file" accept=".json,application/json" hidden></div>
+      <div class="flex flex-wrap gap-4"><a class="btn btn-secondary no-underline" id="open-analysis" href="#/analysis">Analyse weak areas</a><button class="btn btn-secondary" id="export" type="button">Export progress</button><button class="btn btn-secondary" id="import-button" type="button">Import progress</button><input id="import" type="file" accept=".json,application/json" hidden></div>
       <p class="text-[.86rem] text-soft">Progress stays in this browser. Import replaces it after confirmation. Export before clearing browser storage.</p>
     </section>
     <section id="session" class="my-6 rounded-xl border border-line bg-surface p-4 sm:p-6.5" hidden>
@@ -83,12 +83,18 @@
       <div class="flex justify-end"><button class="btn m-0" id="next" type="button" hidden>Next question</button></div>
       <div class="mt-8 border-t border-line pt-3"><button class="btn-quiet" id="end" type="button">End session</button></div>
     </section>
-    <section id="results" class="my-6 rounded-xl border border-line bg-surface p-4 sm:p-6.5" hidden><h2 id="result-title" tabindex="-1" class="text-[1.35rem] leading-snug font-bold">Session results</h2><p id="result-score"></p><p class="text-[.86rem] text-soft">This percentage measures your answers in this session. It does not predict Microsoft's scaled exam score or exam readiness.</p><div id="review"></div><button class="btn" id="again" type="button">Choose another session</button></section>
+    <section id="results" class="my-6 rounded-xl border border-line bg-surface p-4 sm:p-6.5" hidden><h2 id="result-title" tabindex="-1" class="text-[1.35rem] leading-snug font-bold">Session results</h2><p id="result-score"></p><p class="text-[.86rem] text-soft">This percentage measures your answers in this session. It does not predict Microsoft's scaled exam score or exam readiness.</p><section aria-labelledby="result-analysis-title" class="mt-6"><h3 id="result-analysis-title" class="text-[1.1rem] font-bold">Where this test stands against your earlier learning state</h3><p class="text-[.86rem] text-soft">Hit rate per area in this test compared with your answers before it. Changes are in percentage points (pp) and only shown with at least 3 answers on both sides.</p><div id="result-analysis"></div></section><div id="review"></div><button class="btn" id="again" type="button">Choose another session</button></section>
+    <section id="analysis" class="my-6 rounded-xl border border-line bg-surface p-4 sm:p-6.5" hidden>
+      <p class="text-[.86rem]"><a href="#" id="analysis-back">← Back to practice</a></p>
+      <h2 id="analysis-title" tabindex="-1" class="text-[1.35rem] leading-snug font-bold">Weakest areas</h2>
+      <p class="text-[.86rem] text-soft">Error rate per area, based on the latest answer to each question family in this browser's study history. Areas with fewer than 3 answered families are left out. Unsure answers count as not correct. This is a study aid, not a prediction of the exam result.</p>
+      <div id="analysis-chart"></div>
+    </section>
     <section id="doc" class="my-6 rounded-xl border border-line bg-surface p-4 sm:p-6.5" hidden>
       <p class="flex flex-wrap items-center gap-x-4 text-[.86rem]"><a href="#" id="doc-back">← Back to practice</a><a id="doc-raw" target="_blank" rel="noopener">View raw Markdown</a></p>
       <article id="doc-body" class="md" tabindex="-1"></article>
     </section>
-    <footer class="mt-8 text-[.86rem] text-soft"><p><span id="coverage">Loading question bank…</span></p><p><a href="#/doc/exam/coverage.md">Coverage</a> · <a href="#/doc/knowledge/index.md">Knowledge index</a> · <a href="#/doc/generated/questions.md">Printable questions</a> · <a href="#/doc/CHANGELOG.md">Changelog</a></p><p>Independent study material · English · No account or cloud service required · <span id="version">Version …</span><span id="offline"></span></p></footer>
+    <footer class="mt-8 text-[.86rem] text-soft"><p><span id="coverage">Loading question bank…</span></p><p><a href="#/analysis">Analysis</a> · <a href="#/doc/exam/coverage.md">Coverage</a> · <a href="#/doc/knowledge/index.md">Knowledge index</a> · <a href="#/doc/generated/questions.md">Printable questions</a> · <a href="#/doc/CHANGELOG.md">Changelog</a></p><p>Independent study material · English · No account or cloud service required · <span id="version">Version …</span><span id="offline"></span></p></footer>
   </main>
 </body>
 </html>

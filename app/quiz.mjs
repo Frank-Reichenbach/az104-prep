@@ -117,3 +117,45 @@ export function parseProgress(input, questions) {
   }
   return { attempts, skipped };
 }
+
+// Per-domain and per-topic results from the latest attempt of each family (same revision only).
+// An "unsure" answer counts as answered but not correct. `rate` is null until something was answered.
+export function topicStats(attempts, questions, topics, domains) {
+  const status = familyStatus(attempts, questions);
+  const topicOf = new Map(topics.map(t => [t.id, t]));
+  const seen = new Set();
+  const unit = (id, title, domain) => ({ id, title, domain, answered: 0, correct: 0, rate: null });
+  const byTopic = new Map(topics.map(t => [t.id, unit(t.id, t.title, t.domain)]));
+  const byDomain = new Map(domains.map(d => [d.id, unit(d.id, d.title, d.id)]));
+  for (const q of questions) {
+    if (seen.has(q.family) || !status.has(q.family)) continue;
+    seen.add(q.family);
+    const topic = topicOf.get(q.topic);
+    if (!topic) continue;
+    const good = status.get(q.family) === 'correct';
+    for (const u of [byTopic.get(topic.id), byDomain.get(topic.domain)]) {
+      if (!u) continue;
+      u.answered++; if (good) u.correct++;
+    }
+  }
+  const finish = u => ({ ...u, rate: u.answered ? u.correct / u.answered : null });
+  return { byDomain: [...byDomain.values()].map(finish), byTopic: [...byTopic.values()].map(finish) };
+}
+
+// Joins a test's stats with the earlier learning state. `delta` is in percentage points and stays
+// null when either side has fewer than `minAnswers` answers, so tiny samples do not look like trends.
+export function compareStats(session, baseline, minAnswers = 3) {
+  const before = new Map(baseline.map(u => [u.id, u]));
+  return session.filter(u => u.answered > 0).map(u => {
+    const base = before.get(u.id);
+    const enough = base && base.answered >= minAnswers && u.answered >= minAnswers;
+    return { ...u, baseline: base?.rate ?? null, baselineAnswered: base?.answered ?? 0,
+      delta: enough ? Math.round((u.rate - base.rate) * 100) : null };
+  });
+}
+
+// Weakest first: lowest hit rate; ties broken by the larger sample.
+export function weakest(units, minAnswers = 3) {
+  return units.filter(u => u.answered >= minAnswers)
+    .sort((a, b) => a.rate - b.rate || b.answered - a.answered || a.title.localeCompare(b.title));
+}

@@ -52,8 +52,11 @@ to the next unfinished topic. Keep the persistent handoff current.
 - Score using stable option IDs, not visible letters or array positions.
 - Do not show two variants of the same family in one quiz.
 - Use exact-match scoring for multiple-answer questions; explain this in the UI.
-- Keep one dependency-free app usable locally and on GitHub Pages, with
-  keyboard controls and links that work under the repository's project path.
+- Keep one app usable locally and on GitHub Pages without a build-time or
+  runtime package manager dependency, with keyboard controls and links that
+  work under the repository's project path. The only third-party runtime code
+  is Chart.js (MIT), vendored unmodified in app/vendor/ for the analysis charts;
+  it is loaded from the same origin, never from a CDN.
 - In test mode, submit advances immediately, including to results after the
   final answer. In preparation mode, preserve feedback and the Next step.
 - Display the topic/module above each question. Session results open incorrect

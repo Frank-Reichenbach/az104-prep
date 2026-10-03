@@ -3,6 +3,7 @@
 @source "./index.html";
 @source "./main.mjs";
 @source "./markdown.mjs";
+@source "./analysis.mjs";
 
 @theme {
   --font-sans: system-ui, sans-serif;
@@ -108,7 +109,7 @@
 
 @layer components {
   /* Sections replay on every show() because [hidden] switches display off and on. */
-  #setup, #session, #results { @apply animate-rise; }
+  #setup, #session, #results, #analysis { @apply animate-rise; }
   #message:not(:empty) { @apply animate-pop; }
   #feedback > * { @apply animate-rise; }
   #review details { @apply animate-fade; }

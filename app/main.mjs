@@ -1,9 +1,10 @@
 import { renderMarkdown, resolveDoc, isDocPath, slugify } from './markdown.mjs';
 import { makeQuiz, score, familyStatus, reviewFamilies, isUnsure, parseProgress, EXAM_DEFAULTS, PRACTICE_DEFAULT_COUNT, examMinutes, formatClock } from './quiz.mjs';
+import { renderAnalysis, unmount } from './analysis.mjs';
 
 const $ = id => document.getElementById(id);
 const STORAGE = 'az104-progress-v1';
-let bank, attempts = [], active = [], position = 0, answers = [], mode = 'practice', submitted = false, storageWritable = true;
+let bank, attempts = [], active = [], position = 0, answers = [], mode = 'practice', submitted = false, storageWritable = true, sessionStart = 0;
 function el(tag, text, className) {
   const node = document.createElement(tag);
   if (text !== undefined) node.textContent = text;
@@ -62,7 +63,7 @@ async function registerWorker() {
 registerWorker();
 function message(text = '') { $('message').textContent = text; }
 let view = 'setup';
-function show(id) { view = id; for (const name of ['setup', 'session', 'results', 'doc']) $(name).hidden = name !== id; }
+function show(id) { view = id; for (const name of ['setup', 'session', 'results', 'analysis', 'doc']) $(name).hidden = name !== id; }
 function save() {
   if (!storageWritable) { message('Existing unreadable progress was preserved. Export new answers to save them; automatic storage is disabled for this session.'); return; }
   try { localStorage.setItem(STORAGE, JSON.stringify({ version: 1, attempts })); }
@@ -165,6 +166,8 @@ function finish(expired = false) {
     $('review').append(details);
   });
   show('results'); $('result-title').focus();
+  if (answers.length) renderAnalysis($('result-analysis'), { bank, attempts, mode: 'compare', baselineCount: sessionStart });
+  else unmount($('result-analysis')), $('result-analysis').replaceChildren();
 }
 
 // Test mode defaults to exam size and time; edited values are kept.
@@ -185,7 +188,7 @@ $('start-form').addEventListener('submit', event => {
       missed: $('missed').value === 'none' ? null : reviewFamilies(attempts, bank.questions, $('missed').value) });
     if (!active.length) { message('No question families match this selection. Change the topic or the review filter.'); return; }
     if (active.length < Number($('count').value)) message(`This selection has ${active.length} available families; the session uses all of them.`);
-    mode = $('mode').value; position = 0; answers = []; show('session'); renderQuestion();
+    mode = $('mode').value; position = 0; answers = []; sessionStart = attempts.length; show('session'); renderQuestion();
     if (mode === 'test') {
       const minutes = Number($('minutes').value);
       startTimer(Number.isFinite(minutes) && minutes >= 1 ? minutes : examMinutes(active.length));
@@ -236,13 +239,24 @@ $('import').addEventListener('change', async event => {
 });
 
 // Markdown viewer: #/doc/<path>[#anchor]. Documents are fetched from the same origin and rendered as DOM nodes.
+const originalTitle = document.title;
+const ANALYSIS_ROUTE = '#/analysis';
 const DOC_ROUTE = /^#\/doc\/([^#]+)(?:#(.*))?$/;
 let docReturn = 'setup';
 async function route() {
+  if (location.hash === ANALYSIS_ROUTE) {
+    if (!bank) return;
+    if (view !== 'analysis' && view !== 'doc') docReturn = view === 'setup' || view === 'results' ? view : 'setup';
+    show('analysis'); document.title = 'Analysis · AZ-104 Practice'; window.scrollTo(0, 0);
+    $('analysis-title').focus({ preventScroll: true });
+    renderAnalysis($('analysis-chart'), { bank, attempts, mode: 'weakest' });
+    return;
+  }
+  if (view === 'analysis') document.title = originalTitle;
   const m = DOC_ROUTE.exec(decodeURIComponent(location.hash));
-  if (!m) { if (view === 'doc') show(docReturn); return; }
+  if (!m) { if (view === 'doc' || view === 'analysis') show(docReturn); return; }
   const [, path, anchor] = m;
-  if (view !== 'doc') docReturn = view;
+  if (view !== 'doc' && view !== 'analysis') docReturn = view;
   show('doc');
   const body = $('doc-body'), raw = new URL(path, new URL('.', import.meta.url)).href;
   $('doc-raw').href = raw;

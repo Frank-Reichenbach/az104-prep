@@ -191,6 +191,23 @@ mode were verified manually in the built-in browser. `pnpm run test:browser`
 was not run. `.claude/launch.json` names port 3000, but `pnpm start` serves
 port 8080.
 
+## Analysis page and charts
+
+Added 2026-10-03 (branch `feature/analysis-page`, not merged or deployed):
+`#/analysis` shows the weakest exam domains (error rate, drill-down to topics,
+at least 3 answered families per area). The results screen of every session
+embeds a grouped bar chart of this test against the learning state before it,
+with a percentage-point change per area (shown only with 3+ answers on both
+sides). Charts use Chart.js 4.5.1 (MIT), vendored in `app/vendor/` and loaded
+lazily; a data table is the accessible fallback. Statistics come from the
+latest answer per family (`topicStats`, `compareStats`, `weakest` in
+`app/quiz.mjs`). History format is unchanged. Verified manually in the built-in
+browser with synthetic history (`pnpm start` serves port 8080, not the 3000
+from `.claude/launch.json`). `pnpm run build`, `pnpm run check`, `pnpm test`
+(33 tests) and `pnpm run test:browser` (run with Microsoft Edge via
+`BROWSER_BIN`, Chrome is not installed here) passed. Not verified: dark-mode
+and 375 px rendering of the charts.
+
 ## Next task
 
 The approved initial knowledge base and basic app are complete. There are no

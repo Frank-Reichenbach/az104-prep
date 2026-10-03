@@ -174,6 +174,13 @@ try {
     await key('Enter', 'Enter', 13);
     await waitFor(`!document.getElementById('results').hidden`);
     assert.match(await evaluate(`document.getElementById('result-score').textContent`), /^1\/1 correct/);
+    // The session results embed the test-vs-history chart, and the analysis page is reachable.
+    await waitFor(`document.querySelector('#result-analysis canvas') && document.querySelector('#result-analysis table')`);
+    await evaluate(`location.hash = '#/analysis'`);
+    await waitFor(`!document.getElementById('analysis').hidden`);
+    assert.equal(await evaluate(`document.activeElement.id`), 'analysis-title');
+    await evaluate(`location.hash = ''`);
+    await waitFor(`!document.getElementById('results').hidden`);
     const expectedCount = recorded + 1;
 
     // Download through the real Export button, then import that file through
