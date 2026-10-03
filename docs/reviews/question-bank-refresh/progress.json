@@ -872,9 +872,9 @@
     {
       "id": "storage.access.stored-policies",
       "title": "Stored access policies",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.access.stored-policies.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-policy-revoke-group",
@@ -889,9 +889,9 @@
           ],
           "baselineHash": "a2d505f838a38342c25e14986b45fa3de3a313dd7f1676d22a09451c528a448e",
           "baselineContentHash": "668201500a269476cd40c877f38b5b0360502244bc08f19436da0fc046863df5",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "44a8044ff684ea5c5367b1bb1970fe0cbbae3c143e3c74803f3a9dc218ec1890"
         },
         {
           "id": "st-policy-compatible",
@@ -906,9 +906,9 @@
           ],
           "baselineHash": "d1209506b3d37d4056f05b2324ea8159f5a0925d4cec73c2cfdd65b66ca1d007",
           "baselineContentHash": "5cf309a899168583c2a5e7e634d64f7232f9d321356464327525dc030610882a",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "2cc2602efff4110e6788ac583d48d3f8d72685b7b373f3e7dfe5822c305f2df8"
         },
         {
           "id": "st-policy-sixth",
@@ -923,9 +923,9 @@
           ],
           "baselineHash": "a049ebfe764cd8df5f80bce5821e6371ed1554836b7e9ff7c39678d9c862d4a1",
           "baselineContentHash": "21e159d6dfadd5d36d3925a9467a4c59d8bc09da2dc93156019518f07758cdbe",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "c7f5ca875ef3d080e914da12bd58db02d8a28e936a70d674870ad2d0714cc14b"
         }
       ]
     },

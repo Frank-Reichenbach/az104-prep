@@ -4976,14 +4976,14 @@ A Blob container has service SAS credentials bound to policy contractor-read. Ot
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Delete the contractor-read policy identifier. The group's credentials lose their referenced server-side policy.
+- **A. Correct:** Remove contractor-read from the stored-policy collection while preserving the other policies. Removing the referenced identifier revokes its associated service SAS credentials. Set ACL must include the policies that other clients still need; omitting only contractor-read preserves their separate policy links.
 - **B. Incorrect:** Regenerate both storage account keys. This is broader than requested and disrupts other key-signed clients.
 - **C. Incorrect:** Remove the contractors' Azure Reader roles. These requests use a key-signed SAS, not their Azure Reader assignments.
-- **D. Incorrect:** Move the blobs to Cool. An access tier does not revoke authorization.
+- **D. Incorrect:** Set the container anonymous access level to Private while preserving its stored policies. Private access prevents anonymous reads. A request with a valid policy-bound service SAS is authorized with that credential, so this change does not revoke the contractor SAS.
 
-Study: [knowledge file](../knowledge/storage/access/stored-access-policies.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/access/stored-access-policies.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/rest/api/storageservices/define-stored-access-policy) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/sas-service-create-dotnet) · [Microsoft source 3](https://learn.microsoft.com/en-us/rest/api/storageservices/set-container-acl)
+[Microsoft source 1](https://learn.microsoft.com/en-us/rest/api/storageservices/define-stored-access-policy) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/sas-service-create-dotnet) · [Microsoft source 3](https://learn.microsoft.com/en-us/rest/api/storageservices/set-container-acl) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-configure)
 
 ## st-policy-compatible
 
@@ -4998,7 +4998,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** A Blob user delegation SAS. User delegation SAS cannot reference this policy.
 - **D. Incorrect:** A Microsoft Entra OAuth access token. OAuth authorization does not use SAS stored policy identifiers.
 
-Study: [knowledge file](../knowledge/storage/access/stored-access-policies.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/access/stored-access-policies.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/rest/api/storageservices/define-stored-access-policy) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/sas-service-create-dotnet) · [Microsoft source 3](https://learn.microsoft.com/en-us/rest/api/storageservices/set-container-acl)
 
@@ -5006,18 +5006,18 @@ Study: [knowledge file](../knowledge/storage/access/stored-access-policies.md). 
 
 Topic: Storage › Stored access policies.
 
-An administrator tries to add a sixth stored access policy to a Blob container. The existing five policies must remain. Why does Azure reject the request?
+An account has two Blob containers, each with five stored access policies. Set Container ACL rejects a request that would keep the five policies on the invoices container and add a sixth. Which documented quota explains the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** The container supports at most five stored access policies. The quota applies to policy entries per resource.
-- **B. Incorrect:** The account has already issued five SAS tokens. Issued SAS count is not this policy quota.
-- **C. Incorrect:** The container contains more than five blobs. Blob count does not control the stored-policy limit.
-- **D. Incorrect:** Only one stored policy is allowed per account key. Policies are resource-scoped, not one entry per signing key.
+- **A. Correct:** At most five stored access policy entries on one container. The limit is five policy entries per container (or other supported resource). Keeping all five existing invoices entries leaves no slot for a sixth entry in that container.
+- **B. Incorrect:** At most five SAS credentials issued for one container. Azure Storage does not limit issuance to five SAS credentials. Many service SAS can reference the same policy; the quota concerns stored policy entries, not generated tokens.
+- **C. Incorrect:** At most five stored access policy entries across the entire account. The quota applies separately to each supported resource. Five entries on a different container do not consume this container's quota, and there is no five-entry account-wide pool.
+- **D. Incorrect:** At most five blobs authorized through stored policies in one container. A stored policy can govern SAS for blobs in its container. The documented limit counts policy entries, not how many blobs those policy-linked credentials can authorize.
 
-Study: [knowledge file](../knowledge/storage/access/stored-access-policies.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/access/stored-access-policies.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/rest/api/storageservices/define-stored-access-policy) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/sas-service-create-dotnet) · [Microsoft source 3](https://learn.microsoft.com/en-us/rest/api/storageservices/set-container-acl)
+[Microsoft source 1](https://learn.microsoft.com/en-us/rest/api/storageservices/define-stored-access-policy) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/sas-service-create-dotnet) · [Microsoft source 3](https://learn.microsoft.com/en-us/rest/api/storageservices/set-container-acl) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)
 
 ## st-account-general-purpose
 

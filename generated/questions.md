@@ -3810,10 +3810,10 @@ A Blob container has service SAS credentials bound to policy contractor-read. Ot
 
 Select **1**. Difficulty: applied.
 
-A. Delete the contractor-read policy identifier.
+A. Remove contractor-read from the stored-policy collection while preserving the other policies.
 B. Regenerate both storage account keys.
 C. Remove the contractors' Azure Reader roles.
-D. Move the blobs to Cool.
+D. Set the container anonymous access level to Private while preserving its stored policies.
 
 ## st-policy-compatible
 
@@ -3832,14 +3832,14 @@ D. A Microsoft Entra OAuth access token.
 
 Topic: Storage › Stored access policies.
 
-An administrator tries to add a sixth stored access policy to a Blob container. The existing five policies must remain. Why does Azure reject the request?
+An account has two Blob containers, each with five stored access policies. Set Container ACL rejects a request that would keep the five policies on the invoices container and add a sixth. Which documented quota explains the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. The container supports at most five stored access policies.
-B. The account has already issued five SAS tokens.
-C. The container contains more than five blobs.
-D. Only one stored policy is allowed per account key.
+A. At most five stored access policy entries on one container.
+B. At most five SAS credentials issued for one container.
+C. At most five stored access policy entries across the entire account.
+D. At most five blobs authorized through stored policies in one container.
 
 ## st-account-general-purpose
 
