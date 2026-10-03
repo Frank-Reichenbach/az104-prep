@@ -1309,9 +1309,9 @@
     {
       "id": "storage.accounts.encryption",
       "title": "Storage encryption and customer-managed keys",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.accounts.encryption.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-encryption-default",
@@ -1326,9 +1326,9 @@
           ],
           "baselineHash": "c235687872c87bf89bb8198693d3a9c02ce2614222aa65c9f2e0864b96a1a54a",
           "baselineContentHash": "59699035ae3643cad77a57399342831148331b9c6b86a24d14b453053be75951",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "eef9da8aa31b1640bf44a6b7a4ac3bad6e9e78dffb123b2ca26d89fa4082cac8"
         },
         {
           "id": "st-encryption-identity",
@@ -1343,9 +1343,9 @@
           ],
           "baselineHash": "716038a71a00560c4406603c45584cab744142505cd3cdde4b3927bfbd0fcdd9",
           "baselineContentHash": "e8309b4d11d7e656b711ac583cb58b0494a98a1a7ac3839e0cd762c964e7cdf5",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "eedf6d06fcf26a2641e2709b523f337adae9b9ad721353c18994c0ead181bcae"
         },
         {
           "id": "st-encryption-vault-protection",
@@ -1360,9 +1360,9 @@
           ],
           "baselineHash": "5caff489d93a2a884ecf017d95eda110405b12d2ea54627958b1791247ee64dc",
           "baselineContentHash": "c86bfaf8e32c1806af6b50d988a3e71d01e080fb6fe1ec5783bd8ff64e41bbc6",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f54f1f1b41f8d74d9d911dbcda7574bb7e5a4e10d7478509ed2045ff6a594ad2"
         }
       ]
     },

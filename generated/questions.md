@@ -3884,40 +3884,40 @@ D. Allow storage account key access.
 
 Topic: Storage › Storage encryption and customer-managed keys.
 
-A new Azure storage account uses default encryption settings. What protects its persisted data?
+A new Azure storage account retains its default encryption configuration. No customer keys or additional encryption options have been configured. Which configuration encrypts its persisted blob data?
 
 Select **1**. Difficulty: foundation.
 
-A. Service-side encryption with Microsoft-managed keys.
-B. No encryption until a SAS is created.
-C. Only TLS encrypts stored blobs.
-D. The account access key is the customer-managed encryption key.
+A. Service-side encryption using Microsoft-managed keys.
+B. Service-side encryption using a customer-managed Key Vault key.
+C. Service-side encryption using a customer-provided key on each request.
+D. Double encryption using service and infrastructure encryption layers.
 
 ## st-encryption-identity
 
 Topic: Storage › Storage encryption and customer-managed keys.
 
-A storage account using CMK cannot access its Key Vault key. The operator can view the key, but the account's managed identity has no key permissions. What addresses the service's missing permission?
+An existing Azure storage account cannot use its customer-managed Key Vault key. The key is enabled and the service's vault network path works. The vault uses Azure RBAC, but the storage account's configured managed identity has no key permissions. You must grant that identity key-metadata read and wrap/unwrap operations, without other cryptographic operations or key management. Which built-in role should you assign at the vault scope?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Grant the storage identity Key Vault Crypto Service Encryption User.
-B. Grant the operator Reader on the storage account.
-C. Regenerate storage account key1.
-D. Create a user delegation SAS.
+A. Key Vault Crypto Service Encryption User.
+B. Key Vault Reader.
+C. Key Vault Crypto User.
+D. Key Vault Secrets User.
 
 ## st-encryption-vault-protection
 
 Topic: Storage › Storage encryption and customer-managed keys.
 
-Which two Key Vault protections are required by the documented Azure Storage CMK configuration?
+Azure Storage will use a customer-managed encryption key stored in Azure Key Vault. Which two vault protections are required for this configuration? Select two required protections; neither replaces the other.
 
-Select **2**. Difficulty: applied.
+Select **2**. Difficulty: foundation.
 
 A. Soft delete.
 B. Purge protection.
-C. Anonymous key access.
-D. Blob container soft deletion on the vault.
+C. Diagnostic logging.
+D. Automatic key rotation policy.
 
 ## st-redundancy-zones-only
 

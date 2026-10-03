@@ -14211,34 +14211,34 @@
     {
       "id": "st-encryption-default",
       "family": "st-encryption-default",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.accounts.encryption",
       "objectives": [
         "st-09"
       ],
       "difficulty": "foundation",
-      "prompt": "A new Azure storage account uses default encryption settings. What protects its persisted data?",
+      "prompt": "A new Azure storage account retains its default encryption configuration. No customer keys or additional encryption options have been configured. Which configuration encrypts its persisted blob data?",
       "select": 1,
       "options": [
         {
           "id": "managed",
-          "text": "Service-side encryption with Microsoft-managed keys.",
-          "explanation": "At-rest encryption is automatic by default."
+          "text": "Service-side encryption using Microsoft-managed keys.",
+          "explanation": "Azure Storage encrypts persisted data automatically and uses Microsoft-managed keys by default. No customer-key configuration is needed for this protection."
         },
         {
           "id": "none",
-          "text": "No encryption until a SAS is created.",
-          "explanation": "SAS authorizes requests; it does not enable default at-rest encryption."
+          "text": "Service-side encryption using a customer-managed Key Vault key.",
+          "explanation": "A vault-backed customer-managed key is a supported choice, but it requires explicit configuration. This account retains Microsoft-managed keys."
         },
         {
           "id": "tls",
-          "text": "Only TLS encrypts stored blobs.",
-          "explanation": "TLS protects transport, not persisted data."
+          "text": "Service-side encryption using a customer-provided key on each request.",
+          "explanation": "Customer-provided keys are an optional Blob request mechanism. The scenario supplies no such keys, so that mechanism does not describe the default encryption."
         },
         {
           "id": "account",
-          "text": "The account access key is the customer-managed encryption key.",
-          "explanation": "An authorization credential is not the vault-backed CMK."
+          "text": "Double encryption using service and infrastructure encryption layers.",
+          "explanation": "Infrastructure encryption is an additional option that must be enabled. Automatic service-side encryption alone does not imply that this extra layer is configured."
         }
       ],
       "correct": [
@@ -14247,42 +14247,41 @@
       "knowledge": "knowledge/storage/accounts/encryption.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption",
-        "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-existing-account",
-        "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview"
+        "https://learn.microsoft.com/en-us/azure/storage/common/infrastructure-encryption-enable"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-encryption-identity",
       "family": "st-encryption-identity",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.accounts.encryption",
       "objectives": [
         "st-09"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A storage account using CMK cannot access its Key Vault key. The operator can view the key, but the account's managed identity has no key permissions. What addresses the service's missing permission?",
+      "prompt": "An existing Azure storage account cannot use its customer-managed Key Vault key. The key is enabled and the service's vault network path works. The vault uses Azure RBAC, but the storage account's configured managed identity has no key permissions. You must grant that identity key-metadata read and wrap/unwrap operations, without other cryptographic operations or key management. Which built-in role should you assign at the vault scope?",
       "select": 1,
       "options": [
         {
           "id": "role",
-          "text": "Grant the storage identity Key Vault Crypto Service Encryption User.",
-          "explanation": "The service needs its own authorization to use the wrapping key."
+          "text": "Key Vault Crypto Service Encryption User.",
+          "explanation": "This role grants key-metadata read and wrap/unwrap operations to the storage identity. It supplies the required encryption-key access without broader cryptographic or key-management permissions."
         },
         {
           "id": "reader",
-          "text": "Grant the operator Reader on the storage account.",
-          "explanation": "Operator resource visibility does not grant the service key access."
+          "text": "Key Vault Reader.",
+          "explanation": "Key Vault Reader can read metadata but does not grant wrap/unwrap operations. Metadata visibility alone cannot repair the storage identity's missing key-use permission."
         },
         {
           "id": "rotate",
-          "text": "Regenerate storage account key1.",
-          "explanation": "An account access key does not repair Key Vault authorization."
+          "text": "Key Vault Crypto User.",
+          "explanation": "Crypto User can use keys for broader cryptographic operations. Although it can permit wrapping, those additional operations exceed the explicit permission constraint."
         },
         {
           "id": "sas",
-          "text": "Create a user delegation SAS.",
-          "explanation": "SAS does not authorize the storage service to unwrap its encryption key."
+          "text": "Key Vault Secrets User.",
+          "explanation": "Secrets User reads secret contents. The required object is a cryptographic key, so this role does not provide its wrap/unwrap operations."
         }
       ],
       "correct": [
@@ -14290,43 +14289,42 @@
       ],
       "knowledge": "knowledge/storage/accounts/encryption.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption",
         "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-existing-account",
-        "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview"
+        "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-encryption-vault-protection",
       "family": "st-encryption-vault-protection",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.accounts.encryption",
       "objectives": [
         "st-09"
       ],
-      "difficulty": "applied",
-      "prompt": "Which two Key Vault protections are required by the documented Azure Storage CMK configuration?",
+      "difficulty": "foundation",
+      "prompt": "Azure Storage will use a customer-managed encryption key stored in Azure Key Vault. Which two vault protections are required for this configuration? Select two required protections; neither replaces the other.",
       "select": 2,
       "options": [
         {
           "id": "soft",
           "text": "Soft delete.",
-          "explanation": "It protects recoverability of deleted key material."
+          "explanation": "The Storage CMK configuration requires vault soft delete, which retains deleted key material for recovery during retention. Purge protection is required as well."
         },
         {
           "id": "purge",
           "text": "Purge protection.",
-          "explanation": "It prevents immediate permanent removal during retention."
+          "explanation": "Purge protection prevents permanent removal of soft-deleted objects before retention ends. Storage CMK requires it in addition to soft delete."
         },
         {
           "id": "anonymous",
-          "text": "Anonymous key access.",
-          "explanation": "Key operations must be authorized."
+          "text": "Diagnostic logging.",
+          "explanation": "Vault diagnostic logging records activity for monitoring and investigation. It does not retain deleted key material or replace either required deletion protection."
         },
         {
           "id": "blob",
-          "text": "Blob container soft deletion on the vault.",
-          "explanation": "Key Vault is not a Blob container and does not use this setting."
+          "text": "Automatic key rotation policy.",
+          "explanation": "A rotation policy creates replacement key versions according to a schedule. It does not supply the required recovery and purge protections for existing key material."
         }
       ],
       "correct": [
@@ -14335,11 +14333,11 @@
       ],
       "knowledge": "knowledge/storage/accounts/encryption.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption",
         "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-existing-account",
-        "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview"
+        "https://learn.microsoft.com/en-us/azure/key-vault/general/logging",
+        "https://learn.microsoft.com/en-us/azure/key-vault/keys/how-to-configure-key-rotation"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-redundancy-zones-only",

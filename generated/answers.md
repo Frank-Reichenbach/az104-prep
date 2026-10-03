@@ -5074,52 +5074,52 @@ Study: [knowledge file](../knowledge/storage/accounts/configuration.md). Evidenc
 
 Topic: Storage › Storage encryption and customer-managed keys.
 
-A new Azure storage account uses default encryption settings. What protects its persisted data?
+A new Azure storage account retains its default encryption configuration. No customer keys or additional encryption options have been configured. Which configuration encrypts its persisted blob data?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** Service-side encryption with Microsoft-managed keys. At-rest encryption is automatic by default.
-- **B. Incorrect:** No encryption until a SAS is created. SAS authorizes requests; it does not enable default at-rest encryption.
-- **C. Incorrect:** Only TLS encrypts stored blobs. TLS protects transport, not persisted data.
-- **D. Incorrect:** The account access key is the customer-managed encryption key. An authorization credential is not the vault-backed CMK.
+- **A. Correct:** Service-side encryption using Microsoft-managed keys. Azure Storage encrypts persisted data automatically and uses Microsoft-managed keys by default. No customer-key configuration is needed for this protection.
+- **B. Incorrect:** Service-side encryption using a customer-managed Key Vault key. A vault-backed customer-managed key is a supported choice, but it requires explicit configuration. This account retains Microsoft-managed keys.
+- **C. Incorrect:** Service-side encryption using a customer-provided key on each request. Customer-provided keys are an optional Blob request mechanism. The scenario supplies no such keys, so that mechanism does not describe the default encryption.
+- **D. Incorrect:** Double encryption using service and infrastructure encryption layers. Infrastructure encryption is an additional option that must be enabled. Automatic service-side encryption alone does not imply that this extra layer is configured.
 
-Study: [knowledge file](../knowledge/storage/accounts/encryption.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/accounts/encryption.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-existing-account) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/infrastructure-encryption-enable)
 
 ## st-encryption-identity
 
 Topic: Storage › Storage encryption and customer-managed keys.
 
-A storage account using CMK cannot access its Key Vault key. The operator can view the key, but the account's managed identity has no key permissions. What addresses the service's missing permission?
+An existing Azure storage account cannot use its customer-managed Key Vault key. The key is enabled and the service's vault network path works. The vault uses Azure RBAC, but the storage account's configured managed identity has no key permissions. You must grant that identity key-metadata read and wrap/unwrap operations, without other cryptographic operations or key management. Which built-in role should you assign at the vault scope?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Grant the storage identity Key Vault Crypto Service Encryption User. The service needs its own authorization to use the wrapping key.
-- **B. Incorrect:** Grant the operator Reader on the storage account. Operator resource visibility does not grant the service key access.
-- **C. Incorrect:** Regenerate storage account key1. An account access key does not repair Key Vault authorization.
-- **D. Incorrect:** Create a user delegation SAS. SAS does not authorize the storage service to unwrap its encryption key.
+- **A. Correct:** Key Vault Crypto Service Encryption User. This role grants key-metadata read and wrap/unwrap operations to the storage identity. It supplies the required encryption-key access without broader cryptographic or key-management permissions.
+- **B. Incorrect:** Key Vault Reader. Key Vault Reader can read metadata but does not grant wrap/unwrap operations. Metadata visibility alone cannot repair the storage identity's missing key-use permission.
+- **C. Incorrect:** Key Vault Crypto User. Crypto User can use keys for broader cryptographic operations. Although it can permit wrapping, those additional operations exceed the explicit permission constraint.
+- **D. Incorrect:** Key Vault Secrets User. Secrets User reads secret contents. The required object is a cryptographic key, so this role does not provide its wrap/unwrap operations.
 
-Study: [knowledge file](../knowledge/storage/accounts/encryption.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/accounts/encryption.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-existing-account) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-existing-account) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide)
 
 ## st-encryption-vault-protection
 
 Topic: Storage › Storage encryption and customer-managed keys.
 
-Which two Key Vault protections are required by the documented Azure Storage CMK configuration?
+Azure Storage will use a customer-managed encryption key stored in Azure Key Vault. Which two vault protections are required for this configuration? Select two required protections; neither replaces the other.
 
-Select **2**. Difficulty: applied.
+Select **2**. Difficulty: foundation.
 
-- **A. Correct:** Soft delete. It protects recoverability of deleted key material.
-- **B. Correct:** Purge protection. It prevents immediate permanent removal during retention.
-- **C. Incorrect:** Anonymous key access. Key operations must be authorized.
-- **D. Incorrect:** Blob container soft deletion on the vault. Key Vault is not a Blob container and does not use this setting.
+- **A. Correct:** Soft delete. The Storage CMK configuration requires vault soft delete, which retains deleted key material for recovery during retention. Purge protection is required as well.
+- **B. Correct:** Purge protection. Purge protection prevents permanent removal of soft-deleted objects before retention ends. Storage CMK requires it in addition to soft delete.
+- **C. Incorrect:** Diagnostic logging. Vault diagnostic logging records activity for monitoring and investigation. It does not retain deleted key material or replace either required deletion protection.
+- **D. Incorrect:** Automatic key rotation policy. A rotation policy creates replacement key versions according to a schedule. It does not supply the required recovery and purge protections for existing key material.
 
-Study: [knowledge file](../knowledge/storage/accounts/encryption.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/accounts/encryption.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-existing-account) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-existing-account) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/key-vault/general/logging) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/key-vault/keys/how-to-configure-key-rotation)
 
 ## st-redundancy-zones-only
 
