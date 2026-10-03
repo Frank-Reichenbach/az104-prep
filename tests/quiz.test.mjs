@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { makeQuiz, score, shuffle, parseProgress, missedFamilies, familyStatus, reviewFamilies, EXAM_DEFAULTS, examMinutes, formatClock, topicStats, compareStats, weakest } from '../app/quiz.mjs';
+import { makeQuiz, splitPrompt, score, shuffle, parseProgress, missedFamilies, familyStatus, reviewFamilies, EXAM_DEFAULTS, examMinutes, formatClock, topicStats, compareStats, weakest } from '../app/quiz.mjs';
 
 const { questions } = JSON.parse(await readFile(new URL('../questions/storage/blob-storage.json', import.meta.url), 'utf8'));
 const single = questions.find(q => q.select === 1);
@@ -204,4 +204,15 @@ test('weakest orders by hit rate, drops thin samples, and breaks ties by sample 
   const unit = (id, answered, correct) => ({ id, title: id, domain: 'a', answered, correct, rate: answered ? correct / answered : null });
   const order = weakest([unit('ok', 10, 9), unit('thin', 2, 0), unit('small', 3, 1), unit('big', 9, 3), unit('none', 0, 0)]).map(u => u.id);
   assert.deepEqual(order, ['big', 'small', 'ok']);
+});
+
+test('splitPrompt separates scenario sentences from the final task and never alters the text', () => {
+  const full = 'Load Balancer probes are healthy, but HTTPS clients cannot connect. The probe uses TCP 9000 while the rule sends clients to TCP 443. What is a valid next check?';
+  const split = splitPrompt(full);
+  assert.deepEqual(split.scenario, ['Load Balancer probes are healthy, but HTTPS clients cannot connect.', 'The probe uses TCP 9000 while the rule sends clients to TCP 443.']);
+  assert.equal(split.task, 'What is a valid next check?');
+  assert.equal([...split.scenario, split.task].join(' '), full);
+  assert.deepEqual(splitPrompt('Can one subscription have two parents?'), { scenario: [], task: 'Can one subscription have two parents?' });
+  const odd = 'Line one.  Two spaces follow. Why?';
+  assert.deepEqual(splitPrompt(odd), { scenario: [], task: odd });
 });
