@@ -127,7 +127,7 @@ function renderQuestion() {
   $('instruction').textContent = `Select ${q.select} answer${q.select === 1 ? '' : 's'}.`;
   $('choices').replaceChildren($('instruction'));
   q.options.forEach((option, i) => {
-    const label = el('label', undefined, 'choice my-3 flex cursor-pointer gap-3 rounded-md border border-edge p-4 font-normal has-checked:border-brand has-checked:bg-selected');
+    const label = el('label', undefined, 'my-3 flex animate-rise cursor-pointer gap-3 rounded-md border border-edge p-4 font-normal transition-[border-color,background-color] duration-500 hover:not-has-checked:bg-hover has-checked:border-brand has-checked:bg-selected nth-of-type-[2]:[animation-delay:50ms] nth-of-type-[3]:[animation-delay:100ms] nth-of-type-[4]:[animation-delay:150ms] nth-of-type-[n+5]:[animation-delay:200ms]');
     const input = document.createElement('input'); input.type = q.select === 1 ? 'radio' : 'checkbox';
     input.className = 'mt-1.5 shrink-0'; input.name = 'answer'; input.value = option.id;
     label.append(input, el('span', `${String.fromCharCode(65 + i)}. ${option.text}`));
@@ -237,19 +237,41 @@ document.addEventListener('keydown', event => {
 });
 function advance() { if (++position < active.length) renderQuestion(); else finish(); }
 $('next').addEventListener('click', advance);
-$('end').addEventListener('click', () => { if (confirm('End this session? Submitted answers are saved; unanswered questions are not scored.')) finish(); });
+// In-app confirmation (native confirm() is suppressed in embedded browsers and cannot be styled).
+function ask(text, okLabel = 'Confirm') {
+  return new Promise(resolve => {
+    const dialog = $('confirm-dialog');
+    $('confirm-text').textContent = text; $('confirm-ok').textContent = okLabel;
+    // Answer from the buttons directly; the close event is only the fallback for Escape.
+    const done = answer => { dialog.onclose = null; if (dialog.open) dialog.close(); resolve(answer); };
+    $('confirm-ok').onclick = () => done(true);
+    $('confirm-cancel').onclick = () => done(false);
+    dialog.onclose = () => done(false);
+    dialog.showModal();
+  });
+}
+$('end').addEventListener('click', async () => { if (await ask('End this session? Submitted answers are saved; unanswered questions are not scored.', 'End session')) finish(); });
 $('again').addEventListener('click', () => { message(); summarize(); show('setup'); $('topic').focus(); });
 $('export').addEventListener('click', () => {
   const url = URL.createObjectURL(new Blob([JSON.stringify({ version: 1, attempts }, null, 2)], { type: 'application/json' }));
   const a = el('a'); a.href = url; a.download = 'az104-progress.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
 $('import-button').addEventListener('click', () => $('import').click());
+// Progress menu (disclosure pattern): closes on Escape, outside click, and after choosing an item.
+function setMenu(open, refocus) {
+  $('menu-list').hidden = !open; $('menu-toggle').setAttribute('aria-expanded', String(open));
+  if (!open && refocus) $('menu-toggle').focus();
+}
+$('menu-toggle').addEventListener('click', () => setMenu($('menu-list').hidden));
+$('menu-list').addEventListener('click', () => setMenu(false));
+document.addEventListener('pointerdown', event => { if (!$('menu-list').hidden && !event.target.closest('#progress-menu')) setMenu(false); });
+document.addEventListener('keydown', event => { if (event.key === 'Escape' && !$('menu-list').hidden) { event.preventDefault(); setMenu(false, true); } });
 $('import').addEventListener('change', async event => {
   const file = event.target.files[0]; if (!file) return;
   try {
     if (file.size > 5_000_000) throw new Error('Progress file exceeds the 5 MB limit.');
     const result = parseProgress(JSON.parse(await file.text()), bank.questions);
-    if (!confirm(`Replace current progress with ${result.attempts.length} answers? ${result.skipped} unknown or outdated answers will be skipped.`)) return;
+    if (!await ask(`Replace current progress with ${result.attempts.length} answers? ${result.skipped} unknown or outdated answers will be skipped.`, 'Replace progress')) return;
     message(); attempts = result.attempts; save(); summarize();
   } catch (error) { message(`Import failed: ${error.message}`); }
   finally { event.target.value = ''; }

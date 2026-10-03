@@ -184,7 +184,7 @@ try {
     const expectedCount = recorded + 1;
 
     // Download through the real Export button, then import that file through
-    // the native file input and confirmation dialog into fresh browser storage.
+    // the native file input and the confirmation dialog into fresh browser storage.
     const downloadDir = path.join(profile, `downloads-${targetIndex}`);
     await mkdir(downloadDir);
     await call('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: downloadDir });
@@ -207,13 +207,11 @@ try {
     assert.match(await evaluate(`document.getElementById('progress').textContent`), /^0 recorded answers/);
     const { root } = await call('DOM.getDocument');
     const { nodeId } = await call('DOM.querySelector', { nodeId: root.nodeId, selector: '#import' });
-    const dialogCount = dialogs.length;
     await call('DOM.setFileInputFiles', { nodeId, files: [transferFile] });
-    for (let i = 0; i < 150 && dialogs.length === dialogCount; i++) await pause(100);
-    assert.equal(dialogs.length, dialogCount + 1, 'Import asks before replacing progress');
-    assert.equal(dialogs.at(-1).type, 'confirm');
-    assert.match(dialogs.at(-1).message, /Replace current progress/);
-    await call('Page.handleJavaScriptDialog', { accept: true });
+    // The confirmation is an in-app <dialog> (native confirm() is suppressed in embedded browsers).
+    await waitFor(`document.getElementById('confirm-dialog').open`);
+    assert.match(await evaluate(`document.getElementById('confirm-text').textContent`), /Replace current progress/, 'Import asks before replacing progress');
+    await evaluate(`document.getElementById('confirm-ok').click()`);
     await waitFor(`document.getElementById('progress').textContent.startsWith('${transferProgress.attempts.length} recorded answers')`);
     assert.deepEqual(await evaluate(`JSON.parse(localStorage.getItem('az104-progress-v1'))`), transferProgress);
     await call('Page.reload');

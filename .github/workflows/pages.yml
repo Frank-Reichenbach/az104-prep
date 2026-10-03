@@ -22,8 +22,9 @@ jobs:
           package-manager-cache: false
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build:css
-      - name: Verify committed stylesheet is current
-        run: git diff --exit-code app/style.css
+      - run: pnpm run build:icons
+      - name: Verify committed stylesheet and icon sprite are current
+        run: git diff --exit-code app/style.css app/vendor/icons.svg
       - run: pnpm run check
       - run: pnpm test
       - run: pnpm run build:site
