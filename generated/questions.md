@@ -3702,7 +3702,7 @@ D. Storage Blob Delegator.
 
 Topic: Storage › Storage firewalls and network access.
 
-An external client's valid Blob SAS fails after the storage firewall is restricted to selected networks. Its IP is not allowed. What addresses the network problem without broadening SAS permissions?
+An on-premises client outside Azure has a valid read-only Blob SAS. Downloads fail after the storage account's public endpoint is restricted to selected networks. The client's approved public IPv4 egress address is not allowed. Which action addresses the network failure without broadening SAS permissions?
 
 Select **1**. Difficulty: troubleshooting.
 
@@ -3715,27 +3715,27 @@ D. Extend the SAS expiry by a week.
 
 Topic: Storage › Storage firewalls and network access.
 
-A storage account has an approved subnet rule, but defaultAction is Allow. Other internet clients with valid authorization can still read blobs. Which change enforces the selected-network allowlist?
+A storage account has an approved subnet rule and that subnet's Storage service endpoint is enabled. Public network access is Enabled and defaultAction is Allow. No resource-instance or trusted-service exceptions are configured. Other internet clients with valid credentials can still read blobs. Which change blocks those unlisted clients while preserving the approved subnet's existing service-endpoint path?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Set defaultAction to Deny.
-B. Assign the approved subnet Azure Reader.
-C. Raise the minimum TLS version.
-D. Switch the account from LRS to ZRS.
+A. Set defaultAction to Deny while retaining the approved subnet rule.
+B. Create a Blob private endpoint while leaving defaultAction as Allow.
+C. Add an approved public IP rule while leaving defaultAction as Allow.
+D. Disable public network access without changing the subnet's service-endpoint path.
 
 ## st-net-subnet-requirements
 
 Topic: Storage › Storage firewalls and network access.
 
-A VM subnet must access Blob Storage through a service endpoint while the storage firewall defaults to Deny. Which two configurations are required for this network path?
+A VM subnet with address range 10.20.1.0/24 must access Blob Storage through a service endpoint in the same Azure region. The storage public endpoint is enabled, its firewall defaults to Deny, and neither an endpoint nor a subnet rule is configured yet. Valid data authorization is already in place. Which two configurations are jointly required for the specified path?
 
 Select **2**. Difficulty: applied.
 
-A. Enable the appropriate Storage service endpoint on the subnet.
+A. Enable Microsoft.Storage on the VM subnet.
 B. Add that subnet to the storage account's virtual network rules.
 C. Create a Blob private endpoint as well.
-D. Enable anonymous Blob access.
+D. Add 10.20.1.0/24 as a storage firewall IP network rule.
 
 ## st-net-arm-data
 
@@ -3745,10 +3745,10 @@ A user can view a storage account's ARM properties but cannot download blobs fro
 
 Select **1**. Difficulty: foundation.
 
-A. Storage firewall rules govern data-plane requests, while ARM management has separate authorization.
-B. Viewing ARM properties automatically grants blob read access.
-C. Only Archive blobs are subject to the firewall.
-D. Every portal visit automatically issues a firewall-bypassing SAS.
+A. The storage firewall filters data-plane traffic; ARM management uses separate authorization.
+B. Permission to view ARM properties also grants blob reads through the firewall.
+C. The same storage firewall filters ARM and blob requests, so ARM success proves the network is allowed.
+D. A Blob SAS permits data reads from networks excluded by the storage firewall.
 
 ## st-sas-private-download
 

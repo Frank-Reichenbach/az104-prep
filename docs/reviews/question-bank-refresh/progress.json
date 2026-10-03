@@ -992,9 +992,9 @@
     {
       "id": "storage.access.network",
       "title": "Storage firewalls and network access",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/storage.access.network.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "st-net-sas-denied",
@@ -1009,9 +1009,9 @@
           ],
           "baselineHash": "da2adc6d86d9b27a9369161c9d4349a88265615cf260383468fe5b1b26e1f8fa",
           "baselineContentHash": "427de4c23873f92c18f47c034eb11dedf29420c5b714603df59b76c9a7c0dbba",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "2a04825ff7f2ef9783a77b56e1ebfca0eb8b2f89b480a21b19744dc612b1be93"
         },
         {
           "id": "st-net-default-allow",
@@ -1026,9 +1026,9 @@
           ],
           "baselineHash": "6f2216cea7b03a59daad1a5315737c78e39a569cfc25ca20eb676154ca39cd93",
           "baselineContentHash": "9bb1e79d0fdf450e96b9da8bcde794d0076f8b111b0b3a7c87cf8af688fb7b2d",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "08453cfca3f34fcd4275d49d537f30f1eba4f234e20f3928900338ed017cbea9"
         },
         {
           "id": "st-net-subnet-requirements",
@@ -1043,9 +1043,9 @@
           ],
           "baselineHash": "7b4fc88eed53ad530aa6ac6fd81b6efb93a3dea08ddcebf1d74153c3f7ca3459",
           "baselineContentHash": "6e957331c84a91332d2c905034ff87e244b499efee82889136ed1e3358a0859e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "230beaf918fcb6a6b530cff070cb19878af8e47a2ba6c6c73aa18e2ce2a27c9d"
         },
         {
           "id": "st-net-arm-data",
@@ -1060,9 +1060,9 @@
           ],
           "baselineHash": "375f92589e0ee153c054e5ed7abaeedc45662f40ef857096d5dc253420c9ec8f",
           "baselineContentHash": "7030120ac4983cdde2c072268acdf32f8ead5ed72f5d44c97bc0e9d7e60da151",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "2c7b5e02803c26e68e4bfa422a1847c1196f18420c0fb985a0b49b4809d4b223"
         }
       ]
     },

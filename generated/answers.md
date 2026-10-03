@@ -4836,7 +4836,7 @@ Study: [knowledge file](../knowledge/storage/access/account-keys.md). Evidence c
 
 Topic: Storage › Storage firewalls and network access.
 
-An external client's valid Blob SAS fails after the storage firewall is restricted to selected networks. Its IP is not allowed. What addresses the network problem without broadening SAS permissions?
+An on-premises client outside Azure has a valid read-only Blob SAS. Downloads fail after the storage account's public endpoint is restricted to selected networks. The client's approved public IPv4 egress address is not allowed. Which action addresses the network failure without broadening SAS permissions?
 
 Select **1**. Difficulty: troubleshooting.
 
@@ -4845,7 +4845,7 @@ Select **1**. Difficulty: troubleshooting.
 - **C. Incorrect:** Replace the SAS with the storage account key. A key does not exempt this client from network filtering.
 - **D. Incorrect:** Extend the SAS expiry by a week. The token is already valid; duration is not the failing condition.
 
-Study: [knowledge file](../knowledge/storage/access/network-rules.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/access/network-rules.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-set-default-access) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-limitations)
 
@@ -4853,35 +4853,35 @@ Study: [knowledge file](../knowledge/storage/access/network-rules.md). Evidence 
 
 Topic: Storage › Storage firewalls and network access.
 
-A storage account has an approved subnet rule, but defaultAction is Allow. Other internet clients with valid authorization can still read blobs. Which change enforces the selected-network allowlist?
+A storage account has an approved subnet rule and that subnet's Storage service endpoint is enabled. Public network access is Enabled and defaultAction is Allow. No resource-instance or trusted-service exceptions are configured. Other internet clients with valid credentials can still read blobs. Which change blocks those unlisted clients while preserving the approved subnet's existing service-endpoint path?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Set defaultAction to Deny. Unmatched public-endpoint traffic is then denied.
-- **B. Incorrect:** Assign the approved subnet Azure Reader. Subnets do not gain data-plane network exclusivity through Reader.
-- **C. Incorrect:** Raise the minimum TLS version. TLS policy does not enforce a subnet allowlist.
-- **D. Incorrect:** Switch the account from LRS to ZRS. Redundancy is unrelated to client network admission.
+- **A. Correct:** Set defaultAction to Deny while retaining the approved subnet rule. Deny rejects unmatched public-endpoint traffic while the configured virtual network rule permits the approved subnet. The existing service-endpoint path remains available.
+- **B. Incorrect:** Create a Blob private endpoint while leaving defaultAction as Allow. A private endpoint adds a private path but does not automatically block the public endpoint. Unlisted internet clients remain admitted while its default stays Allow.
+- **C. Incorrect:** Add an approved public IP rule while leaving defaultAction as Allow. Network allowlist rules do not restrict unmatched clients when the default is Allow. Adding another allowed source does not enforce selected-network admission.
+- **D. Incorrect:** Disable public network access without changing the subnet's service-endpoint path. Service endpoints still use the storage public endpoint. Disabling it blocks that required path as well as unlisted internet access; the scenario excludes exceptions and does not migrate the subnet to Private Link.
 
-Study: [knowledge file](../knowledge/storage/access/network-rules.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/access/network-rules.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-set-default-access) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-limitations)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-set-default-access) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-limitations) · [Microsoft source 5](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints)
 
 ## st-net-subnet-requirements
 
 Topic: Storage › Storage firewalls and network access.
 
-A VM subnet must access Blob Storage through a service endpoint while the storage firewall defaults to Deny. Which two configurations are required for this network path?
+A VM subnet with address range 10.20.1.0/24 must access Blob Storage through a service endpoint in the same Azure region. The storage public endpoint is enabled, its firewall defaults to Deny, and neither an endpoint nor a subnet rule is configured yet. Valid data authorization is already in place. Which two configurations are jointly required for the specified path?
 
 Select **2**. Difficulty: applied.
 
-- **A. Correct:** Enable the appropriate Storage service endpoint on the subnet. The endpoint supplies the subnet identity and service route.
+- **A. Correct:** Enable Microsoft.Storage on the VM subnet. The same-region Storage service endpoint supplies the subnet identity and service route for this path. The storage account must separately allow that subnet.
 - **B. Correct:** Add that subnet to the storage account's virtual network rules. The account must explicitly allow the subnet.
 - **C. Incorrect:** Create a Blob private endpoint as well. Private Link is an alternative path, not a requirement for this service-endpoint design.
-- **D. Incorrect:** Enable anonymous Blob access. Network connectivity does not require removing data authorization.
+- **D. Incorrect:** Add 10.20.1.0/24 as a storage firewall IP network rule. Storage IP network rules accept public internet IPv4 ranges, not RFC 1918 subnet ranges. This private subnet must be authorized through a virtual network rule and service endpoint.
 
-Study: [knowledge file](../knowledge/storage/access/network-rules.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/access/network-rules.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-set-default-access) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-limitations)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-set-default-access) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-limitations) · [Microsoft source 5](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints)
 
 ## st-net-arm-data
 
@@ -4891,12 +4891,12 @@ A user can view a storage account's ARM properties but cannot download blobs fro
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** Storage firewall rules govern data-plane requests, while ARM management has separate authorization. Viewing resource configuration does not prove blob network reachability.
-- **B. Incorrect:** Viewing ARM properties automatically grants blob read access. Management visibility does not provide data authorization or bypass filtering.
-- **C. Incorrect:** Only Archive blobs are subject to the firewall. The firewall is not restricted to one access tier.
-- **D. Incorrect:** Every portal visit automatically issues a firewall-bypassing SAS. Portal use does not establish a universal network bypass.
+- **A. Correct:** The storage firewall filters data-plane traffic; ARM management uses separate authorization. ARM configuration reads are not governed by the storage data firewall. Success there does not establish that blob downloads have an allowed network path or data authorization.
+- **B. Incorrect:** Permission to view ARM properties also grants blob reads through the firewall. Management visibility neither grants blob-data reads nor overrides network admission. The client still needs both valid data authorization and an allowed path.
+- **C. Incorrect:** The same storage firewall filters ARM and blob requests, so ARM success proves the network is allowed. The firewall applies to storage data-plane operations, not ARM control-plane reads. The successful management request cannot establish blob reachability.
+- **D. Incorrect:** A Blob SAS permits data reads from networks excluded by the storage firewall. SAS permissions authorize data operations but do not grant a new allowed network path. A valid SAS cannot bypass the configured storage firewall.
 
-Study: [knowledge file](../knowledge/storage/access/network-rules.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/storage/access/network-rules.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-set-default-access) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-limitations)
 
