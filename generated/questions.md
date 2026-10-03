@@ -3494,27 +3494,27 @@ D. The delete is always blocked while any previous version exists
 
 Topic: Storage › Blob versioning.
 
-An administrator wants Azure Blob versioning on a storage account whose hierarchical namespace is enabled for Data Lake Storage. What does the currently documented feature support imply?
+An attempt to enable blob versioning fails on a standard general-purpose v2 account with hierarchical namespace enabled. The administrator has valid management permissions and uses an API version later than 2019-10-10. Blob soft delete is also enabled. Which stated configuration explains the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Blob versioning is not supported on that account configuration
-B. Enabling container soft delete adds versioning support
-C. Changing the default access tier to hot enables versioning
-D. Assigning an extra Reader role enables the feature
+A. Hierarchical namespace is enabled, which is unsupported for blob versioning.
+B. Blob soft delete is enabled, which cannot coexist with blob versioning.
+C. The account is general-purpose v1, which lacks blob versioning support.
+D. The request uses an API version older than 2019-10-10.
 
 ## st-version-003
 
 Topic: Storage › Blob versioning.
 
-A supported Blob Storage account has versioning and blob soft delete enabled. A desired previous version was explicitly deleted and is still retained. There is no current blob. Which two operations form the recovery sequence to restore its contents as current?
+A supported flat-namespace Blob Storage account has versioning and blob soft delete enabled. Reading the original blob without a version ID returns BlobNotFound: there is no current blob. The desired previous version was explicitly deleted but remains within soft-delete retention; the container still exists. Which two operations are jointly required, in the indicated order, to make that version's contents current at the original blob name?
 
 Select **2**. Difficulty: troubleshooting.
 
-A. First undelete the retained blob versions
-B. Then copy the desired previous version to create a current blob
-C. Modify the desired historical version in place to mark it current
-D. Disable versioning to promote the oldest retained version automatically
+A. First call Undelete Blob to restore the retained versions.
+B. Then copy the desired previous version to the original base blob.
+C. Then copy the desired previous version to a different blob name.
+D. First restore the parent container using Restore Container.
 
 ## st-version-004
 

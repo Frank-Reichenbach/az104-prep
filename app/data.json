@@ -12883,39 +12883,39 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-version-002",
       "family": "st-version-hns",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.versioning",
       "objectives": [
         "st-17"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "An administrator wants Azure Blob versioning on a storage account whose hierarchical namespace is enabled for Data Lake Storage. What does the currently documented feature support imply?",
+      "prompt": "An attempt to enable blob versioning fails on a standard general-purpose v2 account with hierarchical namespace enabled. The administrator has valid management permissions and uses an API version later than 2019-10-10. Blob soft delete is also enabled. Which stated configuration explains the failure?",
       "select": 1,
       "options": [
         {
           "id": "unsupported",
-          "text": "Blob versioning is not supported on that account configuration",
-          "explanation": "The versioning documentation excludes accounts with hierarchical namespace enabled."
+          "text": "Hierarchical namespace is enabled, which is unsupported for blob versioning.",
+          "explanation": "Microsoft excludes accounts with hierarchical namespace from blob versioning support. The account satisfies the stated account-type and API prerequisites, but fails this namespace prerequisite."
         },
         {
           "id": "container",
-          "text": "Enabling container soft delete adds versioning support",
-          "explanation": "A separate protection feature cannot change the account's versioning support boundary."
+          "text": "Blob soft delete is enabled, which cannot coexist with blob versioning.",
+          "explanation": "Microsoft recommends combining blob soft delete and versioning on supported accounts. Soft delete is not the incompatible feature; hierarchical namespace is."
         },
         {
           "id": "hot",
-          "text": "Changing the default access tier to hot enables versioning",
-          "explanation": "Access tier selection does not remove the hierarchical-namespace limitation."
+          "text": "The account is general-purpose v1, which lacks blob versioning support.",
+          "explanation": "General-purpose v1 is outside the documented supported account types, but this account is explicitly general-purpose v2. That account-type limitation does not describe the scenario."
         },
         {
           "id": "reader",
-          "text": "Assigning an extra Reader role enables the feature",
-          "explanation": "An unsupported account configuration is not corrected by granting read permissions."
+          "text": "The request uses an API version older than 2019-10-10.",
+          "explanation": "Blob versioning requires version 2019-10-10 or later. The request explicitly uses a later version, so the API prerequisite is met."
         }
       ],
       "correct": [
@@ -12925,39 +12925,39 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-version-003",
       "family": "st-version-undelete-promote",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.blobs.versioning",
       "objectives": [
         "st-17"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A supported Blob Storage account has versioning and blob soft delete enabled. A desired previous version was explicitly deleted and is still retained. There is no current blob. Which two operations form the recovery sequence to restore its contents as current?",
+      "prompt": "A supported flat-namespace Blob Storage account has versioning and blob soft delete enabled. Reading the original blob without a version ID returns BlobNotFound: there is no current blob. The desired previous version was explicitly deleted but remains within soft-delete retention; the container still exists. Which two operations are jointly required, in the indicated order, to make that version's contents current at the original blob name?",
       "select": 2,
       "options": [
         {
           "id": "undelete",
-          "text": "First undelete the retained blob versions",
-          "explanation": "This makes the soft-deleted versions available again during their retention window."
+          "text": "First call Undelete Blob to restore the retained versions.",
+          "explanation": "The desired version is soft-deleted, so it must be restored before its contents can be copied. Undelete restores the retained versions but does not create a current blob."
         },
         {
           "id": "copy",
-          "text": "Then copy the desired previous version to create a current blob",
-          "explanation": "Undelete alone does not promote a version; the copy restores the selected historical contents as current."
+          "text": "Then copy the desired previous version to the original base blob.",
+          "explanation": "After Undelete makes the version available, Copy Blob creates a new current blob with those contents at the required original name."
         },
         {
           "id": "edit",
-          "text": "Modify the desired historical version in place to mark it current",
-          "explanation": "An existing version's content cannot be edited in place to perform this promotion."
+          "text": "Then copy the desired previous version to a different blob name.",
+          "explanation": "This produces a separate blob after the version is restored. It does not make the version current at the required original blob name."
         },
         {
           "id": "disable",
-          "text": "Disable versioning to promote the oldest retained version automatically",
-          "explanation": "Disabling versioning does not choose or promote a previous version."
+          "text": "First restore the parent container using Restore Container.",
+          "explanation": "The parent container still exists and was not deleted. Container restoration does not undelete the explicitly deleted blob versions in that existing container."
         }
       ],
       "correct": [
@@ -12967,9 +12967,10 @@
       "knowledge": "knowledge/storage/blob-storage/versioning.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview",
-        "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-manage"
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-manage",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-container-overview"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-version-004",
@@ -13011,7 +13012,7 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview"
       ],
-      "verified": "2026-10-01"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-file-snapshot-001",

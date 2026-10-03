@@ -4556,7 +4556,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** The oldest version automatically becomes current Azure does not choose an older version to promote automatically.
 - **D. Incorrect:** The delete is always blocked while any previous version exists Versioning allows this delete operation; it changes the current version into a previous one.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/versioning.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/blob-storage/versioning.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview)
 
@@ -4564,16 +4564,16 @@ Study: [knowledge file](../knowledge/storage/blob-storage/versioning.md). Eviden
 
 Topic: Storage › Blob versioning.
 
-An administrator wants Azure Blob versioning on a storage account whose hierarchical namespace is enabled for Data Lake Storage. What does the currently documented feature support imply?
+An attempt to enable blob versioning fails on a standard general-purpose v2 account with hierarchical namespace enabled. The administrator has valid management permissions and uses an API version later than 2019-10-10. Blob soft delete is also enabled. Which stated configuration explains the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Blob versioning is not supported on that account configuration The versioning documentation excludes accounts with hierarchical namespace enabled.
-- **B. Incorrect:** Enabling container soft delete adds versioning support A separate protection feature cannot change the account's versioning support boundary.
-- **C. Incorrect:** Changing the default access tier to hot enables versioning Access tier selection does not remove the hierarchical-namespace limitation.
-- **D. Incorrect:** Assigning an extra Reader role enables the feature An unsupported account configuration is not corrected by granting read permissions.
+- **A. Correct:** Hierarchical namespace is enabled, which is unsupported for blob versioning. Microsoft excludes accounts with hierarchical namespace from blob versioning support. The account satisfies the stated account-type and API prerequisites, but fails this namespace prerequisite.
+- **B. Incorrect:** Blob soft delete is enabled, which cannot coexist with blob versioning. Microsoft recommends combining blob soft delete and versioning on supported accounts. Soft delete is not the incompatible feature; hierarchical namespace is.
+- **C. Incorrect:** The account is general-purpose v1, which lacks blob versioning support. General-purpose v1 is outside the documented supported account types, but this account is explicitly general-purpose v2. That account-type limitation does not describe the scenario.
+- **D. Incorrect:** The request uses an API version older than 2019-10-10. Blob versioning requires version 2019-10-10 or later. The request explicitly uses a later version, so the API prerequisite is met.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/versioning.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/blob-storage/versioning.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview)
 
@@ -4581,18 +4581,18 @@ Study: [knowledge file](../knowledge/storage/blob-storage/versioning.md). Eviden
 
 Topic: Storage › Blob versioning.
 
-A supported Blob Storage account has versioning and blob soft delete enabled. A desired previous version was explicitly deleted and is still retained. There is no current blob. Which two operations form the recovery sequence to restore its contents as current?
+A supported flat-namespace Blob Storage account has versioning and blob soft delete enabled. Reading the original blob without a version ID returns BlobNotFound: there is no current blob. The desired previous version was explicitly deleted but remains within soft-delete retention; the container still exists. Which two operations are jointly required, in the indicated order, to make that version's contents current at the original blob name?
 
 Select **2**. Difficulty: troubleshooting.
 
-- **A. Correct:** First undelete the retained blob versions This makes the soft-deleted versions available again during their retention window.
-- **B. Correct:** Then copy the desired previous version to create a current blob Undelete alone does not promote a version; the copy restores the selected historical contents as current.
-- **C. Incorrect:** Modify the desired historical version in place to mark it current An existing version's content cannot be edited in place to perform this promotion.
-- **D. Incorrect:** Disable versioning to promote the oldest retained version automatically Disabling versioning does not choose or promote a previous version.
+- **A. Correct:** First call Undelete Blob to restore the retained versions. The desired version is soft-deleted, so it must be restored before its contents can be copied. Undelete restores the retained versions but does not create a current blob.
+- **B. Correct:** Then copy the desired previous version to the original base blob. After Undelete makes the version available, Copy Blob creates a new current blob with those contents at the required original name.
+- **C. Incorrect:** Then copy the desired previous version to a different blob name. This produces a separate blob after the version is restored. It does not make the version current at the required original blob name.
+- **D. Incorrect:** First restore the parent container using Restore Container. The parent container still exists and was not deleted. Container restoration does not undelete the explicitly deleted blob versions in that existing container.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/versioning.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/blob-storage/versioning.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-manage)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-container-overview)
 
 ## st-version-004
 
@@ -4607,7 +4607,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** Configure only a current-blob tiering rule and assume previous versions are deleted A rule that only tiers the current blob does not define deletion of its previous versions.
 - **D. Incorrect:** Disable versioning to immediately purge all previous versions Disabling new version creation does not delete versions that already exist.
 
-Study: [knowledge file](../knowledge/storage/blob-storage/versioning.md). Evidence checked: 2026-10-01.
+Study: [knowledge file](../knowledge/storage/blob-storage/versioning.md). Evidence checked: 2026-10-03.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview)
 
