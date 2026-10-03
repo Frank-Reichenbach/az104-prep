@@ -22,6 +22,7 @@
   --color-notice: #e0edf1;
   --color-notice-line: #177d92;
   --color-selected: #e6f2f5;
+  --color-hover: #f3f8fa;
   --color-warn: #fff1df;
   --color-warn-ink: #754010;
   --color-secondary: #086078;
@@ -47,6 +48,7 @@
   --color-notice: #17313b;
   --color-notice-line: #3aa5bb;
   --color-selected: #1c3a46;
+  --color-hover: #1b2d38;
   --color-warn: #3a2a16;
   --color-warn-ink: #f3c48b;
   --color-secondary: #7fd0e6;
@@ -66,6 +68,7 @@
 @layer components {
   .field { @apply w-full rounded-[5px] border border-field bg-surface p-2.5 text-inherit; }
   .btn { @apply my-2 mr-1.5 cursor-pointer rounded-[5px] border border-brand bg-brand px-4.5 py-2.5 text-on-brand hover:bg-brand-dark disabled:cursor-default disabled:opacity-55; }
+  .btn-quiet { @apply m-0 cursor-pointer border-0 bg-transparent p-1 text-[.86rem] text-soft underline underline-offset-4 hover:text-bad; }
   .btn-secondary { @apply bg-surface text-secondary hover:bg-selected; }
   .theme-toggle { @apply m-0 inline-flex shrink-0 size-10 items-center justify-center rounded-full p-0; }
   .theme-toggle svg { @apply size-5 fill-none stroke-current; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -109,7 +112,9 @@
   #message:not(:empty) { @apply animate-pop; }
   #feedback > * { @apply animate-rise; }
   #review details { @apply animate-fade; }
-  .choice { @apply animate-rise transition-[border-color,background-color,transform] duration-150 hover:border-brand hover:translate-x-0.5; }
+  .choice { @apply animate-rise transition-[border-color,background-color] duration-500; }
+  /* Hover: a faint tint, lighter than the checked state; no movement. */
+  @media (hover: hover) { .choice:hover:not(:has(:checked)) { @apply bg-hover; } }
   .choice:nth-of-type(2) { animation-delay: 50ms; }
   .choice:nth-of-type(3) { animation-delay: 100ms; }
   .choice:nth-of-type(4) { animation-delay: 150ms; }
@@ -125,34 +130,10 @@
   *, ::before, ::after { animation: none !important; transition-duration: .01ms !important; }
 }
 
-/* Animations: short, transform/opacity only, disabled for reduced-motion users. */
-@theme {
-  --animate-rise: rise .35s ease-out both;
-  --animate-fade: fade .25s ease-out both;
-  --animate-pop: pop .3s cubic-bezier(.34, 1.56, .64, 1) both;
-  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes pop { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
-}
-
+/* Exam countdown: the bar shrinks from full to empty; colour shifts as time runs low. */
 @layer components {
-  /* Sections replay on every show() because [hidden] switches display off and on. */
-  #setup, #session, #results { @apply animate-rise; }
-  #message:not(:empty) { @apply animate-pop; }
-  #feedback > * { @apply animate-rise; }
-  #review details { @apply animate-fade; }
-  .choice { @apply animate-rise transition-[border-color,background-color,transform] duration-150 hover:border-brand hover:translate-x-0.5; }
-  .choice:nth-of-type(2) { animation-delay: 50ms; }
-  .choice:nth-of-type(3) { animation-delay: 100ms; }
-  .choice:nth-of-type(4) { animation-delay: 150ms; }
-  .choice:nth-of-type(n+5) { animation-delay: 200ms; }
-  .btn { @apply transition-[background-color,transform,opacity] duration-150 active:not-disabled:scale-[.97]; }
-  .theme-toggle svg { @apply transition-transform duration-300; }
-  .theme-toggle:hover svg { @apply rotate-12; }
-  .theme-toggle:active svg { @apply rotate-45; }
-  #coverage { @apply animate-fade; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after { animation: none !important; transition-duration: .01ms !important; }
+  .timer-track { @apply h-2.5 w-full overflow-hidden rounded-full bg-line; }
+  .timer-bar { @apply h-full w-full origin-left rounded-full bg-brand transition-[width,background-color] duration-1000 ease-linear; }
+  .timer-bar[data-level=warn] { @apply bg-warn-ink; }
+  .timer-bar[data-level=critical] { @apply bg-bad; }
 }
