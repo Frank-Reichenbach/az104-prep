@@ -2380,9 +2380,9 @@
     {
       "id": "identity.governance.subscriptions",
       "title": "Subscription administration and provider registration",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/identity.governance.subscriptions.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "id-sub-context",
@@ -2397,9 +2397,9 @@
           ],
           "baselineHash": "acab62882fd4224b831d203127e02d97d5a8f7c265a78df8a431c8f9509e3065",
           "baselineContentHash": "de1a8bc5e1168d0ac6d995bd541ad5693d9fa0d71120b5325f95dca1da3b4316",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "cb3f15b107e08b59d92cd2e2c8f569cad031cabcfbda754fd709120354a458fd"
         },
         {
           "id": "id-sub-provider",
@@ -2414,9 +2414,9 @@
           ],
           "baselineHash": "de044e81a3604794ccdaec1f66d90f2bba740adad0cdfd04f44c26d672288b23",
           "baselineContentHash": "565cd7f8d282ba1e4a11b4fb85975b4c84fdeb626e7d9655e93c872c53986335",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "d1031140d1742f99733506cc6e1e55d2bd43945fdf5ff1f0f1ce03b92678f606"
         },
         {
           "id": "id-sub-directory-transfer",
@@ -2431,9 +2431,9 @@
           ],
           "baselineHash": "209e4c859116f40d46dc11ba5f1d689f61ac145fc8f775a993951f2d99dcc457",
           "baselineContentHash": "4f2ab2c93309a2cd62a5167588fd415489375ac6fb58c0df04fb1b313e60edc9",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "42b58a6ddaa677213e3e4e0e92975dcda9f4591ee575ccc51b554b3cbfe4567e"
         }
       ]
     },

@@ -1530,7 +1530,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** The directory associated with the subscription. Directory association is a separate operation.
 - **D. Incorrect:** The subscription's billing owner. Selecting a context does not transfer billing responsibility.
 
-Study: [knowledge file](../knowledge/identity/governance/subscriptions.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/subscriptions.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/cli/azure/manage-azure-subscriptions-azure-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/transfer-subscription)
 
@@ -1538,35 +1538,35 @@ Study: [knowledge file](../knowledge/identity/governance/subscriptions.md). Evid
 
 Topic: Identity and governance › Subscription administration and provider registration.
 
-A deployment reports that Microsoft.Storage is not registered in the selected subscription. The operator has registration permission. What should be done?
+A deployment to subscription SubA reports that Microsoft.Storage is not registered. Microsoft.Storage is already registered in SubB. The operator has provider-registration permission in SubA and must keep the deployment there. Which action addresses the reported prerequisite?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Register Microsoft.Storage in that subscription and inspect its state. This addresses the named provider-registration prerequisite.
-- **B. Incorrect:** Request more VM-family vCPUs. That does not register the Storage provider.
-- **C. Incorrect:** Rename the subscription. The display name does not determine provider registration.
-- **D. Incorrect:** Move the subscription to a different tenant immediately. A directory transfer is unnecessary for this stated error.
+- **A. Correct:** Register Microsoft.Storage in SubA and inspect its registration state. Provider registration is per subscription. SubB's registration does not satisfy SubA's deployment.
+- **B. Incorrect:** Register Microsoft.Compute in SubA and inspect its registration state. Registering another provider does not register the named Microsoft.Storage namespace.
+- **C. Incorrect:** Register Microsoft.Storage in SubB again and inspect its registration state. SubB is not the deployment target. Its registration does not address SubA.
+- **D. Incorrect:** Unregister Microsoft.Storage in SubB and retry the deployment in SubA. Unregistering in another subscription does not create the required registration in SubA.
 
-Study: [knowledge file](../knowledge/identity/governance/subscriptions.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/subscriptions.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/cli/azure/manage-azure-subscriptions-azure-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/transfer-subscription)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types)
 
 ## id-sub-directory-transfer
 
 Topic: Identity and governance › Subscription administration and provider registration.
 
-A team plans to change an Azure subscription's Entra directory. Which dependency requires explicit planning?
+A subscription is being transferred from Entra Tenant A to Tenant B. The inventory includes Azure role assignments and a VM's system-assigned managed identity used to access a resource. The team must restore authorized access under Tenant B after transfer. Which preparation plan accounts for these directory-bound dependencies?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Reestablishing resource access and affected managed identity relationships. Directory-bound principals and assignments do not simply remain equivalent.
-- **B. Incorrect:** Only changing the subscription display name. A directory transfer has authorization effects beyond naming.
-- **C. Incorrect:** Every resource automatically moves to the new tenant's region. Tenants do not supply an automatic regional relocation target.
-- **D. Incorrect:** All resource roles become billing roles. Those role systems remain distinct.
+- **A. Correct:** Map principals to Tenant B, recreate Azure role assignments, and reenable the VM's system-assigned identity with required permissions. Transfer removes existing role assignments. Reenabling the system-assigned identity creates its destination-tenant identity, whose access must be granted.
+- **B. Incorrect:** Retain the existing role assignments and identity because their Azure resource scopes have not changed. Resource scope continuity does not preserve directory-bound principals or assignments through tenant transfer.
+- **C. Incorrect:** Recreate role assignments using the original Tenant A principal IDs and keep the VM identity unchanged. The original directory IDs are not replacement principals in Tenant B; the system-assigned identity also requires repair.
+- **D. Incorrect:** Assign billing roles in Tenant B and use those roles for the VM's resource access. Billing roles do not replace Azure RBAC grants or repair the VM's managed identity.
 
-Study: [knowledge file](../knowledge/identity/governance/subscriptions.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/subscriptions.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/cli/azure/manage-azure-subscriptions-azure-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/transfer-subscription)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/transfer-subscription)
 
 ## id-tag-inheritance
 

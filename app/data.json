@@ -5070,39 +5070,39 @@
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types",
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/transfer-subscription"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-sub-provider",
       "family": "id-sub-provider",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.governance.subscriptions",
       "objectives": [
         "id-13"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A deployment reports that Microsoft.Storage is not registered in the selected subscription. The operator has registration permission. What should be done?",
+      "prompt": "A deployment to subscription SubA reports that Microsoft.Storage is not registered. Microsoft.Storage is already registered in SubB. The operator has provider-registration permission in SubA and must keep the deployment there. Which action addresses the reported prerequisite?",
       "select": 1,
       "options": [
         {
           "id": "register",
-          "text": "Register Microsoft.Storage in that subscription and inspect its state.",
-          "explanation": "This addresses the named provider-registration prerequisite."
+          "text": "Register Microsoft.Storage in SubA and inspect its registration state.",
+          "explanation": "Provider registration is per subscription. SubB's registration does not satisfy SubA's deployment."
         },
         {
           "id": "quota",
-          "text": "Request more VM-family vCPUs.",
-          "explanation": "That does not register the Storage provider."
+          "text": "Register Microsoft.Compute in SubA and inspect its registration state.",
+          "explanation": "Registering another provider does not register the named Microsoft.Storage namespace."
         },
         {
           "id": "name",
-          "text": "Rename the subscription.",
-          "explanation": "The display name does not determine provider registration."
+          "text": "Register Microsoft.Storage in SubB again and inspect its registration state.",
+          "explanation": "SubB is not the deployment target. Its registration does not address SubA."
         },
         {
           "id": "tenant",
-          "text": "Move the subscription to a different tenant immediately.",
-          "explanation": "A directory transfer is unnecessary for this stated error."
+          "text": "Unregister Microsoft.Storage in SubB and retry the deployment in SubA.",
+          "explanation": "Unregistering in another subscription does not create the required registration in SubA."
         }
       ],
       "correct": [
@@ -5110,43 +5110,41 @@
       ],
       "knowledge": "knowledge/identity/governance/subscriptions.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/cli/azure/manage-azure-subscriptions-azure-cli",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types",
-        "https://learn.microsoft.com/en-us/azure/role-based-access-control/transfer-subscription"
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-sub-directory-transfer",
       "family": "id-sub-directory-transfer",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.governance.subscriptions",
       "objectives": [
         "id-13"
       ],
       "difficulty": "applied",
-      "prompt": "A team plans to change an Azure subscription's Entra directory. Which dependency requires explicit planning?",
+      "prompt": "A subscription is being transferred from Entra Tenant A to Tenant B. The inventory includes Azure role assignments and a VM's system-assigned managed identity used to access a resource. The team must restore authorized access under Tenant B after transfer. Which preparation plan accounts for these directory-bound dependencies?",
       "select": 1,
       "options": [
         {
           "id": "rbac",
-          "text": "Reestablishing resource access and affected managed identity relationships.",
-          "explanation": "Directory-bound principals and assignments do not simply remain equivalent."
+          "text": "Map principals to Tenant B, recreate Azure role assignments, and reenable the VM's system-assigned identity with required permissions.",
+          "explanation": "Transfer removes existing role assignments. Reenabling the system-assigned identity creates its destination-tenant identity, whose access must be granted."
         },
         {
           "id": "display",
-          "text": "Only changing the subscription display name.",
-          "explanation": "A directory transfer has authorization effects beyond naming."
+          "text": "Retain the existing role assignments and identity because their Azure resource scopes have not changed.",
+          "explanation": "Resource scope continuity does not preserve directory-bound principals or assignments through tenant transfer."
         },
         {
           "id": "region",
-          "text": "Every resource automatically moves to the new tenant's region.",
-          "explanation": "Tenants do not supply an automatic regional relocation target."
+          "text": "Recreate role assignments using the original Tenant A principal IDs and keep the VM identity unchanged.",
+          "explanation": "The original directory IDs are not replacement principals in Tenant B; the system-assigned identity also requires repair."
         },
         {
           "id": "billing",
-          "text": "All resource roles become billing roles.",
-          "explanation": "Those role systems remain distinct."
+          "text": "Assign billing roles in Tenant B and use those roles for the VM's resource access.",
+          "explanation": "Billing roles do not replace Azure RBAC grants or repair the VM's managed identity."
         }
       ],
       "correct": [
@@ -5154,11 +5152,9 @@
       ],
       "knowledge": "knowledge/identity/governance/subscriptions.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/cli/azure/manage-azure-subscriptions-azure-cli",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types",
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/transfer-subscription"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-tag-inheritance",

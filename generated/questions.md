@@ -1180,27 +1180,27 @@ D. The subscription's billing owner.
 
 Topic: Identity and governance › Subscription administration and provider registration.
 
-A deployment reports that Microsoft.Storage is not registered in the selected subscription. The operator has registration permission. What should be done?
+A deployment to subscription SubA reports that Microsoft.Storage is not registered. Microsoft.Storage is already registered in SubB. The operator has provider-registration permission in SubA and must keep the deployment there. Which action addresses the reported prerequisite?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Register Microsoft.Storage in that subscription and inspect its state.
-B. Request more VM-family vCPUs.
-C. Rename the subscription.
-D. Move the subscription to a different tenant immediately.
+A. Register Microsoft.Storage in SubA and inspect its registration state.
+B. Register Microsoft.Compute in SubA and inspect its registration state.
+C. Register Microsoft.Storage in SubB again and inspect its registration state.
+D. Unregister Microsoft.Storage in SubB and retry the deployment in SubA.
 
 ## id-sub-directory-transfer
 
 Topic: Identity and governance › Subscription administration and provider registration.
 
-A team plans to change an Azure subscription's Entra directory. Which dependency requires explicit planning?
+A subscription is being transferred from Entra Tenant A to Tenant B. The inventory includes Azure role assignments and a VM's system-assigned managed identity used to access a resource. The team must restore authorized access under Tenant B after transfer. Which preparation plan accounts for these directory-bound dependencies?
 
 Select **1**. Difficulty: applied.
 
-A. Reestablishing resource access and affected managed identity relationships.
-B. Only changing the subscription display name.
-C. Every resource automatically moves to the new tenant's region.
-D. All resource roles become billing roles.
+A. Map principals to Tenant B, recreate Azure role assignments, and reenable the VM's system-assigned identity with required permissions.
+B. Retain the existing role assignments and identity because their Azure resource scopes have not changed.
+C. Recreate role assignments using the original Tenant A principal IDs and keep the VM identity unchanged.
+D. Assign billing roles in Tenant B and use those roles for the VM's resource access.
 
 ## id-tag-inheritance
 
