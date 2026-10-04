@@ -2987,14 +2987,14 @@ D. Remove NSG filtering from the connection.
 
 Topic: Networking › Public IP resources and allocation.
 
-A VM has a Standard public IP, a running HTTPS listener, and a guest firewall allowing TCP 443. Its effective NSG rules deny inbound Internet traffic. What must change to accept HTTPS from an approved client range?
+A VM has a Standard public IP, a running HTTPS listener, and a guest firewall allowing TCP 443. Its only NSG has an inbound deny rule at priority 300 for Internet sources to TCP 443. No higher-priority rule matches. Which NSG rule permits new HTTPS connections from the approved client range while preserving the deny for other Internet clients?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Add an NSG allow rule for that range and TCP 443.
-B. Set public IP allocation to dynamic.
-C. Add a DNS label to the public IP.
-D. Create a second public IP for the NIC.
+A. Inbound allow, approved source range, TCP destination port 443, priority 200.
+B. Inbound allow, approved source range, TCP destination port 443, priority 400.
+C. Outbound allow, approved destination range, TCP destination port 443, priority 200.
+D. Inbound allow, Internet source range, TCP destination port 443, priority 200.
 
 ## nw-ip-release
 
@@ -3013,14 +3013,14 @@ D. An unchanged DNS A record automatically tracks the new address.
 
 Topic: Networking › Public IP resources and allocation.
 
-You are creating a new Standard public IPv4 resource in the portal for a regional frontend. Which configuration is valid?
+You need a new public IPv4 resource for a VM NIC in West Europe. The address must use a supported current SKU for direct NIC association. Which SKU, tier, and allocation combination is valid?
 
 Select **1**. Difficulty: applied.
 
-A. Choose dynamic allocation and a private subnet address.
-B. Enter any unused public IPv4 address as its allocation.
-C. Select Standard with static allocation and compatible region/zone settings.
-D. Create a DNS label instead of allocating a public IP.
+A. Standard SKU, Regional tier, dynamic allocation, West Europe.
+B. Standard v2 SKU, Regional tier, static allocation, West Europe.
+C. Standard SKU, Regional tier, static allocation, West Europe.
+D. Standard SKU, Global tier, static allocation, West Europe.
 
 ## nw-route-prefix
 

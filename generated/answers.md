@@ -3901,18 +3901,18 @@ Study: [knowledge file](../knowledge/networking/virtual-networks/peering.md). Ev
 
 Topic: Networking › Public IP resources and allocation.
 
-A VM has a Standard public IP, a running HTTPS listener, and a guest firewall allowing TCP 443. Its effective NSG rules deny inbound Internet traffic. What must change to accept HTTPS from an approved client range?
+A VM has a Standard public IP, a running HTTPS listener, and a guest firewall allowing TCP 443. Its only NSG has an inbound deny rule at priority 300 for Internet sources to TCP 443. No higher-priority rule matches. Which NSG rule permits new HTTPS connections from the approved client range while preserving the deny for other Internet clients?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Add an NSG allow rule for that range and TCP 443. Standard public IP access still requires an NSG permit.
-- **B. Incorrect:** Set public IP allocation to dynamic. Standard uses static allocation; allocation does not authorize traffic.
-- **C. Incorrect:** Add a DNS label to the public IP. A DNS name does not override the NSG deny.
-- **D. Incorrect:** Create a second public IP for the NIC. Another address does not remove the filtering rule.
+- **A. Correct:** Inbound allow, approved source range, TCP destination port 443, priority 200. The approved source and port match the required flow, and priority 200 is evaluated before the deny at 300. Other Internet sources still match the deny.
+- **B. Incorrect:** Inbound allow, approved source range, TCP destination port 443, priority 400. The priority 300 deny matches first, so an allow at 400 cannot authorize these new inbound connections.
+- **C. Incorrect:** Outbound allow, approved destination range, TCP destination port 443, priority 200. An outbound rule applies to the wrong traffic direction; it does not permit client-initiated inbound HTTPS.
+- **D. Incorrect:** Inbound allow, Internet source range, TCP destination port 443, priority 200. This overrides the deny for all Internet sources on port 443, violating the requirement to allow only the approved range.
 
-Study: [knowledge file](../knowledge/networking/virtual-networks/public-ips.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/virtual-networks/public-ips.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/create-public-ip-portal)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview)
 
 ## nw-ip-release
 
@@ -3927,7 +3927,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** The resource starts with dynamic allocation until first use. Standard allocation is static.
 - **D. Incorrect:** An unchanged DNS A record automatically tracks the new address. A manually managed A record must be updated when its target changes.
 
-Study: [knowledge file](../knowledge/networking/virtual-networks/public-ips.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/virtual-networks/public-ips.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/create-public-ip-portal)
 
@@ -3935,16 +3935,16 @@ Study: [knowledge file](../knowledge/networking/virtual-networks/public-ips.md).
 
 Topic: Networking › Public IP resources and allocation.
 
-You are creating a new Standard public IPv4 resource in the portal for a regional frontend. Which configuration is valid?
+You need a new public IPv4 resource for a VM NIC in West Europe. The address must use a supported current SKU for direct NIC association. Which SKU, tier, and allocation combination is valid?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Choose dynamic allocation and a private subnet address. Standard uses static public allocation, outside the subnet's private pool.
-- **B. Incorrect:** Enter any unused public IPv4 address as its allocation. Azure allocates the numeric address from its pool.
-- **C. Correct:** Select Standard with static allocation and compatible region/zone settings. These settings match the supported creation model.
-- **D. Incorrect:** Create a DNS label instead of allocating a public IP. The label is an optional property of the address resource.
+- **A. Incorrect:** Standard SKU, Regional tier, dynamic allocation, West Europe. Standard public IP resources use static allocation; selecting dynamic does not provide a valid Standard configuration.
+- **B. Incorrect:** Standard v2 SKU, Regional tier, static allocation, West Europe. Standard v2 public IPs currently support Standard v2 NAT Gateway only, not direct VM NIC association.
+- **C. Correct:** Standard SKU, Regional tier, static allocation, West Europe. A regional Standard static IPv4 resource supports VM NIC association in the matching region.
+- **D. Incorrect:** Standard SKU, Global tier, static allocation, West Europe. Global tier addresses are for cross-region load balancers, not a direct regional VM NIC association.
 
-Study: [knowledge file](../knowledge/networking/virtual-networks/public-ips.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/virtual-networks/public-ips.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/create-public-ip-portal)
 

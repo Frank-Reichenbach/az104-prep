@@ -4154,9 +4154,9 @@
     {
       "id": "networking.vnets.public-ips",
       "title": "Public IP resources and allocation",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/networking.vnets.public-ips.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "nw-ip-inbound",
@@ -4171,9 +4171,9 @@
           ],
           "baselineHash": "9d9e5a00a5f6888a6d2ad5eb35c52365422d85ef8e4b0b5e51ecf4a2b0bb5926",
           "baselineContentHash": "d7666314b7d3563781ecb33134a262ba27d76ce8fd99efde9bb8fab45d16fb71",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "dade3a98b3f37df8d12827d7f56251d82cb3b99a322e8a43030de78960885c53"
         },
         {
           "id": "nw-ip-release",
@@ -4188,9 +4188,9 @@
           ],
           "baselineHash": "a742273890ad5b50ae48b8ef5a9176a93db198b83c3d1680a4766dc1c613606f",
           "baselineContentHash": "2ca91d1952dd4806c855cba578f4b43a34cda7567a049002137b09cc18d6393a",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "41531afe4c640e6f7f2152e2be95dedea913c353e224982109f1492fdb2086d4"
         },
         {
           "id": "nw-ip-create",
@@ -4205,9 +4205,9 @@
           ],
           "baselineHash": "c98d1f56755220da6a50b4f3dd3620ba89222bfe982cff11e985b1ff99ac766c",
           "baselineContentHash": "29590ed9eb9af5bf50ed17155254bccd8d1940b467e3549974b4789cbf96ac07",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f77dc69f59d3c982238b8ce7ec10a4baf357d6495607ff45e4c8c68a7caf7cec"
         }
       ]
     },
