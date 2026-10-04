@@ -1428,7 +1428,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** Modify. It changes supported properties rather than only observing.
 - **D. Incorrect:** DeployIfNotExists. It can deploy related configuration and is not purely reporting.
 
-Study: [knowledge file](../knowledge/identity/governance/policy.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/policy.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/governance/policy/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources)
 
@@ -1436,35 +1436,35 @@ Study: [knowledge file](../knowledge/identity/governance/policy.md). Evidence ch
 
 Topic: Identity and governance › Azure Policy assignments and remediation.
 
-A Modify policy assignment identifies existing untagged resources, but they remain unchanged after evaluation. Which action applies the supported modification to those existing resources?
+A Modify policy assignment adds a supported costCenter tag to new resources. Existing untagged resources appear as noncompliant after evaluation but remain unchanged. The assignment has a managed identity with the roles required by the definition. Without redeploying the workloads or changing the policy rule, which action applies the tag to these existing resources?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Create a remediation task using an appropriately authorized assignment identity. Existing-resource correction is performed through remediation.
-- **B. Incorrect:** Wait for an Audit-only policy to rewrite every resource. Audit reports; it does not apply modifications.
-- **C. Incorrect:** Assign Reader to every resource owner. Read permission does not execute policy modification.
-- **D. Incorrect:** Delete the resource group to clear noncompliance. Deleting the workload does not implement the requested correction.
+- **A. Correct:** Create a remediation task for the existing noncompliant resources. Modify evaluation marks existing resources noncompliant; a remediation task applies the correction using the authorized assignment identity.
+- **B. Incorrect:** Trigger another compliance evaluation for the same assignment. Another evaluation discovers noncompliance but does not modify existing resources.
+- **C. Incorrect:** Grant additional resource permissions to the administrator who created the assignment. The authorized assignment identity performs remediation. Extra permissions for the administrator do not start correction.
+- **D. Incorrect:** Change the assignment to an Audit effect and run another evaluation. Audit reports violations rather than adding the missing tag.
 
-Study: [knowledge file](../knowledge/identity/governance/policy.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/policy.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/governance/policy/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-modify) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-audit)
 
 ## id-policy-removal
 
 Topic: Identity and governance › Azure Policy assignments and remediation.
 
-A DeployIfNotExists policy deployed diagnostic settings. The policy assignment is later removed. What happens to the settings solely because of assignment removal?
+A DeployIfNotExists policy deployed a diagnostic setting that sends resource logs to an existing Log Analytics workspace. An administrator removes the policy assignment. No cleanup automation runs and neither the diagnostic setting nor the workspace is deleted or changed. What is the diagnostic setting's state after assignment removal?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** They are not automatically rolled back. Policy removal does not undo its earlier deployments.
-- **B. Incorrect:** Every deployed setting is automatically deleted. Assignment lifecycle is separate from deployed-resource cleanup.
-- **C. Incorrect:** They become Azure RBAC role assignments. Diagnostic configuration is not converted into authorization.
-- **D. Incorrect:** They become permanent deny assignments. Removing Policy does not produce that transformation.
+- **A. Correct:** It remains configured to send logs to the workspace. The assignment and deployed diagnostic setting are separate resources. Removing the assignment does not undo the diagnostic configuration.
+- **B. Incorrect:** It is deleted when the assignment is deleted. Deleting the assignment does not itself delete the separately deployed diagnostic setting.
+- **C. Incorrect:** It remains present but its log categories are automatically disabled. No operation changes the diagnostic setting. Assignment removal does not edit its enabled categories.
+- **D. Incorrect:** It remains present but its workspace destination is automatically cleared. The workspace destination is part of the diagnostic configuration, which the scenario leaves unchanged.
 
-Study: [knowledge file](../knowledge/identity/governance/policy.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/policy.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/governance/policy/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deploy-if-not-exists) · [Microsoft source 2](https://learn.microsoft.com/en-us/rest/api/policy-authorization/policy-assignments/delete?view=rest-policy-authorization-2026-06-01) · [Microsoft source 3](https://learn.microsoft.com/en-us/rest/api/monitor/diagnostic-settings/delete?view=rest-monitor-2021-05-01-preview)
 
 ## id-rg-location
 

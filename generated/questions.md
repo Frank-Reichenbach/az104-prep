@@ -1102,27 +1102,27 @@ D. DeployIfNotExists.
 
 Topic: Identity and governance › Azure Policy assignments and remediation.
 
-A Modify policy assignment identifies existing untagged resources, but they remain unchanged after evaluation. Which action applies the supported modification to those existing resources?
+A Modify policy assignment adds a supported costCenter tag to new resources. Existing untagged resources appear as noncompliant after evaluation but remain unchanged. The assignment has a managed identity with the roles required by the definition. Without redeploying the workloads or changing the policy rule, which action applies the tag to these existing resources?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Create a remediation task using an appropriately authorized assignment identity.
-B. Wait for an Audit-only policy to rewrite every resource.
-C. Assign Reader to every resource owner.
-D. Delete the resource group to clear noncompliance.
+A. Create a remediation task for the existing noncompliant resources.
+B. Trigger another compliance evaluation for the same assignment.
+C. Grant additional resource permissions to the administrator who created the assignment.
+D. Change the assignment to an Audit effect and run another evaluation.
 
 ## id-policy-removal
 
 Topic: Identity and governance › Azure Policy assignments and remediation.
 
-A DeployIfNotExists policy deployed diagnostic settings. The policy assignment is later removed. What happens to the settings solely because of assignment removal?
+A DeployIfNotExists policy deployed a diagnostic setting that sends resource logs to an existing Log Analytics workspace. An administrator removes the policy assignment. No cleanup automation runs and neither the diagnostic setting nor the workspace is deleted or changed. What is the diagnostic setting's state after assignment removal?
 
 Select **1**. Difficulty: foundation.
 
-A. They are not automatically rolled back.
-B. Every deployed setting is automatically deleted.
-C. They become Azure RBAC role assignments.
-D. They become permanent deny assignments.
+A. It remains configured to send logs to the workspace.
+B. It is deleted when the assignment is deleted.
+C. It remains present but its log categories are automatically disabled.
+D. It remains present but its workspace destination is automatically cleared.
 
 ## id-rg-location
 

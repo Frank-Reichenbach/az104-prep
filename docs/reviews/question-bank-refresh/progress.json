@@ -2106,9 +2106,9 @@
     {
       "id": "identity.governance.policy",
       "title": "Azure Policy assignments and remediation",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/identity.governance.policy.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "id-policy-audit-deny",
@@ -2123,9 +2123,9 @@
           ],
           "baselineHash": "7f74b0041e245b3edc72c689e6d0bf35a055d75b9adeb7fa8adde6f6102cb1b9",
           "baselineContentHash": "e41f77f8e8663c3b959d00fd02e0b2de790bbce61d5e74291151441166618b75",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "ef6e6672993e17e397499dd5c8de6f6ff2952b9e8448654f72da4fbdbf284e2c"
         },
         {
           "id": "id-policy-remediation",
@@ -2140,9 +2140,9 @@
           ],
           "baselineHash": "7b700676de7861f5dd99c22835f7ee085e968c2ef20e5897d9cb07389207e9d3",
           "baselineContentHash": "efda1365150dd7fdad0fc8ae44ea17de1e01395bccd7bf15908dece9e538b908",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "7fe8bbcb147916abcd894416a95fee3f0a3514dd6c39b76254149189e3d2c107"
         },
         {
           "id": "id-policy-removal",
@@ -2157,9 +2157,9 @@
           ],
           "baselineHash": "7f0e4bf0620e035b6698a7a21e51fd2abec5a032aad170fa51bf9902daf07c80",
           "baselineContentHash": "5596bf4a8afc5d66db827f00445358192e09abda0c00aca0ff9b35243ef90518",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "8ef3d765ddf1cb839c1e5c9f5d296c1c1576741c86a008191a9e52a3f7b2ce3c"
         }
       ]
     },
