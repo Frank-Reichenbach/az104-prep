@@ -3117,27 +3117,27 @@ D. DNS resolves the client's hostname correctly.
 
 Topic: Networking › Diagnosing VNet connectivity.
 
-You suspect a subnet UDR directs a VM's traffic to the wrong appliance. Which Network Watcher tool directly reports the selected next hop for a destination IP?
+After a subnet route-table change, a running VM cannot reach a destination IP. Security-rule evaluation permits the flow. You need a targeted query returning the selected route type, next-hop IP, and route-table ID for that VM and destination before editing routes. Which Network Watcher diagnostic provides this result?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
 A. IP flow verify.
-B. NSG rule editor.
+B. Packet capture.
 C. Next hop.
-D. Public IP DNS label settings.
+D. NSG diagnostics.
 
 ## nw-diag-name
 
 Topic: Networking › Diagnosing VNet connectivity.
 
-A VM connects to a service's IP on TCP 443, but connections using its hostname fail. What should you investigate first?
+A VM can open a TCP connection to a service known IP on port 443. The same TCP test using the service hostname fails before connecting and reports that the name cannot be resolved. Which check investigates that failed stage first?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Replace its working route with a None next hop.
-B. DNS resolution of the hostname from that VM.
-C. Delete the subnet's NSG immediately.
-D. Change the service's frontend to a dynamic public IP.
+A. Inspect the server certificate chain presented during TLS.
+B. Query the hostname using the DNS resolver configured on that VM.
+C. Inspect the web application route for the requested HTTP path.
+D. Check the service process listener on TCP 443.
 
 ## nw-private-registration-enabled-variant
 

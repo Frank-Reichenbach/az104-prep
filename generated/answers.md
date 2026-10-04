@@ -4063,7 +4063,7 @@ Select **1**. Difficulty: troubleshooting.
 - **C. Incorrect:** The VM's guest firewall permits TCP 443. Guest filtering must be checked separately.
 - **D. Incorrect:** DNS resolves the client's hostname correctly. The flow evaluation does not establish client DNS resolution.
 
-Study: [knowledge file](../knowledge/networking/virtual-networks/troubleshooting.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/virtual-networks/troubleshooting.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/next-hop-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/connection-troubleshoot-overview)
 
@@ -4071,35 +4071,35 @@ Study: [knowledge file](../knowledge/networking/virtual-networks/troubleshooting
 
 Topic: Networking › Diagnosing VNet connectivity.
 
-You suspect a subnet UDR directs a VM's traffic to the wrong appliance. Which Network Watcher tool directly reports the selected next hop for a destination IP?
+After a subnet route-table change, a running VM cannot reach a destination IP. Security-rule evaluation permits the flow. You need a targeted query returning the selected route type, next-hop IP, and route-table ID for that VM and destination before editing routes. Which Network Watcher diagnostic provides this result?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-- **A. Incorrect:** IP flow verify. It evaluates security filtering rather than selected next hop.
-- **B. Incorrect:** NSG rule editor. It changes filtering rules rather than reporting routing.
-- **C. Correct:** Next hop. It reports the selected next-hop type/address for the flow destination.
-- **D. Incorrect:** Public IP DNS label settings. Those manage a name for a public address, not route selection.
+- **A. Incorrect:** IP flow verify. This reports security-rule allow/deny decisions, not the selected routing type, appliance IP, and route-table ID.
+- **B. Incorrect:** Packet capture. This records packets for inspection; it is not the targeted route-selection query that returns these three routing fields.
+- **C. Correct:** Next hop. Next hop returns the selected next-hop type, IP address, and route-table ID for the specified destination from the source VM.
+- **D. Incorrect:** NSG diagnostics. This evaluates network security rules for the connection, rather than reporting the selected route-table next hop.
 
-Study: [knowledge file](../knowledge/networking/virtual-networks/troubleshooting.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/virtual-networks/troubleshooting.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/next-hop-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/connection-troubleshoot-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/next-hop-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/packet-capture-overview) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-network-configuration-diagnostics-overview)
 
 ## nw-diag-name
 
 Topic: Networking › Diagnosing VNet connectivity.
 
-A VM connects to a service's IP on TCP 443, but connections using its hostname fail. What should you investigate first?
+A VM can open a TCP connection to a service known IP on port 443. The same TCP test using the service hostname fails before connecting and reports that the name cannot be resolved. Which check investigates that failed stage first?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Incorrect:** Replace its working route with a None next hop. That drops traffic instead of addressing name failure.
-- **B. Correct:** DNS resolution of the hostname from that VM. The difference between name and IP points first to name resolution.
-- **C. Incorrect:** Delete the subnet's NSG immediately. Working IP connectivity is not evidence that every NSG must be removed.
-- **D. Incorrect:** Change the service's frontend to a dynamic public IP. Allocation changes do not repair a bad DNS response.
+- **A. Incorrect:** Inspect the server certificate chain presented during TLS. TLS certificate exchange occurs after the TCP connection. It cannot explain a failure to resolve the hostname before connecting.
+- **B. Correct:** Query the hostname using the DNS resolver configured on that VM. The failed stage is name resolution. Querying that resolver reveals whether it returns the expected address or a resolution error.
+- **C. Incorrect:** Inspect the web application route for the requested HTTP path. HTTP path handling happens after connection and TLS; no request reaches that stage when the name cannot be resolved.
+- **D. Incorrect:** Check the service process listener on TCP 443. The successful direct-IP TCP connection already establishes a listener for this test. It does not explain the earlier hostname-resolution failure.
 
-Study: [knowledge file](../knowledge/networking/virtual-networks/troubleshooting.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/virtual-networks/troubleshooting.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/next-hop-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/connection-troubleshoot-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/connection-troubleshoot-overview)
 
 ## nw-private-registration-enabled-variant
 

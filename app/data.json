@@ -11558,39 +11558,39 @@
         "https://learn.microsoft.com/en-us/azure/network-watcher/next-hop-overview",
         "https://learn.microsoft.com/en-us/azure/network-watcher/connection-troubleshoot-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-diag-next",
       "family": "nw-diag-next",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.vnets.troubleshooting",
       "objectives": [
         "nw-05"
       ],
-      "difficulty": "applied",
-      "prompt": "You suspect a subnet UDR directs a VM's traffic to the wrong appliance. Which Network Watcher tool directly reports the selected next hop for a destination IP?",
+      "difficulty": "troubleshooting",
+      "prompt": "After a subnet route-table change, a running VM cannot reach a destination IP. Security-rule evaluation permits the flow. You need a targeted query returning the selected route type, next-hop IP, and route-table ID for that VM and destination before editing routes. Which Network Watcher diagnostic provides this result?",
       "select": 1,
       "options": [
         {
           "id": "a",
           "text": "IP flow verify.",
-          "explanation": "It evaluates security filtering rather than selected next hop."
+          "explanation": "This reports security-rule allow/deny decisions, not the selected routing type, appliance IP, and route-table ID."
         },
         {
           "id": "b",
-          "text": "NSG rule editor.",
-          "explanation": "It changes filtering rules rather than reporting routing."
+          "text": "Packet capture.",
+          "explanation": "This records packets for inspection; it is not the targeted route-selection query that returns these three routing fields."
         },
         {
           "id": "c",
           "text": "Next hop.",
-          "explanation": "It reports the selected next-hop type/address for the flow destination."
+          "explanation": "Next hop returns the selected next-hop type, IP address, and route-table ID for the specified destination from the source VM."
         },
         {
           "id": "d",
-          "text": "Public IP DNS label settings.",
-          "explanation": "Those manage a name for a public address, not route selection."
+          "text": "NSG diagnostics.",
+          "explanation": "This evaluates network security rules for the connection, rather than reporting the selected route-table next hop."
         }
       ],
       "correct": [
@@ -11600,41 +11600,42 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview",
         "https://learn.microsoft.com/en-us/azure/network-watcher/next-hop-overview",
-        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-troubleshoot-overview"
+        "https://learn.microsoft.com/en-us/azure/network-watcher/packet-capture-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-network-configuration-diagnostics-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-diag-name",
       "family": "nw-diag-name",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.vnets.troubleshooting",
       "objectives": [
         "nw-05"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A VM connects to a service's IP on TCP 443, but connections using its hostname fail. What should you investigate first?",
+      "prompt": "A VM can open a TCP connection to a service known IP on port 443. The same TCP test using the service hostname fails before connecting and reports that the name cannot be resolved. Which check investigates that failed stage first?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Replace its working route with a None next hop.",
-          "explanation": "That drops traffic instead of addressing name failure."
+          "text": "Inspect the server certificate chain presented during TLS.",
+          "explanation": "TLS certificate exchange occurs after the TCP connection. It cannot explain a failure to resolve the hostname before connecting."
         },
         {
           "id": "b",
-          "text": "DNS resolution of the hostname from that VM.",
-          "explanation": "The difference between name and IP points first to name resolution."
+          "text": "Query the hostname using the DNS resolver configured on that VM.",
+          "explanation": "The failed stage is name resolution. Querying that resolver reveals whether it returns the expected address or a resolution error."
         },
         {
           "id": "c",
-          "text": "Delete the subnet's NSG immediately.",
-          "explanation": "Working IP connectivity is not evidence that every NSG must be removed."
+          "text": "Inspect the web application route for the requested HTTP path.",
+          "explanation": "HTTP path handling happens after connection and TLS; no request reaches that stage when the name cannot be resolved."
         },
         {
           "id": "d",
-          "text": "Change the service's frontend to a dynamic public IP.",
-          "explanation": "Allocation changes do not repair a bad DNS response."
+          "text": "Check the service process listener on TCP 443.",
+          "explanation": "The successful direct-IP TCP connection already establishes a listener for this test. It does not explain the earlier hostname-resolution failure."
         }
       ],
       "correct": [
@@ -11642,11 +11643,9 @@
       ],
       "knowledge": "knowledge/networking/virtual-networks/troubleshooting.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview",
-        "https://learn.microsoft.com/en-us/azure/network-watcher/next-hop-overview",
         "https://learn.microsoft.com/en-us/azure/network-watcher/connection-troubleshoot-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-private-registration-enabled-variant",

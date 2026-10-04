@@ -4291,9 +4291,9 @@
     {
       "id": "networking.vnets.troubleshooting",
       "title": "Diagnosing VNet connectivity",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/networking.vnets.troubleshooting.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "nw-diag-allowed",
@@ -4308,9 +4308,9 @@
           ],
           "baselineHash": "e1119de40b1e79167f66813741ba4bac485f3417050301dfdddd9cf7e1aff3d4",
           "baselineContentHash": "a143ef5626e6bb4d6ee3936c5d0c6e39de0c8a38be3786e3e0fc9bb9eee34fe8",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "d595c13c2e5bbe6dda453385acb4c77feb415d52a341caee934c1b20afd5fb80"
         },
         {
           "id": "nw-diag-next",
@@ -4325,9 +4325,9 @@
           ],
           "baselineHash": "71e69607d72860de9539e1f5b3ae73ab50e2b2d649ae929cc17948977fdb6d2e",
           "baselineContentHash": "c9ec7d5fa615113ec00232bc80685c90814c5706df5587f99bf932237e6c4dd9",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "2f9f1d6af95b981f5cf7df5471884949191727e64c9f3b7194b848621c06f6f2"
         },
         {
           "id": "nw-diag-name",
@@ -4342,9 +4342,9 @@
           ],
           "baselineHash": "d709a0d19821182f2519fe1e1a9313bf797d9110f45c32c47b1323366583d199",
           "baselineContentHash": "f21006ba0a6a7a1a51e20ddc32c21ae8e0133c1f55faae593894d561bd340f60",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "8d750fb4b0d02d312796f5e494c0f13f48eede1cc847192dc1506c6e1affb0f3"
         }
       ]
     },
