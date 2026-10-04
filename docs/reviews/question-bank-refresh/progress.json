@@ -4214,9 +4214,9 @@
     {
       "id": "networking.vnets.routes",
       "title": "User-defined routes and next hops",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/networking.vnets.routes.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "nw-route-prefix",
@@ -4231,9 +4231,9 @@
           ],
           "baselineHash": "5bc67ad5100eaf34df002c45745578898ac1396ccbaac70902cd0e7feafa8480",
           "baselineContentHash": "68a96dd10c120836458d7a1785ef60dba5a7b3936eed9429a11039c2aae78080",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "9264b541c0bb6046c850bf8b44c2098c911cc0fee1d8ad4de785da289deb13fc"
         },
         {
           "id": "nw-route-association",
@@ -4248,9 +4248,9 @@
           ],
           "baselineHash": "66492bdb98c9372d8e5188b3ccf47abae971407ee7dca2c08dfacce2172ce031",
           "baselineContentHash": "4ac2228a17a8de5a20e2dfda6c3efb4378d7cafe4455627ce4c19733da4387c2",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f7741ad911f165d726cc36d6f7dd7510d4c372d3afed094feb45525bf17308d2"
         },
         {
           "id": "nw-route-forward",
@@ -4265,9 +4265,9 @@
           ],
           "baselineHash": "e00b1ba94ace589c326efe0a5b4bb8743a2d2e7f53e1628c69626d53c7f7870d",
           "baselineContentHash": "6e0916c33ee50f4dd6a9786d9d8f7cbcab83d664b59dc0e7cbd697454900f583",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "c4a74170757e8bc3e3e72aac9858b1d6c0d2ebe6ed418608c130853d78852d68"
         },
         {
           "id": "nw-route-specific-variant",
@@ -4282,9 +4282,9 @@
           ],
           "baselineHash": "b81f48215f495084cc7c9417fd183e251b04db0b5e1ce94d9e876407931961d8",
           "baselineContentHash": "3eb47166fa96f04e4a25b44088950e37a7a64ceb2360f3e4f3b231ad20ff41ef",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "43121637ec903ecd3a6fa2aca75a00ad587d5350a5f063848912bb0eca412db7"
         }
       ]
     },

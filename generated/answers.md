@@ -3961,7 +3961,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** To the Internet because the destination is outside the VM subnet. The active VNet route covers the destination.
 - **D. Incorrect:** It is dropped because the route table lacks a matching UDR. System routes remain part of effective routing.
 
-Study: [knowledge file](../knowledge/networking/virtual-networks/routes.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/virtual-networks/routes.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/manage-route-table)
 
@@ -3969,16 +3969,16 @@ Study: [knowledge file](../knowledge/networking/virtual-networks/routes.md). Evi
 
 Topic: Networking › User-defined routes and next hops.
 
-You create a route table and a route, but a workload subnet's effective routes are unchanged. The table is not associated with any subnet. What is missing?
+A route table contains the required UDR to a firewall in subnet-firewall. It is not associated with any subnet. A running VM in subnet-app still shows its original effective routes. Which change applies the table to traffic leaving subnet-app?
 
-Select **1**. Difficulty: foundation.
+Select **1**. Difficulty: troubleshooting.
 
-- **A. Incorrect:** Associate the table with the VM's managed disk. Route tables are associated with subnets.
-- **B. Correct:** Associate the table with the workload subnet. Creating a table alone does not apply it.
-- **C. Incorrect:** Add the table name as an NSG service tag. NSG service tags do not apply route tables.
-- **D. Incorrect:** Replace the VNet's DNS server list with the next-hop IP. DNS settings do not select the subnet route table.
+- **A. Incorrect:** Associate the route table with subnet-firewall. That changes routes for traffic leaving the firewall subnet, not the source workload subnet whose routes must change.
+- **B. Correct:** Associate the route table with subnet-app. A route table must be associated with the source subnet to add its UDRs to that subnet effective routing.
+- **C. Incorrect:** Move the route table into the VM resource group without associating a subnet. Resource-group organization does not apply the table; the source subnet association is still missing.
+- **D. Incorrect:** Associate an NSG with subnet-app without associating the route table. An NSG controls traffic permission, not the route-table association required to change next-hop selection.
 
-Study: [knowledge file](../knowledge/networking/virtual-networks/routes.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/virtual-networks/routes.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/manage-route-table)
 
@@ -3986,16 +3986,16 @@ Study: [knowledge file](../knowledge/networking/virtual-networks/routes.md). Evi
 
 Topic: Networking › User-defined routes and next hops.
 
-A UDR sends app-subnet traffic to a firewall VM in another subnet. NSGs permit it, but the firewall does not forward packets. Which two forwarding settings must you check?
+The effective UDR for an app VM sends traffic to a firewall VM in a separate subnet. NSGs and firewall policy permit the flow, and next-hop reachability and the return path are verified. Azure NIC IP forwarding and guest packet forwarding on the firewall are both disabled. Traffic must continue through this firewall. Which TWO changes jointly enable its forwarding path?
 
 Select **2**. Difficulty: troubleshooting.
 
-- **A. Correct:** IP forwarding on the firewall's Azure NIC. The NIC must be allowed to handle traffic for other addresses.
-- **B. Incorrect:** Dynamic allocation on the firewall's public IP. Public IP allocation does not enable forwarding.
-- **C. Correct:** Forwarding within the firewall operating system/appliance. The guest must actually route the packets.
-- **D. Incorrect:** A DNS label on the application VM. A DNS label does not enable appliance forwarding.
+- **A. Correct:** Enable IP forwarding on the firewall Azure NIC. The Azure NIC must accept and send transit packets for addresses other than its own. This platform setting is required in addition to guest forwarding.
+- **B. Incorrect:** Enable IP forwarding on the application VM Azure NIC. The application VM originates its own traffic; changing its NIC does not enable the disabled transit forwarding on the firewall.
+- **C. Correct:** Enable packet forwarding in the firewall operating system/appliance. The guest must route the transit packets it receives. The Azure NIC permission alone does not make the disabled guest forwarding path active.
+- **D. Incorrect:** Change the app UDR next hop from the firewall to Internet. This bypasses the required firewall path rather than enabling its forwarding. It violates the stated traffic-routing constraint.
 
-Study: [knowledge file](../knowledge/networking/virtual-networks/routes.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/virtual-networks/routes.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/manage-route-table)
 
@@ -4131,7 +4131,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** Internet because the destination is outside the /24. 10.50.2.8 is inside 10.50.2.0/24, and no Internet route wins.
 - **D. Incorrect:** Both next hops simultaneously because both prefixes match. Route selection chooses the matching route with the longest prefix, rather than duplicating traffic across these routes.
 
-Study: [knowledge file](../knowledge/networking/virtual-networks/routes.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/virtual-networks/routes.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/manage-route-table)
 

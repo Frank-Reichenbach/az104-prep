@@ -3039,27 +3039,27 @@ D. It is dropped because the route table lacks a matching UDR.
 
 Topic: Networking › User-defined routes and next hops.
 
-You create a route table and a route, but a workload subnet's effective routes are unchanged. The table is not associated with any subnet. What is missing?
+A route table contains the required UDR to a firewall in subnet-firewall. It is not associated with any subnet. A running VM in subnet-app still shows its original effective routes. Which change applies the table to traffic leaving subnet-app?
 
-Select **1**. Difficulty: foundation.
+Select **1**. Difficulty: troubleshooting.
 
-A. Associate the table with the VM's managed disk.
-B. Associate the table with the workload subnet.
-C. Add the table name as an NSG service tag.
-D. Replace the VNet's DNS server list with the next-hop IP.
+A. Associate the route table with subnet-firewall.
+B. Associate the route table with subnet-app.
+C. Move the route table into the VM resource group without associating a subnet.
+D. Associate an NSG with subnet-app without associating the route table.
 
 ## nw-route-forward
 
 Topic: Networking › User-defined routes and next hops.
 
-A UDR sends app-subnet traffic to a firewall VM in another subnet. NSGs permit it, but the firewall does not forward packets. Which two forwarding settings must you check?
+The effective UDR for an app VM sends traffic to a firewall VM in a separate subnet. NSGs and firewall policy permit the flow, and next-hop reachability and the return path are verified. Azure NIC IP forwarding and guest packet forwarding on the firewall are both disabled. Traffic must continue through this firewall. Which TWO changes jointly enable its forwarding path?
 
 Select **2**. Difficulty: troubleshooting.
 
-A. IP forwarding on the firewall's Azure NIC.
-B. Dynamic allocation on the firewall's public IP.
-C. Forwarding within the firewall operating system/appliance.
-D. A DNS label on the application VM.
+A. Enable IP forwarding on the firewall Azure NIC.
+B. Enable IP forwarding on the application VM Azure NIC.
+C. Enable packet forwarding in the firewall operating system/appliance.
+D. Change the app UDR next hop from the firewall to Internet.
 
 ## nw-subnet-reserved
 
