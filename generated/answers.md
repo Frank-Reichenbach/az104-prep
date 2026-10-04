@@ -1572,35 +1572,35 @@ Study: [knowledge file](../knowledge/identity/governance/subscriptions.md). Evid
 
 Topic: Identity and governance › Resource tags and tag governance.
 
-A resource group has CostCenter=Finance. A new VM inside it has no tag policy or other tagging automation. Does the VM automatically receive that resource tag?
+Resource group rg-app has CostCenter=Finance. An administrator deploys vm-app into it without specifying VM tags. No tagging policy or other automation applies. Which pair of resource tag states should the administrator observe after deployment?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** No; resource tags do not automatically inherit. Use an explicit assignment or policy if the VM must carry the value.
-- **B. Incorrect:** Yes; every resource-group tag is automatically copied. That is not the default resource-tag behavior.
-- **C. Incorrect:** Yes; billing tags and resource properties are always identical. Cost-data inheritance and resource mutation are different mechanisms.
-- **D. Incorrect:** Only when the VM creator is the resource-group Owner. The creator's role does not enable automatic tag inheritance.
+- **A. Correct:** rg-app retains CostCenter=Finance; vm-app has no CostCenter tag. Tags remain on the group; resource tags do not automatically inherit to the VM.
+- **B. Incorrect:** rg-app and vm-app both have CostCenter=Finance. That would require explicit tagging or automation; no automatic resource-tag inheritance applies.
+- **C. Incorrect:** rg-app has no CostCenter tag; vm-app has CostCenter=Finance. Deploying a VM neither transfers nor removes the group tag.
+- **D. Incorrect:** Neither rg-app nor vm-app has a CostCenter tag. The deployment does not remove the existing group tag.
 
-Study: [knowledge file](../knowledge/identity/governance/tags.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/tags.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-policies) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag-inheritance)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources)
 
 ## id-tag-merge
 
 Topic: Identity and governance › Resource tags and tag governance.
 
-A resource already has ServiceOwner=Ops. You must add Environment=Training without removing ServiceOwner. Which CLI operation fits?
+A resource has ServiceOwner=Ops and no Environment tag. The shell variable resourceId contains its valid resource ID. You must add Environment=Training without removing ServiceOwner. Which command meets both requirements?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** az tag update with --operation Merge. It preserves unrelated existing keys.
-- **B. Incorrect:** az tag create with only Environment=Training. Create replaces the tag collection.
-- **C. Incorrect:** az tag update with --operation Replace and only Environment=Training. Replace would omit the existing ServiceOwner key.
-- **D. Incorrect:** az tag delete followed by no additional operation. Deleting tags cannot add the required new value.
+- **A. Correct:** az tag update --resource-id "$resourceId" --operation Merge --tags Environment=Training Merge adds the new key while preserving the existing ServiceOwner key.
+- **B. Incorrect:** az tag create --resource-id "$resourceId" --tags Environment=Training Create replaces the collection, so ServiceOwner would be removed.
+- **C. Incorrect:** az tag update --resource-id "$resourceId" --operation Replace --tags Environment=Training Replace retains only the supplied collection, which omits ServiceOwner.
+- **D. Incorrect:** az tag update --resource-id "$resourceId" --operation Delete --tags Environment=Training Delete removes matching tags; it cannot add the missing Environment key.
 
-Study: [knowledge file](../knowledge/identity/governance/tags.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/tags.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-policies) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag-inheritance)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli)
 
 ## id-tag-policy-existing
 
@@ -1615,7 +1615,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** Only enable cost-report tag inheritance. That affects cost records, not necessarily the resources' tag properties.
 - **D. Incorrect:** Retag the resource group and assume automatic propagation. Parent resource tags do not automatically copy to children.
 
-Study: [knowledge file](../knowledge/identity/governance/tags.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/tags.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-policies) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag-inheritance)
 

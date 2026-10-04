@@ -1206,27 +1206,27 @@ D. All resource roles become billing roles.
 
 Topic: Identity and governance › Resource tags and tag governance.
 
-A resource group has CostCenter=Finance. A new VM inside it has no tag policy or other tagging automation. Does the VM automatically receive that resource tag?
+Resource group rg-app has CostCenter=Finance. An administrator deploys vm-app into it without specifying VM tags. No tagging policy or other automation applies. Which pair of resource tag states should the administrator observe after deployment?
 
 Select **1**. Difficulty: foundation.
 
-A. No; resource tags do not automatically inherit.
-B. Yes; every resource-group tag is automatically copied.
-C. Yes; billing tags and resource properties are always identical.
-D. Only when the VM creator is the resource-group Owner.
+A. rg-app retains CostCenter=Finance; vm-app has no CostCenter tag.
+B. rg-app and vm-app both have CostCenter=Finance.
+C. rg-app has no CostCenter tag; vm-app has CostCenter=Finance.
+D. Neither rg-app nor vm-app has a CostCenter tag.
 
 ## id-tag-merge
 
 Topic: Identity and governance › Resource tags and tag governance.
 
-A resource already has ServiceOwner=Ops. You must add Environment=Training without removing ServiceOwner. Which CLI operation fits?
+A resource has ServiceOwner=Ops and no Environment tag. The shell variable resourceId contains its valid resource ID. You must add Environment=Training without removing ServiceOwner. Which command meets both requirements?
 
 Select **1**. Difficulty: applied.
 
-A. az tag update with --operation Merge.
-B. az tag create with only Environment=Training.
-C. az tag update with --operation Replace and only Environment=Training.
-D. az tag delete followed by no additional operation.
+A. az tag update --resource-id "$resourceId" --operation Merge --tags Environment=Training
+B. az tag create --resource-id "$resourceId" --tags Environment=Training
+C. az tag update --resource-id "$resourceId" --operation Replace --tags Environment=Training
+D. az tag update --resource-id "$resourceId" --operation Delete --tags Environment=Training
 
 ## id-tag-policy-existing
 

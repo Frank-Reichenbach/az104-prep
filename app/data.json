@@ -5165,34 +5165,34 @@
     {
       "id": "id-tag-inheritance",
       "family": "id-tag-inheritance",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.governance.tags",
       "objectives": [
         "id-11"
       ],
       "difficulty": "foundation",
-      "prompt": "A resource group has CostCenter=Finance. A new VM inside it has no tag policy or other tagging automation. Does the VM automatically receive that resource tag?",
+      "prompt": "Resource group rg-app has CostCenter=Finance. An administrator deploys vm-app into it without specifying VM tags. No tagging policy or other automation applies. Which pair of resource tag states should the administrator observe after deployment?",
       "select": 1,
       "options": [
         {
           "id": "no",
-          "text": "No; resource tags do not automatically inherit.",
-          "explanation": "Use an explicit assignment or policy if the VM must carry the value."
+          "text": "rg-app retains CostCenter=Finance; vm-app has no CostCenter tag.",
+          "explanation": "Tags remain on the group; resource tags do not automatically inherit to the VM."
         },
         {
           "id": "yes",
-          "text": "Yes; every resource-group tag is automatically copied.",
-          "explanation": "That is not the default resource-tag behavior."
+          "text": "rg-app and vm-app both have CostCenter=Finance.",
+          "explanation": "That would require explicit tagging or automation; no automatic resource-tag inheritance applies."
         },
         {
           "id": "billing",
-          "text": "Yes; billing tags and resource properties are always identical.",
-          "explanation": "Cost-data inheritance and resource mutation are different mechanisms."
+          "text": "rg-app has no CostCenter tag; vm-app has CostCenter=Finance.",
+          "explanation": "Deploying a VM neither transfers nor removes the group tag."
         },
         {
           "id": "owner",
-          "text": "Only when the VM creator is the resource-group Owner.",
-          "explanation": "The creator's role does not enable automatic tag inheritance."
+          "text": "Neither rg-app nor vm-app has a CostCenter tag.",
+          "explanation": "The deployment does not remove the existing group tag."
         }
       ],
       "correct": [
@@ -5200,44 +5200,41 @@
       ],
       "knowledge": "knowledge/identity/governance/tags.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-policies",
-        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag-inheritance"
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-tag-merge",
       "family": "id-tag-merge",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.governance.tags",
       "objectives": [
         "id-11"
       ],
       "difficulty": "applied",
-      "prompt": "A resource already has ServiceOwner=Ops. You must add Environment=Training without removing ServiceOwner. Which CLI operation fits?",
+      "prompt": "A resource has ServiceOwner=Ops and no Environment tag. The shell variable resourceId contains its valid resource ID. You must add Environment=Training without removing ServiceOwner. Which command meets both requirements?",
       "select": 1,
       "options": [
         {
           "id": "merge",
-          "text": "az tag update with --operation Merge.",
-          "explanation": "It preserves unrelated existing keys."
+          "text": "az tag update --resource-id \"$resourceId\" --operation Merge --tags Environment=Training",
+          "explanation": "Merge adds the new key while preserving the existing ServiceOwner key."
         },
         {
           "id": "create",
-          "text": "az tag create with only Environment=Training.",
-          "explanation": "Create replaces the tag collection."
+          "text": "az tag create --resource-id \"$resourceId\" --tags Environment=Training",
+          "explanation": "Create replaces the collection, so ServiceOwner would be removed."
         },
         {
           "id": "replace",
-          "text": "az tag update with --operation Replace and only Environment=Training.",
-          "explanation": "Replace would omit the existing ServiceOwner key."
+          "text": "az tag update --resource-id \"$resourceId\" --operation Replace --tags Environment=Training",
+          "explanation": "Replace retains only the supplied collection, which omits ServiceOwner."
         },
         {
           "id": "delete",
-          "text": "az tag delete followed by no additional operation.",
-          "explanation": "Deleting tags cannot add the required new value."
+          "text": "az tag update --resource-id \"$resourceId\" --operation Delete --tags Environment=Training",
+          "explanation": "Delete removes matching tags; it cannot add the missing Environment key."
         }
       ],
       "correct": [
@@ -5245,12 +5242,9 @@
       ],
       "knowledge": "knowledge/identity/governance/tags.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-policies",
-        "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag-inheritance"
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-tag-policy-existing",
@@ -5295,7 +5289,7 @@
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-policies",
         "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag-inheritance"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-group-dynamic-department",

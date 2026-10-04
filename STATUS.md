@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 115/322 questions reviewed, 91 revised and 24 kept; 32/99 topics complete.
-Latest: [Resource locks](docs/reviews/question-bank-refresh/identity.governance.locks.md). Each completed topic has item decisions,
+Checkpoint: 118/322 questions reviewed, 93 revised and 25 kept; 33/99 topics complete.
+Latest: [Resource tags and tag governance](docs/reviews/question-bank-refresh/identity.governance.tags.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `identity.governance.tags` (Resource tags and tag governance).
+Next: `identity.governance.resource-groups` (Resource group lifecycle and moves).
 The changes are on the work branch; the live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
 refresh PR needs explicit approval; do not reuse the earlier skill PR approval.

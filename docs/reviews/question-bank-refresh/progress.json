@@ -2260,9 +2260,9 @@
     {
       "id": "identity.governance.tags",
       "title": "Resource tags and tag governance",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/identity.governance.tags.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "id-tag-inheritance",
@@ -2277,9 +2277,9 @@
           ],
           "baselineHash": "aa6ad66fd45d26ef4bdd5a08698f30734f526a21317546f507ca763f6ad99ec9",
           "baselineContentHash": "854b2ef4e83bd83cf3996d2d7c1a3d08b68a60141d6a281ef0c6088527506cf0",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "44c49395082693b8951a2242024c10a7f68902ad8847ceffa9adbb7934e622d0"
         },
         {
           "id": "id-tag-merge",
@@ -2294,9 +2294,9 @@
           ],
           "baselineHash": "b4a44e86d191da1cc75c1c8c66c92a9e5ac0c910a6a184b5d8737233c34f0937",
           "baselineContentHash": "8dd8b709c173aac3bde319de0d737bcd370c5c2a9c75fa06f2d232aafb5e347c",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "8ecd2206d421140669a03aeb118f63cef09fceae325c95b90a6aebc52e83104c"
         },
         {
           "id": "id-tag-policy-existing",
@@ -2311,9 +2311,9 @@
           ],
           "baselineHash": "edbf0f66c60c09c4af8c5462d8d634e1ac10439e029119ec2f23a0912607a9b9",
           "baselineContentHash": "672081c5933acb29a27826ed2e5d158cee324db200408acbaf8d26f9d6fccad4",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "1030df755c61da81be1bbf87098425a109edaf0799c02dab4c03091cd854297f"
         }
       ]
     },
