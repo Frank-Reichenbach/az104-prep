@@ -5602,9 +5602,9 @@
     {
       "id": "monitoring.network.flow-logs",
       "title": "VNet flow logs and traffic analytics",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.network.flow-logs.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-flow-payload",
@@ -5619,9 +5619,9 @@
           ],
           "baselineHash": "7798dc468157d70e49f39269904dd323b9e1bf08c58f288099d276aa0e8bcb26",
           "baselineContentHash": "5bdd49e61347896e402f2e3f894fcfdd3083b544816b38ce89ca83cc9e44a3d1",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "3fe1c8d4ef329b3d5fbe486dd13b6f7d19d49ab6b997ff52f0f1c33415f355f9"
         },
         {
           "id": "mo-flow-retention",
@@ -5636,9 +5636,9 @@
           ],
           "baselineHash": "1168e4b5d480488219e1816f81fccd97ba9084eca53e069f55ab9cf5f0ade16e",
           "baselineContentHash": "fbf8530127b7c8abe9865d4fbefce77e3362ae33e31854cb252e917e61644fd4",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "c4a76aabf50f7a5920134b7053e6927e6225616345e5454f5089b4b3a0831aea"
         },
         {
           "id": "mo-flow-analytics",
@@ -5653,9 +5653,9 @@
           ],
           "baselineHash": "14812fe451c048f777bd2854c4fd1f39aa3fe20a3a84c78f855e5eca4ee98791",
           "baselineContentHash": "1b40c43a4dd2e86afe34746e257c075c518d9fd23d7748885e1b95a9d25f397f",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "323dbfe193f486fea238a5dfc6363bb65f6a37f71810fe38857f2741a108df21"
         }
       ]
     },

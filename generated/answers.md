@@ -3051,52 +3051,52 @@ Study: [knowledge file](../knowledge/monitoring/network/connection-monitor.md). 
 
 Topic: Monitoring and recovery › VNet flow logs and traffic analytics.
 
-Can VNet flow logs alone reveal the complete HTTPS request body?
+A VNet flow-log record shows source and destination IPs, ports, protocol, and byte counts for a TCP 443 flow. Which evidence can you obtain from that record alone?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** No; they record flow metadata rather than packet payloads. Addresses/counts do not contain the full application body.
-- **B. Incorrect:** Yes; every byte count includes the complete body text. A numeric byte count is not stored body content.
-- **C. Incorrect:** Yes; the flow state decrypts TLS. Flow state does not decrypt application traffic.
-- **D. Incorrect:** Yes; traffic analytics grants the client's private key. Analytics does not provide TLS private keys.
+- **A. Correct:** The recorded endpoints and traffic volume for the flow. These are flow metadata fields; they describe the connection and recorded volume without storing its application payload.
+- **B. Incorrect:** The full HTTPS request body sent over the flow. A byte count measures volume and does not contain the application body.
+- **C. Incorrect:** The HTTP response status returned by the application. Flow metadata does not record the application-layer HTTP response status.
+- **D. Incorrect:** The user identity accepted by the application during login. IP-flow metadata does not record application authentication decisions or the authenticated user.
 
-Study: [knowledge file](../knowledge/monitoring/network/flow-logs.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/network/flow-logs.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-manage)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview)
 
 ## mo-flow-retention
 
 Topic: Monitoring and recovery › VNet flow logs and traffic analytics.
 
-In the supported VNet flow-log retention setting, what does 0 days mean?
+VNet flow logging is enabled with a supported Standard general-purpose v2 Storage destination. Retention is set to 0 days, and no other deletion policy applies. What happens to stored flow-log data?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 - **A. Incorrect:** Delete each log immediately. Zero is not immediate expiry in this setting.
 - **B. Correct:** Retain indefinitely until manually removed. This is the documented meaning of zero.
 - **C. Incorrect:** Disable flow collection. Retention is different from enabled state.
 - **D. Incorrect:** Keep only denied flows. Retention does not select the flow action.
 
-Study: [knowledge file](../knowledge/monitoring/network/flow-logs.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/network/flow-logs.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-manage)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-manage)
 
 ## mo-flow-analytics
 
 Topic: Monitoring and recovery › VNet flow logs and traffic analytics.
 
-VNet flow-log blobs are arriving, but you want processed traffic visualizations in Log Analytics. What additional configuration should you inspect?
+New VNet flow-log blobs are arriving in Storage. The saved configuration has traffic analytics disabled. You need processed traffic data in ws-network without changing raw log collection. Which change meets the goal?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Incorrect:** Only the public IP DNS label. It does not configure analytics ingestion.
-- **B. Incorrect:** Only the VM's disk caching. Disk caching does not enable flow analytics.
-- **C. Correct:** Traffic analytics enablement, selected workspace, and processing interval. Analytics is a separate configured processing stage.
-- **D. Incorrect:** Remove the log storage destination. Removing the source data does not enable processing.
+- **A. Incorrect:** Keep analytics disabled and set raw-log retention to 30 days. Retention changes how long raw blobs remain; it does not enable their processing into the workspace.
+- **B. Incorrect:** Keep analytics disabled and change the raw-log Storage account. Changing the raw destination does not enable processing into Log Analytics.
+- **C. Correct:** Enable traffic analytics, select ws-network, and set its processing interval. This configures the separate analytics stage for the arriving flow data and sends processed data to the intended workspace.
+- **D. Incorrect:** Enable traffic analytics with ws-other as its workspace. Analytics would target a different workspace and would not meet the required ws-network destination.
 
-Study: [knowledge file](../knowledge/monitoring/network/flow-logs.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/network/flow-logs.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-manage)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-manage) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/traffic-analytics)
 
 ## mo-reprotect-direction
 

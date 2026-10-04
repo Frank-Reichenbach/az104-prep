@@ -2337,22 +2337,22 @@ D. TCP with destination port 22.
 
 Topic: Monitoring and recovery › VNet flow logs and traffic analytics.
 
-Can VNet flow logs alone reveal the complete HTTPS request body?
+A VNet flow-log record shows source and destination IPs, ports, protocol, and byte counts for a TCP 443 flow. Which evidence can you obtain from that record alone?
 
 Select **1**. Difficulty: foundation.
 
-A. No; they record flow metadata rather than packet payloads.
-B. Yes; every byte count includes the complete body text.
-C. Yes; the flow state decrypts TLS.
-D. Yes; traffic analytics grants the client's private key.
+A. The recorded endpoints and traffic volume for the flow.
+B. The full HTTPS request body sent over the flow.
+C. The HTTP response status returned by the application.
+D. The user identity accepted by the application during login.
 
 ## mo-flow-retention
 
 Topic: Monitoring and recovery › VNet flow logs and traffic analytics.
 
-In the supported VNet flow-log retention setting, what does 0 days mean?
+VNet flow logging is enabled with a supported Standard general-purpose v2 Storage destination. Retention is set to 0 days, and no other deletion policy applies. What happens to stored flow-log data?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 A. Delete each log immediately.
 B. Retain indefinitely until manually removed.
@@ -2363,14 +2363,14 @@ D. Keep only denied flows.
 
 Topic: Monitoring and recovery › VNet flow logs and traffic analytics.
 
-VNet flow-log blobs are arriving, but you want processed traffic visualizations in Log Analytics. What additional configuration should you inspect?
+New VNet flow-log blobs are arriving in Storage. The saved configuration has traffic analytics disabled. You need processed traffic data in ws-network without changing raw log collection. Which change meets the goal?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Only the public IP DNS label.
-B. Only the VM's disk caching.
-C. Traffic analytics enablement, selected workspace, and processing interval.
-D. Remove the log storage destination.
+A. Keep analytics disabled and set raw-log retention to 30 days.
+B. Keep analytics disabled and change the raw-log Storage account.
+C. Enable traffic analytics, select ws-network, and set its processing interval.
+D. Enable traffic analytics with ws-other as its workspace.
 
 ## mo-reprotect-direction
 
