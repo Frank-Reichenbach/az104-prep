@@ -4531,9 +4531,9 @@
     {
       "id": "networking.security.private-endpoints",
       "title": "Private endpoints, approval, and DNS",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/networking.security.private-endpoints.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "nw-pe-public",
@@ -4548,9 +4548,9 @@
           ],
           "baselineHash": "993eaf3dcafe12147b45befbbed5888a71a5fcb1e2e212e03a69c217e3a53d7a",
           "baselineContentHash": "f8d3c9c7ae9d44526f69aba7e7f23c7c8d0f188430d2d0a756dbc34baf5210da",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "9bacaf83d4c72a48f96f13aeeb54b2dabd50a1cbeaa700d3ee54a77e9cc58465"
         },
         {
           "id": "nw-pe-dns",
@@ -4565,9 +4565,9 @@
           ],
           "baselineHash": "fd5bd332891662dd936216254e5328ecb999ee0f01ebbeadddec0f509478726b",
           "baselineContentHash": "eaf4af60733a85abfc7ccbdff94036bde01730fe7bac2dc5411f253b196f0e34",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "b9a376a4177c40f0bd296083ac3200e747541bbb03e767b631d0286a1adf99f6"
         },
         {
           "id": "nw-pe-subresource",
@@ -4582,9 +4582,9 @@
           ],
           "baselineHash": "9b32178de990c6115e74612c63f2b7b7dfe850d1604f4c1344fdecafb8602eb1",
           "baselineContentHash": "c403740b5306251453c04a98f92ece01f0b15b87724d774db3f73407149adb30",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "79d57b483c67d18b23f9fc0703f0e3925d63613852bf6df8e16802930ae3b3d2"
         }
       ]
     },

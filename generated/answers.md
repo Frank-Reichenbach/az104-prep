@@ -3748,35 +3748,35 @@ Study: [knowledge file](../knowledge/networking/security/nsg-asg.md). Evidence c
 
 Topic: Networking › Private endpoints, approval, and DNS.
 
-You create an approved blob private endpoint on a storage account whose public access still allows all networks. Is the public endpoint now blocked?
+A storage account has an approved blob private endpoint with working private DNS and authorized client access. The account public network access still allows all networks. You must block requests through the public network endpoint while retaining the verified private path. Which account change meets the goal?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Yes, approval disables the public endpoint. Approval enables the private path; it does not disable public access.
-- **B. Correct:** No; configure public network access separately. Both paths can exist until public access is restricted.
-- **C. Incorrect:** Yes, if the endpoint uses a static private IP. Private address allocation does not control public access.
-- **D. Incorrect:** Yes, because a private DNS zone acts as a public firewall. DNS selection is not public-endpoint firewall enforcement.
+- **A. Incorrect:** Change the private endpoint from dynamic to static private-IP allocation. Private-IP allocation does not change the storage account public network access setting.
+- **B. Correct:** Disable public network access on the storage account. Public network access is controlled separately from private endpoint approval; disabling it blocks the public path while private endpoint access remains available.
+- **C. Incorrect:** Disable anonymous blob access on the storage account. This blocks anonymous data access, not authenticated requests through the public network endpoint. It does not implement the required network isolation.
+- **D. Incorrect:** Reapprove the existing blob private endpoint connection. The private path is already approved. Approval does not disable the separately permitted public network path.
 
-Study: [knowledge file](../knowledge/networking/security/private-endpoints.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/security/private-endpoints.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/private-link/disable-private-endpoint-network-policy)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-prevent)
 
 ## nw-pe-dns
 
 Topic: Networking › Private endpoints, approval, and DNS.
 
-A VM can reach a blob private endpoint IP, but the account's normal hostname resolves publicly from that VM. Public access is disabled. What should you repair?
+A VM in vnet-app uses Azure-provided DNS and can reach an approved blob private endpoint IP in peered vnet-hub. The private zone privatelink.blob.core.windows.net contains the correct storage-account A record and is linked only to vnet-hub. From the VM, the normal blob hostname resolves publicly, and storage public access is disabled. Which DNS change supplies the missing client-VNet resolution link?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Private DNS records, VNet links, or the client's DNS forwarding. The normal hostname must resolve to the endpoint's private address.
-- **B. Incorrect:** Grant the VM a public IP. That does not repair private name resolution.
-- **C. Incorrect:** Replace the blob endpoint with a file endpoint. The target must still be the blob service.
-- **D. Incorrect:** Add Internet-wide inbound rules to the VM. Inbound VM exposure does not fix its service-name lookup.
+- **A. Correct:** Link privatelink.blob.core.windows.net to vnet-app. The client VNet must have access to the private zone through a link or a configured resolver path. Its own link exposes the existing correct private record to Azure-provided DNS.
+- **B. Incorrect:** Link only privatelink.file.core.windows.net to vnet-app. The file zone resolves the storage file subresource, not the blob hostname used by this workload.
+- **C. Incorrect:** Replace the blob private-zone A record with the account public address. This replaces a correct private target with the blocked public target and does not add the missing client-VNet zone link.
+- **D. Incorrect:** Remove the blob private-zone link to vnet-hub without adding a client link. Removing the existing link does not expose the private record to vnet-app; the client resolution path remains missing.
 
-Study: [knowledge file](../knowledge/networking/security/private-endpoints.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/security/private-endpoints.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/private-link/disable-private-endpoint-network-policy)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns)
 
 ## nw-pe-subresource
 
@@ -3791,7 +3791,7 @@ Select **1**. Difficulty: foundation.
 - **C. Correct:** A file private endpoint and appropriate file DNS/access configuration. Storage subresources require their own private endpoints.
 - **D. Incorrect:** Use the blob endpoint IP as an SMB proxy. A blob endpoint is not a general-purpose file proxy.
 
-Study: [knowledge file](../knowledge/networking/security/private-endpoints.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/security/private-endpoints.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/private-link/disable-private-endpoint-network-policy)
 

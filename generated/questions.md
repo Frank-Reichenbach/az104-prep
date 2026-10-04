@@ -2870,27 +2870,27 @@ D. An outbound allow on the VM also authorizes new inbound SSH connections.
 
 Topic: Networking › Private endpoints, approval, and DNS.
 
-You create an approved blob private endpoint on a storage account whose public access still allows all networks. Is the public endpoint now blocked?
+A storage account has an approved blob private endpoint with working private DNS and authorized client access. The account public network access still allows all networks. You must block requests through the public network endpoint while retaining the verified private path. Which account change meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Yes, approval disables the public endpoint.
-B. No; configure public network access separately.
-C. Yes, if the endpoint uses a static private IP.
-D. Yes, because a private DNS zone acts as a public firewall.
+A. Change the private endpoint from dynamic to static private-IP allocation.
+B. Disable public network access on the storage account.
+C. Disable anonymous blob access on the storage account.
+D. Reapprove the existing blob private endpoint connection.
 
 ## nw-pe-dns
 
 Topic: Networking › Private endpoints, approval, and DNS.
 
-A VM can reach a blob private endpoint IP, but the account's normal hostname resolves publicly from that VM. Public access is disabled. What should you repair?
+A VM in vnet-app uses Azure-provided DNS and can reach an approved blob private endpoint IP in peered vnet-hub. The private zone privatelink.blob.core.windows.net contains the correct storage-account A record and is linked only to vnet-hub. From the VM, the normal blob hostname resolves publicly, and storage public access is disabled. Which DNS change supplies the missing client-VNet resolution link?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Private DNS records, VNet links, or the client's DNS forwarding.
-B. Grant the VM a public IP.
-C. Replace the blob endpoint with a file endpoint.
-D. Add Internet-wide inbound rules to the VM.
+A. Link privatelink.blob.core.windows.net to vnet-app.
+B. Link only privatelink.file.core.windows.net to vnet-app.
+C. Replace the blob private-zone A record with the account public address.
+D. Remove the blob private-zone link to vnet-hub without adding a client link.
 
 ## nw-pe-subresource
 

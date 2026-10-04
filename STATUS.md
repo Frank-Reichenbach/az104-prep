@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 229/322 questions reviewed, 174 revised and 55 kept; 69/99 topics complete.
-Latest: [Service endpoints and subnet authorization](docs/reviews/question-bank-refresh/networking.security.service-endpoints.md). Each completed topic has item decisions,
+Checkpoint: 232/322 questions reviewed, 176 revised and 56 kept; 70/99 topics complete.
+Latest: [Private endpoints, approval, and DNS](docs/reviews/question-bank-refresh/networking.security.private-endpoints.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `networking.security.private-endpoints` (Private endpoints, approval, and DNS).
+Next: `networking.dns.public` (Public DNS zones, delegation, and records).
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
