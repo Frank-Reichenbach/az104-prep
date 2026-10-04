@@ -920,27 +920,27 @@ D. Moving it to another resource group converts it to Flexible.
 
 Topic: Compute › Virtual machine scale sets and autoscale.
 
-A scale set uses Manual upgrade policy. Its model is updated to a new image, then a new instance is added. What is expected?
+A Uniform VM scale set has three instances on image version 1 and uses Manual upgrade policy. Its model is changed to image version 2, then a fourth instance is created. No explicit instance updates or automatic OS image upgrades run. Which image-version combination is expected?
 
 Select **1**. Difficulty: applied.
 
-A. The new instance uses the new model; existing instances need an explicit update.
-B. Every existing instance updates immediately in guaranteed batches.
-C. New instances always use the oldest image until all existing VMs are deleted.
-D. The model update is ignored for both old and new instances.
+A. Existing three instances: version 1; new fourth instance: version 2.
+B. Existing three instances: version 2; new fourth instance: version 2.
+C. Existing three instances: version 1; new fourth instance: version 1.
+D. Existing three instances: version 2; new fourth instance: version 1.
 
 ## co-vmss-scale
 
 Topic: Compute › Virtual machine scale sets and autoscale.
 
-A VM scale set should add instances during sustained demand and later remove them. Which TWO configuration choices support this?
+A VM scale set has a valid scaling profile. Its autoscale profile has minimum 2, default 3, and maximum 5 instances, but no rules. It must add one instance when average CPU exceeds 70% for 10 minutes and remove one when average CPU is below 30% for 10 minutes, with a 5-minute cooldown in either direction. Which TWO rules jointly implement this policy? Assume metrics and capacity are available.
 
 Select **2**. Difficulty: applied.
 
-A. A scaling profile and autoscale rules with bounded instance counts
-B. Distinct scale-out and scale-in conditions with suitable cooldown
-C. Only changing the VM SKU on one instance
-D. Setting a maximum count of one while expecting three instances
+A. CPU > 70% over 10 minutes: increase count by 1; cooldown 5 minutes.
+B. CPU < 30% over 10 minutes: decrease count by 1; cooldown 5 minutes.
+C. CPU > 70% over 10 minutes: decrease count by 1; cooldown 5 minutes.
+D. CPU < 30% over 10 minutes: increase count by 1; cooldown 5 minutes.
 
 ## co-web-inbound-direction-variant
 

@@ -3220,9 +3220,9 @@
     {
       "id": "compute.vms.scale-sets",
       "title": "Virtual machine scale sets and autoscale",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.vms.scale-sets.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-vmss-mode",
@@ -3237,9 +3237,9 @@
           ],
           "baselineHash": "4edfc79825cec6110ced97f34a0725b09515bb9eb904e1fe274b1138df69a13d",
           "baselineContentHash": "f07804ed297f19ee6e6dd20c55399311e5b2d21394eac0626fdffbaebb83f259",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "ab6b7565d2febb547ef2d209cfbbfad4da9631a3a3a24791422d87e87c517b62"
         },
         {
           "id": "co-vmss-manual",
@@ -3254,9 +3254,9 @@
           ],
           "baselineHash": "9aec6c1d807261aa17787ad263127f4c345d0218d693fec1bb1cb8da30fdb6b0",
           "baselineContentHash": "2fe9bb683d4db926bfced858308a6cef48fa41384555f2861b903a16c8c14771",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "37924062cf16a81471d0a23bbcd26f3b81da5d8925cd36645552de91bb38326b"
         },
         {
           "id": "co-vmss-scale",
@@ -3271,9 +3271,9 @@
           ],
           "baselineHash": "ad794402e146c7ac2a803ba9f443fffbcb04ee43ae75428b8d58fea790b93c1a",
           "baselineContentHash": "f672188a9e3311edb9726622c70e9f86663227fa392d9221ce751315aa8ab787",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "732a2c9163bfa5a12fa3fa3e4644b9abfc44ddef0a9769adb346eb1d10c8af2a"
         }
       ]
     },

@@ -4178,39 +4178,39 @@
         "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview",
         "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-vmss-manual",
       "family": "co-vmss-manual",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.vms.scale-sets",
       "objectives": [
         "co-12"
       ],
       "difficulty": "applied",
-      "prompt": "A scale set uses Manual upgrade policy. Its model is updated to a new image, then a new instance is added. What is expected?",
+      "prompt": "A Uniform VM scale set has three instances on image version 1 and uses Manual upgrade policy. Its model is changed to image version 2, then a fourth instance is created. No explicit instance updates or automatic OS image upgrades run. Which image-version combination is expected?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "The new instance uses the new model; existing instances need an explicit update.",
-          "explanation": "Manual policy separates model updates from updating existing instances."
+          "text": "Existing three instances: version 1; new fourth instance: version 2.",
+          "explanation": "Manual policy does not update existing instances automatically. New instances use the updated model."
         },
         {
           "id": "b",
-          "text": "Every existing instance updates immediately in guaranteed batches.",
-          "explanation": "That behavior is not provided by Manual policy."
+          "text": "Existing three instances: version 2; new fourth instance: version 2.",
+          "explanation": "This assumes automatic propagation to existing instances, which Manual policy does not perform."
         },
         {
           "id": "c",
-          "text": "New instances always use the oldest image until all existing VMs are deleted.",
-          "explanation": "New instances use the latest model."
+          "text": "Existing three instances: version 1; new fourth instance: version 1.",
+          "explanation": "Existing instances remain on version 1, but a newly created instance uses the version 2 model."
         },
         {
           "id": "d",
-          "text": "The model update is ignored for both old and new instances.",
-          "explanation": "The updated model governs subsequent instance creation."
+          "text": "Existing three instances: version 2; new fourth instance: version 1.",
+          "explanation": "This reverses the model behavior: existing instances need explicit updates, while the new instance uses version 2."
         }
       ],
       "correct": [
@@ -4218,43 +4218,41 @@
       ],
       "knowledge": "knowledge/compute/virtual-machines/scale-sets.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes",
-        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview",
         "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-vmss-scale",
       "family": "co-vmss-scale",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.vms.scale-sets",
       "objectives": [
         "co-12"
       ],
       "difficulty": "applied",
-      "prompt": "A VM scale set should add instances during sustained demand and later remove them. Which TWO configuration choices support this?",
+      "prompt": "A VM scale set has a valid scaling profile. Its autoscale profile has minimum 2, default 3, and maximum 5 instances, but no rules. It must add one instance when average CPU exceeds 70% for 10 minutes and remove one when average CPU is below 30% for 10 minutes, with a 5-minute cooldown in either direction. Which TWO rules jointly implement this policy? Assume metrics and capacity are available.",
       "select": 2,
       "options": [
         {
           "id": "a",
-          "text": "A scaling profile and autoscale rules with bounded instance counts",
-          "explanation": "The profile defines new instances and the rules control count within limits."
+          "text": "CPU > 70% over 10 minutes: increase count by 1; cooldown 5 minutes.",
+          "explanation": "This implements the required sustained high-demand scale-out within the existing bounds."
         },
         {
           "id": "b",
-          "text": "Distinct scale-out and scale-in conditions with suitable cooldown",
-          "explanation": "These govern both directions while limiting oscillation."
+          "text": "CPU < 30% over 10 minutes: decrease count by 1; cooldown 5 minutes.",
+          "explanation": "This implements the required low-demand scale-in within the existing bounds."
         },
         {
           "id": "c",
-          "text": "Only changing the VM SKU on one instance",
-          "explanation": "That is a size change, not count-based demand scaling."
+          "text": "CPU > 70% over 10 minutes: decrease count by 1; cooldown 5 minutes.",
+          "explanation": "This removes capacity during high demand, reversing the required scale-out direction."
         },
         {
           "id": "d",
-          "text": "Setting a maximum count of one while expecting three instances",
-          "explanation": "The configured maximum prevents scaling to three."
+          "text": "CPU < 30% over 10 minutes: increase count by 1; cooldown 5 minutes.",
+          "explanation": "This adds capacity during low demand, reversing the required scale-in direction."
         }
       ],
       "correct": [
@@ -4263,11 +4261,10 @@
       ],
       "knowledge": "knowledge/compute/virtual-machines/scale-sets.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes",
-        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview",
-        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-understanding-settings",
+        "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-web-inbound-direction-variant",

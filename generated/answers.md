@@ -1190,7 +1190,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** Setting instance count to zero automatically converts it. Capacity changes do not convert the resource mode.
 - **D. Incorrect:** Moving it to another resource group converts it to Flexible. Resource-group moves do not change orchestration mode.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/scale-sets.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/scale-sets.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy)
 
@@ -1198,35 +1198,35 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/scale-sets.md). Ev
 
 Topic: Compute › Virtual machine scale sets and autoscale.
 
-A scale set uses Manual upgrade policy. Its model is updated to a new image, then a new instance is added. What is expected?
+A Uniform VM scale set has three instances on image version 1 and uses Manual upgrade policy. Its model is changed to image version 2, then a fourth instance is created. No explicit instance updates or automatic OS image upgrades run. Which image-version combination is expected?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** The new instance uses the new model; existing instances need an explicit update. Manual policy separates model updates from updating existing instances.
-- **B. Incorrect:** Every existing instance updates immediately in guaranteed batches. That behavior is not provided by Manual policy.
-- **C. Incorrect:** New instances always use the oldest image until all existing VMs are deleted. New instances use the latest model.
-- **D. Incorrect:** The model update is ignored for both old and new instances. The updated model governs subsequent instance creation.
+- **A. Correct:** Existing three instances: version 1; new fourth instance: version 2. Manual policy does not update existing instances automatically. New instances use the updated model.
+- **B. Incorrect:** Existing three instances: version 2; new fourth instance: version 2. This assumes automatic propagation to existing instances, which Manual policy does not perform.
+- **C. Incorrect:** Existing three instances: version 1; new fourth instance: version 1. Existing instances remain on version 1, but a newly created instance uses the version 2 model.
+- **D. Incorrect:** Existing three instances: version 2; new fourth instance: version 1. This reverses the model behavior: existing instances need explicit updates, while the new instance uses version 2.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/scale-sets.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/scale-sets.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy)
 
 ## co-vmss-scale
 
 Topic: Compute › Virtual machine scale sets and autoscale.
 
-A VM scale set should add instances during sustained demand and later remove them. Which TWO configuration choices support this?
+A VM scale set has a valid scaling profile. Its autoscale profile has minimum 2, default 3, and maximum 5 instances, but no rules. It must add one instance when average CPU exceeds 70% for 10 minutes and remove one when average CPU is below 30% for 10 minutes, with a 5-minute cooldown in either direction. Which TWO rules jointly implement this policy? Assume metrics and capacity are available.
 
 Select **2**. Difficulty: applied.
 
-- **A. Correct:** A scaling profile and autoscale rules with bounded instance counts The profile defines new instances and the rules control count within limits.
-- **B. Correct:** Distinct scale-out and scale-in conditions with suitable cooldown These govern both directions while limiting oscillation.
-- **C. Incorrect:** Only changing the VM SKU on one instance That is a size change, not count-based demand scaling.
-- **D. Incorrect:** Setting a maximum count of one while expecting three instances The configured maximum prevents scaling to three.
+- **A. Correct:** CPU > 70% over 10 minutes: increase count by 1; cooldown 5 minutes. This implements the required sustained high-demand scale-out within the existing bounds.
+- **B. Correct:** CPU < 30% over 10 minutes: decrease count by 1; cooldown 5 minutes. This implements the required low-demand scale-in within the existing bounds.
+- **C. Incorrect:** CPU > 70% over 10 minutes: decrease count by 1; cooldown 5 minutes. This removes capacity during high demand, reversing the required scale-out direction.
+- **D. Incorrect:** CPU < 30% over 10 minutes: increase count by 1; cooldown 5 minutes. This adds capacity during low demand, reversing the required scale-in direction.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/scale-sets.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/scale-sets.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-understanding-settings) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview)
 
 ## co-web-inbound-direction-variant
 
