@@ -2415,14 +2415,14 @@ D. Run Cleanup test failover instead of reprotection.
 
 Topic: Monitoring and recovery › Site Recovery production failover and recovery points.
 
-During Site Recovery failover, your priority is to avoid extra processing of received replication data before recovery. Which recovery-point option fits?
+It is 10:05 UTC during failover of one Azure VM. Latest processed is 10:00, latest app-consistent is 09:00, and a selectable Custom point is 08:00. Received but unprocessed replication data extends to 10:04. The runbook requires a point no more than 10 minutes old and no additional processing of received data before recovery. Which option meets both conditions?
 
 Select **1**. Difficulty: applied.
 
-A. Latest processed.
-B. Latest.
-C. Any old application-consistent point necessarily minimizes recovery time.
-D. A backup-policy retention change.
+A. Latest processed, using the 10:00 point.
+B. Latest, processing the received data through 10:04.
+C. Latest app-consistent, using the 09:00 point.
+D. Custom, using the 08:00 point.
 
 ## mo-failover-commit
 
@@ -2432,10 +2432,10 @@ A recovered Site Recovery VM is running, but you might need a different recovery
 
 Select **1**. Difficulty: foundation.
 
-A. Viewing the target VM's size.
-B. Checking the failover job status.
-C. Committing the failover.
-D. Opening the replicated item's overview.
+A. Select Change recovery point before commit.
+B. Inspect the failover job and validate the recovered application.
+C. Commit the failover.
+D. Open the replicated item’s Compute and Network settings.
 
 ## mo-failover-shutdown
 
@@ -2445,10 +2445,10 @@ You select Shut down machine before beginning failover in Site Recovery, but the
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Site Recovery always cancels failover automatically.
-B. Failover can continue, so your runbook must address a potentially active source application.
-C. The setting guarantees that no source writes can be lost.
-D. The source VM is automatically converted into an offline backup.
+A. Failover is canceled automatically whenever the attempted source shutdown fails.
+B. Failover can continue, so the runbook must address a potentially active source application.
+C. Failover completion proves that all unreplicated source writes were recovered.
+D. Failover remains paused until an administrator manually shuts down the source.
 
 ## mo-replication-cache
 

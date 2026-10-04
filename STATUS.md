@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 310/322 questions reviewed, 247 revised and 63 kept; 95/99 topics complete.
-Latest: [Site Recovery test failover and drill cleanup](docs/reviews/question-bank-refresh/monitoring.recovery.test-failover.md). Each completed topic has item decisions,
+Checkpoint: 313/322 questions reviewed, 250 revised and 63 kept; 96/99 topics complete.
+Latest: [Site Recovery production failover and recovery points](docs/reviews/question-bank-refresh/monitoring.recovery.failover.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `monitoring.recovery.failover` (Site Recovery production failover and recovery points).
+Next: `monitoring.recovery.failback` (Site Recovery reprotection and failback).
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
@@ -294,8 +294,8 @@ retirement are documented with current alternatives.
 ## Next task
 
 Continue the authorized existing-bank review from `npm run review:status`.
-Current checkpoint: 310/322 questions, 95/99 topics complete.
-Next: `monitoring.recovery.failover` (Site Recovery production failover and recovery points).
+Current checkpoint: 313/322 questions, 96/99 topics complete.
+Next: `monitoring.recovery.failback` (Site Recovery reprotection and failback).
 Record real source checks and repair decisions in its report; do not mark a
 topic complete based on schema checks alone.
 

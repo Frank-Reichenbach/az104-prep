@@ -6142,9 +6142,9 @@
     {
       "id": "monitoring.recovery.failover",
       "title": "Site Recovery production failover and recovery points",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.recovery.failover.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-failover-rto",
@@ -6159,9 +6159,9 @@
           ],
           "baselineHash": "48dca3e7157097146e5a8d0305790771355711b332cd0d286f2ff2f434dcdfe6",
           "baselineContentHash": "2e463360c1a5827e044b778ba5594d99f9da5942be549ccd404066da44fd94a1",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "071253cc7b1203de09a0733c75dd3f75d5f352598f8aaf81648ee38d10565014"
         },
         {
           "id": "mo-failover-commit",
@@ -6176,9 +6176,9 @@
           ],
           "baselineHash": "e591b846710c018ef66c47d979d4557d3be5c6fde8a383c2791c749267f03710",
           "baselineContentHash": "38ce9b86692540ff413b18811e8547e26fa7a20e27a1459fe39f8e450384c6a0",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f5fd6a625ea9d9fa7c57179d615f0c1c7b43dd4c3e6624694338b0f5ef50cbdb"
         },
         {
           "id": "mo-failover-shutdown",
@@ -6193,9 +6193,9 @@
           ],
           "baselineHash": "0fda375995695cea6568cc34c5fc35fb2ac0ae5356b298cf84f4dc4b64689f30",
           "baselineContentHash": "818b086374f32cc84d286d571a0c63be77a86b8889e405c36ea3016213bbc951",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "da1bb3bb6cff7e7774afc02f07ce79c42fbdc792d260e10c3a7b9788b716e530"
         }
       ]
     },
