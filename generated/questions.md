@@ -1596,40 +1596,40 @@ D. The account operation is permitted; the blob operation is blocked.
 
 Topic: Monitoring and recovery › Action groups and notification delivery.
 
-CPU and log alerts should notify the same operations team. What reusable Azure Monitor resource defines those recipients?
+A CPU alert rule and a log alert rule both reference the same action group. You add a verified email recipient to that existing group and save it. Both rules remain attached, and no suppression applies. Which rules use the updated recipient list for future notifications?
 
 Select **1**. Difficulty: foundation.
 
-A. An action group.
-B. A metric dimension.
-C. A DCR association.
-D. A private DNS zone.
+A. Both the CPU rule and the log rule.
+B. Only the CPU rule.
+C. Only the log rule.
+D. Neither rule until the group is detached and reattached.
 
 ## mo-action-test
 
 Topic: Monitoring and recovery › Action groups and notification delivery.
 
-An action group's sample notification test succeeds. What remains to verify for an actual CPU alert?
+An action group’s sample email test succeeds. You must additionally verify that the enabled CPU alert rule evaluates the intended VM condition and delivers a real alert to the team. Which verification covers the part not established by the sample test?
 
 Select **1**. Difficulty: applied.
 
-A. Nothing; the sample forces the real CPU rule to fire.
-B. The real alert rule's scope/condition and group attachment.
-C. That the group stores CPU samples.
-D. That the sample changed the VM size.
+A. Repeat the group sample test with the CPU metric sample type.
+B. Trigger a controlled qualifying CPU condition, verify the correct rule fires, and verify its group delivers the notification.
+C. Validate a saved sample payload against the email receiver’s expected schema.
+D. View the VM CPU chart above the threshold without checking the alert rule or delivery.
 
 ## mo-action-no-message
 
 Topic: Monitoring and recovery › Action groups and notification delivery.
 
-A real alert fired but no email arrived. Which two response-path checks are relevant?
+The correct CPU alert rule has a Fired instance for the intended VM and incident time, but the team received no email. You must investigate notification handling separately from the already verified firing. Which two checks inspect that response path? Select two.
 
 Select **2**. Difficulty: troubleshooting.
 
-A. Inspect attached/enabled action groups and recipient validation.
-B. Assume the condition never fired despite the alert instance.
-C. Check whether a processing rule suppressed its action groups.
-D. Add a DCR filter to rewrite the recipient email.
+A. Inspect the action group attachment, enabled state, and intended email receiver configuration.
+B. Recalculate the CPU aggregation window to establish whether this instance fired.
+C. Inspect matching processing rules for suppression of action groups.
+D. Inspect VM-to-DCR associations to establish whether CPU collection produced this fired instance.
 
 ## mo-processing-maintenance
 

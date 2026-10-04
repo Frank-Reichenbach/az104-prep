@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 263/322 questions reviewed, 204 revised and 59 kept; 80/99 topics complete.
-Latest: [Alert rules, signals, and evaluation](docs/reviews/question-bank-refresh/monitoring.alerts.rules.md). Each completed topic has item decisions,
+Checkpoint: 267/322 questions reviewed, 207 revised and 60 kept; 81/99 topics complete.
+Latest: [Action groups and notification delivery](docs/reviews/question-bank-refresh/monitoring.alerts.action-groups.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `monitoring.alerts.action-groups` (Action groups and notification delivery).
+Next: `monitoring.alerts.processing` (Alert processing rules and maintenance suppression).
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
@@ -294,8 +294,8 @@ retirement are documented with current alternatives.
 ## Next task
 
 Continue the authorized existing-bank review from `npm run review:status`.
-Current checkpoint: 263/322 questions, 80/99 topics complete.
-Next: `monitoring.alerts.action-groups` (Action groups and notification delivery).
+Current checkpoint: 267/322 questions, 81/99 topics complete.
+Next: `monitoring.alerts.processing` (Alert processing rules and maintenance suppression).
 Record real source checks and repair decisions in its report; do not mark a
 topic complete based on schema checks alone.
 

@@ -5208,9 +5208,9 @@
     {
       "id": "monitoring.alerts.action-groups",
       "title": "Action groups and notification delivery",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.alerts.action-groups.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-action-reuse",
@@ -5225,9 +5225,9 @@
           ],
           "baselineHash": "505a5f2eee4021dfb5dd8edfafecdbac45a228765e30fba75a44473af250ce9a",
           "baselineContentHash": "242bb57e4158032b3da1deb2d814cea6f954a0d57bc7098639b416753dc4055e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "5012c89468a51b2259e58e64e2a06cdf89b2f0413d6b61c51299d5068c5d2e1b"
         },
         {
           "id": "mo-action-test",
@@ -5242,9 +5242,9 @@
           ],
           "baselineHash": "16880bc61966423b899ecc4ff49cf0b4ff1f81b8c8f6d40119ded6dcaf43be1f",
           "baselineContentHash": "7e4b993dde8e4603c5c0e910403ea7845dcad3afe0b872352a34fd96020f33c7",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "45ca706fd10308306e86900de36c296de34c52fba695731759a94846119c6267"
         },
         {
           "id": "mo-action-no-message",
@@ -5259,9 +5259,9 @@
           ],
           "baselineHash": "c2c25539b6369e45446f9081f5cce9ffecfc74afeebae59ca408f537d197aa00",
           "baselineContentHash": "be30112ff1776b93403dccef4f87ec81c4152761b866e2294ce5fe1ddfb1a92b",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "92dd160b0039bad8c9ebaf5ae711c8bdd6c48f64bd3a7e590ce2e465f0501dcd"
         },
         {
           "id": "mo-action-test-failed-variant",
@@ -5276,9 +5276,9 @@
           ],
           "baselineHash": "fd2c7c20720858acd7213f712eab4370f7244f5e74a4df21549ba68523086c0d",
           "baselineContentHash": "aac70104829d9dda1212b4dfa4e6f30ec78c521c305dc6f14a2af269c4dd2e0f",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "25e12240e767777c2eae0bfa041fff59006b4d2173e0633a400ef2e122a4d332"
         }
       ]
     },

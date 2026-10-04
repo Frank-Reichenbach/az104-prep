@@ -6422,34 +6422,34 @@
     {
       "id": "mo-action-reuse",
       "family": "mo-action-reuse",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.alerts.action-groups",
       "objectives": [
         "mo-04"
       ],
       "difficulty": "foundation",
-      "prompt": "CPU and log alerts should notify the same operations team. What reusable Azure Monitor resource defines those recipients?",
+      "prompt": "A CPU alert rule and a log alert rule both reference the same action group. You add a verified email recipient to that existing group and save it. Both rules remain attached, and no suppression applies. Which rules use the updated recipient list for future notifications?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "An action group.",
-          "explanation": "It can be reused by multiple alert rules."
+          "text": "Both the CPU rule and the log rule.",
+          "explanation": "The rules share the same reusable action group, so both reference its updated notification configuration."
         },
         {
           "id": "b",
-          "text": "A metric dimension.",
-          "explanation": "Dimensions segment telemetry rather than define recipients."
+          "text": "Only the CPU rule.",
+          "explanation": "The shared group is also attached to the log rule; the change is not specific to metrics."
         },
         {
           "id": "c",
-          "text": "A DCR association.",
-          "explanation": "That applies collection settings to a resource."
+          "text": "Only the log rule.",
+          "explanation": "The shared group is also attached to the CPU rule; the change is not specific to log searches."
         },
         {
           "id": "d",
-          "text": "A private DNS zone.",
-          "explanation": "DNS resolution does not define alert recipients."
+          "text": "Neither rule until the group is detached and reattached.",
+          "explanation": "Updating the existing shared group does not require replacing its references in the alert rules."
         }
       ],
       "correct": [
@@ -6457,43 +6457,41 @@
       ],
       "knowledge": "knowledge/monitoring/alerts/action-groups.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-action-test",
       "family": "mo-action-test",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.alerts.action-groups",
       "objectives": [
         "mo-04"
       ],
       "difficulty": "applied",
-      "prompt": "An action group's sample notification test succeeds. What remains to verify for an actual CPU alert?",
+      "prompt": "An action group’s sample email test succeeds. You must additionally verify that the enabled CPU alert rule evaluates the intended VM condition and delivers a real alert to the team. Which verification covers the part not established by the sample test?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Nothing; the sample forces the real CPU rule to fire.",
-          "explanation": "A response-path test does not evaluate the actual condition."
+          "text": "Repeat the group sample test with the CPU metric sample type.",
+          "explanation": "A sample notification still does not evaluate the real VM rule or establish its attachment."
         },
         {
           "id": "b",
-          "text": "The real alert rule's scope/condition and group attachment.",
-          "explanation": "A correct group still needs a firing rule or processing-rule attachment."
+          "text": "Trigger a controlled qualifying CPU condition, verify the correct rule fires, and verify its group delivers the notification.",
+          "explanation": "This checks real scope and evaluation plus the attached response path; the sample checked only sample delivery."
         },
         {
           "id": "c",
-          "text": "That the group stores CPU samples.",
-          "explanation": "An action group is not a telemetry store."
+          "text": "Validate a saved sample payload against the email receiver’s expected schema.",
+          "explanation": "Payload validation does not show that the actual CPU rule evaluates and invokes this group."
         },
         {
           "id": "d",
-          "text": "That the sample changed the VM size.",
-          "explanation": "Sending a sample notification is not VM scaling."
+          "text": "View the VM CPU chart above the threshold without checking the alert rule or delivery.",
+          "explanation": "Telemetry alone does not prove the intended rule is enabled, properly configured, attached to the group, or delivered."
         }
       ],
       "correct": [
@@ -6502,42 +6500,41 @@
       "knowledge": "knowledge/monitoring/alerts/action-groups.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-action-no-message",
       "family": "mo-action-no-message",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.alerts.action-groups",
       "objectives": [
         "mo-04"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A real alert fired but no email arrived. Which two response-path checks are relevant?",
+      "prompt": "The correct CPU alert rule has a Fired instance for the intended VM and incident time, but the team received no email. You must investigate notification handling separately from the already verified firing. Which two checks inspect that response path? Select two.",
       "select": 2,
       "options": [
         {
           "id": "a",
-          "text": "Inspect attached/enabled action groups and recipient validation.",
-          "explanation": "Those affect email delivery."
+          "text": "Inspect the action group attachment, enabled state, and intended email receiver configuration.",
+          "explanation": "These determine whether the fired alert has an available email action for the intended recipient."
         },
         {
           "id": "b",
-          "text": "Assume the condition never fired despite the alert instance.",
-          "explanation": "The instance is evidence of firing; delivery is a separate stage."
+          "text": "Recalculate the CPU aggregation window to establish whether this instance fired.",
+          "explanation": "The supplied correct Fired instance already establishes that event; this examines evaluation rather than notification handling."
         },
         {
           "id": "c",
-          "text": "Check whether a processing rule suppressed its action groups.",
-          "explanation": "Suppression can leave the alert visible without notifications."
+          "text": "Inspect matching processing rules for suppression of action groups.",
+          "explanation": "Suppression can leave a fired alert visible while preventing its notification actions."
         },
         {
           "id": "d",
-          "text": "Add a DCR filter to rewrite the recipient email.",
-          "explanation": "DCRs configure telemetry collection rather than notification recipients."
+          "text": "Inspect VM-to-DCR associations to establish whether CPU collection produced this fired instance.",
+          "explanation": "This examines telemetry collection rather than the action handling for the already verified Fired instance."
         }
       ],
       "correct": [
@@ -6550,7 +6547,7 @@
         "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
         "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-processing-maintenance",
@@ -9606,7 +9603,7 @@
         "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
         "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-processing-weekly-variant",

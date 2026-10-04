@@ -2082,50 +2082,50 @@ Study: [knowledge file](../knowledge/identity/governance/locks.md). Evidence che
 
 Topic: Monitoring and recovery › Action groups and notification delivery.
 
-CPU and log alerts should notify the same operations team. What reusable Azure Monitor resource defines those recipients?
+A CPU alert rule and a log alert rule both reference the same action group. You add a verified email recipient to that existing group and save it. Both rules remain attached, and no suppression applies. Which rules use the updated recipient list for future notifications?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** An action group. It can be reused by multiple alert rules.
-- **B. Incorrect:** A metric dimension. Dimensions segment telemetry rather than define recipients.
-- **C. Incorrect:** A DCR association. That applies collection settings to a resource.
-- **D. Incorrect:** A private DNS zone. DNS resolution does not define alert recipients.
+- **A. Correct:** Both the CPU rule and the log rule. The rules share the same reusable action group, so both reference its updated notification configuration.
+- **B. Incorrect:** Only the CPU rule. The shared group is also attached to the log rule; the change is not specific to metrics.
+- **C. Incorrect:** Only the log rule. The shared group is also attached to the CPU rule; the change is not specific to log searches.
+- **D. Incorrect:** Neither rule until the group is detached and reattached. Updating the existing shared group does not require replacing its references in the alert rules.
 
-Study: [knowledge file](../knowledge/monitoring/alerts/action-groups.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/alerts/action-groups.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups)
 
 ## mo-action-test
 
 Topic: Monitoring and recovery › Action groups and notification delivery.
 
-An action group's sample notification test succeeds. What remains to verify for an actual CPU alert?
+An action group’s sample email test succeeds. You must additionally verify that the enabled CPU alert rule evaluates the intended VM condition and delivers a real alert to the team. Which verification covers the part not established by the sample test?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Nothing; the sample forces the real CPU rule to fire. A response-path test does not evaluate the actual condition.
-- **B. Correct:** The real alert rule's scope/condition and group attachment. A correct group still needs a firing rule or processing-rule attachment.
-- **C. Incorrect:** That the group stores CPU samples. An action group is not a telemetry store.
-- **D. Incorrect:** That the sample changed the VM size. Sending a sample notification is not VM scaling.
+- **A. Incorrect:** Repeat the group sample test with the CPU metric sample type. A sample notification still does not evaluate the real VM rule or establish its attachment.
+- **B. Correct:** Trigger a controlled qualifying CPU condition, verify the correct rule fires, and verify its group delivers the notification. This checks real scope and evaluation plus the attached response path; the sample checked only sample delivery.
+- **C. Incorrect:** Validate a saved sample payload against the email receiver’s expected schema. Payload validation does not show that the actual CPU rule evaluates and invokes this group.
+- **D. Incorrect:** View the VM CPU chart above the threshold without checking the alert rule or delivery. Telemetry alone does not prove the intended rule is enabled, properly configured, attached to the group, or delivered.
 
-Study: [knowledge file](../knowledge/monitoring/alerts/action-groups.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/alerts/action-groups.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview)
 
 ## mo-action-no-message
 
 Topic: Monitoring and recovery › Action groups and notification delivery.
 
-A real alert fired but no email arrived. Which two response-path checks are relevant?
+The correct CPU alert rule has a Fired instance for the intended VM and incident time, but the team received no email. You must investigate notification handling separately from the already verified firing. Which two checks inspect that response path? Select two.
 
 Select **2**. Difficulty: troubleshooting.
 
-- **A. Correct:** Inspect attached/enabled action groups and recipient validation. Those affect email delivery.
-- **B. Incorrect:** Assume the condition never fired despite the alert instance. The instance is evidence of firing; delivery is a separate stage.
-- **C. Correct:** Check whether a processing rule suppressed its action groups. Suppression can leave the alert visible without notifications.
-- **D. Incorrect:** Add a DCR filter to rewrite the recipient email. DCRs configure telemetry collection rather than notification recipients.
+- **A. Correct:** Inspect the action group attachment, enabled state, and intended email receiver configuration. These determine whether the fired alert has an available email action for the intended recipient.
+- **B. Incorrect:** Recalculate the CPU aggregation window to establish whether this instance fired. The supplied correct Fired instance already establishes that event; this examines evaluation rather than notification handling.
+- **C. Correct:** Inspect matching processing rules for suppression of action groups. Suppression can leave a fired alert visible while preventing its notification actions.
+- **D. Incorrect:** Inspect VM-to-DCR associations to establish whether CPU collection produced this fired instance. This examines telemetry collection rather than the action handling for the already verified Fired instance.
 
-Study: [knowledge file](../knowledge/monitoring/alerts/action-groups.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/alerts/action-groups.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules)
 
@@ -3315,7 +3315,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** The real metric rule definitely fired. Sending a sample does not establish that the real rule evaluated true.
 - **D. Incorrect:** The VM definitely stopped emitting metric samples. A notification-path failure does not prove loss of metric collection.
 
-Study: [knowledge file](../knowledge/monitoring/alerts/action-groups.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/alerts/action-groups.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules)
 
