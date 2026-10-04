@@ -140,27 +140,27 @@ D. Only an inbound IP access restriction
 
 Topic: Compute › App Service inbound and outbound networking.
 
-Users must access an App Service app privately from a VNet, and the app must also reach a private database. Which TWO capabilities should be configured for their respective traffic directions?
+A Standard App Service app has no VNet integration or private endpoint. VNet clients must reach it through a private IP, and the app must connect to a database VM private IP in the same-region VNet. Suitable separate subnets, required permissions, and database access are available. Which TWO capabilities jointly supply the inbound and outbound paths? Configure private DNS for the inbound endpoint and disable app public access as part of the design.
 
 Select **2**. Difficulty: applied.
 
-A. An App Service private endpoint for inbound requests
-B. VNet integration for the app outbound database connection
-C. VNet integration alone as proof of private inbound access
-D. The app private endpoint alone as proof of private outbound database routing
+A. Create and approve an App Service private endpoint for the client-to-app path.
+B. Configure regional VNet integration for the app-to-database path.
+C. Create only a private DNS A record for the app without a private endpoint.
+D. Add an inbound allow rule for VNet clients on the app integration subnet NSG.
 
 ## co-web-subnet
 
 Topic: Compute › App Service inbound and outbound networking.
 
-A web app already uses a delegated subnet for VNet integration. Where should its inbound private endpoint be placed?
+A Standard web app uses subnet-app for regional VNet integration. You must add its inbound private endpoint without changing existing subnet delegations. All subnets below are in the same VNet and have available IP addresses. Which subnet can host the private endpoint?
 
 Select **1**. Difficulty: applied.
 
-A. In a different suitable subnet.
-B. Always in the same delegated integration subnet.
-C. In the app deployment slot instead of a subnet.
-D. In a DNS record with no private endpoint NIC.
+A. subnet-private: no service delegation.
+B. subnet-app: delegated to Microsoft.Web/serverFarms and used by this app integration.
+C. subnet-containers: delegated to Microsoft.ContainerInstance/containerGroups.
+D. subnet-other-plan: delegated to Microsoft.Web/serverFarms for another plan integration.
 
 ## co-plan-sharing
 
@@ -959,14 +959,14 @@ D. Only a NAT gateway for the app's outbound traffic.
 
 Topic: Compute › App Service inbound and outbound networking.
 
-An App Service private endpoint already occupies subnet inbound. You now add regional VNet integration to the app. Which subnet arrangement is supported?
+A Standard App Service app already has an inbound private endpoint in subnet-inbound. You now add regional VNet integration without moving that endpoint or changing existing delegations. Each candidate has sufficient addresses and permissions. Which subnet arrangement supports integration for the app?
 
 Select **1**. Difficulty: applied.
 
-A. Use a different suitable subnet dedicated and delegated for integration.
-B. Reuse inbound without changing anything because both features use private IPs.
-C. Replace the integration subnet with a public DNS A record.
-D. Attach the app's private endpoint NIC as its integration interface.
+A. Use a separate dedicated same-region subnet delegated to Microsoft.Web/serverFarms.
+B. Reuse subnet-inbound while retaining its private endpoint.
+C. Use a separate same-region subnet delegated to Microsoft.ContainerInstance/containerGroups.
+D. Use a separate subnet in a different region delegated to Microsoft.Web/serverFarms.
 
 ## id-budget-not-cap
 

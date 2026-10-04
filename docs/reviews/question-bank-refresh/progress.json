@@ -3880,9 +3880,9 @@
     {
       "id": "compute.app-service.networking",
       "title": "App Service inbound and outbound networking",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.app-service.networking.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-web-outbound",
@@ -3897,9 +3897,9 @@
           ],
           "baselineHash": "e34c7205d5b888ad1daf79e49ef6e5e51e73fbe8c1a52e5b25b6fe091339e852",
           "baselineContentHash": "89cec770a51497551059690b4fea8f98c506ae47dccdfcd944832cf3e29a8336",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "a6795bba99f888b46f88996514827754713a214eb0f8b4415c7b56d77f41808a"
         },
         {
           "id": "co-web-inbound",
@@ -3914,9 +3914,9 @@
           ],
           "baselineHash": "848d3eeae656faaa42ae7efc4ae5e543ce3345112b20e1a5f46536fe940433e1",
           "baselineContentHash": "faf692f9acbc3dfcb7f9c13d8d61de35f5db02c86c54a391039240650f4ed1f7",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "50f9ab64ebd7c268ce2d125573066ca4afb5c0313b290f7c6a8926315b603ff9"
         },
         {
           "id": "co-web-subnet",
@@ -3931,9 +3931,9 @@
           ],
           "baselineHash": "2cfc692de879f388c1e0030666b83f21b030ebcdf6cb33efffa8764102581a6a",
           "baselineContentHash": "8f20215572a6b0280b3ff2848e7769ead8be1706d21e03cd25b2ccdae0b04fdd",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "584aff695dec37a5b1c4e9692d5be41c0d5027e586ba85fc5fd4e11d8a6106c5"
         },
         {
           "id": "co-web-inbound-direction-variant",
@@ -3948,9 +3948,9 @@
           ],
           "baselineHash": "daa3ec9b836e4ec2b606af0048eb480f1fc755f36ab4f1ac13ae7f8995671ccf",
           "baselineContentHash": "4389e9f8e6a1ac6a5fe2a662b3c2a9a84173537ec5303f92e141ed281f427fdf",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "0b82cef943b9cdc92ec1897b3838b5d23c4d88e426febabd446b72f65b4de022"
         },
         {
           "id": "co-web-integration-subnet-variant",
@@ -3965,9 +3965,9 @@
           ],
           "baselineHash": "859c4a435eb9fa9fcda7c16222baa3122782716eaa51b5e8e50c91642fc15272",
           "baselineContentHash": "d846642f96defc6fd394dd8102910bc12fb3075979c553f7ef1bc7ecdda065bc",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "b47e9a25bb25191dce45d47ba32f60429adf713c8bcc17825cfa4fee8b9808c7"
         }
       ]
     },

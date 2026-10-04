@@ -170,7 +170,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** Only an app custom-domain binding A hostname binding does not create the outbound VNet path.
 - **D. Incorrect:** Only an inbound IP access restriction Inbound filtering does not configure private outbound routing.
 
-Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint)
 
@@ -178,16 +178,16 @@ Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidenc
 
 Topic: Compute › App Service inbound and outbound networking.
 
-Users must access an App Service app privately from a VNet, and the app must also reach a private database. Which TWO capabilities should be configured for their respective traffic directions?
+A Standard App Service app has no VNet integration or private endpoint. VNet clients must reach it through a private IP, and the app must connect to a database VM private IP in the same-region VNet. Suitable separate subnets, required permissions, and database access are available. Which TWO capabilities jointly supply the inbound and outbound paths? Configure private DNS for the inbound endpoint and disable app public access as part of the design.
 
 Select **2**. Difficulty: applied.
 
-- **A. Correct:** An App Service private endpoint for inbound requests The endpoint exposes the app through a private IP.
-- **B. Correct:** VNet integration for the app outbound database connection Integration provides outbound network access.
-- **C. Incorrect:** VNet integration alone as proof of private inbound access Integration does not provide private inbound app access.
-- **D. Incorrect:** The app private endpoint alone as proof of private outbound database routing The inbound endpoint does not configure outbound integration.
+- **A. Correct:** Create and approve an App Service private endpoint for the client-to-app path. The endpoint gives VNet clients a private inbound address for the app. It supplies this half of the design, while outbound database access needs integration.
+- **B. Correct:** Configure regional VNet integration for the app-to-database path. Integration routes outbound app calls into the VNet toward the private database VM. It supplies this half without providing private inbound app access.
+- **C. Incorrect:** Create only a private DNS A record for the app without a private endpoint. DNS can resolve an address but cannot create the private endpoint network interface or the inbound service connection.
+- **D. Incorrect:** Add an inbound allow rule for VNet clients on the app integration subnet NSG. Integration-subnet inbound rules do not expose the app privately. They cannot replace its private endpoint or provide the outbound integration attachment.
 
-Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint)
 
@@ -195,18 +195,18 @@ Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidenc
 
 Topic: Compute › App Service inbound and outbound networking.
 
-A web app already uses a delegated subnet for VNet integration. Where should its inbound private endpoint be placed?
+A Standard web app uses subnet-app for regional VNet integration. You must add its inbound private endpoint without changing existing subnet delegations. All subnets below are in the same VNet and have available IP addresses. Which subnet can host the private endpoint?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** In a different suitable subnet. The integration and private endpoint subnets must be different.
-- **B. Incorrect:** Always in the same delegated integration subnet. App Service documents separate subnet requirements for these features.
-- **C. Incorrect:** In the app deployment slot instead of a subnet. A slot is an application resource, not a network subnet.
-- **D. Incorrect:** In a DNS record with no private endpoint NIC. DNS alone cannot create a private endpoint network interface.
+- **A. Correct:** subnet-private: no service delegation. A nondelegated subnet with available addresses can host the private endpoint, and it is separate from the integration subnet.
+- **B. Incorrect:** subnet-app: delegated to Microsoft.Web/serverFarms and used by this app integration. The private endpoint must not share the integration subnet; a delegated subnet cannot host the private endpoint.
+- **C. Incorrect:** subnet-containers: delegated to Microsoft.ContainerInstance/containerGroups. Private endpoints cannot be deployed in a subnet delegated to a service, even when addresses remain available.
+- **D. Incorrect:** subnet-other-plan: delegated to Microsoft.Web/serverFarms for another plan integration. A different integration plan does not remove this subnet delegation; it still cannot host the private endpoint.
 
-Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-network/subnet-delegation-overview)
 
 ## co-plan-sharing
 
@@ -1241,7 +1241,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** Only an outbound route table on the integration subnet. An outbound route does not create an inbound private endpoint for the app.
 - **D. Incorrect:** Only a NAT gateway for the app's outbound traffic. Outbound source translation does not expose a private inbound app address.
 
-Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint)
 
@@ -1249,18 +1249,18 @@ Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidenc
 
 Topic: Compute › App Service inbound and outbound networking.
 
-An App Service private endpoint already occupies subnet inbound. You now add regional VNet integration to the app. Which subnet arrangement is supported?
+A Standard App Service app already has an inbound private endpoint in subnet-inbound. You now add regional VNet integration without moving that endpoint or changing existing delegations. Each candidate has sufficient addresses and permissions. Which subnet arrangement supports integration for the app?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Use a different suitable subnet dedicated and delegated for integration. The integration subnet cannot be the same subnet as the app's private endpoint.
-- **B. Incorrect:** Reuse inbound without changing anything because both features use private IPs. Private addressing does not remove the requirement for different subnets.
-- **C. Incorrect:** Replace the integration subnet with a public DNS A record. A DNS record does not provide the outbound integration network.
-- **D. Incorrect:** Attach the app's private endpoint NIC as its integration interface. The inbound private endpoint NIC is not the integration interface.
+- **A. Correct:** Use a separate dedicated same-region subnet delegated to Microsoft.Web/serverFarms. Regional integration requires a suitable same-region subnet delegated to Microsoft.Web/serverFarms, separate from the existing endpoint subnet.
+- **B. Incorrect:** Reuse subnet-inbound while retaining its private endpoint. The integration subnet cannot contain the app private endpoint; private addressing does not remove the separate-subnet requirement.
+- **C. Incorrect:** Use a separate same-region subnet delegated to Microsoft.ContainerInstance/containerGroups. The unchanged container-group delegation is not the Microsoft.Web/serverFarms delegation required for integration.
+- **D. Incorrect:** Use a separate subnet in a different region delegated to Microsoft.Web/serverFarms. Correct delegation alone is insufficient: regional VNet integration needs a VNet in the app region.
 
-Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-network/subnet-delegation-overview)
 
 ## id-budget-not-cap
 

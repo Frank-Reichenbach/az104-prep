@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 196/322 questions reviewed, 154 revised and 42 kept; 59/99 topics complete.
-Latest: [App Service backup configuration and restoration](docs/reviews/question-bank-refresh/compute.app-service.backups.md). Each completed topic has item decisions,
+Checkpoint: 201/322 questions reviewed, 157 revised and 44 kept; 60/99 topics complete.
+Latest: [App Service inbound and outbound networking](docs/reviews/question-bank-refresh/compute.app-service.networking.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `compute.app-service.networking` (App Service inbound and outbound networking).
+Next: `compute.app-service.slots` (App Service deployment slots and swaps).
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this

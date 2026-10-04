@@ -42,39 +42,39 @@
         "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
         "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-web-inbound",
       "family": "co-web-inbound",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.networking",
       "objectives": [
         "co-23"
       ],
       "difficulty": "applied",
-      "prompt": "Users must access an App Service app privately from a VNet, and the app must also reach a private database. Which TWO capabilities should be configured for their respective traffic directions?",
+      "prompt": "A Standard App Service app has no VNet integration or private endpoint. VNet clients must reach it through a private IP, and the app must connect to a database VM private IP in the same-region VNet. Suitable separate subnets, required permissions, and database access are available. Which TWO capabilities jointly supply the inbound and outbound paths? Configure private DNS for the inbound endpoint and disable app public access as part of the design.",
       "select": 2,
       "options": [
         {
           "id": "a",
-          "text": "An App Service private endpoint for inbound requests",
-          "explanation": "The endpoint exposes the app through a private IP."
+          "text": "Create and approve an App Service private endpoint for the client-to-app path.",
+          "explanation": "The endpoint gives VNet clients a private inbound address for the app. It supplies this half of the design, while outbound database access needs integration."
         },
         {
           "id": "b",
-          "text": "VNet integration for the app outbound database connection",
-          "explanation": "Integration provides outbound network access."
+          "text": "Configure regional VNet integration for the app-to-database path.",
+          "explanation": "Integration routes outbound app calls into the VNet toward the private database VM. It supplies this half without providing private inbound app access."
         },
         {
           "id": "c",
-          "text": "VNet integration alone as proof of private inbound access",
-          "explanation": "Integration does not provide private inbound app access."
+          "text": "Create only a private DNS A record for the app without a private endpoint.",
+          "explanation": "DNS can resolve an address but cannot create the private endpoint network interface or the inbound service connection."
         },
         {
           "id": "d",
-          "text": "The app private endpoint alone as proof of private outbound database routing",
-          "explanation": "The inbound endpoint does not configure outbound integration."
+          "text": "Add an inbound allow rule for VNet clients on the app integration subnet NSG.",
+          "explanation": "Integration-subnet inbound rules do not expose the app privately. They cannot replace its private endpoint or provide the outbound integration attachment."
         }
       ],
       "correct": [
@@ -86,39 +86,39 @@
         "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
         "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-web-subnet",
       "family": "co-web-subnet",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.networking",
       "objectives": [
         "co-23"
       ],
       "difficulty": "applied",
-      "prompt": "A web app already uses a delegated subnet for VNet integration. Where should its inbound private endpoint be placed?",
+      "prompt": "A Standard web app uses subnet-app for regional VNet integration. You must add its inbound private endpoint without changing existing subnet delegations. All subnets below are in the same VNet and have available IP addresses. Which subnet can host the private endpoint?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "In a different suitable subnet.",
-          "explanation": "The integration and private endpoint subnets must be different."
+          "text": "subnet-private: no service delegation.",
+          "explanation": "A nondelegated subnet with available addresses can host the private endpoint, and it is separate from the integration subnet."
         },
         {
           "id": "b",
-          "text": "Always in the same delegated integration subnet.",
-          "explanation": "App Service documents separate subnet requirements for these features."
+          "text": "subnet-app: delegated to Microsoft.Web/serverFarms and used by this app integration.",
+          "explanation": "The private endpoint must not share the integration subnet; a delegated subnet cannot host the private endpoint."
         },
         {
           "id": "c",
-          "text": "In the app deployment slot instead of a subnet.",
-          "explanation": "A slot is an application resource, not a network subnet."
+          "text": "subnet-containers: delegated to Microsoft.ContainerInstance/containerGroups.",
+          "explanation": "Private endpoints cannot be deployed in a subnet delegated to a service, even when addresses remain available."
         },
         {
           "id": "d",
-          "text": "In a DNS record with no private endpoint NIC.",
-          "explanation": "DNS alone cannot create a private endpoint network interface."
+          "text": "subnet-other-plan: delegated to Microsoft.Web/serverFarms for another plan integration.",
+          "explanation": "A different integration plan does not remove this subnet delegation; it still cannot host the private endpoint."
         }
       ],
       "correct": [
@@ -127,9 +127,10 @@
       "knowledge": "knowledge/compute/app-service/networking.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
-        "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint"
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/subnet-delegation-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }
