@@ -1437,39 +1437,39 @@
         "https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain",
         "https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-domain-txt",
       "family": "co-domain-txt",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.domains",
       "objectives": [
         "co-21"
       ],
       "difficulty": "foundation",
-      "prompt": "What is the purpose of the asuid.www TXT record when configuring www.example.com for App Service?",
+      "prompt": "You configure ownership verification for www.example.com. App Service displays a domain verification ID. Which TXT record in the example.com DNS zone uses that ID for this subdomain?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Prove domain ownership and help prevent another app claiming the hostname.",
-          "explanation": "The domain verification ID supports ownership verification and takeover protection."
+          "text": "Name: asuid.www; value: the app domain verification ID.",
+          "explanation": "For the www subdomain, App Service looks up asuid.www and compares its value with the app domain verification ID."
         },
         {
           "id": "b",
-          "text": "Route HTTPS packets to the app private IP.",
-          "explanation": "TXT records do not route client traffic."
+          "text": "Name: asuid; value: the app domain verification ID.",
+          "explanation": "The asuid record without the subdomain prefix is used for the apex; it is not the documented verification record for www.example.com."
         },
         {
           "id": "c",
-          "text": "Store the certificate private key for browsers.",
-          "explanation": "A public TXT record must not contain a private key."
+          "text": "Name: www; value: the app domain verification ID.",
+          "explanation": "The subdomain ownership TXT name requires the asuid.www prefix, not simply www."
         },
         {
           "id": "d",
-          "text": "Set the App Service plan worker count.",
-          "explanation": "DNS verification does not configure compute capacity."
+          "text": "Name: asuid.www; value: the app default hostname.",
+          "explanation": "The record name is correct but its value must be the verification ID. The default hostname belongs in the routing CNAME."
         }
       ],
       "correct": [
@@ -1480,39 +1480,39 @@
         "https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain",
         "https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-domain-binding",
       "family": "co-domain-binding",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.domains",
       "objectives": [
         "co-21"
       ],
-      "difficulty": "applied",
-      "prompt": "www.example.com resolves to the correct App Service address, but the app has no custom-hostname entry for it and requests return a platform 404. What should be configured?",
+      "difficulty": "troubleshooting",
+      "prompt": "A Standard App Service app has production and staging endpoints. The production default hostname works. A client resolves www.example.com to the production endpoint, and asuid.www matches its verification ID. HTTP requests using www.example.com return a platform 404. The production app has no custom-hostname entry for www.example.com. Which hostname configuration fixes that missing production mapping?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Validate and add the hostname binding to the intended app.",
-          "explanation": "App Service must associate that Host header with the app."
+          "text": "Validate and add www.example.com to the production app custom hostnames.",
+          "explanation": "The requested Host header must be associated with the intended production app. DNS routing and ownership verification alone do not add that hostname mapping."
         },
         {
           "id": "b",
-          "text": "Only lower the DNS TTL repeatedly.",
-          "explanation": "Correct resolution cannot replace the missing app mapping."
+          "text": "Validate and add example.com to the production app custom hostnames.",
+          "explanation": "The apex and www are different hostnames; adding only example.com does not register the requested www.example.com name."
         },
         {
           "id": "c",
-          "text": "Only add another identical A record.",
-          "explanation": "Duplicating routing does not establish the hostname binding."
+          "text": "Validate and add www.example.com only to the staging slot custom hostnames.",
+          "explanation": "That associates the name with staging, while the required destination is production. A slot mapping does not add a production mapping."
         },
         {
           "id": "d",
-          "text": "Only scale out the plan.",
-          "explanation": "Additional workers do not register the custom hostname."
+          "text": "Publish another asuid.www TXT record without adding an app hostname entry.",
+          "explanation": "The existing verification ID is already correct. Additional ownership proof does not create the missing hostname-to-app association."
         }
       ],
       "correct": [
@@ -1523,7 +1523,7 @@
         "https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain",
         "https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-web-outbound",

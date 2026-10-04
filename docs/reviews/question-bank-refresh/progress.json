@@ -3760,9 +3760,9 @@
     {
       "id": "compute.app-service.domains",
       "title": "App Service custom DNS names and ownership verification",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.app-service.domains.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-domain-cname",
@@ -3777,9 +3777,9 @@
           ],
           "baselineHash": "91a609970bdcb4690090aabbd9b7e32ad8191f79275fbc26b373dc050d025215",
           "baselineContentHash": "e4b78492301ba70d95961859ceb2d9b823c4c1f0c210910b51b0f835c11315fe",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "bfb8842dcef39cd9dc437cecf1c3e2cbf4a2fd47b405d1ad2c00b6fba04ffbd7"
         },
         {
           "id": "co-domain-txt",
@@ -3794,9 +3794,9 @@
           ],
           "baselineHash": "9e16017bcf49d55000e51cdb12dd8938381f955cab7f364356ec75026b6c5ad5",
           "baselineContentHash": "1f1073f71976d8d71dc7c0d768a5484dd78cef5cb192b64ea1fb4e38d15dd2ab",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "72a1df695a86b19f59260e16e76c312304d6f17a22b8601fe3a2515615973611"
         },
         {
           "id": "co-domain-binding",
@@ -3811,9 +3811,9 @@
           ],
           "baselineHash": "6873f8c9c9e2ed0e135f67935f2d8246ab0e11c493e17431b30424e313f3c73a",
           "baselineContentHash": "1ac4035d21415113ca1b0f6cc7150ec3d012359ee0c7bd1b73807fd74aa96f52",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "c5df1593a52973e26918c52c47835525947cdfac2e0a2210552cfcae05c7e07d"
         }
       ]
     },

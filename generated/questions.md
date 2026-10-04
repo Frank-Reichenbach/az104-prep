@@ -101,27 +101,27 @@ D. An NS record delegating www to the app hostname.
 
 Topic: Compute › App Service custom DNS names and ownership verification.
 
-What is the purpose of the asuid.www TXT record when configuring www.example.com for App Service?
+You configure ownership verification for www.example.com. App Service displays a domain verification ID. Which TXT record in the example.com DNS zone uses that ID for this subdomain?
 
 Select **1**. Difficulty: foundation.
 
-A. Prove domain ownership and help prevent another app claiming the hostname.
-B. Route HTTPS packets to the app private IP.
-C. Store the certificate private key for browsers.
-D. Set the App Service plan worker count.
+A. Name: asuid.www; value: the app domain verification ID.
+B. Name: asuid; value: the app domain verification ID.
+C. Name: www; value: the app domain verification ID.
+D. Name: asuid.www; value: the app default hostname.
 
 ## co-domain-binding
 
 Topic: Compute › App Service custom DNS names and ownership verification.
 
-www.example.com resolves to the correct App Service address, but the app has no custom-hostname entry for it and requests return a platform 404. What should be configured?
+A Standard App Service app has production and staging endpoints. The production default hostname works. A client resolves www.example.com to the production endpoint, and asuid.www matches its verification ID. HTTP requests using www.example.com return a platform 404. The production app has no custom-hostname entry for www.example.com. Which hostname configuration fixes that missing production mapping?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Validate and add the hostname binding to the intended app.
-B. Only lower the DNS TTL repeatedly.
-C. Only add another identical A record.
-D. Only scale out the plan.
+A. Validate and add www.example.com to the production app custom hostnames.
+B. Validate and add example.com to the production app custom hostnames.
+C. Validate and add www.example.com only to the staging slot custom hostnames.
+D. Publish another asuid.www TXT record without adding an app hostname entry.
 
 ## co-web-outbound
 

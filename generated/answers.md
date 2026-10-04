@@ -119,7 +119,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** An MX record targeting the app hostname. MX controls mail delivery, not web traffic resolution.
 - **D. Incorrect:** An NS record delegating www to the app hostname. An app hostname is not an authoritative DNS nameserver.
 
-Study: [knowledge file](../knowledge/compute/app-service/domains.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/domains.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover)
 
@@ -127,16 +127,16 @@ Study: [knowledge file](../knowledge/compute/app-service/domains.md). Evidence c
 
 Topic: Compute › App Service custom DNS names and ownership verification.
 
-What is the purpose of the asuid.www TXT record when configuring www.example.com for App Service?
+You configure ownership verification for www.example.com. App Service displays a domain verification ID. Which TXT record in the example.com DNS zone uses that ID for this subdomain?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** Prove domain ownership and help prevent another app claiming the hostname. The domain verification ID supports ownership verification and takeover protection.
-- **B. Incorrect:** Route HTTPS packets to the app private IP. TXT records do not route client traffic.
-- **C. Incorrect:** Store the certificate private key for browsers. A public TXT record must not contain a private key.
-- **D. Incorrect:** Set the App Service plan worker count. DNS verification does not configure compute capacity.
+- **A. Correct:** Name: asuid.www; value: the app domain verification ID. For the www subdomain, App Service looks up asuid.www and compares its value with the app domain verification ID.
+- **B. Incorrect:** Name: asuid; value: the app domain verification ID. The asuid record without the subdomain prefix is used for the apex; it is not the documented verification record for www.example.com.
+- **C. Incorrect:** Name: www; value: the app domain verification ID. The subdomain ownership TXT name requires the asuid.www prefix, not simply www.
+- **D. Incorrect:** Name: asuid.www; value: the app default hostname. The record name is correct but its value must be the verification ID. The default hostname belongs in the routing CNAME.
 
-Study: [knowledge file](../knowledge/compute/app-service/domains.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/domains.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover)
 
@@ -144,16 +144,16 @@ Study: [knowledge file](../knowledge/compute/app-service/domains.md). Evidence c
 
 Topic: Compute › App Service custom DNS names and ownership verification.
 
-www.example.com resolves to the correct App Service address, but the app has no custom-hostname entry for it and requests return a platform 404. What should be configured?
+A Standard App Service app has production and staging endpoints. The production default hostname works. A client resolves www.example.com to the production endpoint, and asuid.www matches its verification ID. HTTP requests using www.example.com return a platform 404. The production app has no custom-hostname entry for www.example.com. Which hostname configuration fixes that missing production mapping?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Validate and add the hostname binding to the intended app. App Service must associate that Host header with the app.
-- **B. Incorrect:** Only lower the DNS TTL repeatedly. Correct resolution cannot replace the missing app mapping.
-- **C. Incorrect:** Only add another identical A record. Duplicating routing does not establish the hostname binding.
-- **D. Incorrect:** Only scale out the plan. Additional workers do not register the custom hostname.
+- **A. Correct:** Validate and add www.example.com to the production app custom hostnames. The requested Host header must be associated with the intended production app. DNS routing and ownership verification alone do not add that hostname mapping.
+- **B. Incorrect:** Validate and add example.com to the production app custom hostnames. The apex and www are different hostnames; adding only example.com does not register the requested www.example.com name.
+- **C. Incorrect:** Validate and add www.example.com only to the staging slot custom hostnames. That associates the name with staging, while the required destination is production. A slot mapping does not add a production mapping.
+- **D. Incorrect:** Publish another asuid.www TXT record without adding an app hostname entry. The existing verification ID is already correct. Additional ownership proof does not create the missing hostname-to-app association.
 
-Study: [knowledge file](../knowledge/compute/app-service/domains.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/domains.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/security/fundamentals/subdomain-takeover)
 
