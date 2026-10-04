@@ -2166,9 +2166,9 @@
     {
       "id": "identity.governance.locks",
       "title": "Resource locks",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/identity.governance.locks.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "id-lock-delete-only",
@@ -2183,9 +2183,9 @@
           ],
           "baselineHash": "6c6d147627534cabb46c48fd9fdc2b01e48d7b7554b4ace81881fd7271ce0c07",
           "baselineContentHash": "015c8797a05e9c66faed4fc784dde8f347e28b4885c9d7e4a83e04349754b56d",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "2d0264f41361b1397c09de202fe5ace85c0269035771cbed55c58a25ea1395ec"
         },
         {
           "id": "id-lock-blob-data",
@@ -2200,9 +2200,9 @@
           ],
           "baselineHash": "8800df991cf6a77f4ba611941dfb7ad7615df5ee43d0795da64ea1563ce2e75a",
           "baselineContentHash": "3096673c46b17459b6e408a2ed6da7bcd9b8d85e058bb7c81b80057bf55b2b1a",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "4271ac1835e81c145288d4631a903670adc4ce3e06f6d2eddea1b229b392a3b7"
         },
         {
           "id": "id-lock-owner",
@@ -2217,9 +2217,9 @@
           ],
           "baselineHash": "2b12bbdd31e14501224196ede61e3d31b8216f62136b51fde7eeec28a95a1eef",
           "baselineContentHash": "22ffda9cfcc2baeb8f526cddda5041079736b505b6248cd0063604d8ba8ed1a6",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "705835b290f10abc68ac19412cd86793b7b94bdd2571c177b78677f461e4081d"
         },
         {
           "id": "id-lock-freeze-variant",
@@ -2234,9 +2234,9 @@
           ],
           "baselineHash": "e3ddc88b47a1310299e0f39e66ec5a7945a04e1eb574ababd6f13b19cd12244f",
           "baselineContentHash": "89100117c061f62106a1c5bb8c4c6a6e75bdfe7c33a38162a968857d47c2a909",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "a665284ac58bd368fd3112ddf536098e4c2695b3c750e7ebca302c83503fd5e9"
         },
         {
           "id": "id-lock-data-write-variant",
@@ -2251,9 +2251,9 @@
           ],
           "baselineHash": "cd21067209adc48e4e19c489882fd3cfd406158bf36c8a30a635498568743095",
           "baselineContentHash": "8738c5dfe9ba79629b2923e49afba3ce55feda8fb419f50c17e5969b93e8580a",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "d10da534aae69826f4b70ae35ae945fcb2d5ac789b19e2e6403148443214f46b"
         }
       ]
     },

@@ -1011,40 +1011,40 @@ D. Buy a long-term commitment before checking actual usage.
 
 Topic: Identity and governance › Resource locks.
 
-A resource group must permit authorized configuration changes but reject accidental ARM deletion. Which lock fits?
+An administrator must protect rg-app against accidental ARM deletion while permitting authorized ARM configuration updates. Sibling resource groups must receive no additional lock restriction. No locks currently apply. Which complete lock configuration meets the requirements?
 
 Select **1**. Difficulty: applied.
 
-A. CanNotDelete.
-B. ReadOnly.
-C. An extra Reader role assignment.
-D. A tag named DoNotDelete.
+A. CanNotDelete on rg-app.
+B. ReadOnly on rg-app.
+C. CanNotDelete on the containing subscription.
+D. ReadOnly on the containing subscription.
 
 ## id-lock-blob-data
 
 Topic: Identity and governance › Resource locks.
 
-A storage account has a CanNotDelete lock. A client has valid data-plane authorization to delete a blob. Does the account lock alone prevent that data operation?
+A storage account has a CanNotDelete management lock. A client is authorized for both a control-plane account deletion and a data-plane blob deletion through the Blob service endpoint. Networking permits access and no other protection or restriction applies. Which pair of outcomes follows while the lock remains?
 
-Select **1**. Difficulty: foundation.
+Select **1**. Difficulty: applied.
 
-A. No; management locks do not generally block data-plane blob deletion.
-B. Yes; every byte under a locked account becomes immutable.
-C. Only blobs in Hot are protected by the lock.
-D. Only key2-authorized blob deletes are blocked.
+A. The account operation is blocked; the blob operation is permitted.
+B. The account operation and blob operation are both blocked.
+C. The account operation and blob operation are both permitted.
+D. The account operation is permitted; the blob operation is blocked.
 
 ## id-lock-owner
 
 Topic: Identity and governance › Resource locks.
 
-An Owner's ARM delete request fails because a resource has a Delete lock. What is the appropriate deliberate-deletion sequence?
+An Owner attempts an ARM deletion of vm-app and receives a lock error. The only applicable lock is a user-created CanNotDelete lock directly on vm-app. The administrator is authorized to remove that lock and has approved deliberate deletion. Which sequence resolves the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Review and remove the lock with authorization, then delete the resource.
-B. Retry until Owner overrides the lock automatically.
-C. Replace Owner with Contributor.
-D. Change the resource group's metadata region.
+A. Remove the CanNotDelete lock, then delete vm-app.
+B. Keep the lock, then retry deletion using the Owner identity.
+C. Keep the lock, assign Contributor, then retry deletion.
+D. Replace CanNotDelete with ReadOnly, then delete vm-app.
 
 ## id-mg-parent-policy
 
@@ -1570,27 +1570,27 @@ D. The user's registered Security info entries.
 
 Topic: Identity and governance › Resource locks.
 
-A resource group must reject authorized ARM updates as well as ARM deletion during a configuration freeze. Which management lock meets both requirements while it remains in place?
+An administrator must protect rg-app against accidental ARM deletion while blocking authorized ARM configuration updates. Sibling resource groups must receive no additional lock restriction. No locks currently apply. Which complete lock configuration meets the requirements?
 
 Select **1**. Difficulty: applied.
 
-A. ReadOnly.
-B. CanNotDelete.
-C. Add Reader to users who already have Contributor.
-D. Apply a Freeze=true tag without a policy.
+A. CanNotDelete on rg-app.
+B. ReadOnly on rg-app.
+C. CanNotDelete on the containing subscription.
+D. ReadOnly on the containing subscription.
 
 ## id-lock-data-write-variant
 
 Topic: Identity and governance › Resource locks.
 
-A storage account has a ReadOnly management lock. A client has valid blob data-plane write authorization, networking works, and no blob immutability policy applies. Does the lock alone block overwriting a blob through the Blob service?
+A storage account has a ReadOnly management lock. A client is authorized for both a control-plane account configuration update and a data-plane blob overwrite through the Blob service endpoint. Networking permits access and no other protection or restriction applies. Which pair of outcomes follows while the lock remains?
 
-Select **1**. Difficulty: foundation.
+Select **1**. Difficulty: applied.
 
-A. No; the management lock restricts control-plane operations.
-B. Yes; ReadOnly makes every stored blob immutable.
-C. Yes; the lock automatically removes the client's blob data role.
-D. Only if the client uses the second storage account key.
+A. The account operation is blocked; the blob operation is permitted.
+B. The account operation and blob operation are both blocked.
+C. The account operation and blob operation are both permitted.
+D. The account operation is permitted; the blob operation is blocked.
 
 ## mo-action-reuse
 

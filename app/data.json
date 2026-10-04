@@ -4510,34 +4510,34 @@
     {
       "id": "id-lock-delete-only",
       "family": "id-lock-delete-only",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.governance.locks",
       "objectives": [
         "id-10"
       ],
       "difficulty": "applied",
-      "prompt": "A resource group must permit authorized configuration changes but reject accidental ARM deletion. Which lock fits?",
+      "prompt": "An administrator must protect rg-app against accidental ARM deletion while permitting authorized ARM configuration updates. Sibling resource groups must receive no additional lock restriction. No locks currently apply. Which complete lock configuration meets the requirements?",
       "select": 1,
       "options": [
         {
           "id": "delete",
-          "text": "CanNotDelete.",
-          "explanation": "It blocks deletion while permitting authorized updates."
+          "text": "CanNotDelete on rg-app.",
+          "explanation": "It blocks deletion in rg-app while permitting authorized updates. Sibling groups are outside its scope."
         },
         {
           "id": "readonly",
-          "text": "ReadOnly.",
-          "explanation": "It also blocks updates, contrary to the requirement."
+          "text": "ReadOnly on rg-app.",
+          "explanation": "It blocks both updates and deletions in rg-app. Blocking updates violates the requirement."
         },
         {
           "id": "reader",
-          "text": "An extra Reader role assignment.",
-          "explanation": "A weaker role grant does not subtract existing delete permission."
+          "text": "CanNotDelete on the containing subscription.",
+          "explanation": "It also restricts sibling groups; the requested boundary is rg-app."
         },
         {
           "id": "tag",
-          "text": "A tag named DoNotDelete.",
-          "explanation": "A tag alone does not enforce deletion protection."
+          "text": "ReadOnly on the containing subscription.",
+          "explanation": "It also restricts sibling groups; it additionally blocks the required updates."
         }
       ],
       "correct": [
@@ -4545,42 +4545,41 @@
       ],
       "knowledge": "knowledge/identity/governance/locks.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane"
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-lock-blob-data",
       "family": "id-lock-blob-data",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.governance.locks",
       "objectives": [
         "id-10"
       ],
-      "difficulty": "foundation",
-      "prompt": "A storage account has a CanNotDelete lock. A client has valid data-plane authorization to delete a blob. Does the account lock alone prevent that data operation?",
+      "difficulty": "applied",
+      "prompt": "A storage account has a CanNotDelete management lock. A client is authorized for both a control-plane account deletion and a data-plane blob deletion through the Blob service endpoint. Networking permits access and no other protection or restriction applies. Which pair of outcomes follows while the lock remains?",
       "select": 1,
       "options": [
         {
           "id": "no",
-          "text": "No; management locks do not generally block data-plane blob deletion.",
-          "explanation": "Data recovery/protection needs service-level controls."
+          "text": "The account operation is blocked; the blob operation is permitted.",
+          "explanation": "The management lock restricts the control-plane operation, while the authorized Blob-service data operation is outside its scope."
         },
         {
           "id": "yes",
-          "text": "Yes; every byte under a locked account becomes immutable.",
-          "explanation": "A management lock is not blob immutability."
+          "text": "The account operation and blob operation are both blocked.",
+          "explanation": "The management lock does not restrict the data-plane blob operation."
         },
         {
           "id": "tier",
-          "text": "Only blobs in Hot are protected by the lock.",
-          "explanation": "Lock scope is not determined by access tier."
+          "text": "The account operation and blob operation are both permitted.",
+          "explanation": "The account control-plane operation is blocked by the effective management lock."
         },
         {
           "id": "key",
-          "text": "Only key2-authorized blob deletes are blocked.",
-          "explanation": "The distinction is operation plane, not which account key is used."
+          "text": "The account operation is permitted; the blob operation is blocked.",
+          "explanation": "This reverses the operation-plane boundary of the management lock."
         }
       ],
       "correct": [
@@ -4591,39 +4590,39 @@
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources",
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-lock-owner",
       "family": "id-lock-owner",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.governance.locks",
       "objectives": [
         "id-10"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "An Owner's ARM delete request fails because a resource has a Delete lock. What is the appropriate deliberate-deletion sequence?",
+      "prompt": "An Owner attempts an ARM deletion of vm-app and receives a lock error. The only applicable lock is a user-created CanNotDelete lock directly on vm-app. The administrator is authorized to remove that lock and has approved deliberate deletion. Which sequence resolves the failure?",
       "select": 1,
       "options": [
         {
           "id": "remove",
-          "text": "Review and remove the lock with authorization, then delete the resource.",
-          "explanation": "Owner does not silently bypass a still-effective lock."
+          "text": "Remove the CanNotDelete lock, then delete vm-app.",
+          "explanation": "Owner can remove this user-created lock, but deletion is blocked until the lock is removed."
         },
         {
           "id": "repeat",
-          "text": "Retry until Owner overrides the lock automatically.",
-          "explanation": "Repeated identical requests do not remove the lock."
+          "text": "Keep the lock, then retry deletion using the Owner identity.",
+          "explanation": "The lock restricts authorized users; repeating an Owner request does not bypass it."
         },
         {
           "id": "contributor",
-          "text": "Replace Owner with Contributor.",
-          "explanation": "Reducing RBAC permission does not bypass the lock."
+          "text": "Keep the lock, assign Contributor, then retry deletion.",
+          "explanation": "Changing the resource-management role does not remove the lock restriction."
         },
         {
           "id": "region",
-          "text": "Change the resource group's metadata region.",
-          "explanation": "That is not a lock-removal operation."
+          "text": "Replace CanNotDelete with ReadOnly, then delete vm-app.",
+          "explanation": "ReadOnly also blocks deletion; replacing the lock does not permit the requested operation."
         }
       ],
       "correct": [
@@ -4631,10 +4630,9 @@
       ],
       "knowledge": "knowledge/identity/governance/locks.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane"
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-mg-parent-policy",
@@ -6399,34 +6397,34 @@
     {
       "id": "id-lock-freeze-variant",
       "family": "id-lock-delete-only",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.governance.locks",
       "objectives": [
         "id-10"
       ],
       "difficulty": "applied",
-      "prompt": "A resource group must reject authorized ARM updates as well as ARM deletion during a configuration freeze. Which management lock meets both requirements while it remains in place?",
+      "prompt": "An administrator must protect rg-app against accidental ARM deletion while blocking authorized ARM configuration updates. Sibling resource groups must receive no additional lock restriction. No locks currently apply. Which complete lock configuration meets the requirements?",
       "select": 1,
       "options": [
         {
-          "id": "readonly",
-          "text": "ReadOnly.",
-          "explanation": "It blocks ARM updates and deletions for authorized users while effective."
+          "id": "delete",
+          "text": "CanNotDelete on rg-app.",
+          "explanation": "It blocks deletion in rg-app while permitting authorized updates. Those updates violate the freeze."
         },
         {
-          "id": "delete",
-          "text": "CanNotDelete.",
-          "explanation": "This permits authorized updates, which the freeze prohibits."
+          "id": "readonly",
+          "text": "ReadOnly on rg-app.",
+          "explanation": "It blocks both updates and deletions in rg-app. Sibling groups are outside its scope."
         },
         {
           "id": "reader",
-          "text": "Add Reader to users who already have Contributor.",
-          "explanation": "An additional read grant does not subtract existing write permissions."
+          "text": "CanNotDelete on the containing subscription.",
+          "explanation": "It also restricts sibling groups; it additionally permits the updates the freeze prohibits."
         },
         {
           "id": "tag",
-          "text": "Apply a Freeze=true tag without a policy.",
-          "explanation": "A tag alone does not enforce the required restriction."
+          "text": "ReadOnly on the containing subscription.",
+          "explanation": "It also restricts sibling groups; the freeze is required only in rg-app."
         }
       ],
       "correct": [
@@ -6434,42 +6432,41 @@
       ],
       "knowledge": "knowledge/identity/governance/locks.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane"
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-lock-data-write-variant",
       "family": "id-lock-blob-data",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.governance.locks",
       "objectives": [
         "id-10"
       ],
-      "difficulty": "foundation",
-      "prompt": "A storage account has a ReadOnly management lock. A client has valid blob data-plane write authorization, networking works, and no blob immutability policy applies. Does the lock alone block overwriting a blob through the Blob service?",
+      "difficulty": "applied",
+      "prompt": "A storage account has a ReadOnly management lock. A client is authorized for both a control-plane account configuration update and a data-plane blob overwrite through the Blob service endpoint. Networking permits access and no other protection or restriction applies. Which pair of outcomes follows while the lock remains?",
       "select": 1,
       "options": [
         {
           "id": "no",
-          "text": "No; the management lock restricts control-plane operations.",
-          "explanation": "A permitted Blob-service data write is a data-plane operation, outside the management lock's scope."
+          "text": "The account operation is blocked; the blob operation is permitted.",
+          "explanation": "The management lock restricts the control-plane operation, while the authorized Blob-service data operation is outside its scope."
         },
         {
           "id": "yes",
-          "text": "Yes; ReadOnly makes every stored blob immutable.",
-          "explanation": "Management locks and blob immutability are different controls."
+          "text": "The account operation and blob operation are both blocked.",
+          "explanation": "The management lock does not restrict the data-plane blob operation."
         },
         {
           "id": "role",
-          "text": "Yes; the lock automatically removes the client's blob data role.",
-          "explanation": "The lock does not convert the client's data role into a read-only data assignment."
+          "text": "The account operation and blob operation are both permitted.",
+          "explanation": "The account control-plane operation is blocked by the effective management lock."
         },
         {
           "id": "key",
-          "text": "Only if the client uses the second storage account key.",
-          "explanation": "The distinction is control plane versus data plane, not the selected key number."
+          "text": "The account operation is permitted; the blob operation is blocked.",
+          "explanation": "This reverses the operation-plane boundary of the management lock."
         }
       ],
       "correct": [
@@ -6480,7 +6477,7 @@
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources",
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-action-reuse",
