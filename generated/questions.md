@@ -2766,27 +2766,27 @@ D. AzureBastionSubnet /27 for a newly created host.
 
 Topic: Networking › Azure Bastion administrative access.
 
-You use browser RDP through a dedicated Bastion host to a VM reachable by private IP. Which target-VM configuration is sufficient for the network path?
+A Standard Bastion host and a Windows VM share a VNet. The VM has no public IP, listens on RDP port 3389, and its guest firewall and login permissions are ready. The VM NSG denies new inbound RDP connections. You must permit RDP only from AzureBastionSubnet. Which higher-priority NSG allow rule meets that target-side requirement?
 
 Select **1**. Difficulty: applied.
 
-A. A public IP and Internet-wide RDP allow.
-B. Private-IP reachability and permitted Bastion-to-VM RDP traffic.
-C. No RDP listener because Bastion supplies the guest desktop service.
-D. Only a DNS label on a target public IP.
+A. Source Internet; destination VM private IP; TCP 3389.
+B. Source AzureBastionSubnet address range; destination VM private IP; TCP 3389.
+C. Source AzureBastionSubnet address range; destination VM private IP; TCP 443.
+D. Source VirtualNetwork service tag; destination VM private IP; TCP 3389.
 
 ## nw-bastion-reader
 
 Topic: Networking › Azure Bastion administrative access.
 
-A user can read the VM, NIC, and Bastion resources but lacks valid guest RDP login rights. Does Azure Reader grant those rights?
+A user has Reader access to the VM, NIC, Bastion host, and target VNet. A browser RDP connection through Bastion reaches the Windows guest, but its supplied local account lacks RDP sign-in rights. The required authentication method is local username and password. Which authorization change addresses the guest login failure?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Yes, Reader becomes guest administrator through Bastion.
-B. Yes, if Bastion is Standard.
-C. No; resource read permissions and guest authentication are separate.
-D. Yes, if the VM has no public IP.
+A. Grant Azure Reader at the subscription scope.
+B. Grant Azure Reader on the Bastion resource group.
+C. Grant the supplied local guest account the required Windows RDP sign-in rights.
+D. Grant Azure Reader on the VM resource group.
 
 ## nw-effective-layers
 

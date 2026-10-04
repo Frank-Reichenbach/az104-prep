@@ -4411,9 +4411,9 @@
     {
       "id": "networking.security.bastion",
       "title": "Azure Bastion administrative access",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/networking.security.bastion.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "nw-bastion-subnet",
@@ -4428,9 +4428,9 @@
           ],
           "baselineHash": "663c953f88ff98439816fdfbd80dff9947c781fa2189fedea2938d55be1c27de",
           "baselineContentHash": "ab5751dd2e1b464f1f63f6c6b360ec83441106da2d31b05b01e4b2bfe71ea0fa",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "c93f946eced0d03d75f51d4700d5215de028a2ba1583b07523bc97fd45006867"
         },
         {
           "id": "nw-bastion-target",
@@ -4445,9 +4445,9 @@
           ],
           "baselineHash": "6829c52d8a70eece0d7b4b435d4b1a1c4afe7276142cf1878f4109800fbe169c",
           "baselineContentHash": "38112024dcd9024f47ece23c8fbe7023475727c193cd79bda680e6e9aba27a79",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "ee456195f21682a237f75b0a67e150f45deeff03a2f21b8df8490478378b048c"
         },
         {
           "id": "nw-bastion-reader",
@@ -4462,9 +4462,9 @@
           ],
           "baselineHash": "a9ba4f989daa44b7a0f52c99edb7a587b1fab5172f0408752f039fd91b36a9ab",
           "baselineContentHash": "a8711589632495cf565078e260f7fb81bc0a7c7b6a8d34c5669b2416024baa97",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "d804384087dbb26d69060c2b5139d40bf5c2f97c39f514c10ffd7114ad7aa60d"
         }
       ]
     },

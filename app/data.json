@@ -10381,39 +10381,39 @@
         "https://learn.microsoft.com/en-us/azure/bastion/bastion-nsg",
         "https://learn.microsoft.com/en-us/azure/bastion/bastion-connect-vm-rdp-windows"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-bastion-target",
       "family": "nw-bastion-target",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.security.bastion",
       "objectives": [
         "nw-08"
       ],
       "difficulty": "applied",
-      "prompt": "You use browser RDP through a dedicated Bastion host to a VM reachable by private IP. Which target-VM configuration is sufficient for the network path?",
+      "prompt": "A Standard Bastion host and a Windows VM share a VNet. The VM has no public IP, listens on RDP port 3389, and its guest firewall and login permissions are ready. The VM NSG denies new inbound RDP connections. You must permit RDP only from AzureBastionSubnet. Which higher-priority NSG allow rule meets that target-side requirement?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "A public IP and Internet-wide RDP allow.",
-          "explanation": "The Bastion path uses the VM's private IP."
+          "text": "Source Internet; destination VM private IP; TCP 3389.",
+          "explanation": "Bastion reaches the target through its private network path. An Internet-source rule does not allow the required AzureBastionSubnet source."
         },
         {
           "id": "b",
-          "text": "Private-IP reachability and permitted Bastion-to-VM RDP traffic.",
-          "explanation": "This supplies the target-side path without exposing its RDP port publicly."
+          "text": "Source AzureBastionSubnet address range; destination VM private IP; TCP 3389.",
+          "explanation": "The rule permits the Bastion-to-VM RDP connection on the guest listener port and restricts the source to the required subnet."
         },
         {
           "id": "c",
-          "text": "No RDP listener because Bastion supplies the guest desktop service.",
-          "explanation": "Bastion transports the connection; the guest must support RDP."
+          "text": "Source AzureBastionSubnet address range; destination VM private IP; TCP 443.",
+          "explanation": "TCP 443 is used for the browser-to-Bastion TLS connection, not the configured target VM RDP listener on 3389."
         },
         {
           "id": "d",
-          "text": "Only a DNS label on a target public IP.",
-          "explanation": "A DNS label does not establish the Bastion-to-VM path."
+          "text": "Source VirtualNetwork service tag; destination VM private IP; TCP 3389.",
+          "explanation": "This broader source permits other VNet resources as well, violating the requirement to allow RDP only from AzureBastionSubnet."
         }
       ],
       "correct": [
@@ -10426,39 +10426,39 @@
         "https://learn.microsoft.com/en-us/azure/bastion/bastion-nsg",
         "https://learn.microsoft.com/en-us/azure/bastion/bastion-connect-vm-rdp-windows"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-bastion-reader",
       "family": "nw-bastion-reader",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.security.bastion",
       "objectives": [
         "nw-08"
       ],
-      "difficulty": "applied",
-      "prompt": "A user can read the VM, NIC, and Bastion resources but lacks valid guest RDP login rights. Does Azure Reader grant those rights?",
+      "difficulty": "troubleshooting",
+      "prompt": "A user has Reader access to the VM, NIC, Bastion host, and target VNet. A browser RDP connection through Bastion reaches the Windows guest, but its supplied local account lacks RDP sign-in rights. The required authentication method is local username and password. Which authorization change addresses the guest login failure?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Yes, Reader becomes guest administrator through Bastion.",
-          "explanation": "Resource visibility does not grant guest administration."
+          "text": "Grant Azure Reader at the subscription scope.",
+          "explanation": "Broader Azure resource visibility does not grant the local Windows account RDP sign-in rights."
         },
         {
           "id": "b",
-          "text": "Yes, if Bastion is Standard.",
-          "explanation": "The SKU does not create guest login rights."
+          "text": "Grant Azure Reader on the Bastion resource group.",
+          "explanation": "The user can already read Bastion. Additional resource read permission does not authorize the guest account for RDP."
         },
         {
           "id": "c",
-          "text": "No; resource read permissions and guest authentication are separate.",
-          "explanation": "The user still needs a supported guest login and rights."
+          "text": "Grant the supplied local guest account the required Windows RDP sign-in rights.",
+          "explanation": "The network and Azure read permissions are ready; the missing authorization belongs to the guest account used for this password-based connection."
         },
         {
           "id": "d",
-          "text": "Yes, if the VM has no public IP.",
-          "explanation": "Private networking does not change authentication rights."
+          "text": "Grant Azure Reader on the VM resource group.",
+          "explanation": "Resource-group read permission remains management-plane visibility and does not change the local guest account rights."
         }
       ],
       "correct": [
@@ -10471,7 +10471,7 @@
         "https://learn.microsoft.com/en-us/azure/bastion/bastion-nsg",
         "https://learn.microsoft.com/en-us/azure/bastion/bastion-connect-vm-rdp-windows"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-effective-layers",
