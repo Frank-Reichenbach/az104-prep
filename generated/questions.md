@@ -1951,36 +1951,36 @@ You need Azure Backup historical reports across several vaults. Which data path 
 
 Select **1**. Difficulty: foundation.
 
-A. Vault diagnostics sent to Log Analytics workspaces.
-B. Only VM guest Heartbeat records collected by Azure Monitor Agent.
-C. Only NSG effective security rules.
-D. Backup recovery-point files copied into a workbook.
+A. Vault diagnostic reporting logs sent to Log Analytics workspaces.
+B. VM guest Heartbeat records sent to Log Analytics workspaces.
+C. Vault metric charts without diagnostic-log export.
+D. Recovery-point disk files copied directly into a workbook.
 
 ## mo-reports-delay
 
 Topic: Monitoring and recovery › Azure Backup reports and diagnostic data.
 
-You enabled vault diagnostics an hour ago. A completed backup from the current day is not yet visible in Backup Reports. What should you check before treating this as a reporting failure?
+Vault reporting diagnostics were enabled an hour ago. Today’s backup job is Completed, but Backup Reports has no row for it yet. Which interpretation should guide the next reporting check?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Whether the backup retention policy is set to one hour.
-B. Whether deleting the vault forces immediate report refresh.
-C. Initial diagnostic-delivery delay, completed-day reporting, and the selected filters.
-D. Whether all VMs use Azure Bastion.
+A. Recovery-point retention determines whether today’s row appears, so extend backup retention first.
+B. A Completed backup job guarantees its report row is immediately available.
+C. Allow for initial diagnostic delivery, the current partial-day exclusion, and workspace/vault/time filters.
+D. The report’s time picker can force partial-day rows to appear immediately.
 
 ## mo-reports-retention
 
 Topic: Monitoring and recovery › Azure Backup reports and diagnostic data.
 
-Your backups retain recovery points for one year, but reporting logs are retained for only a month. You need historical backup reporting over a longer period. What should you change?
+Backup recovery points are kept for a year, but the relevant Log Analytics reporting tables retain queryable data for 30 days. From now on, you need reporting over 90 completed days. Which change addresses the retention gap? Assume existing expired records cannot be recovered.
 
 Select **1**. Difficulty: applied.
 
-A. Only the backup recovery-point retention policy.
-B. The relevant Log Analytics data retention, considering reporting requirements and cost.
-C. Only the target VM's disk SKU.
-D. Only the action group's email recipient.
+A. Extend only backup recovery-point retention to 90 days.
+B. Extend the relevant queryable Log Analytics reporting-data retention to cover 90 days.
+C. Change only the workbook’s time range to Last 90 days.
+D. Increase only the vault’s soft-delete retention to 90 days.
 
 ## mo-restore-deleted
 

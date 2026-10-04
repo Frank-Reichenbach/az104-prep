@@ -2545,48 +2545,48 @@ You need Azure Backup historical reports across several vaults. Which data path 
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** Vault diagnostics sent to Log Analytics workspaces. Azure Backup reporting uses Azure Monitor Logs and workbooks over exported vault diagnostic data.
-- **B. Incorrect:** Only VM guest Heartbeat records collected by Azure Monitor Agent. Guest heartbeats do not contain the required backup reporting data.
-- **C. Incorrect:** Only NSG effective security rules. Network-rule inspection is unrelated to backup reporting ingestion.
-- **D. Incorrect:** Backup recovery-point files copied into a workbook. Workbooks query reporting data; they do not directly parse copied recovery-point files.
+- **A. Correct:** Vault diagnostic reporting logs sent to Log Analytics workspaces. Reporting workbooks query exported backup diagnostic records in Azure Monitor Logs.
+- **B. Incorrect:** VM guest Heartbeat records sent to Log Analytics workspaces. Guest heartbeats do not supply the backup job, policy and usage records required by these reports.
+- **C. Incorrect:** Vault metric charts without diagnostic-log export. Metric charts do not provide the documented diagnostic-log data path for Backup Reports workbooks.
+- **D. Incorrect:** Recovery-point disk files copied directly into a workbook. Workbooks query reporting records rather than storing or parsing restored VM disk files.
 
-Study: [knowledge file](../knowledge/monitoring/backup/reports.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/reports.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/configure-reports) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/configure-reports) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-diagnostic-events)
 
 ## mo-reports-delay
 
 Topic: Monitoring and recovery › Azure Backup reports and diagnostic data.
 
-You enabled vault diagnostics an hour ago. A completed backup from the current day is not yet visible in Backup Reports. What should you check before treating this as a reporting failure?
+Vault reporting diagnostics were enabled an hour ago. Today’s backup job is Completed, but Backup Reports has no row for it yet. Which interpretation should guide the next reporting check?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Incorrect:** Whether the backup retention policy is set to one hour. Recovery-point retention does not determine report ingestion or completed-day reporting.
-- **B. Incorrect:** Whether deleting the vault forces immediate report refresh. Deleting a vault is not a report refresh mechanism.
-- **C. Correct:** Initial diagnostic-delivery delay, completed-day reporting, and the selected filters. Initial delivery can take up to 24 hours, reports omit the partial day, and filters affect visible data.
-- **D. Incorrect:** Whether all VMs use Azure Bastion. Bastion connectivity is not a prerequisite for Backup Reports.
+- **A. Incorrect:** Recovery-point retention determines whether today’s row appears, so extend backup retention first. Backup retention does not determine diagnostic delivery timing or completed-day report visibility.
+- **B. Incorrect:** A Completed backup job guarantees its report row is immediately available. Operation completion is separate from diagnostic delivery and the reports’ completed-day convention.
+- **C. Correct:** Allow for initial diagnostic delivery, the current partial-day exclusion, and workspace/vault/time filters. Initial delivery can take up to 24 hours, current partial-day data is omitted, and filters can further exclude records.
+- **D. Incorrect:** The report’s time picker can force partial-day rows to appear immediately. Selecting today does not override the documented exclusion of current partial-day data.
 
-Study: [knowledge file](../knowledge/monitoring/backup/reports.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/reports.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/configure-reports) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/configure-reports)
 
 ## mo-reports-retention
 
 Topic: Monitoring and recovery › Azure Backup reports and diagnostic data.
 
-Your backups retain recovery points for one year, but reporting logs are retained for only a month. You need historical backup reporting over a longer period. What should you change?
+Backup recovery points are kept for a year, but the relevant Log Analytics reporting tables retain queryable data for 30 days. From now on, you need reporting over 90 completed days. Which change addresses the retention gap? Assume existing expired records cannot be recovered.
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Only the backup recovery-point retention policy. Backup retention does not extend the lifetime of diagnostic records in Log Analytics.
-- **B. Correct:** The relevant Log Analytics data retention, considering reporting requirements and cost. Historical reports depend on the log records remaining available.
-- **C. Incorrect:** Only the target VM's disk SKU. Disk performance does not configure diagnostic-data retention.
-- **D. Incorrect:** Only the action group's email recipient. Notification recipients do not control reporting-log retention.
+- **A. Incorrect:** Extend only backup recovery-point retention to 90 days. Recovery-point retention does not preserve the separate diagnostic records used for reports.
+- **B. Correct:** Extend the relevant queryable Log Analytics reporting-data retention to cover 90 days. Reports require the underlying log records to remain queryable across the required period; retention and associated cost need review.
+- **C. Incorrect:** Change only the workbook’s time range to Last 90 days. A wider query range cannot recover records that the reporting tables no longer retain.
+- **D. Incorrect:** Increase only the vault’s soft-delete retention to 90 days. Soft-delete retention protects deleted backup data, not the queryable lifetime of reporting logs.
 
-Study: [knowledge file](../knowledge/monitoring/backup/reports.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/reports.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/configure-reports) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/configure-reports) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-retention-configure)
 
 ## mo-restore-deleted
 

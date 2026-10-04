@@ -6262,9 +6262,9 @@
     {
       "id": "monitoring.backup.reports",
       "title": "Azure Backup reports and diagnostic data",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.backup.reports.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-reports-pipeline",
@@ -6279,9 +6279,9 @@
           ],
           "baselineHash": "b2cff16b31d2745f864ac0683c7e11d7d2e3c3c33ad80784c4003cc521a0a5b8",
           "baselineContentHash": "bd8c72a60e4fc545d63d5d8f847f7438ff1a162d449aa55f2ae31b8cd91f050d",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "cc2f9bb97d28c970e9519217a9f369884eaa6d53ef4e30078e85ccbae2af921a"
         },
         {
           "id": "mo-reports-delay",
@@ -6296,9 +6296,9 @@
           ],
           "baselineHash": "01fb9d6fa80c43ca5f61b409664025599da0bc0711555777bd64fb86738476ba",
           "baselineContentHash": "ca03cb8ec197cca914434b19d048b5a35b9bee91f423701d07ba552936d14f0c",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "27aa42257f55c5e4e2068a7f2c6c639ecf27676a6cedaee0c19426102dc769e2"
         },
         {
           "id": "mo-reports-retention",
@@ -6313,9 +6313,9 @@
           ],
           "baselineHash": "cd4552edda9de1eba74800dcf3f40d0ad89c3d5dc6f63e8c26be518a78186792",
           "baselineContentHash": "d33cba25874fc5d15d47d1f1c4d76098b8024b5655fd1d5e0e5331ff242dd773",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "77408ac5efbcbd9d85e06b905d8b4cf21701914de37adf5a628daa0950dd0882"
         }
       ]
     },
