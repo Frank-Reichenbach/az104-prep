@@ -1375,27 +1375,27 @@ D. A display name matching the VM name.
 
 Topic: Identity and governance › Azure built-in roles and permission definitions.
 
-An operator has Contributor on a resource group and no other roles. Can they assign Owner to another user there?
+An operator has Contributor on rg-app and no other roles. There are no deny assignments or other restrictions. Which action is excluded from the permissions granted by Contributor?
 
 Select **1**. Difficulty: foundation.
 
-A. No; Contributor does not grant role-assignment administration.
-B. Yes; all resource write permission includes access delegation.
-C. Only after adding Reader at the same scope.
-D. Only after becoming the resource group's guest inviter.
+A. Assign Owner to another user on rg-app.
+B. Create a storage account in rg-app.
+C. Update a virtual machine's configuration in rg-app.
+D. Delete a virtual machine in rg-app.
 
 ## id-role-notactions
 
 Topic: Identity and governance › Azure built-in roles and permission definitions.
 
-Role A excludes an operation through NotActions. Role B assigned to the same user and scope grants that operation. No deny assignment or other restriction applies. What follows?
+A custom Role A grants virtual-machine management actions but excludes virtual-machine deletion through NotActions. Role B grants virtual-machine deletion. Both roles are assigned to the same user at rg-app, which contains vm-app. No deny assignment or other restriction applies. Which statement describes the user's effective permission to delete vm-app?
 
 Select **1**. Difficulty: applied.
 
-A. Role B can still grant the operation.
-B. Role A's NotActions always cancels Role B.
-C. Only the most recently assigned role counts.
-D. The alphabetically first role decides.
+A. Role B supplies deletion permission even though Role A excludes it.
+B. Role A blocks deletion even though Role B grants it.
+C. Deletion is allowed only if Role B was assigned after Role A.
+D. Deletion is allowed only after removing the exclusion from Role A.
 
 ## id-role-data-reader
 

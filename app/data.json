@@ -5750,34 +5750,34 @@
     {
       "id": "id-role-contributor-access",
       "family": "id-role-contributor-access",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.rbac.roles",
       "objectives": [
         "id-06"
       ],
       "difficulty": "foundation",
-      "prompt": "An operator has Contributor on a resource group and no other roles. Can they assign Owner to another user there?",
+      "prompt": "An operator has Contributor on rg-app and no other roles. There are no deny assignments or other restrictions. Which action is excluded from the permissions granted by Contributor?",
       "select": 1,
       "options": [
         {
           "id": "no",
-          "text": "No; Contributor does not grant role-assignment administration.",
-          "explanation": "Resource management and granting Azure RBAC access are separate capabilities."
+          "text": "Assign Owner to another user on rg-app.",
+          "explanation": "Contributor excludes Azure role-assignment writes; managing resources does not include granting access."
         },
         {
           "id": "yes",
-          "text": "Yes; all resource write permission includes access delegation.",
-          "explanation": "Contributor explicitly excludes this authorization administration."
+          "text": "Create a storage account in rg-app.",
+          "explanation": "Contributor permits resource creation within its assigned scope."
         },
         {
           "id": "reader",
-          "text": "Only after adding Reader at the same scope.",
-          "explanation": "Reader does not grant roleAssignments/write."
+          "text": "Update a virtual machine's configuration in rg-app.",
+          "explanation": "Contributor permits resource configuration changes within its assigned scope."
         },
         {
           "id": "entra",
-          "text": "Only after becoming the resource group's guest inviter.",
-          "explanation": "Guest invitation is a directory task, not Azure RBAC delegation."
+          "text": "Delete a virtual machine in rg-app.",
+          "explanation": "Contributor permits resource deletion within its assigned scope."
         }
       ],
       "correct": [
@@ -5785,43 +5785,41 @@
       ],
       "knowledge": "knowledge/identity/rbac/built-in-roles.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
-        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions",
-        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-role-notactions",
       "family": "id-role-notactions",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.rbac.roles",
       "objectives": [
         "id-06"
       ],
       "difficulty": "applied",
-      "prompt": "Role A excludes an operation through NotActions. Role B assigned to the same user and scope grants that operation. No deny assignment or other restriction applies. What follows?",
+      "prompt": "A custom Role A grants virtual-machine management actions but excludes virtual-machine deletion through NotActions. Role B grants virtual-machine deletion. Both roles are assigned to the same user at rg-app, which contains vm-app. No deny assignment or other restriction applies. Which statement describes the user's effective permission to delete vm-app?",
       "select": 1,
       "options": [
         {
           "id": "grant",
-          "text": "Role B can still grant the operation.",
-          "explanation": "NotActions is a subtraction within Role A, not a global deny."
+          "text": "Role B supplies deletion permission even though Role A excludes it.",
+          "explanation": "NotActions subtracts from Role A rather than denying permissions granted by Role B."
         },
         {
           "id": "deny",
-          "text": "Role A's NotActions always cancels Role B.",
-          "explanation": "NotActions does not have deny-assignment semantics."
+          "text": "Role A blocks deletion even though Role B grants it.",
+          "explanation": "A NotActions exclusion is not a deny assignment across roles."
         },
         {
           "id": "recent",
-          "text": "Only the most recently assigned role counts.",
-          "explanation": "Azure roles are not evaluated by last assignment wins."
+          "text": "Deletion is allowed only if Role B was assigned after Role A.",
+          "explanation": "Both applicable grants are evaluated; their assignment order does not make one replace the other."
         },
         {
           "id": "name",
-          "text": "The alphabetically first role decides.",
-          "explanation": "Role display names do not determine permission precedence."
+          "text": "Deletion is allowed only after removing the exclusion from Role A.",
+          "explanation": "The separate Role B grant already supplies the operation; Role A need not be changed."
         }
       ],
       "correct": [
@@ -5829,11 +5827,9 @@
       ],
       "knowledge": "knowledge/identity/rbac/built-in-roles.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
-        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions",
-        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-role-data-reader",
@@ -5877,7 +5873,7 @@
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions",
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-guest-resource-role",

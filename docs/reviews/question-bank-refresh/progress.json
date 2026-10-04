@@ -1926,9 +1926,9 @@
     {
       "id": "identity.rbac.roles",
       "title": "Azure built-in roles and permission definitions",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/identity.rbac.roles.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "id-role-contributor-access",
@@ -1943,9 +1943,9 @@
           ],
           "baselineHash": "b2348dec68ee9d8728008b7b7fe568eb2fd61bbefb43c607c66f0c5d646767c6",
           "baselineContentHash": "94a93ee5836b69ef50f1de426055b3bb72f0896b126ba90ee1b7e313b32f9786",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "8d1ded4941b65090bcc67b568f83cc8b72d942f74dd023591589698c2a99b7a6"
         },
         {
           "id": "id-role-notactions",
@@ -1960,9 +1960,9 @@
           ],
           "baselineHash": "d50976a926bcfc2d630bc9e6ca069c45fbe01ca11c4a464817c93bf389ee3fac",
           "baselineContentHash": "2379967a9d63c488d372daeddc1a1dcd80888d5d6fbc95749931fa38cbfc67ee",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "ac14bfd710d2ca63c7bf4decff43cc9a63158dea364bfe304dcf91a422894e50"
         },
         {
           "id": "id-role-data-reader",
@@ -1977,9 +1977,9 @@
           ],
           "baselineHash": "fafad62704c0504645ac9b7f30e177eaf0a9a34c98300a7b9f635ea48f1c9e0c",
           "baselineContentHash": "bf963c6d31f85d2a6e9fa41326e527fb9743a7dde4f06d284cb3f6180774a58a",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "b186efec6a94e53efc99e7c1609dff141d550b0eba06b0581b93d1649687c947"
         }
       ]
     },

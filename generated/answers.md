@@ -1793,35 +1793,35 @@ Study: [knowledge file](../knowledge/identity/rbac/effective-access.md). Evidenc
 
 Topic: Identity and governance › Azure built-in roles and permission definitions.
 
-An operator has Contributor on a resource group and no other roles. Can they assign Owner to another user there?
+An operator has Contributor on rg-app and no other roles. There are no deny assignments or other restrictions. Which action is excluded from the permissions granted by Contributor?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** No; Contributor does not grant role-assignment administration. Resource management and granting Azure RBAC access are separate capabilities.
-- **B. Incorrect:** Yes; all resource write permission includes access delegation. Contributor explicitly excludes this authorization administration.
-- **C. Incorrect:** Only after adding Reader at the same scope. Reader does not grant roleAssignments/write.
-- **D. Incorrect:** Only after becoming the resource group's guest inviter. Guest invitation is a directory task, not Azure RBAC delegation.
+- **A. Correct:** Assign Owner to another user on rg-app. Contributor excludes Azure role-assignment writes; managing resources does not include granting access.
+- **B. Incorrect:** Create a storage account in rg-app. Contributor permits resource creation within its assigned scope.
+- **C. Incorrect:** Update a virtual machine's configuration in rg-app. Contributor permits resource configuration changes within its assigned scope.
+- **D. Incorrect:** Delete a virtual machine in rg-app. Contributor permits resource deletion within its assigned scope.
 
-Study: [knowledge file](../knowledge/identity/rbac/built-in-roles.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/rbac/built-in-roles.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged)
 
 ## id-role-notactions
 
 Topic: Identity and governance › Azure built-in roles and permission definitions.
 
-Role A excludes an operation through NotActions. Role B assigned to the same user and scope grants that operation. No deny assignment or other restriction applies. What follows?
+A custom Role A grants virtual-machine management actions but excludes virtual-machine deletion through NotActions. Role B grants virtual-machine deletion. Both roles are assigned to the same user at rg-app, which contains vm-app. No deny assignment or other restriction applies. Which statement describes the user's effective permission to delete vm-app?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Role B can still grant the operation. NotActions is a subtraction within Role A, not a global deny.
-- **B. Incorrect:** Role A's NotActions always cancels Role B. NotActions does not have deny-assignment semantics.
-- **C. Incorrect:** Only the most recently assigned role counts. Azure roles are not evaluated by last assignment wins.
-- **D. Incorrect:** The alphabetically first role decides. Role display names do not determine permission precedence.
+- **A. Correct:** Role B supplies deletion permission even though Role A excludes it. NotActions subtracts from Role A rather than denying permissions granted by Role B.
+- **B. Incorrect:** Role A blocks deletion even though Role B grants it. A NotActions exclusion is not a deny assignment across roles.
+- **C. Incorrect:** Deletion is allowed only if Role B was assigned after Role A. Both applicable grants are evaluated; their assignment order does not make one replace the other.
+- **D. Incorrect:** Deletion is allowed only after removing the exclusion from Role A. The separate Role B grant already supplies the operation; Role A need not be changed.
 
-Study: [knowledge file](../knowledge/identity/rbac/built-in-roles.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/rbac/built-in-roles.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions)
 
 ## id-role-data-reader
 
@@ -1836,7 +1836,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** Owner. It grants much broader resource and access administration.
 - **D. Incorrect:** Virtual Machine Contributor. VM management does not authorize these Blob data reads.
 
-Study: [knowledge file](../knowledge/identity/rbac/built-in-roles.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/rbac/built-in-roles.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/storage)
 
