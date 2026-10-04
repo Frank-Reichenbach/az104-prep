@@ -2597,40 +2597,40 @@ D. A CNAME at alpha.example's apex to beta.example.
 
 Topic: Networking › Public DNS zones, delegation, and records.
 
-You created the correct public Azure DNS zone and A record, but Internet resolvers still use the previous provider. What configuration should you inspect?
+You migrated example.org to an Azure public DNS zone. Queries sent directly to its assigned Azure name servers return the new www A record. A fresh delegation trace still reaches the previous provider. Which configuration should you change to direct Internet DNS resolution to the new zone?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Parent/registrar NS delegation to the zone's assigned name servers.
-B. A private VNet link for the public zone.
-C. The VM's NSG priority.
-D. A new MX record for the website.
+A. Set the registrar delegation to all four name servers assigned to the Azure zone.
+B. Replace the www A record in the previous provider with the new address.
+C. Lower the www A record TTL in the Azure zone.
+D. Copy the previous provider’s name servers into an NS record set named www in Azure.
 
 ## nw-dns-apex
 
 Topic: Networking › Public DNS zones, delegation, and records.
 
-You want the apex of a public Azure DNS zone to track a supported Azure public IP resource. Which approach avoids an invalid apex CNAME?
+The public zone example.org must return the IPv4 address of a Standard SKU Azure public IP resource at its apex and track the resource automatically. The resource provider and required permissions are configured. Which record set meets both requirements?
 
 Select **1**. Difficulty: applied.
 
-A. Delete the apex SOA and NS and create a CNAME.
-B. Create an apex A alias record set targeting the public IP.
-C. Use an MX record pointing at the public IP.
-D. Add a private-zone autoregistration link.
+A. An apex CNAME targeting the public IP resource hostname.
+B. An apex A alias targeting the public IP resource.
+C. An apex A record containing a manually copied IPv4 address.
+D. An apex AAAA alias targeting the public IP resource.
 
 ## nw-dns-ttl
 
 Topic: Networking › Public DNS zones, delegation, and records.
 
-Authoritative Azure DNS servers return your new A record, but a recursive resolver still returns the old answer within its cached TTL. What is the likely explanation?
+A recursive resolver cached the old www A answer at 09:00 with TTL 3600 seconds. At 09:10, you change the authoritative answer and its TTL to 300 seconds. The resolver retains cached answers until expiry and receives no cache flush. At 09:20 it still returns the old address. What explains this result?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Azure DNS has changed the VM's private address.
-B. The zone must be recreated for any A-record change.
-C. The recursive resolver still holds an unexpired cached answer.
-D. An NSG rule has rewritten the DNS A record.
+A. The old cached answer expired at 09:05, based on the newly configured TTL.
+B. The old cached answer expired at 09:15, five minutes after the authoritative update.
+C. The old cached answer remains valid until 10:00 under its original TTL.
+D. The old cached answer remains valid until 10:10, one hour after the authoritative update.
 
 ## nw-resolver-inbound
 

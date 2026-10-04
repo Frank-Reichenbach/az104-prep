@@ -4591,9 +4591,9 @@
     {
       "id": "networking.dns.public",
       "title": "Public DNS zones, delegation, and records",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/networking.dns.public.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "nw-dns-delegate",
@@ -4608,9 +4608,9 @@
           ],
           "baselineHash": "55e3bd84783e3ffe9fbd1cf7faa8e7a91eb14ac1a47ec76482a6643f4f561a6d",
           "baselineContentHash": "cf638b3921bae5a61ba7b7d71e1c18886006ac68402e032f99dbbeac137b68c6",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "0df49eb1830e282de3ec90d68d1ea764619c904d82aa3378071643e863d553d2"
         },
         {
           "id": "nw-dns-apex",
@@ -4625,9 +4625,9 @@
           ],
           "baselineHash": "39c63d878f24a047ee46dcf5f40f3aa86328f4dfda9e9b86dc6985138d3af5b6",
           "baselineContentHash": "36cef4ee89383da92171da9a7c05296c5cffbe2382694c916a927fd0c0816fe3",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "77280f56cfc2199afc9e73d2ba2febb80a916a4e60b9eef8eb3bd496a813f161"
         },
         {
           "id": "nw-dns-ttl",
@@ -4642,9 +4642,9 @@
           ],
           "baselineHash": "35b7e993272fbcbda83dcc8711f3378ef6298a37252e96ca80e6b3e6d0324716",
           "baselineContentHash": "a1f8b7d98d1efb1f0c2256d14ab229e41ecc2f3cd840a70778fd440b6291f26e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "17b40590de0fa1b35481d819e18f3a1d575cdebbf8c8a5edc73a8459caf0fb7c"
         }
       ]
     },
