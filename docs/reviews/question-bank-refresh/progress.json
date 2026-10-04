@@ -4788,9 +4788,9 @@
     {
       "id": "networking.load-balancer.configuration",
       "title": "Public and internal Standard Load Balancer",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/networking.load-balancer.configuration.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "nw-lb-private",
@@ -4805,9 +4805,9 @@
           ],
           "baselineHash": "363f94414cc88a69b03c7863897bc22a0557980dbe1f88eca0a32f507205e08e",
           "baselineContentHash": "a5da55f9d18ed331f93b10086b5c463b49891510067eee42ca6d7213fab68b65",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "504dc190803b90bea4b05c879732f786c8f8c815817135ebbd2601c0200d7aa2"
         },
         {
           "id": "nw-lb-components",
@@ -4822,9 +4822,9 @@
           ],
           "baselineHash": "5915562e4ee2a035b036f9cb442881289ae3a256f644f1b2fb62a026545d690d",
           "baselineContentHash": "002fa1859b0c119a1d0f369cff07670b0ac3f642ae338345a9eab3200997070d",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "5f7ec1df0b2d07c022dd72fdb33a5b07d27e578d33d237d02d24e4a0900979ec"
         },
         {
           "id": "nw-lb-layer",
@@ -4839,9 +4839,9 @@
           ],
           "baselineHash": "de255f4f8c9f7ebdf315d71ec7e8fcebf18bf9b2ccb0726d3cb175e2ea15d9e4",
           "baselineContentHash": "bf2701b427173162d9580e89715e08bad8f8379cbd76cd7da6ce23f6c79a665a",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "cfb12443896622f9812fab7b97b71deb4c8bbba17226da4bb61a099592f599ca"
         }
       ]
     },

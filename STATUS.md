@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 242/322 questions reviewed, 184 revised and 58 kept; 73/99 topics complete.
-Latest: [DNS Private Resolver and hybrid forwarding](docs/reviews/question-bank-refresh/networking.dns.resolver.md). Each completed topic has item decisions,
+Checkpoint: 245/322 questions reviewed, 187 revised and 58 kept; 74/99 topics complete.
+Latest: [Public and internal Standard Load Balancer](docs/reviews/question-bank-refresh/networking.load-balancer.configuration.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `networking.load-balancer.configuration` (Public and internal Standard Load Balancer).
+Next: `networking.load-balancer.troubleshooting` (Load Balancer probes and connectivity diagnosis).
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this

@@ -3493,52 +3493,52 @@ Study: [knowledge file](../knowledge/networking/dns/private-resolver.md). Eviden
 
 Topic: Networking › Public and internal Standard Load Balancer.
 
-An application must accept TCP connections only over privately routed networks. Which regional Load Balancer frontend fits?
+An application in Azure must distribute TCP connections across healthy backend VMs. Clients connect from a peered VNet and an on-premises network over VPN; routing and security rules are verified. The service must have a private frontend address and no public frontend. Which regional Standard Load Balancer configuration meets the requirements?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** An internal frontend with a private subnet IP. This provides the privately reachable frontend.
-- **B. Incorrect:** A public frontend plus a public DNS name only. A DNS name does not make a public frontend private.
-- **C. Incorrect:** An outbound rule without any frontend. An outbound rule does not supply this inbound service endpoint.
-- **D. Incorrect:** A probe-only configuration without a load-balancing rule. A probe monitors backends but does not distribute client traffic.
+- **A. Correct:** An internal frontend using a subnet private IP, with a pool, probe, and load-balancing rule. The private frontend is available over the verified private routes; the pool, probe, and rule provide distribution.
+- **B. Incorrect:** A public frontend using a Standard public IP, with client ranges restricted by NSGs. Source restrictions do not turn the public frontend address into the required private frontend.
+- **C. Incorrect:** An internal frontend with an inbound NAT rule targeting one backend VM. A NAT mapping to one VM does not distribute service connections across the healthy backend pool.
+- **D. Incorrect:** An internal frontend with a backend pool and health probe, but no load-balancing rule. The probe monitors health; a distribution rule is still required for service connections.
 
-Study: [knowledge file](../knowledge/networking/load-balancer/configuration.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/load-balancer/configuration.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-public-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-internal-portal) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/load-balancer/components)
 
 ## nw-lb-components
 
 Topic: Networking › Public and internal Standard Load Balancer.
 
-A Standard public Load Balancer has a frontend and backend pool but no load-balancing rule. Healthy backend listeners exist. What configuration maps client TCP 443 to their TCP 8443?
+A Standard public Load Balancer has a frontend, a backend pool with two VM listeners on TCP 8443, and a passing TCP health probe. Client and probe traffic are permitted. New client connections to frontend TCP 443 must be distributed across the pool and delivered to TCP 8443. Which additional rule configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Only a DNS CNAME from 443 to 8443. DNS aliases do not translate TCP ports.
-- **B. Correct:** A load-balancing rule linking frontend, pool, protocol/ports, and probe. That rule defines the distribution and port mapping.
-- **C. Incorrect:** Only an NSG outbound allow on 8443. Filtering permission does not configure the frontend mapping.
-- **D. Incorrect:** Only a route table pointing to the public IP. Routing does not define this load-balancing rule.
+- **A. Incorrect:** A TCP load-balancing rule: frontend 8443, backend 443, existing pool and probe. The port mapping is reversed: clients use frontend 443 and the servers listen on backend 8443.
+- **B. Correct:** A TCP load-balancing rule: frontend 443, backend 8443, existing pool and probe. This maps the required client port to the listeners and distributes flows using the existing pool and health probe.
+- **C. Incorrect:** A UDP load-balancing rule: frontend 443, backend 8443, existing pool and probe. The clients and listeners use TCP; a UDP rule does not match those connections.
+- **D. Incorrect:** An inbound NAT rule: frontend TCP 443, backend TCP 8443 on one selected VM. It maps the ports to one VM rather than distributing service flows across both healthy instances.
 
-Study: [knowledge file](../knowledge/networking/load-balancer/configuration.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/load-balancer/configuration.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-public-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-internal-portal) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/components)
 
 ## nw-lb-layer
 
 Topic: Networking › Public and internal Standard Load Balancer.
 
-A team wants requests for /images and /api sent to different backend pools according to URL path. Does Azure Load Balancer alone provide this?
+A Standard Azure Load Balancer has two backend pools serving HTTP applications. You will add rules that select a pool from incoming connection attributes. Which attribute can a load-balancing rule use for this selection?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Incorrect:** Yes, by changing its TCP idle timeout. Idle timeout does not parse HTTP paths.
-- **B. Incorrect:** Yes, by setting the health-probe path to both prefixes. Probe paths test health; they do not route client URLs.
-- **C. Correct:** No; its layer-4 rules do not inspect URL paths. An HTTP-aware routing service is needed for that decision.
-- **D. Incorrect:** Yes, by adding a second public IP to each backend. Additional addresses do not add HTTP path inspection.
+- **A. Incorrect:** The HTTP URL path, such as /images versus /api. Layer-4 rules do not inspect HTTP paths for backend-pool selection.
+- **B. Incorrect:** The HTTP Host header sent by the client. HTTP headers require application-layer inspection beyond Azure Load Balancer rules.
+- **C. Correct:** The destination frontend TCP port. Rules match transport protocol and frontend port and identify a backend pool; distinct frontend ports can select distinct pools.
+- **D. Incorrect:** The TLS server-name indication supplied by the client. TLS hostname routing requires TLS-aware inspection; Azure Load Balancer rules operate at the transport layer.
 
-Study: [knowledge file](../knowledge/networking/load-balancer/configuration.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/load-balancer/configuration.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-public-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-internal-portal) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/load-balancer/components)
 
 ## nw-lb-http-probe
 
