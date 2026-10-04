@@ -1791,27 +1791,27 @@ D. It proves that Cross Region Restore is enabled for these operational snapshot
 
 Topic: Monitoring and recovery › Azure Files backup and item recovery.
 
-An Azure Files backup policy uses only the Snapshot tier. Where is that recovery data stored?
+An Azure Files policy uses only the Snapshot tier. Its Recovery Services vault uses GRS. You are assessing dependence on the source Storage account during recovery. Which placement should the design assume?
 
 Select **1**. Difficulty: applied.
 
-A. In snapshots in the source storage account.
-B. Always in a geo-redundant vaulted copy.
-C. Only in the client VM's memory.
-D. Inside the action group.
+A. Recovery data remains in share snapshots in the source Storage account.
+B. Recovery data is copied into the vault’s geo-redundant storage.
+C. Recovery data is copied into a separate administrator-selected Storage account by default.
+D. Recovery data is stored in both source snapshots and vault storage for every Snapshot-tier point.
 
 ## mo-files-alternate
 
 Topic: Monitoring and recovery › Azure Files backup and item recovery.
 
-You want to inspect recovered files without overwriting the live original share. Which supported restore choice fits?
+A snapshot-tier recovery point contains an older version of report.xlsx. The live original share contains a newer version that must remain unchanged. A supported alternate share and empty test folder are available, with required permissions. You need to inspect the older file without writing restored content to the live share. Which item-level restore configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Original location with overwrite.
-B. Alternate location and a test folder/share.
-C. Delete the live share before selecting a point.
-D. Change the share's DNS name.
+A. Restore report.xlsx to the original location with overwrite.
+B. Restore report.xlsx to the alternate share’s empty test folder.
+C. Restore report.xlsx to the original location with skip.
+D. Restore the full share to the original location with overwrite.
 
 ## mo-files-conflict
 
@@ -1821,10 +1821,10 @@ During an original-location Azure Files restore, which setting controls behavior
 
 Select **1**. Difficulty: foundation.
 
-A. The public IP allocation method.
-B. The NSG priority.
-C. The restore operation's skip/overwrite conflict choice.
-D. The vault's display name.
+A. The backup policy’s schedule frequency.
+B. The selected recovery point timestamp.
+C. The restore operation’s skip/overwrite conflict choice.
+D. The policy’s recovery-point retention duration.
 
 ## mo-policy-frequency
 

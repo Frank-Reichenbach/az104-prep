@@ -2337,35 +2337,35 @@ Study: [knowledge file](../knowledge/monitoring/backup/backup-vault.md). Evidenc
 
 Topic: Monitoring and recovery › Azure Files backup and item recovery.
 
-An Azure Files backup policy uses only the Snapshot tier. Where is that recovery data stored?
+An Azure Files policy uses only the Snapshot tier. Its Recovery Services vault uses GRS. You are assessing dependence on the source Storage account during recovery. Which placement should the design assume?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** In snapshots in the source storage account. Snapshot-only protection does not copy this data to vault storage.
-- **B. Incorrect:** Always in a geo-redundant vaulted copy. Vault redundancy does not apply to snapshot-only points.
-- **C. Incorrect:** Only in the client VM's memory. Share snapshots are stored by the storage service.
-- **D. Incorrect:** Inside the action group. Action groups do not store backup data.
+- **A. Correct:** Recovery data remains in share snapshots in the source Storage account. Snapshot-only backup does not add a vaulted copy; recovery depends on the source account’s snapshots.
+- **B. Incorrect:** Recovery data is copied into the vault’s geo-redundant storage. The vault’s redundancy setting does not turn snapshot-only points into vaulted copies.
+- **C. Incorrect:** Recovery data is copied into a separate administrator-selected Storage account by default. Snapshot-only protection retains snapshots in the source account, not a separate backup account.
+- **D. Incorrect:** Recovery data is stored in both source snapshots and vault storage for every Snapshot-tier point. This describes an added vaulted copy that the snapshot-only policy does not provide.
 
-Study: [knowledge file](../knowledge/monitoring/backup/azure-files.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/azure-files.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-files) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/restore-afs)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/azure-file-share-backup-overview)
 
 ## mo-files-alternate
 
 Topic: Monitoring and recovery › Azure Files backup and item recovery.
 
-You want to inspect recovered files without overwriting the live original share. Which supported restore choice fits?
+A snapshot-tier recovery point contains an older version of report.xlsx. The live original share contains a newer version that must remain unchanged. A supported alternate share and empty test folder are available, with required permissions. You need to inspect the older file without writing restored content to the live share. Which item-level restore configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Original location with overwrite. That can replace live files.
-- **B. Correct:** Alternate location and a test folder/share. This preserves the original contents while allowing review.
-- **C. Incorrect:** Delete the live share before selecting a point. Deletion is unnecessary for this inspection goal.
-- **D. Incorrect:** Change the share's DNS name. DNS changes do not restore the selected backup contents.
+- **A. Incorrect:** Restore report.xlsx to the original location with overwrite. This can replace the live newer file and writes to the prohibited original share.
+- **B. Correct:** Restore report.xlsx to the alternate share’s empty test folder. The supported alternate location receives the restored file while the live original share remains unchanged.
+- **C. Incorrect:** Restore report.xlsx to the original location with skip. The existing file is skipped, so this does not produce the older version for the requested inspection.
+- **D. Incorrect:** Restore the full share to the original location with overwrite. This writes restored content to the live share and can overwrite its current files.
 
-Study: [knowledge file](../knowledge/monitoring/backup/azure-files.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/azure-files.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-files) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/restore-afs)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/restore-afs)
 
 ## mo-files-conflict
 
@@ -2375,14 +2375,14 @@ During an original-location Azure Files restore, which setting controls behavior
 
 Select **1**. Difficulty: foundation.
 
-- **A. Incorrect:** The public IP allocation method. It does not determine restore file conflicts.
-- **B. Incorrect:** The NSG priority. Filtering rules do not select restore overwrite behavior.
-- **C. Correct:** The restore operation's skip/overwrite conflict choice. That controls existing-file handling.
-- **D. Incorrect:** The vault's display name. Names do not define conflict resolution.
+- **A. Incorrect:** The backup policy’s schedule frequency. Schedule frequency determines when backups run, not how an existing destination file is handled during restore.
+- **B. Incorrect:** The selected recovery point timestamp. The timestamp selects historical content but does not choose whether to skip or overwrite a current destination file.
+- **C. Correct:** The restore operation’s skip/overwrite conflict choice. This directly controls handling of files that already exist at the restore destination.
+- **D. Incorrect:** The policy’s recovery-point retention duration. Retention determines how long points remain available, not destination conflict behavior.
 
-Study: [knowledge file](../knowledge/monitoring/backup/azure-files.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/azure-files.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-files) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/restore-afs)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/restore-afs)
 
 ## mo-policy-frequency
 

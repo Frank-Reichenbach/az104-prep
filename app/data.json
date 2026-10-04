@@ -7065,34 +7065,34 @@
     {
       "id": "mo-files-tier",
       "family": "mo-files-tier",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.backup.files-restore",
       "objectives": [
         "mo-10"
       ],
       "difficulty": "applied",
-      "prompt": "An Azure Files backup policy uses only the Snapshot tier. Where is that recovery data stored?",
+      "prompt": "An Azure Files policy uses only the Snapshot tier. Its Recovery Services vault uses GRS. You are assessing dependence on the source Storage account during recovery. Which placement should the design assume?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "In snapshots in the source storage account.",
-          "explanation": "Snapshot-only protection does not copy this data to vault storage."
+          "text": "Recovery data remains in share snapshots in the source Storage account.",
+          "explanation": "Snapshot-only backup does not add a vaulted copy; recovery depends on the source account’s snapshots."
         },
         {
           "id": "b",
-          "text": "Always in a geo-redundant vaulted copy.",
-          "explanation": "Vault redundancy does not apply to snapshot-only points."
+          "text": "Recovery data is copied into the vault’s geo-redundant storage.",
+          "explanation": "The vault’s redundancy setting does not turn snapshot-only points into vaulted copies."
         },
         {
           "id": "c",
-          "text": "Only in the client VM's memory.",
-          "explanation": "Share snapshots are stored by the storage service."
+          "text": "Recovery data is copied into a separate administrator-selected Storage account by default.",
+          "explanation": "Snapshot-only protection retains snapshots in the source account, not a separate backup account."
         },
         {
           "id": "d",
-          "text": "Inside the action group.",
-          "explanation": "Action groups do not store backup data."
+          "text": "Recovery data is stored in both source snapshots and vault storage for every Snapshot-tier point.",
+          "explanation": "This describes an added vaulted copy that the snapshot-only policy does not provide."
         }
       ],
       "correct": [
@@ -7100,42 +7100,41 @@
       ],
       "knowledge": "knowledge/monitoring/backup/azure-files.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-files",
-        "https://learn.microsoft.com/en-us/azure/backup/restore-afs"
+        "https://learn.microsoft.com/en-us/azure/backup/azure-file-share-backup-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-files-alternate",
       "family": "mo-files-alternate",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.backup.files-restore",
       "objectives": [
         "mo-10"
       ],
       "difficulty": "applied",
-      "prompt": "You want to inspect recovered files without overwriting the live original share. Which supported restore choice fits?",
+      "prompt": "A snapshot-tier recovery point contains an older version of report.xlsx. The live original share contains a newer version that must remain unchanged. A supported alternate share and empty test folder are available, with required permissions. You need to inspect the older file without writing restored content to the live share. Which item-level restore configuration meets the goal?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Original location with overwrite.",
-          "explanation": "That can replace live files."
+          "text": "Restore report.xlsx to the original location with overwrite.",
+          "explanation": "This can replace the live newer file and writes to the prohibited original share."
         },
         {
           "id": "b",
-          "text": "Alternate location and a test folder/share.",
-          "explanation": "This preserves the original contents while allowing review."
+          "text": "Restore report.xlsx to the alternate share’s empty test folder.",
+          "explanation": "The supported alternate location receives the restored file while the live original share remains unchanged."
         },
         {
           "id": "c",
-          "text": "Delete the live share before selecting a point.",
-          "explanation": "Deletion is unnecessary for this inspection goal."
+          "text": "Restore report.xlsx to the original location with skip.",
+          "explanation": "The existing file is skipped, so this does not produce the older version for the requested inspection."
         },
         {
           "id": "d",
-          "text": "Change the share's DNS name.",
-          "explanation": "DNS changes do not restore the selected backup contents."
+          "text": "Restore the full share to the original location with overwrite.",
+          "explanation": "This writes restored content to the live share and can overwrite its current files."
         }
       ],
       "correct": [
@@ -7143,15 +7142,14 @@
       ],
       "knowledge": "knowledge/monitoring/backup/azure-files.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-files",
         "https://learn.microsoft.com/en-us/azure/backup/restore-afs"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-files-conflict",
       "family": "mo-files-conflict",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.backup.files-restore",
       "objectives": [
         "mo-10"
@@ -7162,23 +7160,23 @@
       "options": [
         {
           "id": "a",
-          "text": "The public IP allocation method.",
-          "explanation": "It does not determine restore file conflicts."
+          "text": "The backup policy’s schedule frequency.",
+          "explanation": "Schedule frequency determines when backups run, not how an existing destination file is handled during restore."
         },
         {
           "id": "b",
-          "text": "The NSG priority.",
-          "explanation": "Filtering rules do not select restore overwrite behavior."
+          "text": "The selected recovery point timestamp.",
+          "explanation": "The timestamp selects historical content but does not choose whether to skip or overwrite a current destination file."
         },
         {
           "id": "c",
-          "text": "The restore operation's skip/overwrite conflict choice.",
-          "explanation": "That controls existing-file handling."
+          "text": "The restore operation’s skip/overwrite conflict choice.",
+          "explanation": "This directly controls handling of files that already exist at the restore destination."
         },
         {
           "id": "d",
-          "text": "The vault's display name.",
-          "explanation": "Names do not define conflict resolution."
+          "text": "The policy’s recovery-point retention duration.",
+          "explanation": "Retention determines how long points remain available, not destination conflict behavior."
         }
       ],
       "correct": [
@@ -7186,10 +7184,9 @@
       ],
       "knowledge": "knowledge/monitoring/backup/azure-files.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-files",
         "https://learn.microsoft.com/en-us/azure/backup/restore-afs"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-policy-frequency",

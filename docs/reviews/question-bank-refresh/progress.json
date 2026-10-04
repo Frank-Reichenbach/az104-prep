@@ -5962,9 +5962,9 @@
     {
       "id": "monitoring.backup.files-restore",
       "title": "Azure Files backup and item recovery",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.backup.files-restore.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-files-tier",
@@ -5979,9 +5979,9 @@
           ],
           "baselineHash": "8c32e51b40de54e11bd408c3fe5df69bfa87d8ba6ff43113bb08b8dcab1a002e",
           "baselineContentHash": "6fff737b7e740d6a315a8b497a5cd237d5f292d904ca6a3f5ff3980c7b758e68",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "ff3581d0f54f042760a575400d5735e2bc39262a51f2a4a5c71122241f051f77"
         },
         {
           "id": "mo-files-alternate",
@@ -5996,9 +5996,9 @@
           ],
           "baselineHash": "4e0131a49d919a12725067b8f8cbd93dcabdee18376103522d779d201fcea977",
           "baselineContentHash": "ada69f7d0605072b6930f551fd7b0f6f1ce5ae8a3c10e2eb640b22d151a917b0",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "636dc2be5a08de7fd0bec925239af6d0d96559364b37ce0250d90f16a55c4087"
         },
         {
           "id": "mo-files-conflict",
@@ -6013,9 +6013,9 @@
           ],
           "baselineHash": "3dcc74c7d6894a26cb919df95ffec9eef7d7abcbed6d84605ad7aba02fd5a74a",
           "baselineContentHash": "25bcc4ced993aacd6e58c7e371c195acff431967896253340bbd92bd7b970650",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "0521a803fad462780e8c5ddb2ce2f4a5407d4e09b55ff0193d0715316f92d2f1"
         }
       ]
     },
