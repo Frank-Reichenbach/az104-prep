@@ -9390,34 +9390,34 @@
     {
       "id": "mo-drill-network",
       "family": "mo-drill-network",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.recovery.test-failover",
       "objectives": [
         "mo-12"
       ],
       "difficulty": "applied",
-      "prompt": "You are planning a Site Recovery disaster recovery drill while production remains active. Which target network does Microsoft recommend for the test VMs?",
+      "prompt": "An Azure-to-Azure Site Recovery drill must run while production VMs stay active. Test VMs must not compete with production identities or addresses. A supported non-production VNet is available in the target region. Which test network design meets the requirement?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "The production recovery network regardless of address conflicts.",
-          "explanation": "Microsoft recommends a non-production network for drills to protect production networking availability."
+          "text": "Use the production recovery VNet while leaving production VMs active on the same connected network.",
+          "explanation": "This can expose duplicate identities or address conflicts and fails the required separation."
         },
         {
           "id": "b",
-          "text": "A suitable non-production network in the target region.",
-          "explanation": "This supports testing without competing with production addresses and network components."
+          "text": "Use the separate non-production VNet in the target region, with suitable isolated test dependencies.",
+          "explanation": "A separate target test network supports the drill while avoiding competition with production network components."
         },
         {
           "id": "c",
-          "text": "Only the source VM's original subnet in the source region.",
-          "explanation": "The drill recovers the VM into the chosen target-region network."
+          "text": "Select the original source-region subnet as the test VM destination.",
+          "explanation": "The Azure-to-Azure drill creates test VMs in the target region, not the original source-region subnet."
         },
         {
           "id": "d",
-          "text": "No VNet because test failover uses only an offline disk.",
-          "explanation": "Test failover creates a VM connected to the selected target VNet."
+          "text": "Use the production recovery VNet after shutting down all production VMs for the drill.",
+          "explanation": "This avoids concurrent instances but violates the requirement that production remain active."
         }
       ],
       "correct": [
@@ -9426,41 +9426,41 @@
       "knowledge": "knowledge/monitoring/site-recovery/test-failover.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill",
-        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-test-failover-to-azure"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-drill-cleanup",
       "family": "mo-drill-cleanup",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.recovery.test-failover",
       "objectives": [
         "mo-12"
       ],
       "difficulty": "foundation",
-      "prompt": "A Site Recovery test failover is finished and its observations have been recorded. How should you end the drill and remove its test VMs?",
+      "prompt": "A Site Recovery drill is finished. You run Cleanup test failover, save the observations, and confirm Testing is complete. Which result does that workflow produce?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Use Cleanup test failover and confirm Testing is complete.",
-          "explanation": "This is the documented cleanup workflow, including saving observations and deleting test VMs."
+          "text": "It deletes VMs created for the test failover while leaving source replication protection in place.",
+          "explanation": "The documented cleanup removes test VMs; ending the drill does not disable ongoing source replication."
         },
         {
           "id": "b",
-          "text": "Disable replication permanently for the source VM.",
-          "explanation": "Ending a drill does not require removing the source VM's disaster recovery protection."
+          "text": "It disables source replication permanently and retains the test VMs.",
+          "explanation": "Test cleanup removes test VMs and is separate from disabling replication protection."
         },
         {
           "id": "c",
-          "text": "Commit a production failover.",
-          "explanation": "A production failover commit is a different workflow from test cleanup."
+          "text": "It commits a production failover and makes test VMs the production recovery VMs.",
+          "explanation": "A drill cleanup is not the production failover commit workflow."
         },
         {
           "id": "d",
-          "text": "Delete the Recovery Services vault immediately.",
-          "explanation": "Deleting the vault is neither necessary nor the drill cleanup procedure."
+          "text": "It copies changes made inside the test VMs back into the primary VMs.",
+          "explanation": "Changes made to test VMs are lost at cleanup and are not replicated back to primary VMs."
         }
       ],
       "correct": [
@@ -9469,14 +9469,14 @@
       "knowledge": "knowledge/monitoring/site-recovery/test-failover.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill",
-        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-test-failover-to-azure"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-drill-role",
       "family": "mo-drill-role",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.recovery.test-failover",
       "objectives": [
         "mo-12"
@@ -9488,22 +9488,22 @@
         {
           "id": "a",
           "text": "Site Recovery Reader.",
-          "explanation": "Reader can inspect recovery state but cannot perform the requested operations."
+          "explanation": "Reader can inspect recovery state but cannot perform the requested drill and failover operations."
         },
         {
           "id": "b",
           "text": "Site Recovery Contributor.",
-          "explanation": "Contributor includes replication management, exceeding the stated recovery-operation scope."
+          "explanation": "Contributor includes replication management, exceeding the stated recovery-operation permissions."
         },
         {
           "id": "c",
           "text": "Site Recovery Operator.",
-          "explanation": "Operator supports failover/failback operations while excluding enable/disable replication."
+          "explanation": "Operator supports the requested failover/failback and drill operations while excluding enable/disable replication."
         },
         {
           "id": "d",
-          "text": "Storage Blob Data Reader.",
-          "explanation": "Blob data access does not authorize Site Recovery operations."
+          "text": "Owner.",
+          "explanation": "Owner grants broader management permissions, including replication management, violating the required restriction."
         }
       ],
       "correct": [
@@ -9511,10 +9511,9 @@
       ],
       "knowledge": "knowledge/monitoring/site-recovery/test-failover.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill",
         "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-action-test-failed-variant",

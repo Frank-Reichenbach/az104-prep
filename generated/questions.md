@@ -2493,27 +2493,27 @@ D. Configure an authenticated proxy as the mandatory replication path.
 
 Topic: Monitoring and recovery › Site Recovery test failover and drill cleanup.
 
-You are planning a Site Recovery disaster recovery drill while production remains active. Which target network does Microsoft recommend for the test VMs?
+An Azure-to-Azure Site Recovery drill must run while production VMs stay active. Test VMs must not compete with production identities or addresses. A supported non-production VNet is available in the target region. Which test network design meets the requirement?
 
 Select **1**. Difficulty: applied.
 
-A. The production recovery network regardless of address conflicts.
-B. A suitable non-production network in the target region.
-C. Only the source VM's original subnet in the source region.
-D. No VNet because test failover uses only an offline disk.
+A. Use the production recovery VNet while leaving production VMs active on the same connected network.
+B. Use the separate non-production VNet in the target region, with suitable isolated test dependencies.
+C. Select the original source-region subnet as the test VM destination.
+D. Use the production recovery VNet after shutting down all production VMs for the drill.
 
 ## mo-drill-cleanup
 
 Topic: Monitoring and recovery › Site Recovery test failover and drill cleanup.
 
-A Site Recovery test failover is finished and its observations have been recorded. How should you end the drill and remove its test VMs?
+A Site Recovery drill is finished. You run Cleanup test failover, save the observations, and confirm Testing is complete. Which result does that workflow produce?
 
 Select **1**. Difficulty: foundation.
 
-A. Use Cleanup test failover and confirm Testing is complete.
-B. Disable replication permanently for the source VM.
-C. Commit a production failover.
-D. Delete the Recovery Services vault immediately.
+A. It deletes VMs created for the test failover while leaving source replication protection in place.
+B. It disables source replication permanently and retains the test VMs.
+C. It commits a production failover and makes test VMs the production recovery VMs.
+D. It copies changes made inside the test VMs back into the primary VMs.
 
 ## mo-drill-role
 
@@ -2526,7 +2526,7 @@ Select **1**. Difficulty: applied.
 A. Site Recovery Reader.
 B. Site Recovery Contributor.
 C. Site Recovery Operator.
-D. Storage Blob Data Reader.
+D. Owner.
 
 ## mo-action-test-failed-variant
 

@@ -6082,9 +6082,9 @@
     {
       "id": "monitoring.recovery.test-failover",
       "title": "Site Recovery test failover and drill cleanup",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.recovery.test-failover.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-drill-network",
@@ -6099,9 +6099,9 @@
           ],
           "baselineHash": "fc229d610f61dd9871fcc871379ae6a893d42defbd16cf15a3b6374b109475ff",
           "baselineContentHash": "2951af1f65232139c0dea45ea7769bf1fbf37f406f986f511db3a05c37aaa90d",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "6a18f2c97ad428051cde9e97c74c63b521c479eaf8e0ca3107141f0c545cd7b6"
         },
         {
           "id": "mo-drill-cleanup",
@@ -6116,9 +6116,9 @@
           ],
           "baselineHash": "961e69f34daf5d3c398577c940ab38b4e3ad101551d74b156292ff6c207a9a1d",
           "baselineContentHash": "ed489b7565f3e3ac598293babd294687ddb835a8383743b871c4f0f701160817",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "27e339d7ab520be35aa721e3a45f53a3e802a895421138cd89b26702d5216702"
         },
         {
           "id": "mo-drill-role",
@@ -6133,9 +6133,9 @@
           ],
           "baselineHash": "e4393151e00de546f3f350456ab7c6f1843f4b65e11eb6d87a9456786f720287",
           "baselineContentHash": "bb120fbc43b16d94d0b78717aee1c642a9170654ac7db4cbe2c32f12a39e3a1b",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "7442bdcc0da296dfe07f611bc1e5424fb8029293d51f2e45ca4a7d63751f23db"
         }
       ]
     },

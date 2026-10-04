@@ -3255,35 +3255,35 @@ Study: [knowledge file](../knowledge/monitoring/site-recovery/replication.md). E
 
 Topic: Monitoring and recovery › Site Recovery test failover and drill cleanup.
 
-You are planning a Site Recovery disaster recovery drill while production remains active. Which target network does Microsoft recommend for the test VMs?
+An Azure-to-Azure Site Recovery drill must run while production VMs stay active. Test VMs must not compete with production identities or addresses. A supported non-production VNet is available in the target region. Which test network design meets the requirement?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** The production recovery network regardless of address conflicts. Microsoft recommends a non-production network for drills to protect production networking availability.
-- **B. Correct:** A suitable non-production network in the target region. This supports testing without competing with production addresses and network components.
-- **C. Incorrect:** Only the source VM's original subnet in the source region. The drill recovers the VM into the chosen target-region network.
-- **D. Incorrect:** No VNet because test failover uses only an offline disk. Test failover creates a VM connected to the selected target VNet.
+- **A. Incorrect:** Use the production recovery VNet while leaving production VMs active on the same connected network. This can expose duplicate identities or address conflicts and fails the required separation.
+- **B. Correct:** Use the separate non-production VNet in the target region, with suitable isolated test dependencies. A separate target test network supports the drill while avoiding competition with production network components.
+- **C. Incorrect:** Select the original source-region subnet as the test VM destination. The Azure-to-Azure drill creates test VMs in the target region, not the original source-region subnet.
+- **D. Incorrect:** Use the production recovery VNet after shutting down all production VMs for the drill. This avoids concurrent instances but violates the requirement that production remain active.
 
-Study: [knowledge file](../knowledge/monitoring/site-recovery/test-failover.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/site-recovery/test-failover.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-test-failover-to-azure)
 
 ## mo-drill-cleanup
 
 Topic: Monitoring and recovery › Site Recovery test failover and drill cleanup.
 
-A Site Recovery test failover is finished and its observations have been recorded. How should you end the drill and remove its test VMs?
+A Site Recovery drill is finished. You run Cleanup test failover, save the observations, and confirm Testing is complete. Which result does that workflow produce?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** Use Cleanup test failover and confirm Testing is complete. This is the documented cleanup workflow, including saving observations and deleting test VMs.
-- **B. Incorrect:** Disable replication permanently for the source VM. Ending a drill does not require removing the source VM's disaster recovery protection.
-- **C. Incorrect:** Commit a production failover. A production failover commit is a different workflow from test cleanup.
-- **D. Incorrect:** Delete the Recovery Services vault immediately. Deleting the vault is neither necessary nor the drill cleanup procedure.
+- **A. Correct:** It deletes VMs created for the test failover while leaving source replication protection in place. The documented cleanup removes test VMs; ending the drill does not disable ongoing source replication.
+- **B. Incorrect:** It disables source replication permanently and retains the test VMs. Test cleanup removes test VMs and is separate from disabling replication protection.
+- **C. Incorrect:** It commits a production failover and makes test VMs the production recovery VMs. A drill cleanup is not the production failover commit workflow.
+- **D. Incorrect:** It copies changes made inside the test VMs back into the primary VMs. Changes made to test VMs are lost at cleanup and are not replicated back to primary VMs.
 
-Study: [knowledge file](../knowledge/monitoring/site-recovery/test-failover.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/site-recovery/test-failover.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-test-failover-to-azure)
 
 ## mo-drill-role
 
@@ -3293,14 +3293,14 @@ A team member should run Site Recovery drills and failover/failback operations, 
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Site Recovery Reader. Reader can inspect recovery state but cannot perform the requested operations.
-- **B. Incorrect:** Site Recovery Contributor. Contributor includes replication management, exceeding the stated recovery-operation scope.
-- **C. Correct:** Site Recovery Operator. Operator supports failover/failback operations while excluding enable/disable replication.
-- **D. Incorrect:** Storage Blob Data Reader. Blob data access does not authorize Site Recovery operations.
+- **A. Incorrect:** Site Recovery Reader. Reader can inspect recovery state but cannot perform the requested drill and failover operations.
+- **B. Incorrect:** Site Recovery Contributor. Contributor includes replication management, exceeding the stated recovery-operation permissions.
+- **C. Correct:** Site Recovery Operator. Operator supports the requested failover/failback and drill operations while excluding enable/disable replication.
+- **D. Incorrect:** Owner. Owner grants broader management permissions, including replication management, violating the required restriction.
 
-Study: [knowledge file](../knowledge/monitoring/site-recovery/test-failover.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/site-recovery/test-failover.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
 
 ## mo-action-test-failed-variant
 
