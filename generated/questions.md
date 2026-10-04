@@ -621,14 +621,14 @@ D. az deployment group what-if --template-file current.json
 
 Topic: Compute › Exporting templates and decompiling Bicep.
 
-A resource-group template export completes with warnings. Which TWO checks are appropriate before reusing it?
+An exported ARM template will be reused in a new environment. Its required administrator-password input is missing, and a network-interface property contains a hard-coded subnet resource ID from the old environment. The target subnet already exists. Which TWO edits jointly address these two problems? Assume other configuration and permissions are correct.
 
 Select **2**. Difficulty: applied.
 
-A. Check for omitted resource types, properties, and secret inputs.
-B. Review names, IDs, and parameterization for the new environment.
-C. Assume it contains a restorable copy of application data.
-D. Treat successful export as proof of successful redeployment.
+A. Add and reference a secureString password parameter supplied at deployment time.
+B. Replace the hard-coded subnet ID with a referenced parameter containing the target subnet ID.
+C. Add a subnet ID parameter but leave the NIC property using the old literal ID.
+D. Use a new deployment-history name while leaving resource properties unchanged.
 
 ## co-read-input-output
 

@@ -2800,9 +2800,9 @@
     {
       "id": "compute.templates.export",
       "title": "Exporting templates and decompiling Bicep",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.templates.export.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-export-current",
@@ -2817,9 +2817,9 @@
           ],
           "baselineHash": "50e47bd51003794fdf1813ea4ad43257c4f282466e7dd210a38680d2f7c838bf",
           "baselineContentHash": "bc47ed26b3d7bded2d95e14bfed9685631bcce43ca8894a05b3cdab70dc4fb94",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "f04cb86cb854561ad8b40e97621bd8fec23b3bfdebea0c4cd6d821cfa55204cf"
         },
         {
           "id": "co-export-convert",
@@ -2834,9 +2834,9 @@
           ],
           "baselineHash": "b21a922385482dda6efc25d538316638f05e9e71450b94b28d44f2e26ded0d32",
           "baselineContentHash": "10b7353a37d26988efa67991c991019091fa9eb9516b5d24e8235d3378e71c33",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "458b1a24a426b7bd8fa4fac82dff03f06c5fcae1f7d58c881722a5fc4dac88f7"
         },
         {
           "id": "co-export-review",
@@ -2851,9 +2851,9 @@
           ],
           "baselineHash": "d3fd7bb96e3a0350d5e5d5a42a4a2e32919de2f6d54e61299f88836a018935ac",
           "baselineContentHash": "177b6062fa25217cda9a48c71104290bc63c70237718ae251e7c60f80aa3e3d0",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "72b3f7e655dd518c44fb78426987d723df5c1d34e36c1d2a91d1969334bf37e8"
         }
       ]
     },

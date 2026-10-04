@@ -782,7 +782,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** Compile the original Bicep source again Compilation does not discover drift in Azure.
 - **D. Incorrect:** Download only the original parameter file Original inputs do not include subsequent manual changes.
 
-Study: [knowledge file](../knowledge/compute/templates/export.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/templates/export.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/export-bicep-portal)
 
@@ -799,7 +799,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** az deployment group create --template-file current.json Create deploys the template rather than converting its source.
 - **D. Incorrect:** az deployment group what-if --template-file current.json What-if previews deployment changes; it does not emit Bicep source.
 
-Study: [knowledge file](../knowledge/compute/templates/export.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/templates/export.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/export-bicep-portal)
 
@@ -807,18 +807,18 @@ Study: [knowledge file](../knowledge/compute/templates/export.md). Evidence chec
 
 Topic: Compute › Exporting templates and decompiling Bicep.
 
-A resource-group template export completes with warnings. Which TWO checks are appropriate before reusing it?
+An exported ARM template will be reused in a new environment. Its required administrator-password input is missing, and a network-interface property contains a hard-coded subnet resource ID from the old environment. The target subnet already exists. Which TWO edits jointly address these two problems? Assume other configuration and permissions are correct.
 
 Select **2**. Difficulty: applied.
 
-- **A. Correct:** Check for omitted resource types, properties, and secret inputs. Exports can be incomplete and need manual correction.
-- **B. Correct:** Review names, IDs, and parameterization for the new environment. Generated configuration can retain environment-specific values.
-- **C. Incorrect:** Assume it contains a restorable copy of application data. A resource template is configuration, not a data backup.
-- **D. Incorrect:** Treat successful export as proof of successful redeployment. Export does not validate all deployment constraints or runtime dependencies.
+- **A. Correct:** Add and reference a secureString password parameter supplied at deployment time. Export can omit password inputs. A referenced secure parameter supplies the missing input without embedding a literal secret.
+- **B. Correct:** Replace the hard-coded subnet ID with a referenced parameter containing the target subnet ID. Export can retain environment-specific values. Referencing the new subnet ID directs the NIC to the intended environment.
+- **C. Incorrect:** Add a subnet ID parameter but leave the NIC property using the old literal ID. An unused parameter does not change the property; the NIC still references the old subnet.
+- **D. Incorrect:** Use a new deployment-history name while leaving resource properties unchanged. A deployment name identifies the deployment record; it supplies neither a missing password nor a replacement subnet reference.
 
-Study: [knowledge file](../knowledge/compute/templates/export.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/templates/export.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/export-bicep-portal)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli)
 
 ## co-read-input-output
 
