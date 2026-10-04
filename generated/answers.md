@@ -272,7 +272,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** Only add a staging slot. A slot consumes the existing plan capacity.
 - **D. Incorrect:** Only set a larger maximum autoscale count. A count limit does not change the worker SKU.
 
-Study: [knowledge file](../knowledge/compute/app-service/scaling.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/scaling.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-best-practices)
 
@@ -280,35 +280,35 @@ Study: [knowledge file](../knowledge/compute/app-service/scaling.md). Evidence c
 
 Topic: Compute › App Service scale up, scale out, and autoscale.
 
-An App Service plan must run more instances at 08:00 each weekday based on a schedule. Which scaling mechanism should be used?
+A Standard App Service plan normally runs two instances. It must run four instances from 08:00 to 18:00 every Monday through Friday, using UTC, and two at other times regardless of CPU demand. Which Azure Monitor autoscale configuration implements this recurring capacity schedule?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Azure Monitor autoscale with a scheduled profile. Autoscale supports schedules for plan capacity.
-- **B. Incorrect:** App Service automatic scaling based only on HTTP traffic. HTTP automatic scaling does not express the requested time-based schedule.
-- **C. Incorrect:** A deployment-slot swap at 08:00. Swapping code slots does not define scheduled worker capacity.
-- **D. Incorrect:** A higher SKU without any scheduled scaling configuration. Changing tier does not implement the requested daily instance schedule.
+- **A. Correct:** Use weekday 08:00 profiles fixed at four instances and weekday 18:00 profiles fixed at two instances. Recurring profiles switch capacity at the specified times. Setting each profile minimum, default, and maximum to its required count fixes four during the workday and two after the evening switch, including the weekend.
+- **B. Incorrect:** Use weekday 08:00 profiles fixed at two instances and weekday 18:00 profiles fixed at four instances. These profiles reverse the required capacity: two during the workday and four overnight.
+- **C. Incorrect:** Use daily 08:00 profiles fixed at four instances and daily 18:00 profiles fixed at two instances. Daily recurrence also allocates four instances during weekend days, when the requirement is two.
+- **D. Incorrect:** Use weekday 08:00 profiles fixed at four instances and weekday 18:00 profiles also fixed at four instances. The evening profile does not restore two instances; it retains four outside the required workday.
 
-Study: [knowledge file](../knowledge/compute/app-service/scaling.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/scaling.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-best-practices)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-common-scale-patterns)
 
 ## co-web-autolimits
 
 Topic: Compute › App Service scale up, scale out, and autoscale.
 
-You evaluate App Service automatic HTTP scaling. Which TWO points belong in the cost and compatibility review?
+A Premium v3 web app uses App Service automatic HTTP scaling. Five always-ready instances are serving requests, and one additional prewarmed instance is allocated as a buffer. The app also has a staging slot used for load testing. Which TWO statements are correct about cost and scaling support? Select two individual statements.
 
 Select **2**. Difficulty: applied.
 
-- **A. Correct:** Prewarmed instances are billable. Automatic scaling reserves a buffer whose instance time is charged.
-- **B. Correct:** Deployment-slot traffic is unsupported for this scaling feature. The documented automatic scaling feature does not scale based on slot traffic.
-- **C. Incorrect:** It is the same configuration as Azure Monitor schedule rules. Automatic HTTP scaling and Azure Monitor autoscale are distinct.
-- **D. Incorrect:** It provides paid Premium features on Free plans. The feature requires supported Premium tiers.
+- **A. Correct:** The allocated prewarmed instance is billable while it is held as a buffer. Allocated prewarmed instances are billed even before they serve application requests; the scenario confirms that this buffer exists.
+- **B. Correct:** The staging-slot traffic is unsupported as input for this automatic scaling feature. Automatic HTTP scaling does not support deployment-slot traffic, so that load test cannot be treated as supported production scaling input.
+- **C. Incorrect:** The prewarmed instance becomes billable only after it starts serving application requests. Billing begins when the prewarmed instance is allocated, not when it becomes an active request-serving worker.
+- **D. Incorrect:** The staging slot has the same supported automatic HTTP scaling behavior as the production app. The feature excludes deployment-slot traffic; production-app support does not extend it to the slot.
 
-Study: [knowledge file](../knowledge/compute/app-service/scaling.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/scaling.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-best-practices)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling)
 
 ## co-slot-sticky
 

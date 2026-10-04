@@ -218,27 +218,27 @@ D. Only set a larger maximum autoscale count.
 
 Topic: Compute › App Service scale up, scale out, and autoscale.
 
-An App Service plan must run more instances at 08:00 each weekday based on a schedule. Which scaling mechanism should be used?
+A Standard App Service plan normally runs two instances. It must run four instances from 08:00 to 18:00 every Monday through Friday, using UTC, and two at other times regardless of CPU demand. Which Azure Monitor autoscale configuration implements this recurring capacity schedule?
 
 Select **1**. Difficulty: applied.
 
-A. Azure Monitor autoscale with a scheduled profile.
-B. App Service automatic scaling based only on HTTP traffic.
-C. A deployment-slot swap at 08:00.
-D. A higher SKU without any scheduled scaling configuration.
+A. Use weekday 08:00 profiles fixed at four instances and weekday 18:00 profiles fixed at two instances.
+B. Use weekday 08:00 profiles fixed at two instances and weekday 18:00 profiles fixed at four instances.
+C. Use daily 08:00 profiles fixed at four instances and daily 18:00 profiles fixed at two instances.
+D. Use weekday 08:00 profiles fixed at four instances and weekday 18:00 profiles also fixed at four instances.
 
 ## co-web-autolimits
 
 Topic: Compute › App Service scale up, scale out, and autoscale.
 
-You evaluate App Service automatic HTTP scaling. Which TWO points belong in the cost and compatibility review?
+A Premium v3 web app uses App Service automatic HTTP scaling. Five always-ready instances are serving requests, and one additional prewarmed instance is allocated as a buffer. The app also has a staging slot used for load testing. Which TWO statements are correct about cost and scaling support? Select two individual statements.
 
 Select **2**. Difficulty: applied.
 
-A. Prewarmed instances are billable.
-B. Deployment-slot traffic is unsupported for this scaling feature.
-C. It is the same configuration as Azure Monitor schedule rules.
-D. It provides paid Premium features on Free plans.
+A. The allocated prewarmed instance is billable while it is held as a buffer.
+B. The staging-slot traffic is unsupported as input for this automatic scaling feature.
+C. The prewarmed instance becomes billable only after it starts serving application requests.
+D. The staging slot has the same supported automatic HTTP scaling behavior as the production app.
 
 ## co-slot-sticky
 

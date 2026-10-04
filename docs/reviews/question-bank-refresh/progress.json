@@ -3580,9 +3580,9 @@
     {
       "id": "compute.app-service.scaling",
       "title": "App Service scale up, scale out, and autoscale",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.app-service.scaling.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-web-scale-up",
@@ -3597,9 +3597,9 @@
           ],
           "baselineHash": "09622b498128048891a98d45646a1045f8401140e25f640a28e730518e651661",
           "baselineContentHash": "277fc7f500ceb276b7097cb5b1c98af9fcc74ee92cddc85e70f08ef7d2c130bd",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "527eee9f4f4371774d8882c2f4aa7edb4b31e2181b1bce930eb46b57b43daf72"
         },
         {
           "id": "co-web-schedule",
@@ -3614,9 +3614,9 @@
           ],
           "baselineHash": "9a9aad98c1d9093976e82d5d405f03ccc5f8c9cbe0bcf47698a4ad09b5b9a63c",
           "baselineContentHash": "5aeea7e29cfc3f8ea4931c82d69e567b34144650f1bc13961e146d891ba8ac20",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "66ec3859a5fe3eab18ad81155acc2d58a5d71973e6b5dc91607149168d94db85"
         },
         {
           "id": "co-web-autolimits",
@@ -3631,9 +3631,9 @@
           ],
           "baselineHash": "3205fd6f69449d79e55418c282866932bf14e7b817b7b8dd23dc5204a68173ba",
           "baselineContentHash": "1919f49758e95731c39fd49167161184b3039ccd4eaee25ef1f7a00471c91753",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "e40afe7bf52a705631c50cc7dc1117a1706c409ef65cec64bd0338f9f9ce4a43"
         }
       ]
     },
