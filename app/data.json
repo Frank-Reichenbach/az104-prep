@@ -7900,39 +7900,39 @@
         "https://learn.microsoft.com/en-us/azure/network-watcher/network-insights-overview",
         "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-network-continuous",
       "family": "mo-network-continuous",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.insights.networks",
       "objectives": [
         "mo-05"
       ],
       "difficulty": "applied",
-      "prompt": "Network Insights shows your resources, but you need recurring latency/reachability measurements between two endpoints. What should you configure?",
+      "prompt": "Network Insights shows a source Azure VM and destination endpoint, but no connection tests are configured. You need recurring measurements of their TCP reachability and round-trip time, with history across the day. Which Network Watcher capability supplies that monitoring?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Only rename the topology resources.",
-          "explanation": "Names do not start probes."
+          "text": "Run one Connection troubleshoot diagnostic for the endpoint.",
+          "explanation": "A single diagnostic examines current connectivity; it does not configure recurring monitoring history."
         },
         {
           "id": "b",
-          "text": "Connection Monitor tests for those endpoints.",
-          "explanation": "Continuous connection tests need explicit configuration."
+          "text": "Configure a Connection Monitor test for the source, destination, and TCP port.",
+          "explanation": "Connection Monitor repeatedly tests the configured endpoints and records reachability and round-trip measurements."
         },
         {
           "id": "c",
-          "text": "Only change dashboard colors.",
-          "explanation": "Formatting does not collect measurements."
+          "text": "Run Next hop for the destination IP.",
+          "explanation": "Route selection evidence is not recurring end-to-end reachability and latency measurement."
         },
         {
           "id": "d",
-          "text": "A resource lock on the source VM.",
-          "explanation": "A lock does not initiate network tests."
+          "text": "Run IP flow verify for the source VM and destination port.",
+          "explanation": "Filtering-rule evaluation does not configure recurring live connection and latency tests."
         }
       ],
       "correct": [
@@ -7941,41 +7941,42 @@
       "knowledge": "knowledge/monitoring/insights/networks.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/network-watcher/network-insights-overview",
-        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview"
+        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-network-flow-new",
       "family": "mo-network-flow-new",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.insights.networks",
       "objectives": [
         "mo-05"
       ],
       "difficulty": "applied",
-      "prompt": "You are selecting traffic logging for a new VNet deployment under current Microsoft guidance. Which choice fits the NSG flow-log retirement?",
+      "prompt": "You need a new supported Network Watcher flow-logging configuration for traffic across a VNet, with IP addresses and ports recorded in Storage. The VNet has several VM subnets. Follow current Microsoft guidance after new NSG flow-log creation ended. Which collection design meets the goal?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Create new NSG flow logs indefinitely.",
-          "explanation": "New creation is no longer supported."
+          "text": "Create new NSG flow logs for every subnet NSG.",
+          "explanation": "New NSG flow-log creation is no longer supported; migration guidance directs new designs to VNet flow logs."
         },
         {
           "id": "b",
-          "text": "Use the Activity Log as a record of every IP flow.",
-          "explanation": "Management events are not IP traffic-flow records."
+          "text": "Configure Connection Monitor synthetic tests between selected VM pairs.",
+          "explanation": "Synthetic reachability tests do not record the VNet’s observed traffic flows into Storage."
         },
         {
           "id": "c",
-          "text": "Use virtual network flow logs.",
-          "explanation": "Microsoft directs new/migrating designs to VNet flow logs."
+          "text": "Configure virtual network flow logs for the VNet and its Storage destination.",
+          "explanation": "VNet flow logs record supported observed IP traffic at VNet scope and are the current replacement for NSG flow logs."
         },
         {
           "id": "d",
-          "text": "Use only DNS records to count all network flows.",
-          "explanation": "DNS records do not provide flow logging."
+          "text": "Run a packet capture on one VM in one subnet.",
+          "explanation": "A per-VM capture does not provide the requested VNet-scoped flow-logging configuration across several subnets."
         }
       ],
       "correct": [
@@ -7983,10 +7984,11 @@
       ],
       "knowledge": "knowledge/monitoring/insights/networks.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/network-watcher/network-insights-overview",
-        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview"
+        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/nsg-flow-logs-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-storage-color",

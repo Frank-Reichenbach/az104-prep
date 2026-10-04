@@ -5482,9 +5482,9 @@
     {
       "id": "monitoring.insights.networks",
       "title": "Network Insights topology, health, and traffic",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.insights.networks.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-network-topology",
@@ -5499,9 +5499,9 @@
           ],
           "baselineHash": "1a89e135ba887ba30939d1df124dfa3738bb335b3f65e400943edfbe498b02dd",
           "baselineContentHash": "741d69b2254eb552237bfb7a1417be4187f0dfa771449927dd2abe9f95d28740",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "af9663fe5b1d9e3b053226922ef483a2e904f0250c305b24b29cbcbe6a648019"
         },
         {
           "id": "mo-network-continuous",
@@ -5516,9 +5516,9 @@
           ],
           "baselineHash": "e381d3a8a8a1b25e0c87e042abef01143ce100319c4c314b504555fc595b8269",
           "baselineContentHash": "73205d8fa24a53e9c51afec7d74401fdcbf080ecb063243ac2cc91c145e74223",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "4cc32c573a04eb7bcb1c5866251f8de701e02fd20280276cd9a1b2064838ed65"
         },
         {
           "id": "mo-network-flow-new",
@@ -5533,9 +5533,9 @@
           ],
           "baselineHash": "7d2edea1eebd96f065da00565e8db23347b48dc2fefe5b50906b1b2dd34d9ae3",
           "baselineContentHash": "a5be57b3a0f3b01942c78298d8ea935afa49cd19ce67f331a9dc321db5831265",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "e6bb2952bf09825cd6a675a34cd6973c010c2d449e7dae5be665f2c933c76756"
         }
       ]
     },

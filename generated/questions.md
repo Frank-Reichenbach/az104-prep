@@ -2038,27 +2038,27 @@ D. Continuous probes have automatically been configured.
 
 Topic: Monitoring and recovery › Network Insights topology, health, and traffic.
 
-Network Insights shows your resources, but you need recurring latency/reachability measurements between two endpoints. What should you configure?
+Network Insights shows a source Azure VM and destination endpoint, but no connection tests are configured. You need recurring measurements of their TCP reachability and round-trip time, with history across the day. Which Network Watcher capability supplies that monitoring?
 
 Select **1**. Difficulty: applied.
 
-A. Only rename the topology resources.
-B. Connection Monitor tests for those endpoints.
-C. Only change dashboard colors.
-D. A resource lock on the source VM.
+A. Run one Connection troubleshoot diagnostic for the endpoint.
+B. Configure a Connection Monitor test for the source, destination, and TCP port.
+C. Run Next hop for the destination IP.
+D. Run IP flow verify for the source VM and destination port.
 
 ## mo-network-flow-new
 
 Topic: Monitoring and recovery › Network Insights topology, health, and traffic.
 
-You are selecting traffic logging for a new VNet deployment under current Microsoft guidance. Which choice fits the NSG flow-log retirement?
+You need a new supported Network Watcher flow-logging configuration for traffic across a VNet, with IP addresses and ports recorded in Storage. The VNet has several VM subnets. Follow current Microsoft guidance after new NSG flow-log creation ended. Which collection design meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Create new NSG flow logs indefinitely.
-B. Use the Activity Log as a record of every IP flow.
-C. Use virtual network flow logs.
-D. Use only DNS records to count all network flows.
+A. Create new NSG flow logs for every subnet NSG.
+B. Configure Connection Monitor synthetic tests between selected VM pairs.
+C. Configure virtual network flow logs for the VNet and its Storage destination.
+D. Run a packet capture on one VM in one subnet.
 
 ## mo-storage-color
 

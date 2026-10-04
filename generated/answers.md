@@ -2652,7 +2652,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** The VM's guest login succeeds. Topology does not validate guest credentials.
 - **D. Incorrect:** Continuous probes have automatically been configured. Inventory visibility does not create those tests.
 
-Study: [knowledge file](../knowledge/monitoring/insights/networks.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/insights/networks.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/network-insights-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview)
 
@@ -2660,35 +2660,35 @@ Study: [knowledge file](../knowledge/monitoring/insights/networks.md). Evidence 
 
 Topic: Monitoring and recovery › Network Insights topology, health, and traffic.
 
-Network Insights shows your resources, but you need recurring latency/reachability measurements between two endpoints. What should you configure?
+Network Insights shows a source Azure VM and destination endpoint, but no connection tests are configured. You need recurring measurements of their TCP reachability and round-trip time, with history across the day. Which Network Watcher capability supplies that monitoring?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Only rename the topology resources. Names do not start probes.
-- **B. Correct:** Connection Monitor tests for those endpoints. Continuous connection tests need explicit configuration.
-- **C. Incorrect:** Only change dashboard colors. Formatting does not collect measurements.
-- **D. Incorrect:** A resource lock on the source VM. A lock does not initiate network tests.
+- **A. Incorrect:** Run one Connection troubleshoot diagnostic for the endpoint. A single diagnostic examines current connectivity; it does not configure recurring monitoring history.
+- **B. Correct:** Configure a Connection Monitor test for the source, destination, and TCP port. Connection Monitor repeatedly tests the configured endpoints and records reachability and round-trip measurements.
+- **C. Incorrect:** Run Next hop for the destination IP. Route selection evidence is not recurring end-to-end reachability and latency measurement.
+- **D. Incorrect:** Run IP flow verify for the source VM and destination port. Filtering-rule evaluation does not configure recurring live connection and latency tests.
 
-Study: [knowledge file](../knowledge/monitoring/insights/networks.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/insights/networks.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/network-insights-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/network-insights-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview)
 
 ## mo-network-flow-new
 
 Topic: Monitoring and recovery › Network Insights topology, health, and traffic.
 
-You are selecting traffic logging for a new VNet deployment under current Microsoft guidance. Which choice fits the NSG flow-log retirement?
+You need a new supported Network Watcher flow-logging configuration for traffic across a VNet, with IP addresses and ports recorded in Storage. The VNet has several VM subnets. Follow current Microsoft guidance after new NSG flow-log creation ended. Which collection design meets the goal?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Create new NSG flow logs indefinitely. New creation is no longer supported.
-- **B. Incorrect:** Use the Activity Log as a record of every IP flow. Management events are not IP traffic-flow records.
-- **C. Correct:** Use virtual network flow logs. Microsoft directs new/migrating designs to VNet flow logs.
-- **D. Incorrect:** Use only DNS records to count all network flows. DNS records do not provide flow logging.
+- **A. Incorrect:** Create new NSG flow logs for every subnet NSG. New NSG flow-log creation is no longer supported; migration guidance directs new designs to VNet flow logs.
+- **B. Incorrect:** Configure Connection Monitor synthetic tests between selected VM pairs. Synthetic reachability tests do not record the VNet’s observed traffic flows into Storage.
+- **C. Correct:** Configure virtual network flow logs for the VNet and its Storage destination. VNet flow logs record supported observed IP traffic at VNet scope and are the current replacement for NSG flow logs.
+- **D. Incorrect:** Run a packet capture on one VM in one subnet. A per-VM capture does not provide the requested VNet-scoped flow-logging configuration across several subnets.
 
-Study: [knowledge file](../knowledge/monitoring/insights/networks.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/insights/networks.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/network-insights-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/nsg-flow-logs-overview)
 
 ## mo-storage-color
 
