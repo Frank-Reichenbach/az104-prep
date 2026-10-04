@@ -5662,9 +5662,9 @@
     {
       "id": "monitoring.backup.recovery-vault",
       "title": "Recovery Services vault configuration",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.backup.recovery-vault.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-rsv-region",
@@ -5679,9 +5679,9 @@
           ],
           "baselineHash": "fca83cf6480c4e4171c7301d36b92e531385ff9b653a593a8b22bb51e773973d",
           "baselineContentHash": "b03fca5ad83fc37956064c04d6ee437aa6ad4e22b574a98c239ee13b0030877f",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "080bbdb8aeeabd965cf50a06b3e5772af2f151141f5f4ee231e11614270fcdbb"
         },
         {
           "id": "mo-rsv-redundancy",
@@ -5696,9 +5696,9 @@
           ],
           "baselineHash": "4a5b2183b4bc439f93b838d9bdaf03b73da741dad5950c3e28f99171d38fb835",
           "baselineContentHash": "02f4edcb8a5a54d4e6ee89da1eca888bac8cda5fa92b29c6f222820722691678",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "dc3758bd09d7efa22841e739bd5e84feb422b225c3050fdeda09c18c2363d319"
         },
         {
           "id": "mo-rsv-crr",
@@ -5713,9 +5713,9 @@
           ],
           "baselineHash": "a1fbe93cb8c75e3a00390f41e2256b79af5019d7178000efecdb6549aae5ea87",
           "baselineContentHash": "e501217de0ca8b0359de902dfa80f5f1f78f02d3bd8edcff5bd67fcd1ff89c30",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "92a95ae1d6ab644a2bc08c59175d7583b8d77a5a62168f7d701964a78bcf31c5"
         }
       ]
     },

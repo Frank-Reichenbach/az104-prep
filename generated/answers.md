@@ -2494,48 +2494,48 @@ You configure Azure VM backup to a Recovery Services vault. Which location requi
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** The vault must be in the VM's region. Azure VM backup uses a vault in the same region.
-- **B. Incorrect:** Any region works if the names match. Names do not override region requirements.
-- **C. Incorrect:** Only a region different from the VM is allowed. Primary backup enrollment is not configured this way.
-- **D. Incorrect:** The vault has no region because all vaults are global. A Recovery Services vault is a regional resource.
+- **A. Correct:** The vault must be in the VM's region. Primary Azure VM backup enrollment requires a vault in the same region as the VM.
+- **B. Incorrect:** The vault must be in the VM region's paired region. The paired region is relevant to secondary recovery, not the location of the primary vault used to enroll this VM.
+- **C. Incorrect:** The vault must be in any region outside the VM region. This reverses the same-region requirement for primary backup enrollment.
+- **D. Incorrect:** The vault can be in another region if it is in the same resource group. Resource-group placement does not override the vault and VM region requirement.
 
-Study: [knowledge file](../knowledge/monitoring/backup/recovery-services-vault.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/recovery-services-vault.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-create-recovery-services-vault) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-create-recovery-services-vault)
 
 ## mo-rsv-redundancy
 
 Topic: Monitoring and recovery › Recovery Services vault configuration.
 
-You have not protected any item in a new Recovery Services vault. When should you decide its storage replication type?
+A new Recovery Services vault uses GRS and has no configured backup items. The approved design requires LRS. Which sequence changes the existing vault configuration without deleting backup data?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Only after several successful backups. The setting becomes unavailable for ordinary change after backup configuration.
-- **B. Correct:** Before configuring the first backup. This is the documented timing for selecting replication.
-- **C. Incorrect:** At each individual file restore. Restore does not redefine vault replication.
-- **D. Incorrect:** By changing the VM's NSG. NSGs do not configure vault storage redundancy.
+- **A. Incorrect:** Configure VM backup, run a successful backup, then change the vault replication type to LRS. Ordinary replication-type modification is disabled after backup is configured; waiting for a recovery point does not help.
+- **B. Correct:** Change the vault replication type to LRS, then configure the first VM backup. The empty vault still permits this configuration change before backup enrollment.
+- **C. Incorrect:** Configure VM backup, then select LRS in the individual VM restore options. Restore options do not change the existing vault replication type.
+- **D. Incorrect:** Configure VM backup, then change the source VM disk redundancy to LRS. Source-disk redundancy does not configure the vault storage replication type.
 
-Study: [knowledge file](../knowledge/monitoring/backup/recovery-services-vault.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/recovery-services-vault.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-create-recovery-services-vault) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-create-recovery-services-vault)
 
 ## mo-rsv-crr
 
 Topic: Monitoring and recovery › Recovery Services vault configuration.
 
-For a supported Azure VM workload, which vault redundancy is required to enable Cross Region Restore?
+You are configuring a new Recovery Services vault for a supported Azure VM workload and supported region pair. The design requires user-initiated restore in the secondary paired region. Which complete configuration meets that requirement?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** LRS. Locally redundant storage does not supply the secondary-region copy.
-- **B. Incorrect:** ZRS only. Zone redundancy remains within a region.
-- **C. Correct:** GRS. Cross Region Restore requires a geo-redundant vault and workload support.
-- **D. Incorrect:** A public IP with global tier. IP routing tier is unrelated to backup redundancy.
+- **A. Incorrect:** Use LRS and enable Cross Subscription Restore. LRS does not provide the secondary-region copy; restoring across subscriptions is a different capability.
+- **B. Incorrect:** Use ZRS and enable Cross Subscription Restore. Zone redundancy stays within one region, and cross-subscription restore does not supply Cross Region Restore.
+- **C. Correct:** Use GRS and enable Cross Region Restore. GRS supplies the required geo-redundant vault storage; enabling Cross Region Restore provides the supported user-initiated secondary-region restore capability.
+- **D. Incorrect:** Use GRS and leave Cross Region Restore disabled. GRS alone does not enable the requested user-initiated Cross Region Restore capability.
 
-Study: [knowledge file](../knowledge/monitoring/backup/recovery-services-vault.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/recovery-services-vault.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-create-recovery-services-vault) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-create-recovery-services-vault)
 
 ## mo-reports-pipeline
 

@@ -1913,35 +1913,35 @@ You configure Azure VM backup to a Recovery Services vault. Which location requi
 Select **1**. Difficulty: foundation.
 
 A. The vault must be in the VM's region.
-B. Any region works if the names match.
-C. Only a region different from the VM is allowed.
-D. The vault has no region because all vaults are global.
+B. The vault must be in the VM region's paired region.
+C. The vault must be in any region outside the VM region.
+D. The vault can be in another region if it is in the same resource group.
 
 ## mo-rsv-redundancy
 
 Topic: Monitoring and recovery › Recovery Services vault configuration.
 
-You have not protected any item in a new Recovery Services vault. When should you decide its storage replication type?
+A new Recovery Services vault uses GRS and has no configured backup items. The approved design requires LRS. Which sequence changes the existing vault configuration without deleting backup data?
 
 Select **1**. Difficulty: applied.
 
-A. Only after several successful backups.
-B. Before configuring the first backup.
-C. At each individual file restore.
-D. By changing the VM's NSG.
+A. Configure VM backup, run a successful backup, then change the vault replication type to LRS.
+B. Change the vault replication type to LRS, then configure the first VM backup.
+C. Configure VM backup, then select LRS in the individual VM restore options.
+D. Configure VM backup, then change the source VM disk redundancy to LRS.
 
 ## mo-rsv-crr
 
 Topic: Monitoring and recovery › Recovery Services vault configuration.
 
-For a supported Azure VM workload, which vault redundancy is required to enable Cross Region Restore?
+You are configuring a new Recovery Services vault for a supported Azure VM workload and supported region pair. The design requires user-initiated restore in the secondary paired region. Which complete configuration meets that requirement?
 
 Select **1**. Difficulty: applied.
 
-A. LRS.
-B. ZRS only.
-C. GRS.
-D. A public IP with global tier.
+A. Use LRS and enable Cross Subscription Restore.
+B. Use ZRS and enable Cross Subscription Restore.
+C. Use GRS and enable Cross Region Restore.
+D. Use GRS and leave Cross Region Restore disabled.
 
 ## mo-reports-pipeline
 
