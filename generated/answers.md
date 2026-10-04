@@ -2388,52 +2388,52 @@ Study: [knowledge file](../knowledge/monitoring/backup/azure-files.md). Evidence
 
 Topic: Monitoring and recovery › Backup schedules, retention, and policy selection.
 
-A supported Azure VM workload needs several scheduled recovery points per day, as frequently as every four hours. Which VM backup policy subtype supports this?
+A supported Azure VM needs scheduled recovery snapshots every four hours throughout a 24-hour window. Which VM backup policy configuration meets that frequency?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Enhanced policy. It supports the documented multiple-daily VM schedule.
-- **B. Incorrect:** Only changing Standard daily retention to four years. Retention length does not create a four-hour schedule.
-- **C. Incorrect:** Only a storage account tag named Hourly. Tags do not define VM backup schedules.
-- **D. Incorrect:** Only a vault NSG allow rule. Network permission does not define backup frequency.
+- **A. Correct:** Enhanced policy with an hourly schedule set to every 4 hours across the 24-hour window. Enhanced policy supports this recurring schedule and multiple daily snapshots.
+- **B. Incorrect:** Standard policy with a daily schedule and four-year retention. Longer retention does not change a daily schedule into four-hour backups.
+- **C. Incorrect:** Enhanced policy with a daily schedule and four-day snapshot retention. Four days is a retention duration, while the daily schedule still creates only the daily scheduled backup.
+- **D. Incorrect:** Enhanced policy with an hourly schedule set to every 12 hours across the 24-hour window. This schedules twelve-hour intervals rather than the required four-hour intervals.
 
-Study: [knowledge file](../knowledge/monitoring/backup/policies.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/policies.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-enhanced-policy)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-enhanced-policy) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare)
 
 ## mo-policy-retention
 
 Topic: Monitoring and recovery › Backup schedules, retention, and policy selection.
 
-Which configuration governs how long backup recovery points remain available?
+For scheduled Azure VM backups, which policy setting governs how long selected vaulted recovery points are retained, rather than when a backup starts?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Incorrect:** Only the backup start time. Start time determines schedule rather than retention duration.
-- **B. Correct:** The policy's applicable retention settings. Retention governs how long selected points remain.
-- **C. Incorrect:** The VM's DNS TTL. DNS caching is unrelated to backup retention.
-- **D. Incorrect:** The action-group display name. Notification labeling does not preserve recovery points.
+- **A. Incorrect:** The backup schedule start time. The start time controls when backups run, not how long recovery points are kept.
+- **B. Correct:** The applicable vaulted recovery-point retention settings. These retention rules determine how long the selected vaulted recovery points remain.
+- **C. Incorrect:** The interval between scheduled backups. The interval controls backup frequency, not the retention duration of vaulted points.
+- **D. Incorrect:** The Instant Restore snapshot retention duration alone. Snapshot retention applies to the snapshot tier; it does not replace vaulted recovery-point retention.
 
-Study: [knowledge file](../knowledge/monitoring/backup/policies.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/policies.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-enhanced-policy)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-enhanced-policy) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare)
 
 ## mo-policy-job
 
 Topic: Monitoring and recovery › Backup schedules, retention, and policy selection.
 
-A backup policy is assigned with the intended schedule, but recent jobs failed. Can you claim the latest scheduled recovery point exists?
+vm-app has the intended daily backup policy. Today’s scheduled job shows Failed. Before reporting whether a usable recovery point exists for today, which evidence should you inspect?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Incorrect:** Yes; policy assignment guarantees every recovery point. Configured intent does not establish job success.
-- **B. Incorrect:** Yes; any notification email creates the recovery point. Notifications do not perform the backup themselves.
-- **C. Correct:** No; inspect successful jobs and actual recovery points. Failed scheduled jobs may not supply the intended point.
-- **D. Incorrect:** Yes; extending retention recreates missed historical backups. Retention cannot reconstruct a backup that was not taken.
+- **A. Incorrect:** The assigned policy’s scheduled start time alone. The schedule establishes intended execution, not successful creation of a recovery point.
+- **B. Incorrect:** The backup failure notification’s delivery time alone. Notification delivery establishes an alert event, not availability of a usable recovery point.
+- **C. Correct:** The backup job details and the VM’s available recovery points, including their timestamps and state. These show actual operation results and available restore evidence, rather than assuming the configured schedule succeeded.
+- **D. Incorrect:** The policy’s newly extended retention duration alone. Retention can preserve captured points longer; it does not reconstruct missing historical backups.
 
-Study: [knowledge file](../knowledge/monitoring/backup/policies.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/policies.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-enhanced-policy)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-manage-vms)
 
 ## mo-protection-locked
 

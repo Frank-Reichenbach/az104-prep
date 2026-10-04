@@ -5842,9 +5842,9 @@
     {
       "id": "monitoring.backup.policies",
       "title": "Backup schedules, retention, and policy selection",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.backup.policies.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-policy-frequency",
@@ -5859,9 +5859,9 @@
           ],
           "baselineHash": "66acc7ed75f556fd9625b985044579eaaf18761a4b0706f1c226b474557a0967",
           "baselineContentHash": "06f99eada2d186d15e9f7a63c4e5f4108f6e605b9950df7e3280fcd3a512dc70",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "85e1b294e8abcb570ccd4b5f805fdfb89ae0ee9e31d9a22439e405a1fe5fec7b"
         },
         {
           "id": "mo-policy-retention",
@@ -5876,9 +5876,9 @@
           ],
           "baselineHash": "e6370efed209d3953bed2aec51af6451f5c41c0db487b006ea3af0d735f0571d",
           "baselineContentHash": "a9ac7985257f2f1f16a9ca04116875e50a035c9537fb148af72b54efe4d74a4a",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "27c1de90df650a2a2f249b8ac5dd4e36d8f83fcc67254ab3b05ed386fd0f3e31"
         },
         {
           "id": "mo-policy-job",
@@ -5893,9 +5893,9 @@
           ],
           "baselineHash": "5726a2d25f3b967ea5326f2f49201f75d185cbd4f2b87b4b7b5afd2da784293d",
           "baselineContentHash": "d40ba30eb6b3f26609321ebbb2154f0ed065c5b8281ebdaf9fc8404c8384e7bd",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "7305021da64ae48801196a9adc74a7b6f6bc225e1c13fe6028c1605572ec6d96"
         }
       ]
     },

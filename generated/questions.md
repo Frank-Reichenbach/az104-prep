@@ -1830,40 +1830,40 @@ D. The vault's display name.
 
 Topic: Monitoring and recovery › Backup schedules, retention, and policy selection.
 
-A supported Azure VM workload needs several scheduled recovery points per day, as frequently as every four hours. Which VM backup policy subtype supports this?
+A supported Azure VM needs scheduled recovery snapshots every four hours throughout a 24-hour window. Which VM backup policy configuration meets that frequency?
 
 Select **1**. Difficulty: applied.
 
-A. Enhanced policy.
-B. Only changing Standard daily retention to four years.
-C. Only a storage account tag named Hourly.
-D. Only a vault NSG allow rule.
+A. Enhanced policy with an hourly schedule set to every 4 hours across the 24-hour window.
+B. Standard policy with a daily schedule and four-year retention.
+C. Enhanced policy with a daily schedule and four-day snapshot retention.
+D. Enhanced policy with an hourly schedule set to every 12 hours across the 24-hour window.
 
 ## mo-policy-retention
 
 Topic: Monitoring and recovery › Backup schedules, retention, and policy selection.
 
-Which configuration governs how long backup recovery points remain available?
+For scheduled Azure VM backups, which policy setting governs how long selected vaulted recovery points are retained, rather than when a backup starts?
 
 Select **1**. Difficulty: foundation.
 
-A. Only the backup start time.
-B. The policy's applicable retention settings.
-C. The VM's DNS TTL.
-D. The action-group display name.
+A. The backup schedule start time.
+B. The applicable vaulted recovery-point retention settings.
+C. The interval between scheduled backups.
+D. The Instant Restore snapshot retention duration alone.
 
 ## mo-policy-job
 
 Topic: Monitoring and recovery › Backup schedules, retention, and policy selection.
 
-A backup policy is assigned with the intended schedule, but recent jobs failed. Can you claim the latest scheduled recovery point exists?
+vm-app has the intended daily backup policy. Today’s scheduled job shows Failed. Before reporting whether a usable recovery point exists for today, which evidence should you inspect?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Yes; policy assignment guarantees every recovery point.
-B. Yes; any notification email creates the recovery point.
-C. No; inspect successful jobs and actual recovery points.
-D. Yes; extending retention recreates missed historical backups.
+A. The assigned policy’s scheduled start time alone.
+B. The backup failure notification’s delivery time alone.
+C. The backup job details and the VM’s available recovery points, including their timestamps and state.
+D. The policy’s newly extended retention duration alone.
 
 ## mo-protection-locked
 

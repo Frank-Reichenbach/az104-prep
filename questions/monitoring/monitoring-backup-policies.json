@@ -4,34 +4,34 @@
     {
       "id": "mo-policy-frequency",
       "family": "mo-policy-frequency",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.backup.policies",
       "objectives": [
         "mo-09"
       ],
       "difficulty": "applied",
-      "prompt": "A supported Azure VM workload needs several scheduled recovery points per day, as frequently as every four hours. Which VM backup policy subtype supports this?",
+      "prompt": "A supported Azure VM needs scheduled recovery snapshots every four hours throughout a 24-hour window. Which VM backup policy configuration meets that frequency?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Enhanced policy.",
-          "explanation": "It supports the documented multiple-daily VM schedule."
+          "text": "Enhanced policy with an hourly schedule set to every 4 hours across the 24-hour window.",
+          "explanation": "Enhanced policy supports this recurring schedule and multiple daily snapshots."
         },
         {
           "id": "b",
-          "text": "Only changing Standard daily retention to four years.",
-          "explanation": "Retention length does not create a four-hour schedule."
+          "text": "Standard policy with a daily schedule and four-year retention.",
+          "explanation": "Longer retention does not change a daily schedule into four-hour backups."
         },
         {
           "id": "c",
-          "text": "Only a storage account tag named Hourly.",
-          "explanation": "Tags do not define VM backup schedules."
+          "text": "Enhanced policy with a daily schedule and four-day snapshot retention.",
+          "explanation": "Four days is a retention duration, while the daily schedule still creates only the daily scheduled backup."
         },
         {
           "id": "d",
-          "text": "Only a vault NSG allow rule.",
-          "explanation": "Network permission does not define backup frequency."
+          "text": "Enhanced policy with an hourly schedule set to every 12 hours across the 24-hour window.",
+          "explanation": "This schedules twelve-hour intervals rather than the required four-hour intervals."
         }
       ],
       "correct": [
@@ -39,43 +39,42 @@
       ],
       "knowledge": "knowledge/monitoring/backup/policies.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction",
-        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare",
-        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-enhanced-policy"
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-enhanced-policy",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-policy-retention",
       "family": "mo-policy-retention",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.backup.policies",
       "objectives": [
         "mo-09"
       ],
       "difficulty": "foundation",
-      "prompt": "Which configuration governs how long backup recovery points remain available?",
+      "prompt": "For scheduled Azure VM backups, which policy setting governs how long selected vaulted recovery points are retained, rather than when a backup starts?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Only the backup start time.",
-          "explanation": "Start time determines schedule rather than retention duration."
+          "text": "The backup schedule start time.",
+          "explanation": "The start time controls when backups run, not how long recovery points are kept."
         },
         {
           "id": "b",
-          "text": "The policy's applicable retention settings.",
-          "explanation": "Retention governs how long selected points remain."
+          "text": "The applicable vaulted recovery-point retention settings.",
+          "explanation": "These retention rules determine how long the selected vaulted recovery points remain."
         },
         {
           "id": "c",
-          "text": "The VM's DNS TTL.",
-          "explanation": "DNS caching is unrelated to backup retention."
+          "text": "The interval between scheduled backups.",
+          "explanation": "The interval controls backup frequency, not the retention duration of vaulted points."
         },
         {
           "id": "d",
-          "text": "The action-group display name.",
-          "explanation": "Notification labeling does not preserve recovery points."
+          "text": "The Instant Restore snapshot retention duration alone.",
+          "explanation": "Snapshot retention applies to the snapshot tier; it does not replace vaulted recovery-point retention."
         }
       ],
       "correct": [
@@ -83,43 +82,42 @@
       ],
       "knowledge": "knowledge/monitoring/backup/policies.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction",
-        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare",
-        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-enhanced-policy"
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-enhanced-policy",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-policy-job",
       "family": "mo-policy-job",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.backup.policies",
       "objectives": [
         "mo-09"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A backup policy is assigned with the intended schedule, but recent jobs failed. Can you claim the latest scheduled recovery point exists?",
+      "prompt": "vm-app has the intended daily backup policy. Today\u2019s scheduled job shows Failed. Before reporting whether a usable recovery point exists for today, which evidence should you inspect?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Yes; policy assignment guarantees every recovery point.",
-          "explanation": "Configured intent does not establish job success."
+          "text": "The assigned policy\u2019s scheduled start time alone.",
+          "explanation": "The schedule establishes intended execution, not successful creation of a recovery point."
         },
         {
           "id": "b",
-          "text": "Yes; any notification email creates the recovery point.",
-          "explanation": "Notifications do not perform the backup themselves."
+          "text": "The backup failure notification\u2019s delivery time alone.",
+          "explanation": "Notification delivery establishes an alert event, not availability of a usable recovery point."
         },
         {
           "id": "c",
-          "text": "No; inspect successful jobs and actual recovery points.",
-          "explanation": "Failed scheduled jobs may not supply the intended point."
+          "text": "The backup job details and the VM\u2019s available recovery points, including their timestamps and state.",
+          "explanation": "These show actual operation results and available restore evidence, rather than assuming the configured schedule succeeded."
         },
         {
           "id": "d",
-          "text": "Yes; extending retention recreates missed historical backups.",
-          "explanation": "Retention cannot reconstruct a backup that was not taken."
+          "text": "The policy\u2019s newly extended retention duration alone.",
+          "explanation": "Retention can preserve captured points longer; it does not reconstruct missing historical backups."
         }
       ],
       "correct": [
@@ -127,11 +125,9 @@
       ],
       "knowledge": "knowledge/monitoring/backup/policies.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction",
-        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare",
-        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-enhanced-policy"
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-manage-vms"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }
