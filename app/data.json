@@ -1273,34 +1273,34 @@
     {
       "id": "co-web-backup-external",
       "family": "co-web-backup-external",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.backups",
       "objectives": [
         "co-22"
       ],
       "difficulty": "applied",
-      "prompt": "An App Service app has automatic backups and stores business data in an externally mounted Azure file share. What should the recovery design include?",
+      "prompt": "A Standard App Service app has automatic backups. It writes business documents to a custom-mounted Azure Files share. Recovery must restore both the app and those documents after accidental deletion. Which protection plan covers the separately stored documents?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Separate protection and restore procedures for the mounted share.",
-          "explanation": "Automatic App Service backups exclude custom-mounted Azure storage."
+          "text": "Keep app backups and separately protect and test restoration of the Azure Files share.",
+          "explanation": "Custom-mounted storage is excluded from App Service backups. Separate share protection and restore procedures cover the business documents."
         },
         {
           "id": "b",
-          "text": "Assume every mounted share is included in the automatic app backup.",
-          "explanation": "The documented scope does not include that external storage."
+          "text": "Keep automatic app backups and use an app restore to recover the mounted-share documents.",
+          "explanation": "Automatic app backups exclude custom-mounted Azure storage, so their app recovery points do not contain these documents."
         },
         {
           "id": "c",
-          "text": "Use an app-setting rename to bring the share into the backup.",
-          "explanation": "Renaming configuration does not change the backup coverage."
+          "text": "Replace automatic app backups with custom app backups and recover the share from their ZIP files.",
+          "explanation": "Custom app backups retain the same custom-mounted-storage exclusion; changing app backup type does not add the external documents."
         },
         {
           "id": "d",
-          "text": "Treat the source-code ZIP as a backup of all business data.",
-          "explanation": "The deployment artifact does not contain independently stored application data."
+          "text": "Keep app backups and restore the storage mount configuration to recover the share documents.",
+          "explanation": "Restoring a connection or mount configuration does not restore the external share content excluded from the app backup."
         }
       ],
       "correct": [
@@ -1310,39 +1310,39 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/app-service/manage-backup"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-web-backup-restore",
       "family": "co-web-backup-restore",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.backups",
       "objectives": [
         "co-22"
       ],
       "difficulty": "applied",
-      "prompt": "Before replacing a production App Service app with a backup, which approach provides useful recovery evidence?",
+      "prompt": "A production web app on a Standard App Service plan is serving users. You must demonstrate that an app backup produces a working application before replacing production content. Production must keep serving during the test. A disposable staging slot and isolated test dependencies are available. Which recovery test meets these requirements?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Restore to a supported separate app or slot and test the app and dependencies.",
-          "explanation": "A recovery test checks usable behavior and configuration beyond backup job status."
+          "text": "Restore into the staging slot and test the recovered app against the isolated dependencies.",
+          "explanation": "App Service stops the restore target, so using the staging slot preserves the production endpoint while functional checks establish recovery evidence."
         },
         {
           "id": "b",
-          "text": "Only check that the backup list contains a timestamp.",
-          "explanation": "A recorded backup does not prove the application can function after restoration."
+          "text": "Restore over production and test it after the restore completes.",
+          "explanation": "An in-place restore stops and overwrites the production target, violating the requirement to keep it serving during the test."
         },
         {
           "id": "c",
-          "text": "Edit the backup ZIP manually to make its timestamp newer.",
-          "explanation": "Altering backup artifacts can invalidate recovery."
+          "text": "Inspect the backup status and timestamp, then approve production replacement without restoring.",
+          "explanation": "Job metadata does not demonstrate that the recovered application starts and works with its required dependencies."
         },
         {
           "id": "d",
-          "text": "Assume app restoration recreates every identity and network dependency.",
-          "explanation": "Several related configurations and external services need separate recovery."
+          "text": "Restore into staging and check only the recovered file count before approving replacement.",
+          "explanation": "File presence alone does not establish working application behavior or successful access to the required test dependencies."
         }
       ],
       "correct": [
@@ -1352,7 +1352,7 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/app-service/manage-backup"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-web-backup-database",
@@ -1394,7 +1394,7 @@
       "sources": [
         "https://learn.microsoft.com/en-us/azure/app-service/manage-backup"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-domain-cname",

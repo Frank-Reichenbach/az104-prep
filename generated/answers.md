@@ -59,16 +59,16 @@ Study: [knowledge file](../knowledge/compute/app-service/apps.md). Evidence chec
 
 Topic: Compute › App Service backup configuration and restoration.
 
-An App Service app has automatic backups and stores business data in an externally mounted Azure file share. What should the recovery design include?
+A Standard App Service app has automatic backups. It writes business documents to a custom-mounted Azure Files share. Recovery must restore both the app and those documents after accidental deletion. Which protection plan covers the separately stored documents?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Separate protection and restore procedures for the mounted share. Automatic App Service backups exclude custom-mounted Azure storage.
-- **B. Incorrect:** Assume every mounted share is included in the automatic app backup. The documented scope does not include that external storage.
-- **C. Incorrect:** Use an app-setting rename to bring the share into the backup. Renaming configuration does not change the backup coverage.
-- **D. Incorrect:** Treat the source-code ZIP as a backup of all business data. The deployment artifact does not contain independently stored application data.
+- **A. Correct:** Keep app backups and separately protect and test restoration of the Azure Files share. Custom-mounted storage is excluded from App Service backups. Separate share protection and restore procedures cover the business documents.
+- **B. Incorrect:** Keep automatic app backups and use an app restore to recover the mounted-share documents. Automatic app backups exclude custom-mounted Azure storage, so their app recovery points do not contain these documents.
+- **C. Incorrect:** Replace automatic app backups with custom app backups and recover the share from their ZIP files. Custom app backups retain the same custom-mounted-storage exclusion; changing app backup type does not add the external documents.
+- **D. Incorrect:** Keep app backups and restore the storage mount configuration to recover the share documents. Restoring a connection or mount configuration does not restore the external share content excluded from the app backup.
 
-Study: [knowledge file](../knowledge/compute/app-service/backups.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/backups.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/manage-backup)
 
@@ -76,16 +76,16 @@ Study: [knowledge file](../knowledge/compute/app-service/backups.md). Evidence c
 
 Topic: Compute › App Service backup configuration and restoration.
 
-Before replacing a production App Service app with a backup, which approach provides useful recovery evidence?
+A production web app on a Standard App Service plan is serving users. You must demonstrate that an app backup produces a working application before replacing production content. Production must keep serving during the test. A disposable staging slot and isolated test dependencies are available. Which recovery test meets these requirements?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Restore to a supported separate app or slot and test the app and dependencies. A recovery test checks usable behavior and configuration beyond backup job status.
-- **B. Incorrect:** Only check that the backup list contains a timestamp. A recorded backup does not prove the application can function after restoration.
-- **C. Incorrect:** Edit the backup ZIP manually to make its timestamp newer. Altering backup artifacts can invalidate recovery.
-- **D. Incorrect:** Assume app restoration recreates every identity and network dependency. Several related configurations and external services need separate recovery.
+- **A. Correct:** Restore into the staging slot and test the recovered app against the isolated dependencies. App Service stops the restore target, so using the staging slot preserves the production endpoint while functional checks establish recovery evidence.
+- **B. Incorrect:** Restore over production and test it after the restore completes. An in-place restore stops and overwrites the production target, violating the requirement to keep it serving during the test.
+- **C. Incorrect:** Inspect the backup status and timestamp, then approve production replacement without restoring. Job metadata does not demonstrate that the recovered application starts and works with its required dependencies.
+- **D. Incorrect:** Restore into staging and check only the recovered file count before approving replacement. File presence alone does not establish working application behavior or successful access to the required test dependencies.
 
-Study: [knowledge file](../knowledge/compute/app-service/backups.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/backups.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/manage-backup)
 
@@ -102,7 +102,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** Assume automatic App Service backups include the SQL database. Automatic backups do not include linked databases.
 - **D. Incorrect:** Use a deployment-slot swap as the only database backup. A slot swap does not create a recoverable database backup.
 
-Study: [knowledge file](../knowledge/compute/app-service/backups.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/backups.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/manage-backup)
 

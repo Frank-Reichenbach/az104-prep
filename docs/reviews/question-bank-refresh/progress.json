@@ -3820,9 +3820,9 @@
     {
       "id": "compute.app-service.backups",
       "title": "App Service backup configuration and restoration",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.app-service.backups.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-web-backup-external",
@@ -3837,9 +3837,9 @@
           ],
           "baselineHash": "b514a614958625ed0678f1c9ada272405b96ab2768eb07ed29d37be29d83a8d3",
           "baselineContentHash": "0c966adfe6bb2a7d45ef4525d36758f91301d9bda034fb51de563816cf6eb8f0",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "b1ca4686b9c342e4e00093cd2ebafd7d81a2dec49df14e08f65343e8c83a208b"
         },
         {
           "id": "co-web-backup-restore",
@@ -3854,9 +3854,9 @@
           ],
           "baselineHash": "2d3213e26647b5814a8f7072152604c711df0b245683cdbc83433d2f196ab8e3",
           "baselineContentHash": "4b2047284bb39dcec8219968ca56416a71e3391f37a8ebe94d2d23b3bb3a8a85",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "4b2786d0e0e90fe418680ec72302468009cce3586dd9ea52d9e80f331073654b"
         },
         {
           "id": "co-web-backup-database",
@@ -3871,9 +3871,9 @@
           ],
           "baselineHash": "b1199b0adccc853fe902b7c63849f4c47d23af5d7e6173cda515c7acab103d35",
           "baselineContentHash": "24ce9dfa6d3d0ba849aa1e8be187377c67408b4b0c9e8adacb611835ebf06535",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "0e52656add57d610738d6731d9a85e06efc65fb5fb3939db25ca0d72df94b188"
         }
       ]
     },

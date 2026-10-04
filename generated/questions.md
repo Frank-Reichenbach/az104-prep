@@ -49,27 +49,27 @@ D. Assign Storage Blob Data Reader to the deployment user at the target containe
 
 Topic: Compute › App Service backup configuration and restoration.
 
-An App Service app has automatic backups and stores business data in an externally mounted Azure file share. What should the recovery design include?
+A Standard App Service app has automatic backups. It writes business documents to a custom-mounted Azure Files share. Recovery must restore both the app and those documents after accidental deletion. Which protection plan covers the separately stored documents?
 
 Select **1**. Difficulty: applied.
 
-A. Separate protection and restore procedures for the mounted share.
-B. Assume every mounted share is included in the automatic app backup.
-C. Use an app-setting rename to bring the share into the backup.
-D. Treat the source-code ZIP as a backup of all business data.
+A. Keep app backups and separately protect and test restoration of the Azure Files share.
+B. Keep automatic app backups and use an app restore to recover the mounted-share documents.
+C. Replace automatic app backups with custom app backups and recover the share from their ZIP files.
+D. Keep app backups and restore the storage mount configuration to recover the share documents.
 
 ## co-web-backup-restore
 
 Topic: Compute › App Service backup configuration and restoration.
 
-Before replacing a production App Service app with a backup, which approach provides useful recovery evidence?
+A production web app on a Standard App Service plan is serving users. You must demonstrate that an app backup produces a working application before replacing production content. Production must keep serving during the test. A disposable staging slot and isolated test dependencies are available. Which recovery test meets these requirements?
 
 Select **1**. Difficulty: applied.
 
-A. Restore to a supported separate app or slot and test the app and dependencies.
-B. Only check that the backup list contains a timestamp.
-C. Edit the backup ZIP manually to make its timestamp newer.
-D. Assume app restoration recreates every identity and network dependency.
+A. Restore into the staging slot and test the recovered app against the isolated dependencies.
+B. Restore over production and test it after the restore completes.
+C. Inspect the backup status and timestamp, then approve production replacement without restoring.
+D. Restore into staging and check only the recovered file count before approving replacement.
 
 ## co-web-backup-database
 
