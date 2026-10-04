@@ -365,33 +365,33 @@ Study: [knowledge file](../knowledge/compute/app-service/slots.md). Evidence che
 
 Topic: Compute › App Service certificates and TLS bindings.
 
-A valid certificate for www.example.com has been uploaded to App Service, and the custom hostname is mapped, but HTTPS still does not use it. What configuration is missing?
+A Standard App Service app has www.example.com mapped with verified DNS. A valid private certificate covering that hostname is uploaded. A browser connects directly to App Service using that hostname but does not receive the uploaded certificate. Which configuration associates this hostname with that certificate?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** A TLS binding associating the hostname with the certificate. Upload stores the certificate; the binding selects it for the hostname.
-- **B. Incorrect:** Only another copy of the same certificate file. Duplicate upload does not create the missing binding.
-- **C. Incorrect:** Only a larger App Service instance count. Worker count does not associate a certificate with a hostname.
-- **D. Incorrect:** Only a DNS TTL of zero. TTL does not configure the app TLS binding.
+- **A. Correct:** Add an SNI TLS binding for www.example.com using the uploaded certificate. The hostname-to-certificate binding selects the certificate for the custom HTTPS endpoint; uploading it alone does not establish that association.
+- **B. Incorrect:** Enable HTTPS Only without adding a certificate binding. HTTPS Only redirects HTTP to HTTPS; it does not select the uploaded certificate for the custom hostname.
+- **C. Incorrect:** Set the app minimum TLS version to 1.2 without adding a binding. A protocol minimum limits permitted TLS versions, not which certificate is associated with the hostname.
+- **D. Incorrect:** Add a binding for api.example.com using the uploaded certificate. A binding for a different hostname does not associate the certificate with the requested www.example.com endpoint.
 
-Study: [knowledge file](../knowledge/compute/app-service/tls.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/tls.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/app-service/configure-common)
 
 ## co-tls-wildcard
 
 Topic: Compute › App Service certificates and TLS bindings.
 
-An app requires a wildcard certificate covering *.example.com. Which certificate approach fits App Service requirements?
+A Standard App Service app must secure mapped first-level subdomains with a certificate covering *.example.com. Clients require a publicly trusted certificate. Which certificate acquisition and binding approach meets the wildcard requirement?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Import or upload a suitable wildcard certificate from a certificate provider. A supported certificate with the required names can be bound to the app.
-- **B. Incorrect:** Request a free App Service managed wildcard certificate. The free managed certificate does not support wildcards.
-- **C. Incorrect:** Use the default azurewebsites.net certificate for example.com. The default certificate does not cover the custom domain.
-- **D. Incorrect:** Create only an ownership TXT record and omit TLS binding. Domain ownership verification does not provide wildcard TLS.
+- **A. Correct:** Upload a trusted wildcard private certificate as a compliant PFX, then bind it to the mapped hostnames. A private certificate that includes the private key, required chain, and wildcard coverage can secure the mapped first-level subdomains through TLS bindings.
+- **B. Incorrect:** Create a free App Service managed wildcard certificate, then bind it to the mapped hostnames. Free App Service managed certificates do not support wildcard names; this requested certificate cannot be issued through that option.
+- **C. Incorrect:** Reuse the platform certificate for the default azurewebsites.net hostname on the mapped hostnames. The platform default-hostname certificate does not cover the custom example.com subdomains.
+- **D. Incorrect:** Upload only the wildcard public certificate without its private key, then use it for the hostname bindings. A public certificate upload is for use in application code, not securing custom domains. Server-side TLS requires a compliant private certificate.
 
-Study: [knowledge file](../knowledge/compute/app-service/tls.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/tls.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate)
 
@@ -403,12 +403,12 @@ What is the purpose of an SNI TLS binding in App Service?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** Select the certificate by hostname while sharing an IP address. Server Name Indication communicates the requested hostname during TLS.
-- **B. Incorrect:** Require a separate dedicated IP for every hostname. That is not the purpose of SNI.
-- **C. Incorrect:** Automatically create all external DNS records. TLS binding does not administer the DNS provider.
-- **D. Incorrect:** Encrypt application data stored on the filesystem. A TLS binding protects transport connections, not filesystem storage.
+- **A. Correct:** Select the hostname certificate from the server name sent during the TLS handshake, allowing a shared IP. SNI conveys the requested server name during TLS so multiple hostname certificates can be served on the same IP.
+- **B. Incorrect:** Select the hostname certificate from a dedicated destination IP without requiring a server name. That describes IP-based TLS selection; SNI permits hostname selection on a shared IP.
+- **C. Incorrect:** Select the hostname certificate from the URL path sent after the TLS handshake. The TLS certificate must be selected during the handshake, before the encrypted HTTP request supplies its path.
+- **D. Incorrect:** Select the hostname certificate from the client source IP during the TLS handshake. SNI identifies the requested server hostname, not the client source address.
 
-Study: [knowledge file](../knowledge/compute/app-service/tls.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/tls.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate)
 

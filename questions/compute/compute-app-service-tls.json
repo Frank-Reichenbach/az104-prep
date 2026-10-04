@@ -4,34 +4,34 @@
     {
       "id": "co-tls-binding",
       "family": "co-tls-binding",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.tls",
       "objectives": [
         "co-20"
       ],
-      "difficulty": "applied",
-      "prompt": "A valid certificate for www.example.com has been uploaded to App Service, and the custom hostname is mapped, but HTTPS still does not use it. What configuration is missing?",
+      "difficulty": "troubleshooting",
+      "prompt": "A Standard App Service app has www.example.com mapped with verified DNS. A valid private certificate covering that hostname is uploaded. A browser connects directly to App Service using that hostname but does not receive the uploaded certificate. Which configuration associates this hostname with that certificate?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "A TLS binding associating the hostname with the certificate.",
-          "explanation": "Upload stores the certificate; the binding selects it for the hostname."
+          "text": "Add an SNI TLS binding for www.example.com using the uploaded certificate.",
+          "explanation": "The hostname-to-certificate binding selects the certificate for the custom HTTPS endpoint; uploading it alone does not establish that association."
         },
         {
           "id": "b",
-          "text": "Only another copy of the same certificate file.",
-          "explanation": "Duplicate upload does not create the missing binding."
+          "text": "Enable HTTPS Only without adding a certificate binding.",
+          "explanation": "HTTPS Only redirects HTTP to HTTPS; it does not select the uploaded certificate for the custom hostname."
         },
         {
           "id": "c",
-          "text": "Only a larger App Service instance count.",
-          "explanation": "Worker count does not associate a certificate with a hostname."
+          "text": "Set the app minimum TLS version to 1.2 without adding a binding.",
+          "explanation": "A protocol minimum limits permitted TLS versions, not which certificate is associated with the hostname."
         },
         {
           "id": "d",
-          "text": "Only a DNS TTL of zero.",
-          "explanation": "TTL does not configure the app TLS binding."
+          "text": "Add a binding for api.example.com using the uploaded certificate.",
+          "explanation": "A binding for a different hostname does not associate the certificate with the requested www.example.com endpoint."
         }
       ],
       "correct": [
@@ -40,41 +40,42 @@
       "knowledge": "knowledge/compute/app-service/tls.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings",
-        "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate"
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate",
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-common"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-tls-wildcard",
       "family": "co-tls-wildcard",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.tls",
       "objectives": [
         "co-20"
       ],
       "difficulty": "applied",
-      "prompt": "An app requires a wildcard certificate covering *.example.com. Which certificate approach fits App Service requirements?",
+      "prompt": "A Standard App Service app must secure mapped first-level subdomains with a certificate covering *.example.com. Clients require a publicly trusted certificate. Which certificate acquisition and binding approach meets the wildcard requirement?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Import or upload a suitable wildcard certificate from a certificate provider.",
-          "explanation": "A supported certificate with the required names can be bound to the app."
+          "text": "Upload a trusted wildcard private certificate as a compliant PFX, then bind it to the mapped hostnames.",
+          "explanation": "A private certificate that includes the private key, required chain, and wildcard coverage can secure the mapped first-level subdomains through TLS bindings."
         },
         {
           "id": "b",
-          "text": "Request a free App Service managed wildcard certificate.",
-          "explanation": "The free managed certificate does not support wildcards."
+          "text": "Create a free App Service managed wildcard certificate, then bind it to the mapped hostnames.",
+          "explanation": "Free App Service managed certificates do not support wildcard names; this requested certificate cannot be issued through that option."
         },
         {
           "id": "c",
-          "text": "Use the default azurewebsites.net certificate for example.com.",
-          "explanation": "The default certificate does not cover the custom domain."
+          "text": "Reuse the platform certificate for the default azurewebsites.net hostname on the mapped hostnames.",
+          "explanation": "The platform default-hostname certificate does not cover the custom example.com subdomains."
         },
         {
           "id": "d",
-          "text": "Create only an ownership TXT record and omit TLS binding.",
-          "explanation": "Domain ownership verification does not provide wildcard TLS."
+          "text": "Upload only the wildcard public certificate without its private key, then use it for the hostname bindings.",
+          "explanation": "A public certificate upload is for use in application code, not securing custom domains. Server-side TLS requires a compliant private certificate."
         }
       ],
       "correct": [
@@ -85,12 +86,12 @@
         "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings",
         "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-tls-sni",
       "family": "co-tls-sni",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.tls",
       "objectives": [
         "co-20"
@@ -101,23 +102,23 @@
       "options": [
         {
           "id": "a",
-          "text": "Select the certificate by hostname while sharing an IP address.",
-          "explanation": "Server Name Indication communicates the requested hostname during TLS."
+          "text": "Select the hostname certificate from the server name sent during the TLS handshake, allowing a shared IP.",
+          "explanation": "SNI conveys the requested server name during TLS so multiple hostname certificates can be served on the same IP."
         },
         {
           "id": "b",
-          "text": "Require a separate dedicated IP for every hostname.",
-          "explanation": "That is not the purpose of SNI."
+          "text": "Select the hostname certificate from a dedicated destination IP without requiring a server name.",
+          "explanation": "That describes IP-based TLS selection; SNI permits hostname selection on a shared IP."
         },
         {
           "id": "c",
-          "text": "Automatically create all external DNS records.",
-          "explanation": "TLS binding does not administer the DNS provider."
+          "text": "Select the hostname certificate from the URL path sent after the TLS handshake.",
+          "explanation": "The TLS certificate must be selected during the handshake, before the encrypted HTTP request supplies its path."
         },
         {
           "id": "d",
-          "text": "Encrypt application data stored on the filesystem.",
-          "explanation": "A TLS binding protects transport connections, not filesystem storage."
+          "text": "Select the hostname certificate from the client source IP during the TLS handshake.",
+          "explanation": "SNI identifies the requested server hostname, not the client source address."
         }
       ],
       "correct": [
@@ -128,7 +129,7 @@
         "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings",
         "https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

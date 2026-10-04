@@ -3700,9 +3700,9 @@
     {
       "id": "compute.app-service.tls",
       "title": "App Service certificates and TLS bindings",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.app-service.tls.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-tls-binding",
@@ -3717,9 +3717,9 @@
           ],
           "baselineHash": "9087da8e4b14f52e4c7ddfffc0bccbd5c556b2ea026d03b6816b7ce4ddd6978a",
           "baselineContentHash": "419338631823b51e7b5b19800b4fe55a7e76460a2f7ed1ede3e9646cc04dc28e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "0e664701e579418a0187245ae32559fb151c572c08923bd51d6c3fcdb6c6a6ee"
         },
         {
           "id": "co-tls-wildcard",
@@ -3734,9 +3734,9 @@
           ],
           "baselineHash": "7b9929cfa16b661f3962c91f3311dbbefc843d375c6b14646f40126c81ec4f7e",
           "baselineContentHash": "e022129953b118db150a754242460a79578b3de56b444d5b26017ce9d5721604",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "8785aa267d3c852abee40dbf5348e441d3b8a6846d63f95081e24b1d7e7b6cf6"
         },
         {
           "id": "co-tls-sni",
@@ -3751,9 +3751,9 @@
           ],
           "baselineHash": "f81ddf6ef476c7a998278313c1d917e670e432acbd5487d71d1487e4f13e9d24",
           "baselineContentHash": "80f9dae9c5ecbe3cb42657c3774fc0d854569d0d7d1a64620d92da2f05cc93d4",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "c5b411e2aa657224acd7f3ea5ed26b9355625cc975e153f58916bb70cc9b28b3"
         }
       ]
     },

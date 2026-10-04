@@ -283,27 +283,27 @@ D. Deletion of the newer database schema with guaranteed zero data loss.
 
 Topic: Compute › App Service certificates and TLS bindings.
 
-A valid certificate for www.example.com has been uploaded to App Service, and the custom hostname is mapped, but HTTPS still does not use it. What configuration is missing?
+A Standard App Service app has www.example.com mapped with verified DNS. A valid private certificate covering that hostname is uploaded. A browser connects directly to App Service using that hostname but does not receive the uploaded certificate. Which configuration associates this hostname with that certificate?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. A TLS binding associating the hostname with the certificate.
-B. Only another copy of the same certificate file.
-C. Only a larger App Service instance count.
-D. Only a DNS TTL of zero.
+A. Add an SNI TLS binding for www.example.com using the uploaded certificate.
+B. Enable HTTPS Only without adding a certificate binding.
+C. Set the app minimum TLS version to 1.2 without adding a binding.
+D. Add a binding for api.example.com using the uploaded certificate.
 
 ## co-tls-wildcard
 
 Topic: Compute › App Service certificates and TLS bindings.
 
-An app requires a wildcard certificate covering *.example.com. Which certificate approach fits App Service requirements?
+A Standard App Service app must secure mapped first-level subdomains with a certificate covering *.example.com. Clients require a publicly trusted certificate. Which certificate acquisition and binding approach meets the wildcard requirement?
 
 Select **1**. Difficulty: applied.
 
-A. Import or upload a suitable wildcard certificate from a certificate provider.
-B. Request a free App Service managed wildcard certificate.
-C. Use the default azurewebsites.net certificate for example.com.
-D. Create only an ownership TXT record and omit TLS binding.
+A. Upload a trusted wildcard private certificate as a compliant PFX, then bind it to the mapped hostnames.
+B. Create a free App Service managed wildcard certificate, then bind it to the mapped hostnames.
+C. Reuse the platform certificate for the default azurewebsites.net hostname on the mapped hostnames.
+D. Upload only the wildcard public certificate without its private key, then use it for the hostname bindings.
 
 ## co-tls-sni
 
@@ -313,10 +313,10 @@ What is the purpose of an SNI TLS binding in App Service?
 
 Select **1**. Difficulty: foundation.
 
-A. Select the certificate by hostname while sharing an IP address.
-B. Require a separate dedicated IP for every hostname.
-C. Automatically create all external DNS records.
-D. Encrypt application data stored on the filesystem.
+A. Select the hostname certificate from the server name sent during the TLS handshake, allowing a shared IP.
+B. Select the hostname certificate from a dedicated destination IP without requiring a server name.
+C. Select the hostname certificate from the URL path sent after the TLS handshake.
+D. Select the hostname certificate from the client source IP during the TLS handshake.
 
 ## co-aca-revision
 
