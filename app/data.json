@@ -10189,34 +10189,34 @@
     {
       "id": "nw-lb-http-probe",
       "family": "nw-lb-http-probe",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.load-balancer.troubleshooting",
       "objectives": [
         "nw-13"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A backend HTTPS probe receives HTTP 302 redirecting to a login page. TCP connectivity works. Why is the probe unhealthy?",
+      "prompt": "A Standard Load Balancer HTTPS probe requests /health on a backend and receives HTTP 302 redirecting to login. TCP and TLS negotiation succeed. The backend is marked unhealthy. Which change addresses this response while preserving application-level readiness checking?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "The HTTP/HTTPS probe needs HTTP 200 rather than a redirect.",
-          "explanation": "A non-200 response marks the HTTP health check down."
+          "text": "Provide a probe-accessible /health response that returns HTTP 200 when the application is ready.",
+          "explanation": "HTTP/HTTPS probes require status 200. A readiness endpoint must reflect application readiness rather than redirect to login."
         },
         {
           "id": "b",
-          "text": "HTTPS probes only accept UDP responses.",
-          "explanation": "HTTPS uses TCP/TLS."
+          "text": "Keep the 302 response and increase the interval between HTTPS probes.",
+          "explanation": "A longer interval does not make a non-200 response successful."
         },
         {
           "id": "c",
-          "text": "Any response proves health, so the frontend IP must be wrong.",
-          "explanation": "The response code is part of the health decision."
+          "text": "Switch to a TCP probe on the same listener without checking the HTTP response.",
+          "explanation": "This can test TCP availability but loses the required application-level readiness check."
         },
         {
           "id": "d",
-          "text": "A public backend IP is required for HTTPS probes.",
-          "explanation": "Probes can reach private backend addresses."
+          "text": "Keep the 302 response and increase the unhealthy probe threshold.",
+          "explanation": "An explicit non-200 HTTP response marks the probe down; increasing the threshold does not turn that response into success."
         }
       ],
       "correct": [
@@ -10224,44 +10224,41 @@
       ],
       "knowledge": "knowledge/networking/load-balancer/troubleshooting.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview",
-        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-diagnostics",
-        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections",
-        "https://learn.microsoft.com/en-us/troubleshoot/azure/load-balancer/troubleshoot-common-problems/load-balancer-troubleshoot"
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-lb-probe-tag",
       "family": "nw-lb-probe-tag",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.load-balancer.troubleshooting",
       "objectives": [
         "nw-13"
       ],
       "difficulty": "applied",
-      "prompt": "Which NSG source service tag identifies Azure Load Balancer health-probe traffic?",
+      "prompt": "An IPv4 Standard Load Balancer TCP probe uses port 9000. The backend NSG has a priority-200 deny for all inbound TCP traffic; its default probe allow is therefore overridden. The guest listener and firewall are ready. Permit only the platform probe source to port 9000. Which inbound TCP allow rule meets the requirement?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Internet.",
-          "explanation": "That is not the specific probe source tag."
+          "text": "Priority 100; source Internet; destination port 9000.",
+          "explanation": "Internet is not the specific platform probe source and does not limit access to that source."
         },
         {
           "id": "b",
-          "text": "AzureLoadBalancer.",
-          "explanation": "This tag identifies the platform health-probe source."
+          "text": "Priority 100; source AzureLoadBalancer; destination port 9000.",
+          "explanation": "This tag identifies the probe source and priority 100 precedes the supplied priority-200 deny."
         },
         {
           "id": "c",
-          "text": "AzureTrafficManager.",
-          "explanation": "Traffic Manager probing is a different service."
+          "text": "Priority 300; source AzureLoadBalancer; destination port 9000.",
+          "explanation": "The source is correct, but priority 200 denies the traffic before this later allow is evaluated."
         },
         {
           "id": "d",
-          "text": "Storage.",
-          "explanation": "That identifies storage service addresses rather than Load Balancer probes."
+          "text": "Priority 100; source AzureLoadBalancer; destination port 443.",
+          "explanation": "The rule targets the wrong destination port: the probe uses 9000."
         }
       ],
       "correct": [
@@ -10270,43 +10267,41 @@
       "knowledge": "knowledge/networking/load-balancer/troubleshooting.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview",
-        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-diagnostics",
-        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections",
-        "https://learn.microsoft.com/en-us/troubleshoot/azure/load-balancer/troubleshoot-common-problems/load-balancer-troubleshoot"
+        "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-lb-healthy-block",
       "family": "nw-lb-healthy-block",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.load-balancer.troubleshooting",
       "objectives": [
         "nw-13"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "Load Balancer probes are healthy, but HTTPS clients cannot connect. The probe uses TCP 9000 while the rule sends clients to TCP 443. What is a valid next check?",
+      "prompt": "A Standard Load Balancer maps frontend TCP 443 to backend TCP 443. Its separate TCP probe on port 9000 is healthy. Clients using the verified frontend IP cannot establish new TCP connections to 443, so TLS negotiation has not begun. Which next check examines the client path that the passing probe has not validated?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Assume 9000 health proves 443 is permitted and listening.",
-          "explanation": "Different ports can have different listeners and filters."
+          "text": "Repeat the backend TCP 9000 probe handshake.",
+          "explanation": "That checks the already healthy probe port rather than the different client port and source path."
         },
         {
           "id": "b",
-          "text": "Remove the backend pool because probing succeeded.",
-          "explanation": "Pool removal would break distribution rather than diagnose the client path."
+          "text": "Inspect the backend HTTPS certificate expiry and trust chain.",
+          "explanation": "Certificate validation occurs after TCP connection establishment; it does not explain a failure before that stage."
         },
         {
           "id": "c",
-          "text": "Inspect TCP 443 rule mapping, NSGs, guest firewall, and listener.",
-          "explanation": "A separate probe port does not establish the application's path."
+          "text": "Check client-source NSG rules, guest firewall rules, and the backend listener for TCP 443.",
+          "explanation": "A probe on 9000 does not validate the listener or filters for client connections on 443."
         },
         {
           "id": "d",
-          "text": "Change the DNS TTL to make the probe test TCP 443.",
-          "explanation": "DNS TTL does not change probe or backend ports."
+          "text": "Compare recursive DNS TTLs for the frontend hostname.",
+          "explanation": "The failed test uses the verified frontend IP directly, so hostname cache state is outside that test path."
         }
       ],
       "correct": [
@@ -10315,11 +10310,9 @@
       "knowledge": "knowledge/networking/load-balancer/troubleshooting.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview",
-        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-diagnostics",
-        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections",
-        "https://learn.microsoft.com/en-us/troubleshoot/azure/load-balancer/troubleshoot-common-problems/load-balancer-troubleshoot"
+        "https://learn.microsoft.com/en-us/troubleshoot/azure/load-balancer/troubleshoot-common-problems/no-inbound-connectivity-standard-external-load-balancers"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-bastion-subnet",

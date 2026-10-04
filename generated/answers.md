@@ -3544,52 +3544,52 @@ Study: [knowledge file](../knowledge/networking/load-balancer/configuration.md).
 
 Topic: Networking › Load Balancer probes and connectivity diagnosis.
 
-A backend HTTPS probe receives HTTP 302 redirecting to a login page. TCP connectivity works. Why is the probe unhealthy?
+A Standard Load Balancer HTTPS probe requests /health on a backend and receives HTTP 302 redirecting to login. TCP and TLS negotiation succeed. The backend is marked unhealthy. Which change addresses this response while preserving application-level readiness checking?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** The HTTP/HTTPS probe needs HTTP 200 rather than a redirect. A non-200 response marks the HTTP health check down.
-- **B. Incorrect:** HTTPS probes only accept UDP responses. HTTPS uses TCP/TLS.
-- **C. Incorrect:** Any response proves health, so the frontend IP must be wrong. The response code is part of the health decision.
-- **D. Incorrect:** A public backend IP is required for HTTPS probes. Probes can reach private backend addresses.
+- **A. Correct:** Provide a probe-accessible /health response that returns HTTP 200 when the application is ready. HTTP/HTTPS probes require status 200. A readiness endpoint must reflect application readiness rather than redirect to login.
+- **B. Incorrect:** Keep the 302 response and increase the interval between HTTPS probes. A longer interval does not make a non-200 response successful.
+- **C. Incorrect:** Switch to a TCP probe on the same listener without checking the HTTP response. This can test TCP availability but loses the required application-level readiness check.
+- **D. Incorrect:** Keep the 302 response and increase the unhealthy probe threshold. An explicit non-200 HTTP response marks the probe down; increasing the threshold does not turn that response into success.
 
-Study: [knowledge file](../knowledge/networking/load-balancer/troubleshooting.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/load-balancer/troubleshooting.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-diagnostics) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections) · [Microsoft source 4](https://learn.microsoft.com/en-us/troubleshoot/azure/load-balancer/troubleshoot-common-problems/load-balancer-troubleshoot)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview)
 
 ## nw-lb-probe-tag
 
 Topic: Networking › Load Balancer probes and connectivity diagnosis.
 
-Which NSG source service tag identifies Azure Load Balancer health-probe traffic?
+An IPv4 Standard Load Balancer TCP probe uses port 9000. The backend NSG has a priority-200 deny for all inbound TCP traffic; its default probe allow is therefore overridden. The guest listener and firewall are ready. Permit only the platform probe source to port 9000. Which inbound TCP allow rule meets the requirement?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Internet. That is not the specific probe source tag.
-- **B. Correct:** AzureLoadBalancer. This tag identifies the platform health-probe source.
-- **C. Incorrect:** AzureTrafficManager. Traffic Manager probing is a different service.
-- **D. Incorrect:** Storage. That identifies storage service addresses rather than Load Balancer probes.
+- **A. Incorrect:** Priority 100; source Internet; destination port 9000. Internet is not the specific platform probe source and does not limit access to that source.
+- **B. Correct:** Priority 100; source AzureLoadBalancer; destination port 9000. This tag identifies the probe source and priority 100 precedes the supplied priority-200 deny.
+- **C. Incorrect:** Priority 300; source AzureLoadBalancer; destination port 9000. The source is correct, but priority 200 denies the traffic before this later allow is evaluated.
+- **D. Incorrect:** Priority 100; source AzureLoadBalancer; destination port 443. The rule targets the wrong destination port: the probe uses 9000.
 
-Study: [knowledge file](../knowledge/networking/load-balancer/troubleshooting.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/load-balancer/troubleshooting.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-diagnostics) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections) · [Microsoft source 4](https://learn.microsoft.com/en-us/troubleshoot/azure/load-balancer/troubleshoot-common-problems/load-balancer-troubleshoot)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview)
 
 ## nw-lb-healthy-block
 
 Topic: Networking › Load Balancer probes and connectivity diagnosis.
 
-Load Balancer probes are healthy, but HTTPS clients cannot connect. The probe uses TCP 9000 while the rule sends clients to TCP 443. What is a valid next check?
+A Standard Load Balancer maps frontend TCP 443 to backend TCP 443. Its separate TCP probe on port 9000 is healthy. Clients using the verified frontend IP cannot establish new TCP connections to 443, so TLS negotiation has not begun. Which next check examines the client path that the passing probe has not validated?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Incorrect:** Assume 9000 health proves 443 is permitted and listening. Different ports can have different listeners and filters.
-- **B. Incorrect:** Remove the backend pool because probing succeeded. Pool removal would break distribution rather than diagnose the client path.
-- **C. Correct:** Inspect TCP 443 rule mapping, NSGs, guest firewall, and listener. A separate probe port does not establish the application's path.
-- **D. Incorrect:** Change the DNS TTL to make the probe test TCP 443. DNS TTL does not change probe or backend ports.
+- **A. Incorrect:** Repeat the backend TCP 9000 probe handshake. That checks the already healthy probe port rather than the different client port and source path.
+- **B. Incorrect:** Inspect the backend HTTPS certificate expiry and trust chain. Certificate validation occurs after TCP connection establishment; it does not explain a failure before that stage.
+- **C. Correct:** Check client-source NSG rules, guest firewall rules, and the backend listener for TCP 443. A probe on 9000 does not validate the listener or filters for client connections on 443.
+- **D. Incorrect:** Compare recursive DNS TTLs for the frontend hostname. The failed test uses the verified frontend IP directly, so hostname cache state is outside that test path.
 
-Study: [knowledge file](../knowledge/networking/load-balancer/troubleshooting.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/load-balancer/troubleshooting.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-diagnostics) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections) · [Microsoft source 4](https://learn.microsoft.com/en-us/troubleshoot/azure/load-balancer/troubleshoot-common-problems/load-balancer-troubleshoot)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/troubleshoot/azure/load-balancer/troubleshoot-common-problems/no-inbound-connectivity-standard-external-load-balancers)
 
 ## nw-bastion-subnet
 

@@ -4848,9 +4848,9 @@
     {
       "id": "networking.load-balancer.troubleshooting",
       "title": "Load Balancer probes and connectivity diagnosis",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/networking.load-balancer.troubleshooting.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "nw-lb-http-probe",
@@ -4865,9 +4865,9 @@
           ],
           "baselineHash": "0b5f61bb70d5da6eae5c6b4ad3e681f70a1cae2b03519c68e5f6601044e2283a",
           "baselineContentHash": "f9faf04ee8ad8bd7bba0934e3830828d02594fa29433af6f53a6800fab619724",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "58d423362b7aee51d5c1dc3dc1836f57c9419434b60d0d362aac01783af4385a"
         },
         {
           "id": "nw-lb-probe-tag",
@@ -4882,9 +4882,9 @@
           ],
           "baselineHash": "1562643b6b86a6519948f7c792148e5579e98a0eda4bee37adb8b001b4119bb3",
           "baselineContentHash": "b6f03d01c3300fa1b164f6490e03dc096c8999118dbad94cc1b3ee9028638f60",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f2ba2a1327f3c65ead180b460ce25ef5e1219c6af869bc7fb98c295044a670c4"
         },
         {
           "id": "nw-lb-healthy-block",
@@ -4899,9 +4899,9 @@
           ],
           "baselineHash": "026347463a8db4a3465fea51086f3c96baf6dd53ee23cf03f026e54164ff0341",
           "baselineContentHash": "3d176ec391a42ba9c7f7f69d901a751cf44d60ced7c30dbb66a6e5a52370a0ec",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "a274382a153fb300815979ec6a16cda18243c36c7fc85186679aa4ed41f6e6fd"
         }
       ]
     },
