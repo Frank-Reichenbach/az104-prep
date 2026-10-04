@@ -1806,9 +1806,9 @@
     {
       "id": "identity.users.external",
       "title": "External users and B2B collaboration",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/identity.users.external.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "id-guest-resource-role",
@@ -1823,9 +1823,9 @@
           ],
           "baselineHash": "80aa080da3b558d5b80382cbbd3e64c985f069c8ae225a5c9e76c9bb9e0a33ee",
           "baselineContentHash": "9819f194f3964aea66477d02449dc9efa32697d310ce31c1cf9e0e59a9390619",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "08f480105ae2e6a1dc16b44041aad887ccdd0382da0236b299096273ce96a4a7"
         },
         {
           "id": "id-guest-inbound",
@@ -1840,9 +1840,9 @@
           ],
           "baselineHash": "f60dc4addcff7b596648fb0847fafad28e9b95ecc314ed70ac126453257ade9d",
           "baselineContentHash": "34e56196d618b6918299d0000635c9faed4f74ac4cdacb96bf7f10c234f0afda",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "6fd477ca1a9d48d08a2bd13661459082704123979e9018ad38e1c6f36d2a1f3a"
         },
         {
           "id": "id-guest-invite-vs-block",
@@ -1857,9 +1857,9 @@
           ],
           "baselineHash": "507643707a3471f2f05c4dedae65a71c82eaaa426e6974090290216ba11a8c59",
           "baselineContentHash": "cff15891d558a93b6f04849a282833731edea986ab17c25e71e5d7997170129f",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f32eed53d6ee6320827de319c8e1dc361fefe8f7094341feeea2fc810354b6e0"
         }
       ]
     },

@@ -1414,40 +1414,40 @@ D. Virtual Machine Contributor.
 
 Topic: Identity and governance › External users and B2B collaboration.
 
-A partner redeems an Entra B2B invitation successfully but cannot manage the Azure resource group they are meant to administer. No resource role has been assigned. What is missing?
+A partner has redeemed a B2B invitation into your workforce tenant and can sign in to the Azure portal. The partner must create and modify resources in rg-project without granting access to other users. There are no Azure role assignments for the guest and no applicable deny assignments or policy restrictions. Which assignment meets the requirement with the least privilege among these choices?
 
-Select **1**. Difficulty: troubleshooting.
+Select **1**. Difficulty: applied.
 
-A. An appropriate Azure RBAC assignment at the intended scope.
-B. Global Administrator for every guest.
-C. A new internal account with a shared password.
-D. Change the guest display name to the resource group name.
+A. Contributor on rg-project.
+B. Reader on rg-project.
+C. Owner on rg-project.
+D. Contributor on the subscription containing rg-project.
 
 ## id-guest-inbound
 
 Topic: Identity and governance › External users and B2B collaboration.
 
-Your tenant must control which partner-tenant users and applications may access your resources through B2B collaboration. Which cross-tenant direction governs that incoming access?
+Tenant A has Microsoft Entra ID P1 and hosts an application accessed by employees of partner Tenant B through B2B collaboration. Tenant A must allow only a selected group from Tenant B to access that application, without changing the policy for other partners. Which setting in Tenant A should an administrator configure?
 
 Select **1**. Difficulty: applied.
 
-A. Inbound access settings.
-B. Only outbound access settings.
-C. Only an external-collaboration invitation domain allowlist.
-D. Only the partner's group display-name policy.
+A. Tenant B organizational settings: B2B collaboration inbound access.
+B. Tenant B organizational settings: B2B collaboration outbound access.
+C. Tenant B organizational settings: B2B direct connect inbound access.
+D. Default settings: B2B collaboration inbound access.
 
 ## id-guest-invite-vs-block
 
 Topic: Identity and governance › External users and B2B collaboration.
 
-A partner domain is allowed in external collaboration settings, but a cross-tenant B2B rule blocks the requested access. Does the invitation allowlist override that block?
+Tenant A allows invitations from Tenant B's domain. A guest from Tenant B has redeemed an invitation and has the required application assignment. A sign-in failure identifies Tenant A's partner-specific B2B collaboration inbound policy as blocking that user. Tenant B permits outbound access, and all other access requirements are met. Which targeted change addresses the reported block?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. No; the relevant cross-tenant access policy must also permit access.
-B. Yes; an allowed invitation always overrides every access control.
-C. Yes, if the guest owns any group.
-D. Yes, if the usage location matches.
+A. Permit the user and application in Tenant A's Tenant B inbound B2B collaboration settings.
+B. Add Tenant B's domain to Tenant A's invitation allowlist again.
+C. Permit Tenant B in Tenant A's outbound B2B collaboration settings.
+D. Permit the user in Tenant A's inbound B2B direct connect settings.
 
 ## id-license-nested
 

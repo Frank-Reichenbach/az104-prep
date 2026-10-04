@@ -1844,52 +1844,52 @@ Study: [knowledge file](../knowledge/identity/rbac/built-in-roles.md). Evidence 
 
 Topic: Identity and governance › External users and B2B collaboration.
 
-A partner redeems an Entra B2B invitation successfully but cannot manage the Azure resource group they are meant to administer. No resource role has been assigned. What is missing?
+A partner has redeemed a B2B invitation into your workforce tenant and can sign in to the Azure portal. The partner must create and modify resources in rg-project without granting access to other users. There are no Azure role assignments for the guest and no applicable deny assignments or policy restrictions. Which assignment meets the requirement with the least privilege among these choices?
 
-Select **1**. Difficulty: troubleshooting.
+Select **1**. Difficulty: applied.
 
-- **A. Correct:** An appropriate Azure RBAC assignment at the intended scope. Invitation redemption establishes identity, not resource-management permission.
-- **B. Incorrect:** Global Administrator for every guest. Directory-wide administration is unnecessary for this resource group task.
-- **C. Incorrect:** A new internal account with a shared password. B2B supports using the partner's existing identity.
-- **D. Incorrect:** Change the guest display name to the resource group name. Names do not create authorization.
+- **A. Correct:** Contributor on rg-project. Contributor permits resource management at the assigned scope without granting Azure role-assignment permissions.
+- **B. Incorrect:** Reader on rg-project. Reader can inspect resources but cannot create or modify them.
+- **C. Incorrect:** Owner on rg-project. Owner also grants access-management permissions, exceeding the stated resource-management requirement.
+- **D. Incorrect:** Contributor on the subscription containing rg-project. Subscription scope includes other resource groups. Resource-group scope meets the task with less privilege.
 
-Study: [knowledge file](../knowledge/identity/users/external-users.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/users/external-users.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/entra/external-id/add-users-administrator) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-settings-b2b-collaboration) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-external-users)
 
 ## id-guest-inbound
 
 Topic: Identity and governance › External users and B2B collaboration.
 
-Your tenant must control which partner-tenant users and applications may access your resources through B2B collaboration. Which cross-tenant direction governs that incoming access?
+Tenant A has Microsoft Entra ID P1 and hosts an application accessed by employees of partner Tenant B through B2B collaboration. Tenant A must allow only a selected group from Tenant B to access that application, without changing the policy for other partners. Which setting in Tenant A should an administrator configure?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Inbound access settings. They govern external identities entering your resource tenant.
-- **B. Incorrect:** Only outbound access settings. Outbound governs your users accessing external organizations.
-- **C. Incorrect:** Only an external-collaboration invitation domain allowlist. Invitation domain filtering is separate from the requested partner user/application inbound access control.
-- **D. Incorrect:** Only the partner's group display-name policy. Naming groups does not configure your tenant's inbound B2B access.
+- **A. Correct:** Tenant B organizational settings: B2B collaboration inbound access. Inbound access in the resource tenant scopes external users and applications; partner-specific settings limit this change to Tenant B.
+- **B. Incorrect:** Tenant B organizational settings: B2B collaboration outbound access. Tenant A outbound settings govern Tenant A users going to external resources, the opposite direction.
+- **C. Incorrect:** Tenant B organizational settings: B2B direct connect inbound access. The scenario uses B2B collaboration. Direct connect controls a separate collaboration mode.
+- **D. Incorrect:** Default settings: B2B collaboration inbound access. Default settings apply beyond this named partner. Organizational settings provide the required partner-specific policy.
 
-Study: [knowledge file](../knowledge/identity/users/external-users.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/users/external-users.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/entra/external-id/add-users-administrator) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-settings-b2b-collaboration) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-settings-b2b-collaboration)
 
 ## id-guest-invite-vs-block
 
 Topic: Identity and governance › External users and B2B collaboration.
 
-A partner domain is allowed in external collaboration settings, but a cross-tenant B2B rule blocks the requested access. Does the invitation allowlist override that block?
+Tenant A allows invitations from Tenant B's domain. A guest from Tenant B has redeemed an invitation and has the required application assignment. A sign-in failure identifies Tenant A's partner-specific B2B collaboration inbound policy as blocking that user. Tenant B permits outbound access, and all other access requirements are met. Which targeted change addresses the reported block?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** No; the relevant cross-tenant access policy must also permit access. Invitation restrictions and resource access policies are separate checks.
-- **B. Incorrect:** Yes; an allowed invitation always overrides every access control. Inviting a guest does not bypass other security policy.
-- **C. Incorrect:** Yes, if the guest owns any group. Group ownership does not universally bypass cross-tenant restrictions.
-- **D. Incorrect:** Yes, if the usage location matches. A licensing property does not override B2B policy.
+- **A. Correct:** Permit the user and application in Tenant A's Tenant B inbound B2B collaboration settings. The reported block is the resource tenant's inbound policy. Its user and application scope must permit this access.
+- **B. Incorrect:** Add Tenant B's domain to Tenant A's invitation allowlist again. The domain is already allowed. Invitation permission does not override a cross-tenant access block.
+- **C. Incorrect:** Permit Tenant B in Tenant A's outbound B2B collaboration settings. That direction governs Tenant A users accessing Tenant B, not this guest accessing Tenant A.
+- **D. Incorrect:** Permit the user in Tenant A's inbound B2B direct connect settings. Direct connect settings do not remove the reported B2B collaboration block.
 
-Study: [knowledge file](../knowledge/identity/users/external-users.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/users/external-users.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/entra/external-id/add-users-administrator) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-settings-b2b-collaboration) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-settings-b2b-collaboration) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-overview)
 
 ## id-license-nested
 
