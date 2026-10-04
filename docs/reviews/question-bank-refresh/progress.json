@@ -4094,9 +4094,9 @@
     {
       "id": "networking.vnets.peering",
       "title": "VNet peering, forwarding, and gateway transit",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/networking.vnets.peering.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "nw-peering-transitive",
@@ -4111,9 +4111,9 @@
           ],
           "baselineHash": "3e20147b4b192468c31a11e91a8c8936c2d414bf6014bc55cc7cc5812ef86879",
           "baselineContentHash": "124b7ac77923835bb47e01c35d3dcd142eb7cf45d717b3873f469558e872d422",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "cfcefe3c460618ba632d17cbc0c50c14ed76b448a56cf0eaa28243bc71d159e9"
         },
         {
           "id": "nw-peering-transit",
@@ -4128,9 +4128,9 @@
           ],
           "baselineHash": "5ef4d1908fbdaee6ac241a0ad8988866d97d60b389486656ab48fdbbb4b926d4",
           "baselineContentHash": "9010b1272884fca3b87591b01700d9fa49ff20af6d93c6885786ff6b9bf9dbf7",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "c320870c548947e8cd41d1e4225061b1878eef2e3be40bdb94a6103faf3566ce"
         },
         {
           "id": "nw-peering-forward",
@@ -4145,9 +4145,9 @@
           ],
           "baselineHash": "ea1cf9cb19bdc899aafa9e9271cedbbcfa5fbc2ebdf807e1bbbdf3ac9673caf1",
           "baselineContentHash": "9afb327855fa4b6e9e462ee6806ac233ab8768211c0e6c9d244cc543d45adfc3",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "c7c0965aba0aa6d3dd2011ef8bbd3a1f6a99b32dd23e9f1b118a1b0909e12323"
         }
       ]
     },

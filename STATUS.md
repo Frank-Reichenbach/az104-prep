@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 207/322 questions reviewed, 160 revised and 47 kept; 62/99 topics complete.
-Latest: [Virtual network address spaces and subnets](docs/reviews/question-bank-refresh/networking.vnets.subnets.md). Each completed topic has item decisions,
+Checkpoint: 210/322 questions reviewed, 162 revised and 48 kept; 63/99 topics complete.
+Latest: [VNet peering, forwarding, and gateway transit](docs/reviews/question-bank-refresh/networking.vnets.peering.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `networking.vnets.peering` (VNet peering, forwarding, and gateway transit).
+Next: `networking.vnets.public-ips` (Public IP resources and allocation).
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this

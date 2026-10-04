@@ -2948,27 +2948,27 @@ D. Yes; selected networks make private containers anonymous.
 
 Topic: Networking › VNet peering, forwarding, and gateway transit.
 
-VNet A peers with B, and B peers with C. No direct A–C peering or transit routing is configured. What should be expected?
+Three VNets have nonoverlapping address spaces. Bidirectional traditional A-B and B-C peerings are Connected with virtual network access allowed. There is no direct A-C peering, gateway, or appliance transit path. NSGs and guest services permit the test connections. Which private connectivity pattern follows from these peerings?
 
 Select **1**. Difficulty: applied.
 
-A. A and C do not gain connectivity merely from these two peerings.
-B. A and C automatically connect through B.
-C. A–C connectivity appears after changing only the peering names.
-D. A and C share one address space automatically.
+A. A-B and B-C can communicate; A-C has no peering transit path.
+B. A-B, B-C, and A-C can all communicate through these peerings.
+C. A-C can communicate, but A-B and B-C cannot communicate.
+D. None of the three VNet pairs can communicate through these peerings.
 
 ## nw-peering-transit
 
 Topic: Networking › VNet peering, forwarding, and gateway transit.
 
-A spoke without its own gateway must use a supported VPN gateway in a peered hub. Which TWO peering settings are required on the respective sides?
+A spoke has no VPN gateway and no existing remote-gateway selection. It must use the supported VPN gateway in a peered hub for on-premises access. Bidirectional peering and virtual network access are already enabled. Which TWO peering settings jointly enable that gateway-sharing arrangement on the respective sides?
 
 Select **2**. Difficulty: applied.
 
-A. Allow gateway transit on the hub-side peering
-B. Use remote gateways on the spoke-side peering
-C. Use remote gateways on every spoke peering simultaneously
-D. Only allow forwarded traffic and omit both gateway settings
+A. Enable Allow gateway transit on the hub-to-spoke peering.
+B. Enable Use remote gateways on the spoke-to-hub peering.
+C. Enable Use remote gateways on the hub-to-spoke peering.
+D. Enable Allow gateway transit on the spoke-to-hub peering instead of the hub side.
 
 ## nw-peering-forward
 

@@ -3850,16 +3850,16 @@ Study: [knowledge file](../knowledge/networking/security/service-endpoints.md). 
 
 Topic: Networking › VNet peering, forwarding, and gateway transit.
 
-VNet A peers with B, and B peers with C. No direct A–C peering or transit routing is configured. What should be expected?
+Three VNets have nonoverlapping address spaces. Bidirectional traditional A-B and B-C peerings are Connected with virtual network access allowed. There is no direct A-C peering, gateway, or appliance transit path. NSGs and guest services permit the test connections. Which private connectivity pattern follows from these peerings?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** A and C do not gain connectivity merely from these two peerings. Traditional peering is nontransitive.
-- **B. Incorrect:** A and C automatically connect through B. A hub connection alone does not create transit routing.
-- **C. Incorrect:** A–C connectivity appears after changing only the peering names. Names do not create network paths.
-- **D. Incorrect:** A and C share one address space automatically. Peering does not merge or renumber their address spaces.
+- **A. Correct:** A-B and B-C can communicate; A-C has no peering transit path. Each direct peering connects its two VNets. Traditional peering is nontransitive, so B does not automatically route A traffic to C.
+- **B. Incorrect:** A-B, B-C, and A-C can all communicate through these peerings. A-C connectivity would require direct peering or a configured transit path; sharing B as a peer does not provide it.
+- **C. Incorrect:** A-C can communicate, but A-B and B-C cannot communicate. The connected direct peerings supply the A-B and B-C paths. They do not replace those paths with an A-C transit connection.
+- **D. Incorrect:** None of the three VNet pairs can communicate through these peerings. The established direct peerings with permitted network/guest access supply A-B and B-C connectivity.
 
-Study: [knowledge file](../knowledge/networking/virtual-networks/peering.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/virtual-networks/peering.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-peering) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-peering-gateway-transit)
 
@@ -3867,16 +3867,16 @@ Study: [knowledge file](../knowledge/networking/virtual-networks/peering.md). Ev
 
 Topic: Networking › VNet peering, forwarding, and gateway transit.
 
-A spoke without its own gateway must use a supported VPN gateway in a peered hub. Which TWO peering settings are required on the respective sides?
+A spoke has no VPN gateway and no existing remote-gateway selection. It must use the supported VPN gateway in a peered hub for on-premises access. Bidirectional peering and virtual network access are already enabled. Which TWO peering settings jointly enable that gateway-sharing arrangement on the respective sides?
 
 Select **2**. Difficulty: applied.
 
-- **A. Correct:** Allow gateway transit on the hub-side peering The hub permits use of its gateway.
-- **B. Correct:** Use remote gateways on the spoke-side peering The spoke chooses to use the permitted remote gateway.
-- **C. Incorrect:** Use remote gateways on every spoke peering simultaneously A VNet can use a remote gateway through only one peering.
-- **D. Incorrect:** Only allow forwarded traffic and omit both gateway settings Forwarded traffic permission alone does not configure gateway transit.
+- **A. Correct:** Enable Allow gateway transit on the hub-to-spoke peering. The hub side must permit the spoke to use its gateway. This contributes the gateway-sharing permission, paired with the spoke remote-gateway selection.
+- **B. Correct:** Enable Use remote gateways on the spoke-to-hub peering. The spoke selects the gateway offered by the hub. It has neither its own gateway nor another remote-gateway selection, so the stated prerequisites are met.
+- **C. Incorrect:** Enable Use remote gateways on the hub-to-spoke peering. The hub already has the gateway and cannot use a remote gateway while retaining its own. This also selects the wrong direction.
+- **D. Incorrect:** Enable Allow gateway transit on the spoke-to-hub peering instead of the hub side. The spoke has no gateway to share. Permission on this side cannot replace the hub permission for use of the hub gateway.
 
-Study: [knowledge file](../knowledge/networking/virtual-networks/peering.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/virtual-networks/peering.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-peering) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-peering-gateway-transit)
 
@@ -3893,7 +3893,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** Automatically share every private DNS zone. DNS configuration is separate from forwarded traffic permission.
 - **D. Incorrect:** Remove NSG filtering from the connection. NSGs continue to apply.
 
-Study: [knowledge file](../knowledge/networking/virtual-networks/peering.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/virtual-networks/peering.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-peering) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-peering-gateway-transit)
 

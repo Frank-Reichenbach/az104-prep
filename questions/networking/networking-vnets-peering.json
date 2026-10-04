@@ -4,34 +4,34 @@
     {
       "id": "nw-peering-transitive",
       "family": "nw-peering-transitive",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.vnets.peering",
       "objectives": [
         "nw-02"
       ],
       "difficulty": "applied",
-      "prompt": "VNet A peers with B, and B peers with C. No direct A–C peering or transit routing is configured. What should be expected?",
+      "prompt": "Three VNets have nonoverlapping address spaces. Bidirectional traditional A-B and B-C peerings are Connected with virtual network access allowed. There is no direct A-C peering, gateway, or appliance transit path. NSGs and guest services permit the test connections. Which private connectivity pattern follows from these peerings?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "A and C do not gain connectivity merely from these two peerings.",
-          "explanation": "Traditional peering is nontransitive."
+          "text": "A-B and B-C can communicate; A-C has no peering transit path.",
+          "explanation": "Each direct peering connects its two VNets. Traditional peering is nontransitive, so B does not automatically route A traffic to C."
         },
         {
           "id": "b",
-          "text": "A and C automatically connect through B.",
-          "explanation": "A hub connection alone does not create transit routing."
+          "text": "A-B, B-C, and A-C can all communicate through these peerings.",
+          "explanation": "A-C connectivity would require direct peering or a configured transit path; sharing B as a peer does not provide it."
         },
         {
           "id": "c",
-          "text": "A–C connectivity appears after changing only the peering names.",
-          "explanation": "Names do not create network paths."
+          "text": "A-C can communicate, but A-B and B-C cannot communicate.",
+          "explanation": "The connected direct peerings supply the A-B and B-C paths. They do not replace those paths with an A-C transit connection."
         },
         {
           "id": "d",
-          "text": "A and C share one address space automatically.",
-          "explanation": "Peering does not merge or renumber their address spaces."
+          "text": "None of the three VNet pairs can communicate through these peerings.",
+          "explanation": "The established direct peerings with permitted network/guest access supply A-B and B-C connectivity."
         }
       ],
       "correct": [
@@ -43,39 +43,39 @@
         "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-peering",
         "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-peering-gateway-transit"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-peering-transit",
       "family": "nw-peering-transit",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.vnets.peering",
       "objectives": [
         "nw-02"
       ],
       "difficulty": "applied",
-      "prompt": "A spoke without its own gateway must use a supported VPN gateway in a peered hub. Which TWO peering settings are required on the respective sides?",
+      "prompt": "A spoke has no VPN gateway and no existing remote-gateway selection. It must use the supported VPN gateway in a peered hub for on-premises access. Bidirectional peering and virtual network access are already enabled. Which TWO peering settings jointly enable that gateway-sharing arrangement on the respective sides?",
       "select": 2,
       "options": [
         {
           "id": "a",
-          "text": "Allow gateway transit on the hub-side peering",
-          "explanation": "The hub permits use of its gateway."
+          "text": "Enable Allow gateway transit on the hub-to-spoke peering.",
+          "explanation": "The hub side must permit the spoke to use its gateway. This contributes the gateway-sharing permission, paired with the spoke remote-gateway selection."
         },
         {
           "id": "b",
-          "text": "Use remote gateways on the spoke-side peering",
-          "explanation": "The spoke chooses to use the permitted remote gateway."
+          "text": "Enable Use remote gateways on the spoke-to-hub peering.",
+          "explanation": "The spoke selects the gateway offered by the hub. It has neither its own gateway nor another remote-gateway selection, so the stated prerequisites are met."
         },
         {
           "id": "c",
-          "text": "Use remote gateways on every spoke peering simultaneously",
-          "explanation": "A VNet can use a remote gateway through only one peering."
+          "text": "Enable Use remote gateways on the hub-to-spoke peering.",
+          "explanation": "The hub already has the gateway and cannot use a remote gateway while retaining its own. This also selects the wrong direction."
         },
         {
           "id": "d",
-          "text": "Only allow forwarded traffic and omit both gateway settings",
-          "explanation": "Forwarded traffic permission alone does not configure gateway transit."
+          "text": "Enable Allow gateway transit on the spoke-to-hub peering instead of the hub side.",
+          "explanation": "The spoke has no gateway to share. Permission on this side cannot replace the hub permission for use of the hub gateway."
         }
       ],
       "correct": [
@@ -88,7 +88,7 @@
         "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-peering",
         "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-peering-gateway-transit"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-peering-forward",
@@ -132,7 +132,7 @@
         "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-peering",
         "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-peering-gateway-transit"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }
