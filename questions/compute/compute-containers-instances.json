@@ -4,34 +4,34 @@
     {
       "id": "co-aci-localhost",
       "family": "co-aci-localhost",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.containers.instances",
       "objectives": [
         "co-14"
       ],
       "difficulty": "foundation",
-      "prompt": "Two Linux containers in the same ACI container group need to communicate on an internal-only port. Which address can they use?",
+      "prompt": "Two Linux containers share one ACI container group. The app listens on port 8080; a helper listens on port 8081. Only port 8080 is exposed on the group public IP. Which endpoint lets the app call the helper using their shared local network?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "localhost with the listening port",
-          "explanation": "Containers in a group share a local network."
+          "text": "localhost:8081",
+          "explanation": "Containers in one group share the local network; port 8081 identifies the helper listener."
         },
         {
           "id": "b",
-          "text": "Only a public load-balancer frontend",
-          "explanation": "A public frontend is unnecessary for same-group communication."
+          "text": "The group public IP on port 8081",
+          "explanation": "Port 8081 is not exposed on the public endpoint. The internal helper can instead be reached through localhost."
         },
         {
           "id": "c",
-          "text": "Only a separate VNet peering for each container",
-          "explanation": "Containers in one group do not each require a peered VNet."
+          "text": "localhost:8080",
+          "explanation": "The local network is appropriate, but port 8080 is the app listener rather than the helper."
         },
         {
           "id": "d",
-          "text": "The ACR repository URL as the runtime service address",
-          "explanation": "A registry stores images; it is not the running service endpoint."
+          "text": "The image registry hostname on port 8081",
+          "explanation": "The registry stores container images; it does not address the running helper."
         }
       ],
       "correct": [
@@ -39,43 +39,41 @@
       ],
       "knowledge": "knowledge/compute/containers/instances.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups",
-        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy",
-        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files"
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-aci-onfailure",
       "family": "co-aci-onfailure",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.containers.instances",
       "objectives": [
         "co-14"
       ],
       "difficulty": "applied",
-      "prompt": "An ACI batch task should retry after a nonzero process exit and remain terminated after successful completion. Which restart policy explicitly expresses that behavior?",
+      "prompt": "An ACI batch process returns exit code 0 on success and a nonzero code on failure. The configuration must explicitly request retry after failure and leave successful completion terminated. Which configuration expresses this policy while preserving the process outcome?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "OnFailure",
-          "explanation": "This policy restarts failed processes but does not restart successful completion."
+          "text": "Restart policy OnFailure; pass through the process exit code unchanged.",
+          "explanation": "OnFailure requests retries for nonzero exits and leaves exit-code-0 completion terminated."
         },
         {
           "id": "b",
-          "text": "Always",
-          "explanation": "Always also restarts the container after successful completion."
+          "text": "Restart policy Always; pass through the process exit code unchanged.",
+          "explanation": "Always also restarts successful termination, contrary to the requirement."
         },
         {
           "id": "c",
-          "text": "Never as a guarantee of exactly-once execution",
-          "explanation": "Current documentation warns that nonzero exits can still be restarted; it is not an exactly-once guarantee."
+          "text": "Restart policy Never; pass through the process exit code unchanged.",
+          "explanation": "Never does not explicitly request failure retries. Documentation warns that platform restarts after nonzero exits can still occur; that caveat is not an explicit retry policy."
         },
         {
           "id": "d",
-          "text": "An HTTP replica scaling rule",
-          "explanation": "Replica scaling is not an ACI restart-policy value."
+          "text": "Restart policy OnFailure; wrap the command to return exit code 0 after every run.",
+          "explanation": "Mapping failures to zero hides the failure outcome from OnFailure, so the policy does not receive the nonzero exit needed for a retry."
         }
       ],
       "correct": [
@@ -83,43 +81,41 @@
       ],
       "knowledge": "knowledge/compute/containers/instances.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups",
-        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy",
-        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files"
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-aci-persist",
       "family": "co-aci-persist",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.containers.instances",
       "objectives": [
         "co-14"
       ],
       "difficulty": "applied",
-      "prompt": "Output from an ACI task must survive deletion of its container group. Which design meets the requirement?",
+      "prompt": "A Linux ACI batch task writes result files through a mounted directory. The files must survive deletion of its container group. Which storage configuration meets the requirement?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Write results to durable external storage and retain that storage.",
-          "explanation": "Data durability must extend beyond the container-group lifecycle."
+          "text": "Mount an Azure Files share for the results and retain the share after deleting the group.",
+          "explanation": "The external share persists independently of the container group, preserving files written to the mount."
         },
         {
           "id": "b",
-          "text": "Store the only copy in the container writable layer.",
-          "explanation": "Deleting and recreating the group does not preserve that layer as a durable archive."
+          "text": "Write the results only to the container writable layer.",
+          "explanation": "The local writable layer is not durable across deletion of the container group."
         },
         {
           "id": "c",
-          "text": "Use Always restart policy instead of persistent storage.",
-          "explanation": "Restart policy does not provide durable output after deletion."
+          "text": "Mount an emptyDir volume for the results and delete the group after completion.",
+          "explanation": "emptyDir can share files within the group, but its contents do not survive group deletion."
         },
         {
           "id": "d",
-          "text": "Give the group a DNS label and store output only locally.",
-          "explanation": "A DNS label does not persist container filesystem contents."
+          "text": "Mount an Azure Files share for the results and delete that share with the group.",
+          "explanation": "The storage is external, but deleting the share removes the retained results the requirement needs."
         }
       ],
       "correct": [
@@ -127,11 +123,10 @@
       ],
       "knowledge": "knowledge/compute/containers/instances.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups",
-        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy",
-        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files"
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files",
+        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-emptydir"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

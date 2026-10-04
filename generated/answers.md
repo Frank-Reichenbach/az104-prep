@@ -467,52 +467,52 @@ Study: [knowledge file](../knowledge/compute/containers/apps.md). Evidence check
 
 Topic: Compute › Container Instances groups and restart behavior.
 
-Two Linux containers in the same ACI container group need to communicate on an internal-only port. Which address can they use?
+Two Linux containers share one ACI container group. The app listens on port 8080; a helper listens on port 8081. Only port 8080 is exposed on the group public IP. Which endpoint lets the app call the helper using their shared local network?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** localhost with the listening port Containers in a group share a local network.
-- **B. Incorrect:** Only a public load-balancer frontend A public frontend is unnecessary for same-group communication.
-- **C. Incorrect:** Only a separate VNet peering for each container Containers in one group do not each require a peered VNet.
-- **D. Incorrect:** The ACR repository URL as the runtime service address A registry stores images; it is not the running service endpoint.
+- **A. Correct:** localhost:8081 Containers in one group share the local network; port 8081 identifies the helper listener.
+- **B. Incorrect:** The group public IP on port 8081 Port 8081 is not exposed on the public endpoint. The internal helper can instead be reached through localhost.
+- **C. Incorrect:** localhost:8080 The local network is appropriate, but port 8080 is the app listener rather than the helper.
+- **D. Incorrect:** The image registry hostname on port 8081 The registry stores container images; it does not address the running helper.
 
-Study: [knowledge file](../knowledge/compute/containers/instances.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/containers/instances.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups)
 
 ## co-aci-onfailure
 
 Topic: Compute › Container Instances groups and restart behavior.
 
-An ACI batch task should retry after a nonzero process exit and remain terminated after successful completion. Which restart policy explicitly expresses that behavior?
+An ACI batch process returns exit code 0 on success and a nonzero code on failure. The configuration must explicitly request retry after failure and leave successful completion terminated. Which configuration expresses this policy while preserving the process outcome?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** OnFailure This policy restarts failed processes but does not restart successful completion.
-- **B. Incorrect:** Always Always also restarts the container after successful completion.
-- **C. Incorrect:** Never as a guarantee of exactly-once execution Current documentation warns that nonzero exits can still be restarted; it is not an exactly-once guarantee.
-- **D. Incorrect:** An HTTP replica scaling rule Replica scaling is not an ACI restart-policy value.
+- **A. Correct:** Restart policy OnFailure; pass through the process exit code unchanged. OnFailure requests retries for nonzero exits and leaves exit-code-0 completion terminated.
+- **B. Incorrect:** Restart policy Always; pass through the process exit code unchanged. Always also restarts successful termination, contrary to the requirement.
+- **C. Incorrect:** Restart policy Never; pass through the process exit code unchanged. Never does not explicitly request failure retries. Documentation warns that platform restarts after nonzero exits can still occur; that caveat is not an explicit retry policy.
+- **D. Incorrect:** Restart policy OnFailure; wrap the command to return exit code 0 after every run. Mapping failures to zero hides the failure outcome from OnFailure, so the policy does not receive the nonzero exit needed for a retry.
 
-Study: [knowledge file](../knowledge/compute/containers/instances.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/containers/instances.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy)
 
 ## co-aci-persist
 
 Topic: Compute › Container Instances groups and restart behavior.
 
-Output from an ACI task must survive deletion of its container group. Which design meets the requirement?
+A Linux ACI batch task writes result files through a mounted directory. The files must survive deletion of its container group. Which storage configuration meets the requirement?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Write results to durable external storage and retain that storage. Data durability must extend beyond the container-group lifecycle.
-- **B. Incorrect:** Store the only copy in the container writable layer. Deleting and recreating the group does not preserve that layer as a durable archive.
-- **C. Incorrect:** Use Always restart policy instead of persistent storage. Restart policy does not provide durable output after deletion.
-- **D. Incorrect:** Give the group a DNS label and store output only locally. A DNS label does not persist container filesystem contents.
+- **A. Correct:** Mount an Azure Files share for the results and retain the share after deleting the group. The external share persists independently of the container group, preserving files written to the mount.
+- **B. Incorrect:** Write the results only to the container writable layer. The local writable layer is not durable across deletion of the container group.
+- **C. Incorrect:** Mount an emptyDir volume for the results and delete the group after completion. emptyDir can share files within the group, but its contents do not survive group deletion.
+- **D. Incorrect:** Mount an Azure Files share for the results and delete that share with the group. The storage is external, but deleting the share removes the retained results the requirement needs.
 
-Study: [knowledge file](../knowledge/compute/containers/instances.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/containers/instances.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-emptydir)
 
 ## co-acr-abac
 

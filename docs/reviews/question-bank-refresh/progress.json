@@ -3340,9 +3340,9 @@
     {
       "id": "compute.containers.instances",
       "title": "Container Instances groups and restart behavior",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.containers.instances.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-aci-localhost",
@@ -3357,9 +3357,9 @@
           ],
           "baselineHash": "7385830e8f8ca43b3a45bd0c34ea5d7f5a41b21561faff7b07df3e86b2ab65b1",
           "baselineContentHash": "def223992525e8e76e0e45c344a4439d13edd57fa61aa4fa17d782631a3fce54",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "273f30f09034ba1ffa821bcf907d11e810a209418f1a39f7bbcc01ebea28a855"
         },
         {
           "id": "co-aci-onfailure",
@@ -3374,9 +3374,9 @@
           ],
           "baselineHash": "5729edc51f36c93583134c9c09487008060db4fab39a92ae5449be3d3fb32e39",
           "baselineContentHash": "8cfcb144b6ba2084f1a680aac6c5ec84961824f736b29bcc499f3a7f2b749d43",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "d95b0b77dbcb35193a6d4e0730a3d0c0784fc8618ba8fe59604673ab75982a94"
         },
         {
           "id": "co-aci-persist",
@@ -3391,9 +3391,9 @@
           ],
           "baselineHash": "92e71c666ac8b2cddd0fce01c5bf35180a745d1a432f18e5c164a0f8af6d9f8d",
           "baselineContentHash": "6bb6b7df14dc6d3ead2b7780feaf8164fa113ba95b05dcc717c4c7f98d4ee036",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f2c2a8dd6e07124dabcfa1b004b829c0ace7e5b1ba22639d190826aa9f4c1877"
         }
       ]
     },

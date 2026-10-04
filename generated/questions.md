@@ -361,40 +361,40 @@ D. Increase maximum replicas without changing the port.
 
 Topic: Compute › Container Instances groups and restart behavior.
 
-Two Linux containers in the same ACI container group need to communicate on an internal-only port. Which address can they use?
+Two Linux containers share one ACI container group. The app listens on port 8080; a helper listens on port 8081. Only port 8080 is exposed on the group public IP. Which endpoint lets the app call the helper using their shared local network?
 
 Select **1**. Difficulty: foundation.
 
-A. localhost with the listening port
-B. Only a public load-balancer frontend
-C. Only a separate VNet peering for each container
-D. The ACR repository URL as the runtime service address
+A. localhost:8081
+B. The group public IP on port 8081
+C. localhost:8080
+D. The image registry hostname on port 8081
 
 ## co-aci-onfailure
 
 Topic: Compute › Container Instances groups and restart behavior.
 
-An ACI batch task should retry after a nonzero process exit and remain terminated after successful completion. Which restart policy explicitly expresses that behavior?
+An ACI batch process returns exit code 0 on success and a nonzero code on failure. The configuration must explicitly request retry after failure and leave successful completion terminated. Which configuration expresses this policy while preserving the process outcome?
 
 Select **1**. Difficulty: applied.
 
-A. OnFailure
-B. Always
-C. Never as a guarantee of exactly-once execution
-D. An HTTP replica scaling rule
+A. Restart policy OnFailure; pass through the process exit code unchanged.
+B. Restart policy Always; pass through the process exit code unchanged.
+C. Restart policy Never; pass through the process exit code unchanged.
+D. Restart policy OnFailure; wrap the command to return exit code 0 after every run.
 
 ## co-aci-persist
 
 Topic: Compute › Container Instances groups and restart behavior.
 
-Output from an ACI task must survive deletion of its container group. Which design meets the requirement?
+A Linux ACI batch task writes result files through a mounted directory. The files must survive deletion of its container group. Which storage configuration meets the requirement?
 
 Select **1**. Difficulty: applied.
 
-A. Write results to durable external storage and retain that storage.
-B. Store the only copy in the container writable layer.
-C. Use Always restart policy instead of persistent storage.
-D. Give the group a DNS label and store output only locally.
+A. Mount an Azure Files share for the results and retain the share after deleting the group.
+B. Write the results only to the container writable layer.
+C. Mount an emptyDir volume for the results and delete the group after completion.
+D. Mount an Azure Files share for the results and delete that share with the group.
 
 ## co-acr-abac
 
