@@ -244,14 +244,14 @@ D. The staging slot has the same supported automatic HTTP scaling behavior as th
 
 Topic: Compute › App Service deployment slots and swaps.
 
-Production and staging use different database connection strings, and each must remain attached to its environment during a slot swap. What should be configured?
+A Standard web app has production and staging slots. Each has a different DbConnection connection string and a ReleaseLabel app setting. After a completed swap, DbConnection must remain with its environment, while ReleaseLabel must follow the deployed release. Neither setting has a special platform exception. Which deployment slot setting flags meet both requirements?
 
 Select **1**. Difficulty: applied.
 
-A. Mark the connection strings as deployment slot settings.
-B. Leave them swappable and rely on different display names.
-C. Put both connection strings only in the shared plan name.
-D. Change only the staging traffic percentage.
+A. DbConnection: enabled; ReleaseLabel: disabled.
+B. DbConnection: disabled; ReleaseLabel: disabled.
+C. DbConnection: enabled; ReleaseLabel: enabled.
+D. DbConnection: disabled; ReleaseLabel: enabled.
 
 ## co-slot-identity
 
@@ -270,14 +270,14 @@ D. All runtime framework settings
 
 Topic: Compute › App Service deployment slots and swaps.
 
-A release is swapped from staging to production and performs an external database schema migration. What does swapping the slots back provide?
+Version 2 is swapped from staging into production, leaving version 1 in staging. Version 2 then changes an external database from schema 1 to schema 2. No later deployment occurs, and neither app version changes the database during startup or a swap. You swap the same slots back without running a database recovery operation. Which production state results?
 
 Select **1**. Difficulty: applied.
 
-A. A code/configuration rollback path that still needs a separate database compatibility or recovery plan.
-B. Automatic reversal of every database change.
-C. Automatic restoration of all production data from Azure Backup.
-D. Deletion of the newer database schema with guaranteed zero data loss.
+A. Application version 1; external database schema 2.
+B. Application version 1; external database schema 1.
+C. Application version 2; external database schema 1.
+D. Application version 2; external database schema 2.
 
 ## co-tls-binding
 

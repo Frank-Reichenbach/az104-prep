@@ -3974,9 +3974,9 @@
     {
       "id": "compute.app-service.slots",
       "title": "App Service deployment slots and swaps",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.app-service.slots.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-slot-sticky",
@@ -3991,9 +3991,9 @@
           ],
           "baselineHash": "054b2df7461d7ebd8f8a6fb2ce05b0bdff6005e13ca8e86b13f88dfb354b87f5",
           "baselineContentHash": "8d86ae38167a147fc054d03897b1170a594c2bb093677f4ca746882478f115a3",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "41d7564e3c399e344208365f3df0545c1b59b7aef8f656ce91f04c56c2dbb4d2"
         },
         {
           "id": "co-slot-identity",
@@ -4008,9 +4008,9 @@
           ],
           "baselineHash": "07f9a908916d4d5564bb615c67b3269535358288ba44ad97444b91842e6cc851",
           "baselineContentHash": "d7d19ca4cbb9699732a9cbb60410a1e316e03acae959067a8a85943bb45fc1a6",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "dbc44dced196250cb96ae3eb061e4dbbce588c73ea8aa14a89a82c22847c99ab"
         },
         {
           "id": "co-slot-rollback",
@@ -4025,9 +4025,9 @@
           ],
           "baselineHash": "4aad95dfd09d3c5f2c7ad8f2ef6bafe4c0c6b27293b96cb90a47b3b67693564d",
           "baselineContentHash": "e25492f8eb282e51356e944aabc6ecff1351f198057abd1e4ff11e959d583a75",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "cf7dfe72065c16c326a017db3a731eb9c2a325245a65f7ea1bdd39ac0b22ded0"
         }
       ]
     },

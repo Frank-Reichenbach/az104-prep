@@ -314,16 +314,16 @@ Study: [knowledge file](../knowledge/compute/app-service/scaling.md). Evidence c
 
 Topic: Compute › App Service deployment slots and swaps.
 
-Production and staging use different database connection strings, and each must remain attached to its environment during a slot swap. What should be configured?
+A Standard web app has production and staging slots. Each has a different DbConnection connection string and a ReleaseLabel app setting. After a completed swap, DbConnection must remain with its environment, while ReleaseLabel must follow the deployed release. Neither setting has a special platform exception. Which deployment slot setting flags meet both requirements?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Mark the connection strings as deployment slot settings. Sticky connection strings remain associated with their slot.
-- **B. Incorrect:** Leave them swappable and rely on different display names. Display names do not prevent connection string swapping.
-- **C. Incorrect:** Put both connection strings only in the shared plan name. The plan name does not supply environment-specific application configuration.
-- **D. Incorrect:** Change only the staging traffic percentage. Traffic routing does not make connection strings sticky.
+- **A. Correct:** DbConnection: enabled; ReleaseLabel: disabled. Slot-specific connection strings stay with the environment after the swap; the unmarked ordinary app setting follows the release configuration.
+- **B. Incorrect:** DbConnection: disabled; ReleaseLabel: disabled. Both are swappable, so the environment-specific connection strings would follow the release rather than remain with their slots.
+- **C. Incorrect:** DbConnection: enabled; ReleaseLabel: enabled. Both stay with their slots, so the release label would not follow the deployed release.
+- **D. Incorrect:** DbConnection: disabled; ReleaseLabel: enabled. This reverses the requirements: the connection string moves and the release label remains attached to its slot.
 
-Study: [knowledge file](../knowledge/compute/app-service/slots.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/slots.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots)
 
@@ -340,7 +340,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** Every ordinary unmarked app setting App settings can swap unless configured sticky or subject to documented exceptions.
 - **D. Incorrect:** All runtime framework settings Framework settings are among the swappable configuration items.
 
-Study: [knowledge file](../knowledge/compute/app-service/slots.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/slots.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots)
 
@@ -348,16 +348,16 @@ Study: [knowledge file](../knowledge/compute/app-service/slots.md). Evidence che
 
 Topic: Compute › App Service deployment slots and swaps.
 
-A release is swapped from staging to production and performs an external database schema migration. What does swapping the slots back provide?
+Version 2 is swapped from staging into production, leaving version 1 in staging. Version 2 then changes an external database from schema 1 to schema 2. No later deployment occurs, and neither app version changes the database during startup or a swap. You swap the same slots back without running a database recovery operation. Which production state results?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** A code/configuration rollback path that still needs a separate database compatibility or recovery plan. A slot swap does not undo external database mutations.
-- **B. Incorrect:** Automatic reversal of every database change. External data is outside the slot content swap.
-- **C. Incorrect:** Automatic restoration of all production data from Azure Backup. Swap does not trigger database restoration.
-- **D. Incorrect:** Deletion of the newer database schema with guaranteed zero data loss. A swap has no such schema or data-loss guarantee.
+- **A. Correct:** Application version 1; external database schema 2. Swapping back restores the earlier app release from staging, but does not undo the separate database mutation. Compatibility or database recovery needs its own plan.
+- **B. Incorrect:** Application version 1; external database schema 1. The earlier app release returns, but the external database schema does not revert merely because the slots are swapped.
+- **C. Incorrect:** Application version 2; external database schema 1. The swap returns version 1 to production and has no operation that restores schema 1.
+- **D. Incorrect:** Application version 2; external database schema 2. The database remains at schema 2, but swapping the same slots back returns version 1 to the production endpoint.
 
-Study: [knowledge file](../knowledge/compute/app-service/slots.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/slots.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots)
 
