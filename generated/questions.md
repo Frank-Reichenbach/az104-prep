@@ -1349,27 +1349,27 @@ D. Only if Owner is also assigned on every resource.
 
 Topic: Identity and governance › Effective access and RBAC troubleshooting.
 
-An applicable Azure deny assignment blocks an operation that a user's Owner role would otherwise permit. What does RBAC evaluation do?
+A user has Owner on vm-app. An applicable deny assignment blocks only virtual-machine deletion for that user on vm-app; it does not deny configuration reads. No other restriction applies. Which pair of RBAC outcomes should the administrator expect?
 
-Select **1**. Difficulty: foundation.
+Select **1**. Difficulty: applied.
 
-A. Blocks the operation.
-B. Ignores the deny because Owner always bypasses it.
-C. Uses whichever object was created last.
-D. Converts the deny into Reader.
+A. Reading configuration is allowed; deleting the VM is blocked.
+B. Reading configuration and deleting the VM are both allowed.
+C. Reading configuration and deleting the VM are both blocked.
+D. Reading configuration is blocked; deleting the VM is allowed.
 
 ## id-effective-check-path
 
 Topic: Identity and governance › Effective access and RBAC troubleshooting.
 
-A user has no direct role assignment on a VM but can read its configuration. Which two paths should an administrator inspect?
+User1 can read vm-app configuration even though no Azure role is assigned directly to User1 at that VM. Which two assignment paths could each independently supply this current access? Select two.
 
 Select **2**. Difficulty: troubleshooting.
 
-A. Assignments inherited from parent scopes.
-B. Applicable assignments to the user's groups.
-C. The VM's cost-center tag as an automatic Reader grant.
-D. A display name matching the VM name.
+A. An active Reader assignment directly to User1 at the containing subscription.
+B. An active Reader assignment on vm-app to a security group containing User1.
+C. An active Reader assignment to User1 on a different VM in the same resource group.
+D. An eligible Reader assignment for User1 on vm-app that has not been activated.
 
 ## id-role-contributor-access
 

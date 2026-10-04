@@ -5655,39 +5655,39 @@
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access",
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-effective-deny",
       "family": "id-effective-deny",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.rbac.effective-access",
       "objectives": [
         "id-08"
       ],
-      "difficulty": "foundation",
-      "prompt": "An applicable Azure deny assignment blocks an operation that a user's Owner role would otherwise permit. What does RBAC evaluation do?",
+      "difficulty": "applied",
+      "prompt": "A user has Owner on vm-app. An applicable deny assignment blocks only virtual-machine deletion for that user on vm-app; it does not deny configuration reads. No other restriction applies. Which pair of RBAC outcomes should the administrator expect?",
       "select": 1,
       "options": [
         {
           "id": "deny",
-          "text": "Blocks the operation.",
-          "explanation": "An applicable deny assignment takes precedence over the matching grant."
+          "text": "Reading configuration is allowed; deleting the VM is blocked.",
+          "explanation": "Owner grants both actions, but the matching deletion deny blocks that operation while leaving reads permitted."
         },
         {
           "id": "owner",
-          "text": "Ignores the deny because Owner always bypasses it.",
-          "explanation": "Owner does not universally bypass deny assignments."
+          "text": "Reading configuration and deleting the VM are both allowed.",
+          "explanation": "Owner does not override an applicable deny assignment on deletion."
         },
         {
           "id": "latest",
-          "text": "Uses whichever object was created last.",
-          "explanation": "Creation order is not the evaluation rule."
+          "text": "Reading configuration and deleting the VM are both blocked.",
+          "explanation": "The deny is limited to deletion; it does not block the granted read operation."
         },
         {
           "id": "reader",
-          "text": "Converts the deny into Reader.",
-          "explanation": "Deny assignments are not converted into weaker allow roles."
+          "text": "Reading configuration is blocked; deleting the VM is allowed.",
+          "explanation": "This reverses the stated deny scope: deletion is denied and reads are not."
         }
       ],
       "correct": [
@@ -5695,43 +5695,42 @@
       ],
       "knowledge": "knowledge/identity/rbac/effective-access.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
-        "https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access",
-        "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments"
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-effective-check-path",
       "family": "id-effective-check-path",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.rbac.effective-access",
       "objectives": [
         "id-08"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A user has no direct role assignment on a VM but can read its configuration. Which two paths should an administrator inspect?",
+      "prompt": "User1 can read vm-app configuration even though no Azure role is assigned directly to User1 at that VM. Which two assignment paths could each independently supply this current access? Select two.",
       "select": 2,
       "options": [
         {
           "id": "parent",
-          "text": "Assignments inherited from parent scopes.",
-          "explanation": "A subscription or resource-group grant can reach the VM."
+          "text": "An active Reader assignment directly to User1 at the containing subscription.",
+          "explanation": "The subscription grant is inherited by vm-app and permits configuration reads."
         },
         {
           "id": "group",
-          "text": "Applicable assignments to the user's groups.",
-          "explanation": "Access can come through group membership."
+          "text": "An active Reader assignment on vm-app to a security group containing User1.",
+          "explanation": "The group grant supplies Reader permissions to its member at the VM scope."
         },
         {
           "id": "tags",
-          "text": "The VM's cost-center tag as an automatic Reader grant.",
-          "explanation": "Tags do not automatically confer RBAC permission."
+          "text": "An active Reader assignment to User1 on a different VM in the same resource group.",
+          "explanation": "Resource-scope permission does not extend to a sibling VM."
         },
         {
           "id": "name",
-          "text": "A display name matching the VM name.",
-          "explanation": "Matching names do not establish an authorization relationship."
+          "text": "An eligible Reader assignment for User1 on vm-app that has not been activated.",
+          "explanation": "Eligibility must be activated before it provides current role permissions."
         }
       ],
       "correct": [
@@ -5740,11 +5739,12 @@
       ],
       "knowledge": "knowledge/identity/rbac/effective-access.md",
       "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview",
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
-        "https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access",
-        "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments"
+        "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-activate-your-roles",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-role-contributor-access",

@@ -1751,7 +1751,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** Only if Contributor was assigned more recently. Assignment time is not the deciding precedence.
 - **D. Incorrect:** Only if Owner is also assigned on every resource. Contributor already supplies the relevant management grant.
 
-Study: [knowledge file](../knowledge/identity/rbac/effective-access.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/rbac/effective-access.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments)
 
@@ -1759,35 +1759,35 @@ Study: [knowledge file](../knowledge/identity/rbac/effective-access.md). Evidenc
 
 Topic: Identity and governance › Effective access and RBAC troubleshooting.
 
-An applicable Azure deny assignment blocks an operation that a user's Owner role would otherwise permit. What does RBAC evaluation do?
+A user has Owner on vm-app. An applicable deny assignment blocks only virtual-machine deletion for that user on vm-app; it does not deny configuration reads. No other restriction applies. Which pair of RBAC outcomes should the administrator expect?
 
-Select **1**. Difficulty: foundation.
+Select **1**. Difficulty: applied.
 
-- **A. Correct:** Blocks the operation. An applicable deny assignment takes precedence over the matching grant.
-- **B. Incorrect:** Ignores the deny because Owner always bypasses it. Owner does not universally bypass deny assignments.
-- **C. Incorrect:** Uses whichever object was created last. Creation order is not the evaluation rule.
-- **D. Incorrect:** Converts the deny into Reader. Deny assignments are not converted into weaker allow roles.
+- **A. Correct:** Reading configuration is allowed; deleting the VM is blocked. Owner grants both actions, but the matching deletion deny blocks that operation while leaving reads permitted.
+- **B. Incorrect:** Reading configuration and deleting the VM are both allowed. Owner does not override an applicable deny assignment on deletion.
+- **C. Incorrect:** Reading configuration and deleting the VM are both blocked. The deny is limited to deletion; it does not block the granted read operation.
+- **D. Incorrect:** Reading configuration is blocked; deleting the VM is allowed. This reverses the stated deny scope: deletion is denied and reads are not.
 
-Study: [knowledge file](../knowledge/identity/rbac/effective-access.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/rbac/effective-access.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview)
 
 ## id-effective-check-path
 
 Topic: Identity and governance › Effective access and RBAC troubleshooting.
 
-A user has no direct role assignment on a VM but can read its configuration. Which two paths should an administrator inspect?
+User1 can read vm-app configuration even though no Azure role is assigned directly to User1 at that VM. Which two assignment paths could each independently supply this current access? Select two.
 
 Select **2**. Difficulty: troubleshooting.
 
-- **A. Correct:** Assignments inherited from parent scopes. A subscription or resource-group grant can reach the VM.
-- **B. Correct:** Applicable assignments to the user's groups. Access can come through group membership.
-- **C. Incorrect:** The VM's cost-center tag as an automatic Reader grant. Tags do not automatically confer RBAC permission.
-- **D. Incorrect:** A display name matching the VM name. Matching names do not establish an authorization relationship.
+- **A. Correct:** An active Reader assignment directly to User1 at the containing subscription. The subscription grant is inherited by vm-app and permits configuration reads.
+- **B. Correct:** An active Reader assignment on vm-app to a security group containing User1. The group grant supplies Reader permissions to its member at the VM scope.
+- **C. Incorrect:** An active Reader assignment to User1 on a different VM in the same resource group. Resource-scope permission does not extend to a sibling VM.
+- **D. Incorrect:** An eligible Reader assignment for User1 on vm-app that has not been activated. Eligibility must be activated before it provides current role permissions.
 
-Study: [knowledge file](../knowledge/identity/rbac/effective-access.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/rbac/effective-access.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-activate-your-roles) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access)
 
 ## id-role-contributor-access
 

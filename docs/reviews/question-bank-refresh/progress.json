@@ -2046,9 +2046,9 @@
     {
       "id": "identity.rbac.effective-access",
       "title": "Effective access and RBAC troubleshooting",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/identity.rbac.effective-access.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "id-effective-additive",
@@ -2063,9 +2063,9 @@
           ],
           "baselineHash": "f2cfde705137ea2721bba9fe8a7cf12491b2c674bdeab2e09d346fb9a5d6b3f5",
           "baselineContentHash": "ca271f37dc7ee740fbbc4ceb63561e1b41ce67612a2e94241d7d143e010f7548",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "48eb05735f6f1d521a406e29b1957fae2b8681831c5d02fa3591cb744471c211"
         },
         {
           "id": "id-effective-deny",
@@ -2080,9 +2080,9 @@
           ],
           "baselineHash": "cc363c6e046e4aaa7b907d07861127479e95cb89cda16ec3539fed63fd2e89b1",
           "baselineContentHash": "0b51179aa0bff201a4adee646aa24842fb27045b624769cb152be188c9c005e7",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "21f0235031026b80801e7a24413fc9d0623adfe4cf44171d0a9e4d32db719b97"
         },
         {
           "id": "id-effective-check-path",
@@ -2097,9 +2097,9 @@
           ],
           "baselineHash": "0b85031c118d43b0eaf7f4915f2adab07351f330367620700370de018274d69f",
           "baselineContentHash": "f2cb841b41491469d06ecdf27bc5c88faba99ca98b3ec8fcdfe361709a4def64",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "86242669be20467555c96126f2ba24ddf49507b69eb69d35fe07b7edc2ded895"
         }
       ]
     },
