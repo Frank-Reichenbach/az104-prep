@@ -2439,18 +2439,18 @@ Study: [knowledge file](../knowledge/monitoring/backup/policies.md). Evidence ch
 
 Topic: Monitoring and recovery › Backup soft deletion and vault immutability.
 
-A vault's immutability state is Enabled and locked. Can an administrator disable it for early backup cleanup?
+A Recovery Services vault has policy-based immutability Enabled and locked. Existing recovery points have not reached their retention expiry. An administrator wants to retire the source VM while preserving those points. Which action is permitted by immutability?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** No; the lock makes the immutable setting irreversible. Cleanup must respect the protected retention.
-- **B. Incorrect:** Yes; Reader can disable any lock. Reader cannot do this, and this immutability lock is irreversible.
-- **C. Incorrect:** Yes; changing a tag unlocks it. Tags do not remove vault immutability.
-- **D. Incorrect:** Yes; moving the VM to another subnet disables vault protection. VM networking does not unlock the vault.
+- **A. Correct:** Stop protection while retaining the existing backup data. Immutability permits stopping protection with retained data; it does not permit premature deletion of the protected recovery points.
+- **B. Incorrect:** Disable locked immutability, then delete the existing backup data. The Enabled and locked setting is irreversible and cannot be disabled for this cleanup.
+- **C. Incorrect:** Shorten the policy so the existing recovery points expire earlier. Policy-based immutability blocks reducing retention in a way that prematurely removes retained recovery points.
+- **D. Incorrect:** Stop protection with deletion of all existing backup data immediately. Deleting recovery points before their retention expiry is blocked under the stated immutability configuration.
 
-Study: [knowledge file](../knowledge/monitoring/backup/protection.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/protection.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/secure-by-default) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept)
 
 ## mo-protection-soft
 
@@ -2460,12 +2460,12 @@ What is the purpose of backup soft deletion?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Incorrect:** Reduce every backup to zero storage cost forever. Retention beyond the included period can incur costs.
-- **B. Correct:** Keep deleted backup data recoverable for its configured window. This protects against accidental or malicious deletion.
-- **C. Incorrect:** Automatically replicate every operational snapshot to another region. Soft deletion is not that replication mechanism.
-- **D. Incorrect:** Replace all recovery points with the source's current state. It retains deleted backup data rather than rewriting it.
+- **A. Incorrect:** Prevent any backup deletion request from being accepted. Soft delete retains data after deletion; it is not the immutability control that blocks premature deletion operations.
+- **B. Correct:** Keep deleted backup data recoverable for its configured window. Soft delete postpones permanent removal and allows recovery after accidental or malicious deletion within that window.
+- **C. Incorrect:** Provide a secondary-region copy of the backup data. Soft delete addresses deletion recovery rather than the geographic redundancy of stored backup data.
+- **D. Incorrect:** Create a new recovery point containing changes since the last backup. Soft delete preserves deleted backup data; it does not capture new source changes.
 
-Study: [knowledge file](../knowledge/monitoring/backup/protection.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/protection.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/secure-by-default) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept)
 
@@ -2473,18 +2473,18 @@ Study: [knowledge file](../knowledge/monitoring/backup/protection.md). Evidence 
 
 Topic: Monitoring and recovery › Backup soft deletion and vault immutability.
 
-Does enabling vault immutability automatically make Azure Disk Backup operational snapshots immutable under that vault setting?
+A Backup vault has locked immutability. It manages operational Azure Disk Backup snapshots held in a snapshot resource group. A security review asks whether the vault setting establishes protection against deletion of those snapshots. Which conclusion follows?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Yes; all snapshots share vault-storage immutability. Operational backups are outside this immutability protection.
-- **B. Incorrect:** Yes, if the disk uses Premium SSD. Disk SKU does not remove the operational-tier exception.
-- **C. Correct:** No; vault immutability does not apply to operational disk backups. The documented distinction matters for protection design.
-- **D. Incorrect:** Yes, if the snapshot resource group has the vault's name. Names do not change the backup tier's protection semantics.
+- **A. Incorrect:** It establishes protection because the snapshots are listed by a backup instance in the vault. Management by a vault does not place operational snapshots under the vault immutability setting.
+- **B. Incorrect:** It establishes protection if the source disk uses Premium SSD. The source disk SKU does not change the documented operational-backup exclusion.
+- **C. Correct:** It does not establish that protection; operational backups are outside the vault immutability setting. Vault immutability does not apply to operational backups of disks, so their snapshot protection requires separate assessment.
+- **D. Incorrect:** It establishes protection if the snapshot resource group is in the vault’s region. Regional placement does not remove the operational-tier exclusion from vault immutability.
 
-Study: [knowledge file](../knowledge/monitoring/backup/protection.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/protection.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/secure-by-default) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept)
 
 ## mo-rsv-region
 

@@ -4,14 +4,14 @@ Topic ID: monitoring.backup.protection
 
 Objectives: mo-07, mo-08
 
-Verified: 2026-10-02
+Verified: 2026-10-04
 Status: documented; examples have not been executed in Azure.
 
 ## Two protections
 
 Soft delete retains deleted backup data for a recovery period. Vault immutability
-blocks operations that would prematurely remove retained vaulted recovery
-points. Neither is a substitute for checking restore usability.
+blocks deletion of vaulted recovery points during their applicable
+immutability period. Neither is a substitute for checking restore usability.
 [Soft-delete behavior](https://learn.microsoft.com/en-us/azure/backup/secure-by-default).
 [Immutability](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept).
 
@@ -23,7 +23,10 @@ retention is 14 days by default, configurable up to 180 days. Retention at the
 time of deletion governs that deleted item.
 
 Enable immutability first to assess operational effects; locking it is
-irreversible. Verify the intended state and that policy/retention changes comply.
+irreversible. Verify the intended state and immutability period. Policy-based
+immutability follows backup retention. For supported specific-duration
+immutability, retention can be reduced down to the configured immutable
+duration; do not assume every retention reduction is blocked.
 Immutability does not apply to operational backups of blobs/files/disks; do not
 assume every vault-managed snapshot is immutable.
 [Constraints](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept).

@@ -1869,14 +1869,14 @@ D. Yes; extending retention recreates missed historical backups.
 
 Topic: Monitoring and recovery › Backup soft deletion and vault immutability.
 
-A vault's immutability state is Enabled and locked. Can an administrator disable it for early backup cleanup?
+A Recovery Services vault has policy-based immutability Enabled and locked. Existing recovery points have not reached their retention expiry. An administrator wants to retire the source VM while preserving those points. Which action is permitted by immutability?
 
 Select **1**. Difficulty: applied.
 
-A. No; the lock makes the immutable setting irreversible.
-B. Yes; Reader can disable any lock.
-C. Yes; changing a tag unlocks it.
-D. Yes; moving the VM to another subnet disables vault protection.
+A. Stop protection while retaining the existing backup data.
+B. Disable locked immutability, then delete the existing backup data.
+C. Shorten the policy so the existing recovery points expire earlier.
+D. Stop protection with deletion of all existing backup data immediately.
 
 ## mo-protection-soft
 
@@ -1886,23 +1886,23 @@ What is the purpose of backup soft deletion?
 
 Select **1**. Difficulty: foundation.
 
-A. Reduce every backup to zero storage cost forever.
+A. Prevent any backup deletion request from being accepted.
 B. Keep deleted backup data recoverable for its configured window.
-C. Automatically replicate every operational snapshot to another region.
-D. Replace all recovery points with the source's current state.
+C. Provide a secondary-region copy of the backup data.
+D. Create a new recovery point containing changes since the last backup.
 
 ## mo-protection-operational
 
 Topic: Monitoring and recovery › Backup soft deletion and vault immutability.
 
-Does enabling vault immutability automatically make Azure Disk Backup operational snapshots immutable under that vault setting?
+A Backup vault has locked immutability. It manages operational Azure Disk Backup snapshots held in a snapshot resource group. A security review asks whether the vault setting establishes protection against deletion of those snapshots. Which conclusion follows?
 
 Select **1**. Difficulty: applied.
 
-A. Yes; all snapshots share vault-storage immutability.
-B. Yes, if the disk uses Premium SSD.
-C. No; vault immutability does not apply to operational disk backups.
-D. Yes, if the snapshot resource group has the vault's name.
+A. It establishes protection because the snapshots are listed by a backup instance in the vault.
+B. It establishes protection if the source disk uses Premium SSD.
+C. It does not establish that protection; operational backups are outside the vault immutability setting.
+D. It establishes protection if the snapshot resource group is in the vault’s region.
 
 ## mo-rsv-region
 

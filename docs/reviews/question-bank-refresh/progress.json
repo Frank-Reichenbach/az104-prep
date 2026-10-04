@@ -5782,9 +5782,9 @@
     {
       "id": "monitoring.backup.protection",
       "title": "Backup soft deletion and vault immutability",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.backup.protection.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-protection-locked",
@@ -5799,9 +5799,9 @@
           ],
           "baselineHash": "5df0f7afe5d1030e3d3fa5ea44ae815133e84ad7421dc730dd82b8b707a21211",
           "baselineContentHash": "e14979565bcc34d1b1d70f3143638b108dd5aaf802a4e1e62999e121868acba9",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "ea5d0b3e6f01b0fc9ef8576d5438cb773b1a8712992cdeadff36c577ea8e6b0d"
         },
         {
           "id": "mo-protection-soft",
@@ -5816,9 +5816,9 @@
           ],
           "baselineHash": "92240c0cd41ea9495cf97989cc6d5bb8ccc6b1232f9d0fe467be3c9be48068af",
           "baselineContentHash": "f2b9ed9ac89628faef8eb42dda4e0604a960895801d21e71f5338b598500ff3e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "80b39ea7ed2d4696b2aeec586e9b3197ae7b6ea970f1c6299abafef15f5f7fca"
         },
         {
           "id": "mo-protection-operational",
@@ -5833,9 +5833,9 @@
           ],
           "baselineHash": "2190602ec9171215f053c0c92d96ea717734859ab46e2f67c936cd6670e4c4e5",
           "baselineContentHash": "75dae9e33232fbe811ba73846eeffbdcc92899fb066655de9f31cb533fecaa1c",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "a21d9f31e83a76b07401479ba1c628b9d99176fb77f46f11a03a81c990c96f69"
         }
       ]
     },
