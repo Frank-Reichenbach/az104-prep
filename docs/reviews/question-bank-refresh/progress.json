@@ -5422,9 +5422,9 @@
     {
       "id": "monitoring.insights.storage",
       "title": "Storage Insights performance and capacity",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.insights.storage.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-storage-color",
@@ -5439,9 +5439,9 @@
           ],
           "baselineHash": "af6dafba25a4c3ec98e01a94d314c4d9791fa8cce09cb922250e9d18aff02680",
           "baselineContentHash": "449f52db5152860d320a65398304edc34dd46171e6a3865c7e94dadf2197ce81",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "4f607b4014dff9191c71d7ebc7213eb44fa25d5ae70909d173d3d4cc79e701ee"
         },
         {
           "id": "mo-storage-log-target",
@@ -5456,9 +5456,9 @@
           ],
           "baselineHash": "a1cc4d0c9301168c514056b736928ae7ab6843dfda764c634485aee783859da7",
           "baselineContentHash": "51cc0bb38a03d2d6e1466f47cb118af6cc0fee9b89770178a7fa38a8a9b1697e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "be85b4761abf01257dbac86983df69860ab06dccf1552cae9bb35313c19a4e8e"
         },
         {
           "id": "mo-storage-no-agent",
@@ -5473,9 +5473,9 @@
           ],
           "baselineHash": "a3b121f80c432862ac4890dee3313f1c5b49274654e1d6cbc2d4fec9c43671bd",
           "baselineContentHash": "9084bbe3c957304d7e4da15ba0c6cc99591e2d8420aab1ed2df0d6c1484e2848",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "4a7c500c687d01097ff354255b6eebe428e30b30ddea55d531d52229c8c5b1b9"
         }
       ]
     },

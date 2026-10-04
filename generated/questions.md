@@ -2077,27 +2077,27 @@ D. The account's replication mode.
 
 Topic: Monitoring and recovery › Storage Insights performance and capacity.
 
-You want Blob resource logs archived in Azure Storage. May the diagnostic setting target the same account it monitors?
+A Standard storage account in West Europe must archive its Blob resource logs using a diagnostic setting. Candidate destination accounts already exist and the required access and firewall settings are configured. Which storage destination is supported?
 
 Select **1**. Difficulty: applied.
 
-A. Yes; recursive logging is required.
-B. No; use a different destination account.
-C. Yes; rename the destination container.
-D. Yes; use a CNAME for the account.
+A. The monitored Standard account in West Europe.
+B. A different Standard account in West Europe.
+C. A different Premium account in West Europe.
+D. A different Standard account in North Europe.
 
 ## mo-storage-no-agent
 
 Topic: Monitoring and recovery › Storage Insights performance and capacity.
 
-Do Storage Insights' platform metrics require installing AMA on a client VM?
+Which collection path supplies the Azure Storage platform metrics used by Storage Insights, including capacity and service transactions?
 
 Select **1**. Difficulty: foundation.
 
-A. Yes; every transaction metric is collected from that guest.
-B. Yes; AMA must be installed inside the storage account.
-C. No; platform metrics are collected by Azure.
-D. Yes; Dependency Agent supplies storage capacity.
+A. Performance counters collected from client VMs through an AMA DCR.
+B. Syslog messages collected from client VMs into a Log Analytics workspace.
+C. Azure’s automatic collection of storage service platform metrics.
+D. Parsing archived Blob resource-operation logs as the prerequisite for the built-in metric views.
 
 ## mo-vm-guest
 

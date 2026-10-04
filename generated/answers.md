@@ -2703,7 +2703,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** An alert rule is automatically created with that threshold. Workbook coloring and alert configuration are separate.
 - **D. Incorrect:** The account's replication mode. The workbook setting does not configure redundancy.
 
-Study: [knowledge file](../knowledge/monitoring/insights/storage.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/insights/storage.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-insights-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage)
 
@@ -2711,33 +2711,33 @@ Study: [knowledge file](../knowledge/monitoring/insights/storage.md). Evidence c
 
 Topic: Monitoring and recovery › Storage Insights performance and capacity.
 
-You want Blob resource logs archived in Azure Storage. May the diagnostic setting target the same account it monitors?
+A Standard storage account in West Europe must archive its Blob resource logs using a diagnostic setting. Candidate destination accounts already exist and the required access and firewall settings are configured. Which storage destination is supported?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Yes; recursive logging is required. Recursive logging is precisely the reason this is not supported.
-- **B. Correct:** No; use a different destination account. This avoids logs describing their own writes.
-- **C. Incorrect:** Yes; rename the destination container. A different container does not remove the same-account restriction.
-- **D. Incorrect:** Yes; use a CNAME for the account. An alias still targets the same account.
+- **A. Incorrect:** The monitored Standard account in West Europe. Diagnostic logs cannot be sent to the same monitored storage account because writes would create recursive logging.
+- **B. Correct:** A different Standard account in West Europe. This avoids self-logging and meets the destination tier and regional requirements.
+- **C. Incorrect:** A different Premium account in West Europe. Premium storage accounts are not supported diagnostic-settings destinations.
+- **D. Incorrect:** A different Standard account in North Europe. A storage destination for a regional monitored resource must be in the same region.
 
-Study: [knowledge file](../knowledge/monitoring/insights/storage.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/insights/storage.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-insights-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/diagnostic-settings)
 
 ## mo-storage-no-agent
 
 Topic: Monitoring and recovery › Storage Insights performance and capacity.
 
-Do Storage Insights' platform metrics require installing AMA on a client VM?
+Which collection path supplies the Azure Storage platform metrics used by Storage Insights, including capacity and service transactions?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Incorrect:** Yes; every transaction metric is collected from that guest. Platform storage metrics originate from the service.
-- **B. Incorrect:** Yes; AMA must be installed inside the storage account. A storage account is not a VM guest for AMA installation.
-- **C. Correct:** No; platform metrics are collected by Azure. Additional resource logs have their own collection configuration.
-- **D. Incorrect:** Yes; Dependency Agent supplies storage capacity. That agent is not the platform storage metric source.
+- **A. Incorrect:** Performance counters collected from client VMs through an AMA DCR. Client guest counters describe those machines, not the storage service’s platform metric stream.
+- **B. Incorrect:** Syslog messages collected from client VMs into a Log Analytics workspace. Client Syslog is guest event data, not the platform storage capacity or transaction metrics.
+- **C. Correct:** Azure’s automatic collection of storage service platform metrics. Storage Insights uses storage metrics collected by Azure by default; a client VM agent is not required.
+- **D. Incorrect:** Parsing archived Blob resource-operation logs as the prerequisite for the built-in metric views. Resource-log export is a separate configured path; it is not required to populate default Storage Insights platform metrics.
 
-Study: [knowledge file](../knowledge/monitoring/insights/storage.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/insights/storage.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/storage/common/storage-insights-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage)
 

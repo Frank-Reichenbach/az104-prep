@@ -8029,39 +8029,39 @@
         "https://learn.microsoft.com/en-us/azure/storage/common/storage-insights-overview",
         "https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-storage-log-target",
       "family": "mo-storage-log-target",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.insights.storage",
       "objectives": [
         "mo-05"
       ],
       "difficulty": "applied",
-      "prompt": "You want Blob resource logs archived in Azure Storage. May the diagnostic setting target the same account it monitors?",
+      "prompt": "A Standard storage account in West Europe must archive its Blob resource logs using a diagnostic setting. Candidate destination accounts already exist and the required access and firewall settings are configured. Which storage destination is supported?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Yes; recursive logging is required.",
-          "explanation": "Recursive logging is precisely the reason this is not supported."
+          "text": "The monitored Standard account in West Europe.",
+          "explanation": "Diagnostic logs cannot be sent to the same monitored storage account because writes would create recursive logging."
         },
         {
           "id": "b",
-          "text": "No; use a different destination account.",
-          "explanation": "This avoids logs describing their own writes."
+          "text": "A different Standard account in West Europe.",
+          "explanation": "This avoids self-logging and meets the destination tier and regional requirements."
         },
         {
           "id": "c",
-          "text": "Yes; rename the destination container.",
-          "explanation": "A different container does not remove the same-account restriction."
+          "text": "A different Premium account in West Europe.",
+          "explanation": "Premium storage accounts are not supported diagnostic-settings destinations."
         },
         {
           "id": "d",
-          "text": "Yes; use a CNAME for the account.",
-          "explanation": "An alias still targets the same account."
+          "text": "A different Standard account in North Europe.",
+          "explanation": "A storage destination for a regional monitored resource must be in the same region."
         }
       ],
       "correct": [
@@ -8069,42 +8069,42 @@
       ],
       "knowledge": "knowledge/monitoring/insights/storage.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/storage/common/storage-insights-overview",
-        "https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage"
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/diagnostic-settings"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-storage-no-agent",
       "family": "mo-storage-no-agent",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.insights.storage",
       "objectives": [
         "mo-05"
       ],
       "difficulty": "foundation",
-      "prompt": "Do Storage Insights' platform metrics require installing AMA on a client VM?",
+      "prompt": "Which collection path supplies the Azure Storage platform metrics used by Storage Insights, including capacity and service transactions?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Yes; every transaction metric is collected from that guest.",
-          "explanation": "Platform storage metrics originate from the service."
+          "text": "Performance counters collected from client VMs through an AMA DCR.",
+          "explanation": "Client guest counters describe those machines, not the storage service’s platform metric stream."
         },
         {
           "id": "b",
-          "text": "Yes; AMA must be installed inside the storage account.",
-          "explanation": "A storage account is not a VM guest for AMA installation."
+          "text": "Syslog messages collected from client VMs into a Log Analytics workspace.",
+          "explanation": "Client Syslog is guest event data, not the platform storage capacity or transaction metrics."
         },
         {
           "id": "c",
-          "text": "No; platform metrics are collected by Azure.",
-          "explanation": "Additional resource logs have their own collection configuration."
+          "text": "Azure’s automatic collection of storage service platform metrics.",
+          "explanation": "Storage Insights uses storage metrics collected by Azure by default; a client VM agent is not required."
         },
         {
           "id": "d",
-          "text": "Yes; Dependency Agent supplies storage capacity.",
-          "explanation": "That agent is not the platform storage metric source."
+          "text": "Parsing archived Blob resource-operation logs as the prerequisite for the built-in metric views.",
+          "explanation": "Resource-log export is a separate configured path; it is not required to populate default Storage Insights platform metrics."
         }
       ],
       "correct": [
@@ -8115,7 +8115,7 @@
         "https://learn.microsoft.com/en-us/azure/storage/common/storage-insights-overview",
         "https://learn.microsoft.com/en-us/azure/storage/blobs/monitor-blob-storage"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-vm-guest",
