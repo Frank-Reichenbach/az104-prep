@@ -4471,9 +4471,9 @@
     {
       "id": "networking.security.service-endpoints",
       "title": "Service endpoints and subnet authorization",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/networking.security.service-endpoints.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "nw-se-two-sides",
@@ -4488,9 +4488,9 @@
           ],
           "baselineHash": "58c38318cd4eed8fc8cd63952da95ef9696ae420997e9b809c512391dfefd007",
           "baselineContentHash": "2f7aae5f009463ae08d8c0286446d73107dc09049db0f4c053dae4d6a9e387d3",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "a3a058afbc931fba502129ca184bb3f600c87307b056a43070ef88e07c5bc963"
         },
         {
           "id": "nw-se-private",
@@ -4505,9 +4505,9 @@
           ],
           "baselineHash": "84399a44357909b015b6a605251a19b7aaf4c046a7cd478baa0540abc9e923c8",
           "baselineContentHash": "fe9ee778a93c842c5b9fb742214e14561f47168af6281fa37f8c40d79711898a",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "5ddb039c4e095a0b743c458094c2760a764cc56f361612fc4f8708ec0ef74496"
         },
         {
           "id": "nw-se-auth",
@@ -4522,9 +4522,9 @@
           ],
           "baselineHash": "3fc07431dc3c9eb7c3ed1a9fc329c79bab4fa92318e13a0b2e8bbc27a3aef885",
           "baselineContentHash": "cb7f679c2c65a88bf965dfc46e93c934fcc2ed5b7bb414b4b46b2f641aecc9cb",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "86d55cb4a7fbac097051b81dcd034f467a9bb9318bd4473c6ebe619b08a7e2b8"
         }
       ]
     },

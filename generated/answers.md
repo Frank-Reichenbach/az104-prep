@@ -3799,18 +3799,18 @@ Study: [knowledge file](../knowledge/networking/security/private-endpoints.md). 
 
 Topic: Networking › Service endpoints and subnet authorization.
 
-A subnet has Microsoft.Storage enabled as a service endpoint. A storage account still allows all public networks. What change restricts its intended ordinary access to that subnet?
+A VM in subnet-app uses the classic Microsoft.Storage service endpoint. The storage account currently permits all public networks. You must permit the account public endpoint only from subnet-app through its endpoint identity. There are no required IP rules, trusted-service exceptions, or private endpoints. Which account network configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Configure the account's selected-network rules to allow the subnet. The service-side rule is needed in addition to the subnet endpoint.
-- **B. Incorrect:** Only rename the subnet to StorageSubnet. A name does not enforce a service firewall rule.
-- **C. Incorrect:** Add a CNAME record for the storage hostname. DNS aliases do not restrict permitted networks.
-- **D. Incorrect:** Grant the VM Owner on its resource group. Management authorization does not restrict account network access.
+- **A. Correct:** Enable public access from selected networks and allow only subnet-app as a virtual-network rule. The subnet endpoint supplies network identity; the account selected-network rule admits that identity and restricts other ordinary sources.
+- **B. Incorrect:** Disable public network access and add subnet-app as a virtual-network rule. Classic service endpoints use the service public endpoint. Disabling public access does not turn the subnet endpoint into a private endpoint.
+- **C. Incorrect:** Keep public access from all networks and add subnet-app as a virtual-network rule. Allowing all networks does not restrict access to the listed subnet; the all-network setting still permits other sources.
+- **D. Incorrect:** Enable public access from selected networks and allow only a different subnet. The client is in subnet-app. A rule for another subnet does not permit its required service-endpoint identity.
 
-Study: [knowledge file](../knowledge/networking/security/service-endpoints.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/security/service-endpoints.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-restrict-network-access-to-resources)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-restrict-network-access-to-resources) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security-virtual-networks)
 
 ## nw-se-private
 
@@ -3825,7 +3825,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** It automatically grants blob read permission to subnet users. Data authorization remains separate.
 - **D. Incorrect:** It turns every on-premises VPN client into a member of the allowed subnet. On-premises traffic does not gain that endpoint identity.
 
-Study: [knowledge file](../knowledge/networking/security/service-endpoints.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/security/service-endpoints.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-restrict-network-access-to-resources)
 
@@ -3833,18 +3833,18 @@ Study: [knowledge file](../knowledge/networking/security/service-endpoints.md). 
 
 Topic: Networking › Service endpoints and subnet authorization.
 
-A VM's subnet endpoint and storage network rule are correct, but its identity has no blob data permission. Can it read a private blob using Entra authentication?
+A VM reads a private blob using a valid Microsoft Entra token for its managed identity. Its classic storage service endpoint, selected-subnet rule, and network connectivity are verified. Reads fail authorization because the identity has no blob data role. Which change permits these token-authenticated reads without changing the verified network path?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Incorrect:** Yes; service endpoints grant Blob Data Reader. The endpoint supplies a network path, not that role.
-- **B. Incorrect:** Yes; an NSG allow grants storage data access. NSGs filter packets rather than authorize blobs.
-- **C. Correct:** No; assign the appropriate blob data authorization too. Network permission and data permission are separate requirements.
-- **D. Incorrect:** Yes; selected networks make private containers anonymous. Container access level is independent of the selected-network rule.
+- **A. Incorrect:** Assign Reader to the VM identity at the storage account. Management-plane Reader does not grant blob data read permissions for Microsoft Entra token requests.
+- **B. Incorrect:** Add the VM subnet to the account network rules again. The network permission is already correct. Repeating that rule does not authorize the managed identity to read blobs.
+- **C. Correct:** Assign Storage Blob Data Reader to the VM identity at the blob container. The token represents this identity, and the container-scoped data role grants the missing blob read permission.
+- **D. Incorrect:** Assign Storage Blob Data Reader to the administrator at the blob container. That grants the administrator data access rather than the VM identity that makes the failing requests.
 
-Study: [knowledge file](../knowledge/networking/security/service-endpoints.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/security/service-endpoints.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-restrict-network-access-to-resources)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-access-azure-active-directory) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/storage/blobs/assign-azure-role-data-access)
 
 ## nw-peering-transitive
 

@@ -2909,14 +2909,14 @@ D. Use the blob endpoint IP as an SMB proxy.
 
 Topic: Networking › Service endpoints and subnet authorization.
 
-A subnet has Microsoft.Storage enabled as a service endpoint. A storage account still allows all public networks. What change restricts its intended ordinary access to that subnet?
+A VM in subnet-app uses the classic Microsoft.Storage service endpoint. The storage account currently permits all public networks. You must permit the account public endpoint only from subnet-app through its endpoint identity. There are no required IP rules, trusted-service exceptions, or private endpoints. Which account network configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Configure the account's selected-network rules to allow the subnet.
-B. Only rename the subnet to StorageSubnet.
-C. Add a CNAME record for the storage hostname.
-D. Grant the VM Owner on its resource group.
+A. Enable public access from selected networks and allow only subnet-app as a virtual-network rule.
+B. Disable public network access and add subnet-app as a virtual-network rule.
+C. Keep public access from all networks and add subnet-app as a virtual-network rule.
+D. Enable public access from selected networks and allow only a different subnet.
 
 ## nw-se-private
 
@@ -2935,14 +2935,14 @@ D. It turns every on-premises VPN client into a member of the allowed subnet.
 
 Topic: Networking › Service endpoints and subnet authorization.
 
-A VM's subnet endpoint and storage network rule are correct, but its identity has no blob data permission. Can it read a private blob using Entra authentication?
+A VM reads a private blob using a valid Microsoft Entra token for its managed identity. Its classic storage service endpoint, selected-subnet rule, and network connectivity are verified. Reads fail authorization because the identity has no blob data role. Which change permits these token-authenticated reads without changing the verified network path?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Yes; service endpoints grant Blob Data Reader.
-B. Yes; an NSG allow grants storage data access.
-C. No; assign the appropriate blob data authorization too.
-D. Yes; selected networks make private containers anonymous.
+A. Assign Reader to the VM identity at the storage account.
+B. Add the VM subnet to the account network rules again.
+C. Assign Storage Blob Data Reader to the VM identity at the blob container.
+D. Assign Storage Blob Data Reader to the administrator at the blob container.
 
 ## nw-peering-transitive
 
