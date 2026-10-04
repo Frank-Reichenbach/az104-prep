@@ -6684,34 +6684,34 @@
     {
       "id": "mo-alert-signal",
       "family": "mo-alert-signal",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.alerts.rules",
       "objectives": [
         "mo-04"
       ],
       "difficulty": "applied",
-      "prompt": "You need an alert when Azure records a resource deletion management event. Which signal type fits directly?",
+      "prompt": "You must alert on successful VM deletions in a selected resource group using Administrative Activity Log events. The resource scope is configured. Which operation and status conditions detect completed deletions rather than unrelated operations or deletion starts?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Activity Log alert.",
-          "explanation": "The Activity Log records management operations."
+          "text": "Operation Microsoft.Compute/virtualMachines/delete; status Succeeded.",
+          "explanation": "The delete operation with successful completion matches the required management event."
         },
         {
           "id": "b",
-          "text": "CPU metric alert.",
-          "explanation": "CPU values do not directly represent the deletion event."
+          "text": "Operation Microsoft.Compute/virtualMachines/write; status Succeeded.",
+          "explanation": "The write operation represents VM creation or update, not deletion."
         },
         {
           "id": "c",
-          "text": "Only an action group with no alert rule.",
-          "explanation": "An action group defines responses but does not evaluate that event."
+          "text": "Operation Microsoft.Compute/virtualMachines/delete; status Started.",
+          "explanation": "This detects a deletion beginning, which does not establish successful completion."
         },
         {
           "id": "d",
-          "text": "A DNS TXT record change.",
-          "explanation": "DNS records do not configure management-event detection."
+          "text": "Operation Microsoft.Compute/virtualMachines/delete; status Failed.",
+          "explanation": "This detects unsuccessful deletions rather than the required successful ones."
         }
       ],
       "correct": [
@@ -6719,43 +6719,42 @@
       ],
       "knowledge": "knowledge/monitoring/alerts/rules.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-alert-window",
       "family": "mo-alert-window",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.alerts.rules",
       "objectives": [
         "mo-04"
       ],
       "difficulty": "applied",
-      "prompt": "A metric alert uses a five-minute evaluation window and one-minute evaluation frequency. What does that mean?",
+      "prompt": "A static metric alert has a five-minute lookback/evaluation window and one-minute evaluation frequency. Data is available throughout the window. Which interpretation describes its scheduled evaluation?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "It evaluates once every five minutes using one minute of data.",
-          "explanation": "This reverses frequency and window."
+          "text": "Every five minutes, evaluate the previous one minute of data.",
+          "explanation": "This reverses the frequency and the lookback window."
         },
         {
           "id": "b",
-          "text": "It evaluates each minute using the previous five minutes of data.",
-          "explanation": "Frequency is how often; window is the examined period."
+          "text": "Every minute, evaluate the previous five minutes of data.",
+          "explanation": "The frequency controls how often the condition is checked; the window controls the data period examined."
         },
         {
           "id": "c",
-          "text": "It waits one minute after deleting the five-minute data.",
-          "explanation": "Evaluation does not delete metric data."
+          "text": "Every minute, evaluate only the previous one minute of data.",
+          "explanation": "This matches the frequency but incorrectly reduces the configured five-minute window."
         },
         {
           "id": "d",
-          "text": "It sends five notifications for every sample.",
-          "explanation": "The settings do not define that notification count."
+          "text": "Every five minutes, evaluate the previous five minutes of data.",
+          "explanation": "This preserves the window but incorrectly changes the one-minute frequency."
         }
       ],
       "correct": [
@@ -6763,43 +6762,41 @@
       ],
       "knowledge": "knowledge/monitoring/alerts/rules.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-alert-ack",
       "family": "mo-alert-ack",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.alerts.rules",
       "objectives": [
         "mo-04"
       ],
       "difficulty": "foundation",
-      "prompt": "An operator marks an Azure Monitor alert as Acknowledged. Does that repair its underlying condition?",
+      "prompt": "An Azure Monitor alert has condition Fired and user response New. The monitored condition continues to breach its rule. An operator changes only the user response to Acknowledged. Which condition/user-response pair results?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Yes; acknowledgement rescales the resource.",
-          "explanation": "Response state does not automatically perform that repair."
+          "text": "Condition Resolved; user response Acknowledged.",
+          "explanation": "Acknowledgement changes the user response; it does not clear the continuing monitored condition."
         },
         {
           "id": "b",
-          "text": "Yes; it resets the monitored metric to zero.",
-          "explanation": "Acknowledgement does not rewrite telemetry."
+          "text": "Condition Fired; user response Closed.",
+          "explanation": "The monitored condition remains Fired, but the operator selected Acknowledged rather than Closed."
         },
         {
           "id": "c",
-          "text": "No; it records operator response while remediation is separate.",
-          "explanation": "User response state and service condition are distinct."
+          "text": "Condition Fired; user response Acknowledged.",
+          "explanation": "User response records the operator action independently of the still-breached alert condition."
         },
         {
           "id": "d",
-          "text": "Yes; it deletes the rule and its condition.",
-          "explanation": "Acknowledgement does not delete the rule."
+          "text": "Condition Resolved; user response Closed.",
+          "explanation": "Neither resolving the condition nor selecting Closed follows from the supplied acknowledgement action."
         }
       ],
       "correct": [
@@ -6807,11 +6804,9 @@
       ],
       "knowledge": "knowledge/monitoring/alerts/rules.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule",
         "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-backup-notifications",

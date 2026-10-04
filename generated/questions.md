@@ -1674,40 +1674,40 @@ D. Yes, if its scope is the whole subscription.
 
 Topic: Monitoring and recovery › Alert rules, signals, and evaluation.
 
-You need an alert when Azure records a resource deletion management event. Which signal type fits directly?
+You must alert on successful VM deletions in a selected resource group using Administrative Activity Log events. The resource scope is configured. Which operation and status conditions detect completed deletions rather than unrelated operations or deletion starts?
 
 Select **1**. Difficulty: applied.
 
-A. Activity Log alert.
-B. CPU metric alert.
-C. Only an action group with no alert rule.
-D. A DNS TXT record change.
+A. Operation Microsoft.Compute/virtualMachines/delete; status Succeeded.
+B. Operation Microsoft.Compute/virtualMachines/write; status Succeeded.
+C. Operation Microsoft.Compute/virtualMachines/delete; status Started.
+D. Operation Microsoft.Compute/virtualMachines/delete; status Failed.
 
 ## mo-alert-window
 
 Topic: Monitoring and recovery › Alert rules, signals, and evaluation.
 
-A metric alert uses a five-minute evaluation window and one-minute evaluation frequency. What does that mean?
+A static metric alert has a five-minute lookback/evaluation window and one-minute evaluation frequency. Data is available throughout the window. Which interpretation describes its scheduled evaluation?
 
 Select **1**. Difficulty: applied.
 
-A. It evaluates once every five minutes using one minute of data.
-B. It evaluates each minute using the previous five minutes of data.
-C. It waits one minute after deleting the five-minute data.
-D. It sends five notifications for every sample.
+A. Every five minutes, evaluate the previous one minute of data.
+B. Every minute, evaluate the previous five minutes of data.
+C. Every minute, evaluate only the previous one minute of data.
+D. Every five minutes, evaluate the previous five minutes of data.
 
 ## mo-alert-ack
 
 Topic: Monitoring and recovery › Alert rules, signals, and evaluation.
 
-An operator marks an Azure Monitor alert as Acknowledged. Does that repair its underlying condition?
+An Azure Monitor alert has condition Fired and user response New. The monitored condition continues to breach its rule. An operator changes only the user response to Acknowledged. Which condition/user-response pair results?
 
 Select **1**. Difficulty: foundation.
 
-A. Yes; acknowledgement rescales the resource.
-B. Yes; it resets the monitored metric to zero.
-C. No; it records operator response while remediation is separate.
-D. Yes; it deletes the rule and its condition.
+A. Condition Resolved; user response Acknowledged.
+B. Condition Fired; user response Closed.
+C. Condition Fired; user response Acknowledged.
+D. Condition Resolved; user response Closed.
 
 ## mo-backup-notifications
 

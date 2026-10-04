@@ -2184,52 +2184,52 @@ Study: [knowledge file](../knowledge/monitoring/alerts/processing-rules.md). Evi
 
 Topic: Monitoring and recovery › Alert rules, signals, and evaluation.
 
-You need an alert when Azure records a resource deletion management event. Which signal type fits directly?
+You must alert on successful VM deletions in a selected resource group using Administrative Activity Log events. The resource scope is configured. Which operation and status conditions detect completed deletions rather than unrelated operations or deletion starts?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Activity Log alert. The Activity Log records management operations.
-- **B. Incorrect:** CPU metric alert. CPU values do not directly represent the deletion event.
-- **C. Incorrect:** Only an action group with no alert rule. An action group defines responses but does not evaluate that event.
-- **D. Incorrect:** A DNS TXT record change. DNS records do not configure management-event detection.
+- **A. Correct:** Operation Microsoft.Compute/virtualMachines/delete; status Succeeded. The delete operation with successful completion matches the required management event.
+- **B. Incorrect:** Operation Microsoft.Compute/virtualMachines/write; status Succeeded. The write operation represents VM creation or update, not deletion.
+- **C. Incorrect:** Operation Microsoft.Compute/virtualMachines/delete; status Started. This detects a deletion beginning, which does not establish successful completion.
+- **D. Incorrect:** Operation Microsoft.Compute/virtualMachines/delete; status Failed. This detects unsuccessful deletions rather than the required successful ones.
 
-Study: [knowledge file](../knowledge/monitoring/alerts/rules.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/alerts/rules.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema)
 
 ## mo-alert-window
 
 Topic: Monitoring and recovery › Alert rules, signals, and evaluation.
 
-A metric alert uses a five-minute evaluation window and one-minute evaluation frequency. What does that mean?
+A static metric alert has a five-minute lookback/evaluation window and one-minute evaluation frequency. Data is available throughout the window. Which interpretation describes its scheduled evaluation?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** It evaluates once every five minutes using one minute of data. This reverses frequency and window.
-- **B. Correct:** It evaluates each minute using the previous five minutes of data. Frequency is how often; window is the examined period.
-- **C. Incorrect:** It waits one minute after deleting the five-minute data. Evaluation does not delete metric data.
-- **D. Incorrect:** It sends five notifications for every sample. The settings do not define that notification count.
+- **A. Incorrect:** Every five minutes, evaluate the previous one minute of data. This reverses the frequency and the lookback window.
+- **B. Correct:** Every minute, evaluate the previous five minutes of data. The frequency controls how often the condition is checked; the window controls the data period examined.
+- **C. Incorrect:** Every minute, evaluate only the previous one minute of data. This matches the frequency but incorrectly reduces the configured five-minute window.
+- **D. Incorrect:** Every five minutes, evaluate the previous five minutes of data. This preserves the window but incorrectly changes the one-minute frequency.
 
-Study: [knowledge file](../knowledge/monitoring/alerts/rules.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/alerts/rules.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule)
 
 ## mo-alert-ack
 
 Topic: Monitoring and recovery › Alert rules, signals, and evaluation.
 
-An operator marks an Azure Monitor alert as Acknowledged. Does that repair its underlying condition?
+An Azure Monitor alert has condition Fired and user response New. The monitored condition continues to breach its rule. An operator changes only the user response to Acknowledged. Which condition/user-response pair results?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Incorrect:** Yes; acknowledgement rescales the resource. Response state does not automatically perform that repair.
-- **B. Incorrect:** Yes; it resets the monitored metric to zero. Acknowledgement does not rewrite telemetry.
-- **C. Correct:** No; it records operator response while remediation is separate. User response state and service condition are distinct.
-- **D. Incorrect:** Yes; it deletes the rule and its condition. Acknowledgement does not delete the rule.
+- **A. Incorrect:** Condition Resolved; user response Acknowledged. Acknowledgement changes the user response; it does not clear the continuing monitored condition.
+- **B. Incorrect:** Condition Fired; user response Closed. The monitored condition remains Fired, but the operator selected Acknowledged rather than Closed.
+- **C. Correct:** Condition Fired; user response Acknowledged. User response records the operator action independently of the still-breached alert condition.
+- **D. Incorrect:** Condition Resolved; user response Closed. Neither resolving the condition nor selecting Closed follows from the supplied acknowledgement action.
 
-Study: [knowledge file](../knowledge/monitoring/alerts/rules.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/alerts/rules.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview)
 
 ## mo-backup-notifications
 

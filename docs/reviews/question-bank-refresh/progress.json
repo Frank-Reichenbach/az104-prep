@@ -5148,9 +5148,9 @@
     {
       "id": "monitoring.alerts.rules",
       "title": "Alert rules, signals, and evaluation",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.alerts.rules.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-alert-signal",
@@ -5165,9 +5165,9 @@
           ],
           "baselineHash": "24f4ddf245283ab374f8af47f96dcbda7669690dadcd0454ea4190ccf8e95f1b",
           "baselineContentHash": "16ad0d48aacb0bb821c418610c2045693d32ef00134c675072d583da48bebde2",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "0d460dd69b903bd01da765564bc55389b4368549a7924d92698838b8cbf2f0a8"
         },
         {
           "id": "mo-alert-window",
@@ -5182,9 +5182,9 @@
           ],
           "baselineHash": "7782ff06baa3453a31715a0766f9ff60aa139cdc43b80464ce979b072647527b",
           "baselineContentHash": "77adca3bd92284ffc5654192214487a90b59c3491eb19c4a4dd86333b76e8f3e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "28e487a52b2d923ed9b87fc3901ea52e56f6d949be7f857e916b6c27fd9c8571"
         },
         {
           "id": "mo-alert-ack",
@@ -5199,9 +5199,9 @@
           ],
           "baselineHash": "7efbc2f3c3ee5749a625568abc254caf4158f06355a3a0aa2f318da3e3807332",
           "baselineContentHash": "7680808dbc830d870c6f462104535024d063ff998e556809588f64486a8b4183",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "be4bff2777aa0fe177a56c2e964c9d53624c26505b5b0656a758ef1d14db51dc"
         }
       ]
     },
