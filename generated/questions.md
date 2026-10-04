@@ -972,40 +972,40 @@ D. Attach the app's private endpoint NIC as its integration interface.
 
 Topic: Identity and governance › Budgets, cost alerts, and Advisor.
 
-A monthly Azure budget reaches 100% and sends an alert. No automation is attached. What happens to running resources?
+A monthly Azure subscription budget reaches its configured threshold and sends an email alert. No action group, automation, or other spending control is configured. Which effect does this budget alert have on running resources?
 
 Select **1**. Difficulty: foundation.
 
-A. They continue running and can incur more charges.
-B. All resources stop immediately.
-C. The subscription and all resources are deleted.
-D. Further usage becomes free until the next month.
+A. It sends the notification while resources continue normal operation and billing.
+B. It sends the notification and deallocates running virtual machines.
+C. It sends the notification and rejects further resource deployments.
+D. It sends the notification and suspends billing for additional usage.
 
 ## id-budget-forecast
 
 Topic: Identity and governance › Budgets, cost alerts, and Advisor.
 
-A team wants a warning when projected month-end cost exceeds its plan even though actual spending is still below it. Which budget threshold fits?
+A monthly subscription budget is USD 1,000. At the latest evaluation, actual cost is USD 600 and forecast month-end cost is USD 1,100. The team wants an alert when forecast cost exceeds the monthly budget, before actual cost reaches it. Which enabled notification configuration meets the goal and has its condition satisfied at this evaluation?
 
 Select **1**. Difficulty: applied.
 
-A. A forecast cost threshold.
-B. Only an actual-spend 100% threshold.
-C. Only inspect the final monthly invoice.
-D. A VM vCPU quota alert alone.
+A. Type Forecasted; threshold 100% of budget.
+B. Type Actual; threshold 100% of budget.
+C. Type Forecasted; threshold 120% of budget.
+D. Type Actual; threshold 80% of budget.
 
 ## id-advisor-rightsize
 
 Topic: Identity and governance › Budgets, cost alerts, and Advisor.
 
-Advisor suggests resizing a lightly utilized production VM. What should an administrator do before applying the change?
+Advisor recommends a smaller size for a production VM based on the recent utilization period. The application has a month-end processing peak that did not occur in that period. Before applying the recommendation, which assessment should the administrator make to determine whether the smaller VM meets workload requirements?
 
 Select **1**. Difficulty: applied.
 
-A. Review utilization and workload requirements, then plan and verify the resize.
-B. Apply every recommendation without checking the workload.
-C. Increase the budget and assume the VM becomes smaller.
-D. Buy a long-term commitment before checking actual usage.
+A. Compare the proposed size with CPU and memory requirements during the month-end peak.
+B. Compare the proposed size with average CPU utilization in the same recent period.
+C. Compare the proposed size's hourly price with the subscription budget amount.
+D. Compare reservation discounts for the current and proposed VM sizes.
 
 ## id-lock-delete-only
 

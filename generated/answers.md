@@ -1266,52 +1266,52 @@ Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidenc
 
 Topic: Identity and governance › Budgets, cost alerts, and Advisor.
 
-A monthly Azure budget reaches 100% and sends an alert. No automation is attached. What happens to running resources?
+A monthly Azure subscription budget reaches its configured threshold and sends an email alert. No action group, automation, or other spending control is configured. Which effect does this budget alert have on running resources?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** They continue running and can incur more charges. A budget notification alone is not a spending cap.
-- **B. Incorrect:** All resources stop immediately. That would require separate supported automation or another control.
-- **C. Incorrect:** The subscription and all resources are deleted. Budgets do not perform automatic resource deletion.
-- **D. Incorrect:** Further usage becomes free until the next month. A threshold does not waive charges.
+- **A. Correct:** It sends the notification while resources continue normal operation and billing. Budget notifications do not themselves stop consumption or cap charges.
+- **B. Incorrect:** It sends the notification and deallocates running virtual machines. VM deallocation would require a separate action; none is configured.
+- **C. Incorrect:** It sends the notification and rejects further resource deployments. The budget is not a deployment restriction; an alert alone does not block requests.
+- **D. Incorrect:** It sends the notification and suspends billing for additional usage. Budget thresholds do not change billed charges or make further usage free.
 
-Study: [knowledge file](../knowledge/identity/governance/cost-management.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/cost-management.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets)
 
 ## id-budget-forecast
 
 Topic: Identity and governance › Budgets, cost alerts, and Advisor.
 
-A team wants a warning when projected month-end cost exceeds its plan even though actual spending is still below it. Which budget threshold fits?
+A monthly subscription budget is USD 1,000. At the latest evaluation, actual cost is USD 600 and forecast month-end cost is USD 1,100. The team wants an alert when forecast cost exceeds the monthly budget, before actual cost reaches it. Which enabled notification configuration meets the goal and has its condition satisfied at this evaluation?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** A forecast cost threshold. It evaluates projected spending.
-- **B. Incorrect:** Only an actual-spend 100% threshold. It waits for measured spending to reach that threshold.
-- **C. Incorrect:** Only inspect the final monthly invoice. That cannot provide the requested advance warning.
-- **D. Incorrect:** A VM vCPU quota alert alone. A compute capacity limit is not a month-end cost forecast.
+- **A. Correct:** Type Forecasted; threshold 100% of budget. The USD 1,100 forecast exceeds the USD 1,000 threshold while actual cost remains below it.
+- **B. Incorrect:** Type Actual; threshold 100% of budget. USD 600 actual cost is below USD 1,000; this does not evaluate the forecast.
+- **C. Incorrect:** Type Forecasted; threshold 120% of budget. USD 1,100 forecast is below the USD 1,200 threshold; this waits beyond the specified budget limit.
+- **D. Incorrect:** Type Actual; threshold 80% of budget. USD 600 actual cost is below USD 800, and this measures actual rather than projected cost.
 
-Study: [knowledge file](../knowledge/identity/governance/cost-management.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/cost-management.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets)
 
 ## id-advisor-rightsize
 
 Topic: Identity and governance › Budgets, cost alerts, and Advisor.
 
-Advisor suggests resizing a lightly utilized production VM. What should an administrator do before applying the change?
+Advisor recommends a smaller size for a production VM based on the recent utilization period. The application has a month-end processing peak that did not occur in that period. Before applying the recommendation, which assessment should the administrator make to determine whether the smaller VM meets workload requirements?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Review utilization and workload requirements, then plan and verify the resize. Estimated savings must be balanced with service requirements.
-- **B. Incorrect:** Apply every recommendation without checking the workload. A recommendation does not establish that the change is safe for every workload.
-- **C. Incorrect:** Increase the budget and assume the VM becomes smaller. Changing an alert threshold does not resize compute.
-- **D. Incorrect:** Buy a long-term commitment before checking actual usage. A commitment should follow an assessment of stable demand.
+- **A. Correct:** Compare the proposed size with CPU and memory requirements during the month-end peak. The recommendation's observed period excludes the known peak. Representative demand must support the proposed size before resizing.
+- **B. Incorrect:** Compare the proposed size with average CPU utilization in the same recent period. Repeating the same average does not account for the omitted peak or its memory requirements.
+- **C. Incorrect:** Compare the proposed size's hourly price with the subscription budget amount. Price and budget do not establish that the VM can handle the peak workload.
+- **D. Incorrect:** Compare reservation discounts for the current and proposed VM sizes. Commitment discounts do not establish the proposed size's performance suitability.
 
-Study: [knowledge file](../knowledge/identity/governance/cost-management.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/cost-management.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations)
 
 ## id-lock-delete-only
 

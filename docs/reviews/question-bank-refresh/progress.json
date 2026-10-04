@@ -2440,9 +2440,9 @@
     {
       "id": "identity.governance.costs",
       "title": "Budgets, cost alerts, and Advisor",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/identity.governance.costs.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "id-budget-not-cap",
@@ -2457,9 +2457,9 @@
           ],
           "baselineHash": "803d6f64f0cc8805726c85470a6c093f96b2fb8acf5c6df32560081acaddcfc4",
           "baselineContentHash": "f5468e4cae42a06ed81fc8f1ac96c79698b1b7b8d64d43ea9bf58ed9f04eeb90",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "204081e25ed2283d9024cc6379fb3aed771b8165dd366f09d0f552f4a55e950b"
         },
         {
           "id": "id-budget-forecast",
@@ -2474,9 +2474,9 @@
           ],
           "baselineHash": "33d0bf7db417def593b2ab120cd97ff7cf7d4e995eaed85403731032a75aa301",
           "baselineContentHash": "eb01255e0e47b25bf5384066722612840d1cc60e1b014851fb1d74b758c67565",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "d1df2f3c7e302134aec0783a431e03fa97f07836f8a844fe639c7ac5a916771a"
         },
         {
           "id": "id-advisor-rightsize",
@@ -2491,9 +2491,9 @@
           ],
           "baselineHash": "13b24b86dbf41dc17b47e02d4028df14eceb1ab723f2d187fbbc3b2bee2fae2c",
           "baselineContentHash": "2ef3b183a0f19a34cba2ff0f4ca46bea1bea06b1a5796252c4b930efde67f4b9",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "eeec34605d0d777d2f08c5d52c83a2ad313e5e7854b788e46b31a0b9e121c571"
         }
       ]
     },
