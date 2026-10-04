@@ -4,7 +4,7 @@
     {
       "id": "co-bicep-refactor",
       "family": "co-bicep-refactor",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.templates.bicep-editing",
       "objectives": [
         "co-03"
@@ -39,16 +39,15 @@
       ],
       "knowledge": "knowledge/compute/templates/bicep-editing.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource"
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-declaration",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-bicep-build",
       "family": "co-bicep-build",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.templates.bicep-editing",
       "objectives": [
         "co-03"
@@ -83,43 +82,43 @@
       ],
       "knowledge": "knowledge/compute/templates/bicep-editing.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource"
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli",
+        "https://learn.microsoft.com/en-us/troubleshoot/azure/virtual-machines/windows/allocation-failure"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-bicep-existing",
       "family": "co-bicep-existing",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.templates.bicep-editing",
       "objectives": [
         "co-03"
       ],
       "difficulty": "applied",
-      "prompt": "A Bicep declaration uses existing for a virtual network in another resource group. Which TWO statements are correct?",
+      "prompt": "A Bicep file is deployed to rg-app. Virtual network vnet-shared already exists in rg-network in the same subscription. The file declares that network using existing, name: 'vnet-shared', and scope: resourceGroup('rg-network'), then reads its properties. No resource or role assignments are declared for that network. Which TWO statements describe this configuration? Evaluate each statement individually.",
       "select": 2,
       "options": [
         {
           "id": "a",
-          "text": "The declaration references the virtual network without redeploying it.",
-          "explanation": "existing describes an already deployed resource."
+          "text": "The declaration references vnet-shared without redeploying it.",
+          "explanation": "existing references the resource already at the specified name and scope; it does not create or update it."
         },
         {
           "id": "b",
-          "text": "Its scope must identify the resource group containing that network.",
-          "explanation": "The resource must be resolved at its actual scope."
+          "text": "The lookup targets rg-network rather than rg-app.",
+          "explanation": "The explicit resourceGroup scope selects the group containing the network instead of the deployment target group."
         },
         {
           "id": "c",
-          "text": "The network is created automatically when missing.",
-          "explanation": "An existing reference does not provision a missing resource."
+          "text": "The lookup creates vnet-shared in rg-app if it is missing in rg-network.",
+          "explanation": "The existing declaration has neither provisioning behavior nor a fallback to the deployment resource group."
         },
         {
           "id": "d",
-          "text": "The declaration grants the deploying identity network access rights.",
-          "explanation": "Bicep references do not grant RBAC permissions."
+          "text": "The declaration grants the deployment identity permission to read vnet-shared.",
+          "explanation": "Referencing a resource does not create a role assignment. The identity needs appropriate existing access."
         }
       ],
       "correct": [
@@ -128,11 +127,10 @@
       ],
       "knowledge": "knowledge/compute/templates/bicep-editing.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource"
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

@@ -10,14 +10,14 @@ Select the stated number of answers. Multiple-answer questions use exact-match s
 
 Topic: Compute › App Service application deployment and configuration.
 
-A published application is deployed to App Service from a ZIP archive. What archive layout does the documented deployment process require?
+You have built and tested an application locally. The publish directory contains all ready-to-run files, including the entry point. ZIP deployment will use its default extraction path with build automation disabled. Which archive layout should you deploy?
 
 Select **1**. Difficulty: applied.
 
-A. Deployable application files at the ZIP root.
-B. All application files nested inside an arbitrary extra parent directory.
-C. Only an empty folder named wwwroot.
-D. Only the source repository URL stored in a text file.
+A. Place the contents of the publish directory directly at the ZIP root.
+B. Place the publish directory itself at the ZIP root with the files nested inside it.
+C. Place the published files inside a wwwroot directory at the ZIP root.
+D. Place the unbuilt source directory contents directly at the ZIP root.
 
 ## co-web-settings
 
@@ -27,49 +27,49 @@ What happens when an administrator changes App Service app settings?
 
 Select **1**. Difficulty: foundation.
 
-A. The settings are supplied as environment variables and the app restarts.
-B. The App Service plan changes operating system automatically.
-C. A new staging slot is always created.
-D. The application image is necessarily rebuilt and pushed to ACR.
+A. The updated settings are passed as environment variables after an app restart.
+B. The updated settings become environment variables without restarting the running app.
+C. The updated settings are written into source configuration files before a rebuild.
+D. The updated settings remain pending until the next application package deployment.
 
 ## co-web-managed
 
 Topic: Compute › App Service application deployment and configuration.
 
-A web app has managed identity enabled but receives authorization failures from a protected Azure service. What should be checked?
+An App Service app reads blobs using a token for its system-assigned managed identity. Token acquisition and network access succeed, but blob reads fail authorization. The identity has no blob data role, and no deny assignments or role conditions apply. Which role assignment authorizes this app to read the blobs?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. The identity has the required role or access policy on that target service.
-B. Assume enabling identity grants Contributor to every service.
-C. Change the web app display name to the service name.
-D. Increase plan workers as the only permission fix.
+A. Assign Storage Blob Data Reader to the app identity at the target container.
+B. Assign Reader to the app identity at the storage account.
+C. Assign Website Contributor to the app identity at the web app.
+D. Assign Storage Blob Data Reader to the deployment user at the target container.
 
 ## co-web-backup-external
 
 Topic: Compute › App Service backup configuration and restoration.
 
-An App Service app has automatic backups and stores business data in an externally mounted Azure file share. What should the recovery design include?
+A Standard App Service app has automatic backups. It writes business documents to a custom-mounted Azure Files share. Recovery must restore both the app and those documents after accidental deletion. Which protection plan covers the separately stored documents?
 
 Select **1**. Difficulty: applied.
 
-A. Separate protection and restore procedures for the mounted share.
-B. Assume every mounted share is included in the automatic app backup.
-C. Use an app-setting rename to bring the share into the backup.
-D. Treat the source-code ZIP as a backup of all business data.
+A. Keep app backups and separately protect and test restoration of the Azure Files share.
+B. Keep automatic app backups and use an app restore to recover the mounted-share documents.
+C. Replace automatic app backups with custom app backups and recover the share from their ZIP files.
+D. Keep app backups and restore the storage mount configuration to recover the share documents.
 
 ## co-web-backup-restore
 
 Topic: Compute › App Service backup configuration and restoration.
 
-Before replacing a production App Service app with a backup, which approach provides useful recovery evidence?
+A production web app on a Standard App Service plan is serving users. You must demonstrate that an app backup produces a working application before replacing production content. Production must keep serving during the test. A disposable staging slot and isolated test dependencies are available. Which recovery test meets these requirements?
 
 Select **1**. Difficulty: applied.
 
-A. Restore to a supported separate app or slot and test the app and dependencies.
-B. Only check that the backup list contains a timestamp.
-C. Edit the backup ZIP manually to make its timestamp newer.
-D. Assume app restoration recreates every identity and network dependency.
+A. Restore into the staging slot and test the recovered app against the isolated dependencies.
+B. Restore over production and test it after the restore completes.
+C. Inspect the backup status and timestamp, then approve production replacement without restoring.
+D. Restore into staging and check only the recovered file count before approving replacement.
 
 ## co-web-backup-database
 
@@ -101,27 +101,27 @@ D. An NS record delegating www to the app hostname.
 
 Topic: Compute › App Service custom DNS names and ownership verification.
 
-What is the purpose of the asuid.www TXT record when configuring www.example.com for App Service?
+You configure ownership verification for www.example.com. App Service displays a domain verification ID. Which TXT record in the example.com DNS zone uses that ID for this subdomain?
 
 Select **1**. Difficulty: foundation.
 
-A. Prove domain ownership and help prevent another app claiming the hostname.
-B. Route HTTPS packets to the app private IP.
-C. Store the certificate private key for browsers.
-D. Set the App Service plan worker count.
+A. Name: asuid.www; value: the app domain verification ID.
+B. Name: asuid; value: the app domain verification ID.
+C. Name: www; value: the app domain verification ID.
+D. Name: asuid.www; value: the app default hostname.
 
 ## co-domain-binding
 
 Topic: Compute › App Service custom DNS names and ownership verification.
 
-www.example.com resolves to the correct App Service address, but the app has no custom-hostname entry for it and requests return a platform 404. What should be configured?
+A Standard App Service app has production and staging endpoints. The production default hostname works. A client resolves www.example.com to the production endpoint, and asuid.www matches its verification ID. HTTP requests using www.example.com return a platform 404. The production app has no custom-hostname entry for www.example.com. Which hostname configuration fixes that missing production mapping?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Validate and add the hostname binding to the intended app.
-B. Only lower the DNS TTL repeatedly.
-C. Only add another identical A record.
-D. Only scale out the plan.
+A. Validate and add www.example.com to the production app custom hostnames.
+B. Validate and add example.com to the production app custom hostnames.
+C. Validate and add www.example.com only to the staging slot custom hostnames.
+D. Publish another asuid.www TXT record without adding an app hostname entry.
 
 ## co-web-outbound
 
@@ -140,66 +140,66 @@ D. Only an inbound IP access restriction
 
 Topic: Compute › App Service inbound and outbound networking.
 
-Users must access an App Service app privately from a VNet, and the app must also reach a private database. Which TWO capabilities should be configured for their respective traffic directions?
+A Standard App Service app has no VNet integration or private endpoint. VNet clients must reach it through a private IP, and the app must connect to a database VM private IP in the same-region VNet. Suitable separate subnets, required permissions, and database access are available. Which TWO capabilities jointly supply the inbound and outbound paths? Configure private DNS for the inbound endpoint and disable app public access as part of the design.
 
 Select **2**. Difficulty: applied.
 
-A. An App Service private endpoint for inbound requests
-B. VNet integration for the app outbound database connection
-C. VNet integration alone as proof of private inbound access
-D. The app private endpoint alone as proof of private outbound database routing
+A. Create and approve an App Service private endpoint for the client-to-app path.
+B. Configure regional VNet integration for the app-to-database path.
+C. Create only a private DNS A record for the app without a private endpoint.
+D. Add an inbound allow rule for VNet clients on the app integration subnet NSG.
 
 ## co-web-subnet
 
 Topic: Compute › App Service inbound and outbound networking.
 
-A web app already uses a delegated subnet for VNet integration. Where should its inbound private endpoint be placed?
+A Standard web app uses subnet-app for regional VNet integration. You must add its inbound private endpoint without changing existing subnet delegations. All subnets below are in the same VNet and have available IP addresses. Which subnet can host the private endpoint?
 
 Select **1**. Difficulty: applied.
 
-A. In a different suitable subnet.
-B. Always in the same delegated integration subnet.
-C. In the app deployment slot instead of a subnet.
-D. In a DNS record with no private endpoint NIC.
+A. subnet-private: no service delegation.
+B. subnet-app: delegated to Microsoft.Web/serverFarms and used by this app integration.
+C. subnet-containers: delegated to Microsoft.ContainerInstance/containerGroups.
+D. subnet-other-plan: delegated to Microsoft.Web/serverFarms for another plan integration.
 
 ## co-plan-sharing
 
 Topic: Compute › App Service plan creation and compute sharing.
 
-Two web apps and a staging slot run in the same dedicated App Service plan. What compute relationship should the administrator expect?
+Two web apps and a staging slot run in the same Standard App Service plan. Per-app scaling is disabled. How are the worker instances used?
 
 Select **1**. Difficulty: foundation.
 
-A. They share the plan worker capacity.
-B. Each receives an independently billed dedicated worker set automatically.
-C. The staging slot runs in a different region automatically.
-D. Stopping one app deletes the shared plan workers.
+A. Both apps and the slot share the worker instances allocated to the plan.
+B. Each app has its own worker instances, and the slot shares only its parent app instances.
+C. Both apps share the plan workers, and the slot receives a separate worker allocation.
+D. The plan divides its workers into nonoverlapping allocations for the two apps and the slot.
 
 ## co-plan-separate
 
 Topic: Compute › App Service plan creation and compute sharing.
 
-A resource-intensive app must have an independent compute and scaling boundary from other apps. Which design fits?
+An existing Standard App Service plan hosts a customer portal. You need to deploy a batch-processing web app whose worker capacity and plan scaling can change without changing the portal capacity. The apps must not share worker instances. Which deployment meets these requirements?
 
 Select **1**. Difficulty: applied.
 
-A. Place it in a separate App Service plan.
-B. Create only another deployment slot in the existing plan.
-C. Change only the app resource group while retaining the plan.
-D. Assign a different custom hostname while retaining the plan.
+A. Create another Standard plan and deploy the batch app to that plan.
+B. Deploy the batch app as a staging slot of the portal in the existing plan.
+C. Create the batch app in another resource group but select the existing plan.
+D. Scale out the existing plan and create the batch app in that plan.
 
 ## co-plan-cost
 
 Topic: Compute › App Service plan creation and compute sharing.
 
-The only app in a paid dedicated App Service plan is stopped. What should be checked to stop unnecessary plan compute charges?
+After the last web app is deleted, an administrator explicitly retains its pay-as-you-go Standard App Service plan. The empty plan still has two allocated instances and continues to accrue compute charges. No workloads or plan configuration need to be retained. Which action stops future compute charges for this plan?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Whether the unused plan can be deleted or moved to a suitable lower tier.
-B. Assume the stopped app makes the dedicated plan free.
-C. Remove only the app custom domain.
-D. Delete only the app deployment history.
+A. Delete the empty App Service plan.
+B. Scale the empty plan in to one instance.
+C. Change the empty plan from Standard to Basic.
+D. Disable autoscale while leaving two instances allocated.
 
 ## co-web-scale-up
 
@@ -218,40 +218,40 @@ D. Only set a larger maximum autoscale count.
 
 Topic: Compute › App Service scale up, scale out, and autoscale.
 
-An App Service plan must run more instances at 08:00 each weekday based on a schedule. Which scaling mechanism should be used?
+A Standard App Service plan normally runs two instances. It must run four instances from 08:00 to 18:00 every Monday through Friday, using UTC, and two at other times regardless of CPU demand. Which Azure Monitor autoscale configuration implements this recurring capacity schedule?
 
 Select **1**. Difficulty: applied.
 
-A. Azure Monitor autoscale with a scheduled profile.
-B. App Service automatic scaling based only on HTTP traffic.
-C. A deployment-slot swap at 08:00.
-D. A higher SKU without any scheduled scaling configuration.
+A. Use weekday 08:00 profiles fixed at four instances and weekday 18:00 profiles fixed at two instances.
+B. Use weekday 08:00 profiles fixed at two instances and weekday 18:00 profiles fixed at four instances.
+C. Use daily 08:00 profiles fixed at four instances and daily 18:00 profiles fixed at two instances.
+D. Use weekday 08:00 profiles fixed at four instances and weekday 18:00 profiles also fixed at four instances.
 
 ## co-web-autolimits
 
 Topic: Compute › App Service scale up, scale out, and autoscale.
 
-You evaluate App Service automatic HTTP scaling. Which TWO points belong in the cost and compatibility review?
+A Premium v3 web app uses App Service automatic HTTP scaling. Five always-ready instances are serving requests, and one additional prewarmed instance is allocated as a buffer. The app also has a staging slot used for load testing. Which TWO statements are correct about cost and scaling support? Select two individual statements.
 
 Select **2**. Difficulty: applied.
 
-A. Prewarmed instances are billable.
-B. Deployment-slot traffic is unsupported for this scaling feature.
-C. It is the same configuration as Azure Monitor schedule rules.
-D. It provides paid Premium features on Free plans.
+A. The allocated prewarmed instance is billable while it is held as a buffer.
+B. The staging-slot traffic is unsupported as input for this automatic scaling feature.
+C. The prewarmed instance becomes billable only after it starts serving application requests.
+D. The staging slot has the same supported automatic HTTP scaling behavior as the production app.
 
 ## co-slot-sticky
 
 Topic: Compute › App Service deployment slots and swaps.
 
-Production and staging use different database connection strings, and each must remain attached to its environment during a slot swap. What should be configured?
+A Standard web app has production and staging slots. Each has a different DbConnection connection string and a ReleaseLabel app setting. After a completed swap, DbConnection must remain with its environment, while ReleaseLabel must follow the deployed release. Neither setting has a special platform exception. Which deployment slot setting flags meet both requirements?
 
 Select **1**. Difficulty: applied.
 
-A. Mark the connection strings as deployment slot settings.
-B. Leave them swappable and rely on different display names.
-C. Put both connection strings only in the shared plan name.
-D. Change only the staging traffic percentage.
+A. DbConnection: enabled; ReleaseLabel: disabled.
+B. DbConnection: disabled; ReleaseLabel: disabled.
+C. DbConnection: enabled; ReleaseLabel: enabled.
+D. DbConnection: disabled; ReleaseLabel: enabled.
 
 ## co-slot-identity
 
@@ -270,40 +270,40 @@ D. All runtime framework settings
 
 Topic: Compute › App Service deployment slots and swaps.
 
-A release is swapped from staging to production and performs an external database schema migration. What does swapping the slots back provide?
+Version 2 is swapped from staging into production, leaving version 1 in staging. Version 2 then changes an external database from schema 1 to schema 2. No later deployment occurs, and neither app version changes the database during startup or a swap. You swap the same slots back without running a database recovery operation. Which production state results?
 
 Select **1**. Difficulty: applied.
 
-A. A code/configuration rollback path that still needs a separate database compatibility or recovery plan.
-B. Automatic reversal of every database change.
-C. Automatic restoration of all production data from Azure Backup.
-D. Deletion of the newer database schema with guaranteed zero data loss.
+A. Application version 1; external database schema 2.
+B. Application version 1; external database schema 1.
+C. Application version 2; external database schema 1.
+D. Application version 2; external database schema 2.
 
 ## co-tls-binding
 
 Topic: Compute › App Service certificates and TLS bindings.
 
-A valid certificate for www.example.com has been uploaded to App Service, and the custom hostname is mapped, but HTTPS still does not use it. What configuration is missing?
+A Standard App Service app has www.example.com mapped with verified DNS. A valid private certificate covering that hostname is uploaded. A browser connects directly to App Service using that hostname but does not receive the uploaded certificate. Which configuration associates this hostname with that certificate?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. A TLS binding associating the hostname with the certificate.
-B. Only another copy of the same certificate file.
-C. Only a larger App Service instance count.
-D. Only a DNS TTL of zero.
+A. Add an SNI TLS binding for www.example.com using the uploaded certificate.
+B. Enable HTTPS Only without adding a certificate binding.
+C. Set the app minimum TLS version to 1.2 without adding a binding.
+D. Add a binding for api.example.com using the uploaded certificate.
 
 ## co-tls-wildcard
 
 Topic: Compute › App Service certificates and TLS bindings.
 
-An app requires a wildcard certificate covering *.example.com. Which certificate approach fits App Service requirements?
+A Standard App Service app must secure mapped first-level subdomains with a certificate covering *.example.com. Clients require a publicly trusted certificate. Which certificate acquisition and binding approach meets the wildcard requirement?
 
 Select **1**. Difficulty: applied.
 
-A. Import or upload a suitable wildcard certificate from a certificate provider.
-B. Request a free App Service managed wildcard certificate.
-C. Use the default azurewebsites.net certificate for example.com.
-D. Create only an ownership TXT record and omit TLS binding.
+A. Upload a trusted wildcard private certificate as a compliant PFX, then bind it to the mapped hostnames.
+B. Create a free App Service managed wildcard certificate, then bind it to the mapped hostnames.
+C. Reuse the platform certificate for the default azurewebsites.net hostname on the mapped hostnames.
+D. Upload only the wildcard public certificate without its private key, then use it for the hostname bindings.
 
 ## co-tls-sni
 
@@ -313,10 +313,10 @@ What is the purpose of an SNI TLS binding in App Service?
 
 Select **1**. Difficulty: foundation.
 
-A. Select the certificate by hostname while sharing an IP address.
-B. Require a separate dedicated IP for every hostname.
-C. Automatically create all external DNS records.
-D. Encrypt application data stored on the filesystem.
+A. Select the hostname certificate from the server name sent during the TLS handshake, allowing a shared IP.
+B. Select the hostname certificate from a dedicated destination IP without requiring a server name.
+C. Select the hostname certificate from the URL path sent after the TLS handshake.
+D. Select the hostname certificate from the client source IP during the TLS handshake.
 
 ## co-aca-revision
 
@@ -335,79 +335,79 @@ D. Adding only a managed identity
 
 Topic: Compute › Container Apps environments, ingress, and revisions.
 
-You want two Container Apps image versions active simultaneously, with 10% of ingress traffic sent to the new version. Which revision mode supports this?
+A Container App has healthy revisions old and new. A canary must keep both versions active while sending 10% of HTTP ingress requests to new and the remaining traffic to old. Which complete configuration meets this requirement?
 
 Select **1**. Difficulty: applied.
 
-A. Multiple revision mode
-B. Single revision mode as the steady deployment state
-C. An ACI restart policy of Always
-D. Disabling ingress for all revisions
+A. Multiple revision mode; old weight 90, new weight 10.
+B. Single revision mode; old weight 90, new weight 10.
+C. Multiple revision mode; old weight 10, new weight 90.
+D. Multiple revision mode; old weight 100, new weight 0.
 
 ## co-aca-port
 
 Topic: Compute › Container Apps environments, ingress, and revisions.
 
-A Container App image pulls successfully, but HTTP ingress cannot reach the process. The process listens on 8080 while ingress targets 80. What should be corrected?
+A Container App has one healthy active revision receiving 100% of traffic. External HTTP ingress is enabled, and clients reach its HTTPS endpoint. The process listens on 0.0.0.0:8080, but ingress targetPort is 80 and requests fail to reach the process. Which configuration change addresses this mismatch?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Set the ingress target port to the actual listening port.
-B. Grant the image publisher a broader push role only.
-C. Change only the revision label to 8080.
-D. Increase maximum replicas without changing the port.
+A. Set ingress targetPort to 8080.
+B. Set ingress allowInsecure to true while retaining targetPort 80.
+C. Increase maximum replicas while retaining targetPort 80.
+D. Reapply a traffic weight of 100 to the active revision while retaining targetPort 80.
 
 ## co-aci-localhost
 
 Topic: Compute › Container Instances groups and restart behavior.
 
-Two Linux containers in the same ACI container group need to communicate on an internal-only port. Which address can they use?
+Two Linux containers share one ACI container group. The app listens on port 8080; a helper listens on port 8081. Only port 8080 is exposed on the group public IP. Which endpoint lets the app call the helper using their shared local network?
 
 Select **1**. Difficulty: foundation.
 
-A. localhost with the listening port
-B. Only a public load-balancer frontend
-C. Only a separate VNet peering for each container
-D. The ACR repository URL as the runtime service address
+A. localhost:8081
+B. The group public IP on port 8081
+C. localhost:8080
+D. The image registry hostname on port 8081
 
 ## co-aci-onfailure
 
 Topic: Compute › Container Instances groups and restart behavior.
 
-An ACI batch task should retry after a nonzero process exit and remain terminated after successful completion. Which restart policy explicitly expresses that behavior?
+An ACI batch process returns exit code 0 on success and a nonzero code on failure. The configuration must explicitly request retry after failure and leave successful completion terminated. Which configuration expresses this policy while preserving the process outcome?
 
 Select **1**. Difficulty: applied.
 
-A. OnFailure
-B. Always
-C. Never as a guarantee of exactly-once execution
-D. An HTTP replica scaling rule
+A. Restart policy OnFailure; pass through the process exit code unchanged.
+B. Restart policy Always; pass through the process exit code unchanged.
+C. Restart policy Never; pass through the process exit code unchanged.
+D. Restart policy OnFailure; wrap the command to return exit code 0 after every run.
 
 ## co-aci-persist
 
 Topic: Compute › Container Instances groups and restart behavior.
 
-Output from an ACI task must survive deletion of its container group. Which design meets the requirement?
+A Linux ACI batch task writes result files through a mounted directory. The files must survive deletion of its container group. Which storage configuration meets the requirement?
 
 Select **1**. Difficulty: applied.
 
-A. Write results to durable external storage and retain that storage.
-B. Store the only copy in the container writable layer.
-C. Use Always restart policy instead of persistent storage.
-D. Give the group a DNS label and store output only locally.
+A. Mount an Azure Files share for the results and retain the share after deleting the group.
+B. Write the results only to the container writable layer.
+C. Mount an emptyDir volume for the results and delete the group after completion.
+D. Mount an Azure Files share for the results and delete that share with the group.
 
 ## co-acr-abac
 
 Topic: Compute › Container Registry images and access.
 
-An ACR registry uses RBAC Registry + ABAC Repository Permissions. A workload must pull an image from an allowed repository but has only AcrPull. What should be changed?
+An ACR registry uses RBAC Registry + ABAC Repository Permissions. A workload with only AcrPull cannot pull the known repository apps/web. Connectivity and authentication succeed. It must read that repository without permission to push, delete, or list every repository. Which role configuration addresses the authorization gap?
 
 Select **1**. Difficulty: applied.
 
-A. Assign Container Registry Repository Reader with any condition covering the repository.
-B. Keep AcrPull and only refresh the token indefinitely.
-C. Assign only Container Registry Repository Catalog Lister.
-D. Assign only Reader on the registry resource.
+A. Container Registry Repository Reader with a condition covering apps/web.
+B. AcrPull reassigned at the registry scope.
+C. Container Registry Repository Catalog Lister only.
+D. Reader on the registry resource only.
 
 ## co-acr-digest
 
@@ -426,14 +426,14 @@ D. Only the registry resource group
 
 Topic: Compute › Container Registry images and access.
 
-A supported Azure service must pull private ACR images without storing a shared registry password. Which approach fits?
+An App Service app must pull a private image from an ACR registry using RBAC Registry Permissions mode. The app has a system-assigned managed identity and network access to the registry, which accepts ARM-audience tokens. It must pull without storing a registry password or granting push permission. Which configuration meets the requirements?
 
 Select **1**. Difficulty: applied.
 
-A. Use its managed identity with the appropriate image pull role for the registry mode.
-B. Enable the registry admin account and embed its password in the image.
-C. Assign only a display name to the managed identity without roles.
-D. Give the registry a public endpoint and assume images become anonymous.
+A. Configure managed-identity image pulls and grant the app identity AcrPull on the registry.
+B. Configure managed-identity image pulls and grant the app identity Reader on the registry.
+C. Configure registry admin credentials as the app image-pull credentials.
+D. Configure managed-identity image pulls and grant the app identity AcrPush on the registry.
 
 ## co-scale-aci
 
@@ -452,14 +452,14 @@ D. Guarantee two dedicated CPUs for each container simultaneously.
 
 Topic: Compute › Container resource sizing and replica scaling.
 
-A Container Apps queue worker has ingress disabled, minReplicas 0, and no custom scale rule. Why can it remain at zero while queue messages arrive?
+A Container Apps queue worker has ingress disabled, minReplicas 0, maxReplicas 10, and no custom scale rules. It remains at zero while messages accumulate. It must start for queued work and retain the ability to scale to zero when idle. Which configuration change addresses the missing wake-up trigger? Assume the worker and scaler have the required queue access and environment capacity is available.
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. No configured trigger observes the queue and requests replicas.
-B. maxReplicas always forces at least that many replicas to run.
-C. Changing the image tag in ACR automatically processes the queue.
-D. The inactive replica can measure its own CPU and wake itself.
+A. Add a supported queue-length scale rule with its required authentication.
+B. Add only a CPU-utilization scale rule while retaining the zero minimum.
+C. Set minReplicas to 1 without adding a queue rule.
+D. Raise maxReplicas from 10 to 20 without adding a rule.
 
 ## co-scale-oom
 
@@ -467,7 +467,7 @@ Topic: Compute › Container resource sizing and replica scaling.
 
 Every Container Apps replica fails during startup because its memory allocation is too small. Which change directly addresses that failure?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
 A. Choose a supported larger per-replica memory allocation and deploy the revision.
 B. Raise only maxReplicas while preserving the insufficient allocation.
@@ -491,27 +491,27 @@ D. minLength
 
 Topic: Compute › Editing ARM templates safely.
 
-An ARM incremental deployment redeclares an existing resource but omits one of its non-default properties. What should the administrator assume when reviewing the change?
+An incremental ARM deployment updates a resource already in rg-app. The edited definition omits a non-default property that must remain configured. A separate resource in rg-app is absent from the template and must remain. Which review decision meets both requirements?
 
 Select **1**. Difficulty: applied.
 
-A. The omitted property can reset to its default; declare the full intended configuration.
-B. Every omitted property is preserved because the mode is incremental.
-C. The entire resource is deleted because its definition changed.
-D. Only the template contentVersion controls whether the property changes.
+A. Restore the required property in the definition and retain incremental mode.
+B. Leave the property omitted and retain incremental mode.
+C. Restore the required property and change to complete mode.
+D. Leave the property omitted and change to complete mode.
 
 ## co-arm-secure
 
 Topic: Compute › Editing ARM templates safely.
 
-An ARM template accepts an administrator password. Which TWO choices help prevent exposing it in template and deployment records?
+An ARM template declares adminPassword as type string, contains a literal password in defaultValue, and returns the password in an ordinary string output. The password must be supplied at deployment time and kept out of the template source and deployment history. Which TWO changes are jointly required among the offered choices? Assume the password is supplied securely and is not otherwise logged.
 
 Select **2**. Difficulty: applied.
 
-A. Declare the input as secureString.
-B. Avoid hard-coded secrets and ordinary outputs containing the password.
-C. Use a string parameter with a password-like name.
-D. Put the password in defaultValue in the public template.
+A. Change the adminPassword parameter type to secureString.
+B. Remove the literal defaultValue and the password output.
+C. Rename the string parameter to secureAdminPassword.
+D. Rename the ordinary output to confidentialPassword.
 
 ## co-bicep-refactor
 
@@ -543,14 +543,14 @@ D. All Azure Policy assignments permit the resources.
 
 Topic: Compute › Editing Bicep parameters, resources, and modules.
 
-A Bicep declaration uses existing for a virtual network in another resource group. Which TWO statements are correct?
+A Bicep file is deployed to rg-app. Virtual network vnet-shared already exists in rg-network in the same subscription. The file declares that network using existing, name: 'vnet-shared', and scope: resourceGroup('rg-network'), then reads its properties. No resource or role assignments are declared for that network. Which TWO statements describe this configuration? Evaluate each statement individually.
 
 Select **2**. Difficulty: applied.
 
-A. The declaration references the virtual network without redeploying it.
-B. Its scope must identify the resource group containing that network.
-C. The network is created automatically when missing.
-D. The declaration grants the deploying identity network access rights.
+A. The declaration references vnet-shared without redeploying it.
+B. The lookup targets rg-network rather than rg-app.
+C. The lookup creates vnet-shared in rg-app if it is missing in rg-network.
+D. The declaration grants the deployment identity permission to read vnet-shared.
 
 ## co-deploy-scope
 
@@ -558,7 +558,7 @@ Topic: Compute › Validating and deploying ARM and Bicep.
 
 You must deploy a Bicep file into an existing resource group. Which command family targets that scope?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 A. az deployment group create
 B. az deployment sub create
@@ -582,14 +582,14 @@ D. compiling the Bicep file only
 
 Topic: Compute › Validating and deploying ARM and Bicep.
 
-A deployment identity has Contributor on a resource group. Its template creates a VM and an Azure role assignment. The VM succeeds, but role assignment creation is denied. What additional permission should you investigate?
+A deployment identity has only Contributor on rg-app. Its Bicep template creates a VM and a role assignment at rg-app scope. VM creation succeeds, but the role-assignment operation fails with AuthorizationFailed. There are no deny assignments or role-assignment conditions. Which additional action must an appropriate role grant at rg-app to address this failure?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Microsoft.Authorization/roleAssignments/write at the assignment scope
-B. Microsoft.Compute/virtualMachines/read only
-C. Microsoft.Resources/deployments/read only
-D. Microsoft.Compute/virtualMachines/start/action only
+A. Microsoft.Authorization/roleAssignments/write
+B. Microsoft.Authorization/roleAssignments/read
+C. Microsoft.Authorization/roleDefinitions/write
+D. Microsoft.Authorization/roleAssignments/delete
 
 ## co-export-current
 
@@ -621,14 +621,14 @@ D. az deployment group what-if --template-file current.json
 
 Topic: Compute › Exporting templates and decompiling Bicep.
 
-A resource-group template export completes with warnings. Which TWO checks are appropriate before reusing it?
+An exported ARM template will be reused in a new environment. Its required administrator-password input is missing, and a network-interface property contains a hard-coded subnet resource ID from the old environment. The target subnet already exists. Which TWO edits jointly address these two problems? Assume other configuration and permissions are correct.
 
 Select **2**. Difficulty: applied.
 
-A. Check for omitted resource types, properties, and secret inputs.
-B. Review names, IDs, and parameterization for the new environment.
-C. Assume it contains a restorable copy of application data.
-D. Treat successful export as proof of successful redeployment.
+A. Add and reference a secureString password parameter supplied at deployment time.
+B. Replace the hard-coded subnet ID with a referenced parameter containing the target subnet ID.
+C. Add a subnet ID parameter but leave the NIC property using the old literal ID.
+D. Use a new deployment-history name while leaving resource properties unchanged.
 
 ## co-read-input-output
 
@@ -647,27 +647,27 @@ D. contentVersion.
 
 Topic: Compute › Reading ARM templates and Bicep.
 
-In Bicep, resource network has name: vnetName. Which value determines the deployed virtual network's name?
+A Bicep file named network.bicep declares parameter vnetName with default 'vnet-test'. Its virtual network declaration uses symbolic name network and sets name: vnetName. It returns an output named deployedName with value network.name. The deployment supplies vnetName = 'vnet-prod'. What is the deployed virtual network's name?
 
 Select **1**. Difficulty: applied.
 
-A. The value supplied by vnetName to the name property.
-B. The symbolic identifier network.
-C. The output variable's identifier.
-D. The Bicep filename.
+A. vnet-prod
+B. network
+C. deployedName
+D. vnet-test
 
 ## co-read-dependency
 
 Topic: Compute › Reading ARM templates and Bicep.
 
-Bicep resource B references a property of resource A. What is the usual dependency implication?
+A Bicep deployment creates a DNS zone with symbolic name zone and two independent resources with symbolic names app and store. The app declaration sets a property to zone.properties.nameServers. The store declaration references neither zone nor app, and there are no explicit dependsOn entries. All three declarations deploy new resources. Which ordering does this configuration require?
 
 Select **1**. Difficulty: applied.
 
-A. Bicep infers a dependency on A.
-B. Only the textual order of declarations matters.
-C. B can never depend on A without a manual sleep.
-D. Every resource in the entire file becomes sequential.
+A. zone before app; store has no dependency on either.
+B. app before zone; store has no dependency on either.
+C. zone and app have no dependency; store waits for both.
+D. zone before app; store must wait for app.
 
 ## co-avail-fault
 
@@ -686,14 +686,14 @@ D. Deployment name
 
 Topic: Compute › Availability sets and availability zones.
 
-An application has one VM in availability zone 1. It must continue serving if zone 1 fails. What additional design is needed?
+A stateless application runs on one VM in availability zone 1 behind a zone-redundant Standard Load Balancer frontend. Its other dependencies can survive loss of zone 1. The application must keep serving during a zone 1 outage. Which additional deployment meets this goal? Assume all added instances have enough capacity.
 
 Select **1**. Difficulty: applied.
 
-A. Healthy application instances in another zone with resilient routing and dependencies.
-B. Only label the existing VM zone-redundant using a tag.
-C. Rely on the existing zonal VM being copied automatically to all zones.
-D. Add more update domains to the same single VM.
+A. Add a healthy application VM in zone 2 to the load balancer backend pool and health probe.
+B. Add a healthy application VM in zone 1 to the load balancer backend pool and health probe.
+C. Add a healthy application VM in zone 2 but leave it outside the load balancer backend pool.
+D. Add a healthy application VM in zone 2 to the backend pool but change the frontend to a zonal IP in zone 1.
 
 ## co-avail-update
 
@@ -712,53 +712,53 @@ D. Update domain numbers guarantee ascending maintenance order.
 
 Topic: Compute › Virtual machine provisioning and access.
 
-A Linux VM is created without a public IP in a subnet reachable only through a corporate VPN. How should an administrator establish SSH access?
+A running Linux VM has no public IP. Its subnet is reachable from a corporate VPN, and NSGs and the guest firewall permit SSH from VPN clients. The administrator has the matching private SSH key. The workstation is currently on an unrelated Internet connection with the VPN disconnected. Which action establishes the required SSH path without changing the VM network configuration?
 
 Select **1**. Difficulty: applied.
 
-A. Connect through the VPN and use the VM private IP with valid guest credentials.
-B. Use the private IP directly from an unrelated Internet connection.
-C. Assign Virtual Machine Contributor and SSH through ARM automatically.
-D. Add an NSG allow rule and assume it assigns a public address.
+A. Connect the workstation to the VPN, then SSH to the VM private IP using the key.
+B. Keep the VPN disconnected and SSH to the VM private IP using the key.
+C. Assign Virtual Machine Contributor, then SSH to the private IP with the VPN disconnected.
+D. Allow the workstation public IP in the NSG, then SSH to the private IP with the VPN disconnected.
 
 ## co-vm-stopped
 
 Topic: Compute › Virtual machine provisioning and access.
 
-A guest operating system is shut down, and Azure reports Stopped (allocated). What stops VM compute allocation charges?
+A VM is Stopped (allocated) after a guest shutdown. The administrator must stop usage-based compute allocation charges while retaining its managed disks for a later restart. Which action meets the requirement?
 
 Select **1**. Difficulty: foundation.
 
 A. Deallocate the VM through Azure.
-B. Leave it in the current state because the guest is off.
-C. Remove its public IP only.
-D. Disable boot diagnostics only.
+B. Leave the VM in Stopped (allocated).
+C. Restart the VM through Azure.
+D. Start the VM, then shut down only from inside the guest.
 
 ## co-vm-trusted
 
 Topic: Compute › Virtual machine provisioning and access.
 
-Which TWO features are associated with Trusted Launch for a supported Generation 2 Azure VM?
+Which TWO Trusted Launch settings provide boot-component signature checking and a virtual trusted platform module on a supported Generation 2 Azure VM? Evaluate each feature individually.
 
 Select **2**. Difficulty: foundation.
 
 A. Secure Boot
 B. Virtual TPM
-C. Automatic replication of the VM into another region
-D. Automatic creation of a guest application backup
+C. Encryption at host
+D. Boot diagnostics
 
 ## co-disk-expand
 
 Topic: Compute › Managed disk attachment, expansion, and performance.
 
-A managed data disk was increased from 128 GiB to 256 GiB in Azure, but the guest filesystem still shows the old capacity. What is the next appropriate task?
+A Linux VM data disk was expanded from 128 GiB to 256 GiB in Azure. The guest now detects a 256 GiB block device, but its existing partition and mounted filesystem remain 128 GiB. What task addresses the remaining capacity problem while preserving the filesystem data?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Extend the guest partition and filesystem using the supported OS procedure.
-B. Shrink the Azure disk back and then expand it again.
-C. Rename the LUN to 256.
-D. Change only the VM public IP.
+A. Grow the existing partition and filesystem using the supported OS procedure.
+B. Increase the Azure managed disk size again without changing the guest layout.
+C. Rescan the block device again without changing the guest layout.
+D. Resize the VM to add more vCPUs without changing the guest layout.
 
 ## co-disk-os
 
@@ -777,40 +777,40 @@ D. Standard SSD
 
 Topic: Compute › Managed disk attachment, expansion, and performance.
 
-You attach a managed disk containing existing application data to a Linux VM. What should you do before mounting it?
+A managed data disk with existing application files is attached to a Linux VM at LUN 2. The files must be retained, and the administrator has not yet identified its guest device or filesystem. Which next task prepares a safe mount?
 
 Select **1**. Difficulty: applied.
 
-A. Identify the device and inspect its existing partitions and filesystem.
-B. Always create a new filesystem because attachment erases formatting.
-C. Copy the data to the temporary disk as its only permanent location.
-D. Assume Azure attachment automatically configures the guest mount.
+A. Identify the device for LUN 2, then inspect its partitions and filesystem.
+B. Create a new empty filesystem on the device assigned to LUN 2.
+C. Mount /dev/sdc immediately without checking which LUN it represents.
+D. Mount the local temporary disk as the attached application-data volume.
 
 ## co-host-scope
 
 Topic: Compute › Encryption at host for virtual machines.
 
-A VM already has encrypted managed disks. The requirement now includes its temporary disk and host caches. Which VM feature addresses that scope?
+Encryption at host is enabled on a supported Azure VM. Which statement describes the additional storage protection beyond ordinary managed-disk server-side encryption?
 
 Select **1**. Difficulty: foundation.
 
-A. Encryption at host
-B. Only the existing managed-disk server-side encryption setting
-C. Secure Boot alone
-D. An application HTTPS certificate alone
+A. Temporary disks and host disk caches are encrypted at rest.
+B. Only managed OS and data disks are encrypted at rest.
+C. Application network traffic is encrypted using the VM host setting.
+D. Temporary disks are encrypted only when a customer-managed key is configured.
 
 ## co-host-ade
 
 Topic: Compute › Encryption at host for virtual machines.
 
-A VM previously used Azure Disk Encryption. An administrator wants to enable encryption at host on that same VM. What does the documented restriction require them to recognize?
+A VM previously used Azure Disk Encryption, which has now been disabled. Its size supports encryption at host, and the subscription feature is registered. The administrator proposes enabling encryption at host directly on this same VM. Which assessment follows the documented compatibility restriction?
 
 Select **1**. Difficulty: applied.
 
-A. That VM history is incompatible with enabling encryption at host directly.
-B. Disabling Secure Boot always removes the restriction.
-C. Switching only the data disk to Standard HDD always removes the restriction.
-D. Enabling both methods together is required.
+A. The VM is ineligible for direct enablement because it previously used Azure Disk Encryption.
+B. The VM becomes eligible for direct enablement after deallocation.
+C. The VM becomes eligible for direct enablement after the ADE extension is removed.
+D. The VM becomes eligible for direct enablement after a disk encryption set is configured.
 
 ## co-host-confirm
 
@@ -818,90 +818,90 @@ Topic: Compute › Encryption at host for virtual machines.
 
 Which setting directly confirms that encryption at host is enabled on a VM after the supported configuration process?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 A. securityProfile.encryptionAtHost equals true
-B. The disk reports ordinary server-side encryption
-C. The VM uses SSH public-key authentication
-D. The VM has a Recovery Services backup item
+B. The managed disk reports server-side encryption
+C. securityProfile.uefiSettings.vTpmEnabled equals true
+D. securityProfile.uefiSettings.secureBootEnabled equals true
 
 ## co-move-region
 
 Topic: Compute › Moving VMs between scopes and regions.
 
-A VM is in West Europe. You move it to a resource group whose metadata location is North Europe using the standard ARM move operation. Where does the VM run afterward?
+A VM runs in West Europe. A standard ARM move transfers it to an existing resource group whose metadata location is North Europe. No regional relocation is performed. Which location pair is correct after the move?
 
 Select **1**. Difficulty: foundation.
 
-A. West Europe
-B. North Europe automatically
-C. Both regions with automatic replication
-D. A region chosen from the destination group name
+A. VM: West Europe; destination group metadata: North Europe.
+B. VM: North Europe; destination group metadata: North Europe.
+C. VM: West Europe; destination group metadata: West Europe.
+D. VM: North Europe; destination group metadata: West Europe.
 
 ## co-move-tenant
 
 Topic: Compute › Moving VMs between scopes and regions.
 
-You plan an ARM cross-subscription VM move. Which TWO requirements should you validate?
+A VM, its NIC, disks, and virtual network will be moved from subscription A to subscription B using a direct ARM cross-subscription move. Which TWO statements describe requirements for this move? Evaluate each statement individually.
 
 Select **2**. Difficulty: applied.
 
-A. Both subscriptions belong to the same Entra tenant.
-B. The virtual network and required dependent resources are included as required.
-C. Only the VM resource is needed regardless of its dependencies.
-D. The move automatically changes the VM to the destination group region.
+A. Subscriptions A and B must belong to the same Microsoft Entra tenant.
+B. The virtual network and its dependent resources must move with the VM.
+C. The NIC can remain in subscription A while the attached VM moves to B.
+D. The destination group metadata location must match the VM region.
 
 ## co-move-id
 
 Topic: Compute › Moving VMs between scopes and regions.
 
-After a successful VM move to another resource group, an automation script using the old resource ID fails. What should be checked first?
+A VM named vm-app moves from rg-old to rg-new in the same subscription. A script still requests its previous ARM resource ID and receives ResourceNotFound. The VM is visible in rg-new, the move is complete, and the script identity has the required access there. Which change addresses the failure?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Update the script to use the VM resource ID at its new scope.
-B. Assume the VM has retained the old ID permanently.
-C. Change only the guest hostname to match the old resource group.
-D. Reinstall the VM agent to recreate the old resource ID.
+A. Replace rg-old with rg-new in the resource ID used by the script.
+B. Acquire a new access token while continuing to use the old resource ID.
+C. Replace vm-app in the ID with the guest operating-system hostname.
+D. Replace the subscription segment while continuing to use rg-old.
 
 ## co-resize-restart
 
 Topic: Compute › Resizing virtual machines.
 
-A running Azure VM can use the requested target size on its current host cluster. What should you still plan for when resizing it?
+A running Azure VM will be resized to a supported size available on its current hardware cluster. Which expectation should the administrator use when planning this resize?
 
 Select **1**. Difficulty: foundation.
 
-A. A VM restart and application interruption
-B. A guaranteed change with no guest restart
-C. Automatic replication into another region
-D. Automatic expansion of every guest filesystem
+A. The VM restarts; separate deallocation is not required solely to change clusters.
+B. The VM stays running; separate deallocation is not required to change clusters.
+C. The VM restarts; separate deallocation is always required to change clusters.
+D. The VM stays running; separate deallocation is always required to change clusters.
 
 ## co-resize-set
 
 Topic: Compute › Resizing virtual machines.
 
-A VM in an availability set needs a size unavailable on the current hardware cluster. Which operational consequence must be considered?
+VMs vm1 and vm2 are the only members of an availability set. vm1 needs a supported size unavailable on their current hardware cluster. The target size is available in the region and quota is sufficient. Which plan accounts for the availability-set requirement when moving to compatible hardware?
 
 Select **1**. Difficulty: applied.
 
-A. All VMs in that availability set may need to be deallocated.
-B. Only changing its resource group guarantees the new size.
-C. Increasing the OS disk guarantees the new size.
-D. Changing the display name forces a compatible cluster.
+A. Plan an outage to deallocate both vm1 and vm2 before resizing and restarting.
+B. Deallocate only vm1 and leave vm2 running throughout the change.
+C. Shut down both guests while leaving both VMs allocated before resizing.
+D. Resize vm1 while both VMs remain running on their current cluster.
 
 ## co-resize-proof
 
 Topic: Compute › Resizing virtual machines.
 
-A resize operation fails, but the VM model now displays the requested larger size. What is the best next verification?
+A VM resize operation reports failure. The resource model now shows the requested larger size. The administrator needs to establish whether the new allocation actually succeeded. Which verification uses evidence of the operation and running instance?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Check the operation failure, allocation state, and actual guest resources.
-B. Conclude the larger size is active solely from the model field.
-C. Assume the guest data disks were necessarily erased.
-D. Delete the deployment history to complete the resize.
+A. Inspect the failed operation, instance state, and CPU/memory reported by the guest.
+B. Inspect only hardwareProfile.vmSize in the resource model.
+C. Inspect only the target size listing and current subscription quota.
+D. Inspect only the successful deployment record from the original VM creation.
 
 ## co-vmss-mode
 
@@ -920,27 +920,27 @@ D. Moving it to another resource group converts it to Flexible.
 
 Topic: Compute › Virtual machine scale sets and autoscale.
 
-A scale set uses Manual upgrade policy. Its model is updated to a new image, then a new instance is added. What is expected?
+A Uniform VM scale set has three instances on image version 1 and uses Manual upgrade policy. Its model is changed to image version 2, then a fourth instance is created. No explicit instance updates or automatic OS image upgrades run. Which image-version combination is expected?
 
 Select **1**. Difficulty: applied.
 
-A. The new instance uses the new model; existing instances need an explicit update.
-B. Every existing instance updates immediately in guaranteed batches.
-C. New instances always use the oldest image until all existing VMs are deleted.
-D. The model update is ignored for both old and new instances.
+A. Existing three instances: version 1; new fourth instance: version 2.
+B. Existing three instances: version 2; new fourth instance: version 2.
+C. Existing three instances: version 1; new fourth instance: version 1.
+D. Existing three instances: version 2; new fourth instance: version 1.
 
 ## co-vmss-scale
 
 Topic: Compute › Virtual machine scale sets and autoscale.
 
-A VM scale set should add instances during sustained demand and later remove them. Which TWO configuration choices support this?
+A VM scale set has a valid scaling profile. Its autoscale profile has minimum 2, default 3, and maximum 5 instances, but no rules. It must add one instance when average CPU exceeds 70% for 10 minutes and remove one when average CPU is below 30% for 10 minutes, with a 5-minute cooldown in either direction. Which TWO rules jointly implement this policy? Assume metrics and capacity are available.
 
 Select **2**. Difficulty: applied.
 
-A. A scaling profile and autoscale rules with bounded instance counts
-B. Distinct scale-out and scale-in conditions with suitable cooldown
-C. Only changing the VM SKU on one instance
-D. Setting a maximum count of one while expecting three instances
+A. CPU > 70% over 10 minutes: increase count by 1; cooldown 5 minutes.
+B. CPU < 30% over 10 minutes: decrease count by 1; cooldown 5 minutes.
+C. CPU > 70% over 10 minutes: decrease count by 1; cooldown 5 minutes.
+D. CPU < 30% over 10 minutes: increase count by 1; cooldown 5 minutes.
 
 ## co-web-inbound-direction-variant
 
@@ -959,131 +959,131 @@ D. Only a NAT gateway for the app's outbound traffic.
 
 Topic: Compute › App Service inbound and outbound networking.
 
-An App Service private endpoint already occupies subnet inbound. You now add regional VNet integration to the app. Which subnet arrangement is supported?
+A Standard App Service app already has an inbound private endpoint in subnet-inbound. You now add regional VNet integration without moving that endpoint or changing existing delegations. Each candidate has sufficient addresses and permissions. Which subnet arrangement supports integration for the app?
 
 Select **1**. Difficulty: applied.
 
-A. Use a different suitable subnet dedicated and delegated for integration.
-B. Reuse inbound without changing anything because both features use private IPs.
-C. Replace the integration subnet with a public DNS A record.
-D. Attach the app's private endpoint NIC as its integration interface.
+A. Use a separate dedicated same-region subnet delegated to Microsoft.Web/serverFarms.
+B. Reuse subnet-inbound while retaining its private endpoint.
+C. Use a separate same-region subnet delegated to Microsoft.ContainerInstance/containerGroups.
+D. Use a separate subnet in a different region delegated to Microsoft.Web/serverFarms.
 
 ## id-budget-not-cap
 
 Topic: Identity and governance › Budgets, cost alerts, and Advisor.
 
-A monthly Azure budget reaches 100% and sends an alert. No automation is attached. What happens to running resources?
+A monthly Azure subscription budget reaches its configured threshold and sends an email alert. No action group, automation, or other spending control is configured. Which effect does this budget alert have on running resources?
 
 Select **1**. Difficulty: foundation.
 
-A. They continue running and can incur more charges.
-B. All resources stop immediately.
-C. The subscription and all resources are deleted.
-D. Further usage becomes free until the next month.
+A. It sends the notification while resources continue normal operation and billing.
+B. It sends the notification and deallocates running virtual machines.
+C. It sends the notification and rejects further resource deployments.
+D. It sends the notification and suspends billing for additional usage.
 
 ## id-budget-forecast
 
 Topic: Identity and governance › Budgets, cost alerts, and Advisor.
 
-A team wants a warning when projected month-end cost exceeds its plan even though actual spending is still below it. Which budget threshold fits?
+A monthly subscription budget is USD 1,000. At the latest evaluation, actual cost is USD 600 and forecast month-end cost is USD 1,100. The team wants an alert when forecast cost exceeds the monthly budget, before actual cost reaches it. Which enabled notification configuration meets the goal and has its condition satisfied at this evaluation?
 
 Select **1**. Difficulty: applied.
 
-A. A forecast cost threshold.
-B. Only an actual-spend 100% threshold.
-C. Only inspect the final monthly invoice.
-D. A VM vCPU quota alert alone.
+A. Type Forecasted; threshold 100% of budget.
+B. Type Actual; threshold 100% of budget.
+C. Type Forecasted; threshold 120% of budget.
+D. Type Actual; threshold 80% of budget.
 
 ## id-advisor-rightsize
 
 Topic: Identity and governance › Budgets, cost alerts, and Advisor.
 
-Advisor suggests resizing a lightly utilized production VM. What should an administrator do before applying the change?
+Advisor recommends a smaller size for a production VM based on the recent utilization period. The application has a month-end processing peak that did not occur in that period. Before applying the recommendation, which assessment should the administrator make to determine whether the smaller VM meets workload requirements?
 
 Select **1**. Difficulty: applied.
 
-A. Review utilization and workload requirements, then plan and verify the resize.
-B. Apply every recommendation without checking the workload.
-C. Increase the budget and assume the VM becomes smaller.
-D. Buy a long-term commitment before checking actual usage.
+A. Compare the proposed size with CPU and memory requirements during the month-end peak.
+B. Compare the proposed size with average CPU utilization in the same recent period.
+C. Compare the proposed size's hourly price with the subscription budget amount.
+D. Compare reservation discounts for the current and proposed VM sizes.
 
 ## id-lock-delete-only
 
 Topic: Identity and governance › Resource locks.
 
-A resource group must permit authorized configuration changes but reject accidental ARM deletion. Which lock fits?
+An administrator must protect rg-app against accidental ARM deletion while permitting authorized ARM configuration updates. Sibling resource groups must receive no additional lock restriction. No locks currently apply. Which complete lock configuration meets the requirements?
 
 Select **1**. Difficulty: applied.
 
-A. CanNotDelete.
-B. ReadOnly.
-C. An extra Reader role assignment.
-D. A tag named DoNotDelete.
+A. CanNotDelete on rg-app.
+B. ReadOnly on rg-app.
+C. CanNotDelete on the containing subscription.
+D. ReadOnly on the containing subscription.
 
 ## id-lock-blob-data
 
 Topic: Identity and governance › Resource locks.
 
-A storage account has a CanNotDelete lock. A client has valid data-plane authorization to delete a blob. Does the account lock alone prevent that data operation?
+A storage account has a CanNotDelete management lock. A client is authorized for both a control-plane account deletion and a data-plane blob deletion through the Blob service endpoint. Networking permits access and no other protection or restriction applies. Which pair of outcomes follows while the lock remains?
 
-Select **1**. Difficulty: foundation.
+Select **1**. Difficulty: applied.
 
-A. No; management locks do not generally block data-plane blob deletion.
-B. Yes; every byte under a locked account becomes immutable.
-C. Only blobs in Hot are protected by the lock.
-D. Only key2-authorized blob deletes are blocked.
+A. The account operation is blocked; the blob operation is permitted.
+B. The account operation and blob operation are both blocked.
+C. The account operation and blob operation are both permitted.
+D. The account operation is permitted; the blob operation is blocked.
 
 ## id-lock-owner
 
 Topic: Identity and governance › Resource locks.
 
-An Owner's ARM delete request fails because a resource has a Delete lock. What is the appropriate deliberate-deletion sequence?
+An Owner attempts an ARM deletion of vm-app and receives a lock error. The only applicable lock is a user-created CanNotDelete lock directly on vm-app. The administrator is authorized to remove that lock and has approved deliberate deletion. Which sequence resolves the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Review and remove the lock with authorization, then delete the resource.
-B. Retry until Owner overrides the lock automatically.
-C. Replace Owner with Contributor.
-D. Change the resource group's metadata region.
+A. Remove the CanNotDelete lock, then delete vm-app.
+B. Keep the lock, then retry deletion using the Owner identity.
+C. Keep the lock, assign Contributor, then retry deletion.
+D. Replace CanNotDelete with ReadOnly, then delete vm-app.
 
 ## id-mg-parent-policy
 
 Topic: Identity and governance › Management groups and inherited governance.
 
-An allowed-locations policy is assigned to management group Production. A subscription beneath it has no exclusion or exemption. Where is the policy relevant?
+Production and Sandbox are sibling management groups. Production contains the nested management group Apps, which contains subscription AppSub. Sandbox contains subscription TestSub. A policy assigned to Production denies VM deployments outside West Europe. There are no exclusions, exemptions, or other policies. Both subscriptions have capacity and the deployer has the required permissions. Which deployment does this policy block?
 
 Select **1**. Difficulty: applied.
 
-A. Applicable resources in the descendant subscription.
-B. Only the management group display-name property.
-C. Only subscriptions outside Production.
-D. Every subscription in every Entra tenant.
+A. A VM in North Europe in AppSub.
+B. A VM in West Europe in AppSub.
+C. A VM in North Europe in TestSub.
+D. A VM in West Europe in TestSub.
 
 ## id-mg-one-parent
 
 Topic: Identity and governance › Management groups and inherited governance.
 
-Can one Azure subscription simultaneously be a direct child of two management groups?
+Which management-group hierarchy is supported within one Microsoft Entra tenant? Choose one answer.
 
 Select **1**. Difficulty: foundation.
 
-A. No; it has one parent in the hierarchy.
-B. Yes, one parent for Policy and another for RBAC.
-C. Yes, if it has two billing contacts.
-D. Yes, one parent for every Azure region it uses.
+A. Production is a child of Corporate, and AppSub is a direct child of Production.
+B. AppSub is a direct child of Production for Policy and of Corporate for RBAC.
+C. Production is a direct child of Corporate and of Regional, which are siblings.
+D. Corporate is a child of Production, and Production is a child of Corporate.
 
 ## id-mg-move-impact
 
 Topic: Identity and governance › Management groups and inherited governance.
 
-A subscription moves from Sandbox to Production management group in the same tenant. Which effect should be reviewed?
+Sandbox and Production are sibling management groups. Sam has a built-in Contributor assignment on Sandbox, a built-in Reader assignment on Production, and a direct built-in Contributor assignment on resource group rg-app in subscription AppSub. An authorized administrator moves AppSub from Sandbox to Production. After propagation, what role access does Sam have in AppSub? No other assignments, deny assignments, or conditions apply.
 
 Select **1**. Difficulty: applied.
 
-A. Changes to inherited Policy and RBAC assignments.
-B. Automatic regional relocation of its VMs.
-C. Automatic creation of a new Entra directory.
-D. Replacement of every resource's subscription ID.
+A. Reader across AppSub; Contributor within rg-app.
+B. Contributor across AppSub; Reader within rg-app.
+C. Reader across AppSub; no role access within rg-app.
+D. Contributor across AppSub; Contributor within rg-app.
 
 ## id-policy-audit-deny
 
@@ -1102,40 +1102,40 @@ D. DeployIfNotExists.
 
 Topic: Identity and governance › Azure Policy assignments and remediation.
 
-A Modify policy assignment identifies existing untagged resources, but they remain unchanged after evaluation. Which action applies the supported modification to those existing resources?
+A Modify policy assignment adds a supported costCenter tag to new resources. Existing untagged resources appear as noncompliant after evaluation but remain unchanged. The assignment has a managed identity with the roles required by the definition. Without redeploying the workloads or changing the policy rule, which action applies the tag to these existing resources?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Create a remediation task using an appropriately authorized assignment identity.
-B. Wait for an Audit-only policy to rewrite every resource.
-C. Assign Reader to every resource owner.
-D. Delete the resource group to clear noncompliance.
+A. Create a remediation task for the existing noncompliant resources.
+B. Trigger another compliance evaluation for the same assignment.
+C. Grant additional resource permissions to the administrator who created the assignment.
+D. Change the assignment to an Audit effect and run another evaluation.
 
 ## id-policy-removal
 
 Topic: Identity and governance › Azure Policy assignments and remediation.
 
-A DeployIfNotExists policy deployed diagnostic settings. The policy assignment is later removed. What happens to the settings solely because of assignment removal?
+A DeployIfNotExists policy deployed a diagnostic setting that sends resource logs to an existing Log Analytics workspace. An administrator removes the policy assignment. No cleanup automation runs and neither the diagnostic setting nor the workspace is deleted or changed. What is the diagnostic setting's state after assignment removal?
 
 Select **1**. Difficulty: foundation.
 
-A. They are not automatically rolled back.
-B. Every deployed setting is automatically deleted.
-C. They become Azure RBAC role assignments.
-D. They become permanent deny assignments.
+A. It remains configured to send logs to the workspace.
+B. It is deleted when the assignment is deleted.
+C. It remains present but its log categories are automatically disabled.
+D. It remains present but its workspace destination is automatically cleared.
 
 ## id-rg-location
 
 Topic: Identity and governance › Resource group lifecycle and moves.
 
-A resource group's metadata location is West Europe. Can it contain a supported resource deployed in North Europe?
+Resource group rg-app was created with metadata location West Europe. An administrator successfully deploys vm-app into rg-app with VM location North Europe. Which pair of locations should the administrator observe?
 
 Select **1**. Difficulty: foundation.
 
-A. Yes; resource location can differ from group location.
-B. No; every resource inherits the group's physical region.
-C. Only after renaming the group to North Europe.
-D. Only by nesting another resource group inside it.
+A. rg-app metadata: West Europe; vm-app: North Europe.
+B. rg-app metadata: West Europe; vm-app: West Europe.
+C. rg-app metadata: North Europe; vm-app: North Europe.
+D. rg-app metadata: North Europe; vm-app: West Europe.
 
 ## id-rg-move-region
 
@@ -1156,7 +1156,7 @@ Topic: Identity and governance › Resource group lifecycle and moves.
 
 A study resource group contains a VM, NIC, and storage resources that are no longer needed. What does deleting that group do, assuming no protection blocks deletion?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 A. Deletes the resources contained in the group.
 B. Removes only the group label and leaves all resources ungrouped.
@@ -1180,53 +1180,53 @@ D. The subscription's billing owner.
 
 Topic: Identity and governance › Subscription administration and provider registration.
 
-A deployment reports that Microsoft.Storage is not registered in the selected subscription. The operator has registration permission. What should be done?
+A deployment to subscription SubA reports that Microsoft.Storage is not registered. Microsoft.Storage is already registered in SubB. The operator has provider-registration permission in SubA and must keep the deployment there. Which action addresses the reported prerequisite?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Register Microsoft.Storage in that subscription and inspect its state.
-B. Request more VM-family vCPUs.
-C. Rename the subscription.
-D. Move the subscription to a different tenant immediately.
+A. Register Microsoft.Storage in SubA and inspect its registration state.
+B. Register Microsoft.Compute in SubA and inspect its registration state.
+C. Register Microsoft.Storage in SubB again and inspect its registration state.
+D. Unregister Microsoft.Storage in SubB and retry the deployment in SubA.
 
 ## id-sub-directory-transfer
 
 Topic: Identity and governance › Subscription administration and provider registration.
 
-A team plans to change an Azure subscription's Entra directory. Which dependency requires explicit planning?
+A subscription is being transferred from Entra Tenant A to Tenant B. The inventory includes Azure role assignments and a VM's system-assigned managed identity used to access a resource. The team must restore authorized access under Tenant B after transfer. Which preparation plan accounts for these directory-bound dependencies?
 
 Select **1**. Difficulty: applied.
 
-A. Reestablishing resource access and affected managed identity relationships.
-B. Only changing the subscription display name.
-C. Every resource automatically moves to the new tenant's region.
-D. All resource roles become billing roles.
+A. Map principals to Tenant B, recreate Azure role assignments, and reenable the VM's system-assigned identity with required permissions.
+B. Retain the existing role assignments and identity because their Azure resource scopes have not changed.
+C. Recreate role assignments using the original Tenant A principal IDs and keep the VM identity unchanged.
+D. Assign billing roles in Tenant B and use those roles for the VM's resource access.
 
 ## id-tag-inheritance
 
 Topic: Identity and governance › Resource tags and tag governance.
 
-A resource group has CostCenter=Finance. A new VM inside it has no tag policy or other tagging automation. Does the VM automatically receive that resource tag?
+Resource group rg-app has CostCenter=Finance. An administrator deploys vm-app into it without specifying VM tags. No tagging policy or other automation applies. Which pair of resource tag states should the administrator observe after deployment?
 
 Select **1**. Difficulty: foundation.
 
-A. No; resource tags do not automatically inherit.
-B. Yes; every resource-group tag is automatically copied.
-C. Yes; billing tags and resource properties are always identical.
-D. Only when the VM creator is the resource-group Owner.
+A. rg-app retains CostCenter=Finance; vm-app has no CostCenter tag.
+B. rg-app and vm-app both have CostCenter=Finance.
+C. rg-app has no CostCenter tag; vm-app has CostCenter=Finance.
+D. Neither rg-app nor vm-app has a CostCenter tag.
 
 ## id-tag-merge
 
 Topic: Identity and governance › Resource tags and tag governance.
 
-A resource already has ServiceOwner=Ops. You must add Environment=Training without removing ServiceOwner. Which CLI operation fits?
+A resource has ServiceOwner=Ops and no Environment tag. The shell variable resourceId contains its valid resource ID. You must add Environment=Training without removing ServiceOwner. Which command meets both requirements?
 
 Select **1**. Difficulty: applied.
 
-A. az tag update with --operation Merge.
-B. az tag create with only Environment=Training.
-C. az tag update with --operation Replace and only Environment=Training.
-D. az tag delete followed by no additional operation.
+A. az tag update --resource-id "$resourceId" --operation Merge --tags Environment=Training
+B. az tag create --resource-id "$resourceId" --tags Environment=Training
+C. az tag update --resource-id "$resourceId" --operation Replace --tags Environment=Training
+D. az tag update --resource-id "$resourceId" --operation Delete --tags Environment=Training
 
 ## id-tag-policy-existing
 
@@ -1245,27 +1245,27 @@ D. Retag the resource group and assume automatic propagation.
 
 Topic: Identity and governance › Entra groups and dynamic membership.
 
-An Entra security group should automatically include enabled users whose department is Operations. Which membership approach fits?
+An Entra Dynamic User security group must include only enabled users whose department is Operations. The tenant has the required licensing. Which membership rule implements both conditions?
 
 Select **1**. Difficulty: applied.
 
-A. Dynamic User with a department and accountEnabled rule.
-B. Assigned membership with no automation.
-C. Dynamic Device using device operating system.
-D. An Azure resource tag named Operations.
+A. (user.department -eq "Operations") -and (user.accountEnabled -eq true)
+B. (user.department -eq "Operations") -or (user.accountEnabled -eq true)
+C. user.department -eq "Operations"
+D. (user.department -ne "Operations") -and (user.accountEnabled -eq true)
 
 ## id-group-dynamic-exception
 
 Topic: Identity and governance › Entra groups and dynamic membership.
 
-An administrator cannot manually add a user to an Entra Dynamic User group. The user does not match its rule. What should be reviewed?
+A Groups Administrator cannot manually add a user to an Entra Dynamic User group. The user's current attributes do not match its membership rule, and processing is active. The group must remain dynamic. Which next step addresses this membership problem?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. The rule and authoritative user attributes.
-B. Make the user the group owner to guarantee membership.
-C. Rename the group to the user's name.
-D. Assign Azure subscription Owner to the user.
+A. Review the membership rule and the user's authoritative attribute values.
+B. Make the user a group owner to bypass the membership rule.
+C. Run Validate Rules to force the user into the group.
+D. Use a Microsoft Graph add-member request to bypass the portal restriction.
 
 ## id-group-license
 
@@ -1284,14 +1284,14 @@ D. Count the same user again for every dynamic group they join.
 
 Topic: Identity and governance › Entra groups and dynamic membership.
 
-A cloud-managed Entra security group's description needs updating while applications must keep referring to the same group. Which action fits?
+A cloud-managed Entra security group's description must change. Applications must continue using that group's existing object ID. Which action meets both requirements?
 
 Select **1**. Difficulty: foundation.
 
-A. Edit the existing group's properties.
-B. Delete the group and recreate the same name.
-C. Change every member's UPN.
-D. Create a new Entra tenant.
+A. Edit the description on the existing group.
+B. Delete the group and recreate it with the same name and new description.
+C. Set the existing group's display name to the desired description.
+D. Create a second group with the new description and copy the membership.
 
 ## id-scope-one-group
 
@@ -1310,14 +1310,14 @@ D. One VM inside rg-training.
 
 Topic: Identity and governance › Azure role assignments and scopes.
 
-A user's Contributor assignment is inherited from the subscription. You want to remove that grant. Where must the assignment itself be removed?
+A user has a direct Contributor role assignment at subscription scope. On vm-app in rg-app, IAM shows that assignment as inherited and does not allow its removal at the VM scope. An authorized administrator must revoke that specific assignment across the subscription. Which action should the administrator take?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. At the subscription where it was created.
-B. Only from one child VM's IAM page as a local assignment.
-C. Add Reader on the VM to cancel Contributor.
-D. Delete the VM's owner tag.
+A. Remove the Contributor assignment in the subscription's IAM page.
+B. Remove the inherited Contributor entry as a local assignment in vm-app's IAM page.
+C. Add Reader for the user on vm-app.
+D. Remove a Reader assignment for the user on rg-app.
 
 ## id-scope-triplet
 
@@ -1349,53 +1349,53 @@ D. Only if Owner is also assigned on every resource.
 
 Topic: Identity and governance › Effective access and RBAC troubleshooting.
 
-An applicable Azure deny assignment blocks an operation that a user's Owner role would otherwise permit. What does RBAC evaluation do?
+A user has Owner on vm-app. An applicable deny assignment blocks only virtual-machine deletion for that user on vm-app; it does not deny configuration reads. No other restriction applies. Which pair of RBAC outcomes should the administrator expect?
 
-Select **1**. Difficulty: foundation.
+Select **1**. Difficulty: applied.
 
-A. Blocks the operation.
-B. Ignores the deny because Owner always bypasses it.
-C. Uses whichever object was created last.
-D. Converts the deny into Reader.
+A. Reading configuration is allowed; deleting the VM is blocked.
+B. Reading configuration and deleting the VM are both allowed.
+C. Reading configuration and deleting the VM are both blocked.
+D. Reading configuration is blocked; deleting the VM is allowed.
 
 ## id-effective-check-path
 
 Topic: Identity and governance › Effective access and RBAC troubleshooting.
 
-A user has no direct role assignment on a VM but can read its configuration. Which two paths should an administrator inspect?
+User1 can read vm-app configuration even though no Azure role is assigned directly to User1 at that VM. Which two assignment paths could each independently supply this current access? Select two.
 
 Select **2**. Difficulty: troubleshooting.
 
-A. Assignments inherited from parent scopes.
-B. Applicable assignments to the user's groups.
-C. The VM's cost-center tag as an automatic Reader grant.
-D. A display name matching the VM name.
+A. An active Reader assignment directly to User1 at the containing subscription.
+B. An active Reader assignment on vm-app to a security group containing User1.
+C. An active Reader assignment to User1 on a different VM in the same resource group.
+D. An eligible Reader assignment for User1 on vm-app that has not been activated.
 
 ## id-role-contributor-access
 
 Topic: Identity and governance › Azure built-in roles and permission definitions.
 
-An operator has Contributor on a resource group and no other roles. Can they assign Owner to another user there?
+An operator has Contributor on rg-app and no other roles. There are no deny assignments or other restrictions. Which action is excluded from the permissions granted by Contributor?
 
 Select **1**. Difficulty: foundation.
 
-A. No; Contributor does not grant role-assignment administration.
-B. Yes; all resource write permission includes access delegation.
-C. Only after adding Reader at the same scope.
-D. Only after becoming the resource group's guest inviter.
+A. Assign Owner to another user on rg-app.
+B. Create a storage account in rg-app.
+C. Update a virtual machine's configuration in rg-app.
+D. Delete a virtual machine in rg-app.
 
 ## id-role-notactions
 
 Topic: Identity and governance › Azure built-in roles and permission definitions.
 
-Role A excludes an operation through NotActions. Role B assigned to the same user and scope grants that operation. No deny assignment or other restriction applies. What follows?
+A custom Role A grants virtual-machine management actions but excludes virtual-machine deletion through NotActions. Role B grants virtual-machine deletion. Both roles are assigned to the same user at rg-app, which contains vm-app. No deny assignment or other restriction applies. Which statement describes the user's effective permission to delete vm-app?
 
 Select **1**. Difficulty: applied.
 
-A. Role B can still grant the operation.
-B. Role A's NotActions always cancels Role B.
-C. Only the most recently assigned role counts.
-D. The alphabetically first role decides.
+A. Role B supplies deletion permission even though Role A excludes it.
+B. Role A blocks deletion even though Role B grants it.
+C. Deletion is allowed only if Role B was assigned after Role A.
+D. Deletion is allowed only after removing the exclusion from Role A.
 
 ## id-role-data-reader
 
@@ -1414,79 +1414,79 @@ D. Virtual Machine Contributor.
 
 Topic: Identity and governance › External users and B2B collaboration.
 
-A partner redeems an Entra B2B invitation successfully but cannot manage the Azure resource group they are meant to administer. No resource role has been assigned. What is missing?
+A partner has redeemed a B2B invitation into your workforce tenant and can sign in to the Azure portal. The partner must create and modify resources in rg-project without granting access to other users. There are no Azure role assignments for the guest and no applicable deny assignments or policy restrictions. Which assignment meets the requirement with the least privilege among these choices?
 
-Select **1**. Difficulty: troubleshooting.
+Select **1**. Difficulty: applied.
 
-A. An appropriate Azure RBAC assignment at the intended scope.
-B. Global Administrator for every guest.
-C. A new internal account with a shared password.
-D. Change the guest display name to the resource group name.
+A. Contributor on rg-project.
+B. Reader on rg-project.
+C. Owner on rg-project.
+D. Contributor on the subscription containing rg-project.
 
 ## id-guest-inbound
 
 Topic: Identity and governance › External users and B2B collaboration.
 
-Your tenant must control which partner-tenant users and applications may access your resources through B2B collaboration. Which cross-tenant direction governs that incoming access?
+Tenant A has Microsoft Entra ID P1 and hosts an application accessed by employees of partner Tenant B through B2B collaboration. Tenant A must allow only a selected group from Tenant B to access that application, without changing the policy for other partners. Which setting in Tenant A should an administrator configure?
 
 Select **1**. Difficulty: applied.
 
-A. Inbound access settings.
-B. Only outbound access settings.
-C. Only an external-collaboration invitation domain allowlist.
-D. Only the partner's group display-name policy.
+A. Tenant B organizational settings: B2B collaboration inbound access.
+B. Tenant B organizational settings: B2B collaboration outbound access.
+C. Tenant B organizational settings: B2B direct connect inbound access.
+D. Default settings: B2B collaboration inbound access.
 
 ## id-guest-invite-vs-block
 
 Topic: Identity and governance › External users and B2B collaboration.
 
-A partner domain is allowed in external collaboration settings, but a cross-tenant B2B rule blocks the requested access. Does the invitation allowlist override that block?
+Tenant A allows invitations from Tenant B's domain. A guest from Tenant B has redeemed an invitation and has the required application assignment. A sign-in failure identifies Tenant A's partner-specific B2B collaboration inbound policy as blocking that user. Tenant B permits outbound access, and all other access requirements are met. Which targeted change addresses the reported block?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. No; the relevant cross-tenant access policy must also permit access.
-B. Yes; an allowed invitation always overrides every access control.
-C. Yes, if the guest owns any group.
-D. Yes, if the usage location matches.
+A. Permit the user and application in Tenant A's Tenant B inbound B2B collaboration settings.
+B. Add Tenant B's domain to Tenant A's invitation allowlist again.
+C. Permit Tenant B in Tenant A's outbound B2B collaboration settings.
+D. Permit the user in Tenant A's inbound B2B direct connect settings.
 
 ## id-license-nested
 
 Topic: Identity and governance › User and group license assignments.
 
-A product is assigned to Entra group Parent. A user belongs only to Child, which is nested in Parent, and receives no license. What explains this?
+A product license is assigned to the assigned-membership security group Parent. User1 is a direct member of Child, and Child is a member of Parent. Direct user members of Parent receive the product after processing completes, but User1 does not. Seats are available and User1 has a valid usage location. What explains the difference?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Group-based licensing does not process users only through nested groups.
-B. Only Parent's owners can receive its product.
-C. The user must first become Azure subscription Owner.
-D. Parent and Child must have identical names.
+A. Group-based licensing processes direct user members rather than nested user membership.
+B. Group-based licensing processes group owners rather than group members.
+C. Group-based licensing has stopped because the product has no available seats.
+D. Group-based licensing is still processing all direct members of Parent.
 
 ## id-license-retained
 
 Topic: Identity and governance › User and group license assignments.
 
-A user receives a product directly and through a licensing group. The group assignment is removed, but the direct assignment remains. Why can the user retain the product?
+User1 has the same product license assigned directly and through Group1. An administrator removes the product from Group1 and confirms processing is complete. The direct assignment is still active, and there are no other assignment paths. Which state should the administrator expect for User1?
 
 Select **1**. Difficulty: applied.
 
-A. The direct assignment is still an effective licensing path.
-B. Licenses become permanent after first sign-in.
-C. Azure Reader automatically reassigns the product.
-D. Any group ownership supplies all tenant licenses.
+A. The product remains assigned through the direct assignment.
+B. The product is unassigned because removing any source removes all sources.
+C. The product remains assigned through Group1 because direct assignments take precedence.
+D. The direct assignment is converted into an assignment inherited from Group1.
 
 ## id-license-location
 
 Topic: Identity and governance › User and group license assignments.
 
-A license assignment reports an invalid usage location despite available seats. What should an administrator correct?
+A new user works in Germany, where the selected product is available. Group license processing reports a usage-location error despite available seats. The user profile contains country = Germany and usageLocation = US. Which user property should an administrator correct to match the verified place of service use before reprocessing?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. The user's usage location based on where the service is used.
-B. The user's office street address only.
-C. The user's preferred language only.
-D. Assign Global Administrator to the user.
+A. Set usageLocation to DE.
+B. Set country to DE.
+C. Set preferredLanguage to de-DE.
+D. Set officeLocation to Germany.
 
 ## id-user-role
 
@@ -1505,40 +1505,40 @@ D. Guest Inviter.
 
 Topic: Identity and governance › Entra user provisioning and properties.
 
-A user's department is synchronized from on-premises Active Directory. Routine cloud edits are rejected or later overwritten. Where should the normal department update be made?
+An employee's department synchronizes from on-premises Active Directory into Microsoft Entra ID. A cloud profile edit is rejected or overwritten on the next synchronization. AD remains authoritative for this attribute, and the existing synchronization mappings must remain unchanged. Which procedure makes the normal lasting department update?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. At the authoritative on-premises directory source.
-B. In a tag on the Azure subscription.
-C. In the user's product license assignment.
-D. Create a second cloud user with the same display name.
+A. Update the user's department in on-premises AD and allow synchronization to run.
+B. Update the user's department in the Entra admin center and wait for synchronization.
+C. Update the cloud department through Microsoft Graph instead of the admin center.
+D. Grant the cloud operator Global Administrator and repeat the cloud profile edit.
 
 ## id-user-stable-id
 
 Topic: Identity and governance › Entra user provisioning and properties.
 
-An Entra cloud user's display name changes. Which value should an existing application use to continue identifying that same directory object?
+An application stores a reference to an existing Microsoft Entra cloud user. The user's display name, sign-in name, and email address may change, but the directory object will not be deleted or recreated. Which property provides the stable reference to that same object?
 
 Select **1**. Difficulty: foundation.
 
-A. The existing object ID.
-B. Only the new display name.
-C. The department string.
-D. The usage location.
+A. Object ID (id).
+B. Display name (displayName).
+C. User principal name (userPrincipalName).
+D. Email address (mail).
 
 ## id-sspr-unregistered
 
 Topic: Identity and governance › Self-service password reset.
 
-An ordinary user belongs to the SSPR pilot group but has not registered enough methods permitted by the policy. Why can the user not complete a forgotten-password reset?
+A licensed, cloud-only, nonadministrator user is a direct member of the selected SSPR pilot group. The policy requires two methods to reset a password. The user has registered one permitted method and is prompted to contact the administrator during a forgotten-password reset. Which configuration gap explains the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Scope inclusion alone does not provide the required identity-verification methods.
-B. Every SSPR user must be an Azure subscription Owner.
-C. Selected-group pilots cannot support password reset.
-D. SSPR only changes display names.
+A. The user has fewer registered permitted methods than the reset policy requires.
+B. The user is outside the group selected for SSPR enablement.
+C. The user lacks a license that permits SSPR password reset.
+D. The tenant has not enabled password writeback to on-premises AD DS.
 
 ## id-sspr-writeback
 
@@ -1557,170 +1557,170 @@ D. Enable SSPR for the user but leave writeback disabled.
 
 Topic: Identity and governance › Self-service password reset.
 
-You are configuring recovery authentication methods for a new Entra SSPR deployment after the legacy-method policy deprecation. Which policy should you use?
+You are configuring permitted email and phone recovery methods for a new Entra SSPR deployment after legacy MFA/SSPR method management was deprecated. Security questions are outside the deployment. Which configuration controls whether these methods are enabled for the intended users?
 
 Select **1**. Difficulty: foundation.
 
-A. The Authentication methods policy.
-B. Only the deprecated legacy SSPR methods policy.
-C. Only a Conditional Access policy requiring MFA.
-D. Only the user's registered Security info entries.
+A. Authentication methods policy.
+B. Legacy SSPR authentication-method settings.
+C. Conditional Access policy requiring multifactor authentication.
+D. The user's registered Security info entries.
 
 ## id-lock-freeze-variant
 
 Topic: Identity and governance › Resource locks.
 
-A resource group must reject authorized ARM updates as well as ARM deletion during a configuration freeze. Which management lock meets both requirements while it remains in place?
+An administrator must protect rg-app against accidental ARM deletion while blocking authorized ARM configuration updates. Sibling resource groups must receive no additional lock restriction. No locks currently apply. Which complete lock configuration meets the requirements?
 
 Select **1**. Difficulty: applied.
 
-A. ReadOnly.
-B. CanNotDelete.
-C. Add Reader to users who already have Contributor.
-D. Apply a Freeze=true tag without a policy.
+A. CanNotDelete on rg-app.
+B. ReadOnly on rg-app.
+C. CanNotDelete on the containing subscription.
+D. ReadOnly on the containing subscription.
 
 ## id-lock-data-write-variant
 
 Topic: Identity and governance › Resource locks.
 
-A storage account has a ReadOnly management lock. A client has valid blob data-plane write authorization, networking works, and no blob immutability policy applies. Does the lock alone block overwriting a blob through the Blob service?
+A storage account has a ReadOnly management lock. A client is authorized for both a control-plane account configuration update and a data-plane blob overwrite through the Blob service endpoint. Networking permits access and no other protection or restriction applies. Which pair of outcomes follows while the lock remains?
 
-Select **1**. Difficulty: foundation.
+Select **1**. Difficulty: applied.
 
-A. No; the management lock restricts control-plane operations.
-B. Yes; ReadOnly makes every stored blob immutable.
-C. Yes; the lock automatically removes the client's blob data role.
-D. Only if the client uses the second storage account key.
+A. The account operation is blocked; the blob operation is permitted.
+B. The account operation and blob operation are both blocked.
+C. The account operation and blob operation are both permitted.
+D. The account operation is permitted; the blob operation is blocked.
 
 ## mo-action-reuse
 
 Topic: Monitoring and recovery › Action groups and notification delivery.
 
-CPU and log alerts should notify the same operations team. What reusable Azure Monitor resource defines those recipients?
+A CPU alert rule and a log alert rule both reference the same action group. You add a verified email recipient to that existing group and save it. Both rules remain attached, and no suppression applies. Which rules use the updated recipient list for future notifications?
 
 Select **1**. Difficulty: foundation.
 
-A. An action group.
-B. A metric dimension.
-C. A DCR association.
-D. A private DNS zone.
+A. Both the CPU rule and the log rule.
+B. Only the CPU rule.
+C. Only the log rule.
+D. Neither rule until the group is detached and reattached.
 
 ## mo-action-test
 
 Topic: Monitoring and recovery › Action groups and notification delivery.
 
-An action group's sample notification test succeeds. What remains to verify for an actual CPU alert?
+An action group’s sample email test succeeds. You must additionally verify that the enabled CPU alert rule evaluates the intended VM condition and delivers a real alert to the team. Which verification covers the part not established by the sample test?
 
 Select **1**. Difficulty: applied.
 
-A. Nothing; the sample forces the real CPU rule to fire.
-B. The real alert rule's scope/condition and group attachment.
-C. That the group stores CPU samples.
-D. That the sample changed the VM size.
+A. Repeat the group sample test with the CPU metric sample type.
+B. Trigger a controlled qualifying CPU condition, verify the correct rule fires, and verify its group delivers the notification.
+C. Validate a saved sample payload against the email receiver’s expected schema.
+D. View the VM CPU chart above the threshold without checking the alert rule or delivery.
 
 ## mo-action-no-message
 
 Topic: Monitoring and recovery › Action groups and notification delivery.
 
-A real alert fired but no email arrived. Which two response-path checks are relevant?
+The correct CPU alert rule has a Fired instance for the intended VM and incident time, but the team received no email. You must investigate notification handling separately from the already verified firing. Which two checks inspect that response path? Select two.
 
 Select **2**. Difficulty: troubleshooting.
 
-A. Inspect attached/enabled action groups and recipient validation.
-B. Assume the condition never fired despite the alert instance.
-C. Check whether a processing rule suppressed its action groups.
-D. Add a DCR filter to rewrite the recipient email.
+A. Inspect the action group attachment, enabled state, and intended email receiver configuration.
+B. Recalculate the CPU aggregation window to establish whether this instance fired.
+C. Inspect matching processing rules for suppression of action groups.
+D. Inspect VM-to-DCR associations to establish whether CPU collection produced this fired instance.
 
 ## mo-processing-maintenance
 
 Topic: Monitoring and recovery › Alert processing rules and maintenance suppression.
 
-You want scheduled maintenance to suppress notifications for one VM while preserving fired-alert records. Which approach fits?
+vm-app and vm-other share a resource group. For one maintenance window, 09:00–10:00 UTC, suppress vm-app metric-alert notifications while retaining its Fired instances and vm-other notifications. No other processing rules apply. Which processing-rule configuration meets all requirements?
 
 Select **1**. Difficulty: applied.
 
-A. A scheduled alert processing rule suppressing its action groups.
-B. Disable every alert rule in the subscription.
-C. Delete the collected metrics during maintenance.
-D. Remove the VM's DCR permanently.
+A. Scope vm-app; suppress action groups; one-time 09:00–10:00 UTC window.
+B. Scope the shared resource group; suppress action groups; one-time 09:00–10:00 UTC window.
+C. Scope vm-app; apply an action group; one-time 09:00–10:00 UTC window.
+D. Scope vm-app; suppress action groups; one-time 10:00–11:00 UTC window.
 
 ## mo-processing-scope
 
 Topic: Monitoring and recovery › Alert processing rules and maintenance suppression.
 
-Can one alert processing rule directly scope resources from a different subscription than its own?
+An alert processing rule is stored in subscription sub-a. Which target scope is supported directly by that rule?
 
 Select **1**. Difficulty: foundation.
 
-A. Yes, any subscription in the tenant.
-B. No; its scoped resources must be in the same subscription.
-C. Yes, if they have identical resource-group names.
-D. Yes, if the action group uses email.
+A. A resource group in sub-b, in the same tenant.
+B. A resource group in sub-a, different from the rule’s storage resource group.
+C. A management group containing both sub-a and sub-b.
+D. The whole of sub-b, with the rule remaining in sub-a.
 
 ## mo-processing-service-health
 
 Topic: Monitoring and recovery › Alert processing rules and maintenance suppression.
 
-Will an Azure Monitor alert processing rule suppress Azure Service Health alerts?
+An enabled subscription-scoped processing rule suppresses action groups during a maintenance window. It is effective and has no filters. During that window, a matching VM metric alert and an Azure Service Health alert fire with configured action groups. No other suppression applies. Which action-handling outcome follows?
 
 Select **1**. Difficulty: applied.
 
-A. Yes, all alert sources are affected without exception.
-B. Yes, if the schedule is recurring.
-C. No; processing rules do not affect Service Health alerts.
-D. Yes, if its scope is the whole subscription.
+A. Both alerts retain their action groups.
+B. Both alerts have their action groups suppressed.
+C. The VM metric alert is suppressed; the Service Health alert retains its action groups.
+D. The VM metric alert retains its action groups; the Service Health alert is suppressed.
 
 ## mo-alert-signal
 
 Topic: Monitoring and recovery › Alert rules, signals, and evaluation.
 
-You need an alert when Azure records a resource deletion management event. Which signal type fits directly?
+You must alert on successful VM deletions in a selected resource group using Administrative Activity Log events. The resource scope is configured. Which operation and status conditions detect completed deletions rather than unrelated operations or deletion starts?
 
 Select **1**. Difficulty: applied.
 
-A. Activity Log alert.
-B. CPU metric alert.
-C. Only an action group with no alert rule.
-D. A DNS TXT record change.
+A. Operation Microsoft.Compute/virtualMachines/delete; status Succeeded.
+B. Operation Microsoft.Compute/virtualMachines/write; status Succeeded.
+C. Operation Microsoft.Compute/virtualMachines/delete; status Started.
+D. Operation Microsoft.Compute/virtualMachines/delete; status Failed.
 
 ## mo-alert-window
 
 Topic: Monitoring and recovery › Alert rules, signals, and evaluation.
 
-A metric alert uses a five-minute evaluation window and one-minute evaluation frequency. What does that mean?
+A static metric alert has a five-minute lookback/evaluation window and one-minute evaluation frequency. Data is available throughout the window. Which interpretation describes its scheduled evaluation?
 
 Select **1**. Difficulty: applied.
 
-A. It evaluates once every five minutes using one minute of data.
-B. It evaluates each minute using the previous five minutes of data.
-C. It waits one minute after deleting the five-minute data.
-D. It sends five notifications for every sample.
+A. Every five minutes, evaluate the previous one minute of data.
+B. Every minute, evaluate the previous five minutes of data.
+C. Every minute, evaluate only the previous one minute of data.
+D. Every five minutes, evaluate the previous five minutes of data.
 
 ## mo-alert-ack
 
 Topic: Monitoring and recovery › Alert rules, signals, and evaluation.
 
-An operator marks an Azure Monitor alert as Acknowledged. Does that repair its underlying condition?
+An Azure Monitor alert has condition Fired and user response New. The monitored condition continues to breach its rule. An operator changes only the user response to Acknowledged. Which condition/user-response pair results?
 
 Select **1**. Difficulty: foundation.
 
-A. Yes; acknowledgement rescales the resource.
-B. Yes; it resets the monitored metric to zero.
-C. No; it records operator response while remediation is separate.
-D. Yes; it deletes the rule and its condition.
+A. Condition Resolved; user response Acknowledged.
+B. Condition Fired; user response Closed.
+C. Condition Fired; user response Acknowledged.
+D. Condition Resolved; user response Closed.
 
 ## mo-backup-notifications
 
 Topic: Monitoring and recovery › Azure Backup alerts and notification routing.
 
-A built-in Azure Monitor backup failure alert appears in the portal, but the on-call team receives no email. Which configuration should you check?
+A built-in Azure Monitor backup failure alert for vault-a appears in the portal. The on-call email action group works in its test. The enabled Add action groups processing rule covers only vault-b, its filters otherwise match, and no suppression applies. What should you change to route future matching vault-a alerts to that team?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Only the backup recovery-point retention period.
-B. Only the restore VM's network interface.
-C. Whether Backup Reports contains the current partial day.
-D. The matching alert processing rule and its action group's email receiver.
+A. Extend only vault-a’s recovery-point retention.
+B. Change only the notification action group’s display name.
+C. Enable backup job-failure alert generation again on vault-a without changing the rule.
+D. Include vault-a in a supported processing-rule scope that applies the on-call action group.
 
 ## mo-backup-suppression
 
@@ -1728,7 +1728,7 @@ Topic: Monitoring and recovery › Azure Backup alerts and notification routing.
 
 You suppress Azure Backup alert actions during planned maintenance using an alert processing rule. What does this accomplish?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 A. Suppresses matching notifications/actions without repairing backup failures.
 B. Automatically retries every failed backup until successful.
@@ -1739,79 +1739,79 @@ D. Disables the backup policy's scheduled jobs.
 
 Topic: Monitoring and recovery › Azure Backup alerts and notification routing.
 
-You want a custom Azure Backup alert based on a Log Analytics query over vault diagnostic records. Which prerequisite must be satisfied?
+A custom backup log-alert query will run against ws-alerts. Vault-a currently exports the required job diagnostics only to ws-reports. You need future vault-a job records available to that query while preserving export to ws-reports. Which collection change meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Only a Recovery Services vault's existence is required.
-B. The required vault diagnostics must reach the queried Log Analytics workspace.
-C. Every protected VM must use the same public IP address.
-D. An action group must generate the raw backup-job diagnostic records.
+A. Keep the current export unchanged and create an action group for ws-alerts.
+B. Add a separate diagnostic setting exporting the required vault-a logs to ws-alerts.
+C. Keep the current export unchanged and increase ws-alerts retention.
+D. Replace the current setting’s destination with ws-alerts and remove ws-reports export.
 
 ## mo-bv-type
 
 Topic: Monitoring and recovery › Backup vaults and workload identity permissions.
 
-You choose a vault for standalone Azure Disk Backup under Microsoft.DataProtection. Which resource type fits?
+In standalone Azure Disk Backup, which mapping describes the backup instance and its operational recovery snapshots?
 
 Select **1**. Difficulty: foundation.
 
-A. Backup vault.
-B. Only a Recovery Services vault configured for VM backup.
-C. An Azure Monitor workspace.
-D. An action group.
+A. The backup instance is managed in a Backup vault; snapshots are stored in the selected snapshot resource group.
+B. The backup instance is managed in a Recovery Services vault; snapshots are copied to that vault’s storage.
+C. The backup instance and its snapshots are both stored only in a Recovery Services vault.
+D. The backup instance is managed in a Backup vault; snapshots are copied to its geo-redundant vault storage.
 
 ## mo-bv-identity
 
 Topic: Monitoring and recovery › Backup vaults and workload identity permissions.
 
-An operator can create backup instances, but disk backup validation says the vault cannot access the source disk. What should you inspect?
+An operator can create Disk Backup instances. Validation reports that the Backup vault cannot read the source disk. The vault identity has permissions on the snapshot resource group, but no role assignment covering the source disk. Which permission boundary should you correct?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Only the operator's DNS suffix.
-B. The Backup vault managed identity's required role assignments and scopes.
-C. Only the action-group email recipients.
-D. Only the disk's display name.
+A. Grant additional source-disk access only to the human operator.
+B. Grant the required source-disk permission to the Backup vault managed identity at a scope covering that disk.
+C. Grant the required disk permission to a different vault’s managed identity.
+D. Grant the vault identity access only to the restore target resource group.
 
 ## mo-bv-operational
 
 Topic: Monitoring and recovery › Backup vaults and workload identity permissions.
 
-A Backup vault uses GRS and manages Azure Disk Backup operational snapshots. Does that setting copy those disk snapshots into geo-redundant vault storage?
+A Backup vault uses GRS and manages operational Azure Disk Backup snapshots. An administrator needs to assess whether those recovery points survive loss of the source region. Which conclusion is supported by the vault’s GRS setting alone?
 
 Select **1**. Difficulty: applied.
 
-A. Yes, every vault-managed workload is stored in the vault.
-B. Yes, as soon as the disk has a public IP.
-C. No; operational disk snapshots are not copied to vault storage.
-D. Yes, if the operator has Owner.
+A. It proves that every operational snapshot has a paired-region copy.
+B. It proves that every operational snapshot is copied into geo-redundant vault storage.
+C. It does not establish a secondary-region copy of the operational snapshots.
+D. It proves that Cross Region Restore is enabled for these operational snapshots.
 
 ## mo-files-tier
 
 Topic: Monitoring and recovery › Azure Files backup and item recovery.
 
-An Azure Files backup policy uses only the Snapshot tier. Where is that recovery data stored?
+An Azure Files policy uses only the Snapshot tier. Its Recovery Services vault uses GRS. You are assessing dependence on the source Storage account during recovery. Which placement should the design assume?
 
 Select **1**. Difficulty: applied.
 
-A. In snapshots in the source storage account.
-B. Always in a geo-redundant vaulted copy.
-C. Only in the client VM's memory.
-D. Inside the action group.
+A. Recovery data remains in share snapshots in the source Storage account.
+B. Recovery data is copied into the vault’s geo-redundant storage.
+C. Recovery data is copied into a separate administrator-selected Storage account by default.
+D. Recovery data is stored in both source snapshots and vault storage for every Snapshot-tier point.
 
 ## mo-files-alternate
 
 Topic: Monitoring and recovery › Azure Files backup and item recovery.
 
-You want to inspect recovered files without overwriting the live original share. Which supported restore choice fits?
+A snapshot-tier recovery point contains an older version of report.xlsx. The live original share contains a newer version that must remain unchanged. A supported alternate share and empty test folder are available, with required permissions. You need to inspect the older file without writing restored content to the live share. Which item-level restore configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Original location with overwrite.
-B. Alternate location and a test folder/share.
-C. Delete the live share before selecting a point.
-D. Change the share's DNS name.
+A. Restore report.xlsx to the original location with overwrite.
+B. Restore report.xlsx to the alternate share’s empty test folder.
+C. Restore report.xlsx to the original location with skip.
+D. Restore the full share to the original location with overwrite.
 
 ## mo-files-conflict
 
@@ -1821,62 +1821,62 @@ During an original-location Azure Files restore, which setting controls behavior
 
 Select **1**. Difficulty: foundation.
 
-A. The public IP allocation method.
-B. The NSG priority.
-C. The restore operation's skip/overwrite conflict choice.
-D. The vault's display name.
+A. The backup policy’s schedule frequency.
+B. The selected recovery point timestamp.
+C. The restore operation’s skip/overwrite conflict choice.
+D. The policy’s recovery-point retention duration.
 
 ## mo-policy-frequency
 
 Topic: Monitoring and recovery › Backup schedules, retention, and policy selection.
 
-A supported Azure VM workload needs several scheduled recovery points per day, as frequently as every four hours. Which VM backup policy subtype supports this?
+A supported Azure VM needs scheduled recovery snapshots every four hours throughout a 24-hour window. Which VM backup policy configuration meets that frequency?
 
 Select **1**. Difficulty: applied.
 
-A. Enhanced policy.
-B. Only changing Standard daily retention to four years.
-C. Only a storage account tag named Hourly.
-D. Only a vault NSG allow rule.
+A. Enhanced policy with an hourly schedule set to every 4 hours across the 24-hour window.
+B. Standard policy with a daily schedule and four-year retention.
+C. Enhanced policy with a daily schedule and four-day snapshot retention.
+D. Enhanced policy with an hourly schedule set to every 12 hours across the 24-hour window.
 
 ## mo-policy-retention
 
 Topic: Monitoring and recovery › Backup schedules, retention, and policy selection.
 
-Which configuration governs how long backup recovery points remain available?
+For scheduled Azure VM backups, which policy setting governs how long selected vaulted recovery points are retained, rather than when a backup starts?
 
 Select **1**. Difficulty: foundation.
 
-A. Only the backup start time.
-B. The policy's applicable retention settings.
-C. The VM's DNS TTL.
-D. The action-group display name.
+A. The backup schedule start time.
+B. The applicable vaulted recovery-point retention settings.
+C. The interval between scheduled backups.
+D. The Instant Restore snapshot retention duration alone.
 
 ## mo-policy-job
 
 Topic: Monitoring and recovery › Backup schedules, retention, and policy selection.
 
-A backup policy is assigned with the intended schedule, but recent jobs failed. Can you claim the latest scheduled recovery point exists?
+vm-app has the intended daily backup policy. Today’s scheduled job shows Failed. Before reporting whether a usable recovery point exists for today, which evidence should you inspect?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Yes; policy assignment guarantees every recovery point.
-B. Yes; any notification email creates the recovery point.
-C. No; inspect successful jobs and actual recovery points.
-D. Yes; extending retention recreates missed historical backups.
+A. The assigned policy’s scheduled start time alone.
+B. The backup failure notification’s delivery time alone.
+C. The backup job details and the VM’s available recovery points, including their timestamps and state.
+D. The policy’s newly extended retention duration alone.
 
 ## mo-protection-locked
 
 Topic: Monitoring and recovery › Backup soft deletion and vault immutability.
 
-A vault's immutability state is Enabled and locked. Can an administrator disable it for early backup cleanup?
+A Recovery Services vault has policy-based immutability Enabled and locked. Existing recovery points have not reached their retention expiry. An administrator wants to retire the source VM while preserving those points. Which action is permitted by immutability?
 
 Select **1**. Difficulty: applied.
 
-A. No; the lock makes the immutable setting irreversible.
-B. Yes; Reader can disable any lock.
-C. Yes; changing a tag unlocks it.
-D. Yes; moving the VM to another subnet disables vault protection.
+A. Stop protection while retaining the existing backup data.
+B. Disable locked immutability, then delete the existing backup data.
+C. Shorten the policy so the existing recovery points expire earlier.
+D. Stop protection with deletion of all existing backup data immediately.
 
 ## mo-protection-soft
 
@@ -1886,23 +1886,23 @@ What is the purpose of backup soft deletion?
 
 Select **1**. Difficulty: foundation.
 
-A. Reduce every backup to zero storage cost forever.
+A. Prevent any backup deletion request from being accepted.
 B. Keep deleted backup data recoverable for its configured window.
-C. Automatically replicate every operational snapshot to another region.
-D. Replace all recovery points with the source's current state.
+C. Provide a secondary-region copy of the backup data.
+D. Create a new recovery point containing changes since the last backup.
 
 ## mo-protection-operational
 
 Topic: Monitoring and recovery › Backup soft deletion and vault immutability.
 
-Does enabling vault immutability automatically make Azure Disk Backup operational snapshots immutable under that vault setting?
+A Backup vault has locked immutability. It manages operational Azure Disk Backup snapshots held in a snapshot resource group. A security review asks whether the vault setting establishes protection against deletion of those snapshots. Which conclusion follows?
 
 Select **1**. Difficulty: applied.
 
-A. Yes; all snapshots share vault-storage immutability.
-B. Yes, if the disk uses Premium SSD.
-C. No; vault immutability does not apply to operational disk backups.
-D. Yes, if the snapshot resource group has the vault's name.
+A. It establishes protection because the snapshots are listed by a backup instance in the vault.
+B. It establishes protection if the source disk uses Premium SSD.
+C. It does not establish that protection; operational backups are outside the vault immutability setting.
+D. It establishes protection if the snapshot resource group is in the vault’s region.
 
 ## mo-rsv-region
 
@@ -1913,35 +1913,35 @@ You configure Azure VM backup to a Recovery Services vault. Which location requi
 Select **1**. Difficulty: foundation.
 
 A. The vault must be in the VM's region.
-B. Any region works if the names match.
-C. Only a region different from the VM is allowed.
-D. The vault has no region because all vaults are global.
+B. The vault must be in the VM region's paired region.
+C. The vault must be in any region outside the VM region.
+D. The vault can be in another region if it is in the same resource group.
 
 ## mo-rsv-redundancy
 
 Topic: Monitoring and recovery › Recovery Services vault configuration.
 
-You have not protected any item in a new Recovery Services vault. When should you decide its storage replication type?
+A new Recovery Services vault uses GRS and has no configured backup items. The approved design requires LRS. Which sequence changes the existing vault configuration without deleting backup data?
 
 Select **1**. Difficulty: applied.
 
-A. Only after several successful backups.
-B. Before configuring the first backup.
-C. At each individual file restore.
-D. By changing the VM's NSG.
+A. Configure VM backup, run a successful backup, then change the vault replication type to LRS.
+B. Change the vault replication type to LRS, then configure the first VM backup.
+C. Configure VM backup, then select LRS in the individual VM restore options.
+D. Configure VM backup, then change the source VM disk redundancy to LRS.
 
 ## mo-rsv-crr
 
 Topic: Monitoring and recovery › Recovery Services vault configuration.
 
-For a supported Azure VM workload, which vault redundancy is required to enable Cross Region Restore?
+You are configuring a new Recovery Services vault for a supported Azure VM workload and supported region pair. The design requires user-initiated restore in the secondary paired region. Which complete configuration meets that requirement?
 
 Select **1**. Difficulty: applied.
 
-A. LRS.
-B. ZRS only.
-C. GRS.
-D. A public IP with global tier.
+A. Use LRS and enable Cross Subscription Restore.
+B. Use ZRS and enable Cross Subscription Restore.
+C. Use GRS and enable Cross Region Restore.
+D. Use GRS and leave Cross Region Restore disabled.
 
 ## mo-reports-pipeline
 
@@ -1951,49 +1951,49 @@ You need Azure Backup historical reports across several vaults. Which data path 
 
 Select **1**. Difficulty: foundation.
 
-A. Vault diagnostics sent to Log Analytics workspaces.
-B. Only VM guest Heartbeat records collected by Azure Monitor Agent.
-C. Only NSG effective security rules.
-D. Backup recovery-point files copied into a workbook.
+A. Vault diagnostic reporting logs sent to Log Analytics workspaces.
+B. VM guest Heartbeat records sent to Log Analytics workspaces.
+C. Vault metric charts without diagnostic-log export.
+D. Recovery-point disk files copied directly into a workbook.
 
 ## mo-reports-delay
 
 Topic: Monitoring and recovery › Azure Backup reports and diagnostic data.
 
-You enabled vault diagnostics an hour ago. A completed backup from the current day is not yet visible in Backup Reports. What should you check before treating this as a reporting failure?
+Vault reporting diagnostics were enabled an hour ago. Today’s backup job is Completed, but Backup Reports has no row for it yet. Which interpretation should guide the next reporting check?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Whether the backup retention policy is set to one hour.
-B. Whether deleting the vault forces immediate report refresh.
-C. Initial diagnostic-delivery delay, completed-day reporting, and the selected filters.
-D. Whether all VMs use Azure Bastion.
+A. Recovery-point retention determines whether today’s row appears, so extend backup retention first.
+B. A Completed backup job guarantees its report row is immediately available.
+C. Allow for initial diagnostic delivery, the current partial-day exclusion, and workspace/vault/time filters.
+D. The report’s time picker can force partial-day rows to appear immediately.
 
 ## mo-reports-retention
 
 Topic: Monitoring and recovery › Azure Backup reports and diagnostic data.
 
-Your backups retain recovery points for one year, but reporting logs are retained for only a month. You need historical backup reporting over a longer period. What should you change?
+Backup recovery points are kept for a year, but the relevant Log Analytics reporting tables retain queryable data for 30 days. From now on, you need reporting over 90 completed days. Which change addresses the retention gap? Assume existing expired records cannot be recovered.
 
 Select **1**. Difficulty: applied.
 
-A. Only the backup recovery-point retention policy.
-B. The relevant Log Analytics data retention, considering reporting requirements and cost.
-C. Only the target VM's disk SKU.
-D. Only the action group's email recipient.
+A. Extend only backup recovery-point retention to 90 days.
+B. Extend the relevant queryable Log Analytics reporting-data retention to cover 90 days.
+C. Change only the workbook’s time range to Last 90 days.
+D. Increase only the vault’s soft-delete retention to 90 days.
 
 ## mo-restore-deleted
 
 Topic: Monitoring and recovery › Azure VM backup and restore operations.
 
-A backed-up Azure VM has been deleted. You want to recover it from a valid point. Which mode fits this situation?
+A backed-up Azure VM has been deleted. A valid recovery point supports Create new VM, and you have the required target permissions and network configuration. You need the restore workflow to create a running VM with basic settings, without a separate custom VM deployment. Which choice meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Create new VM, or restore disks and construct a VM.
-B. Replace existing disks on the deleted VM.
-C. Only change the backup schedule.
-D. Only acknowledge its alert.
+A. Use Create new VM from the selected recovery point.
+B. Use Replace existing disks on the deleted VM.
+C. Use Restore disks and stop when the disk restore finishes.
+D. Use file recovery and copy selected files to a workstation.
 
 ## mo-restore-consistency
 
@@ -2005,21 +2005,21 @@ Select **1**. Difficulty: foundation.
 
 A. Every in-memory write is guaranteed present.
 B. Application/OS recovery may be needed for the captured disk state.
-C. The point cannot contain any disk data.
+C. The application was necessarily quiesced before capture.
 D. It is automatically a database transaction-log backup.
 
 ## mo-restore-verify
 
 Topic: Monitoring and recovery › Azure VM backup and restore operations.
 
-Azure reports a VM restore job completed. Which two checks establish practical recovery better than the job state alone?
+Azure reports a VM restore job completed. You need evidence of both infrastructure usability and guest application/data usability. Which two observations directly verify those separate recovery aspects? Select two; each is an independent evidence check.
 
 Select **2**. Difficulty: applied.
 
-A. Verify the restored VM boots with its intended disks/network.
-B. Assume every external DNS entry changed automatically.
-C. Verify guest data and application behavior at the restored point.
-D. Delete the recovery points immediately before checking the app.
+A. Observe that the restored VM boots with the intended disks and network access.
+B. Observe that the saved restore request names the intended VNet.
+C. Observe expected guest data and successful application behavior at the restored point.
+D. Observe the Completed status of the restore job again.
 
 ## mo-network-topology
 
@@ -2038,27 +2038,27 @@ D. Continuous probes have automatically been configured.
 
 Topic: Monitoring and recovery › Network Insights topology, health, and traffic.
 
-Network Insights shows your resources, but you need recurring latency/reachability measurements between two endpoints. What should you configure?
+Network Insights shows a source Azure VM and destination endpoint, but no connection tests are configured. You need recurring measurements of their TCP reachability and round-trip time, with history across the day. Which Network Watcher capability supplies that monitoring?
 
 Select **1**. Difficulty: applied.
 
-A. Only rename the topology resources.
-B. Connection Monitor tests for those endpoints.
-C. Only change dashboard colors.
-D. A resource lock on the source VM.
+A. Run one Connection troubleshoot diagnostic for the endpoint.
+B. Configure a Connection Monitor test for the source, destination, and TCP port.
+C. Run Next hop for the destination IP.
+D. Run IP flow verify for the source VM and destination port.
 
 ## mo-network-flow-new
 
 Topic: Monitoring and recovery › Network Insights topology, health, and traffic.
 
-You are selecting traffic logging for a new VNet deployment under current Microsoft guidance. Which choice fits the NSG flow-log retirement?
+You need a new supported Network Watcher flow-logging configuration for traffic across a VNet, with IP addresses and ports recorded in Storage. The VNet has several VM subnets. Follow current Microsoft guidance after new NSG flow-log creation ended. Which collection design meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Create new NSG flow logs indefinitely.
-B. Use the Activity Log as a record of every IP flow.
-C. Use virtual network flow logs.
-D. Use only DNS records to count all network flows.
+A. Create new NSG flow logs for every subnet NSG.
+B. Configure Connection Monitor synthetic tests between selected VM pairs.
+C. Configure virtual network flow logs for the VNet and its Storage destination.
+D. Run a packet capture on one VM in one subnet.
 
 ## mo-storage-color
 
@@ -2077,144 +2077,144 @@ D. The account's replication mode.
 
 Topic: Monitoring and recovery › Storage Insights performance and capacity.
 
-You want Blob resource logs archived in Azure Storage. May the diagnostic setting target the same account it monitors?
+A Standard storage account in West Europe must archive its Blob resource logs using a diagnostic setting. Candidate destination accounts already exist and the required access and firewall settings are configured. Which storage destination is supported?
 
 Select **1**. Difficulty: applied.
 
-A. Yes; recursive logging is required.
-B. No; use a different destination account.
-C. Yes; rename the destination container.
-D. Yes; use a CNAME for the account.
+A. The monitored Standard account in West Europe.
+B. A different Standard account in West Europe.
+C. A different Premium account in West Europe.
+D. A different Standard account in North Europe.
 
 ## mo-storage-no-agent
 
 Topic: Monitoring and recovery › Storage Insights performance and capacity.
 
-Do Storage Insights' platform metrics require installing AMA on a client VM?
+Which collection path supplies the Azure Storage platform metrics used by Storage Insights, including capacity and service transactions?
 
 Select **1**. Difficulty: foundation.
 
-A. Yes; every transaction metric is collected from that guest.
-B. Yes; AMA must be installed inside the storage account.
-C. No; platform metrics are collected by Azure.
-D. Yes; Dependency Agent supplies storage capacity.
+A. Performance counters collected from client VMs through an AMA DCR.
+B. Syslog messages collected from client VMs into a Log Analytics workspace.
+C. Azure’s automatic collection of storage service platform metrics.
+D. Parsing archived Blob resource-operation logs as the prerequisite for the built-in metric views.
 
 ## mo-vm-guest
 
 Topic: Monitoring and recovery › VM Insights and enhanced guest monitoring.
 
-A VM's host CPU chart works, but guest memory details are absent. What should you investigate?
+An Azure VM has host CPU metrics but enhanced guest monitoring is not enabled. You need guest memory performance data in the classic logs-based monitoring experience. Required permissions and destination access are available. Which collection configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Enhanced guest monitoring: AMA, DCR association, and destination.
-B. Only a public DNS record for the VM.
-C. Assume guest memory is automatically zero.
-D. Delete the VM's host metrics.
+A. Enable logs-based enhanced monitoring with AMA, the required performance DCR association, and a Log Analytics workspace.
+B. Associate an AMA DCR selecting only Windows event logs and the Log Analytics destination.
+C. Associate an AMA DCR selecting only Linux Syslog and the Log Analytics destination.
+D. Export only VM platform metrics through a diagnostic setting to the Log Analytics workspace.
 
 ## mo-vm-map
 
 Topic: Monitoring and recovery › VM Insights and enhanced guest monitoring.
 
-For a new deployment, a legacy guide recommends enabling VM Insights Map and Dependency Agent. What does current Microsoft guidance say?
+A new VM deployment needs supported guest performance monitoring, without a requirement for the legacy dependency Map. An old guide includes Dependency Agent and VM Insights Map in every deployment. Which plan follows Microsoft’s current guidance?
 
 Select **1**. Difficulty: applied.
 
-A. Dependency Agent is mandatory for all host metrics.
-B. Do not enable this deprecated feature for new deployments.
-C. Map has replaced every DCR and workspace.
-D. Install both legacy Log Analytics Agent and AMA to guarantee accuracy.
+A. Install Dependency Agent alone and use it for guest performance collection.
+B. Configure AMA and supported guest performance collection, and omit the deprecated Map/Dependency Agent feature.
+C. Configure AMA guest performance collection and also enable Map/Dependency Agent for every new VM.
+D. Use only the legacy Log Analytics agent for the new guest monitoring deployment.
 
 ## mo-vm-destination
 
 Topic: Monitoring and recovery › VM Insights and enhanced guest monitoring.
 
-Which destination matches the current supported OpenTelemetry VM metrics experience?
+You configure the supported OpenTelemetry guest-metrics experience for an Azure VM, rather than classic logs-based metrics. Which resource type stores those collected metrics?
 
 Select **1**. Difficulty: foundation.
 
-A. Only a Storage container containing arbitrary text files.
-B. An action group.
+A. A Log Analytics workspace.
+B. An Event Hubs namespace.
 C. An Azure Monitor workspace.
-D. A Recovery Services vault.
+D. A Storage account.
 
 ## mo-dcr-association
 
 Topic: Monitoring and recovery › Azure Monitor Agent and data collection rules.
 
-AMA is installed and a DCR defines Linux Syslog to a workspace, but that DCR has no association to the VM. What is missing?
+Azure Monitor Agent is healthy on vm-linux and its identity and ingestion connectivity are verified. dcr-syslog defines the required Linux facilities, severity levels, and workspace destination, but its associations list contains only vm-other. Which change applies this existing collection configuration to vm-linux?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Associate the VM with the DCR.
-B. Only assign a DNS label to the VM.
-C. Only add AllMetrics to its resource diagnostic setting.
-D. Only increase workspace retention.
+A. Create a DCR association between vm-linux and dcr-syslog.
+B. Move vm-linux into the resource group containing dcr-syslog without adding an association.
+C. Create another copy of dcr-syslog without associating that copy with vm-linux.
+D. Change the destination of dcr-syslog to another workspace without changing associations.
 
 ## mo-dcr-heartbeat
 
 Topic: Monitoring and recovery › Azure Monitor Agent and data collection rules.
 
-The VM appears in Heartbeat, but its expected security events are missing. Which conclusion is justified?
+A Windows VM sends current Heartbeat records to ws-ops through Azure Monitor Agent. A locally generated Security event in the test window is missing from the correctly scoped Event-table query in ws-ops. Its associated DCR currently selects only System events. No other event collector is configured. Which change addresses the observed missing stream?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Heartbeat proves every event filter is correct.
-B. Check event source/filter, DCR association, destination, and generated events.
-C. The workspace cannot contain any guest data.
-D. Increase DNS TTL to repair event selection.
+A. Reinstall the healthy agent while retaining the System-only DCR.
+B. Add a Windows Security-event selection that includes the test event to the DCR’s ws-ops data flow.
+C. Increase workspace retention while retaining the System-only DCR.
+D. Extend the query time window while retaining the System-only DCR.
 
 ## mo-dcr-sources
 
 Topic: Monitoring and recovery › Azure Monitor Agent and data collection rules.
 
-Which Azure Monitor component defines selected guest data sources and destinations for AMA?
+For Azure Monitor Agent collection from VMs, which statement correctly distinguishes a DCR from its associations?
 
 Select **1**. Difficulty: foundation.
 
-A. A resource lock.
-B. An NSG rule.
-C. A data collection rule.
-D. A public IP allocation method.
+A. The DCR lists linked VMs; each association defines a separate set of event filters.
+B. The DCR installs the guest operating system; associations install application packages.
+C. The DCR defines collection sources and destinations; associations apply it to selected VMs.
+D. The DCR defines resource retention; associations contain the stored event records.
 
 ## mo-log-default
 
 Topic: Monitoring and recovery › Resource logs and diagnostic settings.
 
-A resource has platform metrics visible but no resource-operation logs in your workspace. No diagnostic setting exists. What should you configure?
+A resource exposes a supported audit log category and has platform metrics visible. You need its future audit operations in workspace ws-audit. Both ws-audit and ws-metrics exist and you have the required configuration access. Which diagnostic setting collects the requested data at the required destination?
 
 Select **1**. Difficulty: foundation.
 
-A. A diagnostic setting with the required resource log categories and workspace destination.
-B. Only change the metric chart's color.
-C. Only add a resource tag named LogAnalytics.
-D. Only create a DNS alias for the workspace.
+A. Enable the resource audit log category; destination ws-audit.
+B. Enable only AllMetrics; destination ws-audit.
+C. Enable the resource audit log category; destination ws-metrics.
+D. Export only the subscription Activity Log; destination ws-audit.
 
 ## mo-log-two-workspaces
 
 Topic: Monitoring and recovery › Resource logs and diagnostic settings.
 
-You need the same resource logs sent to two Log Analytics workspaces. Which diagnostic-settings design is supported?
+A resource must export the same supported audit category to existing workspaces ws-operations and ws-security. No diagnostic settings exist and required access is available. Use direct diagnostic-settings export. Which design sends each future audit event to both workspaces?
 
 Select **1**. Difficulty: applied.
 
-A. Two workspace destinations inside one setting.
-B. Two diagnostic settings, each naming one workspace.
-C. One setting with a comma-separated workspace ID.
-D. An NSG rule listing both workspace names.
+A. One setting containing both workspaces as Log Analytics destinations.
+B. Two settings enabling the audit category, each targeting one of the workspaces.
+C. One setting targeting ws-operations, then edit that same setting to target ws-security.
+D. Two settings: audit logs to ws-operations, and only AllMetrics to ws-security.
 
 ## mo-log-guest
 
 Topic: Monitoring and recovery › Resource logs and diagnostic settings.
 
-You need Linux guest Syslog from Azure VMs. Does a resource diagnostic setting alone select their Syslog facilities and severities?
+You need Linux guest Syslog messages from supported Azure VMs in a Log Analytics workspace. Azure Monitor Agent is installed and its destination connectivity works. Select facilities and severity levels and collect future guest messages for queries. Which configuration supplies that collection path?
 
 Select **1**. Difficulty: applied.
 
-A. Yes; AllMetrics contains all Syslog messages.
-B. Yes; the Activity Log contains every guest message.
-C. No; configure a supported guest-agent/data collection rule path.
-D. Yes; a resource tag sets Syslog severity.
+A. A VM resource diagnostic setting exporting only AllMetrics to the workspace.
+B. A subscription diagnostic setting exporting only Activity Log events to the workspace.
+C. A DCR with a Linux Syslog source and workspace destination, associated with the VMs.
+D. A guest Syslog daemon configuration writing the selected messages only to a local file.
 
 ## mo-kql-summarize
 
@@ -2222,7 +2222,7 @@ Topic: Monitoring and recovery › KQL filtering, aggregation, and interpretatio
 
 What does `Syslog | summarize Messages=count() by Computer` return?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 A. One row per observed Computer value with its message count.
 B. Every Syslog row with no aggregation.
@@ -2233,53 +2233,53 @@ D. A count of computers per message text.
 
 Topic: Monitoring and recovery › KQL filtering, aggregation, and interpretation.
 
-Does `Syslog | take 10` guarantee the latest ten messages?
+A Syslog table has more than ten rows with distinct TimeGenerated timestamps in the query scope. Which query selects the ten newest messages by TimeGenerated?
 
 Select **1**. Difficulty: foundation.
 
-A. Yes, take implicitly sorts by TimeGenerated.
-B. No; use an explicit time-based top/sort for latest records.
-C. Yes, because every Log Analytics table is ordered newest first.
-D. No; take deletes the selected messages.
+A. Syslog | take 10
+B. Syslog | top 10 by TimeGenerated desc
+C. Syslog | top 10 by TimeGenerated asc
+D. Syslog | summarize arg_max(TimeGenerated, *)
 
 ## mo-kql-empty
 
 Topic: Monitoring and recovery › KQL filtering, aggregation, and interpretation.
 
-A log query returns no rows for the last five minutes. Which two checks are appropriate before concluding the operation never occurred?
+A known Syslog event generated two minutes ago has been verified in workspace ws-prod. You have query access, and its Computer and TimeGenerated values match your filters. The same query returns no rows when Logs is opened with workspace scope ws-test, which does not store this event. You need to retrieve the already ingested event. Which change addresses the observed scope mismatch?
 
-Select **2**. Difficulty: troubleshooting.
+Select **1**. Difficulty: troubleshooting.
 
-A. Check workspace/table scope and query/time-picker filters.
-B. Assume no rows proves all systems were healthy.
-C. Check collection and ingestion of the expected event.
-D. Delete the DCR to make historical rows appear.
+A. Run the query with workspace scope ws-prod.
+B. Extend the time range to one day while keeping scope ws-test.
+C. Reinstall the VM agent while keeping query scope ws-test.
+D. Remove the Computer filter while keeping scope ws-test.
 
 ## mo-metric-peak
 
 Topic: Monitoring and recovery › Azure Monitor metric aggregation and dimensions.
 
-A supported CPU metric's 30-minute Average chart hides brief spikes. Which change helps examine peak values?
+A CPU-percentage metric supports Average and Maximum at one-minute granularity. A chart averages each 30-minute interval, masking short spikes. You must inspect the highest collected value in each minute of the incident window. Which chart configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Use Maximum with a smaller time grain.
-B. Use Count to measure peak CPU percentage.
-C. Use Sum and call it the maximum percentage.
-D. Change only the chart title.
+A. Maximum aggregation; one-minute time grain.
+B. Average aggregation; one-minute time grain.
+C. Maximum aggregation; 30-minute time grain.
+D. Average aggregation; 30-minute time grain with a shorter displayed time range.
 
 ## mo-metric-split
 
 Topic: Monitoring and recovery › Azure Monitor metric aggregation and dimensions.
 
-A metric supports an instance dimension. You need separate series for each worker rather than one combined average. What should you use?
+An application metric exposes an Instance dimension with four worker values. All four workers have data in the selected window. You need four separate worker series on one Metrics explorer chart, without excluding any worker. Which configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Only a longer time range.
-B. Dimension splitting by instance.
-C. A sum without dimensions.
-D. A resource lock.
+A. Filter Instance to one worker without applying splitting.
+B. Split by Instance and set the displayed-series limit to at least four.
+C. Filter Instance to all four workers without applying splitting.
+D. Split by Instance and set the displayed-series limit to one.
 
 ## mo-metric-count
 
@@ -2298,14 +2298,14 @@ D. Average is 20.
 
 Topic: Monitoring and recovery › Network Watcher and continuous Connection Monitor.
 
-You need a week of recurring reachability and latency evidence between a VM and an HTTPS endpoint. Which tool fits?
+An Azure VM has the required monitoring extension. You need a week of recurring TCP reachability and latency measurements to service.example on port 443. Which Connection Monitor configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Connection Monitor.
-B. One Next hop query.
-C. Only IP flow verify once.
-D. Only create an NSG allow rule.
+A. Add the VM source, service.example destination, and a recurring TCP 443 configuration to an enabled test group.
+B. Add the VM source and destination to a test group whose only configuration uses ICMP.
+C. Add a TCP 443 configuration to a test group that has no source endpoint.
+D. Add the correct endpoints and TCP 443 configuration, then disable the test group for the week.
 
 ## mo-connection-test
 
@@ -2315,44 +2315,44 @@ What combines sources, destinations, and test configurations within Connection M
 
 Select **1**. Difficulty: foundation.
 
-A. A public DNS alias.
+A. An endpoint.
 B. A test group.
-C. An Azure RBAC role definition.
-D. A managed disk snapshot.
+C. A test configuration.
+D. An individual test.
 
 ## mo-connection-port
 
 Topic: Monitoring and recovery › Network Watcher and continuous Connection Monitor.
 
-ICMP succeeds between a VM and destination, but the business app uses TCP 443. What should you configure to test that app path?
+A Connection Monitor ICMP test from vm-app to service.example succeeds. The application uses TCP 443. You need recurring evidence that a TCP connection to that port can be established, before investigating HTTP responses. Which test configuration should you add for the same endpoints?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Only increase the ICMP packet count.
-B. Assume ICMP success proves HTTPS is healthy.
-C. A TCP/HTTP test configuration using the intended HTTPS port and endpoint.
-D. A DNS TXT record with the port number.
+A. ICMP with a shorter test interval.
+B. TCP with destination port 80.
+C. TCP with destination port 443.
+D. TCP with destination port 22.
 
 ## mo-flow-payload
 
 Topic: Monitoring and recovery › VNet flow logs and traffic analytics.
 
-Can VNet flow logs alone reveal the complete HTTPS request body?
+A VNet flow-log record shows source and destination IPs, ports, protocol, and byte counts for a TCP 443 flow. Which evidence can you obtain from that record alone?
 
 Select **1**. Difficulty: foundation.
 
-A. No; they record flow metadata rather than packet payloads.
-B. Yes; every byte count includes the complete body text.
-C. Yes; the flow state decrypts TLS.
-D. Yes; traffic analytics grants the client's private key.
+A. The recorded endpoints and traffic volume for the flow.
+B. The full HTTPS request body sent over the flow.
+C. The HTTP response status returned by the application.
+D. The user identity accepted by the application during login.
 
 ## mo-flow-retention
 
 Topic: Monitoring and recovery › VNet flow logs and traffic analytics.
 
-In the supported VNet flow-log retention setting, what does 0 days mean?
+VNet flow logging is enabled with a supported Standard general-purpose v2 Storage destination. Retention is set to 0 days, and no other deletion policy applies. What happens to stored flow-log data?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 A. Delete each log immediately.
 B. Retain indefinitely until manually removed.
@@ -2363,14 +2363,14 @@ D. Keep only denied flows.
 
 Topic: Monitoring and recovery › VNet flow logs and traffic analytics.
 
-VNet flow-log blobs are arriving, but you want processed traffic visualizations in Log Analytics. What additional configuration should you inspect?
+New VNet flow-log blobs are arriving in Storage. The saved configuration has traffic analytics disabled. You need processed traffic data in ws-network without changing raw log collection. Which change meets the goal?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Only the public IP DNS label.
-B. Only the VM's disk caching.
-C. Traffic analytics enablement, selected workspace, and processing interval.
-D. Remove the log storage destination.
+A. Keep analytics disabled and set raw-log retention to 30 days.
+B. Keep analytics disabled and change the raw-log Storage account.
+C. Enable traffic analytics, select ws-network, and set its processing interval.
+D. Enable traffic analytics with ws-other as its workspace.
 
 ## mo-reprotect-direction
 
@@ -2381,7 +2381,7 @@ A VM now runs in the secondary region after a committed Site Recovery failover. 
 Select **1**. Difficulty: foundation.
 
 A. Immediately moves production execution to the primary.
-B. Deletes all backups in a Backup vault.
+B. Disables replication and leaves the secondary VM unprotected.
 C. Keeps only primary-to-secondary replication without collecting secondary changes.
 D. Replicates from the secondary region toward the primary region.
 
@@ -2389,14 +2389,14 @@ D. Replicates from the secondary region toward the primary region.
 
 Topic: Monitoring and recovery › Site Recovery reprotection and failback.
 
-A VM was failed over and reprotected from secondary to primary using Site Recovery. Before failback, which two checks are required by the tutorial?
+A VM is running in the secondary region after committed failover and reprotection toward the primary. The original primary VM is shut down. Which two statements identify additional checks required before failback? Select two; each is an independent prerequisite assertion.
 
 Select **2**. Difficulty: applied.
 
-A. The replicated VM is healthy/protected and synchronization is complete.
-B. The original primary VM is powered on to receive disk changes.
-C. The primary region is available and required resource access is permitted.
-D. All replication recovery points are deleted before the failback starts.
+A. Verify the replicated VM is healthy and Protected, with synchronization complete.
+B. Power on the original primary VM to receive the synchronized disk changes.
+C. Verify the primary region is available and you can create and access the required resources there.
+D. Proceed as soon as reprotection starts, without waiting for synchronization.
 
 ## mo-failback-protection
 
@@ -2415,14 +2415,14 @@ D. Run Cleanup test failover instead of reprotection.
 
 Topic: Monitoring and recovery › Site Recovery production failover and recovery points.
 
-During Site Recovery failover, your priority is to avoid extra processing of received replication data before recovery. Which recovery-point option fits?
+It is 10:05 UTC during failover of one Azure VM. Latest processed is 10:00, latest app-consistent is 09:00, and a selectable Custom point is 08:00. Received but unprocessed replication data extends to 10:04. The runbook requires a point no more than 10 minutes old and no additional processing of received data before recovery. Which option meets both conditions?
 
 Select **1**. Difficulty: applied.
 
-A. Latest processed.
-B. Latest.
-C. Any old application-consistent point necessarily minimizes recovery time.
-D. A backup-policy retention change.
+A. Latest processed, using the 10:00 point.
+B. Latest, processing the received data through 10:04.
+C. Latest app-consistent, using the 09:00 point.
+D. Custom, using the 08:00 point.
 
 ## mo-failover-commit
 
@@ -2432,10 +2432,10 @@ A recovered Site Recovery VM is running, but you might need a different recovery
 
 Select **1**. Difficulty: foundation.
 
-A. Viewing the target VM's size.
-B. Checking the failover job status.
-C. Committing the failover.
-D. Opening the replicated item's overview.
+A. Select Change recovery point before commit.
+B. Inspect the failover job and validate the recovered application.
+C. Commit the failover.
+D. Open the replicated item’s Compute and Network settings.
 
 ## mo-failover-shutdown
 
@@ -2445,10 +2445,10 @@ You select Shut down machine before beginning failover in Site Recovery, but the
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Site Recovery always cancels failover automatically.
-B. Failover can continue, so your runbook must address a potentially active source application.
-C. The setting guarantees that no source writes can be lost.
-D. The source VM is automatically converted into an offline backup.
+A. Failover is canceled automatically whenever the attempted source shutdown fails.
+B. Failover can continue, so the runbook must address a potentially active source application.
+C. Failover completion proves that all unreplicated source writes were recovered.
+D. Failover remains paused until an administrator manually shuts down the source.
 
 ## mo-replication-cache
 
@@ -2458,23 +2458,23 @@ You enable Azure-to-Azure Site Recovery for a VM. Where should the replication c
 
 Select **1**. Difficulty: foundation.
 
-A. Only in the target recovery region.
-B. In the source VM's region.
-C. In any third region chosen for backup reports.
-D. On the VM's temporary disk instead of a storage account.
+A. In the target recovery region, instead of the source region.
+B. In the source VM’s region.
+C. In the vault’s region even when that differs from the source VM’s region.
+D. In either source or target region, provided it shares the vault’s resource group.
 
 ## mo-replication-permissions
 
 Topic: Monitoring and recovery › Site Recovery replication for Azure virtual machines.
 
-An administrator has Site Recovery Contributor on a vault but cannot enable replication using another resource group's resources. What should you check?
+An administrator has Site Recovery Contributor scoped only to a Recovery Services vault. Replication will use source and target compute, network and Storage resources outside that scope. Before enabling replication, which authorization review is required?
 
 Select **1**. Difficulty: applied.
 
-A. The required permissions on the linked source and target resources.
-B. Whether the role grants subscription-wide Owner automatically.
-C. Whether Site Recovery Reader would grant more write access.
-D. Whether disabling storage encryption bypasses Azure RBAC.
+A. Verify the required operation permissions also cover the linked source and target resources.
+B. Verify only that the vault role assignment is inherited by resources in every other resource group.
+C. Replace the vault Contributor role with Site Recovery Reader, without other assignments.
+D. Grant a vault-scoped role again under the same principal and omit linked-resource checks.
 
 ## mo-replication-network
 
@@ -2493,27 +2493,27 @@ D. Configure an authenticated proxy as the mandatory replication path.
 
 Topic: Monitoring and recovery › Site Recovery test failover and drill cleanup.
 
-You are planning a Site Recovery disaster recovery drill while production remains active. Which target network does Microsoft recommend for the test VMs?
+An Azure-to-Azure Site Recovery drill must run while production VMs stay active. Test VMs must not compete with production identities or addresses. A supported non-production VNet is available in the target region. Which test network design meets the requirement?
 
 Select **1**. Difficulty: applied.
 
-A. The production recovery network regardless of address conflicts.
-B. A suitable non-production network in the target region.
-C. Only the source VM's original subnet in the source region.
-D. No VNet because test failover uses only an offline disk.
+A. Use the production recovery VNet while leaving production VMs active on the same connected network.
+B. Use the separate non-production VNet in the target region, with suitable isolated test dependencies.
+C. Select the original source-region subnet as the test VM destination.
+D. Use the production recovery VNet after shutting down all production VMs for the drill.
 
 ## mo-drill-cleanup
 
 Topic: Monitoring and recovery › Site Recovery test failover and drill cleanup.
 
-A Site Recovery test failover is finished and its observations have been recorded. How should you end the drill and remove its test VMs?
+A Site Recovery drill is finished. You run Cleanup test failover, save the observations, and confirm Testing is complete. Which result does that workflow produce?
 
 Select **1**. Difficulty: foundation.
 
-A. Use Cleanup test failover and confirm Testing is complete.
-B. Disable replication permanently for the source VM.
-C. Commit a production failover.
-D. Delete the Recovery Services vault immediately.
+A. It deletes VMs created for the test failover while leaving source replication protection in place.
+B. It disables source replication permanently and retains the test VMs.
+C. It commits a production failover and makes test VMs the production recovery VMs.
+D. It copies changes made inside the test VMs back into the primary VMs.
 
 ## mo-drill-role
 
@@ -2526,7 +2526,7 @@ Select **1**. Difficulty: applied.
 A. Site Recovery Reader.
 B. Site Recovery Contributor.
 C. Site Recovery Operator.
-D. Storage Blob Data Reader.
+D. Owner.
 
 ## mo-action-test-failed-variant
 
@@ -2545,27 +2545,27 @@ D. The VM definitely stopped emitting metric samples.
 
 Topic: Monitoring and recovery › Alert processing rules and maintenance suppression.
 
-During a weekly maintenance window, Azure Monitor must continue creating matching VM alert instances but omit their notification actions. Which configuration meets this requirement?
+A VM has maintenance every Friday from 02:00 to 03:00 UTC. Keep metric-alert evaluation active and suppress action groups only during that recurring hour, including future Fridays. Which processing-rule schedule meets the requirement?
 
 Select **1**. Difficulty: applied.
 
-A. A scheduled alert processing rule suppressing action groups for the VM.
-B. Disable the VM's alert rules for that window.
-C. Delete the action group every week and recreate it later.
-D. Remove the VM's monitoring collection configuration during maintenance.
+A. VM scope; suppress action groups; weekly Friday 02:00–03:00 UTC.
+B. VM scope; suppress action groups; a one-time window for this Friday 02:00–03:00 UTC.
+C. VM scope; suppress action groups; weekly Saturday 02:00–03:00 UTC.
+D. VM scope; suppress action groups; daily 02:00–03:00 UTC.
 
 ## nw-private-link
 
 Topic: Networking › Private DNS zones and VNet links.
 
-Two VNets are peered. A private zone is linked only to VNet A; VNet B uses Azure-provided DNS and cannot resolve its records. What is missing?
+Two VNets are peered and use Azure-provided DNS. A private zone contains a verified A record for db.corp.example and has a completed link only to vnet-a. A VM in vnet-a resolves it, but a VM in vnet-b cannot. Which change gives vnet-b access to the existing zone records?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. A private-zone link to VNet B.
-B. A second public NS delegation at the registrar.
-C. An Internet-wide NSG allow rule.
-D. A public IP on every VM in VNet B.
+A. Add a resolution-only link from the existing private zone to vnet-b.
+B. Enable autoregistration on the existing link to vnet-a.
+C. Recreate the peering between the VNets without changing zone links.
+D. Create an empty second private zone and link only that zone to vnet-b.
 
 ## nw-private-registration
 
@@ -2584,170 +2584,170 @@ D. Automatic VNet peering to all other linked networks.
 
 Topic: Networking › Private DNS zones and VNet links.
 
-A VNet already autoregisters VM names in zone alpha.example. You want it to resolve beta.example without changing that registration. Which link is suitable?
+A VNet using Azure-provided DNS has a completed link to alpha.example with autoregistration enabled. It must also resolve existing private records in beta.example while continuing to register its VM names only in alpha.example. Which final link configuration meets the requirements?
 
 Select **1**. Difficulty: applied.
 
-A. A second autoregistration link to beta.example.
-B. A registrar NS record for beta.example.
-C. A resolution-only link to beta.example.
-D. A CNAME at alpha.example's apex to beta.example.
+A. Keep alpha autoregistration enabled; add beta with autoregistration enabled.
+B. Disable alpha autoregistration; add beta with autoregistration disabled.
+C. Keep alpha autoregistration enabled; add beta with autoregistration disabled.
+D. Disable alpha autoregistration; add beta with autoregistration enabled.
 
 ## nw-dns-delegate
 
 Topic: Networking › Public DNS zones, delegation, and records.
 
-You created the correct public Azure DNS zone and A record, but Internet resolvers still use the previous provider. What configuration should you inspect?
+You migrated example.org to an Azure public DNS zone. Queries sent directly to its assigned Azure name servers return the new www A record. A fresh delegation trace still reaches the previous provider. Which configuration should you change to direct Internet DNS resolution to the new zone?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Parent/registrar NS delegation to the zone's assigned name servers.
-B. A private VNet link for the public zone.
-C. The VM's NSG priority.
-D. A new MX record for the website.
+A. Set the registrar delegation to all four name servers assigned to the Azure zone.
+B. Replace the www A record in the previous provider with the new address.
+C. Lower the www A record TTL in the Azure zone.
+D. Copy the previous provider’s name servers into an NS record set named www in Azure.
 
 ## nw-dns-apex
 
 Topic: Networking › Public DNS zones, delegation, and records.
 
-You want the apex of a public Azure DNS zone to track a supported Azure public IP resource. Which approach avoids an invalid apex CNAME?
+The public zone example.org must return the IPv4 address of a Standard SKU Azure public IP resource at its apex and track the resource automatically. The resource provider and required permissions are configured. Which record set meets both requirements?
 
 Select **1**. Difficulty: applied.
 
-A. Delete the apex SOA and NS and create a CNAME.
-B. Create an apex A alias record set targeting the public IP.
-C. Use an MX record pointing at the public IP.
-D. Add a private-zone autoregistration link.
+A. An apex CNAME targeting the public IP resource hostname.
+B. An apex A alias targeting the public IP resource.
+C. An apex A record containing a manually copied IPv4 address.
+D. An apex AAAA alias targeting the public IP resource.
 
 ## nw-dns-ttl
 
 Topic: Networking › Public DNS zones, delegation, and records.
 
-Authoritative Azure DNS servers return your new A record, but a recursive resolver still returns the old answer within its cached TTL. What is the likely explanation?
+A recursive resolver cached the old www A answer at 09:00 with TTL 3600 seconds. At 09:10, you change the authoritative answer and its TTL to 300 seconds. The resolver retains cached answers until expiry and receives no cache flush. At 09:20 it still returns the old address. What explains this result?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Azure DNS has changed the VM's private address.
-B. The zone must be recreated for any A-record change.
-C. The recursive resolver still holds an unexpired cached answer.
-D. An NSG rule has rewritten the DNS A record.
+A. The old cached answer expired at 09:05, based on the newly configured TTL.
+B. The old cached answer expired at 09:15, five minutes after the authoritative update.
+C. The old cached answer remains valid until 10:00 under its original TTL.
+D. The old cached answer remains valid until 10:10, one hour after the authoritative update.
 
 ## nw-resolver-inbound
 
 Topic: Networking › DNS Private Resolver and hybrid forwarding.
 
-On-premises DNS must resolve an Azure private zone through DNS Private Resolver. The zone is linked to the resolver VNet and private connectivity exists. Where should the on-premises conditional forwarder send matching queries?
+An on-premises DNS server must resolve records in an Azure private zone linked to the DNS Private Resolver VNet. The resolver inbound endpoint is 10.20.0.4 and its subnet gateway address is 10.20.0.1. VPN routing and DNS traffic to the inbound endpoint are permitted. Which conditional-forwarder destination provides the intended managed Azure resolution path?
 
 Select **1**. Difficulty: applied.
 
-A. The resolver's inbound endpoint IP.
-B. The outbound endpoint as a DNS listener IP.
-C. The VNet's public load balancer frontend.
-D. The zone's public registrar name servers.
+A. 10.20.0.4, the resolver inbound endpoint.
+B. 168.63.129.16, the Azure platform DNS address.
+C. 10.20.0.1, the endpoint subnet gateway address.
+D. The on-premises DNS server’s own listener address.
 
 ## nw-resolver-outbound
 
 Topic: Networking › DNS Private Resolver and hybrid forwarding.
 
-An Azure VNet using default DNS must resolve branch.example at an on-premises DNS server. Which configuration provides conditional forwarding?
+An Azure VNet using Azure-provided DNS must resolve branch.example through an on-premises DNS server at 10.50.0.10:53. A DNS Private Resolver outbound endpoint already exists in the same region, and VPN routing and DNS traffic to that server are verified. No matching private zone or forwarding rule exists. Keep the client VNet on Azure-provided DNS. Which two components are jointly required? Select two.
 
-Select **1**. Difficulty: applied.
+Select **2**. Difficulty: applied.
 
-A. Only a public TXT record containing the DNS server IP.
-B. Outbound endpoint, suffix rule/ruleset, and client-VNet ruleset link.
-C. Only an autoregistration link for Azure VM names.
-D. Only an NSG allow rule to TCP 53.
+A. A private DNS zone registration link for Azure VM names.
+B. A ruleset associated with the outbound endpoint, with an enabled branch.example. rule targeting 10.50.0.10:53.
+C. A link from that forwarding ruleset to the client VNet.
+D. A client-VNet custom DNS setting pointing directly to 10.50.0.10.
 
 ## nw-resolver-loop
 
 Topic: Networking › DNS Private Resolver and hybrid forwarding.
 
-A ruleset linked to the resolver VNet forwards a suffix back to that resolver's inbound endpoint, causing repeated queries. What should you investigate?
+A hub DNS Private Resolver has an inbound endpoint. Its forwarding ruleset sends a suffix to that same inbound endpoint and is linked to both hub and spoke VNets. Repeated forwarding occurs in the hub. You must remove the return-to-self path while preserving the spoke ruleset path. Which change addresses the configuration?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. A need to add more copies of the same forwarding rule.
-B. A missing public IP on the inbound endpoint.
-C. A DNS forwarding loop involving the ruleset link and inbound target.
-D. A requirement for all private zones to be publicly delegated.
+A. Add a wildcard forwarding rule to the same hub inbound endpoint.
+B. Remove the ruleset link to the spoke while keeping its hub link.
+C. Remove the ruleset link to the hub while keeping its spoke link.
+D. Change the hub inbound IP allocation to static without changing the rule target or links.
 
 ## nw-lb-private
 
 Topic: Networking › Public and internal Standard Load Balancer.
 
-An application must accept TCP connections only over privately routed networks. Which regional Load Balancer frontend fits?
+An application in Azure must distribute TCP connections across healthy backend VMs. Clients connect from a peered VNet and an on-premises network over VPN; routing and security rules are verified. The service must have a private frontend address and no public frontend. Which regional Standard Load Balancer configuration meets the requirements?
 
 Select **1**. Difficulty: applied.
 
-A. An internal frontend with a private subnet IP.
-B. A public frontend plus a public DNS name only.
-C. An outbound rule without any frontend.
-D. A probe-only configuration without a load-balancing rule.
+A. An internal frontend using a subnet private IP, with a pool, probe, and load-balancing rule.
+B. A public frontend using a Standard public IP, with client ranges restricted by NSGs.
+C. An internal frontend with an inbound NAT rule targeting one backend VM.
+D. An internal frontend with a backend pool and health probe, but no load-balancing rule.
 
 ## nw-lb-components
 
 Topic: Networking › Public and internal Standard Load Balancer.
 
-A Standard public Load Balancer has a frontend and backend pool but no load-balancing rule. Healthy backend listeners exist. What configuration maps client TCP 443 to their TCP 8443?
+A Standard public Load Balancer has a frontend, a backend pool with two VM listeners on TCP 8443, and a passing TCP health probe. Client and probe traffic are permitted. New client connections to frontend TCP 443 must be distributed across the pool and delivered to TCP 8443. Which additional rule configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Only a DNS CNAME from 443 to 8443.
-B. A load-balancing rule linking frontend, pool, protocol/ports, and probe.
-C. Only an NSG outbound allow on 8443.
-D. Only a route table pointing to the public IP.
+A. A TCP load-balancing rule: frontend 8443, backend 443, existing pool and probe.
+B. A TCP load-balancing rule: frontend 443, backend 8443, existing pool and probe.
+C. A UDP load-balancing rule: frontend 443, backend 8443, existing pool and probe.
+D. An inbound NAT rule: frontend TCP 443, backend TCP 8443 on one selected VM.
 
 ## nw-lb-layer
 
 Topic: Networking › Public and internal Standard Load Balancer.
 
-A team wants requests for /images and /api sent to different backend pools according to URL path. Does Azure Load Balancer alone provide this?
+A Standard Azure Load Balancer has two backend pools serving HTTP applications. You will add rules that select a pool from incoming connection attributes. Which attribute can a load-balancing rule use for this selection?
 
 Select **1**. Difficulty: foundation.
 
-A. Yes, by changing its TCP idle timeout.
-B. Yes, by setting the health-probe path to both prefixes.
-C. No; its layer-4 rules do not inspect URL paths.
-D. Yes, by adding a second public IP to each backend.
+A. The HTTP URL path, such as /images versus /api.
+B. The HTTP Host header sent by the client.
+C. The destination frontend TCP port.
+D. The TLS server-name indication supplied by the client.
 
 ## nw-lb-http-probe
 
 Topic: Networking › Load Balancer probes and connectivity diagnosis.
 
-A backend HTTPS probe receives HTTP 302 redirecting to a login page. TCP connectivity works. Why is the probe unhealthy?
+A Standard Load Balancer HTTPS probe requests /health on a backend and receives HTTP 302 redirecting to login. TCP and TLS negotiation succeed. The backend is marked unhealthy. Which change addresses this response while preserving application-level readiness checking?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. The HTTP/HTTPS probe needs HTTP 200 rather than a redirect.
-B. HTTPS probes only accept UDP responses.
-C. Any response proves health, so the frontend IP must be wrong.
-D. A public backend IP is required for HTTPS probes.
+A. Provide a probe-accessible /health response that returns HTTP 200 when the application is ready.
+B. Keep the 302 response and increase the interval between HTTPS probes.
+C. Switch to a TCP probe on the same listener without checking the HTTP response.
+D. Keep the 302 response and increase the unhealthy probe threshold.
 
 ## nw-lb-probe-tag
 
 Topic: Networking › Load Balancer probes and connectivity diagnosis.
 
-Which NSG source service tag identifies Azure Load Balancer health-probe traffic?
+An IPv4 Standard Load Balancer TCP probe uses port 9000. The backend NSG has a priority-200 deny for all inbound TCP traffic; its default probe allow is therefore overridden. The guest listener and firewall are ready. Permit only the platform probe source to port 9000. Which inbound TCP allow rule meets the requirement?
 
 Select **1**. Difficulty: applied.
 
-A. Internet.
-B. AzureLoadBalancer.
-C. AzureTrafficManager.
-D. Storage.
+A. Priority 100; source Internet; destination port 9000.
+B. Priority 100; source AzureLoadBalancer; destination port 9000.
+C. Priority 300; source AzureLoadBalancer; destination port 9000.
+D. Priority 100; source AzureLoadBalancer; destination port 443.
 
 ## nw-lb-healthy-block
 
 Topic: Networking › Load Balancer probes and connectivity diagnosis.
 
-Load Balancer probes are healthy, but HTTPS clients cannot connect. The probe uses TCP 9000 while the rule sends clients to TCP 443. What is a valid next check?
+A Standard Load Balancer maps frontend TCP 443 to backend TCP 443. Its separate TCP probe on port 9000 is healthy. Clients using the verified frontend IP cannot establish new TCP connections to 443, so TLS negotiation has not begun. Which next check examines the client path that the passing probe has not validated?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Assume 9000 health proves 443 is permitted and listening.
-B. Remove the backend pool because probing succeeded.
-C. Inspect TCP 443 rule mapping, NSGs, guest firewall, and listener.
-D. Change the DNS TTL to make the probe test TCP 443.
+A. Repeat the backend TCP 9000 probe handshake.
+B. Inspect the backend HTTPS certificate expiry and trust chain.
+C. Check client-source NSG rules, guest firewall rules, and the backend listener for TCP 443.
+D. Compare recursive DNS TTLs for the frontend hostname.
 
 ## nw-bastion-subnet
 
@@ -2766,27 +2766,27 @@ D. AzureBastionSubnet /27 for a newly created host.
 
 Topic: Networking › Azure Bastion administrative access.
 
-You use browser RDP through a dedicated Bastion host to a VM reachable by private IP. Which target-VM configuration is sufficient for the network path?
+A Standard Bastion host and a Windows VM share a VNet. The VM has no public IP, listens on RDP port 3389, and its guest firewall and login permissions are ready. The VM NSG denies new inbound RDP connections. You must permit RDP only from AzureBastionSubnet. Which higher-priority NSG allow rule meets that target-side requirement?
 
 Select **1**. Difficulty: applied.
 
-A. A public IP and Internet-wide RDP allow.
-B. Private-IP reachability and permitted Bastion-to-VM RDP traffic.
-C. No RDP listener because Bastion supplies the guest desktop service.
-D. Only a DNS label on a target public IP.
+A. Source Internet; destination VM private IP; TCP 3389.
+B. Source AzureBastionSubnet address range; destination VM private IP; TCP 3389.
+C. Source AzureBastionSubnet address range; destination VM private IP; TCP 443.
+D. Source VirtualNetwork service tag; destination VM private IP; TCP 3389.
 
 ## nw-bastion-reader
 
 Topic: Networking › Azure Bastion administrative access.
 
-A user can read the VM, NIC, and Bastion resources but lacks valid guest RDP login rights. Does Azure Reader grant those rights?
+A user has Reader access to the VM, NIC, Bastion host, and target VNet. A browser RDP connection through Bastion reaches the Windows guest, but its supplied local account lacks RDP sign-in rights. The required authentication method is local username and password. Which authorization change addresses the guest login failure?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Yes, Reader becomes guest administrator through Bastion.
-B. Yes, if Bastion is Standard.
-C. No; resource read permissions and guest authentication are separate.
-D. Yes, if the VM has no public IP.
+A. Grant Azure Reader at the subscription scope.
+B. Grant Azure Reader on the Bastion resource group.
+C. Grant the supplied local guest account the required Windows RDP sign-in rights.
+D. Grant Azure Reader on the VM resource group.
 
 ## nw-effective-layers
 
@@ -2805,92 +2805,92 @@ D. Denied only if both rules have the same priority.
 
 Topic: Networking › Effective NSG rules and flow evaluation.
 
-A NIC has an associated NSG, but its VM is deallocated and list-effective-nsg does not return the expected effective rules. What prerequisite should you restore?
+A deallocated VM has an NSG associated with its NIC and another with its subnet. The administrator has query permissions, but list-effective-nsg does not return the combined effective rules. Which action satisfies the missing runtime prerequisite before repeating the query?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Run the VM before retrieving effective rules.
-B. Remove every NSG association.
-C. Add a public IP to every VM NIC.
-D. Replace its route table with an NSG.
+A. Start the VM, then query the NIC effective security rules.
+B. Keep the VM deallocated and repeat the effective-rule query using PowerShell.
+C. Keep the VM deallocated and attach a Standard public IP before querying.
+D. Keep the VM deallocated and move the NIC filtering rules to the subnet NSG before querying.
 
 ## nw-effective-multiple
 
 Topic: Networking › Effective NSG rules and flow evaluation.
 
-A VM has two NICs in different subnets. You inspected the first NIC's effective NSG rules. What is needed before concluding both paths have identical filtering?
+A running VM has two NICs in different subnets. Both NICs use the same NIC-level NSG, but the subnet NSG associations differ. You reviewed the first NIC effective security rules. Which additional review is required to assess the second NIC filtering path?
 
 Select **1**. Difficulty: applied.
 
-A. Only compare the VM size.
-B. Only check their DNS suffix.
-C. Inspect effective rules and associations for the second NIC.
-D. Assume a VM shares one effective NSG across all NICs.
+A. Review only the shared NIC-level NSG configured rules.
+B. Review only the second NIC effective route table.
+C. Review the second NIC effective security rules and their subnet/NIC associations.
+D. Reuse the first NIC effective rules as the complete policy for the second NIC.
 
 ## nw-nsg-priority
 
 Topic: Networking › Network and application security groups.
 
-An inbound NSG has a matching TCP 443 Deny at priority 200 and matching Allow at priority 300. For a new connection, which rule decides?
+An NSG has three custom inbound rules with matching address filters: priority 100 allows TCP 80, priority 200 denies TCP 443, and priority 300 allows TCP 443. A new connection targets TCP 443. Which rule determines the NSG's decision?
 
 Select **1**. Difficulty: applied.
 
-A. Deny at 200.
-B. Allow at 300 because allows override denies.
-C. Both combine into an allow.
-D. The newest rule regardless of priority.
+A. The priority-200 rule denies the connection.
+B. The priority-300 rule allows the connection.
+C. The priority-100 rule allows the connection.
+D. The default DenyAllInbound rule denies the connection.
 
 ## nw-asg-membership
 
 Topic: Networking › Network and application security groups.
 
-An administrator wants one ASG containing NICs in two peered VNets. Is this valid?
+An application security group already contains a network interface in vnet-app. You want to add one more NIC. Which candidate meets the ASG's virtual-network membership requirement?
 
 Select **1**. Difficulty: foundation.
 
-A. Yes, peering merges their ASG scope.
-B. No; an ASG's NICs must belong to the same VNet.
-C. Yes, if both VNets use the same DNS server.
-D. Yes, if the ASG has no NSG rules yet.
+A. A NIC in a different VNet that is peered with vnet-app.
+B. A NIC in another subnet of vnet-app.
+C. A NIC in an unpeered VNet in the same resource group.
+D. A NIC in an unpeered VNet in another resource group of the same subscription.
 
 ## nw-nsg-state
 
 Topic: Networking › Network and application security groups.
 
-An SSH session survives removal of its NSG allow rule, but a new SSH connection is denied. What explains this?
+A VM has an active SSH connection from an external client. You remove the inbound NSG rule that allowed it; no other rule permits new SSH connections from that client. The effective rules show the change. The existing session continues, but a fresh SSH connection from the same client is denied. Which NSG behavior explains both observations?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. NSGs filter only UDP.
-B. Rule removal requires deleting the NIC.
-C. NSGs retain state for existing flows; new connections use the changed rules.
-D. SSH automatically bypasses NSGs after one login.
+A. Rules are evaluated for each packet, but the removed allow remains cached for the client.
+B. An allowed session creates a client-IP permission that authorizes later connections.
+C. Existing flows retain connection state, while new flows use the changed rules.
+D. An outbound allow on the VM also authorizes new inbound SSH connections.
 
 ## nw-pe-public
 
 Topic: Networking › Private endpoints, approval, and DNS.
 
-You create an approved blob private endpoint on a storage account whose public access still allows all networks. Is the public endpoint now blocked?
+A storage account has an approved blob private endpoint with working private DNS and authorized client access. The account public network access still allows all networks. You must block requests through the public network endpoint while retaining the verified private path. Which account change meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Yes, approval disables the public endpoint.
-B. No; configure public network access separately.
-C. Yes, if the endpoint uses a static private IP.
-D. Yes, because a private DNS zone acts as a public firewall.
+A. Change the private endpoint from dynamic to static private-IP allocation.
+B. Disable public network access on the storage account.
+C. Disable anonymous blob access on the storage account.
+D. Reapprove the existing blob private endpoint connection.
 
 ## nw-pe-dns
 
 Topic: Networking › Private endpoints, approval, and DNS.
 
-A VM can reach a blob private endpoint IP, but the account's normal hostname resolves publicly from that VM. Public access is disabled. What should you repair?
+A VM in vnet-app uses Azure-provided DNS and can reach an approved blob private endpoint IP in peered vnet-hub. The private zone privatelink.blob.core.windows.net contains the correct storage-account A record and is linked only to vnet-hub. From the VM, the normal blob hostname resolves publicly, and storage public access is disabled. Which DNS change supplies the missing client-VNet resolution link?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Private DNS records, VNet links, or the client's DNS forwarding.
-B. Grant the VM a public IP.
-C. Replace the blob endpoint with a file endpoint.
-D. Add Internet-wide inbound rules to the VM.
+A. Link privatelink.blob.core.windows.net to vnet-app.
+B. Link only privatelink.file.core.windows.net to vnet-app.
+C. Replace the blob private-zone A record with the account public address.
+D. Remove the blob private-zone link to vnet-hub without adding a client link.
 
 ## nw-pe-subresource
 
@@ -2909,14 +2909,14 @@ D. Use the blob endpoint IP as an SMB proxy.
 
 Topic: Networking › Service endpoints and subnet authorization.
 
-A subnet has Microsoft.Storage enabled as a service endpoint. A storage account still allows all public networks. What change restricts its intended ordinary access to that subnet?
+A VM in subnet-app uses the classic Microsoft.Storage service endpoint. The storage account currently permits all public networks. You must permit the account public endpoint only from subnet-app through its endpoint identity. There are no required IP rules, trusted-service exceptions, or private endpoints. Which account network configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Configure the account's selected-network rules to allow the subnet.
-B. Only rename the subnet to StorageSubnet.
-C. Add a CNAME record for the storage hostname.
-D. Grant the VM Owner on its resource group.
+A. Enable public access from selected networks and allow only subnet-app as a virtual-network rule.
+B. Disable public network access and add subnet-app as a virtual-network rule.
+C. Keep public access from all networks and add subnet-app as a virtual-network rule.
+D. Enable public access from selected networks and allow only a different subnet.
 
 ## nw-se-private
 
@@ -2935,40 +2935,40 @@ D. It turns every on-premises VPN client into a member of the allowed subnet.
 
 Topic: Networking › Service endpoints and subnet authorization.
 
-A VM's subnet endpoint and storage network rule are correct, but its identity has no blob data permission. Can it read a private blob using Entra authentication?
+A VM reads a private blob using a valid Microsoft Entra token for its managed identity. Its classic storage service endpoint, selected-subnet rule, and network connectivity are verified. Reads fail authorization because the identity has no blob data role. Which change permits these token-authenticated reads without changing the verified network path?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Yes; service endpoints grant Blob Data Reader.
-B. Yes; an NSG allow grants storage data access.
-C. No; assign the appropriate blob data authorization too.
-D. Yes; selected networks make private containers anonymous.
+A. Assign Reader to the VM identity at the storage account.
+B. Add the VM subnet to the account network rules again.
+C. Assign Storage Blob Data Reader to the VM identity at the blob container.
+D. Assign Storage Blob Data Reader to the administrator at the blob container.
 
 ## nw-peering-transitive
 
 Topic: Networking › VNet peering, forwarding, and gateway transit.
 
-VNet A peers with B, and B peers with C. No direct A–C peering or transit routing is configured. What should be expected?
+Three VNets have nonoverlapping address spaces. Bidirectional traditional A-B and B-C peerings are Connected with virtual network access allowed. There is no direct A-C peering, gateway, or appliance transit path. NSGs and guest services permit the test connections. Which private connectivity pattern follows from these peerings?
 
 Select **1**. Difficulty: applied.
 
-A. A and C do not gain connectivity merely from these two peerings.
-B. A and C automatically connect through B.
-C. A–C connectivity appears after changing only the peering names.
-D. A and C share one address space automatically.
+A. A-B and B-C can communicate; A-C has no peering transit path.
+B. A-B, B-C, and A-C can all communicate through these peerings.
+C. A-C can communicate, but A-B and B-C cannot communicate.
+D. None of the three VNet pairs can communicate through these peerings.
 
 ## nw-peering-transit
 
 Topic: Networking › VNet peering, forwarding, and gateway transit.
 
-A spoke without its own gateway must use a supported VPN gateway in a peered hub. Which TWO peering settings are required on the respective sides?
+A spoke has no VPN gateway and no existing remote-gateway selection. It must use the supported VPN gateway in a peered hub for on-premises access. Bidirectional peering and virtual network access are already enabled. Which TWO peering settings jointly enable that gateway-sharing arrangement on the respective sides?
 
 Select **2**. Difficulty: applied.
 
-A. Allow gateway transit on the hub-side peering
-B. Use remote gateways on the spoke-side peering
-C. Use remote gateways on every spoke peering simultaneously
-D. Only allow forwarded traffic and omit both gateway settings
+A. Enable Allow gateway transit on the hub-to-spoke peering.
+B. Enable Use remote gateways on the spoke-to-hub peering.
+C. Enable Use remote gateways on the hub-to-spoke peering.
+D. Enable Allow gateway transit on the spoke-to-hub peering instead of the hub side.
 
 ## nw-peering-forward
 
@@ -2987,14 +2987,14 @@ D. Remove NSG filtering from the connection.
 
 Topic: Networking › Public IP resources and allocation.
 
-A VM has a Standard public IP, a running HTTPS listener, and a guest firewall allowing TCP 443. Its effective NSG rules deny inbound Internet traffic. What must change to accept HTTPS from an approved client range?
+A VM has a Standard public IP, a running HTTPS listener, and a guest firewall allowing TCP 443. Its only NSG has an inbound deny rule at priority 300 for Internet sources to TCP 443. No higher-priority rule matches. Which NSG rule permits new HTTPS connections from the approved client range while preserving the deny for other Internet clients?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Add an NSG allow rule for that range and TCP 443.
-B. Set public IP allocation to dynamic.
-C. Add a DNS label to the public IP.
-D. Create a second public IP for the NIC.
+A. Inbound allow, approved source range, TCP destination port 443, priority 200.
+B. Inbound allow, approved source range, TCP destination port 443, priority 400.
+C. Outbound allow, approved destination range, TCP destination port 443, priority 200.
+D. Inbound allow, Internet source range, TCP destination port 443, priority 200.
 
 ## nw-ip-release
 
@@ -3013,14 +3013,14 @@ D. An unchanged DNS A record automatically tracks the new address.
 
 Topic: Networking › Public IP resources and allocation.
 
-You are creating a new Standard public IPv4 resource in the portal for a regional frontend. Which configuration is valid?
+You need a new public IPv4 resource for a VM NIC in West Europe. The address must use a supported current SKU for direct NIC association. Which SKU, tier, and allocation combination is valid?
 
 Select **1**. Difficulty: applied.
 
-A. Choose dynamic allocation and a private subnet address.
-B. Enter any unused public IPv4 address as its allocation.
-C. Select Standard with static allocation and compatible region/zone settings.
-D. Create a DNS label instead of allocating a public IP.
+A. Standard SKU, Regional tier, dynamic allocation, West Europe.
+B. Standard v2 SKU, Regional tier, static allocation, West Europe.
+C. Standard SKU, Regional tier, static allocation, West Europe.
+D. Standard SKU, Global tier, static allocation, West Europe.
 
 ## nw-route-prefix
 
@@ -3039,27 +3039,27 @@ D. It is dropped because the route table lacks a matching UDR.
 
 Topic: Networking › User-defined routes and next hops.
 
-You create a route table and a route, but a workload subnet's effective routes are unchanged. The table is not associated with any subnet. What is missing?
+A route table contains the required UDR to a firewall in subnet-firewall. It is not associated with any subnet. A running VM in subnet-app still shows its original effective routes. Which change applies the table to traffic leaving subnet-app?
 
-Select **1**. Difficulty: foundation.
+Select **1**. Difficulty: troubleshooting.
 
-A. Associate the table with the VM's managed disk.
-B. Associate the table with the workload subnet.
-C. Add the table name as an NSG service tag.
-D. Replace the VNet's DNS server list with the next-hop IP.
+A. Associate the route table with subnet-firewall.
+B. Associate the route table with subnet-app.
+C. Move the route table into the VM resource group without associating a subnet.
+D. Associate an NSG with subnet-app without associating the route table.
 
 ## nw-route-forward
 
 Topic: Networking › User-defined routes and next hops.
 
-A UDR sends app-subnet traffic to a firewall VM in another subnet. NSGs permit it, but the firewall does not forward packets. Which two forwarding settings must you check?
+The effective UDR for an app VM sends traffic to a firewall VM in a separate subnet. NSGs and firewall policy permit the flow, and next-hop reachability and the return path are verified. Azure NIC IP forwarding and guest packet forwarding on the firewall are both disabled. Traffic must continue through this firewall. Which TWO changes jointly enable its forwarding path?
 
 Select **2**. Difficulty: troubleshooting.
 
-A. IP forwarding on the firewall's Azure NIC.
-B. Dynamic allocation on the firewall's public IP.
-C. Forwarding within the firewall operating system/appliance.
-D. A DNS label on the application VM.
+A. Enable IP forwarding on the firewall Azure NIC.
+B. Enable IP forwarding on the application VM Azure NIC.
+C. Enable packet forwarding in the firewall operating system/appliance.
+D. Change the app UDR next hop from the firewall to Internet.
 
 ## nw-subnet-reserved
 
@@ -3091,14 +3091,14 @@ D. Changing the resource-group location moves the VNet to another region.
 
 Topic: Networking › Virtual network address spaces and subnets.
 
-A VM is deployed into a new private subnet with defaultOutboundAccess false. It needs Internet access for updates. What should be configured?
+A VM in subnet-app has no public IP. The subnet has defaultOutboundAccess false and no explicit outbound method. DNS resolves an update server, NSGs permit the connection, and the effective destination route has next hop Internet, but the connection fails. The VM must keep its private-only NIC. Which change supplies the missing public egress translation?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. A supported explicit outbound method, such as a NAT gateway.
-B. Assume the platform always assigns usable default outbound access.
-C. Only add an NSG allow rule without any outbound method.
-D. Only add a private DNS zone.
+A. Associate a NAT gateway with public IP capacity to subnet-app.
+B. Add another NSG outbound allow rule for the update server.
+C. Add a user-defined route to the update server with next hop Internet.
+D. Associate a NAT gateway only with an adjacent subnet in the same VNet.
 
 ## nw-diag-allowed
 
@@ -3117,27 +3117,27 @@ D. DNS resolves the client's hostname correctly.
 
 Topic: Networking › Diagnosing VNet connectivity.
 
-You suspect a subnet UDR directs a VM's traffic to the wrong appliance. Which Network Watcher tool directly reports the selected next hop for a destination IP?
+After a subnet route-table change, a running VM cannot reach a destination IP. Security-rule evaluation permits the flow. You need a targeted query returning the selected route type, next-hop IP, and route-table ID for that VM and destination before editing routes. Which Network Watcher diagnostic provides this result?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
 A. IP flow verify.
-B. NSG rule editor.
+B. Packet capture.
 C. Next hop.
-D. Public IP DNS label settings.
+D. NSG diagnostics.
 
 ## nw-diag-name
 
 Topic: Networking › Diagnosing VNet connectivity.
 
-A VM connects to a service's IP on TCP 443, but connections using its hostname fail. What should you investigate first?
+A VM can open a TCP connection to a service known IP on port 443. The same TCP test using the service hostname fails before connecting and reports that the name cannot be resolved. Which check investigates that failed stage first?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Replace its working route with a None next hop.
-B. DNS resolution of the hostname from that VM.
-C. Delete the subnet's NSG immediately.
-D. Change the service's frontend to a dynamic public IP.
+A. Inspect the server certificate chain presented during TLS.
+B. Query the hostname using the DNS resolver configured on that VM.
+C. Inspect the web application route for the requested HTTP path.
+D. Check the service process listener on TCP 443.
 
 ## nw-private-registration-enabled-variant
 
@@ -3169,20 +3169,20 @@ D. Both next hops simultaneously because both prefixes match.
 
 Topic: Storage › Blob containers.
 
-A container previously allowed anonymous blob reads. An administrator now disables anonymous access on its storage account. Network connectivity is unchanged. What happens to subsequent anonymous blob requests?
+An ordinary Blob container previously allowed anonymous blob reads. An administrator disables anonymous access on its storage account, and the change has propagated. Network connectivity is unchanged. What happens to subsequent requests to read its blobs without credentials?
 
 Select **1**. Difficulty: applied.
 
-A. They fail because the account setting overrides container-level anonymous access.
-B. They succeed because the container setting is more specific.
-C. They succeed until the storage account is restarted.
-D. Only requests signed with an account key are blocked.
+A. The reads fail because the account disallows anonymous access.
+B. The reads succeed because the container's more specific setting takes precedence.
+C. Blob reads succeed, but anonymous container listing is denied.
+D. Existing blobs remain readable anonymously, but newly uploaded blobs require credentials.
 
 ## st-container-002
 
 Topic: Storage › Blob containers.
 
-An operator has the management-plane Reader role on a storage account but no blob data role. They must create a container through the Blob service using Azure CLI with --auth-mode login. Which additional built-in role is the least privileged of these choices that supports the operation? Assume network access works.
+An operator has the management-plane Reader role on a storage account but no blob data role. A container creation request using Azure CLI with --auth-mode login fails with an authorization error. Network access is working. Which additional listed built-in role is the least privileged that supports container creation through the Blob service?
 
 Select **1**. Difficulty: troubleshooting.
 
@@ -3221,40 +3221,40 @@ D. --account-name <account>
 
 Topic: Storage › Blob containers.
 
-A user has no existing Azure role assignments. They must navigate to a storage account in the Portal and read its blob data using Entra credentials. Which two roles provide the required management visibility and read-only data access? Assume network access is already allowed.
+A user has no existing Azure roles. They must navigate to a storage account in the Azure portal and read blobs in its reports container using Entra credentials. Network access is allowed. Which two role assignments meet that goal without granting resource-management writes or blob-data writes?
 
 Select **2**. Difficulty: applied.
 
 A. Reader at the storage account scope
-B. Storage Blob Data Reader at the required data scope
+B. Storage Blob Data Reader at the reports container scope
 C. Storage Queue Data Reader at the storage account scope
-D. Billing Reader at the subscription scope
+D. Contributor at the storage account scope
 
 ## st-tier-001
 
 Topic: Storage › Blob access tiers.
 
-A design review compares only cool and archive for an infrequently read block-blob dataset. The application must read any object immediately, without waiting for rehydration. Which choice satisfies that requirement?
+A standard general-purpose v2 account stores block blobs that are rarely read but must remain immediately readable. Each blob will be deleted 45 days after upload. Which listed tier has lower capacity costs than hot and allows that deletion without an early-deletion charge?
 
 Select **1**. Difficulty: applied.
 
-A. Cool, because it remains an online tier
-B. Archive, because infrequent access eliminates rehydration
-C. Archive, because high-priority rehydration makes all reads immediately available
-D. Neither, because cool also requires rehydration before each read
+A. Cool
+B. Archive
+C. Cold
+D. Hot
 
 ## st-tier-002
 
 Topic: Storage › Blob access tiers.
 
-A block blob in a general-purpose v2 account is deleted from the cool tier after 12 days. Soft delete is disabled and no retention protection applies. What does the cool tier's 30-day minimum mean?
+A block blob is uploaded directly to cool in a general-purpose v2 account and deleted exactly 12 days later. Soft delete is disabled and no retention protection applies. How many additional days of cool storage does the early-deletion charge cover?
 
 Select **1**. Difficulty: applied.
 
-A. Deletion is possible, but an early-deletion charge can cover the remaining 18 days.
-B. Azure refuses deletion until day 30.
-C. Deletion is free of any remaining-duration charge because the blob no longer exists.
-D. Azure automatically archives the blob until day 30.
+A. 18 days
+B. 30 days
+C. 0 days
+D. 12 days
 
 ## st-tier-003
 
@@ -3273,27 +3273,27 @@ D. Neither blob; defaults only affect future uploads
 
 Topic: Storage › Blob access tiers.
 
-A standard general-purpose v2 account uses ZRS. An administrator wants to put a block blob into archive without changing the account's redundancy. What is the relevant limitation?
+A Set Blob Tier request to archive fails for a block blob in a standard general-purpose v2 account using ZRS. The blob has no encryption scope. The request explicitly sets the individual blob tier; network access and data permissions are valid. Which configuration explains the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Archive is not supported with ZRS.
-B. The blob must first spend 30 days in hot.
-C. The container must permit anonymous reads.
-D. Enabling last-access-time tracking enables archive on ZRS.
+A. The account uses a redundancy configuration that does not support archive.
+B. The account is a premium block blob account that does not support standard access tiers.
+C. The object is an append blob, which does not support access-tier changes.
+D. The request attempts to make archive the account default tier.
 
 ## st-tier-005
 
 Topic: Storage › Blob access tiers.
 
-A team wants to reduce blob storage spending. Which two considerations follow Microsoft's guidance for choosing tiers?
+A team will migrate block blobs to a standard general-purpose v2 account. The known workload is suitable for cool and will retain the blobs for at least 60 days. Which two independent recommendations help the team control total tier-related costs?
 
 Select **2**. Difficulty: applied.
 
-A. Evaluate expected read frequency and retrieval charges alongside capacity prices.
-B. Upload directly to the appropriate tier when the expected usage is known.
-C. Always choose the tier with the lowest per-GB capacity price.
-D. Cycle blobs through every tier daily to avoid minimum-duration charges.
+A. Estimate read frequency and retrieval charges together with capacity and operation charges.
+B. Upload the blobs directly to cool rather than first uploading to hot and immediately changing tiers.
+C. Use the cool capacity price as the complete cost estimate because the minimum duration will be met.
+D. Upload to hot and immediately move to cool to avoid paying for a cool-tier write.
 
 ## st-life-001
 
@@ -3312,66 +3312,66 @@ D. study-records/
 
 Topic: Storage › Blob lifecycle management.
 
-A lifecycle rule uses prefixMatch invoices/2026/*.csv. The container is invoices and the actual blob name is 2026/march.csv. Why does the intended wildcard rule not match that blob?
+An enabled Blob lifecycle rule in a standard storage account uses prefixMatch invoices/2026/*.csv. The container is invoices, and a matching-type blob is named 2026/march.csv. Its age exceeds the configured threshold, but the rule does not select it. Which filter behavior explains this?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. The asterisk is treated literally; use invoices/2026/ to target that whole prefix.
-B. The prefix must begin with the storage account name.
-C. The prefix must be a complete HTTPS blob URL.
-D. CSV blobs are excluded unless the container is anonymous.
+A. The filter interprets * as a literal character in the prefix.
+B. The filter expects the account name before the container name.
+C. The filter expects a complete HTTPS URL rather than a relative prefix.
+D. The filter compares the file extension instead of the beginning of the name.
 
 ## st-life-002
 
 Topic: Storage › Blob lifecycle management.
 
-Can a Blob lifecycle policy automatically rehydrate archived data into an online tier?
+A standard Blob Storage account contains a block blob explicitly assigned to the archive tier. You need to bring that existing blob into the hot tier. Which action starts rehydration?
 
 Select **1**. Difficulty: foundation.
 
-A. No; archive rehydration requires a separate supported operation.
-B. Yes, by setting an age condition on an archive-to-hot lifecycle action.
-C. Yes, by enabling last-access-time tracking.
-D. Yes, if the rule targets only one container.
+A. Request Set Blob Tier with hot as the target tier.
+B. Set the storage account's default access tier to hot.
+C. Enable lifecycle auto-tier-to-hot when the blob is accessed.
+D. Issue a Get Blob request for the archived blob.
 
 ## st-life-003
 
 Topic: Storage › Blob lifecycle management.
 
-An enabled rule tiers a current block blob to cool when daysAfterModificationGreaterThan is 45. The blob was last modified 60 days ago and was read yesterday. It matches every filter and tiering is supported. Does yesterday's read make it ineligible under this condition?
+An enabled Blob lifecycle rule transitions current block blobs to cool when daysAfterModificationGreaterThan is 45. A matching blob was last modified 60 days ago, was read yesterday, and entered its current tier five days ago. No other age condition applies, and the tier transition is supported. Which assessment of its eligibility is correct?
 
 Select **1**. Difficulty: applied.
 
-A. No; eligibility here depends on last modification, not last read.
-B. Yes; every read resets the last-modified timestamp.
-C. Yes; the condition always uses the container's creation date.
-D. Yes; reading a blob disables lifecycle rules for that container.
+A. It is eligible because its modification age exceeds 45 days.
+B. It is ineligible because its last read was fewer than 45 days ago.
+C. It is ineligible because its current-tier age is fewer than 45 days.
+D. It is ineligible because its modification age must equal 45 days.
 
 ## st-life-004
 
 Topic: Storage › Blob lifecycle management.
 
-A storage account already has several required lifecycle rules. You are updating its management policy through the API-backed CLI workflow to add another rule. Which approach preserves the existing behavior?
+A storage account has three enabled lifecycle rules that must keep running. You are using Azure CLI to add a fourth rule through the account's management-policy API. The new rule has a distinct name. Which submitted policy preserves the existing rules and adds the new behavior?
 
 Select **1**. Difficulty: applied.
 
-A. Read the existing policy and submit a complete policy containing the retained rules and the new rule.
-B. Submit only the new rule and rely on an implicit merge.
-C. Attach a second independent lifecycle management policy to the same account.
-D. Store the new rule as container metadata.
+A. A complete policy with all three existing rules and the new rule enabled.
+B. A policy containing only the new enabled rule, relying on rule-name merging.
+C. A policy containing the most recent existing rule and the new rule enabled.
+D. A complete policy with the three existing rules disabled and the new rule enabled.
 
 ## st-life-005
 
 Topic: Storage › Blob lifecycle management.
 
-You saved a valid lifecycle rule ten minutes ago. Eligible blobs still show their original tier. Which two statements should guide the investigation?
+You saved an enabled Blob lifecycle rule to transition eligible current block blobs from hot to cool ten minutes ago. The policy was accepted, but inspected blobs still have their original tier. Which two statements are correct when assessing this observation?
 
 Select **2**. Difficulty: troubleshooting.
 
-A. Policy changes can take up to 24 hours to take effect and start the first run.
-B. Inspect filters and time conditions as well as allowing for execution time.
-C. Every eligible blob must finish changing tier within ten minutes of saving.
-D. Enable anonymous reads to allow lifecycle management to process the blobs.
+A. A policy change can take up to 24 hours to take effect and start execution.
+B. The rule's filters and age conditions determine which blobs can be processed.
+C. The 24-hour window guarantees completion for every eligible blob.
+D. A read of an eligible hot blob triggers this tier-to-cool action immediately.
 
 ## st-blob-delete-001
 
@@ -3384,20 +3384,20 @@ Select **1**. Difficulty: applied.
 A. The original 7-day interval, measured from deletion
 B. 30 days, measured from the original deletion
 C. 30 days, measured from the settings change
-D. Indefinite retention until versioning is enabled
+D. 7 days, measured from the settings change
 
 ## st-blob-delete-002
 
 Topic: Storage › Blob soft deletion.
 
-A team wants in-account recovery for two accidental operations in Azure Blob Storage: deleting an individual blob while its container remains, and deleting the entire container. Which two settings directly address these respective recovery scopes?
+A flat-namespace storage account has blob and container soft delete disabled. Versioning is disabled and must remain disabled. A team must permit normal deletions, then recover either an individually deleted blob or a deleted container within seven days. Which two Blob service property changes are jointly required before those deletions occur?
 
 Select **2**. Difficulty: applied.
 
-A. Blob soft delete
-B. Container soft delete
-C. The cool default access tier
-D. Disallow anonymous blob access
+A. Enable deleteRetentionPolicy with days set to 7.
+B. Enable containerDeleteRetentionPolicy with days set to 7.
+C. Enable isVersioningEnabled.
+D. Set days to 7 on both retention policies while leaving enabled false.
 
 ## st-blob-delete-003
 
@@ -3407,10 +3407,10 @@ An application overwrites a block blob using Put Blob in a flat-namespace accoun
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Copy the desired recovered snapshot over the current blob
-B. Enable container soft delete and wait
-C. Increase the retention period to force automatic rollback
-D. Set the current blob to hot
+A. Copy the desired recovered snapshot over the current blob.
+B. Run Restore Container for the parent container.
+C. Run Undelete again on the current blob.
+D. Copy the desired recovered snapshot to a new blob name.
 
 ## st-blob-delete-004
 
@@ -3423,33 +3423,33 @@ Select **1**. Difficulty: applied.
 A. They remain recoverable until their existing retention windows expire
 B. They are immediately permanently deleted
 C. They are automatically restored to the active namespace
-D. They become archived blobs with a new 180-day retention period
+D. Their expiry clocks pause until blob soft delete is enabled again
 
 ## st-container-delete-001
 
 Topic: Storage › Container soft deletion.
 
-A container named invoices was soft-deleted yesterday. Its retention period has not expired, but another process created a new active invoices container. Why can the old container not be restored now?
+A container named invoices was soft-deleted yesterday. Its retention period has not expired, but another process created a new active invoices container. Blob soft delete is disabled. An attempt to restore the old container fails. Which stated condition explains the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
 A. Container restoration requires the original name, which is already in use
 B. Containers cannot be restored until the final day of retention
-C. The replacement container must first use the archive tier
+C. Blob soft delete is disabled, so container restoration is unavailable
 D. The old container must be restored under an arbitrary new name
 
 ## st-container-delete-002
 
 Topic: Storage › Container soft deletion.
 
-An Azure storage account had container soft delete enabled, but no blob soft delete, versioning, snapshots, or backup. A user deletes one blob while leaving its container intact. Can container soft delete restore that blob by itself?
+An Azure storage account had container soft delete enabled, but no blob soft delete, versioning, snapshots, or backup. A user deletes one blob while leaving its container intact. Which recovery outcome applies to the deleted blob?
 
 Select **1**. Difficulty: applied.
 
-A. No; it protects deletion of the container, not individual deletions inside an existing container
-B. Yes; every container keeps a rolling copy of all prior blob contents
-C. Yes; deleting the container now recreates the earlier missing blob
-D. Yes; extending container retention reconstructs the blob
+A. Container soft delete cannot recover this individual deletion.
+B. Restoring the active container rolls it back to its state before the blob deletion.
+C. Deleting and restoring the parent now recovers its state from before the blob deletion.
+D. Enabling blob soft delete now makes the earlier deletion recoverable.
 
 ## st-container-delete-003
 
@@ -3461,8 +3461,8 @@ Select **1**. Difficulty: applied.
 
 A. containerDeleteRetentionPolicy.enabled
 B. isVersioningEnabled
-C. allowBlobPublicAccess
-D. accessTier
+C. deleteRetentionPolicy.days
+D. restorePolicy.enabled
 
 ## st-container-delete-004
 
@@ -3475,7 +3475,7 @@ Select **1**. Difficulty: applied.
 A. Container soft delete does not protect deletion of the storage account itself
 B. The design works whenever container retention is at least 30 days
 C. Enabling blob versioning guarantees restoration of the deleted account
-D. Only anonymous containers are protected from account deletion
+D. Containers already soft-deleted are protected from account deletion, but active containers are not
 
 ## st-version-001
 
@@ -3494,27 +3494,27 @@ D. The delete is always blocked while any previous version exists
 
 Topic: Storage › Blob versioning.
 
-An administrator wants Azure Blob versioning on a storage account whose hierarchical namespace is enabled for Data Lake Storage. What does the currently documented feature support imply?
+An attempt to enable blob versioning fails on a standard general-purpose v2 account with hierarchical namespace enabled. The administrator has valid management permissions and uses an API version later than 2019-10-10. Blob soft delete is also enabled. Which stated configuration explains the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Blob versioning is not supported on that account configuration
-B. Enabling container soft delete adds versioning support
-C. Changing the default access tier to hot enables versioning
-D. Assigning an extra Reader role enables the feature
+A. Hierarchical namespace is enabled, which is unsupported for blob versioning.
+B. Blob soft delete is enabled, which cannot coexist with blob versioning.
+C. The account is general-purpose v1, which lacks blob versioning support.
+D. The request uses an API version older than 2019-10-10.
 
 ## st-version-003
 
 Topic: Storage › Blob versioning.
 
-A supported Blob Storage account has versioning and blob soft delete enabled. A desired previous version was explicitly deleted and is still retained. There is no current blob. Which two operations form the recovery sequence to restore its contents as current?
+A supported flat-namespace Blob Storage account has versioning and blob soft delete enabled. Reading the original blob without a version ID returns BlobNotFound: there is no current blob. The desired previous version was explicitly deleted but remains within soft-delete retention; the container still exists. Which two operations are jointly required, in the indicated order, to make that version's contents current at the original blob name?
 
 Select **2**. Difficulty: troubleshooting.
 
-A. First undelete the retained blob versions
-B. Then copy the desired previous version to create a current blob
-C. Modify the desired historical version in place to mark it current
-D. Disable versioning to promote the oldest retained version automatically
+A. First call Undelete Blob to restore the retained versions.
+B. Then copy the desired previous version to the original base blob.
+C. Then copy the desired previous version to a different blob name.
+D. First restore the parent container using Restore Container.
 
 ## st-version-004
 
@@ -3540,20 +3540,20 @@ Select **1**. Difficulty: applied.
 A. Read the file from the snapshot and restore or copy it to a writable destination
 B. Open the snapshot and edit its file contents in place
 C. Enable share soft delete to undo the existing file overwrite
-D. Rename the live share to the snapshot timestamp
+D. Create a new snapshot now and restore the file from that new snapshot
 
 ## st-file-snapshot-002
 
 Topic: Storage › Azure Files share snapshots.
 
-An Azure file share has three snapshots. An administrator deletes the oldest one while retaining the newest. Because snapshots store changes incrementally, must the oldest snapshot be kept for the newest snapshot's files to remain recoverable?
+On a classic SMB Azure file share, snapshot S1 captured report.csv at 09:00. After a file edit, S2 captured it at 10:00. The live file was deleted at 11:00. An administrator then deletes S1 but retains S2. What can be recovered from S2?
 
 Select **1**. Difficulty: applied.
 
-A. No; the retained snapshot remains a usable recovery point
-B. Yes; deleting any earlier snapshot always breaks all later snapshots
-C. No, but the newest snapshot can recover only files still present in the live share
-D. Only if the newest snapshot is moved to the blob hot tier first
+A. The report.csv contents captured at 10:00, despite deletion of S1 and the live file.
+B. Nothing from report.csv, because removing S1 breaks the incremental snapshot chain.
+C. Nothing from report.csv, because recovery requires the file to still exist in the live share.
+D. The report.csv contents captured at 09:00, because S2 takes over the deleted snapshot's state.
 
 ## st-file-snapshot-003
 
@@ -3564,15 +3564,15 @@ A classic Azure file share has snapshots, but share soft delete and backup are d
 Select **1**. Difficulty: applied.
 
 A. Those snapshots cannot be retained independently after the share and its snapshots are deleted
-B. Nothing; snapshots automatically remain for seven days
-C. Nothing; deleting a share converts its snapshots into account backups
+B. Nothing; snapshots without an expiry setting persist even after explicit share deletion
+C. Nothing; read-only snapshots cannot be removed by an explicit delete operation
 D. Only the share name matters; recreating the name restores all snapshots
 
 ## st-file-snapshot-004
 
 Topic: Storage › Azure Files share snapshots.
 
-An application deployment will change files on a classic SMB Azure file share. The administrator wants a recovery point for the pre-deployment contents. Which two actions support that goal?
+An application deployment will change files on a classic SMB Azure file share. Before deployment, the administrator must establish a pre-deployment recovery point and confirm that the recovery operator can read its captured files and write the restoration destination. Which two actions jointly meet these readiness requirements?
 
 Select **2**. Difficulty: applied.
 
@@ -3585,13 +3585,13 @@ D. Enable only share soft delete instead of preserving earlier file contents
 
 Topic: Storage › Azure Files share soft deletion.
 
-Share soft delete is enabled for a classic Azure file share. A user deletes a single file, but the share remains active. A snapshot containing that file was taken earlier. Which recovery source applies?
+Share soft delete is enabled for a classic SMB Azure file share. A user deletes one file, but the share remains Active and has no deleted-share entry to undelete. A snapshot containing the file was taken earlier. Which recovery source applies?
 
 Select **1**. Difficulty: troubleshooting.
 
 A. The earlier share snapshot containing the file
 B. Undelete the still-active share to reverse the individual file deletion
-C. Increase share retention to recreate the file automatically
+C. Create a new share snapshot after the deletion and recover the file from it
 D. Use the file's automatically created Azure Blob version
 
 ## st-file-delete-002
@@ -3602,10 +3602,10 @@ You want a 14-day soft-delete window for classic Azure file shares in a storage 
 
 Select **1**. Difficulty: applied.
 
-A. Update the account's File service properties and enable share delete retention for 14 days
-B. Enable blob delete retention on the account's Blob service
-C. Enable container delete retention on the account's Blob service
-D. Add a retention=14 tag to each share
+A. Enable delete retention for 14 days in the account's File service properties.
+B. Enable blob delete retention for 14 days in the account's Blob service properties.
+C. Enable container delete retention for 14 days in the account's Blob service properties.
+D. Set File service delete retention to 14 days while leaving its enabled flag false.
 
 ## st-file-delete-003
 
@@ -3618,7 +3618,7 @@ Select **1**. Difficulty: applied.
 A. The share and its retained contents, including snapshots
 B. Only an empty share with the original name
 C. The files, but never the snapshots
-D. All shares deleted from every account in the subscription
+D. The share and its snapshots, but not the retained live files
 
 ## st-file-delete-004
 
@@ -3628,10 +3628,10 @@ You will restore a retained classic Azure file share using az storage share-rm r
 
 Select **1**. Difficulty: applied.
 
-A. The deleted share version used by --deleted-version
-B. A Blob Storage version ID from az storage blob list
-C. A SAS expiry date to use as the deleted version
-D. Any snapshot timestamp from any active share
+A. The deleted share version returned for the retained share instance.
+B. The Azure resource ID of the original file share.
+C. The original file-share name.
+D. A snapshot timestamp belonging to that same share.
 
 ## st-container-anonymous-level-variant
 
@@ -3650,14 +3650,14 @@ D. No blob reads because anonymous access always requires a SAS.
 
 Topic: Storage › Blob containers.
 
-An approved legacy Azure CLI operation must use a supplied storage account key, with Shared Key access enabled. Which --auth-mode value explicitly selects this authorization method?
+An approved legacy Azure CLI container operation must use a supplied account key. Shared Key access is enabled; no storage credential environment variables are set. The signed-in identity has a blob data role but cannot list the account's keys. Which authorization configuration meets the requirement?
 
 Select **1**. Difficulty: applied.
 
-A. login
-B. key
-C. off
-D. The storage account name.
+A. --auth-mode login, with the signed-in identity's blob data role
+B. --auth-mode key --account-key <supplied-account-key>
+C. --auth-mode key, with no account key or SAS supplied
+D. --auth-mode key --sas-token <supplied-sas-token>
 
 ## st-key-rotation-order
 
@@ -3669,7 +3669,7 @@ Select **1**. Difficulty: applied.
 
 A. Move all consumers to valid key2 and verify requests.
 B. Regenerate both keys at the same time.
-C. Delete and recreate the storage account.
+C. Enable a key rotation reminder while consumers continue using key1.
 D. Generate a long-lived SAS signed with the old key1.
 
 ## st-key-blob-disable
@@ -3689,20 +3689,20 @@ D. A connection string containing key1.
 
 Topic: Storage › Storage account access keys.
 
-An operator must regenerate storage account keys. Which built-in role specifically includes this task?
+An operator must list and regenerate keys for one storage account. The additional role must not grant general storage-account configuration writes. Which listed built-in role should be assigned at that account scope?
 
 Select **1**. Difficulty: applied.
 
 A. Storage Account Key Operator Service Role.
 B. Storage Blob Data Reader.
-C. Storage Queue Data Message Sender.
+C. Storage Account Contributor.
 D. Storage Blob Delegator.
 
 ## st-net-sas-denied
 
 Topic: Storage › Storage firewalls and network access.
 
-An external client's valid Blob SAS fails after the storage firewall is restricted to selected networks. Its IP is not allowed. What addresses the network problem without broadening SAS permissions?
+An on-premises client outside Azure has a valid read-only Blob SAS. Downloads fail after the storage account's public endpoint is restricted to selected networks. The client's approved public IPv4 egress address is not allowed. Which action addresses the network failure without broadening SAS permissions?
 
 Select **1**. Difficulty: troubleshooting.
 
@@ -3715,27 +3715,27 @@ D. Extend the SAS expiry by a week.
 
 Topic: Storage › Storage firewalls and network access.
 
-A storage account has an approved subnet rule, but defaultAction is Allow. Other internet clients with valid authorization can still read blobs. Which change enforces the selected-network allowlist?
+A storage account has an approved subnet rule and that subnet's Storage service endpoint is enabled. Public network access is Enabled and defaultAction is Allow. No resource-instance or trusted-service exceptions are configured. Other internet clients with valid credentials can still read blobs. Which change blocks those unlisted clients while preserving the approved subnet's existing service-endpoint path?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Set defaultAction to Deny.
-B. Assign the approved subnet Azure Reader.
-C. Raise the minimum TLS version.
-D. Switch the account from LRS to ZRS.
+A. Set defaultAction to Deny while retaining the approved subnet rule.
+B. Create a Blob private endpoint while leaving defaultAction as Allow.
+C. Add an approved public IP rule while leaving defaultAction as Allow.
+D. Disable public network access without changing the subnet's service-endpoint path.
 
 ## st-net-subnet-requirements
 
 Topic: Storage › Storage firewalls and network access.
 
-A VM subnet must access Blob Storage through a service endpoint while the storage firewall defaults to Deny. Which two configurations are required for this network path?
+A VM subnet with address range 10.20.1.0/24 must access Blob Storage through a service endpoint in the same Azure region. The storage public endpoint is enabled, its firewall defaults to Deny, and neither an endpoint nor a subnet rule is configured yet. Valid data authorization is already in place. Which two configurations are jointly required for the specified path?
 
 Select **2**. Difficulty: applied.
 
-A. Enable the appropriate Storage service endpoint on the subnet.
+A. Enable Microsoft.Storage on the VM subnet.
 B. Add that subnet to the storage account's virtual network rules.
 C. Create a Blob private endpoint as well.
-D. Enable anonymous Blob access.
+D. Add 10.20.1.0/24 as a storage firewall IP network rule.
 
 ## st-net-arm-data
 
@@ -3745,23 +3745,23 @@ A user can view a storage account's ARM properties but cannot download blobs fro
 
 Select **1**. Difficulty: foundation.
 
-A. Storage firewall rules govern data-plane requests, while ARM management has separate authorization.
-B. Viewing ARM properties automatically grants blob read access.
-C. Only Archive blobs are subject to the firewall.
-D. Every portal visit automatically issues a firewall-bypassing SAS.
+A. The storage firewall filters data-plane traffic; ARM management uses separate authorization.
+B. Permission to view ARM properties also grants blob reads through the firewall.
+C. The same storage firewall filters ARM and blob requests, so ARM success proves the network is allowed.
+D. A Blob SAS permits data reads from networks excluded by the storage firewall.
 
 ## st-sas-private-download
 
 Topic: Storage › Shared access signatures.
 
-A contractor needs to download one private Azure blob for 20 minutes. The issuing application can authenticate through Microsoft Entra ID. Which approach follows Microsoft's recommended SAS signing method?
+A contractor must download one private Azure blob for 20 minutes without gaining access to other blobs. The issuing application can use Microsoft Entra ID and has the required data and delegation-key permissions. Which SAS configuration meets the scope and duration requirements while using Microsoft's recommended available signing method?
 
 Select **1**. Difficulty: applied.
 
-A. Issue a read-only user delegation SAS for that blob.
-B. Issue an account-key-signed service SAS.
-C. Send an account SAS permitting all storage services.
-D. Send storage account key1.
+A. A read-only user delegation SAS for that blob, valid for 20 minutes.
+B. A read-only account-key-signed service SAS for that blob, valid for 20 minutes.
+C. A read-only account SAS for Blob service objects, valid for 20 minutes.
+D. A read-only user delegation SAS for the whole container, valid for 20 minutes.
 
 ## st-sas-cli-user
 
@@ -3780,27 +3780,27 @@ D. --policy-name
 
 Topic: Storage › Shared access signatures.
 
-A Blob user delegation SAS declares an expiry three days from now, but its signing delegation key expires tonight. Network access and permissions are correct. What happens after the key expires?
+A Blob user delegation SAS worked yesterday. It declares expiry three days from now, but its signing delegation key expired last night. Requests now fail authorization. The issuer's data roles and network settings are unchanged, and clocks agree. Which statement correctly diagnoses this failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. The SAS can no longer authorize requests.
-B. Storage automatically renews the key for the remaining three days.
-C. The SAS switches to account key2.
-D. A container stored access policy extends the key.
+A. The expired signing delegation key makes the SAS unusable despite its later declared expiry.
+B. The later SAS expiry keeps it usable because that expiry overrides the signing key expiry.
+C. Refreshing the issuer's Entra access token reactivates the existing SAS.
+D. Extending a container stored access policy reactivates the existing user delegation SAS.
 
 ## st-sas-delegator-scope
 
 Topic: Storage › Shared access signatures.
 
-An identity has Storage Blob Data Reader only on one container. It cannot obtain a user delegation key for the storage account. Which additional scoped grant addresses key generation while retaining narrow data access?
+An identity has Storage Blob Data Reader only on the reports container. Its Get User Delegation Key request is denied. Which additional listed role assignment permits account-level delegation-key generation without granting blob-data read access beyond reports?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Storage Blob Delegator on the storage account.
-B. Storage Blob Data Reader on another container.
-C. Enable anonymous read on the container.
-D. Create a stored access policy on the container.
+A. Storage Blob Delegator at the storage account scope.
+B. Storage Blob Delegator at the reports container scope.
+C. Storage Blob Data Reader at the storage account scope.
+D. Reader at the storage account scope.
 
 ## st-policy-revoke-group
 
@@ -3810,10 +3810,10 @@ A Blob container has service SAS credentials bound to policy contractor-read. Ot
 
 Select **1**. Difficulty: applied.
 
-A. Delete the contractor-read policy identifier.
+A. Remove contractor-read from the stored-policy collection while preserving the other policies.
 B. Regenerate both storage account keys.
 C. Remove the contractors' Azure Reader roles.
-D. Move the blobs to Cool.
+D. Set the container anonymous access level to Private while preserving its stored policies.
 
 ## st-policy-compatible
 
@@ -3832,14 +3832,14 @@ D. A Microsoft Entra OAuth access token.
 
 Topic: Storage › Stored access policies.
 
-An administrator tries to add a sixth stored access policy to a Blob container. The existing five policies must remain. Why does Azure reject the request?
+An account has two Blob containers, each with five stored access policies. Set Container ACL rejects a request that would keep the five policies on the invoices container and add a sixth. Which documented quota explains the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. The container supports at most five stored access policies.
-B. The account has already issued five SAS tokens.
-C. The container contains more than five blobs.
-D. Only one stored policy is allowed per account key.
+A. At most five stored access policy entries on one container.
+B. At most five SAS credentials issued for one container.
+C. At most five stored access policy entries across the entire account.
+D. At most five blobs authorized through stored policies in one container.
 
 ## st-account-general-purpose
 
@@ -3858,14 +3858,14 @@ D. Premium page blob account.
 
 Topic: Storage › Storage account creation and configuration.
 
-A valid storage account name is already used by another customer in another region. Your deployment fails. What must change?
+You deploy a storage account in Azure public cloud. Its name meets the length and character rules, but creation returns StorageAccountAlreadyTaken. Another customer uses this name in a different region. Which change resolves this naming conflict?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Choose a different globally unique account name.
-B. Move the request to a different resource group but keep the name.
-C. Add a unique Environment tag.
-D. Select Cool as the default Blob tier.
+A. Use a different, globally unique storage account name.
+B. Keep the name and deploy into a different resource group.
+C. Keep the name and deploy into a different subscription.
+D. Keep the name and deploy into a different Azure region.
 
 ## st-account-transfer-tls
 
@@ -3877,47 +3877,47 @@ Select **2**. Difficulty: foundation.
 
 A. Secure transfer required.
 B. Minimum TLS version.
-C. Default Blob access tier.
-D. Locally redundant storage.
+C. Infrastructure encryption.
+D. Allow storage account key access.
 
 ## st-encryption-default
 
 Topic: Storage › Storage encryption and customer-managed keys.
 
-A new Azure storage account uses default encryption settings. What protects its persisted data?
+A new Azure storage account retains its default encryption configuration. No customer keys or additional encryption options have been configured. Which configuration encrypts its persisted blob data?
 
 Select **1**. Difficulty: foundation.
 
-A. Service-side encryption with Microsoft-managed keys.
-B. No encryption until a SAS is created.
-C. Only TLS encrypts stored blobs.
-D. The account access key is the customer-managed encryption key.
+A. Service-side encryption using Microsoft-managed keys.
+B. Service-side encryption using a customer-managed Key Vault key.
+C. Service-side encryption using a customer-provided key on each request.
+D. Double encryption using service and infrastructure encryption layers.
 
 ## st-encryption-identity
 
 Topic: Storage › Storage encryption and customer-managed keys.
 
-A storage account using CMK cannot access its Key Vault key. The operator can view the key, but the account's managed identity has no key permissions. What addresses the service's missing permission?
+An existing Azure storage account cannot use its customer-managed Key Vault key. The key is enabled and the service's vault network path works. The vault uses Azure RBAC, but the storage account's configured managed identity has no key permissions. You must grant that identity key-metadata read and wrap/unwrap operations, without other cryptographic operations or key management. Which built-in role should you assign at the vault scope?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Grant the storage identity Key Vault Crypto Service Encryption User.
-B. Grant the operator Reader on the storage account.
-C. Regenerate storage account key1.
-D. Create a user delegation SAS.
+A. Key Vault Crypto Service Encryption User.
+B. Key Vault Reader.
+C. Key Vault Crypto User.
+D. Key Vault Secrets User.
 
 ## st-encryption-vault-protection
 
 Topic: Storage › Storage encryption and customer-managed keys.
 
-Which two Key Vault protections are required by the documented Azure Storage CMK configuration?
+Azure Storage will use a customer-managed encryption key stored in Azure Key Vault. Which two vault protections are required for this configuration? Select two required protections; neither replaces the other.
 
-Select **2**. Difficulty: applied.
+Select **2**. Difficulty: foundation.
 
 A. Soft delete.
 B. Purge protection.
-C. Anonymous key access.
-D. Blob container soft deletion on the vault.
+C. Diagnostic logging.
+D. Automatic key rotation policy.
 
 ## st-redundancy-zones-only
 
@@ -3949,105 +3949,105 @@ D. ZRS.
 
 Topic: Storage › Storage redundancy and failover planning.
 
-A blob was just created in an RA-GRS account. A secondary-endpoint read cannot find it, while the primary read succeeds. What is the likely explanation?
+A Hot block blob has just been created in an RA-GRS account. A server read from the primary endpoint succeeds, but a read of the same container and blob path from the secondary returns BlobNotFound. An older blob in that container is readable from both endpoints using the same valid read-only account SAS. No failover has occurred. Which explanation best fits these results?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. The asynchronous geo-copy has not yet reached the secondary.
-B. Every primary write is synchronously committed in both regions.
-C. The client must upload the blob directly to the secondary.
-D. All secondary blobs are automatically archived.
+A. The recent write has not yet replicated to the secondary region.
+B. Read access to the secondary region has not been enabled.
+C. The recent blob must be uploaded directly to the secondary endpoint.
+D. The secondary region requires a SAS signed with a separate account key.
 
 ## st-scope-enforced
 
 Topic: Storage › Blob encryption scopes.
 
-A new Blob container must require encryption scope tenant-a for every upload. Which configuration enforces that?
+Enabled Blob encryption scopes tenant-a and tenant-b exist in one account. A new container must require tenant-a for every upload, including uploads from clients that explicitly request tenant-b. Which creation-time configuration enforces this requirement?
 
 Select **1**. Difficulty: applied.
 
-A. Set tenant-a as default and prevent encryption-scope overrides.
-B. Set tenant-a as default but permit overrides.
-C. Add a container metadata entry named tenant-a.
-D. Assign Storage Blob Data Reader to tenant-a.
+A. Default scope tenant-a; prevent encryption-scope overrides.
+B. Default scope tenant-a; allow encryption-scope overrides.
+C. Default scope tenant-b; prevent encryption-scope overrides.
+D. Default scope tenant-b; allow encryption-scope overrides.
 
 ## st-scope-disabled
 
 Topic: Storage › Blob encryption scopes.
 
-A previously readable blob starts returning 403 immediately after its encryption scope is disabled. Permissions and network paths are unchanged. What should be checked?
+A private blob encrypted with the Microsoft-managed encryption scope reports starts returning 403 after that scope is disabled. The disable action was unintended. The client's existing blob-read authorization and network path still work, and no other configuration changed. Which action restores access to this existing blob?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Re-enable the required scope after confirming the change was unintended.
-B. Rotate the account access keys.
-C. Enable anonymous access.
-D. Rename the blob's version ID.
+A. Re-enable the existing reports encryption scope.
+B. Regenerate the storage account's authorization keys.
+C. Grant the client Storage Blob Data Contributor.
+D. Create a new enabled scope with a different name.
 
 ## st-scope-vs-rbac
 
 Topic: Storage › Blob encryption scopes.
 
-A team configures different Blob encryption scopes for two customers. What still needs separate configuration?
+Private Azure Blob containers use different encryption scopes for two customers. Clients authenticate with Microsoft Entra OAuth tokens. Which configuration authorizes a customer's blob reads separately from those encryption-key boundaries?
 
 Select **1**. Difficulty: foundation.
 
-A. Authorization deciding which customer may read each blob.
-B. No authorization is needed because scope names authenticate users.
-C. Every scope automatically issues a customer SAS.
-D. Each scope automatically creates its own storage firewall.
+A. Assign the customer Storage Blob Data Reader at its container scope.
+B. Assign the customer Reader at its container scope.
+C. Assign the customer Key Vault Crypto Service Encryption User.
+D. Set the customer's encryption scope as the container default.
 
 ## st-or-prerequisites
 
 Topic: Storage › Blob object replication.
 
-Two supported Blob accounts will use object replication. Which two prerequisite configurations are needed?
+Two standard GPv2 accounts without hierarchical namespace have existing source and destination containers of Hot block blobs. You are preparing object replication; versioning and change feed are disabled. Which two configurations are jointly required before creating the replication policy?
 
 Select **2**. Difficulty: applied.
 
-A. Enable Blob versioning on source and destination.
-B. Enable Blob change feed on the source.
-C. Set both accounts' default tier to Archive.
-D. Create one stored access policy on every source blob.
+A. Enable Blob versioning on both source and destination accounts.
+B. Enable Blob change feed on the source account.
+C. Create periodic snapshots of the source blobs.
+D. Enable Blob change feed only on the destination account.
 
 ## st-or-existing-scope
 
 Topic: Storage › Blob object replication.
 
-New block blobs replicate successfully, but files uploaded last month do not. The policy was created today with its default copy scope. What should you inspect first?
+An Azure Blob object-replication rule created today copies new Hot block blobs successfully. Hot block blobs created last month in the same source container remain absent from the destination. Both groups match the same rule prefix, and versioning is enabled on both accounts. You used the default copy scope. Which configuration should you inspect first?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Whether the copy scope includes existing objects.
-B. Whether both accounts use identical access keys.
-C. Whether both accounts have LRS disabled.
-D. Whether every source blob has the destination account's name.
+A. Whether the rule's copy scope includes preexisting blobs.
+B. Whether the rule's prefix filter excludes the older blob names.
+C. Whether Blob versioning is disabled on the destination account.
+D. Whether source and destination have different replication policy IDs.
 
 ## st-or-destination-writes
 
 Topic: Storage › Blob object replication.
 
-An application wants to write directly into a destination container governed by Azure Blob object replication. What must the design account for?
+An active Azure Blob object-replication rule maps a source container's reports/ prefix to a destination container. An authorized client attempts an ordinary Put Blob write to notes/new.txt in that destination container. No other restriction prevents the request. Which outcome should you expect?
 
 Select **1**. Difficulty: foundation.
 
-A. Ordinary writes to that destination container are blocked while the policy applies.
-B. Writes automatically merge into the source container.
-C. Every destination write synchronously updates all source versions.
-D. Selecting Hot automatically makes the destination writable.
+A. The write is rejected because the destination container has an active replication rule.
+B. The write succeeds and is asynchronously replicated back to the source container.
+C. The write succeeds because the client's blob-write permission overrides the replication rule.
+D. The write succeeds because notes/new.txt falls outside the rule's reports/ prefix.
 
 ## st-files-protocol
 
 Topic: Storage › Azure file share provisioning and configuration.
 
-A team wants Windows SMB clients and NFS clients to access one Azure file share through both protocols. What constraint matters?
+A supported premium FileStorage account will serve Windows SMB clients and Linux NFS clients using classic Azure file shares. Which protocol boundary must the design respect?
 
 Select **1**. Difficulty: foundation.
 
-A. An Azure file share uses one protocol, SMB or NFS.
-B. Every share simultaneously supports both protocols.
-C. Enable Blob NFS 3.0 to add NFS to an SMB file share.
-D. Move the share to the Hot Blob access tier.
+A. Each file share selects SMB or NFS; use separate shares for the two protocols.
+B. A premium account allows one file share to serve SMB and NFS simultaneously.
+C. Enabling Blob NFS 3.0 adds NFS access to an existing SMB file share.
+D. SMB and NFS shares must always use separate storage accounts.
 
 ## st-files-port
 
@@ -4066,66 +4066,66 @@ D. TCP 22.
 
 Topic: Storage › Azure file share provisioning and configuration.
 
-A new classic Azure file share must use Microsoft's current recommended billing model where supported and allow separate capacity, IOPS, and throughput provisioning. Which model fits?
+A new classic Azure file share must allow capacity, IOPS, and throughput to be provisioned independently. The chosen region supports Microsoft's currently recommended billing model for new classic shares. Which billing-model and storage-account-kind combination should you select?
 
 Select **1**. Difficulty: applied.
 
-A. Provisioned v2 in a suitable FileStorage account.
-B. Standard Blob Hot tier.
-C. StorageV2 pay-as-you-go.
-D. Provisioned v1 solely because all FileStorage accounts require it.
+A. Provisioned v2 in a FileStorage account.
+B. Provisioned v2 in a StorageV2 account.
+C. Pay-as-you-go in a StorageV2 account.
+D. Provisioned v1 in a FileStorage account.
 
 ## st-files-two-layers
 
 Topic: Storage › Azure Files identity-based SMB access.
 
-A user authenticates successfully to an Azure SMB file share and has Storage File Data SMB Share Contributor. A directory ACL denies the user access. What is the expected result?
+A user connects to an Azure Files SMB share with Kerberos and can read a file in its root directory. The user's only share-level role is Storage File Data SMB Share Contributor, and the assignment has propagated. Reading a restricted directory in the same session returns Access denied. Its effective Windows ACL explicitly denies this user read access. Which cause explains the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Access to that directory is denied.
-B. The Contributor assignment overrides every directory ACL.
-C. Azure automatically retries with the storage account key.
-D. The directory becomes anonymously accessible.
+A. The directory's Windows ACL blocks the requested read operation.
+B. The SMB Share Contributor role lacks permission to read files.
+C. Kerberos authentication failed for the user's current SMB session.
+D. The client cannot connect to the SMB endpoint on TCP port 445.
 
 ## st-files-share-role
 
 Topic: Storage › Azure Files identity-based SMB access.
 
-A group needs to read files through identity-based Azure Files SMB. Its directory ACLs already allow read. Which share-level role supplies the required read access?
+An Azure Files SMB share is configured for identity-based authentication. A synchronized group needs read-only access, and its Windows ACLs already permit reading. The group has no existing share-level role, and default share permissions are disabled. You must assign a role at this file share's scope without granting share-level write, delete, or ACL modification permissions. Which role should you assign?
 
 Select **1**. Difficulty: applied.
 
 A. Storage File Data SMB Share Reader.
-B. Storage Blob Data Reader.
-C. Reader on the storage account.
-D. Storage Blob Delegator.
+B. Storage File Data SMB Share Contributor.
+C. Reader.
+D. Storage File Data SMB Share Elevated Contributor.
 
 ## st-files-source-count
 
 Topic: Storage › Azure Files identity-based SMB access.
 
-A storage account uses AD DS for identity-based Azure Files SMB authentication. Can one share in that same account independently use Entra Domain Services as a second simultaneous identity source?
+For Azure Files SMB user authentication, at which scope do you configure the choice between AD DS and Microsoft Entra Domain Services?
 
 Select **1**. Difficulty: foundation.
 
-A. No; one identity source is configured per storage account.
-B. Yes; every share independently selects its identity source.
-C. Yes; adding an ACL switches the authentication provider.
-D. Yes; a stored access policy selects the provider.
+A. Storage account.
+B. Individual file share.
+C. Individual directory.
+D. Azure subscription.
 
 ## st-azcopy-one-way
 
 Topic: Storage › AzCopy transfers and synchronization.
 
-An AzCopy sync job uses a local directory as source and a Blob container as destination. A file is added only to the destination. Does that operation copy it back to the local source?
+A local directory contains only local.txt. A Blob container contains only remote.txt. AzCopy sync runs with that local directory as source, the container as destination, and --delete-destination=false. There are no filters, other files, or concurrent changes, and the job succeeds. Which final state should you expect?
 
-Select **1**. Difficulty: foundation.
+Select **1**. Difficulty: applied.
 
-A. No; sync follows the configured source-to-destination direction.
-B. Yes; every sync is bidirectional.
-C. Only if an account SAS is used.
-D. Only if the storage account uses ZRS.
+A. Local: local.txt only. Container: local.txt and remote.txt.
+B. Local: local.txt and remote.txt. Container: local.txt and remote.txt.
+C. Local: local.txt only. Container: local.txt only.
+D. Local: local.txt and remote.txt. Container: remote.txt only.
 
 ## st-azcopy-delete-destination
 
@@ -4144,40 +4144,40 @@ D. Reverse source and destination and enable deletion.
 
 Topic: Storage › AzCopy transfers and synchronization.
 
-A SAS-authenticated AzCopy job stops after some transfers. You retain the job plan, but the SAS expired. What is the appropriate recovery?
+An AzCopy local-to-Blob upload using only a destination SAS stops after some transfers. The SAS has expired, and the original job plan and ID are retained. You need to resume that original job's unfinished transfers without starting a new enumeration. Which recovery procedure meets this requirement?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Obtain a valid SAS and resume the job with its ID.
-B. Resume without credentials because plans permanently save SAS tokens.
-C. Delete all successfully copied data before retrying.
-D. Grant Azure Reader and reuse the expired SAS.
+A. Obtain a valid destination SAS and supply it when resuming the original job ID.
+B. Resume the original job ID without a SAS, relying on the token stored in its plan.
+C. Obtain a valid destination SAS and start a new copy command over the local directory.
+D. Clean the stored job plans, then obtain a valid SAS and resume the original job ID.
 
 ## st-explorer-data-only
 
 Topic: Storage › Storage Explorer connections and data management.
 
-A user has Storage Blob Data Reader on one container but cannot browse the subscription's storage accounts. How can Storage Explorer access that container without broad management permissions?
+A user has Storage Blob Data Reader on one private container and knows its URL, but has no management-layer permissions. Storage Explorer cannot browse the subscription's storage accounts. The network path is allowed. The user must read this container using the existing Entra identity without any new role grant or supplied account key. Which approach meets these constraints?
 
 Select **1**. Difficulty: applied.
 
-A. Attach the container URL using Microsoft Entra ID.
-B. Require Owner on the entire subscription.
-C. Make every blob anonymous.
-D. Rename the local connection to the subscription ID.
+A. Attach the container URL using Sign in using Microsoft Entra ID.
+B. Assign Reader on the storage account, then browse through the subscription.
+C. Attach the container URL using public anonymous access.
+D. Attach the storage account using its account name and access key.
 
 ## st-explorer-reader-data
 
 Topic: Storage › Storage Explorer connections and data management.
 
-Storage Explorer shows an account after a user receives Azure Reader, but Entra-authenticated Blob downloads still fail. Which permission should be checked?
+Storage Explorer can discover an account after a user receives Azure Reader. The user signs in to the correct tenant, but an Entra-authenticated download of an existing private blob is denied for insufficient data permissions. The network path is allowed. Which additional role at the blob's container scope supplies the missing read permission?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. A Blob data role at the container or an inherited scope.
-B. Permission to change account tags.
-C. Permission to create management-group policy definitions.
-D. Permission to create public DNS zones.
+A. Storage Blob Data Reader.
+B. Reader.
+C. Storage Blob Delegator.
+D. Storage Queue Data Reader.
 
 ## st-explorer-detach
 

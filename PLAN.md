@@ -55,6 +55,12 @@ version tags are not deployment requirements.
   requested on 2026-10-03. Keep its discoverable entrypoint in `.agents/skills`,
   document use without a separate plugin installation, and publish through a
   pull request. Merging still requires explicit approval.
+- Review and update every existing live question using the authoring skill,
+  authorized on 2026-10-03. Retain sound items, repair identified defects, and
+  preserve stable IDs with revision increments for substantive changes. Track
+  each topic and question in docs/reviews/question-bank-refresh/progress.json
+  and commit checkpoints so later sessions resume the first unfinished topic.
+  The separate collected-question inventory remains outside this task.
 
 ## Outcome
 

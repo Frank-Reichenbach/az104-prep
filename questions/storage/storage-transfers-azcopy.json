@@ -4,34 +4,34 @@
     {
       "id": "st-azcopy-one-way",
       "family": "st-azcopy-one-way",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.transfers.azcopy",
       "objectives": [
         "st-10"
       ],
-      "difficulty": "foundation",
-      "prompt": "An AzCopy sync job uses a local directory as source and a Blob container as destination. A file is added only to the destination. Does that operation copy it back to the local source?",
+      "difficulty": "applied",
+      "prompt": "A local directory contains only local.txt. A Blob container contains only remote.txt. AzCopy sync runs with that local directory as source, the container as destination, and --delete-destination=false. There are no filters, other files, or concurrent changes, and the job succeeds. Which final state should you expect?",
       "select": 1,
       "options": [
         {
           "id": "no",
-          "text": "No; sync follows the configured source-to-destination direction.",
-          "explanation": "It is not a bidirectional conflict-resolution service."
+          "text": "Local: local.txt only. Container: local.txt and remote.txt.",
+          "explanation": "The forward job uploads local.txt and preserves the destination-only remote.txt because deletion is disabled. One-way sync does not download remote.txt into the local source."
         },
         {
           "id": "yes",
-          "text": "Yes; every sync is bidirectional.",
-          "explanation": "The command has an explicit one-way direction."
+          "text": "Local: local.txt and remote.txt. Container: local.txt and remote.txt.",
+          "explanation": "This is a bidirectional merge. The configured job transfers from local source to Blob destination, so it does not add remote.txt to the source."
         },
         {
           "id": "sas",
-          "text": "Only if an account SAS is used.",
-          "explanation": "Credential type does not reverse synchronization direction."
+          "text": "Local: local.txt only. Container: local.txt only.",
+          "explanation": "That result removes the destination-only blob. The explicit --delete-destination=false setting preserves remote.txt."
         },
         {
           "id": "zrs",
-          "text": "Only if the storage account uses ZRS.",
-          "explanation": "Replication placement does not change AzCopy semantics."
+          "text": "Local: local.txt and remote.txt. Container: remote.txt only.",
+          "explanation": "This represents a Blob-to-local transfer while leaving the container unchanged. It reverses the source and destination specified in this job."
         }
       ],
       "correct": [
@@ -44,7 +44,7 @@
         "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-configure",
         "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-upload"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-azcopy-delete-destination",
@@ -89,39 +89,39 @@
         "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-configure",
         "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-upload"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-azcopy-resume",
       "family": "st-azcopy-resume",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.transfers.azcopy",
       "objectives": [
         "st-10"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A SAS-authenticated AzCopy job stops after some transfers. You retain the job plan, but the SAS expired. What is the appropriate recovery?",
+      "prompt": "An AzCopy local-to-Blob upload using only a destination SAS stops after some transfers. The SAS has expired, and the original job plan and ID are retained. You need to resume that original job's unfinished transfers without starting a new enumeration. Which recovery procedure meets this requirement?",
       "select": 1,
       "options": [
         {
           "id": "resume",
-          "text": "Obtain a valid SAS and resume the job with its ID.",
-          "explanation": "The plan identifies pending work; credentials must be valid again."
+          "text": "Obtain a valid destination SAS and supply it when resuming the original job ID.",
+          "explanation": "The retained plan identifies the original job's outstanding transfers. AzCopy does not persist SAS tokens in the plan, so resume must receive a valid destination SAS."
         },
         {
           "id": "cached",
-          "text": "Resume without credentials because plans permanently save SAS tokens.",
-          "explanation": "SAS tokens are not persisted in job plans."
+          "text": "Resume the original job ID without a SAS, relying on the token stored in its plan.",
+          "explanation": "SAS tokens are not persisted in job plans, and the expired token is unusable. The plan preserves transfer work, not usable SAS authorization."
         },
         {
           "id": "delete",
-          "text": "Delete all successfully copied data before retrying.",
-          "explanation": "Resuming does not require destroying completed transfers."
+          "text": "Obtain a valid destination SAS and start a new copy command over the local directory.",
+          "explanation": "A new copy can be a separate retry strategy, but it starts a new enumeration. It does not meet the requirement to resume the original job's preserved transfer plan."
         },
         {
           "id": "role",
-          "text": "Grant Azure Reader and reuse the expired SAS.",
-          "explanation": "Reader does not extend a signed token's expiry."
+          "text": "Clean the stored job plans, then obtain a valid SAS and resume the original job ID.",
+          "explanation": "Cleaning the job plans removes the plan needed to resume the original job. Fresh authorization cannot reconstruct the discarded original transfer list."
         }
       ],
       "correct": [
@@ -134,7 +134,7 @@
         "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-configure",
         "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-upload"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     }
   ]
 }

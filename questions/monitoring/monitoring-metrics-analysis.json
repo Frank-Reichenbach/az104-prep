@@ -4,34 +4,34 @@
     {
       "id": "mo-metric-peak",
       "family": "mo-metric-peak",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.metrics.analysis",
       "objectives": [
         "mo-01"
       ],
       "difficulty": "applied",
-      "prompt": "A supported CPU metric's 30-minute Average chart hides brief spikes. Which change helps examine peak values?",
+      "prompt": "A CPU-percentage metric supports Average and Maximum at one-minute granularity. A chart averages each 30-minute interval, masking short spikes. You must inspect the highest collected value in each minute of the incident window. Which chart configuration meets the goal?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Use Maximum with a smaller time grain.",
-          "explanation": "This exposes interval peaks with finer time resolution."
+          "text": "Maximum aggregation; one-minute time grain.",
+          "explanation": "Each point reports the highest collected value in its one-minute interval."
         },
         {
           "id": "b",
-          "text": "Use Count to measure peak CPU percentage.",
-          "explanation": "Count measures samples, not their largest CPU value."
+          "text": "Average aggregation; one-minute time grain.",
+          "explanation": "Finer intervals help localize changes, but averaging does not preserve the highest sample in each interval."
         },
         {
           "id": "c",
-          "text": "Use Sum and call it the maximum percentage.",
-          "explanation": "Sum and maximum have different meanings."
+          "text": "Maximum aggregation; 30-minute time grain.",
+          "explanation": "It exposes a peak for each 30-minute interval rather than the required per-minute peaks."
         },
         {
           "id": "d",
-          "text": "Change only the chart title.",
-          "explanation": "The title does not change aggregation."
+          "text": "Average aggregation; 30-minute time grain with a shorter displayed time range.",
+          "explanation": "A shorter displayed range does not change the explicitly retained aggregation or interval size."
         }
       ],
       "correct": [
@@ -42,39 +42,39 @@
         "https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/analyze-metrics",
         "https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-aggregation-explained"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-metric-split",
       "family": "mo-metric-split",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.metrics.analysis",
       "objectives": [
         "mo-01"
       ],
       "difficulty": "applied",
-      "prompt": "A metric supports an instance dimension. You need separate series for each worker rather than one combined average. What should you use?",
+      "prompt": "An application metric exposes an Instance dimension with four worker values. All four workers have data in the selected window. You need four separate worker series on one Metrics explorer chart, without excluding any worker. Which configuration meets the goal?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Only a longer time range.",
-          "explanation": "That changes the period rather than separates instances."
+          "text": "Filter Instance to one worker without applying splitting.",
+          "explanation": "This excludes three workers and does not display all four separate series."
         },
         {
           "id": "b",
-          "text": "Dimension splitting by instance.",
-          "explanation": "Splitting displays the dimension values as separate series."
+          "text": "Split by Instance and set the displayed-series limit to at least four.",
+          "explanation": "Splitting creates one series per dimension value; the limit must include all four workers."
         },
         {
           "id": "c",
-          "text": "A sum without dimensions.",
-          "explanation": "That combines rather than separates instance data."
+          "text": "Filter Instance to all four workers without applying splitting.",
+          "explanation": "The filter includes the workers but leaves their values combined into one series."
         },
         {
           "id": "d",
-          "text": "A resource lock.",
-          "explanation": "Locks do not control chart dimensions."
+          "text": "Split by Instance and set the displayed-series limit to one.",
+          "explanation": "Splitting is appropriate, but the one-series limit omits three required workers."
         }
       ],
       "correct": [
@@ -82,10 +82,9 @@
       ],
       "knowledge": "knowledge/monitoring/metrics/analysis.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/analyze-metrics",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-aggregation-explained"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/analyze-metrics"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-metric-count",
@@ -128,7 +127,7 @@
         "https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/analyze-metrics",
         "https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-aggregation-explained"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

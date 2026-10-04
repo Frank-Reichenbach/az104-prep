@@ -4,34 +4,34 @@
     {
       "id": "co-vm-private",
       "family": "co-vm-private",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.vms.creation",
       "objectives": [
         "co-06"
       ],
       "difficulty": "applied",
-      "prompt": "A Linux VM is created without a public IP in a subnet reachable only through a corporate VPN. How should an administrator establish SSH access?",
+      "prompt": "A running Linux VM has no public IP. Its subnet is reachable from a corporate VPN, and NSGs and the guest firewall permit SSH from VPN clients. The administrator has the matching private SSH key. The workstation is currently on an unrelated Internet connection with the VPN disconnected. Which action establishes the required SSH path without changing the VM network configuration?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Connect through the VPN and use the VM private IP with valid guest credentials.",
-          "explanation": "The VPN supplies the private network path; SSH still requires authentication."
+          "text": "Connect the workstation to the VPN, then SSH to the VM private IP using the key.",
+          "explanation": "The VPN supplies the private route; the matching key authenticates the guest session."
         },
         {
           "id": "b",
-          "text": "Use the private IP directly from an unrelated Internet connection.",
-          "explanation": "Private addresses are not publicly routed to the VM."
+          "text": "Keep the VPN disconnected and SSH to the VM private IP using the key.",
+          "explanation": "Valid credentials cannot supply the missing private network path from this Internet connection."
         },
         {
           "id": "c",
-          "text": "Assign Virtual Machine Contributor and SSH through ARM automatically.",
-          "explanation": "Resource management rights do not create an SSH network path."
+          "text": "Assign Virtual Machine Contributor, then SSH to the private IP with the VPN disconnected.",
+          "explanation": "The management role creates no private network path; the stated missing connection remains."
         },
         {
           "id": "d",
-          "text": "Add an NSG allow rule and assume it assigns a public address.",
-          "explanation": "An NSG filters traffic; it does not provide a public IP or route."
+          "text": "Allow the workstation public IP in the NSG, then SSH to the private IP with the VPN disconnected.",
+          "explanation": "An NSG permission filters traffic but does not provide a route to this private IP. The path still requires the VPN."
         }
       ],
       "correct": [
@@ -39,43 +39,43 @@
       ],
       "knowledge": "knowledge/compute/virtual-machines/creation.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli",
-        "https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing",
-        "https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch"
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux-vm-connect",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/compute",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-vm-stopped",
       "family": "co-vm-stopped",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.vms.creation",
       "objectives": [
         "co-06"
       ],
       "difficulty": "foundation",
-      "prompt": "A guest operating system is shut down, and Azure reports Stopped (allocated). What stops VM compute allocation charges?",
+      "prompt": "A VM is Stopped (allocated) after a guest shutdown. The administrator must stop usage-based compute allocation charges while retaining its managed disks for a later restart. Which action meets the requirement?",
       "select": 1,
       "options": [
         {
           "id": "a",
           "text": "Deallocate the VM through Azure.",
-          "explanation": "Deallocation releases the allocated compute; retained resources can still cost money."
+          "explanation": "Deallocation releases compute allocation without requiring managed-disk deletion. Retained disks can still incur charges."
         },
         {
           "id": "b",
-          "text": "Leave it in the current state because the guest is off.",
-          "explanation": "Stopped but allocated VMs retain compute allocation."
+          "text": "Leave the VM in Stopped (allocated).",
+          "explanation": "The guest is off but host compute remains allocated and billed."
         },
         {
           "id": "c",
-          "text": "Remove its public IP only.",
-          "explanation": "Public IP removal does not deallocate the VM."
+          "text": "Restart the VM through Azure.",
+          "explanation": "A running VM remains allocated and billed; restarting does not meet the spending requirement."
         },
         {
           "id": "d",
-          "text": "Disable boot diagnostics only.",
-          "explanation": "Diagnostics settings do not determine compute allocation."
+          "text": "Start the VM, then shut down only from inside the guest.",
+          "explanation": "Guest shutdown returns it to the allocated stopped state, which still incurs instance usage charges."
         }
       ],
       "correct": [
@@ -83,43 +83,41 @@
       ],
       "knowledge": "knowledge/compute/virtual-machines/creation.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli",
-        "https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing",
-        "https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch"
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-vm-trusted",
       "family": "co-vm-trusted",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.vms.creation",
       "objectives": [
         "co-06"
       ],
       "difficulty": "foundation",
-      "prompt": "Which TWO features are associated with Trusted Launch for a supported Generation 2 Azure VM?",
+      "prompt": "Which TWO Trusted Launch settings provide boot-component signature checking and a virtual trusted platform module on a supported Generation 2 Azure VM? Evaluate each feature individually.",
       "select": 2,
       "options": [
         {
           "id": "a",
           "text": "Secure Boot",
-          "explanation": "Secure Boot helps prevent unauthorized boot components."
+          "explanation": "Secure Boot verifies signatures in the boot chain, helping prevent unauthorized boot components."
         },
         {
           "id": "b",
           "text": "Virtual TPM",
-          "explanation": "vTPM supports measured boot and related integrity capabilities."
+          "explanation": "vTPM provides the virtual trusted platform module used for measured boot and integrity capabilities."
         },
         {
           "id": "c",
-          "text": "Automatic replication of the VM into another region",
-          "explanation": "Trusted Launch is a security feature, not regional disaster recovery."
+          "text": "Encryption at host",
+          "explanation": "Host encryption protects VM data at rest; it does not provide these Trusted Launch boot-verification or TPM settings."
         },
         {
           "id": "d",
-          "text": "Automatic creation of a guest application backup",
-          "explanation": "Boot security does not create a backup policy."
+          "text": "Boot diagnostics",
+          "explanation": "Boot diagnostics captures startup troubleshooting information; it does not provide signature enforcement or a virtual TPM."
         }
       ],
       "correct": [
@@ -128,11 +126,11 @@
       ],
       "knowledge": "knowledge/compute/virtual-machines/creation.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli",
-        "https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing",
-        "https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch"
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/boot-diagnostics"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

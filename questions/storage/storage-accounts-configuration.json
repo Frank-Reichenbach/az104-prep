@@ -43,39 +43,39 @@
         "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create",
         "https://learn.microsoft.com/en-us/azure/storage/common/storage-require-secure-transfer"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-account-name-scope",
       "family": "st-account-name-scope",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.accounts.configuration",
       "objectives": [
         "st-06"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A valid storage account name is already used by another customer in another region. Your deployment fails. What must change?",
+      "prompt": "You deploy a storage account in Azure public cloud. Its name meets the length and character rules, but creation returns StorageAccountAlreadyTaken. Another customer uses this name in a different region. Which change resolves this naming conflict?",
       "select": 1,
       "options": [
         {
           "id": "name",
-          "text": "Choose a different globally unique account name.",
-          "explanation": "The storage namespace is not scoped only to your subscription or region."
+          "text": "Use a different, globally unique storage account name.",
+          "explanation": "Storage account names must be unique within Azure. A different available name resolves the conflict; the existing name is unavailable regardless of this deployment's resource group, subscription, or region."
         },
         {
           "id": "group",
-          "text": "Move the request to a different resource group but keep the name.",
-          "explanation": "A resource group change does not resolve global uniqueness."
+          "text": "Keep the name and deploy into a different resource group.",
+          "explanation": "Resource-group scope distinguishes many Azure resources, but storage account names have a global namespace. Another resource group does not make this name available."
         },
         {
           "id": "tag",
-          "text": "Add a unique Environment tag.",
-          "explanation": "Tags do not change the service namespace."
+          "text": "Keep the name and deploy into a different subscription.",
+          "explanation": "The namespace is not limited to a subscription. Moving the request into another subscription still conflicts with the existing storage account name."
         },
         {
           "id": "tier",
-          "text": "Select Cool as the default Blob tier.",
-          "explanation": "An access tier does not affect account-name availability."
+          "text": "Keep the name and deploy into a different Azure region.",
+          "explanation": "Storage account name uniqueness is not regional. Selecting another region still uses the same unavailable global name."
         }
       ],
       "correct": [
@@ -87,12 +87,12 @@
         "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create",
         "https://learn.microsoft.com/en-us/azure/storage/common/storage-require-secure-transfer"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "st-account-transfer-tls",
       "family": "st-account-transfer-tls",
-      "revision": 1,
+      "revision": 2,
       "topic": "storage.accounts.configuration",
       "objectives": [
         "st-06"
@@ -104,22 +104,22 @@
         {
           "id": "https",
           "text": "Secure transfer required.",
-          "explanation": "This rejects insecure HTTP requests."
+          "explanation": "For REST clients, secure transfer required rejects HTTP and requires HTTPS. This supplies encrypted transport; the separate minimum TLS setting governs accepted protocol versions."
         },
         {
           "id": "tls",
           "text": "Minimum TLS version.",
-          "explanation": "This controls the minimum TLS protocol accepted."
+          "explanation": "This storage account setting establishes the lowest permitted TLS protocol version for requests. Requiring HTTPS alone does not configure that version threshold."
         },
         {
           "id": "cool",
-          "text": "Default Blob access tier.",
-          "explanation": "A storage tier is unrelated to transport encryption."
+          "text": "Infrastructure encryption.",
+          "explanation": "Infrastructure encryption adds encryption of stored data at rest. It does not require HTTPS or establish the minimum TLS version for REST requests."
         },
         {
           "id": "lrs",
-          "text": "Locally redundant storage.",
-          "explanation": "Replication placement does not set TLS requirements."
+          "text": "Allow storage account key access.",
+          "explanation": "This controls whether Shared Key authorization is permitted. It changes the authorization method, rather than the transport encryption or TLS protocol threshold."
         }
       ],
       "correct": [
@@ -128,11 +128,12 @@
       ],
       "knowledge": "knowledge/storage/accounts/configuration.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview",
-        "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create",
-        "https://learn.microsoft.com/en-us/azure/storage/common/storage-require-secure-transfer"
+        "https://learn.microsoft.com/en-us/azure/storage/common/storage-require-secure-transfer",
+        "https://learn.microsoft.com/en-us/azure/storage/common/transport-layer-security-configure-minimum-version",
+        "https://learn.microsoft.com/en-us/azure/storage/common/infrastructure-encryption-enable",
+        "https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     }
   ]
 }

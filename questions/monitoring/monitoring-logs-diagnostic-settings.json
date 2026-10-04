@@ -4,34 +4,34 @@
     {
       "id": "mo-log-default",
       "family": "mo-log-default",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.logs.diagnostic-settings",
       "objectives": [
         "mo-02"
       ],
       "difficulty": "foundation",
-      "prompt": "A resource has platform metrics visible but no resource-operation logs in your workspace. No diagnostic setting exists. What should you configure?",
+      "prompt": "A resource exposes a supported audit log category and has platform metrics visible. You need its future audit operations in workspace ws-audit. Both ws-audit and ws-metrics exist and you have the required configuration access. Which diagnostic setting collects the requested data at the required destination?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "A diagnostic setting with the required resource log categories and workspace destination.",
-          "explanation": "Resource logs generally require explicit collection/export."
+          "text": "Enable the resource audit log category; destination ws-audit.",
+          "explanation": "Resource logs require collection of the relevant category and export to the intended workspace."
         },
         {
           "id": "b",
-          "text": "Only change the metric chart's color.",
-          "explanation": "Chart appearance does not collect logs."
+          "text": "Enable only AllMetrics; destination ws-audit.",
+          "explanation": "This exports numeric platform metrics rather than the required resource audit log records."
         },
         {
           "id": "c",
-          "text": "Only add a resource tag named LogAnalytics.",
-          "explanation": "Tags do not configure telemetry export."
+          "text": "Enable the resource audit log category; destination ws-metrics.",
+          "explanation": "The data category is correct, but the logs are sent to the wrong workspace."
         },
         {
           "id": "d",
-          "text": "Only create a DNS alias for the workspace.",
-          "explanation": "DNS aliases do not configure the resource's logging path."
+          "text": "Export only the subscription Activity Log; destination ws-audit.",
+          "explanation": "Management events are a different source from the specified resource audit operations."
         }
       ],
       "correct": [
@@ -40,42 +40,41 @@
       "knowledge": "knowledge/monitoring/logs/diagnostic-settings.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/diagnostic-settings",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/resource-logs",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/resource-logs"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-log-two-workspaces",
       "family": "mo-log-two-workspaces",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.logs.diagnostic-settings",
       "objectives": [
         "mo-02"
       ],
       "difficulty": "applied",
-      "prompt": "You need the same resource logs sent to two Log Analytics workspaces. Which diagnostic-settings design is supported?",
+      "prompt": "A resource must export the same supported audit category to existing workspaces ws-operations and ws-security. No diagnostic settings exist and required access is available. Use direct diagnostic-settings export. Which design sends each future audit event to both workspaces?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Two workspace destinations inside one setting.",
-          "explanation": "A setting supports one destination of each type."
+          "text": "One setting containing both workspaces as Log Analytics destinations.",
+          "explanation": "One setting can contain only one destination of each type, including a single Log Analytics workspace."
         },
         {
           "id": "b",
-          "text": "Two diagnostic settings, each naming one workspace.",
-          "explanation": "Separate settings support multiple destinations of the same type."
+          "text": "Two settings enabling the audit category, each targeting one of the workspaces.",
+          "explanation": "Separate settings allow destinations of the same type; both collect the required category."
         },
         {
           "id": "c",
-          "text": "One setting with a comma-separated workspace ID.",
-          "explanation": "The destination field does not represent multiple workspace IDs."
+          "text": "One setting targeting ws-operations, then edit that same setting to target ws-security.",
+          "explanation": "Replacing the destination does not preserve simultaneous export to ws-operations."
         },
         {
           "id": "d",
-          "text": "An NSG rule listing both workspace names.",
-          "explanation": "Filtering rules do not configure log export."
+          "text": "Two settings: audit logs to ws-operations, and only AllMetrics to ws-security.",
+          "explanation": "The second workspace receives metrics rather than the required copy of each audit event."
         }
       ],
       "correct": [
@@ -83,43 +82,41 @@
       ],
       "knowledge": "knowledge/monitoring/logs/diagnostic-settings.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/diagnostic-settings",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/resource-logs",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/diagnostic-settings"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-log-guest",
       "family": "mo-log-guest",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.logs.diagnostic-settings",
       "objectives": [
         "mo-02"
       ],
       "difficulty": "applied",
-      "prompt": "You need Linux guest Syslog from Azure VMs. Does a resource diagnostic setting alone select their Syslog facilities and severities?",
+      "prompt": "You need Linux guest Syslog messages from supported Azure VMs in a Log Analytics workspace. Azure Monitor Agent is installed and its destination connectivity works. Select facilities and severity levels and collect future guest messages for queries. Which configuration supplies that collection path?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Yes; AllMetrics contains all Syslog messages.",
-          "explanation": "Metrics are numeric telemetry rather than Syslog messages."
+          "text": "A VM resource diagnostic setting exporting only AllMetrics to the workspace.",
+          "explanation": "AllMetrics exports platform measurements; it does not select guest Syslog facilities or severities."
         },
         {
           "id": "b",
-          "text": "Yes; the Activity Log contains every guest message.",
-          "explanation": "The Activity Log records management events."
+          "text": "A subscription diagnostic setting exporting only Activity Log events to the workspace.",
+          "explanation": "Activity Log export collects management events, not guest Syslog messages."
         },
         {
           "id": "c",
-          "text": "No; configure a supported guest-agent/data collection rule path.",
-          "explanation": "Guest log collection differs from resource diagnostics."
+          "text": "A DCR with a Linux Syslog source and workspace destination, associated with the VMs.",
+          "explanation": "The DCR selects Syslog facilities and levels and applies collection to the associated agent-equipped VMs."
         },
         {
           "id": "d",
-          "text": "Yes; a resource tag sets Syslog severity.",
-          "explanation": "Tags do not configure the guest collector."
+          "text": "A guest Syslog daemon configuration writing the selected messages only to a local file.",
+          "explanation": "Local logging alone does not deliver messages to the required workspace."
         }
       ],
       "correct": [
@@ -128,10 +125,9 @@
       "knowledge": "knowledge/monitoring/logs/diagnostic-settings.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/diagnostic-settings",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/resource-logs",
         "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

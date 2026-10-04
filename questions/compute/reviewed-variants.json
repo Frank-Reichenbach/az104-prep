@@ -42,39 +42,39 @@
         "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
         "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-web-integration-subnet-variant",
       "family": "co-web-subnet",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.networking",
       "objectives": [
         "co-23"
       ],
       "difficulty": "applied",
-      "prompt": "An App Service private endpoint already occupies subnet inbound. You now add regional VNet integration to the app. Which subnet arrangement is supported?",
+      "prompt": "A Standard App Service app already has an inbound private endpoint in subnet-inbound. You now add regional VNet integration without moving that endpoint or changing existing delegations. Each candidate has sufficient addresses and permissions. Which subnet arrangement supports integration for the app?",
       "select": 1,
       "options": [
         {
           "id": "separate",
-          "text": "Use a different suitable subnet dedicated and delegated for integration.",
-          "explanation": "The integration subnet cannot be the same subnet as the app's private endpoint."
+          "text": "Use a separate dedicated same-region subnet delegated to Microsoft.Web/serverFarms.",
+          "explanation": "Regional integration requires a suitable same-region subnet delegated to Microsoft.Web/serverFarms, separate from the existing endpoint subnet."
         },
         {
           "id": "same",
-          "text": "Reuse inbound without changing anything because both features use private IPs.",
-          "explanation": "Private addressing does not remove the requirement for different subnets."
+          "text": "Reuse subnet-inbound while retaining its private endpoint.",
+          "explanation": "The integration subnet cannot contain the app private endpoint; private addressing does not remove the separate-subnet requirement."
         },
         {
           "id": "public",
-          "text": "Replace the integration subnet with a public DNS A record.",
-          "explanation": "A DNS record does not provide the outbound integration network."
+          "text": "Use a separate same-region subnet delegated to Microsoft.ContainerInstance/containerGroups.",
+          "explanation": "The unchanged container-group delegation is not the Microsoft.Web/serverFarms delegation required for integration."
         },
         {
           "id": "nic",
-          "text": "Attach the app's private endpoint NIC as its integration interface.",
-          "explanation": "The inbound private endpoint NIC is not the integration interface."
+          "text": "Use a separate subnet in a different region delegated to Microsoft.Web/serverFarms.",
+          "explanation": "Correct delegation alone is insufficient: regional VNet integration needs a VNet in the app region."
         }
       ],
       "correct": [
@@ -83,9 +83,10 @@
       "knowledge": "knowledge/compute/app-service/networking.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
-        "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint"
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/subnet-delegation-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

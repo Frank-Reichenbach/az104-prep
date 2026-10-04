@@ -44,39 +44,39 @@
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli",
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-scope-inherited-remove",
       "family": "id-scope-inherited-remove",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.rbac.assignments",
       "objectives": [
         "id-07"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A user's Contributor assignment is inherited from the subscription. You want to remove that grant. Where must the assignment itself be removed?",
+      "prompt": "A user has a direct Contributor role assignment at subscription scope. On vm-app in rg-app, IAM shows that assignment as inherited and does not allow its removal at the VM scope. An authorized administrator must revoke that specific assignment across the subscription. Which action should the administrator take?",
       "select": 1,
       "options": [
         {
           "id": "parent",
-          "text": "At the subscription where it was created.",
-          "explanation": "The assignment is defined at its parent scope."
+          "text": "Remove the Contributor assignment in the subscription's IAM page.",
+          "explanation": "The assignment was created at subscription scope and must be removed there."
         },
         {
           "id": "child",
-          "text": "Only from one child VM's IAM page as a local assignment.",
-          "explanation": "A parent grant is not a separate editable child assignment."
+          "text": "Remove the inherited Contributor entry as a local assignment in vm-app's IAM page.",
+          "explanation": "Inheritance does not create a separate local assignment that can be removed at the VM."
         },
         {
           "id": "reader",
-          "text": "Add Reader on the VM to cancel Contributor.",
-          "explanation": "A weaker grant does not subtract a stronger inherited grant."
+          "text": "Add Reader for the user on vm-app.",
+          "explanation": "An additional Reader grant does not subtract the inherited Contributor grant."
         },
         {
           "id": "tag",
-          "text": "Delete the VM's owner tag.",
-          "explanation": "Tags do not define Azure RBAC assignments."
+          "text": "Remove a Reader assignment for the user on rg-app.",
+          "explanation": "Removing a different child assignment does not revoke the specified subscription Contributor assignment."
         }
       ],
       "correct": [
@@ -84,12 +84,11 @@
       ],
       "knowledge": "knowledge/identity/rbac/assignments-and-scopes.md",
       "sources": [
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-remove",
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview",
-        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal",
-        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli",
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-scope-triplet",
@@ -134,7 +133,7 @@
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli",
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

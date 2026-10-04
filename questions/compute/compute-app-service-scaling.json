@@ -43,39 +43,39 @@
         "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling",
         "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-best-practices"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-web-schedule",
       "family": "co-web-schedule",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.scaling",
       "objectives": [
         "co-18"
       ],
       "difficulty": "applied",
-      "prompt": "An App Service plan must run more instances at 08:00 each weekday based on a schedule. Which scaling mechanism should be used?",
+      "prompt": "A Standard App Service plan normally runs two instances. It must run four instances from 08:00 to 18:00 every Monday through Friday, using UTC, and two at other times regardless of CPU demand. Which Azure Monitor autoscale configuration implements this recurring capacity schedule?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Azure Monitor autoscale with a scheduled profile.",
-          "explanation": "Autoscale supports schedules for plan capacity."
+          "text": "Use weekday 08:00 profiles fixed at four instances and weekday 18:00 profiles fixed at two instances.",
+          "explanation": "Recurring profiles switch capacity at the specified times. Setting each profile minimum, default, and maximum to its required count fixes four during the workday and two after the evening switch, including the weekend."
         },
         {
           "id": "b",
-          "text": "App Service automatic scaling based only on HTTP traffic.",
-          "explanation": "HTTP automatic scaling does not express the requested time-based schedule."
+          "text": "Use weekday 08:00 profiles fixed at two instances and weekday 18:00 profiles fixed at four instances.",
+          "explanation": "These profiles reverse the required capacity: two during the workday and four overnight."
         },
         {
           "id": "c",
-          "text": "A deployment-slot swap at 08:00.",
-          "explanation": "Swapping code slots does not define scheduled worker capacity."
+          "text": "Use daily 08:00 profiles fixed at four instances and daily 18:00 profiles fixed at two instances.",
+          "explanation": "Daily recurrence also allocates four instances during weekend days, when the requirement is two."
         },
         {
           "id": "d",
-          "text": "A higher SKU without any scheduled scaling configuration.",
-          "explanation": "Changing tier does not implement the requested daily instance schedule."
+          "text": "Use weekday 08:00 profiles fixed at four instances and weekday 18:00 profiles also fixed at four instances.",
+          "explanation": "The evening profile does not restore two instances; it retains four outside the required workday."
         }
       ],
       "correct": [
@@ -83,43 +83,42 @@
       ],
       "knowledge": "knowledge/compute/app-service/scaling.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up",
         "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-best-practices"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-common-scale-patterns"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-web-autolimits",
       "family": "co-web-autolimits",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.scaling",
       "objectives": [
         "co-18"
       ],
       "difficulty": "applied",
-      "prompt": "You evaluate App Service automatic HTTP scaling. Which TWO points belong in the cost and compatibility review?",
+      "prompt": "A Premium v3 web app uses App Service automatic HTTP scaling. Five always-ready instances are serving requests, and one additional prewarmed instance is allocated as a buffer. The app also has a staging slot used for load testing. Which TWO statements are correct about cost and scaling support? Select two individual statements.",
       "select": 2,
       "options": [
         {
           "id": "a",
-          "text": "Prewarmed instances are billable.",
-          "explanation": "Automatic scaling reserves a buffer whose instance time is charged."
+          "text": "The allocated prewarmed instance is billable while it is held as a buffer.",
+          "explanation": "Allocated prewarmed instances are billed even before they serve application requests; the scenario confirms that this buffer exists."
         },
         {
           "id": "b",
-          "text": "Deployment-slot traffic is unsupported for this scaling feature.",
-          "explanation": "The documented automatic scaling feature does not scale based on slot traffic."
+          "text": "The staging-slot traffic is unsupported as input for this automatic scaling feature.",
+          "explanation": "Automatic HTTP scaling does not support deployment-slot traffic, so that load test cannot be treated as supported production scaling input."
         },
         {
           "id": "c",
-          "text": "It is the same configuration as Azure Monitor schedule rules.",
-          "explanation": "Automatic HTTP scaling and Azure Monitor autoscale are distinct."
+          "text": "The prewarmed instance becomes billable only after it starts serving application requests.",
+          "explanation": "Billing begins when the prewarmed instance is allocated, not when it becomes an active request-serving worker."
         },
         {
           "id": "d",
-          "text": "It provides paid Premium features on Free plans.",
-          "explanation": "The feature requires supported Premium tiers."
+          "text": "The staging slot has the same supported automatic HTTP scaling behavior as the production app.",
+          "explanation": "The feature excludes deployment-slot traffic; production-app support does not extend it to the slot."
         }
       ],
       "correct": [
@@ -128,11 +127,9 @@
       ],
       "knowledge": "knowledge/compute/app-service/scaling.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up",
-        "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-best-practices"
+        "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

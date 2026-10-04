@@ -44,7 +44,7 @@
         "https://learn.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal",
         "https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-route-specific-variant",
@@ -87,7 +87,7 @@
         "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview",
         "https://learn.microsoft.com/en-us/azure/virtual-network/manage-route-table"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

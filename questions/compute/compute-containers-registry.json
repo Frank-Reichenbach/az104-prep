@@ -4,34 +4,34 @@
     {
       "id": "co-acr-abac",
       "family": "co-acr-abac",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.containers.registry",
       "objectives": [
         "co-13"
       ],
       "difficulty": "applied",
-      "prompt": "An ACR registry uses RBAC Registry + ABAC Repository Permissions. A workload must pull an image from an allowed repository but has only AcrPull. What should be changed?",
+      "prompt": "An ACR registry uses RBAC Registry + ABAC Repository Permissions. A workload with only AcrPull cannot pull the known repository apps/web. Connectivity and authentication succeed. It must read that repository without permission to push, delete, or list every repository. Which role configuration addresses the authorization gap?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Assign Container Registry Repository Reader with any condition covering the repository.",
-          "explanation": "ABAC-enabled registries use the repository roles rather than legacy AcrPull."
+          "text": "Container Registry Repository Reader with a condition covering apps/web.",
+          "explanation": "Repository Reader grants image read/pull in ABAC mode, and the condition limits repository access without adding catalog-listing or write permissions."
         },
         {
           "id": "b",
-          "text": "Keep AcrPull and only refresh the token indefinitely.",
-          "explanation": "A token refresh cannot make an unhonored role grant access."
+          "text": "AcrPull reassigned at the registry scope.",
+          "explanation": "Legacy AcrPull is not honored in this registry mode; reassigning it does not grant repository pull access."
         },
         {
           "id": "c",
-          "text": "Assign only Container Registry Repository Catalog Lister.",
-          "explanation": "Listing repository names is not permission to pull their images."
+          "text": "Container Registry Repository Catalog Lister only.",
+          "explanation": "Catalog listing exposes repository names; it does not grant image pull and exceeds the stated listing requirement."
         },
         {
           "id": "d",
-          "text": "Assign only Reader on the registry resource.",
-          "explanation": "Control-plane read does not grant repository image access in ABAC mode."
+          "text": "Reader on the registry resource only.",
+          "explanation": "Control-plane Reader does not authorize repository image access in this mode."
         }
       ],
       "correct": [
@@ -39,11 +39,9 @@
       ],
       "knowledge": "knowledge/compute/containers/registry.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions",
-        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices",
-        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication"
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-acr-digest",
@@ -87,39 +85,39 @@
         "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices",
         "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-acr-identity",
       "family": "co-acr-identity",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.containers.registry",
       "objectives": [
         "co-13"
       ],
       "difficulty": "applied",
-      "prompt": "A supported Azure service must pull private ACR images without storing a shared registry password. Which approach fits?",
+      "prompt": "An App Service app must pull a private image from an ACR registry using RBAC Registry Permissions mode. The app has a system-assigned managed identity and network access to the registry, which accepts ARM-audience tokens. It must pull without storing a registry password or granting push permission. Which configuration meets the requirements?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Use its managed identity with the appropriate image pull role for the registry mode.",
-          "explanation": "Managed identity authentication avoids a shared password and still requires authorization."
+          "text": "Configure managed-identity image pulls and grant the app identity AcrPull on the registry.",
+          "explanation": "App Service supports managed-identity pulls. AcrPull authorizes read/pull in the stated registry mode without granting push."
         },
         {
           "id": "b",
-          "text": "Enable the registry admin account and embed its password in the image.",
-          "explanation": "This stores a shared secret and exposes it in the artifact."
+          "text": "Configure managed-identity image pulls and grant the app identity Reader on the registry.",
+          "explanation": "Control-plane Reader does not supply the image pull permission needed by the app."
         },
         {
           "id": "c",
-          "text": "Assign only a display name to the managed identity without roles.",
-          "explanation": "An identity still requires permission to pull the repository."
+          "text": "Configure registry admin credentials as the app image-pull credentials.",
+          "explanation": "The admin account uses a shared registry password, which the requirement excludes."
         },
         {
           "id": "d",
-          "text": "Give the registry a public endpoint and assume images become anonymous.",
-          "explanation": "Network reachability does not provide repository authorization."
+          "text": "Configure managed-identity image pulls and grant the app identity AcrPush on the registry.",
+          "explanation": "AcrPush includes push permission; that exceeds the stated pull-only requirement."
         }
       ],
       "correct": [
@@ -127,11 +125,10 @@
       ],
       "knowledge": "knowledge/compute/containers/registry.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions",
-        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices",
-        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication"
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-custom-container",
+        "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-built-in-roles-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

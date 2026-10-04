@@ -4,34 +4,34 @@
     {
       "id": "id-license-nested",
       "family": "id-license-nested",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.users.licenses",
       "objectives": [
         "id-03"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A product is assigned to Entra group Parent. A user belongs only to Child, which is nested in Parent, and receives no license. What explains this?",
+      "prompt": "A product license is assigned to the assigned-membership security group Parent. User1 is a direct member of Child, and Child is a member of Parent. Direct user members of Parent receive the product after processing completes, but User1 does not. Seats are available and User1 has a valid usage location. What explains the difference?",
       "select": 1,
       "options": [
         {
           "id": "direct",
-          "text": "Group-based licensing does not process users only through nested groups.",
-          "explanation": "Assign through a group containing the user directly."
+          "text": "Group-based licensing processes direct user members rather than nested user membership.",
+          "explanation": "User1 is reachable only through Child. Nested membership does not qualify for the license assigned to Parent."
         },
         {
           "id": "owner",
-          "text": "Only Parent's owners can receive its product.",
-          "explanation": "Licensing is not restricted to group owners."
+          "text": "Group-based licensing processes group owners rather than group members.",
+          "explanation": "The product is assigned to direct user members. Ownership is not the membership path used here."
         },
         {
           "id": "azure",
-          "text": "The user must first become Azure subscription Owner.",
-          "explanation": "Azure resource administration is not a licensing prerequisite."
+          "text": "Group-based licensing has stopped because the product has no available seats.",
+          "explanation": "Available seats are explicitly confirmed. Capacity cannot explain the difference."
         },
         {
           "id": "name",
-          "text": "Parent and Child must have identical names.",
-          "explanation": "Matching names do not change membership-processing support."
+          "text": "Group-based licensing is still processing all direct members of Parent.",
+          "explanation": "Processing has completed and direct members received the product. Waiting cannot make nested membership eligible."
         }
       ],
       "correct": [
@@ -39,43 +39,41 @@
       ],
       "knowledge": "knowledge/identity/users/licenses.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/entra/fundamentals/license-users-groups",
-        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-group-advanced",
-        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-powershell-graph-examples"
+        "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-group-licenses?view=o365-worldwide"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "id-license-retained",
       "family": "id-license-retained",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.users.licenses",
       "objectives": [
         "id-03"
       ],
       "difficulty": "applied",
-      "prompt": "A user receives a product directly and through a licensing group. The group assignment is removed, but the direct assignment remains. Why can the user retain the product?",
+      "prompt": "User1 has the same product license assigned directly and through Group1. An administrator removes the product from Group1 and confirms processing is complete. The direct assignment is still active, and there are no other assignment paths. Which state should the administrator expect for User1?",
       "select": 1,
       "options": [
         {
           "id": "path",
-          "text": "The direct assignment is still an effective licensing path.",
-          "explanation": "Removing one source does not remove the other."
+          "text": "The product remains assigned through the direct assignment.",
+          "explanation": "The active direct assignment remains a source of the product after the group path is removed."
         },
         {
           "id": "forever",
-          "text": "Licenses become permanent after first sign-in.",
-          "explanation": "Assignments can be removed; they are not permanent grants."
+          "text": "The product is unassigned because removing any source removes all sources.",
+          "explanation": "The group and direct assignments are separate paths. The direct path remains active."
         },
         {
           "id": "reader",
-          "text": "Azure Reader automatically reassigns the product.",
-          "explanation": "Azure resource roles do not supply this product license."
+          "text": "The product remains assigned through Group1 because direct assignments take precedence.",
+          "explanation": "The group path was removed. A direct assignment does not preserve a removed group assignment."
         },
         {
           "id": "owner",
-          "text": "Any group ownership supplies all tenant licenses.",
-          "explanation": "Ownership does not provide universal product entitlement."
+          "text": "The direct assignment is converted into an assignment inherited from Group1.",
+          "explanation": "Removing the group path does not convert the remaining direct path into group inheritance."
         }
       ],
       "correct": [
@@ -83,43 +81,42 @@
       ],
       "knowledge": "knowledge/identity/users/licenses.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/entra/fundamentals/license-users-groups",
-        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-group-advanced",
+        "https://learn.microsoft.com/en-us/graph/api/resources/licenseassignmentstate?view=graph-rest-1.0",
         "https://learn.microsoft.com/en-us/entra/identity/users/licensing-powershell-graph-examples"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     },
     {
       "id": "id-license-location",
       "family": "id-license-location",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.users.licenses",
       "objectives": [
         "id-03"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A license assignment reports an invalid usage location despite available seats. What should an administrator correct?",
+      "prompt": "A new user works in Germany, where the selected product is available. Group license processing reports a usage-location error despite available seats. The user profile contains country = Germany and usageLocation = US. Which user property should an administrator correct to match the verified place of service use before reprocessing?",
       "select": 1,
       "options": [
         {
           "id": "usage",
-          "text": "The user's usage location based on where the service is used.",
-          "explanation": "Product availability is evaluated using this licensing property."
+          "text": "Set usageLocation to DE.",
+          "explanation": "Licensing checks service availability using usageLocation. DE represents the verified location in this scenario."
         },
         {
           "id": "tag",
-          "text": "The user's office street address only.",
-          "explanation": "The address field is distinct from the usage-location licensing property."
+          "text": "Set country to DE.",
+          "explanation": "The profile country field is separate from usageLocation. Changing it leaves the licensing property incorrect."
         },
         {
           "id": "display",
-          "text": "The user's preferred language only.",
-          "explanation": "Interface language does not determine the usage location used for product availability."
+          "text": "Set preferredLanguage to de-DE.",
+          "explanation": "Preferred language controls language preferences. It does not replace the licensing location."
         },
         {
           "id": "role",
-          "text": "Assign Global Administrator to the user.",
-          "explanation": "Extra privilege does not correct invalid licensing data."
+          "text": "Set officeLocation to Germany.",
+          "explanation": "Office location describes the workplace. It does not correct usageLocation."
         }
       ],
       "correct": [
@@ -127,11 +124,10 @@
       ],
       "knowledge": "knowledge/identity/users/licenses.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/entra/fundamentals/license-users-groups",
-        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-group-advanced",
-        "https://learn.microsoft.com/en-us/entra/identity/users/licensing-powershell-graph-examples"
+        "https://learn.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0",
+        "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-group-licenses?view=o365-worldwide"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-03"
     }
   ]
 }

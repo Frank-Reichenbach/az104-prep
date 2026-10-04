@@ -4,7 +4,7 @@
     {
       "id": "mo-replication-cache",
       "family": "mo-replication-cache",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.recovery.replication",
       "objectives": [
         "mo-11"
@@ -15,23 +15,23 @@
       "options": [
         {
           "id": "a",
-          "text": "Only in the target recovery region.",
-          "explanation": "The documented replication path uses a cache account in the source region."
+          "text": "In the target recovery region, instead of the source region.",
+          "explanation": "The replication cache used by the source VM must be in the source region; target recovery resources serve a different role."
         },
         {
           "id": "b",
-          "text": "In the source VM's region.",
-          "explanation": "VM changes pass through source-region cache storage before recovery processing in the target region."
+          "text": "In the source VM\u2019s region.",
+          "explanation": "Source changes are written to a source-region cache account before target-region recovery processing."
         },
         {
           "id": "c",
-          "text": "In any third region chosen for backup reports.",
-          "explanation": "Reporting placement does not determine Site Recovery cache placement."
+          "text": "In the vault\u2019s region even when that differs from the source VM\u2019s region.",
+          "explanation": "The source-region cache requirement is not replaced by the vault\u2019s regional location."
         },
         {
           "id": "d",
-          "text": "On the VM's temporary disk instead of a storage account.",
-          "explanation": "A temporary disk is not the replication cache storage account."
+          "text": "In either source or target region, provided it shares the vault\u2019s resource group.",
+          "explanation": "Resource-group membership does not make a target-region account satisfy the source-region cache requirement."
         }
       ],
       "correct": [
@@ -40,42 +40,41 @@
       "knowledge": "knowledge/monitoring/site-recovery/replication.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-enable-replication",
-        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-about-networking",
-        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-about-networking"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-replication-permissions",
       "family": "mo-replication-permissions",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.recovery.replication",
       "objectives": [
         "mo-11"
       ],
       "difficulty": "applied",
-      "prompt": "An administrator has Site Recovery Contributor on a vault but cannot enable replication using another resource group's resources. What should you check?",
+      "prompt": "An administrator has Site Recovery Contributor scoped only to a Recovery Services vault. Replication will use source and target compute, network and Storage resources outside that scope. Before enabling replication, which authorization review is required?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "The required permissions on the linked source and target resources.",
-          "explanation": "Site Recovery validates permissions on the resources used by the operation, as well as vault access."
+          "text": "Verify the required operation permissions also cover the linked source and target resources.",
+          "explanation": "Vault access is separate from permissions checked on linked compute, network and Storage resources used by replication."
         },
         {
           "id": "b",
-          "text": "Whether the role grants subscription-wide Owner automatically.",
-          "explanation": "A role assignment at the vault does not confer subscription-wide Owner."
+          "text": "Verify only that the vault role assignment is inherited by resources in every other resource group.",
+          "explanation": "A vault-scoped assignment does not extend to unrelated resources outside that scope."
         },
         {
           "id": "c",
-          "text": "Whether Site Recovery Reader would grant more write access.",
-          "explanation": "Reader is for inspecting recovery state, not enabling replication."
+          "text": "Replace the vault Contributor role with Site Recovery Reader, without other assignments.",
+          "explanation": "Reader provides inspection access rather than the operation permissions needed to enable replication."
         },
         {
           "id": "d",
-          "text": "Whether disabling storage encryption bypasses Azure RBAC.",
-          "explanation": "Encryption settings do not eliminate authorization checks."
+          "text": "Grant a vault-scoped role again under the same principal and omit linked-resource checks.",
+          "explanation": "Repeating a vault-scoped assignment does not establish permissions on source and target resources outside that scope."
         }
       ],
       "correct": [
@@ -83,11 +82,10 @@
       ],
       "knowledge": "knowledge/monitoring/site-recovery/replication.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-enable-replication",
-        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-about-networking",
-        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-enable-replication"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-replication-network",
@@ -131,7 +129,7 @@
         "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-about-networking",
         "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

@@ -4,34 +4,34 @@
     {
       "id": "mo-dcr-association",
       "family": "mo-dcr-association",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.logs.agent-dcr",
       "objectives": [
         "mo-02"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "AMA is installed and a DCR defines Linux Syslog to a workspace, but that DCR has no association to the VM. What is missing?",
+      "prompt": "Azure Monitor Agent is healthy on vm-linux and its identity and ingestion connectivity are verified. dcr-syslog defines the required Linux facilities, severity levels, and workspace destination, but its associations list contains only vm-other. Which change applies this existing collection configuration to vm-linux?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Associate the VM with the DCR.",
-          "explanation": "The association applies the collection configuration to that machine."
+          "text": "Create a DCR association between vm-linux and dcr-syslog.",
+          "explanation": "The association makes the existing source and destination configuration apply to this VM."
         },
         {
           "id": "b",
-          "text": "Only assign a DNS label to the VM.",
-          "explanation": "DNS labels do not apply collection rules."
+          "text": "Move vm-linux into the resource group containing dcr-syslog without adding an association.",
+          "explanation": "Resource-group membership does not associate the DCR with the VM."
         },
         {
           "id": "c",
-          "text": "Only add AllMetrics to its resource diagnostic setting.",
-          "explanation": "That does not associate the Syslog DCR."
+          "text": "Create another copy of dcr-syslog without associating that copy with vm-linux.",
+          "explanation": "A second unassociated rule still does not apply its collection configuration to this VM."
         },
         {
           "id": "d",
-          "text": "Only increase workspace retention.",
-          "explanation": "Retention does not initiate collection from an unassociated VM."
+          "text": "Change the destination of dcr-syslog to another workspace without changing associations.",
+          "explanation": "The VM remains unassociated regardless of the selected destination."
         }
       ],
       "correct": [
@@ -40,43 +40,42 @@
       "knowledge": "knowledge/monitoring/logs/agent-dcr.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-manage",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-dcr-heartbeat",
       "family": "mo-dcr-heartbeat",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.logs.agent-dcr",
       "objectives": [
         "mo-02"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "The VM appears in Heartbeat, but its expected security events are missing. Which conclusion is justified?",
+      "prompt": "A Windows VM sends current Heartbeat records to ws-ops through Azure Monitor Agent. A locally generated Security event in the test window is missing from the correctly scoped Event-table query in ws-ops. Its associated DCR currently selects only System events. No other event collector is configured. Which change addresses the observed missing stream?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Heartbeat proves every event filter is correct.",
-          "explanation": "Agent communication does not establish event selection."
+          "text": "Reinstall the healthy agent while retaining the System-only DCR.",
+          "explanation": "The supplied filter still excludes Security events; reinstalling the agent does not select that stream."
         },
         {
           "id": "b",
-          "text": "Check event source/filter, DCR association, destination, and generated events.",
-          "explanation": "Heartbeat narrows the issue but does not prove the specific stream."
+          "text": "Add a Windows Security-event selection that includes the test event to the DCR\u2019s ws-ops data flow.",
+          "explanation": "Heartbeat establishes communication, but the DCR must separately select the required event source and route it to the workspace."
         },
         {
           "id": "c",
-          "text": "The workspace cannot contain any guest data.",
-          "explanation": "Heartbeat itself is guest-agent telemetry."
+          "text": "Increase workspace retention while retaining the System-only DCR.",
+          "explanation": "Retention controls stored data lifetime, not selection of an uncollected event stream."
         },
         {
           "id": "d",
-          "text": "Increase DNS TTL to repair event selection.",
-          "explanation": "DNS caching does not define the DCR's event filter."
+          "text": "Extend the query time window while retaining the System-only DCR.",
+          "explanation": "The query already covers the known event time. A broader search does not collect events excluded by the DCR."
         }
       ],
       "correct": [
@@ -84,44 +83,43 @@
       ],
       "knowledge": "knowledge/monitoring/logs/agent-dcr.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-manage",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-windows-events",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-dcr-sources",
       "family": "mo-dcr-sources",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.logs.agent-dcr",
       "objectives": [
         "mo-02"
       ],
       "difficulty": "foundation",
-      "prompt": "Which Azure Monitor component defines selected guest data sources and destinations for AMA?",
+      "prompt": "For Azure Monitor Agent collection from VMs, which statement correctly distinguishes a DCR from its associations?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "A resource lock.",
-          "explanation": "Locks protect resource management, not source selection."
+          "text": "The DCR lists linked VMs; each association defines a separate set of event filters.",
+          "explanation": "The relationship is reversed: source filters belong to the DCR and associations link resources to it."
         },
         {
           "id": "b",
-          "text": "An NSG rule.",
-          "explanation": "An NSG permits or denies traffic rather than defines telemetry streams."
+          "text": "The DCR installs the guest operating system; associations install application packages.",
+          "explanation": "DCRs and associations configure telemetry collection rather than guest OS or application deployment."
         },
         {
           "id": "c",
-          "text": "A data collection rule.",
-          "explanation": "The DCR specifies collection and routing configuration."
+          "text": "The DCR defines collection sources and destinations; associations apply it to selected VMs.",
+          "explanation": "The rule describes collection and routing, and the VM-to-rule association applies that configuration."
         },
         {
           "id": "d",
-          "text": "A public IP allocation method.",
-          "explanation": "IP allocation does not define agent data sources."
+          "text": "The DCR defines resource retention; associations contain the stored event records.",
+          "explanation": "Collection rules and resource links are not the stored event data or workspace retention configuration."
         }
       ],
       "correct": [
@@ -130,11 +128,9 @@
       "knowledge": "knowledge/monitoring/logs/agent-dcr.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-manage",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog",
         "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

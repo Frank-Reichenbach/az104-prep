@@ -4,34 +4,34 @@
     {
       "id": "mo-flow-payload",
       "family": "mo-flow-payload",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.network.flow-logs",
       "objectives": [
         "mo-06"
       ],
       "difficulty": "foundation",
-      "prompt": "Can VNet flow logs alone reveal the complete HTTPS request body?",
+      "prompt": "A VNet flow-log record shows source and destination IPs, ports, protocol, and byte counts for a TCP 443 flow. Which evidence can you obtain from that record alone?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "No; they record flow metadata rather than packet payloads.",
-          "explanation": "Addresses/counts do not contain the full application body."
+          "text": "The recorded endpoints and traffic volume for the flow.",
+          "explanation": "These are flow metadata fields; they describe the connection and recorded volume without storing its application payload."
         },
         {
           "id": "b",
-          "text": "Yes; every byte count includes the complete body text.",
-          "explanation": "A numeric byte count is not stored body content."
+          "text": "The full HTTPS request body sent over the flow.",
+          "explanation": "A byte count measures volume and does not contain the application body."
         },
         {
           "id": "c",
-          "text": "Yes; the flow state decrypts TLS.",
-          "explanation": "Flow state does not decrypt application traffic."
+          "text": "The HTTP response status returned by the application.",
+          "explanation": "Flow metadata does not record the application-layer HTTP response status."
         },
         {
           "id": "d",
-          "text": "Yes; traffic analytics grants the client's private key.",
-          "explanation": "Analytics does not provide TLS private keys."
+          "text": "The user identity accepted by the application during login.",
+          "explanation": "IP-flow metadata does not record application authentication decisions or the authenticated user."
         }
       ],
       "correct": [
@@ -39,22 +39,20 @@
       ],
       "knowledge": "knowledge/monitoring/network/flow-logs.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview",
-        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview",
-        "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-manage"
+        "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-flow-retention",
       "family": "mo-flow-retention",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.network.flow-logs",
       "objectives": [
         "mo-06"
       ],
-      "difficulty": "applied",
-      "prompt": "In the supported VNet flow-log retention setting, what does 0 days mean?",
+      "difficulty": "foundation",
+      "prompt": "VNet flow logging is enabled with a supported Standard general-purpose v2 Storage destination. Retention is set to 0 days, and no other deletion policy applies. What happens to stored flow-log data?",
       "select": 1,
       "options": [
         {
@@ -83,43 +81,41 @@
       ],
       "knowledge": "knowledge/monitoring/network/flow-logs.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview",
-        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview",
         "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-manage"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-flow-analytics",
       "family": "mo-flow-analytics",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.network.flow-logs",
       "objectives": [
         "mo-06"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "VNet flow-log blobs are arriving, but you want processed traffic visualizations in Log Analytics. What additional configuration should you inspect?",
+      "prompt": "New VNet flow-log blobs are arriving in Storage. The saved configuration has traffic analytics disabled. You need processed traffic data in ws-network without changing raw log collection. Which change meets the goal?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Only the public IP DNS label.",
-          "explanation": "It does not configure analytics ingestion."
+          "text": "Keep analytics disabled and set raw-log retention to 30 days.",
+          "explanation": "Retention changes how long raw blobs remain; it does not enable their processing into the workspace."
         },
         {
           "id": "b",
-          "text": "Only the VM's disk caching.",
-          "explanation": "Disk caching does not enable flow analytics."
+          "text": "Keep analytics disabled and change the raw-log Storage account.",
+          "explanation": "Changing the raw destination does not enable processing into Log Analytics."
         },
         {
           "id": "c",
-          "text": "Traffic analytics enablement, selected workspace, and processing interval.",
-          "explanation": "Analytics is a separate configured processing stage."
+          "text": "Enable traffic analytics, select ws-network, and set its processing interval.",
+          "explanation": "This configures the separate analytics stage for the arriving flow data and sends processed data to the intended workspace."
         },
         {
           "id": "d",
-          "text": "Remove the log storage destination.",
-          "explanation": "Removing the source data does not enable processing."
+          "text": "Enable traffic analytics with ws-other as its workspace.",
+          "explanation": "Analytics would target a different workspace and would not meet the required ws-network destination."
         }
       ],
       "correct": [
@@ -127,11 +123,10 @@
       ],
       "knowledge": "knowledge/monitoring/network/flow-logs.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview",
-        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview",
-        "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-manage"
+        "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-manage",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/traffic-analytics"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

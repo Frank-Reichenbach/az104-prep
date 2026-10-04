@@ -43,39 +43,39 @@
         "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics",
         "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-policy-remediation",
       "family": "id-policy-remediation",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.governance.policy",
       "objectives": [
         "id-09"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A Modify policy assignment identifies existing untagged resources, but they remain unchanged after evaluation. Which action applies the supported modification to those existing resources?",
+      "prompt": "A Modify policy assignment adds a supported costCenter tag to new resources. Existing untagged resources appear as noncompliant after evaluation but remain unchanged. The assignment has a managed identity with the roles required by the definition. Without redeploying the workloads or changing the policy rule, which action applies the tag to these existing resources?",
       "select": 1,
       "options": [
         {
           "id": "task",
-          "text": "Create a remediation task using an appropriately authorized assignment identity.",
-          "explanation": "Existing-resource correction is performed through remediation."
+          "text": "Create a remediation task for the existing noncompliant resources.",
+          "explanation": "Modify evaluation marks existing resources noncompliant; a remediation task applies the correction using the authorized assignment identity."
         },
         {
           "id": "scan",
-          "text": "Wait for an Audit-only policy to rewrite every resource.",
-          "explanation": "Audit reports; it does not apply modifications."
+          "text": "Trigger another compliance evaluation for the same assignment.",
+          "explanation": "Another evaluation discovers noncompliance but does not modify existing resources."
         },
         {
           "id": "reader",
-          "text": "Assign Reader to every resource owner.",
-          "explanation": "Read permission does not execute policy modification."
+          "text": "Grant additional resource permissions to the administrator who created the assignment.",
+          "explanation": "The authorized assignment identity performs remediation. Extra permissions for the administrator do not start correction."
         },
         {
           "id": "delete",
-          "text": "Delete the resource group to clear noncompliance.",
-          "explanation": "Deleting the workload does not implement the requested correction."
+          "text": "Change the assignment to an Audit effect and run another evaluation.",
+          "explanation": "Audit reports violations rather than adding the missing tag."
         }
       ],
       "correct": [
@@ -83,43 +83,43 @@
       ],
       "knowledge": "knowledge/identity/governance/policy.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
-        "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics",
-        "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources"
+        "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-modify",
+        "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources",
+        "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-audit"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-policy-removal",
       "family": "id-policy-removal",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.governance.policy",
       "objectives": [
         "id-09"
       ],
       "difficulty": "foundation",
-      "prompt": "A DeployIfNotExists policy deployed diagnostic settings. The policy assignment is later removed. What happens to the settings solely because of assignment removal?",
+      "prompt": "A DeployIfNotExists policy deployed a diagnostic setting that sends resource logs to an existing Log Analytics workspace. An administrator removes the policy assignment. No cleanup automation runs and neither the diagnostic setting nor the workspace is deleted or changed. What is the diagnostic setting's state after assignment removal?",
       "select": 1,
       "options": [
         {
           "id": "remain",
-          "text": "They are not automatically rolled back.",
-          "explanation": "Policy removal does not undo its earlier deployments."
+          "text": "It remains configured to send logs to the workspace.",
+          "explanation": "The assignment and deployed diagnostic setting are separate resources. Removing the assignment does not undo the diagnostic configuration."
         },
         {
           "id": "delete",
-          "text": "Every deployed setting is automatically deleted.",
-          "explanation": "Assignment lifecycle is separate from deployed-resource cleanup."
+          "text": "It is deleted when the assignment is deleted.",
+          "explanation": "Deleting the assignment does not itself delete the separately deployed diagnostic setting."
         },
         {
           "id": "role",
-          "text": "They become Azure RBAC role assignments.",
-          "explanation": "Diagnostic configuration is not converted into authorization."
+          "text": "It remains present but its log categories are automatically disabled.",
+          "explanation": "No operation changes the diagnostic setting. Assignment removal does not edit its enabled categories."
         },
         {
           "id": "deny",
-          "text": "They become permanent deny assignments.",
-          "explanation": "Removing Policy does not produce that transformation."
+          "text": "It remains present but its workspace destination is automatically cleared.",
+          "explanation": "The workspace destination is part of the diagnostic configuration, which the scenario leaves unchanged."
         }
       ],
       "correct": [
@@ -127,11 +127,11 @@
       ],
       "knowledge": "knowledge/identity/governance/policy.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
-        "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics",
-        "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources"
+        "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deploy-if-not-exists",
+        "https://learn.microsoft.com/en-us/rest/api/policy-authorization/policy-assignments/delete?view=rest-policy-authorization-2026-06-01",
+        "https://learn.microsoft.com/en-us/rest/api/monitor/diagnostic-settings/delete?view=rest-monitor-2021-05-01-preview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

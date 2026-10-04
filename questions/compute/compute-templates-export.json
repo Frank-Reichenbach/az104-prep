@@ -43,7 +43,7 @@
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile",
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/export-bicep-portal"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-export-convert",
@@ -87,39 +87,39 @@
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile",
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/export-bicep-portal"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-export-review",
       "family": "co-export-review",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.templates.export",
       "objectives": [
         "co-05"
       ],
       "difficulty": "applied",
-      "prompt": "A resource-group template export completes with warnings. Which TWO checks are appropriate before reusing it?",
+      "prompt": "An exported ARM template will be reused in a new environment. Its required administrator-password input is missing, and a network-interface property contains a hard-coded subnet resource ID from the old environment. The target subnet already exists. Which TWO edits jointly address these two problems? Assume other configuration and permissions are correct.",
       "select": 2,
       "options": [
         {
           "id": "a",
-          "text": "Check for omitted resource types, properties, and secret inputs.",
-          "explanation": "Exports can be incomplete and need manual correction."
+          "text": "Add and reference a secureString password parameter supplied at deployment time.",
+          "explanation": "Export can omit password inputs. A referenced secure parameter supplies the missing input without embedding a literal secret."
         },
         {
           "id": "b",
-          "text": "Review names, IDs, and parameterization for the new environment.",
-          "explanation": "Generated configuration can retain environment-specific values."
+          "text": "Replace the hard-coded subnet ID with a referenced parameter containing the target subnet ID.",
+          "explanation": "Export can retain environment-specific values. Referencing the new subnet ID directs the NIC to the intended environment."
         },
         {
           "id": "c",
-          "text": "Assume it contains a restorable copy of application data.",
-          "explanation": "A resource template is configuration, not a data backup."
+          "text": "Add a subnet ID parameter but leave the NIC property using the old literal ID.",
+          "explanation": "An unused parameter does not change the property; the NIC still references the old subnet."
         },
         {
           "id": "d",
-          "text": "Treat successful export as proof of successful redeployment.",
-          "explanation": "Export does not validate all deployment constraints or runtime dependencies."
+          "text": "Use a new deployment-history name while leaving resource properties unchanged.",
+          "explanation": "A deployment name identifies the deployment record; it supplies neither a missing password nor a replacement subnet reference."
         }
       ],
       "correct": [
@@ -129,10 +129,10 @@
       "knowledge": "knowledge/compute/templates/export.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-cli",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/export-bicep-portal"
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

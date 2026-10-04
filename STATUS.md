@@ -1,8 +1,29 @@
 # Session handoff
 
-Updated: 2026-10-03. Approved scope: [PLAN.md](PLAN.md).
+Updated: 2026-10-04. Approved scope: [PLAN.md](PLAN.md).
 
 ## Current increment
+
+The full existing live-bank style review/update authorized on 2026-10-03 is complete.
+Work branch: `fix/question-bank-style-refresh`. Read the
+[resume guide](docs/reviews/question-bank-refresh/README.md) and
+[ledger](docs/reviews/question-bank-refresh/progress.json); run
+`npm run review:status` before resuming. Completed reviews have final hashes;
+unchanged completed questions must not be reviewed again.
+
+Checkpoint: 322/322 questions reviewed, 258 revised and 64 kept; 99/99 topics complete.
+Latest: [Azure Backup alerts and notification routing](docs/reviews/question-bank-refresh/monitoring.backup.alerts.md). Each completed topic has item decisions,
+repair reasons, variants where present, and primary sources checked October 3–4.
+Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
+validate checkpoints. The initial stale-hash fixture was rejected as expected.
+These are author-led reviews; no Azure labs were run.
+Next: review PR #3; merge only after explicit approval, then verify main deployment.
+The completed work branch is pushed and [PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
+is ready for review. The live main bank still has the baseline
+questions. The preserved research inventory remains separate. Merging this
+refresh PR needs explicit approval; do not reuse the earlier skill PR approval.
+
+## Previous skill publication
 
 The user requested that fresh clones include the question-authoring skill.
 Its three files are already tracked under
@@ -272,14 +293,13 @@ retirement are documented with current alternatives.
 
 ## Next task
 
-PR #1 has explicit merge approval. Use its merge record and the main Actions
-history above for publication status; do not request approval for it again.
-
-Proposed content follow-up: review the remaining live bank against the revised
-skill, prioritizing distractor plausibility and explanation quality; revise
-only items with identified defects. A full-bank editing pass was outside this
-three-question increment. The sample's two flagged items have not yet been
-changed.
+The authorized existing-bank review is complete. Run `npm run review:status`
+to verify recorded hashes before publication.
+Current checkpoint: 322/322 questions, 99/99 topics complete.
+Next: review PR #3; merge only after explicit approval, then verify main deployment.
+All 99 topic reports record source checks, decisions and answer reasoning.
+Preserve completed reviews unless question content changes. The research
+inventory remains outside this refresh.
 
 The skill-review findings are resolved. Use the revised workflow for the next
 requested authoring or review task, and retain acceptance cases for future

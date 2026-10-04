@@ -4,7 +4,7 @@
     {
       "id": "mo-reports-pipeline",
       "family": "mo-reports-pipeline",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.backup.reports",
       "objectives": [
         "mo-13"
@@ -15,23 +15,23 @@
       "options": [
         {
           "id": "a",
-          "text": "Vault diagnostics sent to Log Analytics workspaces.",
-          "explanation": "Azure Backup reporting uses Azure Monitor Logs and workbooks over exported vault diagnostic data."
+          "text": "Vault diagnostic reporting logs sent to Log Analytics workspaces.",
+          "explanation": "Reporting workbooks query exported backup diagnostic records in Azure Monitor Logs."
         },
         {
           "id": "b",
-          "text": "Only VM guest Heartbeat records collected by Azure Monitor Agent.",
-          "explanation": "Guest heartbeats do not contain the required backup reporting data."
+          "text": "VM guest Heartbeat records sent to Log Analytics workspaces.",
+          "explanation": "Guest heartbeats do not supply the backup job, policy and usage records required by these reports."
         },
         {
           "id": "c",
-          "text": "Only NSG effective security rules.",
-          "explanation": "Network-rule inspection is unrelated to backup reporting ingestion."
+          "text": "Vault metric charts without diagnostic-log export.",
+          "explanation": "Metric charts do not provide the documented diagnostic-log data path for Backup Reports workbooks."
         },
         {
           "id": "d",
-          "text": "Backup recovery-point files copied into a workbook.",
-          "explanation": "Workbooks query reporting data; they do not directly parse copied recovery-point files."
+          "text": "Recovery-point disk files copied directly into a workbook.",
+          "explanation": "Workbooks query reporting records rather than storing or parsing restored VM disk files."
         }
       ],
       "correct": [
@@ -40,41 +40,41 @@
       "knowledge": "knowledge/monitoring/backup/reports.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/backup/configure-reports",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings"
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-diagnostic-events"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-reports-delay",
       "family": "mo-reports-delay",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.backup.reports",
       "objectives": [
         "mo-13"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "You enabled vault diagnostics an hour ago. A completed backup from the current day is not yet visible in Backup Reports. What should you check before treating this as a reporting failure?",
+      "prompt": "Vault reporting diagnostics were enabled an hour ago. Today\u2019s backup job is Completed, but Backup Reports has no row for it yet. Which interpretation should guide the next reporting check?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Whether the backup retention policy is set to one hour.",
-          "explanation": "Recovery-point retention does not determine report ingestion or completed-day reporting."
+          "text": "Recovery-point retention determines whether today\u2019s row appears, so extend backup retention first.",
+          "explanation": "Backup retention does not determine diagnostic delivery timing or completed-day report visibility."
         },
         {
           "id": "b",
-          "text": "Whether deleting the vault forces immediate report refresh.",
-          "explanation": "Deleting a vault is not a report refresh mechanism."
+          "text": "A Completed backup job guarantees its report row is immediately available.",
+          "explanation": "Operation completion is separate from diagnostic delivery and the reports\u2019 completed-day convention."
         },
         {
           "id": "c",
-          "text": "Initial diagnostic-delivery delay, completed-day reporting, and the selected filters.",
-          "explanation": "Initial delivery can take up to 24 hours, reports omit the partial day, and filters affect visible data."
+          "text": "Allow for initial diagnostic delivery, the current partial-day exclusion, and workspace/vault/time filters.",
+          "explanation": "Initial delivery can take up to 24 hours, current partial-day data is omitted, and filters can further exclude records."
         },
         {
           "id": "d",
-          "text": "Whether all VMs use Azure Bastion.",
-          "explanation": "Bastion connectivity is not a prerequisite for Backup Reports."
+          "text": "The report\u2019s time picker can force partial-day rows to appear immediately.",
+          "explanation": "Selecting today does not override the documented exclusion of current partial-day data."
         }
       ],
       "correct": [
@@ -82,42 +82,41 @@
       ],
       "knowledge": "knowledge/monitoring/backup/reports.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/backup/configure-reports",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings"
+        "https://learn.microsoft.com/en-us/azure/backup/configure-reports"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-reports-retention",
       "family": "mo-reports-retention",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.backup.reports",
       "objectives": [
         "mo-13"
       ],
       "difficulty": "applied",
-      "prompt": "Your backups retain recovery points for one year, but reporting logs are retained for only a month. You need historical backup reporting over a longer period. What should you change?",
+      "prompt": "Backup recovery points are kept for a year, but the relevant Log Analytics reporting tables retain queryable data for 30 days. From now on, you need reporting over 90 completed days. Which change addresses the retention gap? Assume existing expired records cannot be recovered.",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Only the backup recovery-point retention policy.",
-          "explanation": "Backup retention does not extend the lifetime of diagnostic records in Log Analytics."
+          "text": "Extend only backup recovery-point retention to 90 days.",
+          "explanation": "Recovery-point retention does not preserve the separate diagnostic records used for reports."
         },
         {
           "id": "b",
-          "text": "The relevant Log Analytics data retention, considering reporting requirements and cost.",
-          "explanation": "Historical reports depend on the log records remaining available."
+          "text": "Extend the relevant queryable Log Analytics reporting-data retention to cover 90 days.",
+          "explanation": "Reports require the underlying log records to remain queryable across the required period; retention and associated cost need review."
         },
         {
           "id": "c",
-          "text": "Only the target VM's disk SKU.",
-          "explanation": "Disk performance does not configure diagnostic-data retention."
+          "text": "Change only the workbook\u2019s time range to Last 90 days.",
+          "explanation": "A wider query range cannot recover records that the reporting tables no longer retain."
         },
         {
           "id": "d",
-          "text": "Only the action group's email recipient.",
-          "explanation": "Notification recipients do not control reporting-log retention."
+          "text": "Increase only the vault\u2019s soft-delete retention to 90 days.",
+          "explanation": "Soft-delete retention protects deleted backup data, not the queryable lifetime of reporting logs."
         }
       ],
       "correct": [
@@ -126,9 +125,9 @@
       "knowledge": "knowledge/monitoring/backup/reports.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/backup/configure-reports",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-retention-configure"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }
