@@ -48,34 +48,34 @@
     {
       "id": "mo-processing-weekly-variant",
       "family": "mo-processing-maintenance",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.alerts.processing",
       "objectives": [
         "mo-04"
       ],
       "difficulty": "applied",
-      "prompt": "During a weekly maintenance window, Azure Monitor must continue creating matching VM alert instances but omit their notification actions. Which configuration meets this requirement?",
+      "prompt": "A VM has maintenance every Friday from 02:00 to 03:00 UTC. Keep metric-alert evaluation active and suppress action groups only during that recurring hour, including future Fridays. Which processing-rule schedule meets the requirement?",
       "select": 1,
       "options": [
         {
           "id": "suppress",
-          "text": "A scheduled alert processing rule suppressing action groups for the VM.",
-          "explanation": "It changes actions on fired alerts during the matching schedule while preserving evaluation."
+          "text": "VM scope; suppress action groups; weekly Friday 02:00\u201303:00 UTC.",
+          "explanation": "Weekly Friday recurrence covers the repeated maintenance hour without suppressing other days."
         },
         {
           "id": "disable",
-          "text": "Disable the VM's alert rules for that window.",
-          "explanation": "Disabled rules cannot keep creating the required alert instances."
+          "text": "VM scope; suppress action groups; a one-time window for this Friday 02:00\u201303:00 UTC.",
+          "explanation": "A one-time window does not cover later Fridays."
         },
         {
           "id": "delete",
-          "text": "Delete the action group every week and recreate it later.",
-          "explanation": "This is not scheduled scoped suppression and can affect other rules sharing the group."
+          "text": "VM scope; suppress action groups; weekly Saturday 02:00\u201303:00 UTC.",
+          "explanation": "The recurring day is wrong, so Friday maintenance is not covered."
         },
         {
           "id": "collect",
-          "text": "Remove the VM's monitoring collection configuration during maintenance.",
-          "explanation": "That interrupts telemetry rather than preserving alert evaluation with suppressed actions."
+          "text": "VM scope; suppress action groups; daily 02:00\u201303:00 UTC.",
+          "explanation": "Daily recurrence suppresses six additional days, contrary to the Friday-only requirement."
         }
       ],
       "correct": [
@@ -83,10 +83,9 @@
       ],
       "knowledge": "knowledge/monitoring/alerts/processing-rules.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

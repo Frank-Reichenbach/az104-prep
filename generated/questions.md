@@ -1635,40 +1635,40 @@ D. Inspect VM-to-DCR associations to establish whether CPU collection produced t
 
 Topic: Monitoring and recovery › Alert processing rules and maintenance suppression.
 
-You want scheduled maintenance to suppress notifications for one VM while preserving fired-alert records. Which approach fits?
+vm-app and vm-other share a resource group. For one maintenance window, 09:00–10:00 UTC, suppress vm-app metric-alert notifications while retaining its Fired instances and vm-other notifications. No other processing rules apply. Which processing-rule configuration meets all requirements?
 
 Select **1**. Difficulty: applied.
 
-A. A scheduled alert processing rule suppressing its action groups.
-B. Disable every alert rule in the subscription.
-C. Delete the collected metrics during maintenance.
-D. Remove the VM's DCR permanently.
+A. Scope vm-app; suppress action groups; one-time 09:00–10:00 UTC window.
+B. Scope the shared resource group; suppress action groups; one-time 09:00–10:00 UTC window.
+C. Scope vm-app; apply an action group; one-time 09:00–10:00 UTC window.
+D. Scope vm-app; suppress action groups; one-time 10:00–11:00 UTC window.
 
 ## mo-processing-scope
 
 Topic: Monitoring and recovery › Alert processing rules and maintenance suppression.
 
-Can one alert processing rule directly scope resources from a different subscription than its own?
+An alert processing rule is stored in subscription sub-a. Which target scope is supported directly by that rule?
 
 Select **1**. Difficulty: foundation.
 
-A. Yes, any subscription in the tenant.
-B. No; its scoped resources must be in the same subscription.
-C. Yes, if they have identical resource-group names.
-D. Yes, if the action group uses email.
+A. A resource group in sub-b, in the same tenant.
+B. A resource group in sub-a, different from the rule’s storage resource group.
+C. A management group containing both sub-a and sub-b.
+D. The whole of sub-b, with the rule remaining in sub-a.
 
 ## mo-processing-service-health
 
 Topic: Monitoring and recovery › Alert processing rules and maintenance suppression.
 
-Will an Azure Monitor alert processing rule suppress Azure Service Health alerts?
+An enabled subscription-scoped processing rule suppresses action groups during a maintenance window. It is effective and has no filters. During that window, a matching VM metric alert and an Azure Service Health alert fire with configured action groups. No other suppression applies. Which action-handling outcome follows?
 
 Select **1**. Difficulty: applied.
 
-A. Yes, all alert sources are affected without exception.
-B. Yes, if the schedule is recurring.
-C. No; processing rules do not affect Service Health alerts.
-D. Yes, if its scope is the whole subscription.
+A. Both alerts retain their action groups.
+B. Both alerts have their action groups suppressed.
+C. The VM metric alert is suppressed; the Service Health alert retains its action groups.
+D. The VM metric alert retains its action groups; the Service Health alert is suppressed.
 
 ## mo-alert-signal
 
@@ -2545,14 +2545,14 @@ D. The VM definitely stopped emitting metric samples.
 
 Topic: Monitoring and recovery › Alert processing rules and maintenance suppression.
 
-During a weekly maintenance window, Azure Monitor must continue creating matching VM alert instances but omit their notification actions. Which configuration meets this requirement?
+A VM has maintenance every Friday from 02:00 to 03:00 UTC. Keep metric-alert evaluation active and suppress action groups only during that recurring hour, including future Fridays. Which processing-rule schedule meets the requirement?
 
 Select **1**. Difficulty: applied.
 
-A. A scheduled alert processing rule suppressing action groups for the VM.
-B. Disable the VM's alert rules for that window.
-C. Delete the action group every week and recreate it later.
-D. Remove the VM's monitoring collection configuration during maintenance.
+A. VM scope; suppress action groups; weekly Friday 02:00–03:00 UTC.
+B. VM scope; suppress action groups; a one-time window for this Friday 02:00–03:00 UTC.
+C. VM scope; suppress action groups; weekly Saturday 02:00–03:00 UTC.
+D. VM scope; suppress action groups; daily 02:00–03:00 UTC.
 
 ## nw-private-link
 

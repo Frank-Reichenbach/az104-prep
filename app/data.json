@@ -6552,34 +6552,34 @@
     {
       "id": "mo-processing-maintenance",
       "family": "mo-processing-maintenance",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.alerts.processing",
       "objectives": [
         "mo-04"
       ],
       "difficulty": "applied",
-      "prompt": "You want scheduled maintenance to suppress notifications for one VM while preserving fired-alert records. Which approach fits?",
+      "prompt": "vm-app and vm-other share a resource group. For one maintenance window, 09:00–10:00 UTC, suppress vm-app metric-alert notifications while retaining its Fired instances and vm-other notifications. No other processing rules apply. Which processing-rule configuration meets all requirements?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "A scheduled alert processing rule suppressing its action groups.",
-          "explanation": "This processes fired alerts without disabling condition evaluation."
+          "text": "Scope vm-app; suppress action groups; one-time 09:00–10:00 UTC window.",
+          "explanation": "This matches only the intended VM and time window while leaving alert evaluation active."
         },
         {
           "id": "b",
-          "text": "Disable every alert rule in the subscription.",
-          "explanation": "That stops evaluation broadly and loses intended alert firing."
+          "text": "Scope the shared resource group; suppress action groups; one-time 09:00–10:00 UTC window.",
+          "explanation": "This also suppresses vm-other notifications, violating the required scope boundary."
         },
         {
           "id": "c",
-          "text": "Delete the collected metrics during maintenance.",
-          "explanation": "Suppression does not require data deletion."
+          "text": "Scope vm-app; apply an action group; one-time 09:00–10:00 UTC window.",
+          "explanation": "Applying a group adds responses rather than suppressing the VM’s notification actions."
         },
         {
           "id": "d",
-          "text": "Remove the VM's DCR permanently.",
-          "explanation": "That changes collection rather than a scheduled response policy."
+          "text": "Scope vm-app; suppress action groups; one-time 10:00–11:00 UTC window.",
+          "explanation": "The suppression misses the specified maintenance hour."
         }
       ],
       "correct": [
@@ -6587,42 +6587,41 @@
       ],
       "knowledge": "knowledge/monitoring/alerts/processing-rules.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-processing-scope",
       "family": "mo-processing-scope",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.alerts.processing",
       "objectives": [
         "mo-04"
       ],
       "difficulty": "foundation",
-      "prompt": "Can one alert processing rule directly scope resources from a different subscription than its own?",
+      "prompt": "An alert processing rule is stored in subscription sub-a. Which target scope is supported directly by that rule?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Yes, any subscription in the tenant.",
-          "explanation": "The documented scope stays within its subscription."
+          "text": "A resource group in sub-b, in the same tenant.",
+          "explanation": "Target resources must be in the processing rule’s own subscription; shared tenant membership does not change that boundary."
         },
         {
           "id": "b",
-          "text": "No; its scoped resources must be in the same subscription.",
-          "explanation": "Create suitable processing rules in the relevant subscriptions."
+          "text": "A resource group in sub-a, different from the rule’s storage resource group.",
+          "explanation": "Processing rules can target a resource group within their own subscription; it need not be their storage group."
         },
         {
           "id": "c",
-          "text": "Yes, if they have identical resource-group names.",
-          "explanation": "Matching names do not override subscription scope."
+          "text": "A management group containing both sub-a and sub-b.",
+          "explanation": "The documented target scopes are resources, resource groups, or the rule’s subscription, not a cross-subscription management group."
         },
         {
           "id": "d",
-          "text": "Yes, if the action group uses email.",
-          "explanation": "Response type does not change processing-rule scope."
+          "text": "The whole of sub-b, with the rule remaining in sub-a.",
+          "explanation": "Subscription-wide scope is supported within the rule’s own subscription, not a different subscription."
         }
       ],
       "correct": [
@@ -6630,42 +6629,41 @@
       ],
       "knowledge": "knowledge/monitoring/alerts/processing-rules.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-processing-service-health",
       "family": "mo-processing-service-health",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.alerts.processing",
       "objectives": [
         "mo-04"
       ],
       "difficulty": "applied",
-      "prompt": "Will an Azure Monitor alert processing rule suppress Azure Service Health alerts?",
+      "prompt": "An enabled subscription-scoped processing rule suppresses action groups during a maintenance window. It is effective and has no filters. During that window, a matching VM metric alert and an Azure Service Health alert fire with configured action groups. No other suppression applies. Which action-handling outcome follows?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Yes, all alert sources are affected without exception.",
-          "explanation": "Service Health is a documented exception."
+          "text": "Both alerts retain their action groups.",
+          "explanation": "The VM metric alert is affected by the matching suppression rule."
         },
         {
           "id": "b",
-          "text": "Yes, if the schedule is recurring.",
-          "explanation": "Schedule type does not remove that exception."
+          "text": "Both alerts have their action groups suppressed.",
+          "explanation": "Azure Service Health alerts are excluded from processing-rule effects."
         },
         {
           "id": "c",
-          "text": "No; processing rules do not affect Service Health alerts.",
-          "explanation": "Plan Service Health notification behavior separately."
+          "text": "The VM metric alert is suppressed; the Service Health alert retains its action groups.",
+          "explanation": "The rule affects the VM metric alert, but Microsoft explicitly excludes Azure Service Health alerts."
         },
         {
           "id": "d",
-          "text": "Yes, if its scope is the whole subscription.",
-          "explanation": "Broad scope does not override the exclusion."
+          "text": "The VM metric alert retains its action groups; the Service Health alert is suppressed.",
+          "explanation": "This reverses the supported suppression behavior and the Service Health exception."
         }
       ],
       "correct": [
@@ -6673,10 +6671,9 @@
       ],
       "knowledge": "knowledge/monitoring/alerts/processing-rules.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-alert-signal",
@@ -9608,34 +9605,34 @@
     {
       "id": "mo-processing-weekly-variant",
       "family": "mo-processing-maintenance",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.alerts.processing",
       "objectives": [
         "mo-04"
       ],
       "difficulty": "applied",
-      "prompt": "During a weekly maintenance window, Azure Monitor must continue creating matching VM alert instances but omit their notification actions. Which configuration meets this requirement?",
+      "prompt": "A VM has maintenance every Friday from 02:00 to 03:00 UTC. Keep metric-alert evaluation active and suppress action groups only during that recurring hour, including future Fridays. Which processing-rule schedule meets the requirement?",
       "select": 1,
       "options": [
         {
           "id": "suppress",
-          "text": "A scheduled alert processing rule suppressing action groups for the VM.",
-          "explanation": "It changes actions on fired alerts during the matching schedule while preserving evaluation."
+          "text": "VM scope; suppress action groups; weekly Friday 02:00–03:00 UTC.",
+          "explanation": "Weekly Friday recurrence covers the repeated maintenance hour without suppressing other days."
         },
         {
           "id": "disable",
-          "text": "Disable the VM's alert rules for that window.",
-          "explanation": "Disabled rules cannot keep creating the required alert instances."
+          "text": "VM scope; suppress action groups; a one-time window for this Friday 02:00–03:00 UTC.",
+          "explanation": "A one-time window does not cover later Fridays."
         },
         {
           "id": "delete",
-          "text": "Delete the action group every week and recreate it later.",
-          "explanation": "This is not scheduled scoped suppression and can affect other rules sharing the group."
+          "text": "VM scope; suppress action groups; weekly Saturday 02:00–03:00 UTC.",
+          "explanation": "The recurring day is wrong, so Friday maintenance is not covered."
         },
         {
           "id": "collect",
-          "text": "Remove the VM's monitoring collection configuration during maintenance.",
-          "explanation": "That interrupts telemetry rather than preserving alert evaluation with suppressed actions."
+          "text": "VM scope; suppress action groups; daily 02:00–03:00 UTC.",
+          "explanation": "Daily recurrence suppresses six additional days, contrary to the Friday-only requirement."
         }
       ],
       "correct": [
@@ -9643,10 +9640,9 @@
       ],
       "knowledge": "knowledge/monitoring/alerts/processing-rules.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-private-link",

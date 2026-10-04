@@ -5285,9 +5285,9 @@
     {
       "id": "monitoring.alerts.processing",
       "title": "Alert processing rules and maintenance suppression",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.alerts.processing.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-processing-maintenance",
@@ -5302,9 +5302,9 @@
           ],
           "baselineHash": "58e36d4bf363b6263b256a0bf0b8e2f640b6e886638b97b331325863e3d27b69",
           "baselineContentHash": "26c4333ea0c87821e55b95b28287038681ecbc11223597495eda62b269ae2ae5",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "771a5c93cc0dc5c29e1348e3236478bf50c57f95c9a04808d910e8bcba20d406"
         },
         {
           "id": "mo-processing-scope",
@@ -5319,9 +5319,9 @@
           ],
           "baselineHash": "444d6faa7ca474c9de266ba71db8f40aa4eb9cf4c1aae5fb8eeb2e5730c21e51",
           "baselineContentHash": "0e88b0bfb5c6dacbdf0daf76582c289605a3b74d0ead30579c4df7a4cc21b55e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f40a6c3242263b7b9f6f7488d30732f0e2d5e5be349404150e5d5b59fc89ce2e"
         },
         {
           "id": "mo-processing-service-health",
@@ -5336,9 +5336,9 @@
           ],
           "baselineHash": "a0cf66176e028469f17c725ce61b072014025b2427679f98ae3754decb06a1da",
           "baselineContentHash": "9d1592f4459c667f432c339fe5f65343b3a37d6ac478a04b1c457133f36a9da9",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "4b27c781f49bb7cf22d7ef229a1d24a3c81b75b8f5358df49a4fbedf84c3fc96"
         },
         {
           "id": "mo-processing-weekly-variant",
@@ -5353,9 +5353,9 @@
           ],
           "baselineHash": "53369b4ebe5fb4779d140b8a77aa1df8c2150ac780a889fe4846c49613afc045",
           "baselineContentHash": "968ff8642f31a08aa8d2115b1c69a86b0ac11505f1241ff0fd0868ddb5526959",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "9c4869d34b71327002af9061b6ee788b3ef3ac2cd306be9a09862aef31750b37"
         }
       ]
     },
