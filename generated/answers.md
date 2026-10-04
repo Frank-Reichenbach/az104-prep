@@ -1895,52 +1895,52 @@ Study: [knowledge file](../knowledge/identity/users/external-users.md). Evidence
 
 Topic: Identity and governance › User and group license assignments.
 
-A product is assigned to Entra group Parent. A user belongs only to Child, which is nested in Parent, and receives no license. What explains this?
+A product license is assigned to the assigned-membership security group Parent. User1 is a direct member of Child, and Child is a member of Parent. Direct user members of Parent receive the product after processing completes, but User1 does not. Seats are available and User1 has a valid usage location. What explains the difference?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Group-based licensing does not process users only through nested groups. Assign through a group containing the user directly.
-- **B. Incorrect:** Only Parent's owners can receive its product. Licensing is not restricted to group owners.
-- **C. Incorrect:** The user must first become Azure subscription Owner. Azure resource administration is not a licensing prerequisite.
-- **D. Incorrect:** Parent and Child must have identical names. Matching names do not change membership-processing support.
+- **A. Correct:** Group-based licensing processes direct user members rather than nested user membership. User1 is reachable only through Child. Nested membership does not qualify for the license assigned to Parent.
+- **B. Incorrect:** Group-based licensing processes group owners rather than group members. The product is assigned to direct user members. Ownership is not the membership path used here.
+- **C. Incorrect:** Group-based licensing has stopped because the product has no available seats. Available seats are explicitly confirmed. Capacity cannot explain the difference.
+- **D. Incorrect:** Group-based licensing is still processing all direct members of Parent. Processing has completed and direct members received the product. Waiting cannot make nested membership eligible.
 
-Study: [knowledge file](../knowledge/identity/users/licenses.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/users/licenses.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/entra/fundamentals/license-users-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/users/licensing-group-advanced) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/users/licensing-powershell-graph-examples)
+[Microsoft source 1](https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-group-licenses?view=o365-worldwide)
 
 ## id-license-retained
 
 Topic: Identity and governance › User and group license assignments.
 
-A user receives a product directly and through a licensing group. The group assignment is removed, but the direct assignment remains. Why can the user retain the product?
+User1 has the same product license assigned directly and through Group1. An administrator removes the product from Group1 and confirms processing is complete. The direct assignment is still active, and there are no other assignment paths. Which state should the administrator expect for User1?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** The direct assignment is still an effective licensing path. Removing one source does not remove the other.
-- **B. Incorrect:** Licenses become permanent after first sign-in. Assignments can be removed; they are not permanent grants.
-- **C. Incorrect:** Azure Reader automatically reassigns the product. Azure resource roles do not supply this product license.
-- **D. Incorrect:** Any group ownership supplies all tenant licenses. Ownership does not provide universal product entitlement.
+- **A. Correct:** The product remains assigned through the direct assignment. The active direct assignment remains a source of the product after the group path is removed.
+- **B. Incorrect:** The product is unassigned because removing any source removes all sources. The group and direct assignments are separate paths. The direct path remains active.
+- **C. Incorrect:** The product remains assigned through Group1 because direct assignments take precedence. The group path was removed. A direct assignment does not preserve a removed group assignment.
+- **D. Incorrect:** The direct assignment is converted into an assignment inherited from Group1. Removing the group path does not convert the remaining direct path into group inheritance.
 
-Study: [knowledge file](../knowledge/identity/users/licenses.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/users/licenses.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/entra/fundamentals/license-users-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/users/licensing-group-advanced) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/users/licensing-powershell-graph-examples)
+[Microsoft source 1](https://learn.microsoft.com/en-us/graph/api/resources/licenseassignmentstate?view=graph-rest-1.0) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/users/licensing-powershell-graph-examples)
 
 ## id-license-location
 
 Topic: Identity and governance › User and group license assignments.
 
-A license assignment reports an invalid usage location despite available seats. What should an administrator correct?
+A new user works in Germany, where the selected product is available. Group license processing reports a usage-location error despite available seats. The user profile contains country = Germany and usageLocation = US. Which user property should an administrator correct to match the verified place of service use before reprocessing?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** The user's usage location based on where the service is used. Product availability is evaluated using this licensing property.
-- **B. Incorrect:** The user's office street address only. The address field is distinct from the usage-location licensing property.
-- **C. Incorrect:** The user's preferred language only. Interface language does not determine the usage location used for product availability.
-- **D. Incorrect:** Assign Global Administrator to the user. Extra privilege does not correct invalid licensing data.
+- **A. Correct:** Set usageLocation to DE. Licensing checks service availability using usageLocation. DE represents the verified location in this scenario.
+- **B. Incorrect:** Set country to DE. The profile country field is separate from usageLocation. Changing it leaves the licensing property incorrect.
+- **C. Incorrect:** Set preferredLanguage to de-DE. Preferred language controls language preferences. It does not replace the licensing location.
+- **D. Incorrect:** Set officeLocation to Germany. Office location describes the workplace. It does not correct usageLocation.
 
-Study: [knowledge file](../knowledge/identity/users/licenses.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/users/licenses.md). Evidence checked: 2026-10-03.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/entra/fundamentals/license-users-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/users/licensing-group-advanced) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/users/licensing-powershell-graph-examples)
+[Microsoft source 1](https://learn.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0) · [Microsoft source 2](https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-group-licenses?view=o365-worldwide)
 
 ## id-user-role
 

@@ -1746,9 +1746,9 @@
     {
       "id": "identity.users.licenses",
       "title": "User and group license assignments",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/identity.users.licenses.md",
+      "verified": "2026-10-03",
       "questions": [
         {
           "id": "id-license-nested",
@@ -1763,9 +1763,9 @@
           ],
           "baselineHash": "484ee67bb6350a611938ce72cc2a4bd37996802a5c72f1ceda502ca5817f2c5b",
           "baselineContentHash": "479663c2cf6fc63e1511afcae377d3f4039a2f93703d1488d03df760d7100034",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "76962f5b626323259a308f0ea04b1a88426032a5aa0ef8e662d7feb014a505e5"
         },
         {
           "id": "id-license-retained",
@@ -1780,9 +1780,9 @@
           ],
           "baselineHash": "e7636efb099151a7c00b1f10d31f5b4669c6b92972dcf8ec0ac75f4dac9e9e1c",
           "baselineContentHash": "0c2729b98dd0452e2ba89f91479dc433e45a57ec129ed290f5bfee891c953c84",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "39b63ac3043a9e2105fdcc60e49f168104ae42eaf0191514192614b279eda83b"
         },
         {
           "id": "id-license-location",
@@ -1797,9 +1797,9 @@
           ],
           "baselineHash": "1809b8cbd22e908494b8da1d13917cc54b96f4845f0d75ccc61fb6fa0e16c2cb",
           "baselineContentHash": "161cd97e12cec6d567315b70252ec0b8bdb9568f404e5397cd44a9fe45c7e1bc",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "6212eed5a16950af1ca0ca26509f41dab3155c3008fb075e3661a0ff53dbf239"
         }
       ]
     },

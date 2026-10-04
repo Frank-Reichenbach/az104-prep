@@ -1453,40 +1453,40 @@ D. Yes, if the usage location matches.
 
 Topic: Identity and governance › User and group license assignments.
 
-A product is assigned to Entra group Parent. A user belongs only to Child, which is nested in Parent, and receives no license. What explains this?
+A product license is assigned to the assigned-membership security group Parent. User1 is a direct member of Child, and Child is a member of Parent. Direct user members of Parent receive the product after processing completes, but User1 does not. Seats are available and User1 has a valid usage location. What explains the difference?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Group-based licensing does not process users only through nested groups.
-B. Only Parent's owners can receive its product.
-C. The user must first become Azure subscription Owner.
-D. Parent and Child must have identical names.
+A. Group-based licensing processes direct user members rather than nested user membership.
+B. Group-based licensing processes group owners rather than group members.
+C. Group-based licensing has stopped because the product has no available seats.
+D. Group-based licensing is still processing all direct members of Parent.
 
 ## id-license-retained
 
 Topic: Identity and governance › User and group license assignments.
 
-A user receives a product directly and through a licensing group. The group assignment is removed, but the direct assignment remains. Why can the user retain the product?
+User1 has the same product license assigned directly and through Group1. An administrator removes the product from Group1 and confirms processing is complete. The direct assignment is still active, and there are no other assignment paths. Which state should the administrator expect for User1?
 
 Select **1**. Difficulty: applied.
 
-A. The direct assignment is still an effective licensing path.
-B. Licenses become permanent after first sign-in.
-C. Azure Reader automatically reassigns the product.
-D. Any group ownership supplies all tenant licenses.
+A. The product remains assigned through the direct assignment.
+B. The product is unassigned because removing any source removes all sources.
+C. The product remains assigned through Group1 because direct assignments take precedence.
+D. The direct assignment is converted into an assignment inherited from Group1.
 
 ## id-license-location
 
 Topic: Identity and governance › User and group license assignments.
 
-A license assignment reports an invalid usage location despite available seats. What should an administrator correct?
+A new user works in Germany, where the selected product is available. Group license processing reports a usage-location error despite available seats. The user profile contains country = Germany and usageLocation = US. Which user property should an administrator correct to match the verified place of service use before reprocessing?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. The user's usage location based on where the service is used.
-B. The user's office street address only.
-C. The user's preferred language only.
-D. Assign Global Administrator to the user.
+A. Set usageLocation to DE.
+B. Set country to DE.
+C. Set preferredLanguage to de-DE.
+D. Set officeLocation to Germany.
 
 ## id-user-role
 
