@@ -2558,14 +2558,14 @@ D. Remove the VM's monitoring collection configuration during maintenance.
 
 Topic: Networking › Private DNS zones and VNet links.
 
-Two VNets are peered. A private zone is linked only to VNet A; VNet B uses Azure-provided DNS and cannot resolve its records. What is missing?
+Two VNets are peered and use Azure-provided DNS. A private zone contains a verified A record for db.corp.example and has a completed link only to vnet-a. A VM in vnet-a resolves it, but a VM in vnet-b cannot. Which change gives vnet-b access to the existing zone records?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. A private-zone link to VNet B.
-B. A second public NS delegation at the registrar.
-C. An Internet-wide NSG allow rule.
-D. A public IP on every VM in VNet B.
+A. Add a resolution-only link from the existing private zone to vnet-b.
+B. Enable autoregistration on the existing link to vnet-a.
+C. Recreate the peering between the VNets without changing zone links.
+D. Create an empty second private zone and link only that zone to vnet-b.
 
 ## nw-private-registration
 
@@ -2584,14 +2584,14 @@ D. Automatic VNet peering to all other linked networks.
 
 Topic: Networking › Private DNS zones and VNet links.
 
-A VNet already autoregisters VM names in zone alpha.example. You want it to resolve beta.example without changing that registration. Which link is suitable?
+A VNet using Azure-provided DNS has a completed link to alpha.example with autoregistration enabled. It must also resolve existing private records in beta.example while continuing to register its VM names only in alpha.example. Which final link configuration meets the requirements?
 
 Select **1**. Difficulty: applied.
 
-A. A second autoregistration link to beta.example.
-B. A registrar NS record for beta.example.
-C. A resolution-only link to beta.example.
-D. A CNAME at alpha.example's apex to beta.example.
+A. Keep alpha autoregistration enabled; add beta with autoregistration enabled.
+B. Disable alpha autoregistration; add beta with autoregistration disabled.
+C. Keep alpha autoregistration enabled; add beta with autoregistration disabled.
+D. Disable alpha autoregistration; add beta with autoregistration enabled.
 
 ## nw-dns-delegate
 

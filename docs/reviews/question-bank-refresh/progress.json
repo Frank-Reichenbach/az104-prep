@@ -4651,9 +4651,9 @@
     {
       "id": "networking.dns.private",
       "title": "Private DNS zones and VNet links",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/networking.dns.private.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "nw-private-link",
@@ -4668,9 +4668,9 @@
           ],
           "baselineHash": "4ecfdcb9eff1b6cedfde32502a2962d09f4f5ec241474132363abb4e54619cfe",
           "baselineContentHash": "082e9f95e262cdce4cd4dd6ae0ae843bb4420220af042145566d7059dd96ac4d",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "b8013b57996c3703603a388c12299ce98deb3d5ea7d097b2a4ac2ed43e2da3ef"
         },
         {
           "id": "nw-private-registration",
@@ -4685,9 +4685,9 @@
           ],
           "baselineHash": "7b410c83557ae8344a752b0b52b8749c2b3d841664c8a0f5fde29d31fe9cbd5e",
           "baselineContentHash": "fe7ef7bf19617cad5fc56281453fde728ff257c3469c591aac7bf73bcd1b7ecd",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "a60b529f22cffed7ad20c82d5442a32fbc5a2965c9ef6fd28fa4cd6243bbc5cf"
         },
         {
           "id": "nw-private-one",
@@ -4702,9 +4702,9 @@
           ],
           "baselineHash": "61a6bccbe65bf1e7e86185d90bdd6c053a9bb34e1868156c6804e5f568f03bea",
           "baselineContentHash": "b33f9e1c3219f7ac936ca656b6f95d9f389bfc32c07df1b840fe2f6c3e82af2b",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f2b41c168536cf2de26bd512f182e6595715e29f911872ac8607051f15f1cb5b"
         },
         {
           "id": "nw-private-registration-enabled-variant",
@@ -4719,9 +4719,9 @@
           ],
           "baselineHash": "d16a6a4cc9966dc392a660052caca0cddbe5efceab7cef7d50a267c82c54d3c9",
           "baselineContentHash": "9f8d3e07fd8ff5d49e14c8f9986d151f63a7a1eba6fd93f29e07c9e0fb46ef05",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "0a95993f00c46e9ab00fc77bf71d2b7f2de1392713c72293e0f69cdb781e2903"
         }
       ]
     },

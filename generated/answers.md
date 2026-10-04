@@ -3340,18 +3340,18 @@ Study: [knowledge file](../knowledge/monitoring/alerts/processing-rules.md). Evi
 
 Topic: Networking › Private DNS zones and VNet links.
 
-Two VNets are peered. A private zone is linked only to VNet A; VNet B uses Azure-provided DNS and cannot resolve its records. What is missing?
+Two VNets are peered and use Azure-provided DNS. A private zone contains a verified A record for db.corp.example and has a completed link only to vnet-a. A VM in vnet-a resolves it, but a VM in vnet-b cannot. Which change gives vnet-b access to the existing zone records?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** A private-zone link to VNet B. Peering does not automatically add DNS-zone resolution links.
-- **B. Incorrect:** A second public NS delegation at the registrar. Private-zone visibility is not set by public delegation.
-- **C. Incorrect:** An Internet-wide NSG allow rule. That does not attach the zone to VNet B.
-- **D. Incorrect:** A public IP on every VM in VNet B. Public IPs are not required for linked private-zone resolution.
+- **A. Correct:** Add a resolution-only link from the existing private zone to vnet-b. The client VNet needs its own zone link with Azure-provided DNS. Autoregistration is unnecessary to resolve existing records.
+- **B. Incorrect:** Enable autoregistration on the existing link to vnet-a. This registers vnet-a VM names; it does not link vnet-b to the zone.
+- **C. Incorrect:** Recreate the peering between the VNets without changing zone links. Peering supplies network connectivity, not a private-zone link for vnet-b.
+- **D. Incorrect:** Create an empty second private zone and link only that zone to vnet-b. An empty separate zone does not expose the verified record in the existing zone.
 
-Study: [knowledge file](../knowledge/networking/dns/private-zones.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/dns/private-zones.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/private-dns-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/private-dns-overview)
 
 ## nw-private-registration
 
@@ -3366,7 +3366,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** Public Internet resolution of the zone. The link serves private-network resolution.
 - **D. Incorrect:** Automatic VNet peering to all other linked networks. DNS links do not create network peerings.
 
-Study: [knowledge file](../knowledge/networking/dns/private-zones.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/dns/private-zones.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/private-dns-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview)
 
@@ -3374,18 +3374,18 @@ Study: [knowledge file](../knowledge/networking/dns/private-zones.md). Evidence 
 
 Topic: Networking › Private DNS zones and VNet links.
 
-A VNet already autoregisters VM names in zone alpha.example. You want it to resolve beta.example without changing that registration. Which link is suitable?
+A VNet using Azure-provided DNS has a completed link to alpha.example with autoregistration enabled. It must also resolve existing private records in beta.example while continuing to register its VM names only in alpha.example. Which final link configuration meets the requirements?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** A second autoregistration link to beta.example. One VNet can have only one registration zone.
-- **B. Incorrect:** A registrar NS record for beta.example. Public delegation does not provide this private link.
-- **C. Correct:** A resolution-only link to beta.example. Multiple resolution links can coexist with the registration zone.
-- **D. Incorrect:** A CNAME at alpha.example's apex to beta.example. That neither links the zone nor meets apex record constraints.
+- **A. Incorrect:** Keep alpha autoregistration enabled; add beta with autoregistration enabled. A VNet can have only one registration zone. Two enabled registration links are not supported.
+- **B. Incorrect:** Disable alpha autoregistration; add beta with autoregistration disabled. Both zones can resolve, but this stops the required VM-name registration in alpha.
+- **C. Correct:** Keep alpha autoregistration enabled; add beta with autoregistration disabled. The existing registration zone remains alpha; the additional resolution-only link supplies beta lookups.
+- **D. Incorrect:** Disable alpha autoregistration; add beta with autoregistration enabled. This moves registration to beta, contrary to the requirement to keep it only in alpha.
 
-Study: [knowledge file](../knowledge/networking/dns/private-zones.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/dns/private-zones.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/private-dns-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/private-dns-overview)
 
 ## nw-dns-delegate
 
@@ -4114,7 +4114,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** Automatic publication of those VM records to Internet resolvers. A private-zone link does not turn the zone into public DNS.
 - **D. Incorrect:** Automatic network peering to every other linked VNet. DNS links do not create network peerings.
 
-Study: [knowledge file](../knowledge/networking/dns/private-zones.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/dns/private-zones.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/private-dns-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview)
 
