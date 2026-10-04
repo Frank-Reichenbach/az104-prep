@@ -5722,9 +5722,9 @@
     {
       "id": "monitoring.backup.backup-vault",
       "title": "Backup vaults and workload identity permissions",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.backup.backup-vault.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-bv-type",
@@ -5739,9 +5739,9 @@
           ],
           "baselineHash": "1d92a39cc92ea1ad5e0b07814b369c531ca719a8b2236d6a8a589855e93f13b2",
           "baselineContentHash": "911d0ea3d02adf9bfbb533e972cafd67fbca646535afe31a570277f91b57b8ec",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f76def1f217e736cdf829da13d5b2300127b66e5d3d3094b498ae666d645f4ef"
         },
         {
           "id": "mo-bv-identity",
@@ -5756,9 +5756,9 @@
           ],
           "baselineHash": "fc5feae32edae6447322a98efa6a60d5b68e6088f5a98c8903625d89d3dbe6c8",
           "baselineContentHash": "353043aaa3bd2a0ff416cf07e8e8a8efd650466260d0200113d572ca54e6f279",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "87dcfb5b38aacc5c84bc7e682ad65966d1013ad105e995cd94482454923476c1"
         },
         {
           "id": "mo-bv-operational",
@@ -5773,9 +5773,9 @@
           ],
           "baselineHash": "e350969e53c808a4d213a51bd4e8e68fc66f5b887af25c61858f14248f311d7a",
           "baselineContentHash": "368833dc10eaba6401b5c95dd601da5183b7ea117e5ab4453a2053864fccfdda",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f73fd7b9bac7a636e2eb5e99e7e478c606162c2f00c10c04b69d223dfcc2c042"
         }
       ]
     },

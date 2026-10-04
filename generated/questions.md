@@ -1752,40 +1752,40 @@ D. An action group must generate the raw backup-job diagnostic records.
 
 Topic: Monitoring and recovery › Backup vaults and workload identity permissions.
 
-You choose a vault for standalone Azure Disk Backup under Microsoft.DataProtection. Which resource type fits?
+In standalone Azure Disk Backup, which mapping describes the backup instance and its operational recovery snapshots?
 
 Select **1**. Difficulty: foundation.
 
-A. Backup vault.
-B. Only a Recovery Services vault configured for VM backup.
-C. An Azure Monitor workspace.
-D. An action group.
+A. The backup instance is managed in a Backup vault; snapshots are stored in the selected snapshot resource group.
+B. The backup instance is managed in a Recovery Services vault; snapshots are copied to that vault’s storage.
+C. The backup instance and its snapshots are both stored only in a Recovery Services vault.
+D. The backup instance is managed in a Backup vault; snapshots are copied to its geo-redundant vault storage.
 
 ## mo-bv-identity
 
 Topic: Monitoring and recovery › Backup vaults and workload identity permissions.
 
-An operator can create backup instances, but disk backup validation says the vault cannot access the source disk. What should you inspect?
+An operator can create Disk Backup instances. Validation reports that the Backup vault cannot read the source disk. The vault identity has permissions on the snapshot resource group, but no role assignment covering the source disk. Which permission boundary should you correct?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Only the operator's DNS suffix.
-B. The Backup vault managed identity's required role assignments and scopes.
-C. Only the action-group email recipients.
-D. Only the disk's display name.
+A. Grant additional source-disk access only to the human operator.
+B. Grant the required source-disk permission to the Backup vault managed identity at a scope covering that disk.
+C. Grant the required disk permission to a different vault’s managed identity.
+D. Grant the vault identity access only to the restore target resource group.
 
 ## mo-bv-operational
 
 Topic: Monitoring and recovery › Backup vaults and workload identity permissions.
 
-A Backup vault uses GRS and manages Azure Disk Backup operational snapshots. Does that setting copy those disk snapshots into geo-redundant vault storage?
+A Backup vault uses GRS and manages operational Azure Disk Backup snapshots. An administrator needs to assess whether those recovery points survive loss of the source region. Which conclusion is supported by the vault’s GRS setting alone?
 
 Select **1**. Difficulty: applied.
 
-A. Yes, every vault-managed workload is stored in the vault.
-B. Yes, as soon as the disk has a public IP.
-C. No; operational disk snapshots are not copied to vault storage.
-D. Yes, if the operator has Owner.
+A. It proves that every operational snapshot has a paired-region copy.
+B. It proves that every operational snapshot is copied into geo-redundant vault storage.
+C. It does not establish a secondary-region copy of the operational snapshots.
+D. It proves that Cross Region Restore is enabled for these operational snapshots.
 
 ## mo-files-tier
 

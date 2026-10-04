@@ -2286,52 +2286,52 @@ Study: [knowledge file](../knowledge/monitoring/backup/alerts.md). Evidence chec
 
 Topic: Monitoring and recovery › Backup vaults and workload identity permissions.
 
-You choose a vault for standalone Azure Disk Backup under Microsoft.DataProtection. Which resource type fits?
+In standalone Azure Disk Backup, which mapping describes the backup instance and its operational recovery snapshots?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** Backup vault. Azure Disk Backup uses this vault family.
-- **B. Incorrect:** Only a Recovery Services vault configured for VM backup. That is a different recovery-workload architecture.
-- **C. Incorrect:** An Azure Monitor workspace. This stores monitoring data rather than manages disk backup.
-- **D. Incorrect:** An action group. This defines alert responses rather than backup instances.
+- **A. Correct:** The backup instance is managed in a Backup vault; snapshots are stored in the selected snapshot resource group. The vault manages the instance and policy, while operational disk snapshots remain in the subscription’s snapshot resource group.
+- **B. Incorrect:** The backup instance is managed in a Recovery Services vault; snapshots are copied to that vault’s storage. Standalone Disk Backup uses a Backup vault and operational snapshots, rather than this VM-backup architecture.
+- **C. Incorrect:** The backup instance and its snapshots are both stored only in a Recovery Services vault. This uses the wrong vault family and treats operational snapshots as vaulted backup data.
+- **D. Incorrect:** The backup instance is managed in a Backup vault; snapshots are copied to its geo-redundant vault storage. The instance location is right, but operational Disk Backup does not copy snapshots into vault storage.
 
-Study: [knowledge file](../knowledge/monitoring/backup/backup-vault.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/backup-vault.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-vault-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/create-manage-backup-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/disk-backup-overview) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/backup/backup-azure-dataprotection-use-rest-api-backup-disks)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/disk-backup-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-dataprotection-use-rest-api-backup-disks)
 
 ## mo-bv-identity
 
 Topic: Monitoring and recovery › Backup vaults and workload identity permissions.
 
-An operator can create backup instances, but disk backup validation says the vault cannot access the source disk. What should you inspect?
+An operator can create Disk Backup instances. Validation reports that the Backup vault cannot read the source disk. The vault identity has permissions on the snapshot resource group, but no role assignment covering the source disk. Which permission boundary should you correct?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Incorrect:** Only the operator's DNS suffix. DNS suffix does not supply disk RBAC.
-- **B. Correct:** The Backup vault managed identity's required role assignments and scopes. The service identity needs its own workload permissions.
-- **C. Incorrect:** Only the action-group email recipients. Notifications do not authorize backup access.
-- **D. Incorrect:** Only the disk's display name. Renaming does not grant the identity access.
+- **A. Incorrect:** Grant additional source-disk access only to the human operator. The error concerns the service identity; operator permissions do not become permissions of the vault identity.
+- **B. Correct:** Grant the required source-disk permission to the Backup vault managed identity at a scope covering that disk. The vault identity needs its own access to the source disk; snapshot-resource-group access covers a different resource.
+- **C. Incorrect:** Grant the required disk permission to a different vault’s managed identity. A different vault identity does not authorize the identity performing this backup.
+- **D. Incorrect:** Grant the vault identity access only to the restore target resource group. Restore-target permissions do not cover the source disk that validation must read.
 
-Study: [knowledge file](../knowledge/monitoring/backup/backup-vault.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/backup-vault.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-vault-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/create-manage-backup-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/disk-backup-overview) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/backup/backup-azure-dataprotection-use-rest-api-backup-disks)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/disk-backup-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-dataprotection-use-rest-api-backup-disks)
 
 ## mo-bv-operational
 
 Topic: Monitoring and recovery › Backup vaults and workload identity permissions.
 
-A Backup vault uses GRS and manages Azure Disk Backup operational snapshots. Does that setting copy those disk snapshots into geo-redundant vault storage?
+A Backup vault uses GRS and manages operational Azure Disk Backup snapshots. An administrator needs to assess whether those recovery points survive loss of the source region. Which conclusion is supported by the vault’s GRS setting alone?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Yes, every vault-managed workload is stored in the vault. Operational disk backup is an exception to this assumption.
-- **B. Incorrect:** Yes, as soon as the disk has a public IP. Disks have no such public-IP backup switch.
-- **C. Correct:** No; operational disk snapshots are not copied to vault storage. Vault redundancy therefore does not apply to that operational tier.
-- **D. Incorrect:** Yes, if the operator has Owner. Operator RBAC does not change the backup architecture.
+- **A. Incorrect:** It proves that every operational snapshot has a paired-region copy. Vault GRS does not apply to operational disk snapshots, so it cannot establish this copy.
+- **B. Incorrect:** It proves that every operational snapshot is copied into geo-redundant vault storage. Disk Backup does not copy operational snapshots into the vault storage tier.
+- **C. Correct:** It does not establish a secondary-region copy of the operational snapshots. These snapshots remain outside vault storage, so the vault redundancy setting is not evidence of their cross-region protection.
+- **D. Incorrect:** It proves that Cross Region Restore is enabled for these operational snapshots. GRS vault configuration does not add a vaulted secondary-region restore path to operational Disk Backup.
 
-Study: [knowledge file](../knowledge/monitoring/backup/backup-vault.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/backup-vault.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-vault-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/create-manage-backup-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/disk-backup-overview) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/backup/backup-azure-dataprotection-use-rest-api-backup-disks)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/disk-backup-overview)
 
 ## mo-files-tier
 
