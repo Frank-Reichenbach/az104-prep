@@ -2620,9 +2620,9 @@
     {
       "id": "compute.templates.arm-editing",
       "title": "Editing ARM templates safely",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.templates.arm-editing.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-arm-param",
@@ -2637,9 +2637,9 @@
           ],
           "baselineHash": "16ef5f25f5b4d76925ba2764eea1710aa503c8e306365626e62efb815a92c3a5",
           "baselineContentHash": "d37691a8bc9bea6f52a62364cdb7e6063313564f4b8d7dce4d0b5dc277458542",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "90d13c3fa25bf558c29534e7604e4d95cdc4079ae86ec2c020fccafc4e6d1eb2"
         },
         {
           "id": "co-arm-incremental",
@@ -2654,9 +2654,9 @@
           ],
           "baselineHash": "c2860acccd82de20df19ed2bece10cb83cfd6c76c1fded757f0d0f2b030a9594",
           "baselineContentHash": "2f131a2fac7d57f95aa36ce571923125bfdd260ff16079d3a66260747608aac2",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "b020208315a1dfd2415b0ec50ffd9c55fcb7f532e530f4d93c66701d99e37540"
         },
         {
           "id": "co-arm-secure",
@@ -2671,9 +2671,9 @@
           ],
           "baselineHash": "49e8415a6cec005960a4ca360bf8843a944e1e0e4098127f6c3f692b0cb590be",
           "baselineContentHash": "8487b109c2e14497f4bdadd3f1f0d11e59dee4f51d1701c42ea436d4de737118",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "b8d1d5930b73cc5bf7122fa22cf8ffb164a9ea1449250580484ec3d1a0976c1e"
         }
       ]
     },

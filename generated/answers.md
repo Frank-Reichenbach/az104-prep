@@ -629,7 +629,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** metadata.description This documents the parameter without enforcing an allowed set.
 - **D. Incorrect:** minLength Length validation cannot restrict the input to these two SKU names.
 
-Study: [knowledge file](../knowledge/compute/templates/arm-editing.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/templates/arm-editing.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if)
 
@@ -637,35 +637,35 @@ Study: [knowledge file](../knowledge/compute/templates/arm-editing.md). Evidence
 
 Topic: Compute › Editing ARM templates safely.
 
-An ARM incremental deployment redeclares an existing resource but omits one of its non-default properties. What should the administrator assume when reviewing the change?
+An incremental ARM deployment updates a resource already in rg-app. The edited definition omits a non-default property that must remain configured. A separate resource in rg-app is absent from the template and must remain. Which review decision meets both requirements?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** The omitted property can reset to its default; declare the full intended configuration. Incremental applies the resource definition rather than a partial property patch.
-- **B. Incorrect:** Every omitted property is preserved because the mode is incremental. The preservation rule concerns omitted resources, not omitted properties on redeclared resources.
-- **C. Incorrect:** The entire resource is deleted because its definition changed. Incremental does not delete the resource merely because a property is omitted.
-- **D. Incorrect:** Only the template contentVersion controls whether the property changes. contentVersion is template metadata, not an update switch.
+- **A. Correct:** Restore the required property in the definition and retain incremental mode. Redeclared resources need their complete intended configuration. Incremental mode leaves resources omitted entirely unchanged.
+- **B. Incorrect:** Leave the property omitted and retain incremental mode. Incremental preserves omitted resources, but omitted properties on a redeclared resource can reset to defaults.
+- **C. Incorrect:** Restore the required property and change to complete mode. The property is declared, but complete mode can delete the separate resource omitted from the template.
+- **D. Incorrect:** Leave the property omitted and change to complete mode. Neither requirement is met: the redeclared resource can lose the property, and the separate omitted resource can be deleted.
 
-Study: [knowledge file](../knowledge/compute/templates/arm-editing.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/templates/arm-editing.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes)
 
 ## co-arm-secure
 
 Topic: Compute › Editing ARM templates safely.
 
-An ARM template accepts an administrator password. Which TWO choices help prevent exposing it in template and deployment records?
+An ARM template declares adminPassword as type string, contains a literal password in defaultValue, and returns the password in an ordinary string output. The password must be supplied at deployment time and kept out of the template source and deployment history. Which TWO changes are jointly required among the offered choices? Assume the password is supplied securely and is not otherwise logged.
 
 Select **2**. Difficulty: applied.
 
-- **A. Correct:** Declare the input as secureString. Secure parameters are not stored as plain values in deployment history.
-- **B. Correct:** Avoid hard-coded secrets and ordinary outputs containing the password. A secure input can still be exposed by how the template author uses it.
-- **C. Incorrect:** Use a string parameter with a password-like name. The name does not give a regular string secure handling.
-- **D. Incorrect:** Put the password in defaultValue in the public template. Secure parameter handling does not hide a literal in the source file.
+- **A. Correct:** Change the adminPassword parameter type to secureString. Secure parameters keep supplied values out of deployment history. This change alone does not remove the literal default or ordinary output.
+- **B. Correct:** Remove the literal defaultValue and the password output. Removing these exposures protects the source and avoids returning the secret as an ordinary output. The input also needs secure parameter handling.
+- **C. Incorrect:** Rename the string parameter to secureAdminPassword. A parameter name does not change string handling; its value can still be recorded in history.
+- **D. Incorrect:** Rename the ordinary output to confidentialPassword. An output name does not hide the returned value; the secret must not be returned as an ordinary output.
 
-Study: [knowledge file](../knowledge/compute/templates/arm-editing.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/templates/arm-editing.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/outputs)
 
 ## co-bicep-refactor
 

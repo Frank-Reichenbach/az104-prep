@@ -491,27 +491,27 @@ D. minLength
 
 Topic: Compute › Editing ARM templates safely.
 
-An ARM incremental deployment redeclares an existing resource but omits one of its non-default properties. What should the administrator assume when reviewing the change?
+An incremental ARM deployment updates a resource already in rg-app. The edited definition omits a non-default property that must remain configured. A separate resource in rg-app is absent from the template and must remain. Which review decision meets both requirements?
 
 Select **1**. Difficulty: applied.
 
-A. The omitted property can reset to its default; declare the full intended configuration.
-B. Every omitted property is preserved because the mode is incremental.
-C. The entire resource is deleted because its definition changed.
-D. Only the template contentVersion controls whether the property changes.
+A. Restore the required property in the definition and retain incremental mode.
+B. Leave the property omitted and retain incremental mode.
+C. Restore the required property and change to complete mode.
+D. Leave the property omitted and change to complete mode.
 
 ## co-arm-secure
 
 Topic: Compute › Editing ARM templates safely.
 
-An ARM template accepts an administrator password. Which TWO choices help prevent exposing it in template and deployment records?
+An ARM template declares adminPassword as type string, contains a literal password in defaultValue, and returns the password in an ordinary string output. The password must be supplied at deployment time and kept out of the template source and deployment history. Which TWO changes are jointly required among the offered choices? Assume the password is supplied securely and is not otherwise logged.
 
 Select **2**. Difficulty: applied.
 
-A. Declare the input as secureString.
-B. Avoid hard-coded secrets and ordinary outputs containing the password.
-C. Use a string parameter with a password-like name.
-D. Put the password in defaultValue in the public template.
+A. Change the adminPassword parameter type to secureString.
+B. Remove the literal defaultValue and the password output.
+C. Rename the string parameter to secureAdminPassword.
+D. Rename the ordinary output to confidentialPassword.
 
 ## co-bicep-refactor
 
