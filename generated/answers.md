@@ -3442,52 +3442,52 @@ Study: [knowledge file](../knowledge/networking/dns/public-zones.md). Evidence c
 
 Topic: Networking › DNS Private Resolver and hybrid forwarding.
 
-On-premises DNS must resolve an Azure private zone through DNS Private Resolver. The zone is linked to the resolver VNet and private connectivity exists. Where should the on-premises conditional forwarder send matching queries?
+An on-premises DNS server must resolve records in an Azure private zone linked to the DNS Private Resolver VNet. The resolver inbound endpoint is 10.20.0.4 and its subnet gateway address is 10.20.0.1. VPN routing and DNS traffic to the inbound endpoint are permitted. Which conditional-forwarder destination provides the intended managed Azure resolution path?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** The resolver's inbound endpoint IP. Inbound endpoints receive queries into Azure.
-- **B. Incorrect:** The outbound endpoint as a DNS listener IP. Outbound endpoints process forwarding from Azure; this is not the inbound query path.
-- **C. Incorrect:** The VNet's public load balancer frontend. A load balancer frontend is not automatically the private resolver listener.
-- **D. Incorrect:** The zone's public registrar name servers. Private zones are not resolved through public registrar delegation.
+- **A. Correct:** 10.20.0.4, the resolver inbound endpoint. The inbound endpoint accepts forwarded queries and resolves private zones linked to its VNet.
+- **B. Incorrect:** 168.63.129.16, the Azure platform DNS address. The on-premises forwarder should use the reachable inbound endpoint; the platform DNS address is not a directly reachable on-premises DNS listener.
+- **C. Incorrect:** 10.20.0.1, the endpoint subnet gateway address. A subnet gateway address is not the resolver’s provisioned DNS listener.
+- **D. Incorrect:** The on-premises DNS server’s own listener address. Forwarding the namespace back to the same unresolved DNS server does not reach the Azure private zone.
 
-Study: [knowledge file](../knowledge/networking/dns/private-resolver.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/dns/private-resolver.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-get-started-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/private-resolver-endpoints-rulesets)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/private-resolver-endpoints-rulesets) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-network/what-is-ip-address-168-63-129-16)
 
 ## nw-resolver-outbound
 
 Topic: Networking › DNS Private Resolver and hybrid forwarding.
 
-An Azure VNet using default DNS must resolve branch.example at an on-premises DNS server. Which configuration provides conditional forwarding?
+An Azure VNet using Azure-provided DNS must resolve branch.example through an on-premises DNS server at 10.50.0.10:53. A DNS Private Resolver outbound endpoint already exists in the same region, and VPN routing and DNS traffic to that server are verified. No matching private zone or forwarding rule exists. Keep the client VNet on Azure-provided DNS. Which two components are jointly required? Select two.
 
-Select **1**. Difficulty: applied.
+Select **2**. Difficulty: applied.
 
-- **A. Incorrect:** Only a public TXT record containing the DNS server IP. TXT data does not configure forwarding.
-- **B. Correct:** Outbound endpoint, suffix rule/ruleset, and client-VNet ruleset link. These configure the managed Azure-to-external resolver path.
-- **C. Incorrect:** Only an autoregistration link for Azure VM names. Registration does not forward branch.example queries on-premises.
-- **D. Incorrect:** Only an NSG allow rule to TCP 53. Filtering permission alone does not select the destination resolver.
+- **A. Incorrect:** A private DNS zone registration link for Azure VM names. VM-name registration does not forward this on-premises namespace to its authoritative server.
+- **B. Correct:** A ruleset associated with the outbound endpoint, with an enabled branch.example. rule targeting 10.50.0.10:53. The rule selects the matching suffix and destination; the outbound endpoint supplies the managed forwarding path.
+- **C. Correct:** A link from that forwarding ruleset to the client VNet. The link makes the configured forwarding rules available to clients using Azure-provided DNS in that VNet.
+- **D. Incorrect:** A client-VNet custom DNS setting pointing directly to 10.50.0.10. Direct custom DNS changes the client resolution path and violates the requirement to retain Azure-provided DNS.
 
-Study: [knowledge file](../knowledge/networking/dns/private-resolver.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/dns/private-resolver.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-get-started-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/private-resolver-endpoints-rulesets)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/private-resolver-endpoints-rulesets)
 
 ## nw-resolver-loop
 
 Topic: Networking › DNS Private Resolver and hybrid forwarding.
 
-A ruleset linked to the resolver VNet forwards a suffix back to that resolver's inbound endpoint, causing repeated queries. What should you investigate?
+A hub DNS Private Resolver has an inbound endpoint. Its forwarding ruleset sends a suffix to that same inbound endpoint and is linked to both hub and spoke VNets. Repeated forwarding occurs in the hub. You must remove the return-to-self path while preserving the spoke ruleset path. Which change addresses the configuration?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Incorrect:** A need to add more copies of the same forwarding rule. Duplicate forwarding does not remove the cycle.
-- **B. Incorrect:** A missing public IP on the inbound endpoint. The inbound endpoint is private and does not need public exposure.
-- **C. Correct:** A DNS forwarding loop involving the ruleset link and inbound target. The query can return to the same forwarding decision.
-- **D. Incorrect:** A requirement for all private zones to be publicly delegated. Private-zone resolution does not require that delegation.
+- **A. Incorrect:** Add a wildcard forwarding rule to the same hub inbound endpoint. Another return-to-self target does not remove the hub link that creates the cycle.
+- **B. Incorrect:** Remove the ruleset link to the spoke while keeping its hub link. This breaks the required spoke path and leaves the problematic hub link in place.
+- **C. Correct:** Remove the ruleset link to the hub while keeping its spoke link. Microsoft warns against linking an inbound-targeting ruleset to the inbound endpoint’s own VNet. Removing that hub link breaks this cycle and preserves the spoke link.
+- **D. Incorrect:** Change the hub inbound IP allocation to static without changing the rule target or links. A stable address does not change the circular forwarding relationship.
 
-Study: [knowledge file](../knowledge/networking/dns/private-resolver.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/dns/private-resolver.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-get-started-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/dns/private-resolver-endpoints-rulesets)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/dns/private-resolver-endpoints-rulesets)
 
 ## nw-lb-private
 

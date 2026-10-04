@@ -2636,40 +2636,40 @@ D. The old cached answer remains valid until 10:10, one hour after the authorita
 
 Topic: Networking › DNS Private Resolver and hybrid forwarding.
 
-On-premises DNS must resolve an Azure private zone through DNS Private Resolver. The zone is linked to the resolver VNet and private connectivity exists. Where should the on-premises conditional forwarder send matching queries?
+An on-premises DNS server must resolve records in an Azure private zone linked to the DNS Private Resolver VNet. The resolver inbound endpoint is 10.20.0.4 and its subnet gateway address is 10.20.0.1. VPN routing and DNS traffic to the inbound endpoint are permitted. Which conditional-forwarder destination provides the intended managed Azure resolution path?
 
 Select **1**. Difficulty: applied.
 
-A. The resolver's inbound endpoint IP.
-B. The outbound endpoint as a DNS listener IP.
-C. The VNet's public load balancer frontend.
-D. The zone's public registrar name servers.
+A. 10.20.0.4, the resolver inbound endpoint.
+B. 168.63.129.16, the Azure platform DNS address.
+C. 10.20.0.1, the endpoint subnet gateway address.
+D. The on-premises DNS server’s own listener address.
 
 ## nw-resolver-outbound
 
 Topic: Networking › DNS Private Resolver and hybrid forwarding.
 
-An Azure VNet using default DNS must resolve branch.example at an on-premises DNS server. Which configuration provides conditional forwarding?
+An Azure VNet using Azure-provided DNS must resolve branch.example through an on-premises DNS server at 10.50.0.10:53. A DNS Private Resolver outbound endpoint already exists in the same region, and VPN routing and DNS traffic to that server are verified. No matching private zone or forwarding rule exists. Keep the client VNet on Azure-provided DNS. Which two components are jointly required? Select two.
 
-Select **1**. Difficulty: applied.
+Select **2**. Difficulty: applied.
 
-A. Only a public TXT record containing the DNS server IP.
-B. Outbound endpoint, suffix rule/ruleset, and client-VNet ruleset link.
-C. Only an autoregistration link for Azure VM names.
-D. Only an NSG allow rule to TCP 53.
+A. A private DNS zone registration link for Azure VM names.
+B. A ruleset associated with the outbound endpoint, with an enabled branch.example. rule targeting 10.50.0.10:53.
+C. A link from that forwarding ruleset to the client VNet.
+D. A client-VNet custom DNS setting pointing directly to 10.50.0.10.
 
 ## nw-resolver-loop
 
 Topic: Networking › DNS Private Resolver and hybrid forwarding.
 
-A ruleset linked to the resolver VNet forwards a suffix back to that resolver's inbound endpoint, causing repeated queries. What should you investigate?
+A hub DNS Private Resolver has an inbound endpoint. Its forwarding ruleset sends a suffix to that same inbound endpoint and is linked to both hub and spoke VNets. Repeated forwarding occurs in the hub. You must remove the return-to-self path while preserving the spoke ruleset path. Which change addresses the configuration?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. A need to add more copies of the same forwarding rule.
-B. A missing public IP on the inbound endpoint.
-C. A DNS forwarding loop involving the ruleset link and inbound target.
-D. A requirement for all private zones to be publicly delegated.
+A. Add a wildcard forwarding rule to the same hub inbound endpoint.
+B. Remove the ruleset link to the spoke while keeping its hub link.
+C. Remove the ruleset link to the hub while keeping its spoke link.
+D. Change the hub inbound IP allocation to static without changing the rule target or links.
 
 ## nw-lb-private
 

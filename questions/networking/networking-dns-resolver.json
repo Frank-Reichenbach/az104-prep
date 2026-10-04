@@ -4,34 +4,34 @@
     {
       "id": "nw-resolver-inbound",
       "family": "nw-resolver-inbound",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.dns.resolver",
       "objectives": [
         "nw-11"
       ],
       "difficulty": "applied",
-      "prompt": "On-premises DNS must resolve an Azure private zone through DNS Private Resolver. The zone is linked to the resolver VNet and private connectivity exists. Where should the on-premises conditional forwarder send matching queries?",
+      "prompt": "An on-premises DNS server must resolve records in an Azure private zone linked to the DNS Private Resolver VNet. The resolver inbound endpoint is 10.20.0.4 and its subnet gateway address is 10.20.0.1. VPN routing and DNS traffic to the inbound endpoint are permitted. Which conditional-forwarder destination provides the intended managed Azure resolution path?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "The resolver's inbound endpoint IP.",
-          "explanation": "Inbound endpoints receive queries into Azure."
+          "text": "10.20.0.4, the resolver inbound endpoint.",
+          "explanation": "The inbound endpoint accepts forwarded queries and resolves private zones linked to its VNet."
         },
         {
           "id": "b",
-          "text": "The outbound endpoint as a DNS listener IP.",
-          "explanation": "Outbound endpoints process forwarding from Azure; this is not the inbound query path."
+          "text": "168.63.129.16, the Azure platform DNS address.",
+          "explanation": "The on-premises forwarder should use the reachable inbound endpoint; the platform DNS address is not a directly reachable on-premises DNS listener."
         },
         {
           "id": "c",
-          "text": "The VNet's public load balancer frontend.",
-          "explanation": "A load balancer frontend is not automatically the private resolver listener."
+          "text": "10.20.0.1, the endpoint subnet gateway address.",
+          "explanation": "A subnet gateway address is not the resolver\u2019s provisioned DNS listener."
         },
         {
           "id": "d",
-          "text": "The zone's public registrar name servers.",
-          "explanation": "Private zones are not resolved through public registrar delegation."
+          "text": "The on-premises DNS server\u2019s own listener address.",
+          "explanation": "Forwarding the namespace back to the same unresolved DNS server does not reach the Azure private zone."
         }
       ],
       "correct": [
@@ -40,86 +40,86 @@
       "knowledge": "knowledge/networking/dns/private-resolver.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview",
-        "https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-get-started-portal",
-        "https://learn.microsoft.com/en-us/azure/dns/private-resolver-endpoints-rulesets"
+        "https://learn.microsoft.com/en-us/azure/dns/private-resolver-endpoints-rulesets",
+        "https://learn.microsoft.com/en-us/azure/virtual-network/what-is-ip-address-168-63-129-16"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-resolver-outbound",
       "family": "nw-resolver-outbound",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.dns.resolver",
       "objectives": [
         "nw-11"
       ],
       "difficulty": "applied",
-      "prompt": "An Azure VNet using default DNS must resolve branch.example at an on-premises DNS server. Which configuration provides conditional forwarding?",
-      "select": 1,
+      "prompt": "An Azure VNet using Azure-provided DNS must resolve branch.example through an on-premises DNS server at 10.50.0.10:53. A DNS Private Resolver outbound endpoint already exists in the same region, and VPN routing and DNS traffic to that server are verified. No matching private zone or forwarding rule exists. Keep the client VNet on Azure-provided DNS. Which two components are jointly required? Select two.",
+      "select": 2,
       "options": [
         {
           "id": "a",
-          "text": "Only a public TXT record containing the DNS server IP.",
-          "explanation": "TXT data does not configure forwarding."
+          "text": "A private DNS zone registration link for Azure VM names.",
+          "explanation": "VM-name registration does not forward this on-premises namespace to its authoritative server."
         },
         {
           "id": "b",
-          "text": "Outbound endpoint, suffix rule/ruleset, and client-VNet ruleset link.",
-          "explanation": "These configure the managed Azure-to-external resolver path."
+          "text": "A ruleset associated with the outbound endpoint, with an enabled branch.example. rule targeting 10.50.0.10:53.",
+          "explanation": "The rule selects the matching suffix and destination; the outbound endpoint supplies the managed forwarding path."
         },
         {
           "id": "c",
-          "text": "Only an autoregistration link for Azure VM names.",
-          "explanation": "Registration does not forward branch.example queries on-premises."
+          "text": "A link from that forwarding ruleset to the client VNet.",
+          "explanation": "The link makes the configured forwarding rules available to clients using Azure-provided DNS in that VNet."
         },
         {
           "id": "d",
-          "text": "Only an NSG allow rule to TCP 53.",
-          "explanation": "Filtering permission alone does not select the destination resolver."
+          "text": "A client-VNet custom DNS setting pointing directly to 10.50.0.10.",
+          "explanation": "Direct custom DNS changes the client resolution path and violates the requirement to retain Azure-provided DNS."
         }
       ],
       "correct": [
-        "b"
+        "b",
+        "c"
       ],
       "knowledge": "knowledge/networking/dns/private-resolver.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview",
-        "https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-get-started-portal",
         "https://learn.microsoft.com/en-us/azure/dns/private-resolver-endpoints-rulesets"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-resolver-loop",
       "family": "nw-resolver-loop",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.dns.resolver",
       "objectives": [
         "nw-11"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A ruleset linked to the resolver VNet forwards a suffix back to that resolver's inbound endpoint, causing repeated queries. What should you investigate?",
+      "prompt": "A hub DNS Private Resolver has an inbound endpoint. Its forwarding ruleset sends a suffix to that same inbound endpoint and is linked to both hub and spoke VNets. Repeated forwarding occurs in the hub. You must remove the return-to-self path while preserving the spoke ruleset path. Which change addresses the configuration?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "A need to add more copies of the same forwarding rule.",
-          "explanation": "Duplicate forwarding does not remove the cycle."
+          "text": "Add a wildcard forwarding rule to the same hub inbound endpoint.",
+          "explanation": "Another return-to-self target does not remove the hub link that creates the cycle."
         },
         {
           "id": "b",
-          "text": "A missing public IP on the inbound endpoint.",
-          "explanation": "The inbound endpoint is private and does not need public exposure."
+          "text": "Remove the ruleset link to the spoke while keeping its hub link.",
+          "explanation": "This breaks the required spoke path and leaves the problematic hub link in place."
         },
         {
           "id": "c",
-          "text": "A DNS forwarding loop involving the ruleset link and inbound target.",
-          "explanation": "The query can return to the same forwarding decision."
+          "text": "Remove the ruleset link to the hub while keeping its spoke link.",
+          "explanation": "Microsoft warns against linking an inbound-targeting ruleset to the inbound endpoint\u2019s own VNet. Removing that hub link breaks this cycle and preserves the spoke link."
         },
         {
           "id": "d",
-          "text": "A requirement for all private zones to be publicly delegated.",
-          "explanation": "Private-zone resolution does not require that delegation."
+          "text": "Change the hub inbound IP allocation to static without changing the rule target or links.",
+          "explanation": "A stable address does not change the circular forwarding relationship."
         }
       ],
       "correct": [
@@ -127,11 +127,9 @@
       ],
       "knowledge": "knowledge/networking/dns/private-resolver.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview",
-        "https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-get-started-portal",
         "https://learn.microsoft.com/en-us/azure/dns/private-resolver-endpoints-rulesets"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

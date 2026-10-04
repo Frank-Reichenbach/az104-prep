@@ -4728,9 +4728,9 @@
     {
       "id": "networking.dns.resolver",
       "title": "DNS Private Resolver and hybrid forwarding",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/networking.dns.resolver.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "nw-resolver-inbound",
@@ -4745,9 +4745,9 @@
           ],
           "baselineHash": "ad6227e3304799d3c9d40dcb017bd5acccb892e7dba37bf86d437e08cec0d32d",
           "baselineContentHash": "f834f4b3fd15b55d08b361fde7f21fd424586608baea40b2385655cebda76f2f",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "833006f84b66c3a587b8f83e877d91aabbe72beb36aa04b72ad339bc0e5d9df8"
         },
         {
           "id": "nw-resolver-outbound",
@@ -4762,9 +4762,9 @@
           ],
           "baselineHash": "c1468c93cf69b81aabbddd8e61676fcd3da7a7a4c5e097a291f0d306d12b3bd8",
           "baselineContentHash": "d19e1cfff97cec4cc3d6ba0317f1338fdf482341a81b8e75101acf7ab1aba860",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "3c9e0079ca2fd9b559c72fed92b796eef5161fc41b6ee71ab55658df848acb3b"
         },
         {
           "id": "nw-resolver-loop",
@@ -4779,9 +4779,9 @@
           ],
           "baselineHash": "fe822eaba9723e07eaeeba6b6415bbd77112c61cd7b11698c908217945de9493",
           "baselineContentHash": "6a94a9e18123ddbba6bbcb52d5783678c628ecd521635d0fa8431ac916405b8e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "740ed464195d6dedfa837b08bd95c399c4fbe6afb4faaefcd0ec3c9220d996a9"
         }
       ]
     },
