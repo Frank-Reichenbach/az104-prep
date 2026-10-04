@@ -1997,18 +1997,18 @@ Study: [knowledge file](../knowledge/identity/users/user-management.md). Evidenc
 
 Topic: Identity and governance › Self-service password reset.
 
-An ordinary user belongs to the SSPR pilot group but has not registered enough methods permitted by the policy. Why can the user not complete a forgotten-password reset?
+A licensed, cloud-only, nonadministrator user is a direct member of the selected SSPR pilot group. The policy requires two methods to reset a password. The user has registered one permitted method and is prompted to contact the administrator during a forgotten-password reset. Which configuration gap explains the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Scope inclusion alone does not provide the required identity-verification methods. The user must register enough permitted methods.
-- **B. Incorrect:** Every SSPR user must be an Azure subscription Owner. Resource ownership is not an SSPR requirement.
-- **C. Incorrect:** Selected-group pilots cannot support password reset. Selected groups are a supported rollout approach.
-- **D. Incorrect:** SSPR only changes display names. SSPR specifically supports eligible password-reset operations.
+- **A. Correct:** The user has fewer registered permitted methods than the reset policy requires. One registered method cannot meet the two-method requirement.
+- **B. Incorrect:** The user is outside the group selected for SSPR enablement. Direct membership in the selected group is confirmed. Scope exclusion does not explain this failure.
+- **C. Incorrect:** The user lacks a license that permits SSPR password reset. The scenario confirms an eligible license. Missing entitlement is not the stated gap.
+- **D. Incorrect:** The tenant has not enabled password writeback to on-premises AD DS. This is a cloud-only user. On-premises password writeback is not needed for this reset.
 
-Study: [knowledge file](../knowledge/identity/users/self-service-password-reset.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/users/self-service-password-reset.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr-writeback) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/authentication/troubleshoot-sspr)
+[Microsoft source 1](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/authentication/troubleshoot-sspr)
 
 ## id-sspr-writeback
 
@@ -2023,7 +2023,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** Enable combined security-information registration only. Registration supplies verification methods; it does not configure the cloud-to-AD password writeback path.
 - **D. Incorrect:** Enable SSPR for the user but leave writeback disabled. SSPR eligibility alone does not send resets to on-premises AD.
 
-Study: [knowledge file](../knowledge/identity/users/self-service-password-reset.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/users/self-service-password-reset.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr-writeback) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/authentication/troubleshoot-sspr)
 
@@ -2031,18 +2031,18 @@ Study: [knowledge file](../knowledge/identity/users/self-service-password-reset.
 
 Topic: Identity and governance › Self-service password reset.
 
-You are configuring recovery authentication methods for a new Entra SSPR deployment after the legacy-method policy deprecation. Which policy should you use?
+You are configuring permitted email and phone recovery methods for a new Entra SSPR deployment after legacy MFA/SSPR method management was deprecated. Security questions are outside the deployment. Which configuration controls whether these methods are enabled for the intended users?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** The Authentication methods policy. It replaces legacy MFA/SSPR method management.
-- **B. Incorrect:** Only the deprecated legacy SSPR methods policy. Current guidance directs administrators to the unified methods policy.
-- **C. Incorrect:** Only a Conditional Access policy requiring MFA. Conditional Access can require authentication but does not replace the method-enablement policy.
-- **D. Incorrect:** Only the user's registered Security info entries. Registration records available methods; policy determines which methods are permitted.
+- **A. Correct:** Authentication methods policy. The current policy enables the relevant recovery methods and scopes them to users or groups.
+- **B. Incorrect:** Legacy SSPR authentication-method settings. Current guidance directs email and phone method management to the Authentication methods policy. This scenario excludes the documented security-question exception.
+- **C. Incorrect:** Conditional Access policy requiring multifactor authentication. Requiring an authentication challenge does not enable recovery methods for SSPR.
+- **D. Incorrect:** The user's registered Security info entries. Registration records methods available to a user; it does not replace the policy that permits them.
 
-Study: [knowledge file](../knowledge/identity/users/self-service-password-reset.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/users/self-service-password-reset.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr-writeback) · [Microsoft source 3](https://learn.microsoft.com/en-us/entra/identity/authentication/troubleshoot-sspr)
+[Microsoft source 1](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr) · [Microsoft source 2](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods-manage)
 
 ## id-lock-freeze-variant
 

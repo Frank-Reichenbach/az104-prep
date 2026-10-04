@@ -1531,14 +1531,14 @@ D. Email address (mail).
 
 Topic: Identity and governance › Self-service password reset.
 
-An ordinary user belongs to the SSPR pilot group but has not registered enough methods permitted by the policy. Why can the user not complete a forgotten-password reset?
+A licensed, cloud-only, nonadministrator user is a direct member of the selected SSPR pilot group. The policy requires two methods to reset a password. The user has registered one permitted method and is prompted to contact the administrator during a forgotten-password reset. Which configuration gap explains the failure?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Scope inclusion alone does not provide the required identity-verification methods.
-B. Every SSPR user must be an Azure subscription Owner.
-C. Selected-group pilots cannot support password reset.
-D. SSPR only changes display names.
+A. The user has fewer registered permitted methods than the reset policy requires.
+B. The user is outside the group selected for SSPR enablement.
+C. The user lacks a license that permits SSPR password reset.
+D. The tenant has not enabled password writeback to on-premises AD DS.
 
 ## id-sspr-writeback
 
@@ -1557,14 +1557,14 @@ D. Enable SSPR for the user but leave writeback disabled.
 
 Topic: Identity and governance › Self-service password reset.
 
-You are configuring recovery authentication methods for a new Entra SSPR deployment after the legacy-method policy deprecation. Which policy should you use?
+You are configuring permitted email and phone recovery methods for a new Entra SSPR deployment after legacy MFA/SSPR method management was deprecated. Security questions are outside the deployment. Which configuration controls whether these methods are enabled for the intended users?
 
 Select **1**. Difficulty: foundation.
 
-A. The Authentication methods policy.
-B. Only the deprecated legacy SSPR methods policy.
-C. Only a Conditional Access policy requiring MFA.
-D. Only the user's registered Security info entries.
+A. Authentication methods policy.
+B. Legacy SSPR authentication-method settings.
+C. Conditional Access policy requiring multifactor authentication.
+D. The user's registered Security info entries.
 
 ## id-lock-freeze-variant
 

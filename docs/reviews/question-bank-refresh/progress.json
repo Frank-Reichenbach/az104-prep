@@ -1866,9 +1866,9 @@
     {
       "id": "identity.users.sspr",
       "title": "Self-service password reset",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/identity.users.sspr.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "id-sspr-unregistered",
@@ -1883,9 +1883,9 @@
           ],
           "baselineHash": "716dac5579893193142277b503bf3dcf80fd9e6bd523095876b1c1260de1e40d",
           "baselineContentHash": "7dc82b80fde34d3bc20a23ea9e0fef881f9379e09ff68180a0a85c39c3fcb902",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "4f1fc190e107a12886d4db0b66f4023907b1a58fa88d95d6b973ee3e319a27ed"
         },
         {
           "id": "id-sspr-writeback",
@@ -1900,9 +1900,9 @@
           ],
           "baselineHash": "19f5e7e355bc8a9d77f2c788ab4c202878c1982056129173566c39c6b9151b63",
           "baselineContentHash": "6c5d6d57aa13073fd2d8d50a71c3656e12c51ba86d5a3d3722fc9e53e3fd908d",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "b94e00dfc1db951338834a7197990879b924a96f8dac8598eff0ad22d1413602"
         },
         {
           "id": "id-sspr-method-policy",
@@ -1917,9 +1917,9 @@
           ],
           "baselineHash": "5e11e6006e7d4f24a06e1c530b52d1648e5e7bfd6cf57a03079b55a2c9bb8506",
           "baselineContentHash": "63b27806b7c0b20749ec2ee9fa12ff21abaad728fd162c25c7265b98f858a130",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "7760af684aab7332c3f96c3dea4660af12e0459bde94b377b3c79bb3024cddca"
         }
       ]
     },

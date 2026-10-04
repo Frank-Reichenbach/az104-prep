@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 95/322 questions reviewed, 77 revised and 18 kept; 26/99 topics complete.
-Latest: [External users and B2B collaboration](docs/reviews/question-bank-refresh/identity.users.external.md). Each completed topic has item decisions,
+Checkpoint: 98/322 questions reviewed, 79 revised and 19 kept; 27/99 topics complete.
+Latest: [Self-service password reset](docs/reviews/question-bank-refresh/identity.users.sspr.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `identity.users.sspr` (Self-service password reset).
+Next: `identity.rbac.roles` (Azure built-in roles and permission definitions).
 The changes are on the work branch; the live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
 refresh PR needs explicit approval; do not reuse the earlier skill PR approval.

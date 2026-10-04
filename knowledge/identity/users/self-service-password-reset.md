@@ -2,7 +2,7 @@
 
 Topic ID: identity.users.sspr  
 Objectives: id-05  
-Verified: 2026-10-02  
+Verified: 2026-10-04
 Status: documented; examples have not been executed in Azure.
 
 Self-service password reset (SSPR) lets eligible users prove their identity and
@@ -26,6 +26,13 @@ nonadministrator test user, a pilot group, and the appropriate licenses.
 4. Have the pilot user register enough supported methods in Security info.
 [Enablement tutorial](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr),
 [authentication method policies](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods-manage).
+
+Documentation caveat checked October 4, 2026: the enablement tutorial gives a
+general legacy-method deprecation statement. The methods-management guide still
+says security questions use legacy SSPR settings until a migration control is
+available. Do not apply the general statement to security questions without
+checking this exception. The scored policy question concerns email and phone
+methods; the security-question migration state remains unresolved here.
 
 Use a private browser session to test the password-reset flow. Verify the new
 password works and inspect audit events. An enabled user without sufficient
