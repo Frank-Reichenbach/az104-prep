@@ -1986,9 +1986,9 @@
     {
       "id": "identity.rbac.assignments",
       "title": "Azure role assignments and scopes",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/identity.rbac.assignments.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "id-scope-one-group",
@@ -2003,9 +2003,9 @@
           ],
           "baselineHash": "40c8dbe330c476f4b1426f84a8d2c2ce8b5f024e6daab3f83161c4898ec727f8",
           "baselineContentHash": "1ff5317faeb411ac6fcaba5e14518995aa43ff9558a5f2e3f903e22e744387fd",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "ffccb2db3e8c3fe1e4e605598229215585430a1ce2bce115ffb8a41b9f1b13ee"
         },
         {
           "id": "id-scope-inherited-remove",
@@ -2020,9 +2020,9 @@
           ],
           "baselineHash": "5cb74c0282b4bb03d9e46953865817888c3ae8be3fac31dcd6c43634e5a569d8",
           "baselineContentHash": "fb3377aed75bc69778ccaa5c97a898c325ba408ea9c8dea1c8781788b00151fe",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "fb82dd81e4ad86507905b3852110b46bcbfa259b57567ea2176cbc51d30c4f42"
         },
         {
           "id": "id-scope-triplet",
@@ -2037,9 +2037,9 @@
           ],
           "baselineHash": "b0dec41464c0026af96d2bbe6740e75bc3f4f4680f6f8f4cc1b51ca2e1b1e544",
           "baselineContentHash": "e70f64b2d891d6b67df81ed17450f8b2b2340f8a2fce2348fb9e02b78f027073",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "624fefb03805a700853a31f63a13822224d5f7bbd66f2cfbd38bcb003f3c0fa5"
         }
       ]
     },

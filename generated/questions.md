@@ -1310,14 +1310,14 @@ D. One VM inside rg-training.
 
 Topic: Identity and governance › Azure role assignments and scopes.
 
-A user's Contributor assignment is inherited from the subscription. You want to remove that grant. Where must the assignment itself be removed?
+A user has a direct Contributor role assignment at subscription scope. On vm-app in rg-app, IAM shows that assignment as inherited and does not allow its removal at the VM scope. An authorized administrator must revoke that specific assignment across the subscription. Which action should the administrator take?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. At the subscription where it was created.
-B. Only from one child VM's IAM page as a local assignment.
-C. Add Reader on the VM to cancel Contributor.
-D. Delete the VM's owner tag.
+A. Remove the Contributor assignment in the subscription's IAM page.
+B. Remove the inherited Contributor entry as a local assignment in vm-app's IAM page.
+C. Add Reader for the user on vm-app.
+D. Remove a Reader assignment for the user on rg-app.
 
 ## id-scope-triplet
 

@@ -1700,7 +1700,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** The tenant's root management group. That is much broader than the requested boundary.
 - **D. Incorrect:** One VM inside rg-training. That does not cover all requested resources in the group.
 
-Study: [knowledge file](../knowledge/identity/rbac/assignments-and-scopes.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/rbac/assignments-and-scopes.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview)
 
@@ -1708,18 +1708,18 @@ Study: [knowledge file](../knowledge/identity/rbac/assignments-and-scopes.md). E
 
 Topic: Identity and governance › Azure role assignments and scopes.
 
-A user's Contributor assignment is inherited from the subscription. You want to remove that grant. Where must the assignment itself be removed?
+A user has a direct Contributor role assignment at subscription scope. On vm-app in rg-app, IAM shows that assignment as inherited and does not allow its removal at the VM scope. An authorized administrator must revoke that specific assignment across the subscription. Which action should the administrator take?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** At the subscription where it was created. The assignment is defined at its parent scope.
-- **B. Incorrect:** Only from one child VM's IAM page as a local assignment. A parent grant is not a separate editable child assignment.
-- **C. Incorrect:** Add Reader on the VM to cancel Contributor. A weaker grant does not subtract a stronger inherited grant.
-- **D. Incorrect:** Delete the VM's owner tag. Tags do not define Azure RBAC assignments.
+- **A. Correct:** Remove the Contributor assignment in the subscription's IAM page. The assignment was created at subscription scope and must be removed there.
+- **B. Incorrect:** Remove the inherited Contributor entry as a local assignment in vm-app's IAM page. Inheritance does not create a separate local assignment that can be removed at the VM.
+- **C. Incorrect:** Add Reader for the user on vm-app. An additional Reader grant does not subtract the inherited Contributor grant.
+- **D. Incorrect:** Remove a Reader assignment for the user on rg-app. Removing a different child assignment does not revoke the specified subscription Contributor assignment.
 
-Study: [knowledge file](../knowledge/identity/rbac/assignments-and-scopes.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/rbac/assignments-and-scopes.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-remove) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview)
 
 ## id-scope-triplet
 
@@ -1734,7 +1734,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** Role definition, resource tag, and subscription display name. This omits the assigned security principal and an unambiguous scope.
 - **D. Incorrect:** Security principal, authentication method, and tenant domain. Authentication details do not replace a role definition and Azure resource scope.
 
-Study: [knowledge file](../knowledge/identity/rbac/assignments-and-scopes.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/rbac/assignments-and-scopes.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview)
 

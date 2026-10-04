@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 101/322 questions reviewed, 81 revised and 20 kept; 28/99 topics complete.
-Latest: [Azure built-in roles and permission definitions](docs/reviews/question-bank-refresh/identity.rbac.roles.md). Each completed topic has item decisions,
+Checkpoint: 104/322 questions reviewed, 82 revised and 22 kept; 29/99 topics complete.
+Latest: [Azure role assignments and scopes](docs/reviews/question-bank-refresh/identity.rbac.assignments.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `identity.rbac.assignments` (Azure role assignments and scopes).
+Next: `identity.rbac.effective-access` (Effective access and RBAC troubleshooting).
 The changes are on the work branch; the live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
 refresh PR needs explicit approval; do not reuse the earlier skill PR approval.
