@@ -1130,52 +1130,52 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/moves.md). Evidenc
 
 Topic: Compute › Resizing virtual machines.
 
-A running Azure VM can use the requested target size on its current host cluster. What should you still plan for when resizing it?
+A running Azure VM will be resized to a supported size available on its current hardware cluster. Which expectation should the administrator use when planning this resize?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** A VM restart and application interruption Running-VM resizing is disruptive even without a separate deallocation requirement.
-- **B. Incorrect:** A guaranteed change with no guest restart Availability of the SKU does not make resizing nondisruptive.
-- **C. Incorrect:** Automatic replication into another region Resize changes resource allocation, not disaster recovery configuration.
-- **D. Incorrect:** Automatic expansion of every guest filesystem Changing the VM size does not automatically extend all disk filesystems.
+- **A. Correct:** The VM restarts; separate deallocation is not required solely to change clusters. Running-VM resizing restarts the guest. Since the target is available on the current cluster, a cluster change does not require prior deallocation here.
+- **B. Incorrect:** The VM stays running; separate deallocation is not required to change clusters. The target being available does not eliminate the restart caused by resizing a running VM.
+- **C. Incorrect:** The VM restarts; separate deallocation is always required to change clusters. The target is available on the current cluster. A different-cluster deallocation requirement does not follow from these facts.
+- **D. Incorrect:** The VM stays running; separate deallocation is always required to change clusters. The resize restarts the VM, and the stated current-cluster availability does not require a cluster change.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/resizing.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/resizing.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm)
 
 ## co-resize-set
 
 Topic: Compute › Resizing virtual machines.
 
-A VM in an availability set needs a size unavailable on the current hardware cluster. Which operational consequence must be considered?
+VMs vm1 and vm2 are the only members of an availability set. vm1 needs a supported size unavailable on their current hardware cluster. The target size is available in the region and quota is sufficient. Which plan accounts for the availability-set requirement when moving to compatible hardware?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** All VMs in that availability set may need to be deallocated. This allows the set to be allocated on hardware that supports the new size.
-- **B. Incorrect:** Only changing its resource group guarantees the new size. Resource-group membership does not select a different hardware cluster.
-- **C. Incorrect:** Increasing the OS disk guarantees the new size. Disk capacity does not establish compute SKU availability.
-- **D. Incorrect:** Changing the display name forces a compatible cluster. Resource naming does not control placement capacity.
+- **A. Correct:** Plan an outage to deallocate both vm1 and vm2 before resizing and restarting. All VMs in the availability set need deallocation to release the current cluster placement when the target size is unavailable there.
+- **B. Incorrect:** Deallocate only vm1 and leave vm2 running throughout the change. The remaining allocated member keeps the availability set tied to its current cluster.
+- **C. Incorrect:** Shut down both guests while leaving both VMs allocated before resizing. Guest shutdown does not release the cluster allocation needed for this change.
+- **D. Incorrect:** Resize vm1 while both VMs remain running on their current cluster. The required target size is not available on that cluster; keeping the set allocated does not address placement.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/resizing.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/resizing.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing)
 
 ## co-resize-proof
 
 Topic: Compute › Resizing virtual machines.
 
-A resize operation fails, but the VM model now displays the requested larger size. What is the best next verification?
+A VM resize operation reports failure. The resource model now shows the requested larger size. The administrator needs to establish whether the new allocation actually succeeded. Which verification uses evidence of the operation and running instance?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Check the operation failure, allocation state, and actual guest resources. The model can show the requested configuration before successful allocation.
-- **B. Incorrect:** Conclude the larger size is active solely from the model field. That field can reflect the failed requested change.
-- **C. Incorrect:** Assume the guest data disks were necessarily erased. A failed compute resize does not establish data-disk deletion.
-- **D. Incorrect:** Delete the deployment history to complete the resize. History deletion does not allocate new hardware.
+- **A. Correct:** Inspect the failed operation, instance state, and CPU/memory reported by the guest. The model can record the requested size even when a resize fails. Operation and running-instance evidence distinguish requested from actual allocation.
+- **B. Incorrect:** Inspect only hardwareProfile.vmSize in the resource model. That is the requested size already observed; it does not establish successful allocation after failure.
+- **C. Incorrect:** Inspect only the target size listing and current subscription quota. Availability and quota are prerequisites, not evidence that this failed operation allocated the target hardware.
+- **D. Incorrect:** Inspect only the successful deployment record from the original VM creation. A prior creation result does not establish the outcome of the later failed resize.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/resizing.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/resizing.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm)
 
 ## co-vmss-mode
 

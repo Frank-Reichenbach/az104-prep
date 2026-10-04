@@ -868,40 +868,40 @@ D. Replace the subscription segment while continuing to use rg-old.
 
 Topic: Compute › Resizing virtual machines.
 
-A running Azure VM can use the requested target size on its current host cluster. What should you still plan for when resizing it?
+A running Azure VM will be resized to a supported size available on its current hardware cluster. Which expectation should the administrator use when planning this resize?
 
 Select **1**. Difficulty: foundation.
 
-A. A VM restart and application interruption
-B. A guaranteed change with no guest restart
-C. Automatic replication into another region
-D. Automatic expansion of every guest filesystem
+A. The VM restarts; separate deallocation is not required solely to change clusters.
+B. The VM stays running; separate deallocation is not required to change clusters.
+C. The VM restarts; separate deallocation is always required to change clusters.
+D. The VM stays running; separate deallocation is always required to change clusters.
 
 ## co-resize-set
 
 Topic: Compute › Resizing virtual machines.
 
-A VM in an availability set needs a size unavailable on the current hardware cluster. Which operational consequence must be considered?
+VMs vm1 and vm2 are the only members of an availability set. vm1 needs a supported size unavailable on their current hardware cluster. The target size is available in the region and quota is sufficient. Which plan accounts for the availability-set requirement when moving to compatible hardware?
 
 Select **1**. Difficulty: applied.
 
-A. All VMs in that availability set may need to be deallocated.
-B. Only changing its resource group guarantees the new size.
-C. Increasing the OS disk guarantees the new size.
-D. Changing the display name forces a compatible cluster.
+A. Plan an outage to deallocate both vm1 and vm2 before resizing and restarting.
+B. Deallocate only vm1 and leave vm2 running throughout the change.
+C. Shut down both guests while leaving both VMs allocated before resizing.
+D. Resize vm1 while both VMs remain running on their current cluster.
 
 ## co-resize-proof
 
 Topic: Compute › Resizing virtual machines.
 
-A resize operation fails, but the VM model now displays the requested larger size. What is the best next verification?
+A VM resize operation reports failure. The resource model now shows the requested larger size. The administrator needs to establish whether the new allocation actually succeeded. Which verification uses evidence of the operation and running instance?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Check the operation failure, allocation state, and actual guest resources.
-B. Conclude the larger size is active solely from the model field.
-C. Assume the guest data disks were necessarily erased.
-D. Delete the deployment history to complete the resize.
+A. Inspect the failed operation, instance state, and CPU/memory reported by the guest.
+B. Inspect only hardwareProfile.vmSize in the resource model.
+C. Inspect only the target size listing and current subscription quota.
+D. Inspect only the successful deployment record from the original VM creation.
 
 ## co-vmss-mode
 

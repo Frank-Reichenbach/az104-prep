@@ -3040,9 +3040,9 @@
     {
       "id": "compute.vms.resizing",
       "title": "Resizing virtual machines",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.vms.resizing.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-resize-restart",
@@ -3057,9 +3057,9 @@
           ],
           "baselineHash": "c2e1b0c857730180ed3137d633130680bc2d44dbe47aabee066e7e22ece065cd",
           "baselineContentHash": "7cdfd1f1ebfa98a5816e9814305cc9871b6f777b7e69aab7b76b544163117f1e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "9c7c04381871111da75219e2a780666392b03cf872d989e7a84a7e91a65cd8ab"
         },
         {
           "id": "co-resize-set",
@@ -3074,9 +3074,9 @@
           ],
           "baselineHash": "9438d308127d04914c9d3e5731f82b9bd5f851cde129d0bca3cada0e758e70ab",
           "baselineContentHash": "930d1d7bc3af9199524c5a28718b312b31330a07d45a15ff8bbaf79b0b084f89",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "6e0c51232f45ba6261c1015df51382e028813531b7e275ef6e1d99df87d1e690"
         },
         {
           "id": "co-resize-proof",
@@ -3091,9 +3091,9 @@
           ],
           "baselineHash": "2586fada0b2b463f350098f06acecb86390eff4435585bfb40a9753b0ccd32cb",
           "baselineContentHash": "89992a5e557569662e7a3069a025cc4e9c8aa21988bbfd12d7ffbc4ebfff77a3",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "ec0728bbdae6580625900966415958bdc8b97f3d78df2d472b0c823ad9654220"
         }
       ]
     },
