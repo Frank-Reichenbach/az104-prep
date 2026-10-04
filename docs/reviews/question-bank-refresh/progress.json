@@ -3160,9 +3160,9 @@
     {
       "id": "compute.vms.availability",
       "title": "Availability sets and availability zones",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.vms.availability.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-avail-fault",
@@ -3177,9 +3177,9 @@
           ],
           "baselineHash": "55ec5ba3f085272cfc0bea1137fdf1fe8d5676721c14838cf34203d7e74413a3",
           "baselineContentHash": "b5e6d8269151d4c9f86bd6abbb488f52344abbe8b1fdfb74d048292838c84480",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "adc2ddbbceb26dcc29ede608e21f9457c4b2cba523ae63b65ff7f58be209ece7"
         },
         {
           "id": "co-avail-zone",
@@ -3194,9 +3194,9 @@
           ],
           "baselineHash": "1bb47e323cd9b5640eec646875b8b1ce10d931a822fd2499332d871701cb8bdc",
           "baselineContentHash": "48be32baee444ed0722dd5310ef7b1c32cba0486b1fabfa227432ff8704bf8c4",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "477813fc55d8b604d2a5c0fd3bb14c1919bef0feef3ae2ff52027a5fb257ebff"
         },
         {
           "id": "co-avail-update",
@@ -3211,9 +3211,9 @@
           ],
           "baselineHash": "4a03d479845c6f4ad21a5305f166121f0d19f406c580b5dbaa2ce51f4140a147",
           "baselineContentHash": "93bc9538cf3c668d898a025003b04fee168467674da2bce20d6c7a692f81665b",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "7f1ff795e3ca06a0c8689c198ce70649dd71db27c1604bf1f8de3468812b5775"
         }
       ]
     },

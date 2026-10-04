@@ -686,14 +686,14 @@ D. Deployment name
 
 Topic: Compute › Availability sets and availability zones.
 
-An application has one VM in availability zone 1. It must continue serving if zone 1 fails. What additional design is needed?
+A stateless application runs on one VM in availability zone 1 behind a zone-redundant Standard Load Balancer frontend. Its other dependencies can survive loss of zone 1. The application must keep serving during a zone 1 outage. Which additional deployment meets this goal? Assume all added instances have enough capacity.
 
 Select **1**. Difficulty: applied.
 
-A. Healthy application instances in another zone with resilient routing and dependencies.
-B. Only label the existing VM zone-redundant using a tag.
-C. Rely on the existing zonal VM being copied automatically to all zones.
-D. Add more update domains to the same single VM.
+A. Add a healthy application VM in zone 2 to the load balancer backend pool and health probe.
+B. Add a healthy application VM in zone 1 to the load balancer backend pool and health probe.
+C. Add a healthy application VM in zone 2 but leave it outside the load balancer backend pool.
+D. Add a healthy application VM in zone 2 to the backend pool but change the frontend to a zonal IP in zone 1.
 
 ## co-avail-update
 

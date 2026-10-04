@@ -3401,39 +3401,39 @@
         "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview",
         "https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-avail-zone",
       "family": "co-avail-zone",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.vms.availability",
       "objectives": [
         "co-11"
       ],
       "difficulty": "applied",
-      "prompt": "An application has one VM in availability zone 1. It must continue serving if zone 1 fails. What additional design is needed?",
+      "prompt": "A stateless application runs on one VM in availability zone 1 behind a zone-redundant Standard Load Balancer frontend. Its other dependencies can survive loss of zone 1. The application must keep serving during a zone 1 outage. Which additional deployment meets this goal? Assume all added instances have enough capacity.",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Healthy application instances in another zone with resilient routing and dependencies.",
-          "explanation": "Zonal survival needs working replicas and supporting services outside the failed zone."
+          "text": "Add a healthy application VM in zone 2 to the load balancer backend pool and health probe.",
+          "explanation": "The surviving zone 2 instance can receive traffic through the resilient frontend when zone 1 fails."
         },
         {
           "id": "b",
-          "text": "Only label the existing VM zone-redundant using a tag.",
-          "explanation": "Tags do not create replicas or change placement."
+          "text": "Add a healthy application VM in zone 1 to the load balancer backend pool and health probe.",
+          "explanation": "Both application instances remain in the failed zone; the resilient frontend alone cannot supply a healthy backend."
         },
         {
           "id": "c",
-          "text": "Rely on the existing zonal VM being copied automatically to all zones.",
-          "explanation": "A zonal VM is placed in one zone."
+          "text": "Add a healthy application VM in zone 2 but leave it outside the load balancer backend pool.",
+          "explanation": "The replica survives, but the existing frontend has no route to it through its backend pool."
         },
         {
           "id": "d",
-          "text": "Add more update domains to the same single VM.",
-          "explanation": "Update domains do not create another running application instance."
+          "text": "Add a healthy application VM in zone 2 to the backend pool but change the frontend to a zonal IP in zone 1.",
+          "explanation": "The backend survives, but the zonal frontend is unavailable when zone 1 fails."
         }
       ],
       "correct": [
@@ -3441,10 +3441,10 @@
       ],
       "knowledge": "knowledge/compute/virtual-machines/availability.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview",
-        "https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines"
+        "https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines",
+        "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-availability-zones"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-avail-update",
@@ -3487,7 +3487,7 @@
         "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview",
         "https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-vm-private",

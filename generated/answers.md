@@ -884,7 +884,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** Resource group A resource group is a management container, not hardware isolation.
 - **D. Incorrect:** Deployment name A deployment record does not define hardware placement.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/availability.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/availability.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines)
 
@@ -892,18 +892,18 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/availability.md). 
 
 Topic: Compute › Availability sets and availability zones.
 
-An application has one VM in availability zone 1. It must continue serving if zone 1 fails. What additional design is needed?
+A stateless application runs on one VM in availability zone 1 behind a zone-redundant Standard Load Balancer frontend. Its other dependencies can survive loss of zone 1. The application must keep serving during a zone 1 outage. Which additional deployment meets this goal? Assume all added instances have enough capacity.
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Healthy application instances in another zone with resilient routing and dependencies. Zonal survival needs working replicas and supporting services outside the failed zone.
-- **B. Incorrect:** Only label the existing VM zone-redundant using a tag. Tags do not create replicas or change placement.
-- **C. Incorrect:** Rely on the existing zonal VM being copied automatically to all zones. A zonal VM is placed in one zone.
-- **D. Incorrect:** Add more update domains to the same single VM. Update domains do not create another running application instance.
+- **A. Correct:** Add a healthy application VM in zone 2 to the load balancer backend pool and health probe. The surviving zone 2 instance can receive traffic through the resilient frontend when zone 1 fails.
+- **B. Incorrect:** Add a healthy application VM in zone 1 to the load balancer backend pool and health probe. Both application instances remain in the failed zone; the resilient frontend alone cannot supply a healthy backend.
+- **C. Incorrect:** Add a healthy application VM in zone 2 but leave it outside the load balancer backend pool. The replica survives, but the existing frontend has no route to it through its backend pool.
+- **D. Incorrect:** Add a healthy application VM in zone 2 to the backend pool but change the frontend to a zonal IP in zone 1. The backend survives, but the zonal frontend is unavailable when zone 1 fails.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/availability.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/availability.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-availability-zones)
 
 ## co-avail-update
 
@@ -918,7 +918,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** All five update domains always restart together. The update-domain mechanism limits simultaneous planned restart groups.
 - **D. Incorrect:** Update domain numbers guarantee ascending maintenance order. Maintenance order is not guaranteed to follow domain numbering.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/availability.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/availability.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines)
 
