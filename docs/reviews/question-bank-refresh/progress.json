@@ -3400,9 +3400,9 @@
     {
       "id": "compute.containers.apps",
       "title": "Container Apps environments, ingress, and revisions",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.containers.apps.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-aca-revision",
@@ -3417,9 +3417,9 @@
           ],
           "baselineHash": "9711d282b85d29cb9ceb035099b1dc8ad18a0470b7d2624f4bf7146c96358136",
           "baselineContentHash": "f7ff84f501991fffb23a6353cafbf75f574d48a1df4af5e890a06f6f00bb493b",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "8931205a2bd67de621216739f01d6ca9c8b120f82016ff8cb1d17c40cdfa750b"
         },
         {
           "id": "co-aca-canary",
@@ -3434,9 +3434,9 @@
           ],
           "baselineHash": "4a857a888c9974f21b20d35dd5de20a26b23b4c4c1c8785ff4fade7a12f8f116",
           "baselineContentHash": "1400ccc1d6affbfd90f6eeb64e50c8ee6b1f3176712b4f3fedb9b3683bb2aa2e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "bb2d597a2e9bb7d742994273c3e62dc21d0ca3c9a803bff015c0680d9c51b3be"
         },
         {
           "id": "co-aca-port",
@@ -3451,9 +3451,9 @@
           ],
           "baselineHash": "783a5ad1fce27ad1cd05d741f2d4f9bd9409e5a6db57249fab035ce712c9f902",
           "baselineContentHash": "c6a9e33d1b46bc3c9b69dcfdd69d614273ad3600a3b55184aa6dd94c66bda91f",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "533578dc78d6319d99abfb8f057c8ab2e9e12f9e45ce2cb1e7701a4c7360fdd9"
         }
       ]
     },

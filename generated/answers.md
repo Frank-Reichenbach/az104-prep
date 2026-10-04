@@ -425,7 +425,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** Changing only ingress traffic weights Traffic configuration is application-scoped.
 - **D. Incorrect:** Adding only a managed identity Changing the identity does not itself create a new revision.
 
-Study: [knowledge file](../knowledge/compute/containers/apps.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/containers/apps.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-apps/revisions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-apps/managed-identity)
 
@@ -433,35 +433,35 @@ Study: [knowledge file](../knowledge/compute/containers/apps.md). Evidence check
 
 Topic: Compute › Container Apps environments, ingress, and revisions.
 
-You want two Container Apps image versions active simultaneously, with 10% of ingress traffic sent to the new version. Which revision mode supports this?
+A Container App has healthy revisions old and new. A canary must keep both versions active while sending 10% of HTTP ingress requests to new and the remaining traffic to old. Which complete configuration meets this requirement?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Multiple revision mode It supports concurrent active revisions and traffic splitting.
-- **B. Incorrect:** Single revision mode as the steady deployment state Single mode does not keep multiple active application versions for this canary design.
-- **C. Incorrect:** An ACI restart policy of Always ACI restart policies are a different service mechanism.
-- **D. Incorrect:** Disabling ingress for all revisions That prevents the required incoming traffic split.
+- **A. Correct:** Multiple revision mode; old weight 90, new weight 10. Multiple mode permits both revisions to remain active, and these weights implement the required split.
+- **B. Incorrect:** Single revision mode; old weight 90, new weight 10. Single mode does not maintain the two active versions required for steady canary traffic splitting.
+- **C. Incorrect:** Multiple revision mode; old weight 10, new weight 90. Both versions can be active, but this sends 90% rather than 10% to new.
+- **D. Incorrect:** Multiple revision mode; old weight 100, new weight 0. Both versions can be active, but the new revision receives none of the required canary traffic.
 
-Study: [knowledge file](../knowledge/compute/containers/apps.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/containers/apps.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-apps/revisions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-apps/managed-identity)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-apps/revisions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/traffic-splitting)
 
 ## co-aca-port
 
 Topic: Compute › Container Apps environments, ingress, and revisions.
 
-A Container App image pulls successfully, but HTTP ingress cannot reach the process. The process listens on 8080 while ingress targets 80. What should be corrected?
+A Container App has one healthy active revision receiving 100% of traffic. External HTTP ingress is enabled, and clients reach its HTTPS endpoint. The process listens on 0.0.0.0:8080, but ingress targetPort is 80 and requests fail to reach the process. Which configuration change addresses this mismatch?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Set the ingress target port to the actual listening port. Ingress must forward to the port served by the container.
-- **B. Incorrect:** Grant the image publisher a broader push role only. The image has already been pulled; publishing rights do not fix runtime routing.
-- **C. Incorrect:** Change only the revision label to 8080. Labels do not set container listening or target ports.
-- **D. Incorrect:** Increase maximum replicas without changing the port. More replicas with the same port mismatch remain unreachable.
+- **A. Correct:** Set ingress targetPort to 8080. Ingress must forward requests to the port where the process listens; the current target 80 is incorrect.
+- **B. Incorrect:** Set ingress allowInsecure to true while retaining targetPort 80. This permits HTTP in addition to HTTPS; it does not fix forwarding to the wrong container port.
+- **C. Incorrect:** Increase maximum replicas while retaining targetPort 80. Additional replicas with the same port mismatch still receive forwarding to the wrong port.
+- **D. Incorrect:** Reapply a traffic weight of 100 to the active revision while retaining targetPort 80. The revision already receives all traffic. Reapplying the weight does not change the incorrect target port.
 
-Study: [knowledge file](../knowledge/compute/containers/apps.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/containers/apps.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-apps/revisions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-apps/managed-identity)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/traffic-splitting) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-apps/scale-app)
 
 ## co-aci-localhost
 

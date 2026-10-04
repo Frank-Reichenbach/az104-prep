@@ -2221,39 +2221,39 @@
         "https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to",
         "https://learn.microsoft.com/en-us/azure/container-apps/managed-identity"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-aca-canary",
       "family": "co-aca-canary",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.containers.apps",
       "objectives": [
         "co-15"
       ],
       "difficulty": "applied",
-      "prompt": "You want two Container Apps image versions active simultaneously, with 10% of ingress traffic sent to the new version. Which revision mode supports this?",
+      "prompt": "A Container App has healthy revisions old and new. A canary must keep both versions active while sending 10% of HTTP ingress requests to new and the remaining traffic to old. Which complete configuration meets this requirement?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Multiple revision mode",
-          "explanation": "It supports concurrent active revisions and traffic splitting."
+          "text": "Multiple revision mode; old weight 90, new weight 10.",
+          "explanation": "Multiple mode permits both revisions to remain active, and these weights implement the required split."
         },
         {
           "id": "b",
-          "text": "Single revision mode as the steady deployment state",
-          "explanation": "Single mode does not keep multiple active application versions for this canary design."
+          "text": "Single revision mode; old weight 90, new weight 10.",
+          "explanation": "Single mode does not maintain the two active versions required for steady canary traffic splitting."
         },
         {
           "id": "c",
-          "text": "An ACI restart policy of Always",
-          "explanation": "ACI restart policies are a different service mechanism."
+          "text": "Multiple revision mode; old weight 10, new weight 90.",
+          "explanation": "Both versions can be active, but this sends 90% rather than 10% to new."
         },
         {
           "id": "d",
-          "text": "Disabling ingress for all revisions",
-          "explanation": "That prevents the required incoming traffic split."
+          "text": "Multiple revision mode; old weight 100, new weight 0.",
+          "explanation": "Both versions can be active, but the new revision receives none of the required canary traffic."
         }
       ],
       "correct": [
@@ -2262,42 +2262,41 @@
       "knowledge": "knowledge/compute/containers/apps.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/container-apps/revisions",
-        "https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to",
-        "https://learn.microsoft.com/en-us/azure/container-apps/managed-identity"
+        "https://learn.microsoft.com/en-us/azure/container-apps/traffic-splitting"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-aca-port",
       "family": "co-aca-port",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.containers.apps",
       "objectives": [
         "co-15"
       ],
-      "difficulty": "applied",
-      "prompt": "A Container App image pulls successfully, but HTTP ingress cannot reach the process. The process listens on 8080 while ingress targets 80. What should be corrected?",
+      "difficulty": "troubleshooting",
+      "prompt": "A Container App has one healthy active revision receiving 100% of traffic. External HTTP ingress is enabled, and clients reach its HTTPS endpoint. The process listens on 0.0.0.0:8080, but ingress targetPort is 80 and requests fail to reach the process. Which configuration change addresses this mismatch?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Set the ingress target port to the actual listening port.",
-          "explanation": "Ingress must forward to the port served by the container."
+          "text": "Set ingress targetPort to 8080.",
+          "explanation": "Ingress must forward requests to the port where the process listens; the current target 80 is incorrect."
         },
         {
           "id": "b",
-          "text": "Grant the image publisher a broader push role only.",
-          "explanation": "The image has already been pulled; publishing rights do not fix runtime routing."
+          "text": "Set ingress allowInsecure to true while retaining targetPort 80.",
+          "explanation": "This permits HTTP in addition to HTTPS; it does not fix forwarding to the wrong container port."
         },
         {
           "id": "c",
-          "text": "Change only the revision label to 8080.",
-          "explanation": "Labels do not set container listening or target ports."
+          "text": "Increase maximum replicas while retaining targetPort 80.",
+          "explanation": "Additional replicas with the same port mismatch still receive forwarding to the wrong port."
         },
         {
           "id": "d",
-          "text": "Increase maximum replicas without changing the port.",
-          "explanation": "More replicas with the same port mismatch remain unreachable."
+          "text": "Reapply a traffic weight of 100 to the active revision while retaining targetPort 80.",
+          "explanation": "The revision already receives all traffic. Reapplying the weight does not change the incorrect target port."
         }
       ],
       "correct": [
@@ -2305,11 +2304,11 @@
       ],
       "knowledge": "knowledge/compute/containers/apps.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/container-apps/revisions",
         "https://learn.microsoft.com/en-us/azure/container-apps/ingress-how-to",
-        "https://learn.microsoft.com/en-us/azure/container-apps/managed-identity"
+        "https://learn.microsoft.com/en-us/azure/container-apps/traffic-splitting",
+        "https://learn.microsoft.com/en-us/azure/container-apps/scale-app"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-aci-localhost",
