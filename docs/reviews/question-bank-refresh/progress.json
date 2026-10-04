@@ -4351,9 +4351,9 @@
     {
       "id": "networking.security.effective-rules",
       "title": "Effective NSG rules and flow evaluation",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/networking.security.effective-rules.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "nw-effective-layers",
@@ -4368,9 +4368,9 @@
           ],
           "baselineHash": "9a61c4691693f9d51b0cebb557b859745693957be760976a7ef43a36b9164ffd",
           "baselineContentHash": "3bb99bea0ada19b5484fe535ebe752d054850f002e4b50098805a31cd1b135c3",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "f867e0da392bfdbfa7d7ca4fd0c71f653ceae6ad0e9301b02823f280b1e51a00"
         },
         {
           "id": "nw-effective-running",
@@ -4385,9 +4385,9 @@
           ],
           "baselineHash": "054d5abf0767e25f3e035419f9addfddca2246a2690d8bf663fc2764ddad298c",
           "baselineContentHash": "dea9fb4427928391168c4fe7885633d21d0f14c4873d37cb534ac3ed699369cd",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "4b5cae6df7fabf7e75e02996e6d7abae8060968f59437075bea36b1f5b1b517f"
         },
         {
           "id": "nw-effective-multiple",
@@ -4402,9 +4402,9 @@
           ],
           "baselineHash": "fe831fa4460f379b98b9b6fb22e25aeabf1234c97ef966fe102330533149c3ee",
           "baselineContentHash": "2076f56c0e3dfbed4ae5fe405fae4b1ce608b989146da5f6f0baa64437911c44",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "e9206de759fc67388be38e29b76a03a7f77b495f6348b3fb9a0f6b138980c781"
         }
       ]
     },

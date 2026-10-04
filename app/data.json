@@ -10515,39 +10515,39 @@
         "https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem",
         "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-effective-running",
       "family": "nw-effective-running",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.security.effective-rules",
       "objectives": [
         "nw-07"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A NIC has an associated NSG, but its VM is deallocated and list-effective-nsg does not return the expected effective rules. What prerequisite should you restore?",
+      "prompt": "A deallocated VM has an NSG associated with its NIC and another with its subnet. The administrator has query permissions, but list-effective-nsg does not return the combined effective rules. Which action satisfies the missing runtime prerequisite before repeating the query?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Run the VM before retrieving effective rules.",
-          "explanation": "The documented effective-rule query requires a running VM."
+          "text": "Start the VM, then query the NIC effective security rules.",
+          "explanation": "The documented effective-rule query requires the attached VM to be running; both NSG associations are already present."
         },
         {
           "id": "b",
-          "text": "Remove every NSG association.",
-          "explanation": "That removes the policy being inspected."
+          "text": "Keep the VM deallocated and repeat the effective-rule query using PowerShell.",
+          "explanation": "Changing the client does not remove the running-VM prerequisite for retrieving effective rules."
         },
         {
           "id": "c",
-          "text": "Add a public IP to every VM NIC.",
-          "explanation": "A public IP is not the effective-rule query prerequisite."
+          "text": "Keep the VM deallocated and attach a Standard public IP before querying.",
+          "explanation": "A public IP does not satisfy the required VM runtime state for this effective-rule operation."
         },
         {
           "id": "d",
-          "text": "Replace its route table with an NSG.",
-          "explanation": "Routing and filtering resources serve different purposes."
+          "text": "Keep the VM deallocated and move the NIC filtering rules to the subnet NSG before querying.",
+          "explanation": "Changing association placement does not satisfy the running-VM prerequisite; the existing associations already supply policy to inspect."
         }
       ],
       "correct": [
@@ -10559,39 +10559,39 @@
         "https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem",
         "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-effective-multiple",
       "family": "nw-effective-multiple",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.security.effective-rules",
       "objectives": [
         "nw-07"
       ],
       "difficulty": "applied",
-      "prompt": "A VM has two NICs in different subnets. You inspected the first NIC's effective NSG rules. What is needed before concluding both paths have identical filtering?",
+      "prompt": "A running VM has two NICs in different subnets. Both NICs use the same NIC-level NSG, but the subnet NSG associations differ. You reviewed the first NIC effective security rules. Which additional review is required to assess the second NIC filtering path?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Only compare the VM size.",
-          "explanation": "VM size does not establish NSG associations."
+          "text": "Review only the shared NIC-level NSG configured rules.",
+          "explanation": "This omits the different subnet NSG on the second path. The shared NIC policy does not establish its complete filtering."
         },
         {
           "id": "b",
-          "text": "Only check their DNS suffix.",
-          "explanation": "DNS suffixes do not determine filtering policy."
+          "text": "Review only the second NIC effective route table.",
+          "explanation": "Routes establish next hops, not the combined NSG allow/deny rules needed for this filtering assessment."
         },
         {
           "id": "c",
-          "text": "Inspect effective rules and associations for the second NIC.",
-          "explanation": "Each NIC can inherit a different subnet/NIC combination."
+          "text": "Review the second NIC effective security rules and their subnet/NIC associations.",
+          "explanation": "Effective rules account for both associations on that NIC path, including its different subnet policy."
         },
         {
           "id": "d",
-          "text": "Assume a VM shares one effective NSG across all NICs.",
-          "explanation": "Effective filtering is evaluated for each NIC's path."
+          "text": "Reuse the first NIC effective rules as the complete policy for the second NIC.",
+          "explanation": "The different subnet associations can change filtering; one NIC effective policy cannot be assumed to cover both."
         }
       ],
       "correct": [
@@ -10603,7 +10603,7 @@
         "https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem",
         "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-nsg-priority",

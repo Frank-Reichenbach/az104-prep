@@ -3655,7 +3655,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** Allowed because the subnet is evaluated first. Passing the subnet does not bypass NIC evaluation.
 - **D. Incorrect:** Denied only if both rules have the same priority. A NIC deny blocks regardless of the subnet allow's number.
 
-Study: [knowledge file](../knowledge/networking/security/effective-rules.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/security/effective-rules.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview)
 
@@ -3663,16 +3663,16 @@ Study: [knowledge file](../knowledge/networking/security/effective-rules.md). Ev
 
 Topic: Networking › Effective NSG rules and flow evaluation.
 
-A NIC has an associated NSG, but its VM is deallocated and list-effective-nsg does not return the expected effective rules. What prerequisite should you restore?
+A deallocated VM has an NSG associated with its NIC and another with its subnet. The administrator has query permissions, but list-effective-nsg does not return the combined effective rules. Which action satisfies the missing runtime prerequisite before repeating the query?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Run the VM before retrieving effective rules. The documented effective-rule query requires a running VM.
-- **B. Incorrect:** Remove every NSG association. That removes the policy being inspected.
-- **C. Incorrect:** Add a public IP to every VM NIC. A public IP is not the effective-rule query prerequisite.
-- **D. Incorrect:** Replace its route table with an NSG. Routing and filtering resources serve different purposes.
+- **A. Correct:** Start the VM, then query the NIC effective security rules. The documented effective-rule query requires the attached VM to be running; both NSG associations are already present.
+- **B. Incorrect:** Keep the VM deallocated and repeat the effective-rule query using PowerShell. Changing the client does not remove the running-VM prerequisite for retrieving effective rules.
+- **C. Incorrect:** Keep the VM deallocated and attach a Standard public IP before querying. A public IP does not satisfy the required VM runtime state for this effective-rule operation.
+- **D. Incorrect:** Keep the VM deallocated and move the NIC filtering rules to the subnet NSG before querying. Changing association placement does not satisfy the running-VM prerequisite; the existing associations already supply policy to inspect.
 
-Study: [knowledge file](../knowledge/networking/security/effective-rules.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/security/effective-rules.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview)
 
@@ -3680,16 +3680,16 @@ Study: [knowledge file](../knowledge/networking/security/effective-rules.md). Ev
 
 Topic: Networking › Effective NSG rules and flow evaluation.
 
-A VM has two NICs in different subnets. You inspected the first NIC's effective NSG rules. What is needed before concluding both paths have identical filtering?
+A running VM has two NICs in different subnets. Both NICs use the same NIC-level NSG, but the subnet NSG associations differ. You reviewed the first NIC effective security rules. Which additional review is required to assess the second NIC filtering path?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Only compare the VM size. VM size does not establish NSG associations.
-- **B. Incorrect:** Only check their DNS suffix. DNS suffixes do not determine filtering policy.
-- **C. Correct:** Inspect effective rules and associations for the second NIC. Each NIC can inherit a different subnet/NIC combination.
-- **D. Incorrect:** Assume a VM shares one effective NSG across all NICs. Effective filtering is evaluated for each NIC's path.
+- **A. Incorrect:** Review only the shared NIC-level NSG configured rules. This omits the different subnet NSG on the second path. The shared NIC policy does not establish its complete filtering.
+- **B. Incorrect:** Review only the second NIC effective route table. Routes establish next hops, not the combined NSG allow/deny rules needed for this filtering assessment.
+- **C. Correct:** Review the second NIC effective security rules and their subnet/NIC associations. Effective rules account for both associations on that NIC path, including its different subnet policy.
+- **D. Incorrect:** Reuse the first NIC effective rules as the complete policy for the second NIC. The different subnet associations can change filtering; one NIC effective policy cannot be assumed to cover both.
 
-Study: [knowledge file](../knowledge/networking/security/effective-rules.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/security/effective-rules.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview)
 

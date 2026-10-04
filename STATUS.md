@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 220/322 questions reviewed, 168 revised and 52 kept; 66/99 topics complete.
-Latest: [Diagnosing VNet connectivity](docs/reviews/question-bank-refresh/networking.vnets.troubleshooting.md). Each completed topic has item decisions,
+Checkpoint: 223/322 questions reviewed, 170 revised and 53 kept; 67/99 topics complete.
+Latest: [Effective NSG rules and flow evaluation](docs/reviews/question-bank-refresh/networking.security.effective-rules.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `networking.security.effective-rules` (Effective NSG rules and flow evaluation).
+Next: `networking.security.bastion` (Azure Bastion administrative access).
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this

@@ -2805,27 +2805,27 @@ D. Denied only if both rules have the same priority.
 
 Topic: Networking › Effective NSG rules and flow evaluation.
 
-A NIC has an associated NSG, but its VM is deallocated and list-effective-nsg does not return the expected effective rules. What prerequisite should you restore?
+A deallocated VM has an NSG associated with its NIC and another with its subnet. The administrator has query permissions, but list-effective-nsg does not return the combined effective rules. Which action satisfies the missing runtime prerequisite before repeating the query?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Run the VM before retrieving effective rules.
-B. Remove every NSG association.
-C. Add a public IP to every VM NIC.
-D. Replace its route table with an NSG.
+A. Start the VM, then query the NIC effective security rules.
+B. Keep the VM deallocated and repeat the effective-rule query using PowerShell.
+C. Keep the VM deallocated and attach a Standard public IP before querying.
+D. Keep the VM deallocated and move the NIC filtering rules to the subnet NSG before querying.
 
 ## nw-effective-multiple
 
 Topic: Networking › Effective NSG rules and flow evaluation.
 
-A VM has two NICs in different subnets. You inspected the first NIC's effective NSG rules. What is needed before concluding both paths have identical filtering?
+A running VM has two NICs in different subnets. Both NICs use the same NIC-level NSG, but the subnet NSG associations differ. You reviewed the first NIC effective security rules. Which additional review is required to assess the second NIC filtering path?
 
 Select **1**. Difficulty: applied.
 
-A. Only compare the VM size.
-B. Only check their DNS suffix.
-C. Inspect effective rules and associations for the second NIC.
-D. Assume a VM shares one effective NSG across all NICs.
+A. Review only the shared NIC-level NSG configured rules.
+B. Review only the second NIC effective route table.
+C. Review the second NIC effective security rules and their subnet/NIC associations.
+D. Reuse the first NIC effective rules as the complete policy for the second NIC.
 
 ## nw-nsg-priority
 
