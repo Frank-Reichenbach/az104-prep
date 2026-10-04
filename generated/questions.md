@@ -2381,7 +2381,7 @@ A VM now runs in the secondary region after a committed Site Recovery failover. 
 Select **1**. Difficulty: foundation.
 
 A. Immediately moves production execution to the primary.
-B. Deletes all backups in a Backup vault.
+B. Disables replication and leaves the secondary VM unprotected.
 C. Keeps only primary-to-secondary replication without collecting secondary changes.
 D. Replicates from the secondary region toward the primary region.
 
@@ -2389,14 +2389,14 @@ D. Replicates from the secondary region toward the primary region.
 
 Topic: Monitoring and recovery › Site Recovery reprotection and failback.
 
-A VM was failed over and reprotected from secondary to primary using Site Recovery. Before failback, which two checks are required by the tutorial?
+A VM is running in the secondary region after committed failover and reprotection toward the primary. The original primary VM is shut down. Which two statements identify additional checks required before failback? Select two; each is an independent prerequisite assertion.
 
 Select **2**. Difficulty: applied.
 
-A. The replicated VM is healthy/protected and synchronization is complete.
-B. The original primary VM is powered on to receive disk changes.
-C. The primary region is available and required resource access is permitted.
-D. All replication recovery points are deleted before the failback starts.
+A. Verify the replicated VM is healthy and Protected, with synchronization complete.
+B. Power on the original primary VM to receive the synchronized disk changes.
+C. Verify the primary region is available and you can create and access the required resources there.
+D. Proceed as soon as reprotection starts, without waiting for synchronization.
 
 ## mo-failback-protection
 

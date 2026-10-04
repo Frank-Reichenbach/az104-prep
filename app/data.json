@@ -8995,7 +8995,7 @@
     {
       "id": "mo-reprotect-direction",
       "family": "mo-reprotect-direction",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.recovery.failback",
       "objectives": [
         "mo-12"
@@ -9011,8 +9011,8 @@
         },
         {
           "id": "b",
-          "text": "Deletes all backups in a Backup vault.",
-          "explanation": "Site Recovery reprotection is not an Azure Backup deletion operation."
+          "text": "Disables replication and leaves the secondary VM unprotected.",
+          "explanation": "Re-Protect establishes reverse replication; it does not disable the current VM’s replication protection."
         },
         {
           "id": "c",
@@ -9030,43 +9030,42 @@
       ],
       "knowledge": "knowledge/monitoring/site-recovery/failback.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failover-failback",
-        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failback",
-        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-how-to-reprotect",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failback"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-failback-ready",
       "family": "mo-failback-ready",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.recovery.failback",
       "objectives": [
         "mo-12"
       ],
       "difficulty": "applied",
-      "prompt": "A VM was failed over and reprotected from secondary to primary using Site Recovery. Before failback, which two checks are required by the tutorial?",
+      "prompt": "A VM is running in the secondary region after committed failover and reprotection toward the primary. The original primary VM is shut down. Which two statements identify additional checks required before failback? Select two; each is an independent prerequisite assertion.",
       "select": 2,
       "options": [
         {
           "id": "a",
-          "text": "The replicated VM is healthy/protected and synchronization is complete.",
-          "explanation": "Failback should use a healthy, synchronized replicated item."
+          "text": "Verify the replicated VM is healthy and Protected, with synchronization complete.",
+          "explanation": "The failback tutorial requires this state and completed synchronization before starting the return failover."
         },
         {
           "id": "b",
-          "text": "The original primary VM is powered on to receive disk changes.",
-          "explanation": "The tutorial requires the original primary-region VM to be shut down; an active VM can make failback fail."
+          "text": "Power on the original primary VM to receive the synchronized disk changes.",
+          "explanation": "The original primary VM must remain shut down; an active original VM can cause the failback operation to fail."
         },
         {
           "id": "c",
-          "text": "The primary region is available and required resource access is permitted.",
-          "explanation": "Availability and resource permissions are prerequisites for returning to that region."
+          "text": "Verify the primary region is available and you can create and access the required resources there.",
+          "explanation": "The return destination must be available and usable with the required resource permissions."
         },
         {
           "id": "d",
-          "text": "All replication recovery points are deleted before the failback starts.",
-          "explanation": "Failback uses a selected recovery point; deleting them beforehand is not a prerequisite."
+          "text": "Proceed as soon as reprotection starts, without waiting for synchronization.",
+          "explanation": "Starting reprotection does not establish completed synchronization, which must be checked before failback."
         }
       ],
       "correct": [
@@ -9075,11 +9074,10 @@
       ],
       "knowledge": "knowledge/monitoring/site-recovery/failback.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failover-failback",
         "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failback",
-        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
+        "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-how-to-reprotect"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-failback-protection",
@@ -9123,7 +9121,7 @@
         "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-failback",
         "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-failover-rto",

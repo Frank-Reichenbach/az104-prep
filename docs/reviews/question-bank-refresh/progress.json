@@ -6202,9 +6202,9 @@
     {
       "id": "monitoring.recovery.failback",
       "title": "Site Recovery reprotection and failback",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.recovery.failback.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-reprotect-direction",
@@ -6219,9 +6219,9 @@
           ],
           "baselineHash": "2e5028043ce83a02fa06cfc49eda7a5b78bfd9b8b01326bd246230f79b5da01a",
           "baselineContentHash": "30c80c01b5bb59cd60dd8726b1abd1e6915361ea0cf5ab9f1bd2f968f13c58fd",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f3fd41feb84534c888553c860126bd33cc9ce7e1950344a2b47245a2df1ad94f"
         },
         {
           "id": "mo-failback-ready",
@@ -6236,9 +6236,9 @@
           ],
           "baselineHash": "9af72797f10c015f69a6ab93a438dfa40fc56e050d6fffbc25894d87aac04a13",
           "baselineContentHash": "e4cc95eee295e4ea15ac3b5a8ce591bb9c43b137ef15e04e92ea3256b2f41cd9",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "c1c555fd97ff723fc0b7fb888b44f270d81eb6e808086bd1e0803e40a237f369"
         },
         {
           "id": "mo-failback-protection",
@@ -6253,9 +6253,9 @@
           ],
           "baselineHash": "0ae382920f43a39b1806d744d106019ed7154d7b625631f258f9fefd0c3e87a7",
           "baselineContentHash": "8e464a2dc52a43c770e4efddbd612efda0c38471f8fa3263396b7c8b389ba9b3",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "c5138deed8411155e80cf8a63bac9724205f92a5f1e350334a2f0beefe3f7a19"
         }
       ]
     },
