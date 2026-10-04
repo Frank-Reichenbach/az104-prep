@@ -1145,34 +1145,34 @@
     {
       "id": "co-web-zip",
       "family": "co-web-zip",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.apps",
       "objectives": [
         "co-19"
       ],
       "difficulty": "applied",
-      "prompt": "A published application is deployed to App Service from a ZIP archive. What archive layout does the documented deployment process require?",
+      "prompt": "You have built and tested an application locally. The publish directory contains all ready-to-run files, including the entry point. ZIP deployment will use its default extraction path with build automation disabled. Which archive layout should you deploy?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Deployable application files at the ZIP root.",
-          "explanation": "A surrounding parent folder can prevent the app from finding its expected files."
+          "text": "Place the contents of the publish directory directly at the ZIP root.",
+          "explanation": "ZIP deployment extracts into the app content directory. Putting the published contents at the archive root preserves the expected entry-point layout."
         },
         {
           "id": "b",
-          "text": "All application files nested inside an arbitrary extra parent directory.",
-          "explanation": "The required root layout should not include an extra wrapping folder."
+          "text": "Place the publish directory itself at the ZIP root with the files nested inside it.",
+          "explanation": "Including the enclosing publish directory adds a level below the app content root instead of placing the entry point at its expected location."
         },
         {
           "id": "c",
-          "text": "Only an empty folder named wwwroot.",
-          "explanation": "An empty archive cannot supply the application."
+          "text": "Place the published files inside a wwwroot directory at the ZIP root.",
+          "explanation": "The default deployment destination is already wwwroot. This extra directory nests the application one level too deep."
         },
         {
           "id": "d",
-          "text": "Only the source repository URL stored in a text file.",
-          "explanation": "ZIP package deployment needs the actual deployable application files."
+          "text": "Place the unbuilt source directory contents directly at the ZIP root.",
+          "explanation": "Build automation is disabled. The archive needs the tested ready-to-run output rather than source that still requires build tasks."
         }
       ],
       "correct": [
@@ -1180,16 +1180,14 @@
       ],
       "knowledge": "knowledge/compute/app-service/apps.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/app-service/deploy-zip",
-        "https://learn.microsoft.com/en-us/azure/app-service/configure-common",
-        "https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity"
+        "https://learn.microsoft.com/en-us/azure/app-service/deploy-zip"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-web-settings",
       "family": "co-web-settings",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.apps",
       "objectives": [
         "co-19"
@@ -1200,23 +1198,23 @@
       "options": [
         {
           "id": "a",
-          "text": "The settings are supplied as environment variables and the app restarts.",
-          "explanation": "App Service applies configuration changes through its app settings mechanism."
+          "text": "The updated settings are passed as environment variables after an app restart.",
+          "explanation": "App Service injects app settings into the runtime environment and triggers an app restart when settings are added, removed, or edited."
         },
         {
           "id": "b",
-          "text": "The App Service plan changes operating system automatically.",
-          "explanation": "Environment settings do not convert the plan OS."
+          "text": "The updated settings become environment variables without restarting the running app.",
+          "explanation": "A settings edit triggers a restart; it is not merely an in-place change to the running process environment."
         },
         {
           "id": "c",
-          "text": "A new staging slot is always created.",
-          "explanation": "Changing app settings does not create a slot."
+          "text": "The updated settings are written into source configuration files before a rebuild.",
+          "explanation": "App settings are runtime environment configuration. Saving them does not require rewriting source files and rebuilding the application."
         },
         {
           "id": "d",
-          "text": "The application image is necessarily rebuilt and pushed to ACR.",
-          "explanation": "Settings changes do not require a container build or image push."
+          "text": "The updated settings remain pending until the next application package deployment.",
+          "explanation": "Saving an app-settings change triggers the restart that applies it; a separate package deployment is not required."
         }
       ],
       "correct": [
@@ -1224,43 +1222,41 @@
       ],
       "knowledge": "knowledge/compute/app-service/apps.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/app-service/deploy-zip",
-        "https://learn.microsoft.com/en-us/azure/app-service/configure-common",
-        "https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity"
+        "https://learn.microsoft.com/en-us/azure/app-service/configure-common"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-web-managed",
       "family": "co-web-managed",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.apps",
       "objectives": [
         "co-19"
       ],
-      "difficulty": "applied",
-      "prompt": "A web app has managed identity enabled but receives authorization failures from a protected Azure service. What should be checked?",
+      "difficulty": "troubleshooting",
+      "prompt": "An App Service app reads blobs using a token for its system-assigned managed identity. Token acquisition and network access succeed, but blob reads fail authorization. The identity has no blob data role, and no deny assignments or role conditions apply. Which role assignment authorizes this app to read the blobs?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "The identity has the required role or access policy on that target service.",
-          "explanation": "Authentication through managed identity still requires target-service authorization."
+          "text": "Assign Storage Blob Data Reader to the app identity at the target container.",
+          "explanation": "The app uses its managed identity for blob data requests. This role grants that principal read access to blobs in the target container."
         },
         {
           "id": "b",
-          "text": "Assume enabling identity grants Contributor to every service.",
-          "explanation": "Identity creation does not grant broad Azure access."
+          "text": "Assign Reader to the app identity at the storage account.",
+          "explanation": "Reader grants management-plane visibility, not the blob data permissions needed for token-authenticated reads."
         },
         {
           "id": "c",
-          "text": "Change the web app display name to the service name.",
-          "explanation": "Matching names do not grant authorization."
+          "text": "Assign Website Contributor to the app identity at the web app.",
+          "explanation": "Permission to manage the web app does not grant its identity read access to the target container data."
         },
         {
           "id": "d",
-          "text": "Increase plan workers as the only permission fix.",
-          "explanation": "Additional workers do not change identity permissions."
+          "text": "Assign Storage Blob Data Reader to the deployment user at the target container.",
+          "explanation": "The request token represents the app identity, not the deployment user. Granting the user access does not authorize the app principal."
         }
       ],
       "correct": [
@@ -1268,11 +1264,11 @@
       ],
       "knowledge": "knowledge/compute/app-service/apps.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/app-service/deploy-zip",
-        "https://learn.microsoft.com/en-us/azure/app-service/configure-common",
-        "https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity"
+        "https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-access-azure-active-directory",
+        "https://learn.microsoft.com/en-us/azure/storage/blobs/assign-azure-role-data-access"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-web-backup-external",

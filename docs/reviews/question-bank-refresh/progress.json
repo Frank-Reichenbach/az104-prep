@@ -3640,9 +3640,9 @@
     {
       "id": "compute.app-service.apps",
       "title": "App Service application deployment and configuration",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.app-service.apps.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-web-zip",
@@ -3657,9 +3657,9 @@
           ],
           "baselineHash": "8f2ff30ce40c9fc93c45e550be12b04425a9afc8eca7242e98b133a229affcc0",
           "baselineContentHash": "af60a9b6350489280f4946527ff3a38c45a5225984733d655f578d0495d28eeb",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "144b7488a1af38557ea38fac6c2bdc699eb229aed346ab1ce6e07b5022e959fb"
         },
         {
           "id": "co-web-settings",
@@ -3674,9 +3674,9 @@
           ],
           "baselineHash": "59ea6733c32b2c5d397f02e65d4add51e3c71c30835e4dcda417d57a759910f2",
           "baselineContentHash": "485c5eb14dc5a28989766b61ab2d60d06924a576e89fc4d00c42528116497838",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "0beca5a3074b1a7ff45ea369f958398a16c6af0f0df0154553668d53e153d114"
         },
         {
           "id": "co-web-managed",
@@ -3691,9 +3691,9 @@
           ],
           "baselineHash": "390fecb47f6520576f761767366fbb65af76fc313ef9c834899d17a60200d53a",
           "baselineContentHash": "5ae8fb45d6febb363d44aee6760ac9f5da179b15fee2f2839e687068266b799f",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "b56b4540b2143f8a71c9c25a7ccc225fc3518c248a5bf80e09484d73a70f2f05"
         }
       ]
     },

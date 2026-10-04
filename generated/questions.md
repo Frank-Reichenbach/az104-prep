@@ -10,14 +10,14 @@ Select the stated number of answers. Multiple-answer questions use exact-match s
 
 Topic: Compute › App Service application deployment and configuration.
 
-A published application is deployed to App Service from a ZIP archive. What archive layout does the documented deployment process require?
+You have built and tested an application locally. The publish directory contains all ready-to-run files, including the entry point. ZIP deployment will use its default extraction path with build automation disabled. Which archive layout should you deploy?
 
 Select **1**. Difficulty: applied.
 
-A. Deployable application files at the ZIP root.
-B. All application files nested inside an arbitrary extra parent directory.
-C. Only an empty folder named wwwroot.
-D. Only the source repository URL stored in a text file.
+A. Place the contents of the publish directory directly at the ZIP root.
+B. Place the publish directory itself at the ZIP root with the files nested inside it.
+C. Place the published files inside a wwwroot directory at the ZIP root.
+D. Place the unbuilt source directory contents directly at the ZIP root.
 
 ## co-web-settings
 
@@ -27,23 +27,23 @@ What happens when an administrator changes App Service app settings?
 
 Select **1**. Difficulty: foundation.
 
-A. The settings are supplied as environment variables and the app restarts.
-B. The App Service plan changes operating system automatically.
-C. A new staging slot is always created.
-D. The application image is necessarily rebuilt and pushed to ACR.
+A. The updated settings are passed as environment variables after an app restart.
+B. The updated settings become environment variables without restarting the running app.
+C. The updated settings are written into source configuration files before a rebuild.
+D. The updated settings remain pending until the next application package deployment.
 
 ## co-web-managed
 
 Topic: Compute › App Service application deployment and configuration.
 
-A web app has managed identity enabled but receives authorization failures from a protected Azure service. What should be checked?
+An App Service app reads blobs using a token for its system-assigned managed identity. Token acquisition and network access succeed, but blob reads fail authorization. The identity has no blob data role, and no deny assignments or role conditions apply. Which role assignment authorizes this app to read the blobs?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. The identity has the required role or access policy on that target service.
-B. Assume enabling identity grants Contributor to every service.
-C. Change the web app display name to the service name.
-D. Increase plan workers as the only permission fix.
+A. Assign Storage Blob Data Reader to the app identity at the target container.
+B. Assign Reader to the app identity at the storage account.
+C. Assign Website Contributor to the app identity at the web app.
+D. Assign Storage Blob Data Reader to the deployment user at the target container.
 
 ## co-web-backup-external
 
