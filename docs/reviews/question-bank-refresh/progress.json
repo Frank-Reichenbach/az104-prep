@@ -2920,9 +2920,9 @@
     {
       "id": "compute.vms.host-encryption",
       "title": "Encryption at host for virtual machines",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.vms.host-encryption.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-host-scope",
@@ -2937,9 +2937,9 @@
           ],
           "baselineHash": "0019c6153f258a1f74bd82ff6af8ca66e7231537b1819f1146cd79054165f9e0",
           "baselineContentHash": "6b6093595e6bfa3b4d39cad0046aa26769d9df8c0499cd58d2d00f0e0d2c7cf5",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "fd0fa4660b71a045d434cacec82dc4d1af153c41e1964e5b97e803057a704e9b"
         },
         {
           "id": "co-host-ade",
@@ -2954,9 +2954,9 @@
           ],
           "baselineHash": "a44e7bd5239d1f9dfa846cfa7ed9643f4c9e2ce9f7e7221825d7b8807ed33a94",
           "baselineContentHash": "b04d1b5ff17b6ff1f0524c3fea810f531b4bc11c3ce5a2c8f47e9dad880ad991",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "208b09cedb568a5e1a408221d8b75409aea8958fee5f2e95496d8fda2e639265"
         },
         {
           "id": "co-host-confirm",
@@ -2971,9 +2971,9 @@
           ],
           "baselineHash": "e0fa1721806661b184efbae3d3e907a3b26be8ce7040e7645269a31973472875",
           "baselineContentHash": "1933257255d78f46feced239ecd1050ea460c9b38b41004ae8a5680a5465d560",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "37a1db0e1a35c0effb141087740e1f0342c6a877c2155e3b6f021808f3760983"
         }
       ]
     },

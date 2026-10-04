@@ -790,27 +790,27 @@ D. Assume Azure attachment automatically configures the guest mount.
 
 Topic: Compute › Encryption at host for virtual machines.
 
-A VM already has encrypted managed disks. The requirement now includes its temporary disk and host caches. Which VM feature addresses that scope?
+Encryption at host is enabled on a supported Azure VM. Which statement describes the additional storage protection beyond ordinary managed-disk server-side encryption?
 
 Select **1**. Difficulty: foundation.
 
-A. Encryption at host
-B. Only the existing managed-disk server-side encryption setting
-C. Secure Boot alone
-D. An application HTTPS certificate alone
+A. Temporary disks and host disk caches are encrypted at rest.
+B. Only managed OS and data disks are encrypted at rest.
+C. Application network traffic is encrypted using the VM host setting.
+D. Temporary disks are encrypted only when a customer-managed key is configured.
 
 ## co-host-ade
 
 Topic: Compute › Encryption at host for virtual machines.
 
-A VM previously used Azure Disk Encryption. An administrator wants to enable encryption at host on that same VM. What does the documented restriction require them to recognize?
+A VM previously used Azure Disk Encryption, which has now been disabled. Its size supports encryption at host, and the subscription feature is registered. The administrator proposes enabling encryption at host directly on this same VM. Which assessment follows the documented compatibility restriction?
 
 Select **1**. Difficulty: applied.
 
-A. That VM history is incompatible with enabling encryption at host directly.
-B. Disabling Secure Boot always removes the restriction.
-C. Switching only the data disk to Standard HDD always removes the restriction.
-D. Enabling both methods together is required.
+A. The VM is ineligible for direct enablement because it previously used Azure Disk Encryption.
+B. The VM becomes eligible for direct enablement after deallocation.
+C. The VM becomes eligible for direct enablement after the ADE extension is removed.
+D. The VM becomes eligible for direct enablement after a disk encryption set is configured.
 
 ## co-host-confirm
 
@@ -818,12 +818,12 @@ Topic: Compute › Encryption at host for virtual machines.
 
 Which setting directly confirms that encryption at host is enabled on a VM after the supported configuration process?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 A. securityProfile.encryptionAtHost equals true
-B. The disk reports ordinary server-side encryption
-C. The VM uses SSH public-key authentication
-D. The VM has a Recovery Services backup item
+B. The managed disk reports server-side encryption
+C. securityProfile.uefiSettings.vTpmEnabled equals true
+D. securityProfile.uefiSettings.secureBootEnabled equals true
 
 ## co-move-region
 

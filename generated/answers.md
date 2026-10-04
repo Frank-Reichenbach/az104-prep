@@ -1028,16 +1028,16 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/disks.md). Evidenc
 
 Topic: Compute › Encryption at host for virtual machines.
 
-A VM already has encrypted managed disks. The requirement now includes its temporary disk and host caches. Which VM feature addresses that scope?
+Encryption at host is enabled on a supported Azure VM. Which statement describes the additional storage protection beyond ordinary managed-disk server-side encryption?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** Encryption at host Host encryption covers storage on the VM host in addition to the managed-disk path.
-- **B. Incorrect:** Only the existing managed-disk server-side encryption setting Managed-disk encryption alone does not establish encryption of all host storage.
-- **C. Incorrect:** Secure Boot alone Secure Boot validates the boot chain; it is not disk-cache encryption.
-- **D. Incorrect:** An application HTTPS certificate alone HTTPS protects network connections, not host storage at rest.
+- **A. Correct:** Temporary disks and host disk caches are encrypted at rest. Host encryption extends protection to temporary storage and caches, which ordinary managed-disk server-side encryption does not cover.
+- **B. Incorrect:** Only managed OS and data disks are encrypted at rest. This omits the additional temporary-disk and cache coverage supplied by host encryption.
+- **C. Incorrect:** Application network traffic is encrypted using the VM host setting. Host encryption covers storage paths; it does not establish application transport encryption.
+- **D. Incorrect:** Temporary disks are encrypted only when a customer-managed key is configured. Temporary disks use platform-managed keys with host encryption; a customer-managed key is not required for this coverage.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/host-encryption.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/host-encryption.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli)
 
@@ -1045,18 +1045,18 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/host-encryption.md
 
 Topic: Compute › Encryption at host for virtual machines.
 
-A VM previously used Azure Disk Encryption. An administrator wants to enable encryption at host on that same VM. What does the documented restriction require them to recognize?
+A VM previously used Azure Disk Encryption, which has now been disabled. Its size supports encryption at host, and the subscription feature is registered. The administrator proposes enabling encryption at host directly on this same VM. Which assessment follows the documented compatibility restriction?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** That VM history is incompatible with enabling encryption at host directly. The restriction covers VMs that currently or ever had Azure Disk Encryption enabled.
-- **B. Incorrect:** Disabling Secure Boot always removes the restriction. Secure Boot does not remove the Azure Disk Encryption compatibility restriction.
-- **C. Incorrect:** Switching only the data disk to Standard HDD always removes the restriction. Changing disk performance tier does not change the VM encryption history rule.
-- **D. Incorrect:** Enabling both methods together is required. The two encryption methods cannot be combined in this way.
+- **A. Correct:** The VM is ineligible for direct enablement because it previously used Azure Disk Encryption. The documented restriction includes VMs that currently or ever had ADE enabled; disabling it does not remove that history.
+- **B. Incorrect:** The VM becomes eligible for direct enablement after deallocation. Deallocation does not remove the restriction for a VM that previously used ADE.
+- **C. Incorrect:** The VM becomes eligible for direct enablement after the ADE extension is removed. Removing the extension does not make the VM one that never had ADE enabled.
+- **D. Incorrect:** The VM becomes eligible for direct enablement after a disk encryption set is configured. A disk encryption set supplies customer-managed key configuration; it does not remove the VM compatibility restriction.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/host-encryption.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/host-encryption.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-migrate)
 
 ## co-host-confirm
 
@@ -1064,16 +1064,16 @@ Topic: Compute › Encryption at host for virtual machines.
 
 Which setting directly confirms that encryption at host is enabled on a VM after the supported configuration process?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
-- **A. Correct:** securityProfile.encryptionAtHost equals true This is the VM host-encryption property.
-- **B. Incorrect:** The disk reports ordinary server-side encryption Managed disks can report encryption while host encryption is disabled.
-- **C. Incorrect:** The VM uses SSH public-key authentication Authentication does not report encryption of host storage.
-- **D. Incorrect:** The VM has a Recovery Services backup item Backup protection does not establish the host-encryption setting.
+- **A. Correct:** securityProfile.encryptionAtHost equals true This VM property reports whether encryption at host is enabled.
+- **B. Incorrect:** The managed disk reports server-side encryption Managed-disk encryption can be enabled while host encryption is disabled.
+- **C. Incorrect:** securityProfile.uefiSettings.vTpmEnabled equals true The vTPM setting belongs to Trusted Launch, not encryption at host.
+- **D. Incorrect:** securityProfile.uefiSettings.secureBootEnabled equals true Secure Boot checks boot integrity; its enabled state does not report host encryption.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/host-encryption.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/host-encryption.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch)
 
 ## co-move-region
 
