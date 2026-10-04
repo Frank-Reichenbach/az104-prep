@@ -3091,14 +3091,14 @@ D. Changing the resource-group location moves the VNet to another region.
 
 Topic: Networking › Virtual network address spaces and subnets.
 
-A VM is deployed into a new private subnet with defaultOutboundAccess false. It needs Internet access for updates. What should be configured?
+A VM in subnet-app has no public IP. The subnet has defaultOutboundAccess false and no explicit outbound method. DNS resolves an update server, NSGs permit the connection, and the effective destination route has next hop Internet, but the connection fails. The VM must keep its private-only NIC. Which change supplies the missing public egress translation?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. A supported explicit outbound method, such as a NAT gateway.
-B. Assume the platform always assigns usable default outbound access.
-C. Only add an NSG allow rule without any outbound method.
-D. Only add a private DNS zone.
+A. Associate a NAT gateway with public IP capacity to subnet-app.
+B. Add another NSG outbound allow rule for the update server.
+C. Add a user-defined route to the update server with next hop Internet.
+D. Associate a NAT gateway only with an adjacent subnet in the same VNet.
 
 ## nw-diag-allowed
 

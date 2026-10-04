@@ -4034,9 +4034,9 @@
     {
       "id": "networking.vnets.subnets",
       "title": "Virtual network address spaces and subnets",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/networking.vnets.subnets.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "nw-subnet-reserved",
@@ -4051,9 +4051,9 @@
           ],
           "baselineHash": "c2547c0f932c46d60d7cba4c28cb9f17a80752ba9be97f3ff57bf24ea426e173",
           "baselineContentHash": "de089c71c3879ca1f35276acb09f9cea7319d8544abf51e0ce24b124311f934b",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "056141628fd322f6a36b5937db3e173967a87c5577dc65d5bcb46d008c6960fc"
         },
         {
           "id": "nw-vnet-region",
@@ -4068,9 +4068,9 @@
           ],
           "baselineHash": "65cff5cd2d264392c7e1b0523ee652a8798a2b3400d3bba7cd6a5531ba76fc07",
           "baselineContentHash": "5564819dede2a96f764a1bce31c26a6c83a7089a7f705149e91972c935ab995e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "4d165f78a74b1b69a4f6761ae368808a60d0965670e6be12a1fd2701fc5568e4"
         },
         {
           "id": "nw-vnet-egress",
@@ -4085,9 +4085,9 @@
           ],
           "baselineHash": "f298f64dc82a2b5beb92bf8823af61d70a28ab9fadf6203953781e16db147f41",
           "baselineContentHash": "dc679e493c29bf95c1868294c1e64410d703da4b7a8151506549647481e52c23",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "a6dc9f81b7031fced5d3467c2d256a5aa23e2a938bc9b03c312b4ecfe4859108"
         }
       ]
     },

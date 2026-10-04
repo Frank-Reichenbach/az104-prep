@@ -4012,7 +4012,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** 32 Azure reserves addresses and does not allow all 32 to be assigned.
 - **D. Incorrect:** 24 Eight reserved addresses is not the ordinary Azure IPv4 reservation count.
 
-Study: [knowledge file](../knowledge/networking/virtual-networks/subnets.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/virtual-networks/subnets.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access)
 
@@ -4029,7 +4029,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** A VNet is confined to one availability zone. A VNet spans availability zones in its region.
 - **D. Incorrect:** Changing the resource-group location moves the VNet to another region. Resource-group metadata does not relocate the VNet.
 
-Study: [knowledge file](../knowledge/networking/virtual-networks/subnets.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/virtual-networks/subnets.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access)
 
@@ -4037,18 +4037,18 @@ Study: [knowledge file](../knowledge/networking/virtual-networks/subnets.md). Ev
 
 Topic: Networking › Virtual network address spaces and subnets.
 
-A VM is deployed into a new private subnet with defaultOutboundAccess false. It needs Internet access for updates. What should be configured?
+A VM in subnet-app has no public IP. The subnet has defaultOutboundAccess false and no explicit outbound method. DNS resolves an update server, NSGs permit the connection, and the effective destination route has next hop Internet, but the connection fails. The VM must keep its private-only NIC. Which change supplies the missing public egress translation?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** A supported explicit outbound method, such as a NAT gateway. A private subnet does not supply implicit default outbound access.
-- **B. Incorrect:** Assume the platform always assigns usable default outbound access. The subnet setting explicitly prevents relying on that behavior.
-- **C. Incorrect:** Only add an NSG allow rule without any outbound method. Permission to send traffic does not provide the required public egress translation.
-- **D. Incorrect:** Only add a private DNS zone. DNS resolution does not supply an Internet egress path.
+- **A. Correct:** Associate a NAT gateway with public IP capacity to subnet-app. The VM needs explicit outbound translation. A NAT gateway on its subnet supplies a public source address without assigning a public IP to its NIC.
+- **B. Incorrect:** Add another NSG outbound allow rule for the update server. NSGs already permit the traffic. Another allow rule does not provide source NAT for a private subnet without outbound connectivity.
+- **C. Incorrect:** Add a user-defined route to the update server with next hop Internet. The effective next hop is already Internet. A route selects the path but does not supply the missing public source translation.
+- **D. Incorrect:** Associate a NAT gateway only with an adjacent subnet in the same VNet. NAT gateway applies to associated subnets; associating another subnet does not supply egress for the VM in subnet-app.
 
-Study: [knowledge file](../knowledge/networking/virtual-networks/subnets.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/networking/virtual-networks/subnets.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/nat-gateway/nat-overview)
 
 ## nw-diag-allowed
 

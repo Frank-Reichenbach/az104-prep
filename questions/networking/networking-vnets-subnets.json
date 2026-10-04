@@ -42,7 +42,7 @@
         "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq",
         "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-vnet-region",
@@ -85,39 +85,39 @@
         "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq",
         "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "nw-vnet-egress",
       "family": "nw-vnet-egress",
-      "revision": 1,
+      "revision": 2,
       "topic": "networking.vnets.subnets",
       "objectives": [
         "nw-01"
       ],
-      "difficulty": "applied",
-      "prompt": "A VM is deployed into a new private subnet with defaultOutboundAccess false. It needs Internet access for updates. What should be configured?",
+      "difficulty": "troubleshooting",
+      "prompt": "A VM in subnet-app has no public IP. The subnet has defaultOutboundAccess false and no explicit outbound method. DNS resolves an update server, NSGs permit the connection, and the effective destination route has next hop Internet, but the connection fails. The VM must keep its private-only NIC. Which change supplies the missing public egress translation?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "A supported explicit outbound method, such as a NAT gateway.",
-          "explanation": "A private subnet does not supply implicit default outbound access."
+          "text": "Associate a NAT gateway with public IP capacity to subnet-app.",
+          "explanation": "The VM needs explicit outbound translation. A NAT gateway on its subnet supplies a public source address without assigning a public IP to its NIC."
         },
         {
           "id": "b",
-          "text": "Assume the platform always assigns usable default outbound access.",
-          "explanation": "The subnet setting explicitly prevents relying on that behavior."
+          "text": "Add another NSG outbound allow rule for the update server.",
+          "explanation": "NSGs already permit the traffic. Another allow rule does not provide source NAT for a private subnet without outbound connectivity."
         },
         {
           "id": "c",
-          "text": "Only add an NSG allow rule without any outbound method.",
-          "explanation": "Permission to send traffic does not provide the required public egress translation."
+          "text": "Add a user-defined route to the update server with next hop Internet.",
+          "explanation": "The effective next hop is already Internet. A route selects the path but does not supply the missing public source translation."
         },
         {
           "id": "d",
-          "text": "Only add a private DNS zone.",
-          "explanation": "DNS resolution does not supply an Internet egress path."
+          "text": "Associate a NAT gateway only with an adjacent subnet in the same VNet.",
+          "explanation": "NAT gateway applies to associated subnets; associating another subnet does not supply egress for the VM in subnet-app."
         }
       ],
       "correct": [
@@ -125,10 +125,10 @@
       ],
       "knowledge": "knowledge/networking/virtual-networks/subnets.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq",
-        "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access"
+        "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access",
+        "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }
