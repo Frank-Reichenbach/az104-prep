@@ -518,18 +518,18 @@ Study: [knowledge file](../knowledge/compute/containers/instances.md). Evidence 
 
 Topic: Compute › Container Registry images and access.
 
-An ACR registry uses RBAC Registry + ABAC Repository Permissions. A workload must pull an image from an allowed repository but has only AcrPull. What should be changed?
+An ACR registry uses RBAC Registry + ABAC Repository Permissions. A workload with only AcrPull cannot pull the known repository apps/web. Connectivity and authentication succeed. It must read that repository without permission to push, delete, or list every repository. Which role configuration addresses the authorization gap?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Assign Container Registry Repository Reader with any condition covering the repository. ABAC-enabled registries use the repository roles rather than legacy AcrPull.
-- **B. Incorrect:** Keep AcrPull and only refresh the token indefinitely. A token refresh cannot make an unhonored role grant access.
-- **C. Incorrect:** Assign only Container Registry Repository Catalog Lister. Listing repository names is not permission to pull their images.
-- **D. Incorrect:** Assign only Reader on the registry resource. Control-plane read does not grant repository image access in ABAC mode.
+- **A. Correct:** Container Registry Repository Reader with a condition covering apps/web. Repository Reader grants image read/pull in ABAC mode, and the condition limits repository access without adding catalog-listing or write permissions.
+- **B. Incorrect:** AcrPull reassigned at the registry scope. Legacy AcrPull is not honored in this registry mode; reassigning it does not grant repository pull access.
+- **C. Incorrect:** Container Registry Repository Catalog Lister only. Catalog listing exposes repository names; it does not grant image pull and exceeds the stated listing requirement.
+- **D. Incorrect:** Reader on the registry resource only. Control-plane Reader does not authorize repository image access in this mode.
 
-Study: [knowledge file](../knowledge/compute/containers/registry.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/containers/registry.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions)
 
 ## co-acr-digest
 
@@ -544,7 +544,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** Only the repository name A repository can contain many image versions.
 - **D. Incorrect:** Only the registry resource group A management container does not identify image content.
 
-Study: [knowledge file](../knowledge/compute/containers/registry.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/containers/registry.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication)
 
@@ -552,18 +552,18 @@ Study: [knowledge file](../knowledge/compute/containers/registry.md). Evidence c
 
 Topic: Compute › Container Registry images and access.
 
-A supported Azure service must pull private ACR images without storing a shared registry password. Which approach fits?
+An App Service app must pull a private image from an ACR registry using RBAC Registry Permissions mode. The app has a system-assigned managed identity and network access to the registry, which accepts ARM-audience tokens. It must pull without storing a registry password or granting push permission. Which configuration meets the requirements?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Use its managed identity with the appropriate image pull role for the registry mode. Managed identity authentication avoids a shared password and still requires authorization.
-- **B. Incorrect:** Enable the registry admin account and embed its password in the image. This stores a shared secret and exposes it in the artifact.
-- **C. Incorrect:** Assign only a display name to the managed identity without roles. An identity still requires permission to pull the repository.
-- **D. Incorrect:** Give the registry a public endpoint and assume images become anonymous. Network reachability does not provide repository authorization.
+- **A. Correct:** Configure managed-identity image pulls and grant the app identity AcrPull on the registry. App Service supports managed-identity pulls. AcrPull authorizes read/pull in the stated registry mode without granting push.
+- **B. Incorrect:** Configure managed-identity image pulls and grant the app identity Reader on the registry. Control-plane Reader does not supply the image pull permission needed by the app.
+- **C. Incorrect:** Configure registry admin credentials as the app image-pull credentials. The admin account uses a shared registry password, which the requirement excludes.
+- **D. Incorrect:** Configure managed-identity image pulls and grant the app identity AcrPush on the registry. AcrPush includes push permission; that exceeds the stated pull-only requirement.
 
-Study: [knowledge file](../knowledge/compute/containers/registry.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/containers/registry.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-abac-repository-permissions) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/configure-custom-container) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-rbac-built-in-roles-overview)
 
 ## co-scale-aci
 

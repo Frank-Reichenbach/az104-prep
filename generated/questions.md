@@ -400,14 +400,14 @@ D. Give the group a DNS label and store output only locally.
 
 Topic: Compute › Container Registry images and access.
 
-An ACR registry uses RBAC Registry + ABAC Repository Permissions. A workload must pull an image from an allowed repository but has only AcrPull. What should be changed?
+An ACR registry uses RBAC Registry + ABAC Repository Permissions. A workload with only AcrPull cannot pull the known repository apps/web. Connectivity and authentication succeed. It must read that repository without permission to push, delete, or list every repository. Which role configuration addresses the authorization gap?
 
 Select **1**. Difficulty: applied.
 
-A. Assign Container Registry Repository Reader with any condition covering the repository.
-B. Keep AcrPull and only refresh the token indefinitely.
-C. Assign only Container Registry Repository Catalog Lister.
-D. Assign only Reader on the registry resource.
+A. Container Registry Repository Reader with a condition covering apps/web.
+B. AcrPull reassigned at the registry scope.
+C. Container Registry Repository Catalog Lister only.
+D. Reader on the registry resource only.
 
 ## co-acr-digest
 
@@ -426,14 +426,14 @@ D. Only the registry resource group
 
 Topic: Compute › Container Registry images and access.
 
-A supported Azure service must pull private ACR images without storing a shared registry password. Which approach fits?
+An App Service app must pull a private image from an ACR registry using RBAC Registry Permissions mode. The app has a system-assigned managed identity and network access to the registry, which accepts ARM-audience tokens. It must pull without storing a registry password or granting push permission. Which configuration meets the requirements?
 
 Select **1**. Difficulty: applied.
 
-A. Use its managed identity with the appropriate image pull role for the registry mode.
-B. Enable the registry admin account and embed its password in the image.
-C. Assign only a display name to the managed identity without roles.
-D. Give the registry a public endpoint and assume images become anonymous.
+A. Configure managed-identity image pulls and grant the app identity AcrPull on the registry.
+B. Configure managed-identity image pulls and grant the app identity Reader on the registry.
+C. Configure registry admin credentials as the app image-pull credentials.
+D. Configure managed-identity image pulls and grant the app identity AcrPush on the registry.
 
 ## co-scale-aci
 

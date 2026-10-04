@@ -3280,9 +3280,9 @@
     {
       "id": "compute.containers.registry",
       "title": "Container Registry images and access",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.containers.registry.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-acr-abac",
@@ -3297,9 +3297,9 @@
           ],
           "baselineHash": "dc7cc099d8ca367f6df28625f9e2ff7ed5d635b6fc0d791eedc0ef028c6258c7",
           "baselineContentHash": "8f27acf08066f96ed3c2d76504a9387baa7df5ddd3d724d7ecbfd086ae07e285",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "e390b446316fbdfd5cadc55e4020e3430df7826c1018eebd666cceee12349fb4"
         },
         {
           "id": "co-acr-digest",
@@ -3314,9 +3314,9 @@
           ],
           "baselineHash": "08c99ce4966160a2a8f402284266393e02ae8f5be05c1006348e7f6d5457b432",
           "baselineContentHash": "431e3e485a7f3b60f15f7911921a7423755c635c42609e9514f761a40729b119",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "7d4aa23bb6992e574d6b3dc144f40bd0c5c1f155036717b42e055b375f7861bd"
         },
         {
           "id": "co-acr-identity",
@@ -3331,9 +3331,9 @@
           ],
           "baselineHash": "48d50d86f23a1fefdf223b3e8c0517a6ad94892b3bbaff5ba974f28c769a78a9",
           "baselineContentHash": "7135cdf29b16cc640fabdf3823e9b1fdf5e41f2282c4e3ae94ce0f16c1cda979",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "c1b703526b123121ebb2470946e7e198f47b540d252f047fb5e0c1880f8d5174"
         }
       ]
     },
