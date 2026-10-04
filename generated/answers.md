@@ -680,9 +680,9 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** Deletes the resource formerly represented by store. Changing only the symbol does not request deletion.
 - **D. Incorrect:** Moves the resource into a deployment named archive. A symbolic identifier does not select deployment scope or history name.
 
-Study: [knowledge file](../knowledge/compute/templates/bicep-editing.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/templates/bicep-editing.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-declaration) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes)
 
 ## co-bicep-build
 
@@ -697,26 +697,26 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** The target region has capacity for every VM. Allocation happens during deployment, not compilation.
 - **D. Incorrect:** All Azure Policy assignments permit the resources. Policy evaluation depends on the Azure scope and resource request.
 
-Study: [knowledge file](../knowledge/compute/templates/bicep-editing.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/templates/bicep-editing.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli) · [Microsoft source 3](https://learn.microsoft.com/en-us/troubleshoot/azure/virtual-machines/windows/allocation-failure)
 
 ## co-bicep-existing
 
 Topic: Compute › Editing Bicep parameters, resources, and modules.
 
-A Bicep declaration uses existing for a virtual network in another resource group. Which TWO statements are correct?
+A Bicep file is deployed to rg-app. Virtual network vnet-shared already exists in rg-network in the same subscription. The file declares that network using existing, name: 'vnet-shared', and scope: resourceGroup('rg-network'), then reads its properties. No resource or role assignments are declared for that network. Which TWO statements describe this configuration? Evaluate each statement individually.
 
 Select **2**. Difficulty: applied.
 
-- **A. Correct:** The declaration references the virtual network without redeploying it. existing describes an already deployed resource.
-- **B. Correct:** Its scope must identify the resource group containing that network. The resource must be resolved at its actual scope.
-- **C. Incorrect:** The network is created automatically when missing. An existing reference does not provision a missing resource.
-- **D. Incorrect:** The declaration grants the deploying identity network access rights. Bicep references do not grant RBAC permissions.
+- **A. Correct:** The declaration references vnet-shared without redeploying it. existing references the resource already at the specified name and scope; it does not create or update it.
+- **B. Correct:** The lookup targets rg-network rather than rg-app. The explicit resourceGroup scope selects the group containing the network instead of the deployment target group.
+- **C. Incorrect:** The lookup creates vnet-shared in rg-app if it is missing in rg-network. The existing declaration has neither provisioning behavior nor a fallback to the deployment resource group.
+- **D. Incorrect:** The declaration grants the deployment identity permission to read vnet-shared. Referencing a resource does not create a role assignment. The identity needs appropriate existing access.
 
-Study: [knowledge file](../knowledge/compute/templates/bicep-editing.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/templates/bicep-editing.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/existing-resource) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli)
 
 ## co-deploy-scope
 

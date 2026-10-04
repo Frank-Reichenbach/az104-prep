@@ -2680,9 +2680,9 @@
     {
       "id": "compute.templates.bicep-editing",
       "title": "Editing Bicep parameters, resources, and modules",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.templates.bicep-editing.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-bicep-refactor",
@@ -2697,9 +2697,9 @@
           ],
           "baselineHash": "4f7539b9d16146607907d5109153cab841b1bf796cb1fc658cd4f1532912f2bf",
           "baselineContentHash": "c9e7915d55a87225262daec994e56ca50346a4af0d830e1881f03a250a523f58",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "056d5c84cccafa3e0a46007ab657feae7b434c97d32689ed1299318ab912f81a"
         },
         {
           "id": "co-bicep-build",
@@ -2714,9 +2714,9 @@
           ],
           "baselineHash": "2f081b0057cdb3f7fad42fdc49ef3eff0a36ef7a643f5666047125eb282695d9",
           "baselineContentHash": "3bf6323c7af84dd163d93266ccd6d72a570732cf3c8efc9041c97ce0eefed04f",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "728a8add4696770875103749c3f7122ec4432e810ce7a1fd8da6041d459a2440"
         },
         {
           "id": "co-bicep-existing",
@@ -2731,9 +2731,9 @@
           ],
           "baselineHash": "df1bd7d0fb638cd0989390027eba5eb811cf29b6fd8f2ff7b091e60389c74e38",
           "baselineContentHash": "7c607bed63548e4c8217b7e5330aa89b833c7d5d5c660cf14c30e91d6bbf10bb",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "93112bd4ef1dd1a8d7b7b44d5f9969ee88f4edeed5482dea464c38c90d57324a"
         }
       ]
     },

@@ -543,14 +543,14 @@ D. All Azure Policy assignments permit the resources.
 
 Topic: Compute › Editing Bicep parameters, resources, and modules.
 
-A Bicep declaration uses existing for a virtual network in another resource group. Which TWO statements are correct?
+A Bicep file is deployed to rg-app. Virtual network vnet-shared already exists in rg-network in the same subscription. The file declares that network using existing, name: 'vnet-shared', and scope: resourceGroup('rg-network'), then reads its properties. No resource or role assignments are declared for that network. Which TWO statements describe this configuration? Evaluate each statement individually.
 
 Select **2**. Difficulty: applied.
 
-A. The declaration references the virtual network without redeploying it.
-B. Its scope must identify the resource group containing that network.
-C. The network is created automatically when missing.
-D. The declaration grants the deploying identity network access rights.
+A. The declaration references vnet-shared without redeploying it.
+B. The lookup targets rg-network rather than rg-app.
+C. The lookup creates vnet-shared in rg-app if it is missing in rg-network.
+D. The declaration grants the deployment identity permission to read vnet-shared.
 
 ## co-deploy-scope
 
