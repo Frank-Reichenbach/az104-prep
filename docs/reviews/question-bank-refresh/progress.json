@@ -9,7 +9,7 @@
   "branch": "fix/question-bank-style-refresh",
   "scope": "Review every existing question with the project authoring skill; retain sound items and revise identified defects. No research inventory import.",
   "publication": {
-    "pullRequest": null,
+    "pullRequest": "https://github.com/Frank-Reichenbach/az104-prep/pull/3",
     "merged": false,
     "deployed": false
   },
@@ -2860,9 +2860,9 @@
     {
       "id": "compute.vms.creation",
       "title": "Virtual machine provisioning and access",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.vms.creation.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-vm-private",
@@ -2877,9 +2877,9 @@
           ],
           "baselineHash": "6c26ded8f81323f154bdb6ea4beb15fbcf4adfd5006f5aeb82a835203ce18874",
           "baselineContentHash": "987f74026651c49ef20af4bbe1fc80edcaf893b6e8fd8008066dfec7036675ea",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "d09ee1325fd80669709cd1598ec3787857a88433e069ea926b0017a1715cf6ba"
         },
         {
           "id": "co-vm-stopped",
@@ -2894,9 +2894,9 @@
           ],
           "baselineHash": "bbdce5d418acd5e738c942f4f6adb96612fc693dca9f37859bb983ecd6b110ef",
           "baselineContentHash": "d4255c6c66721fc650517a385d12854428cbf5d1ee5d5b65ca94f56f6f60d240",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "5947038b93b960cb563e1f41265a4e4eaff1f3237d5723d88f47e5809b2c63eb"
         },
         {
           "id": "co-vm-trusted",
@@ -2911,9 +2911,9 @@
           ],
           "baselineHash": "bd3461f94626f5c3771028c3dd29df3a9e265954816aa49bb7e8dd64000229c4",
           "baselineContentHash": "3efd2f44e220730085af7a2c255630ad53070e8d939d3f1a566dbf9885a0c455",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f0110aab6bae6e6e424dd4d9e10b9795004ad6f4a9882b555ee36e74a20f5546"
         }
       ]
     },

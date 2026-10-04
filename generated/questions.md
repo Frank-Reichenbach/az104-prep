@@ -712,40 +712,40 @@ D. Update domain numbers guarantee ascending maintenance order.
 
 Topic: Compute › Virtual machine provisioning and access.
 
-A Linux VM is created without a public IP in a subnet reachable only through a corporate VPN. How should an administrator establish SSH access?
+A running Linux VM has no public IP. Its subnet is reachable from a corporate VPN, and NSGs and the guest firewall permit SSH from VPN clients. The administrator has the matching private SSH key. The workstation is currently on an unrelated Internet connection with the VPN disconnected. Which action establishes the required SSH path without changing the VM network configuration?
 
 Select **1**. Difficulty: applied.
 
-A. Connect through the VPN and use the VM private IP with valid guest credentials.
-B. Use the private IP directly from an unrelated Internet connection.
-C. Assign Virtual Machine Contributor and SSH through ARM automatically.
-D. Add an NSG allow rule and assume it assigns a public address.
+A. Connect the workstation to the VPN, then SSH to the VM private IP using the key.
+B. Keep the VPN disconnected and SSH to the VM private IP using the key.
+C. Assign Virtual Machine Contributor, then SSH to the private IP with the VPN disconnected.
+D. Allow the workstation public IP in the NSG, then SSH to the private IP with the VPN disconnected.
 
 ## co-vm-stopped
 
 Topic: Compute › Virtual machine provisioning and access.
 
-A guest operating system is shut down, and Azure reports Stopped (allocated). What stops VM compute allocation charges?
+A VM is Stopped (allocated) after a guest shutdown. The administrator must stop usage-based compute allocation charges while retaining its managed disks for a later restart. Which action meets the requirement?
 
 Select **1**. Difficulty: foundation.
 
 A. Deallocate the VM through Azure.
-B. Leave it in the current state because the guest is off.
-C. Remove its public IP only.
-D. Disable boot diagnostics only.
+B. Leave the VM in Stopped (allocated).
+C. Restart the VM through Azure.
+D. Start the VM, then shut down only from inside the guest.
 
 ## co-vm-trusted
 
 Topic: Compute › Virtual machine provisioning and access.
 
-Which TWO features are associated with Trusted Launch for a supported Generation 2 Azure VM?
+Which TWO Trusted Launch settings provide boot-component signature checking and a virtual trusted platform module on a supported Generation 2 Azure VM? Evaluate each feature individually.
 
 Select **2**. Difficulty: foundation.
 
 A. Secure Boot
 B. Virtual TPM
-C. Automatic replication of the VM into another region
-D. Automatic creation of a guest application backup
+C. Encryption at host
+D. Boot diagnostics
 
 ## co-disk-expand
 

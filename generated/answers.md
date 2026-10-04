@@ -926,52 +926,52 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/availability.md). 
 
 Topic: Compute › Virtual machine provisioning and access.
 
-A Linux VM is created without a public IP in a subnet reachable only through a corporate VPN. How should an administrator establish SSH access?
+A running Linux VM has no public IP. Its subnet is reachable from a corporate VPN, and NSGs and the guest firewall permit SSH from VPN clients. The administrator has the matching private SSH key. The workstation is currently on an unrelated Internet connection with the VPN disconnected. Which action establishes the required SSH path without changing the VM network configuration?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Connect through the VPN and use the VM private IP with valid guest credentials. The VPN supplies the private network path; SSH still requires authentication.
-- **B. Incorrect:** Use the private IP directly from an unrelated Internet connection. Private addresses are not publicly routed to the VM.
-- **C. Incorrect:** Assign Virtual Machine Contributor and SSH through ARM automatically. Resource management rights do not create an SSH network path.
-- **D. Incorrect:** Add an NSG allow rule and assume it assigns a public address. An NSG filters traffic; it does not provide a public IP or route.
+- **A. Correct:** Connect the workstation to the VPN, then SSH to the VM private IP using the key. The VPN supplies the private route; the matching key authenticates the guest session.
+- **B. Incorrect:** Keep the VPN disconnected and SSH to the VM private IP using the key. Valid credentials cannot supply the missing private network path from this Internet connection.
+- **C. Incorrect:** Assign Virtual Machine Contributor, then SSH to the private IP with the VPN disconnected. The management role creates no private network path; the stated missing connection remains.
+- **D. Incorrect:** Allow the workstation public IP in the NSG, then SSH to the private IP with the VPN disconnected. An NSG permission filters traffic but does not provide a route to this private IP. The path still requires the VPN.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/creation.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/creation.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/linux-vm-connect) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/compute) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview)
 
 ## co-vm-stopped
 
 Topic: Compute › Virtual machine provisioning and access.
 
-A guest operating system is shut down, and Azure reports Stopped (allocated). What stops VM compute allocation charges?
+A VM is Stopped (allocated) after a guest shutdown. The administrator must stop usage-based compute allocation charges while retaining its managed disks for a later restart. Which action meets the requirement?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** Deallocate the VM through Azure. Deallocation releases the allocated compute; retained resources can still cost money.
-- **B. Incorrect:** Leave it in the current state because the guest is off. Stopped but allocated VMs retain compute allocation.
-- **C. Incorrect:** Remove its public IP only. Public IP removal does not deallocate the VM.
-- **D. Incorrect:** Disable boot diagnostics only. Diagnostics settings do not determine compute allocation.
+- **A. Correct:** Deallocate the VM through Azure. Deallocation releases compute allocation without requiring managed-disk deletion. Retained disks can still incur charges.
+- **B. Incorrect:** Leave the VM in Stopped (allocated). The guest is off but host compute remains allocated and billed.
+- **C. Incorrect:** Restart the VM through Azure. A running VM remains allocated and billed; restarting does not meet the spending requirement.
+- **D. Incorrect:** Start the VM, then shut down only from inside the guest. Guest shutdown returns it to the allocated stopped state, which still incurs instance usage charges.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/creation.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/creation.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing)
 
 ## co-vm-trusted
 
 Topic: Compute › Virtual machine provisioning and access.
 
-Which TWO features are associated with Trusted Launch for a supported Generation 2 Azure VM?
+Which TWO Trusted Launch settings provide boot-component signature checking and a virtual trusted platform module on a supported Generation 2 Azure VM? Evaluate each feature individually.
 
 Select **2**. Difficulty: foundation.
 
-- **A. Correct:** Secure Boot Secure Boot helps prevent unauthorized boot components.
-- **B. Correct:** Virtual TPM vTPM supports measured boot and related integrity capabilities.
-- **C. Incorrect:** Automatic replication of the VM into another region Trusted Launch is a security feature, not regional disaster recovery.
-- **D. Incorrect:** Automatic creation of a guest application backup Boot security does not create a backup policy.
+- **A. Correct:** Secure Boot Secure Boot verifies signatures in the boot chain, helping prevent unauthorized boot components.
+- **B. Correct:** Virtual TPM vTPM provides the virtual trusted platform module used for measured boot and integrity capabilities.
+- **C. Incorrect:** Encryption at host Host encryption protects VM data at rest; it does not provide these Trusted Launch boot-verification or TPM settings.
+- **D. Incorrect:** Boot diagnostics Boot diagnostics captures startup troubleshooting information; it does not provide signature enforcement or a virtual TPM.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/creation.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/creation.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/boot-diagnostics)
 
 ## co-disk-expand
 
