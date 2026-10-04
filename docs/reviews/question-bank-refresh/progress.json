@@ -4968,9 +4968,9 @@
     {
       "id": "monitoring.logs.diagnostic-settings",
       "title": "Resource logs and diagnostic settings",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.logs.diagnostic-settings.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-log-default",
@@ -4985,9 +4985,9 @@
           ],
           "baselineHash": "e48a27836039d0a80efebc5889729042f946f7ec85f8b07d30e4937910b746a5",
           "baselineContentHash": "3a4d82443a927c167b6641c7e291b75d366cde5a149e07cc92da208ea57cba6a",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "bcb7f49c581a8c6b53a94db552e5c5f7078841ec195e09e21f9c8c64ca3023db"
         },
         {
           "id": "mo-log-two-workspaces",
@@ -5002,9 +5002,9 @@
           ],
           "baselineHash": "4bf7f7f25bd08d1a33b13a515214f3039e78239c2cc94bf12edc1ec3f536225a",
           "baselineContentHash": "7c4add1597f5229848a87462f2de32968d0af7478f1b2fe95458b5d09a657e41",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "daed837b3c4431757ea396145a724407edc1d72ef5aeb8eeed87555b8fdd2580"
         },
         {
           "id": "mo-log-guest",
@@ -5019,9 +5019,9 @@
           ],
           "baselineHash": "b59b8391d267b9cddd3cd4da5bfee3892dcd8a776cd2bd63b9583e97a9ce1af5",
           "baselineContentHash": "2c1773c12a21a92774630768b94fa843d2e26058260662b20bbcddda876b44ef",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "d3ae3f3edd20b43abce5b657ceac3a727fa7a9674e96fff9221993f54f1c447c"
         }
       ]
     },

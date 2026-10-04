@@ -2181,40 +2181,40 @@ D. A public IP allocation method.
 
 Topic: Monitoring and recovery › Resource logs and diagnostic settings.
 
-A resource has platform metrics visible but no resource-operation logs in your workspace. No diagnostic setting exists. What should you configure?
+A resource exposes a supported audit log category and has platform metrics visible. You need its future audit operations in workspace ws-audit. Both ws-audit and ws-metrics exist and you have the required configuration access. Which diagnostic setting collects the requested data at the required destination?
 
 Select **1**. Difficulty: foundation.
 
-A. A diagnostic setting with the required resource log categories and workspace destination.
-B. Only change the metric chart's color.
-C. Only add a resource tag named LogAnalytics.
-D. Only create a DNS alias for the workspace.
+A. Enable the resource audit log category; destination ws-audit.
+B. Enable only AllMetrics; destination ws-audit.
+C. Enable the resource audit log category; destination ws-metrics.
+D. Export only the subscription Activity Log; destination ws-audit.
 
 ## mo-log-two-workspaces
 
 Topic: Monitoring and recovery › Resource logs and diagnostic settings.
 
-You need the same resource logs sent to two Log Analytics workspaces. Which diagnostic-settings design is supported?
+A resource must export the same supported audit category to existing workspaces ws-operations and ws-security. No diagnostic settings exist and required access is available. Use direct diagnostic-settings export. Which design sends each future audit event to both workspaces?
 
 Select **1**. Difficulty: applied.
 
-A. Two workspace destinations inside one setting.
-B. Two diagnostic settings, each naming one workspace.
-C. One setting with a comma-separated workspace ID.
-D. An NSG rule listing both workspace names.
+A. One setting containing both workspaces as Log Analytics destinations.
+B. Two settings enabling the audit category, each targeting one of the workspaces.
+C. One setting targeting ws-operations, then edit that same setting to target ws-security.
+D. Two settings: audit logs to ws-operations, and only AllMetrics to ws-security.
 
 ## mo-log-guest
 
 Topic: Monitoring and recovery › Resource logs and diagnostic settings.
 
-You need Linux guest Syslog from Azure VMs. Does a resource diagnostic setting alone select their Syslog facilities and severities?
+You need Linux guest Syslog messages from supported Azure VMs in a Log Analytics workspace. Azure Monitor Agent is installed and its destination connectivity works. Select facilities and severity levels and collect future guest messages for queries. Which configuration supplies that collection path?
 
 Select **1**. Difficulty: applied.
 
-A. Yes; AllMetrics contains all Syslog messages.
-B. Yes; the Activity Log contains every guest message.
-C. No; configure a supported guest-agent/data collection rule path.
-D. Yes; a resource tag sets Syslog severity.
+A. A VM resource diagnostic setting exporting only AllMetrics to the workspace.
+B. A subscription diagnostic setting exporting only Activity Log events to the workspace.
+C. A DCR with a Linux Syslog source and workspace destination, associated with the VMs.
+D. A guest Syslog daemon configuration writing the selected messages only to a local file.
 
 ## mo-kql-summarize
 
