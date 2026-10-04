@@ -578,7 +578,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** Reserve four CPUs for the group automatically. The requests total two CPUs, not four.
 - **D. Incorrect:** Guarantee two dedicated CPUs for each container simultaneously. Both containers cannot each consume two CPUs from a two-CPU allocation.
 
-Study: [knowledge file](../knowledge/compute/containers/scaling.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/containers/scaling.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/scale-app) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-apps/containers)
 
@@ -586,18 +586,18 @@ Study: [knowledge file](../knowledge/compute/containers/scaling.md). Evidence ch
 
 Topic: Compute › Container resource sizing and replica scaling.
 
-A Container Apps queue worker has ingress disabled, minReplicas 0, and no custom scale rule. Why can it remain at zero while queue messages arrive?
+A Container Apps queue worker has ingress disabled, minReplicas 0, maxReplicas 10, and no custom scale rules. It remains at zero while messages accumulate. It must start for queued work and retain the ability to scale to zero when idle. Which configuration change addresses the missing wake-up trigger? Assume the worker and scaler have the required queue access and environment capacity is available.
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** No configured trigger observes the queue and requests replicas. Without ingress or a custom event rule, queue arrivals do not wake the app.
-- **B. Incorrect:** maxReplicas always forces at least that many replicas to run. Maximum is a limit, not the requested minimum.
-- **C. Incorrect:** Changing the image tag in ACR automatically processes the queue. An image tag does not configure an event scaler.
-- **D. Incorrect:** The inactive replica can measure its own CPU and wake itself. There is no running replica producing that utilization signal.
+- **A. Correct:** Add a supported queue-length scale rule with its required authentication. An external queue signal can request replicas when none are running, while retaining a zero minimum.
+- **B. Incorrect:** Add only a CPU-utilization scale rule while retaining the zero minimum. CPU-based scaling cannot wake replicas from zero because no running replica supplies the required utilization signal.
+- **C. Incorrect:** Set minReplicas to 1 without adding a queue rule. A nonzero minimum keeps a worker running but removes the required ability to scale to zero when idle.
+- **D. Incorrect:** Raise maxReplicas from 10 to 20 without adding a rule. The maximum permits more replicas but does not supply a signal that requests them from zero.
 
-Study: [knowledge file](../knowledge/compute/containers/scaling.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/containers/scaling.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/scale-app) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-apps/containers)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-apps/scale-app)
 
 ## co-scale-oom
 
@@ -605,14 +605,14 @@ Topic: Compute › Container resource sizing and replica scaling.
 
 Every Container Apps replica fails during startup because its memory allocation is too small. Which change directly addresses that failure?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
 - **A. Correct:** Choose a supported larger per-replica memory allocation and deploy the revision. Each replica needs enough memory to start successfully.
 - **B. Incorrect:** Raise only maxReplicas while preserving the insufficient allocation. More failing replicas do not increase memory available to each process.
 - **C. Incorrect:** Lower minReplicas to zero and leave the image unchanged. A lower minimum does not fix the startup memory requirement.
 - **D. Incorrect:** Change only the ingress traffic percentage. Traffic distribution does not enlarge the container memory allocation.
 
-Study: [knowledge file](../knowledge/compute/containers/scaling.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/containers/scaling.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/container-apps/scale-app) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/container-apps/containers)
 

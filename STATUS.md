@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 175/322 questions reviewed, 137 revised and 38 kept; 52/99 topics complete.
-Latest: [Container Apps environments, ingress, and revisions](docs/reviews/question-bank-refresh/compute.containers.apps.md). Each completed topic has item decisions,
+Checkpoint: 178/322 questions reviewed, 139 revised and 39 kept; 53/99 topics complete.
+Latest: [Container resource sizing and replica scaling](docs/reviews/question-bank-refresh/compute.containers.scaling.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `compute.containers.scaling` (Container resource sizing and replica scaling).
+Next: `compute.app-service.plans` (App Service plan creation and compute sharing).
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this

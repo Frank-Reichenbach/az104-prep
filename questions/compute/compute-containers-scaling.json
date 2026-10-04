@@ -43,39 +43,39 @@
         "https://learn.microsoft.com/en-us/azure/container-apps/scale-app",
         "https://learn.microsoft.com/en-us/azure/container-apps/containers"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-scale-zero",
       "family": "co-scale-zero",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.containers.scaling",
       "objectives": [
         "co-16"
       ],
-      "difficulty": "applied",
-      "prompt": "A Container Apps queue worker has ingress disabled, minReplicas 0, and no custom scale rule. Why can it remain at zero while queue messages arrive?",
+      "difficulty": "troubleshooting",
+      "prompt": "A Container Apps queue worker has ingress disabled, minReplicas 0, maxReplicas 10, and no custom scale rules. It remains at zero while messages accumulate. It must start for queued work and retain the ability to scale to zero when idle. Which configuration change addresses the missing wake-up trigger? Assume the worker and scaler have the required queue access and environment capacity is available.",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "No configured trigger observes the queue and requests replicas.",
-          "explanation": "Without ingress or a custom event rule, queue arrivals do not wake the app."
+          "text": "Add a supported queue-length scale rule with its required authentication.",
+          "explanation": "An external queue signal can request replicas when none are running, while retaining a zero minimum."
         },
         {
           "id": "b",
-          "text": "maxReplicas always forces at least that many replicas to run.",
-          "explanation": "Maximum is a limit, not the requested minimum."
+          "text": "Add only a CPU-utilization scale rule while retaining the zero minimum.",
+          "explanation": "CPU-based scaling cannot wake replicas from zero because no running replica supplies the required utilization signal."
         },
         {
           "id": "c",
-          "text": "Changing the image tag in ACR automatically processes the queue.",
-          "explanation": "An image tag does not configure an event scaler."
+          "text": "Set minReplicas to 1 without adding a queue rule.",
+          "explanation": "A nonzero minimum keeps a worker running but removes the required ability to scale to zero when idle."
         },
         {
           "id": "d",
-          "text": "The inactive replica can measure its own CPU and wake itself.",
-          "explanation": "There is no running replica producing that utilization signal."
+          "text": "Raise maxReplicas from 10 to 20 without adding a rule.",
+          "explanation": "The maximum permits more replicas but does not supply a signal that requests them from zero."
         }
       ],
       "correct": [
@@ -83,21 +83,19 @@
       ],
       "knowledge": "knowledge/compute/containers/scaling.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups",
-        "https://learn.microsoft.com/en-us/azure/container-apps/scale-app",
-        "https://learn.microsoft.com/en-us/azure/container-apps/containers"
+        "https://learn.microsoft.com/en-us/azure/container-apps/scale-app"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-scale-oom",
       "family": "co-scale-oom",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.containers.scaling",
       "objectives": [
         "co-16"
       ],
-      "difficulty": "applied",
+      "difficulty": "troubleshooting",
       "prompt": "Every Container Apps replica fails during startup because its memory allocation is too small. Which change directly addresses that failure?",
       "select": 1,
       "options": [
@@ -131,7 +129,7 @@
         "https://learn.microsoft.com/en-us/azure/container-apps/scale-app",
         "https://learn.microsoft.com/en-us/azure/container-apps/containers"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

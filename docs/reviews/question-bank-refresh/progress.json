@@ -3460,9 +3460,9 @@
     {
       "id": "compute.containers.scaling",
       "title": "Container resource sizing and replica scaling",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.containers.scaling.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-scale-aci",
@@ -3477,9 +3477,9 @@
           ],
           "baselineHash": "682dee0ca77e475ceffbd923dddc4e6c70bfb4a72bcc5604a228286974e9fbd2",
           "baselineContentHash": "6ec6b588984297e9b7c57bf0aad0ed170c92db645795a163db986190ef3efa3e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "ded2d04ba3e2d178f27b2b0723f615e6801d12475cc6b37f8bdd677b4ae4c02c"
         },
         {
           "id": "co-scale-zero",
@@ -3494,9 +3494,9 @@
           ],
           "baselineHash": "69529c3c6e024f08dc63bfdc3f82c72e77f419c2c98326afb9d5346b736ddf15",
           "baselineContentHash": "5dc45152761fda658bbe81d88f9d2bbc21d84cb87b48134bdbad07d19e6b43d9",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "238795691f36979fc2202d58fd60ebc3b0bd271311c787e061e906efb0a68c91"
         },
         {
           "id": "co-scale-oom",
@@ -3511,9 +3511,9 @@
           ],
           "baselineHash": "e98a99641fd8221aa916f2b825e398062c445184f6c3c07153cca2903d67dd0f",
           "baselineContentHash": "1a9ce630a2e2837bb7ea5ea3bcdd572c2919f6b08fb70ab4b5baccda56396c79",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f1895dedf954e2c3f819e6b5eb539758c7e798e5e79ef66d5dc4ba0da17a0cd5"
         }
       ]
     },

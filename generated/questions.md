@@ -452,14 +452,14 @@ D. Guarantee two dedicated CPUs for each container simultaneously.
 
 Topic: Compute › Container resource sizing and replica scaling.
 
-A Container Apps queue worker has ingress disabled, minReplicas 0, and no custom scale rule. Why can it remain at zero while queue messages arrive?
+A Container Apps queue worker has ingress disabled, minReplicas 0, maxReplicas 10, and no custom scale rules. It remains at zero while messages accumulate. It must start for queued work and retain the ability to scale to zero when idle. Which configuration change addresses the missing wake-up trigger? Assume the worker and scaler have the required queue access and environment capacity is available.
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. No configured trigger observes the queue and requests replicas.
-B. maxReplicas always forces at least that many replicas to run.
-C. Changing the image tag in ACR automatically processes the queue.
-D. The inactive replica can measure its own CPU and wake itself.
+A. Add a supported queue-length scale rule with its required authentication.
+B. Add only a CPU-utilization scale rule while retaining the zero minimum.
+C. Set minReplicas to 1 without adding a queue rule.
+D. Raise maxReplicas from 10 to 20 without adding a rule.
 
 ## co-scale-oom
 
@@ -467,7 +467,7 @@ Topic: Compute › Container resource sizing and replica scaling.
 
 Every Container Apps replica fails during startup because its memory allocation is too small. Which change directly addresses that failure?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
 A. Choose a supported larger per-replica memory allocation and deploy the revision.
 B. Raise only maxReplicas while preserving the insufficient allocation.
