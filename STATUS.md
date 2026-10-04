@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 304/322 questions reviewed, 242 revised and 62 kept; 93/99 topics complete.
-Latest: [Azure Files backup and item recovery](docs/reviews/question-bank-refresh/monitoring.backup.files-restore.md). Each completed topic has item decisions,
+Checkpoint: 307/322 questions reviewed, 244 revised and 63 kept; 94/99 topics complete.
+Latest: [Site Recovery replication for Azure virtual machines](docs/reviews/question-bank-refresh/monitoring.recovery.replication.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `monitoring.recovery.replication` (Site Recovery replication for Azure virtual machines).
+Next: `monitoring.recovery.test-failover` (Site Recovery test failover and drill cleanup).
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
@@ -294,8 +294,8 @@ retirement are documented with current alternatives.
 ## Next task
 
 Continue the authorized existing-bank review from `npm run review:status`.
-Current checkpoint: 304/322 questions, 93/99 topics complete.
-Next: `monitoring.recovery.replication` (Site Recovery replication for Azure virtual machines).
+Current checkpoint: 307/322 questions, 94/99 topics complete.
+Next: `monitoring.recovery.test-failover` (Site Recovery test failover and drill cleanup).
 Record real source checks and repair decisions in its report; do not mark a
 topic complete based on schema checks alone.
 

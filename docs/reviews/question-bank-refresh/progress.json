@@ -6022,9 +6022,9 @@
     {
       "id": "monitoring.recovery.replication",
       "title": "Site Recovery replication for Azure virtual machines",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.recovery.replication.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-replication-cache",
@@ -6039,9 +6039,9 @@
           ],
           "baselineHash": "8a3fc420becf7ac91e55d8b86d3b6e48de05f5dd925186b4cf29906c7ee700cc",
           "baselineContentHash": "c7dbeb10101497146f80f4ebe86e51aa60bc8b9ec7c52367f1fc3ea6477c8343",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "559ab09398afe4033d27f74c6414adba02962c375d544bf1d6fa72c30695f22b"
         },
         {
           "id": "mo-replication-permissions",
@@ -6056,9 +6056,9 @@
           ],
           "baselineHash": "0cd16923425077a823eff29c68d3d9e656fbc812f70d95373e975af26c209f3f",
           "baselineContentHash": "32c96d398c4c636bde06a11b4d32fa3ebdb2a104acaf3b365987de326b66a5f1",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "fe9a5a7209decd4cdb59abc8205c7902d73cf10ff760eb082a004eae2229dafa"
         },
         {
           "id": "mo-replication-network",
@@ -6073,9 +6073,9 @@
           ],
           "baselineHash": "44add6bf71822bce74a57743a4fd7ab866704aed5bb5e107e3a8861e2523ad50",
           "baselineContentHash": "6f143095d6c37b6d2cb1ac98d6a0cd4bd19e59667addf9ea4eec2698717e8230",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "0e4257ae14ee9e2520e781146b3b7556b065de16ca0759ea8a70cb05f8310018"
         }
       ]
     },

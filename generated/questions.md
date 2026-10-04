@@ -2458,23 +2458,23 @@ You enable Azure-to-Azure Site Recovery for a VM. Where should the replication c
 
 Select **1**. Difficulty: foundation.
 
-A. Only in the target recovery region.
-B. In the source VM's region.
-C. In any third region chosen for backup reports.
-D. On the VM's temporary disk instead of a storage account.
+A. In the target recovery region, instead of the source region.
+B. In the source VM’s region.
+C. In the vault’s region even when that differs from the source VM’s region.
+D. In either source or target region, provided it shares the vault’s resource group.
 
 ## mo-replication-permissions
 
 Topic: Monitoring and recovery › Site Recovery replication for Azure virtual machines.
 
-An administrator has Site Recovery Contributor on a vault but cannot enable replication using another resource group's resources. What should you check?
+An administrator has Site Recovery Contributor scoped only to a Recovery Services vault. Replication will use source and target compute, network and Storage resources outside that scope. Before enabling replication, which authorization review is required?
 
 Select **1**. Difficulty: applied.
 
-A. The required permissions on the linked source and target resources.
-B. Whether the role grants subscription-wide Owner automatically.
-C. Whether Site Recovery Reader would grant more write access.
-D. Whether disabling storage encryption bypasses Azure RBAC.
+A. Verify the required operation permissions also cover the linked source and target resources.
+B. Verify only that the vault role assignment is inherited by resources in every other resource group.
+C. Replace the vault Contributor role with Site Recovery Reader, without other assignments.
+D. Grant a vault-scoped role again under the same principal and omit linked-resource checks.
 
 ## mo-replication-network
 

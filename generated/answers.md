@@ -3208,31 +3208,31 @@ You enable Azure-to-Azure Site Recovery for a VM. Where should the replication c
 
 Select **1**. Difficulty: foundation.
 
-- **A. Incorrect:** Only in the target recovery region. The documented replication path uses a cache account in the source region.
-- **B. Correct:** In the source VM's region. VM changes pass through source-region cache storage before recovery processing in the target region.
-- **C. Incorrect:** In any third region chosen for backup reports. Reporting placement does not determine Site Recovery cache placement.
-- **D. Incorrect:** On the VM's temporary disk instead of a storage account. A temporary disk is not the replication cache storage account.
+- **A. Incorrect:** In the target recovery region, instead of the source region. The replication cache used by the source VM must be in the source region; target recovery resources serve a different role.
+- **B. Correct:** In the source VM’s region. Source changes are written to a source-region cache account before target-region recovery processing.
+- **C. Incorrect:** In the vault’s region even when that differs from the source VM’s region. The source-region cache requirement is not replaced by the vault’s regional location.
+- **D. Incorrect:** In either source or target region, provided it shares the vault’s resource group. Resource-group membership does not make a target-region account satisfy the source-region cache requirement.
 
-Study: [knowledge file](../knowledge/monitoring/site-recovery/replication.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/site-recovery/replication.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-enable-replication) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-about-networking) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-enable-replication) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-about-networking)
 
 ## mo-replication-permissions
 
 Topic: Monitoring and recovery › Site Recovery replication for Azure virtual machines.
 
-An administrator has Site Recovery Contributor on a vault but cannot enable replication using another resource group's resources. What should you check?
+An administrator has Site Recovery Contributor scoped only to a Recovery Services vault. Replication will use source and target compute, network and Storage resources outside that scope. Before enabling replication, which authorization review is required?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** The required permissions on the linked source and target resources. Site Recovery validates permissions on the resources used by the operation, as well as vault access.
-- **B. Incorrect:** Whether the role grants subscription-wide Owner automatically. A role assignment at the vault does not confer subscription-wide Owner.
-- **C. Incorrect:** Whether Site Recovery Reader would grant more write access. Reader is for inspecting recovery state, not enabling replication.
-- **D. Incorrect:** Whether disabling storage encryption bypasses Azure RBAC. Encryption settings do not eliminate authorization checks.
+- **A. Correct:** Verify the required operation permissions also cover the linked source and target resources. Vault access is separate from permissions checked on linked compute, network and Storage resources used by replication.
+- **B. Incorrect:** Verify only that the vault role assignment is inherited by resources in every other resource group. A vault-scoped assignment does not extend to unrelated resources outside that scope.
+- **C. Incorrect:** Replace the vault Contributor role with Site Recovery Reader, without other assignments. Reader provides inspection access rather than the operation permissions needed to enable replication.
+- **D. Incorrect:** Grant a vault-scoped role again under the same principal and omit linked-resource checks. Repeating a vault-scoped assignment does not establish permissions on source and target resources outside that scope.
 
-Study: [knowledge file](../knowledge/monitoring/site-recovery/replication.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/site-recovery/replication.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-enable-replication) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-about-networking) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-enable-replication)
 
 ## mo-replication-network
 
@@ -3247,7 +3247,7 @@ Select **1**. Difficulty: troubleshooting.
 - **C. Correct:** Use the documented service tags and outbound HTTPS rules, and check storage firewall access. Service tags support changing service addresses; storage firewall permissions still need separate review.
 - **D. Incorrect:** Configure an authenticated proxy as the mandatory replication path. Authenticated proxies are unsupported for Site Recovery replication.
 
-Study: [knowledge file](../knowledge/monitoring/site-recovery/replication.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/site-recovery/replication.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-enable-replication) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-about-networking) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-role-based-linked-access-control)
 
