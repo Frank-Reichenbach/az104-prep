@@ -6805,34 +6805,34 @@
     {
       "id": "mo-backup-notifications",
       "family": "mo-backup-notifications",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.backup.alerts",
       "objectives": [
         "mo-13"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "A built-in Azure Monitor backup failure alert appears in the portal, but the on-call team receives no email. Which configuration should you check?",
+      "prompt": "A built-in Azure Monitor backup failure alert for vault-a appears in the portal. The on-call email action group works in its test. The enabled Add action groups processing rule covers only vault-b, its filters otherwise match, and no suppression applies. What should you change to route future matching vault-a alerts to that team?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Only the backup recovery-point retention period.",
-          "explanation": "Retention does not configure email routing for fired alerts."
+          "text": "Extend only vault-a’s recovery-point retention.",
+          "explanation": "Recovery-point retention does not change the processing rule’s alert-resource scope."
         },
         {
           "id": "b",
-          "text": "Only the restore VM's network interface.",
-          "explanation": "A restore NIC does not determine Azure Monitor email notifications."
+          "text": "Change only the notification action group’s display name.",
+          "explanation": "Renaming the group does not cause the rule scoped to vault-b to process vault-a alerts."
         },
         {
           "id": "c",
-          "text": "Whether Backup Reports contains the current partial day.",
-          "explanation": "Report timing is separate from action routing for fired alerts."
+          "text": "Enable backup job-failure alert generation again on vault-a without changing the rule.",
+          "explanation": "The alert already exists; generation does not correct the mismatched notification scope."
         },
         {
           "id": "d",
-          "text": "The matching alert processing rule and its action group's email receiver.",
-          "explanation": "Azure Backup uses processing rules and action groups to route built-in alert notifications."
+          "text": "Include vault-a in a supported processing-rule scope that applies the on-call action group.",
+          "explanation": "The missing vault scope prevents routing; covering vault-a lets the matching rule apply the tested email action group."
         }
       ],
       "correct": [
@@ -6844,17 +6844,17 @@
         "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
         "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-backup-suppression",
       "family": "mo-backup-suppression",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.backup.alerts",
       "objectives": [
         "mo-13"
       ],
-      "difficulty": "applied",
+      "difficulty": "foundation",
       "prompt": "You suppress Azure Backup alert actions during planned maintenance using an alert processing rule. What does this accomplish?",
       "select": 1,
       "options": [
@@ -6888,39 +6888,39 @@
         "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
         "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-backup-custom-logs",
       "family": "mo-backup-custom-logs",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.backup.alerts",
       "objectives": [
         "mo-13"
       ],
       "difficulty": "applied",
-      "prompt": "You want a custom Azure Backup alert based on a Log Analytics query over vault diagnostic records. Which prerequisite must be satisfied?",
+      "prompt": "A custom backup log-alert query will run against ws-alerts. Vault-a currently exports the required job diagnostics only to ws-reports. You need future vault-a job records available to that query while preserving export to ws-reports. Which collection change meets the goal?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Only a Recovery Services vault's existence is required.",
-          "explanation": "A vault existing does not make its diagnostic records available in the chosen workspace."
+          "text": "Keep the current export unchanged and create an action group for ws-alerts.",
+          "explanation": "An action group supplies responses, not ingestion of the missing vault records into the queried workspace."
         },
         {
           "id": "b",
-          "text": "The required vault diagnostics must reach the queried Log Analytics workspace.",
-          "explanation": "Custom log alerts evaluate ingested records, with diagnostic-delivery delay considered."
+          "text": "Add a separate diagnostic setting exporting the required vault-a logs to ws-alerts.",
+          "explanation": "This supplies the records to the query’s workspace while the existing setting continues its ws-reports export."
         },
         {
           "id": "c",
-          "text": "Every protected VM must use the same public IP address.",
-          "explanation": "Public IP sharing is neither required nor relevant to diagnostic-log ingestion."
+          "text": "Keep the current export unchanged and increase ws-alerts retention.",
+          "explanation": "Retention preserves ingested records longer; it cannot ingest records exported only to ws-reports."
         },
         {
           "id": "d",
-          "text": "An action group must generate the raw backup-job diagnostic records.",
-          "explanation": "Action groups deliver actions; they do not collect the vault's diagnostic records."
+          "text": "Replace the current setting’s destination with ws-alerts and remove ws-reports export.",
+          "explanation": "This supplies ws-alerts but violates the requirement to preserve the existing ws-reports export."
         }
       ],
       "correct": [
@@ -6929,10 +6929,10 @@
       "knowledge": "knowledge/monitoring/backup/alerts.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/backup/backup-azure-monitoring-alerts",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
-        "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-monitoring-use-azuremonitor",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-bv-type",

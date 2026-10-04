@@ -2235,16 +2235,16 @@ Study: [knowledge file](../knowledge/monitoring/alerts/rules.md). Evidence check
 
 Topic: Monitoring and recovery › Azure Backup alerts and notification routing.
 
-A built-in Azure Monitor backup failure alert appears in the portal, but the on-call team receives no email. Which configuration should you check?
+A built-in Azure Monitor backup failure alert for vault-a appears in the portal. The on-call email action group works in its test. The enabled Add action groups processing rule covers only vault-b, its filters otherwise match, and no suppression applies. What should you change to route future matching vault-a alerts to that team?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Incorrect:** Only the backup recovery-point retention period. Retention does not configure email routing for fired alerts.
-- **B. Incorrect:** Only the restore VM's network interface. A restore NIC does not determine Azure Monitor email notifications.
-- **C. Incorrect:** Whether Backup Reports contains the current partial day. Report timing is separate from action routing for fired alerts.
-- **D. Correct:** The matching alert processing rule and its action group's email receiver. Azure Backup uses processing rules and action groups to route built-in alert notifications.
+- **A. Incorrect:** Extend only vault-a’s recovery-point retention. Recovery-point retention does not change the processing rule’s alert-resource scope.
+- **B. Incorrect:** Change only the notification action group’s display name. Renaming the group does not cause the rule scoped to vault-b to process vault-a alerts.
+- **C. Incorrect:** Enable backup job-failure alert generation again on vault-a without changing the rule. The alert already exists; generation does not correct the mismatched notification scope.
+- **D. Correct:** Include vault-a in a supported processing-rule scope that applies the on-call action group. The missing vault scope prevents routing; covering vault-a lets the matching rule apply the tested email action group.
 
-Study: [knowledge file](../knowledge/monitoring/backup/alerts.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/alerts.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-monitoring-alerts) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups)
 
@@ -2254,14 +2254,14 @@ Topic: Monitoring and recovery › Azure Backup alerts and notification routing.
 
 You suppress Azure Backup alert actions during planned maintenance using an alert processing rule. What does this accomplish?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 - **A. Correct:** Suppresses matching notifications/actions without repairing backup failures. Processing rules govern actions; the underlying backup job and alert condition remain separate.
 - **B. Incorrect:** Automatically retries every failed backup until successful. An action-suppression rule does not implement backup retry.
 - **C. Incorrect:** Deletes failed-job records and their alerts permanently. Suppressing actions does not delete the underlying alert/job history.
 - **D. Incorrect:** Disables the backup policy's scheduled jobs. Alert-action processing does not change the backup schedule.
 
-Study: [knowledge file](../knowledge/monitoring/backup/alerts.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/alerts.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-monitoring-alerts) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups)
 
@@ -2269,18 +2269,18 @@ Study: [knowledge file](../knowledge/monitoring/backup/alerts.md). Evidence chec
 
 Topic: Monitoring and recovery › Azure Backup alerts and notification routing.
 
-You want a custom Azure Backup alert based on a Log Analytics query over vault diagnostic records. Which prerequisite must be satisfied?
+A custom backup log-alert query will run against ws-alerts. Vault-a currently exports the required job diagnostics only to ws-reports. You need future vault-a job records available to that query while preserving export to ws-reports. Which collection change meets the goal?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Only a Recovery Services vault's existence is required. A vault existing does not make its diagnostic records available in the chosen workspace.
-- **B. Correct:** The required vault diagnostics must reach the queried Log Analytics workspace. Custom log alerts evaluate ingested records, with diagnostic-delivery delay considered.
-- **C. Incorrect:** Every protected VM must use the same public IP address. Public IP sharing is neither required nor relevant to diagnostic-log ingestion.
-- **D. Incorrect:** An action group must generate the raw backup-job diagnostic records. Action groups deliver actions; they do not collect the vault's diagnostic records.
+- **A. Incorrect:** Keep the current export unchanged and create an action group for ws-alerts. An action group supplies responses, not ingestion of the missing vault records into the queried workspace.
+- **B. Correct:** Add a separate diagnostic setting exporting the required vault-a logs to ws-alerts. This supplies the records to the query’s workspace while the existing setting continues its ws-reports export.
+- **C. Incorrect:** Keep the current export unchanged and increase ws-alerts retention. Retention preserves ingested records longer; it cannot ingest records exported only to ws-reports.
+- **D. Incorrect:** Replace the current setting’s destination with ws-alerts and remove ws-reports export. This supplies ws-alerts but violates the requirement to preserve the existing ws-reports export.
 
-Study: [knowledge file](../knowledge/monitoring/backup/alerts.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/alerts.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-monitoring-alerts) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-monitoring-alerts) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-monitoring-use-azuremonitor) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings)
 
 ## mo-bv-type
 

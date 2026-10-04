@@ -6322,9 +6322,9 @@
     {
       "id": "monitoring.backup.alerts",
       "title": "Azure Backup alerts and notification routing",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.backup.alerts.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-backup-notifications",
@@ -6339,9 +6339,9 @@
           ],
           "baselineHash": "3c4f899072ab46ebb366ec1cb7eaf7a32a7c922b460e0294c83856d4a7d665c5",
           "baselineContentHash": "b27b2fad91bd9557ab3881e9c57dbf564e220281457aa4b58b10a38a1fe6aed3",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "3c2fb1629744af5ead6e186941b928fa6544e0d3f82f620762e1ad136f233092"
         },
         {
           "id": "mo-backup-suppression",
@@ -6356,9 +6356,9 @@
           ],
           "baselineHash": "4197a7ada176194791615e427a2ad4a900db7ee131fbfdd5c43e1159e4984139",
           "baselineContentHash": "aa428a77c2d5355acfbb70d97cd5ab5b6fda84be000f3c3d975b8b29f1052b7d",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "120e0d035842b2517a13bbbc110bebd5342d8c5a8297fc3c84812250065dd7e1"
         },
         {
           "id": "mo-backup-custom-logs",
@@ -6373,9 +6373,9 @@
           ],
           "baselineHash": "b69eb20edcd1e1ba42c7fb3cb79a0cb2ffc4364201cfaf027dfd874ed61b1b37",
           "baselineContentHash": "731bfe241dbd91813efa617518b2e0f95a5ccaa89b0332fbd80dc511deb68adb",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "1054dbf93b01c420acdeaed870070b495b4585e5d703862735195e97b90343d5"
         }
       ]
     }

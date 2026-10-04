@@ -1713,14 +1713,14 @@ D. Condition Resolved; user response Closed.
 
 Topic: Monitoring and recovery › Azure Backup alerts and notification routing.
 
-A built-in Azure Monitor backup failure alert appears in the portal, but the on-call team receives no email. Which configuration should you check?
+A built-in Azure Monitor backup failure alert for vault-a appears in the portal. The on-call email action group works in its test. The enabled Add action groups processing rule covers only vault-b, its filters otherwise match, and no suppression applies. What should you change to route future matching vault-a alerts to that team?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Only the backup recovery-point retention period.
-B. Only the restore VM's network interface.
-C. Whether Backup Reports contains the current partial day.
-D. The matching alert processing rule and its action group's email receiver.
+A. Extend only vault-a’s recovery-point retention.
+B. Change only the notification action group’s display name.
+C. Enable backup job-failure alert generation again on vault-a without changing the rule.
+D. Include vault-a in a supported processing-rule scope that applies the on-call action group.
 
 ## mo-backup-suppression
 
@@ -1728,7 +1728,7 @@ Topic: Monitoring and recovery › Azure Backup alerts and notification routing.
 
 You suppress Azure Backup alert actions during planned maintenance using an alert processing rule. What does this accomplish?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 A. Suppresses matching notifications/actions without repairing backup failures.
 B. Automatically retries every failed backup until successful.
@@ -1739,14 +1739,14 @@ D. Disables the backup policy's scheduled jobs.
 
 Topic: Monitoring and recovery › Azure Backup alerts and notification routing.
 
-You want a custom Azure Backup alert based on a Log Analytics query over vault diagnostic records. Which prerequisite must be satisfied?
+A custom backup log-alert query will run against ws-alerts. Vault-a currently exports the required job diagnostics only to ws-reports. You need future vault-a job records available to that query while preserving export to ws-reports. Which collection change meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Only a Recovery Services vault's existence is required.
-B. The required vault diagnostics must reach the queried Log Analytics workspace.
-C. Every protected VM must use the same public IP address.
-D. An action group must generate the raw backup-job diagnostic records.
+A. Keep the current export unchanged and create an action group for ws-alerts.
+B. Add a separate diagnostic setting exporting the required vault-a logs to ws-alerts.
+C. Keep the current export unchanged and increase ws-alerts retention.
+D. Replace the current setting’s destination with ws-alerts and remove ws-reports export.
 
 ## mo-bv-type
 

@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 319/322 questions reviewed, 255 revised and 64 kept; 98/99 topics complete.
-Latest: [Azure Backup reports and diagnostic data](docs/reviews/question-bank-refresh/monitoring.backup.reports.md). Each completed topic has item decisions,
+Checkpoint: 322/322 questions reviewed, 258 revised and 64 kept; 99/99 topics complete.
+Latest: [Azure Backup alerts and notification routing](docs/reviews/question-bank-refresh/monitoring.backup.alerts.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `monitoring.backup.alerts` (Azure Backup alerts and notification routing).
+Next: publish the completed refresh through a pull request.
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
@@ -294,8 +294,8 @@ retirement are documented with current alternatives.
 ## Next task
 
 Continue the authorized existing-bank review from `npm run review:status`.
-Current checkpoint: 319/322 questions, 98/99 topics complete.
-Next: `monitoring.backup.alerts` (Azure Backup alerts and notification routing).
+Current checkpoint: 322/322 questions, 99/99 topics complete.
+Next: publish the completed refresh through a pull request.
 Record real source checks and repair decisions in its report; do not mark a
 topic complete based on schema checks alone.
 
