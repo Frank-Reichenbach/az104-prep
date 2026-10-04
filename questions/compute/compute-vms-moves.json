@@ -4,34 +4,34 @@
     {
       "id": "co-move-region",
       "family": "co-move-region",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.vms.moves",
       "objectives": [
         "co-08"
       ],
       "difficulty": "foundation",
-      "prompt": "A VM is in West Europe. You move it to a resource group whose metadata location is North Europe using the standard ARM move operation. Where does the VM run afterward?",
+      "prompt": "A VM runs in West Europe. A standard ARM move transfers it to an existing resource group whose metadata location is North Europe. No regional relocation is performed. Which location pair is correct after the move?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "West Europe",
-          "explanation": "Changing resource-group membership does not change the VM region."
+          "text": "VM: West Europe; destination group metadata: North Europe.",
+          "explanation": "An ARM scope move preserves the VM region. The existing destination group keeps its own metadata location."
         },
         {
           "id": "b",
-          "text": "North Europe automatically",
-          "explanation": "Resource-group metadata location does not control member resource locations."
+          "text": "VM: North Europe; destination group metadata: North Europe.",
+          "explanation": "Group membership does not relocate the VM to the metadata region."
         },
         {
           "id": "c",
-          "text": "Both regions with automatic replication",
-          "explanation": "An ARM scope move does not configure replication."
+          "text": "VM: West Europe; destination group metadata: West Europe.",
+          "explanation": "The VM keeps West Europe, but its location does not change the destination group metadata."
         },
         {
           "id": "d",
-          "text": "A region chosen from the destination group name",
-          "explanation": "Names do not select the physical region of an existing VM."
+          "text": "VM: North Europe; destination group metadata: West Europe.",
+          "explanation": "Neither location is exchanged: the VM region remains West Europe and the group metadata remains North Europe."
         }
       ],
       "correct": [
@@ -39,43 +39,41 @@
       ],
       "knowledge": "knowledge/compute/virtual-machines/moves.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-limitations/virtual-machines-move-limitations",
-        "https://learn.microsoft.com/en-us/azure/resource-mover/tutorial-move-region-virtual-machines"
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-move-tenant",
       "family": "co-move-tenant",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.vms.moves",
       "objectives": [
         "co-08"
       ],
       "difficulty": "applied",
-      "prompt": "You plan an ARM cross-subscription VM move. Which TWO requirements should you validate?",
+      "prompt": "A VM, its NIC, disks, and virtual network will be moved from subscription A to subscription B using a direct ARM cross-subscription move. Which TWO statements describe requirements for this move? Evaluate each statement individually.",
       "select": 2,
       "options": [
         {
           "id": "a",
-          "text": "Both subscriptions belong to the same Entra tenant.",
-          "explanation": "Direct ARM moves do not cross tenant boundaries."
+          "text": "Subscriptions A and B must belong to the same Microsoft Entra tenant.",
+          "explanation": "Direct cross-subscription ARM moves require matching tenant IDs; they do not cross tenant boundaries."
         },
         {
           "id": "b",
-          "text": "The virtual network and required dependent resources are included as required.",
-          "explanation": "Cross-subscription VM moves have dependency requirements."
+          "text": "The virtual network and its dependent resources must move with the VM.",
+          "explanation": "The VM move limitation requires the VNet and dependent resources to move together across subscriptions."
         },
         {
           "id": "c",
-          "text": "Only the VM resource is needed regardless of its dependencies.",
-          "explanation": "Networking and other resource dependencies can block validation."
+          "text": "The NIC can remain in subscription A while the attached VM moves to B.",
+          "explanation": "The cross-subscription dependency requirement does not permit leaving the attached NIC behind."
         },
         {
           "id": "d",
-          "text": "The move automatically changes the VM to the destination group region.",
-          "explanation": "Scope moves preserve the VM region."
+          "text": "The destination group metadata location must match the VM region.",
+          "explanation": "A resource group can contain resources in other regions. Matching metadata location is not this move requirement."
         }
       ],
       "correct": [
@@ -85,42 +83,41 @@
       "knowledge": "knowledge/compute/virtual-machines/moves.md",
       "sources": [
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-limitations/virtual-machines-move-limitations",
-        "https://learn.microsoft.com/en-us/azure/resource-mover/tutorial-move-region-virtual-machines"
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-limitations/virtual-machines-move-limitations"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-move-id",
       "family": "co-move-id",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.vms.moves",
       "objectives": [
         "co-08"
       ],
-      "difficulty": "applied",
-      "prompt": "After a successful VM move to another resource group, an automation script using the old resource ID fails. What should be checked first?",
+      "difficulty": "troubleshooting",
+      "prompt": "A VM named vm-app moves from rg-old to rg-new in the same subscription. A script still requests its previous ARM resource ID and receives ResourceNotFound. The VM is visible in rg-new, the move is complete, and the script identity has the required access there. Which change addresses the failure?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Update the script to use the VM resource ID at its new scope.",
-          "explanation": "The resource-group segment of the ID changes during the move."
+          "text": "Replace rg-old with rg-new in the resource ID used by the script.",
+          "explanation": "The resource-group segment changes during the move. The old path no longer identifies the VM at its current scope."
         },
         {
           "id": "b",
-          "text": "Assume the VM has retained the old ID permanently.",
-          "explanation": "A resource ID includes its resource group."
+          "text": "Acquire a new access token while continuing to use the old resource ID.",
+          "explanation": "Authentication refresh does not replace the stale scope segment. Access at the new scope is already established."
         },
         {
           "id": "c",
-          "text": "Change only the guest hostname to match the old resource group.",
-          "explanation": "Guest hostname does not repair an ARM resource ID reference."
+          "text": "Replace vm-app in the ID with the guest operating-system hostname.",
+          "explanation": "The ARM resource name remains vm-app. The guest hostname does not select its resource-group scope."
         },
         {
           "id": "d",
-          "text": "Reinstall the VM agent to recreate the old resource ID.",
-          "explanation": "The agent does not determine the VM ARM scope."
+          "text": "Replace the subscription segment while continuing to use rg-old.",
+          "explanation": "The subscription did not change; the stale segment is the resource group."
         }
       ],
       "correct": [
@@ -128,11 +125,9 @@
       ],
       "knowledge": "knowledge/compute/virtual-machines/moves.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-limitations/virtual-machines-move-limitations",
-        "https://learn.microsoft.com/en-us/azure/resource-mover/tutorial-move-region-virtual-machines"
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

@@ -829,40 +829,40 @@ D. securityProfile.uefiSettings.secureBootEnabled equals true
 
 Topic: Compute › Moving VMs between scopes and regions.
 
-A VM is in West Europe. You move it to a resource group whose metadata location is North Europe using the standard ARM move operation. Where does the VM run afterward?
+A VM runs in West Europe. A standard ARM move transfers it to an existing resource group whose metadata location is North Europe. No regional relocation is performed. Which location pair is correct after the move?
 
 Select **1**. Difficulty: foundation.
 
-A. West Europe
-B. North Europe automatically
-C. Both regions with automatic replication
-D. A region chosen from the destination group name
+A. VM: West Europe; destination group metadata: North Europe.
+B. VM: North Europe; destination group metadata: North Europe.
+C. VM: West Europe; destination group metadata: West Europe.
+D. VM: North Europe; destination group metadata: West Europe.
 
 ## co-move-tenant
 
 Topic: Compute › Moving VMs between scopes and regions.
 
-You plan an ARM cross-subscription VM move. Which TWO requirements should you validate?
+A VM, its NIC, disks, and virtual network will be moved from subscription A to subscription B using a direct ARM cross-subscription move. Which TWO statements describe requirements for this move? Evaluate each statement individually.
 
 Select **2**. Difficulty: applied.
 
-A. Both subscriptions belong to the same Entra tenant.
-B. The virtual network and required dependent resources are included as required.
-C. Only the VM resource is needed regardless of its dependencies.
-D. The move automatically changes the VM to the destination group region.
+A. Subscriptions A and B must belong to the same Microsoft Entra tenant.
+B. The virtual network and its dependent resources must move with the VM.
+C. The NIC can remain in subscription A while the attached VM moves to B.
+D. The destination group metadata location must match the VM region.
 
 ## co-move-id
 
 Topic: Compute › Moving VMs between scopes and regions.
 
-After a successful VM move to another resource group, an automation script using the old resource ID fails. What should be checked first?
+A VM named vm-app moves from rg-old to rg-new in the same subscription. A script still requests its previous ARM resource ID and receives ResourceNotFound. The VM is visible in rg-new, the move is complete, and the script identity has the required access there. Which change addresses the failure?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Update the script to use the VM resource ID at its new scope.
-B. Assume the VM has retained the old ID permanently.
-C. Change only the guest hostname to match the old resource group.
-D. Reinstall the VM agent to recreate the old resource ID.
+A. Replace rg-old with rg-new in the resource ID used by the script.
+B. Acquire a new access token while continuing to use the old resource ID.
+C. Replace vm-app in the ID with the guest operating-system hostname.
+D. Replace the subscription segment while continuing to use rg-old.
 
 ## co-resize-restart
 

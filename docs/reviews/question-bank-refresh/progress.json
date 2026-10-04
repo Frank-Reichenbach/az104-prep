@@ -2980,9 +2980,9 @@
     {
       "id": "compute.vms.moves",
       "title": "Moving VMs between scopes and regions",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.vms.moves.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-move-region",
@@ -2997,9 +2997,9 @@
           ],
           "baselineHash": "d949f358dd20fed41e5f8c5276bdb51d7859808907d26b48e13dcd7d9aef5a34",
           "baselineContentHash": "ecf52f015c610d7bb9bc8a0e1c687ae4819b8129b241d620415038768a03041d",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "9eb43c0614672dd13fc73d22ccad547a9472e8de2e4e716dfba5b778ee469b39"
         },
         {
           "id": "co-move-tenant",
@@ -3014,9 +3014,9 @@
           ],
           "baselineHash": "f40b468343eb53223474f16d21bbf184448ddb8a615f85d97bb3771f51ab4edc",
           "baselineContentHash": "e82da5d15bf7e91f4bbb9c5f585c628df07d36ea7a9b0fe3f91a7b338417999d",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "14fe3159f2f0953b08d7f28cbf77fbb107db2a3439ad6152c7c7b6b7cfcc6cff"
         },
         {
           "id": "co-move-id",
@@ -3031,9 +3031,9 @@
           ],
           "baselineHash": "dc126a927cfee0b8d0057b1b4c8392a0df23fc470396580fe8df077bb6a8b54f",
           "baselineContentHash": "dd3626893ad8acd620ee342268aa628ade7a36f959699787db92167c7f54d8d5",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "c10abb43d310a0c76d2cfc1c5da643975c3f8bec5adb9bb4cde23595b49de191"
         }
       ]
     },

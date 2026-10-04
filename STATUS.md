@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 151/322 questions reviewed, 119 revised and 32 kept; 44/99 topics complete.
-Latest: [Encryption at host for virtual machines](docs/reviews/question-bank-refresh/compute.vms.host-encryption.md). Each completed topic has item decisions,
+Checkpoint: 154/322 questions reviewed, 122 revised and 32 kept; 45/99 topics complete.
+Latest: [Moving VMs between scopes and regions](docs/reviews/question-bank-refresh/compute.vms.moves.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `compute.vms.moves` (Moving VMs between scopes and regions).
+Next: `compute.vms.resizing` (Resizing virtual machines).
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
