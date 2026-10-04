@@ -2222,7 +2222,7 @@ Topic: Monitoring and recovery › KQL filtering, aggregation, and interpretatio
 
 What does `Syslog | summarize Messages=count() by Computer` return?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 A. One row per observed Computer value with its message count.
 B. Every Syslog row with no aggregation.
@@ -2233,27 +2233,27 @@ D. A count of computers per message text.
 
 Topic: Monitoring and recovery › KQL filtering, aggregation, and interpretation.
 
-Does `Syslog | take 10` guarantee the latest ten messages?
+A Syslog table has more than ten rows with distinct TimeGenerated timestamps in the query scope. Which query selects the ten newest messages by TimeGenerated?
 
 Select **1**. Difficulty: foundation.
 
-A. Yes, take implicitly sorts by TimeGenerated.
-B. No; use an explicit time-based top/sort for latest records.
-C. Yes, because every Log Analytics table is ordered newest first.
-D. No; take deletes the selected messages.
+A. Syslog | take 10
+B. Syslog | top 10 by TimeGenerated desc
+C. Syslog | top 10 by TimeGenerated asc
+D. Syslog | summarize arg_max(TimeGenerated, *)
 
 ## mo-kql-empty
 
 Topic: Monitoring and recovery › KQL filtering, aggregation, and interpretation.
 
-A log query returns no rows for the last five minutes. Which two checks are appropriate before concluding the operation never occurred?
+A known Syslog event generated two minutes ago has been verified in workspace ws-prod. You have query access, and its Computer and TimeGenerated values match your filters. The same query returns no rows when Logs is opened with workspace scope ws-test, which does not store this event. You need to retrieve the already ingested event. Which change addresses the observed scope mismatch?
 
-Select **2**. Difficulty: troubleshooting.
+Select **1**. Difficulty: troubleshooting.
 
-A. Check workspace/table scope and query/time-picker filters.
-B. Assume no rows proves all systems were healthy.
-C. Check collection and ingestion of the expected event.
-D. Delete the DCR to make historical rows appear.
+A. Run the query with workspace scope ws-prod.
+B. Extend the time range to one day while keeping scope ws-test.
+C. Reinstall the VM agent while keeping query scope ws-test.
+D. Remove the Computer filter while keeping scope ws-test.
 
 ## mo-metric-peak
 

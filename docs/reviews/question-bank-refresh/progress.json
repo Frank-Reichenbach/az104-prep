@@ -5088,9 +5088,9 @@
     {
       "id": "monitoring.logs.kql",
       "title": "KQL filtering, aggregation, and interpretation",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.logs.kql.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-kql-summarize",
@@ -5105,9 +5105,9 @@
           ],
           "baselineHash": "a6fc599dc99f32cfe436f5fbf174ac354b87ae04b351cfdfb7d14e209a846aa6",
           "baselineContentHash": "d4c7b8abf449bb471c100011c332c0934724281ae69008a98600c847526a4008",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "e80151c0dd97707c5f698775cd9e7e6a7899cdd71e7bbcb379ea51161086e0fe"
         },
         {
           "id": "mo-kql-take",
@@ -5122,9 +5122,9 @@
           ],
           "baselineHash": "4beef4f3cd15df38ecbc2c761b9a2e8ff3edd67c1be80f13371489e30bf0bd86",
           "baselineContentHash": "e6daec2582f9a1fa444eacf2dadfcc75892c6ae60c0b213dc37414fd8936e7ab",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "848e825807dff3002277566d1d220d2ff4bff262ab7fb81d56dd0bc4af463606"
         },
         {
           "id": "mo-kql-empty",
@@ -5139,9 +5139,9 @@
           ],
           "baselineHash": "1361ee353ef3e6776deb78e26e9095fd67361ad4651a7bd206f6a50b9702ad9d",
           "baselineContentHash": "fc2e39fe2fe651d7c2402ef672ffaed5d38b24952ed2850d14ec18c3e66b3ba1",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "cf2ee1e9e383ffc011e22fd6c613ba99f2c9e1252e380fa9048c20dd2c63d466"
         }
       ]
     },

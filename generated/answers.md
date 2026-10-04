@@ -2900,50 +2900,50 @@ Topic: Monitoring and recovery › KQL filtering, aggregation, and interpretatio
 
 What does `Syslog | summarize Messages=count() by Computer` return?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 - **A. Correct:** One row per observed Computer value with its message count. summarize groups the input by Computer and counts rows.
 - **B. Incorrect:** Every Syslog row with no aggregation. summarize reduces rows into groups.
 - **C. Incorrect:** Only the most recent message per computer. count() is not a latest-row selection.
 - **D. Incorrect:** A count of computers per message text. The grouping key is Computer, not message text.
 
-Study: [knowledge file](../knowledge/monitoring/logs/kql.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/logs/kql.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries) · [Microsoft source 2](https://learn.microsoft.com/en-us/kusto/query/summarize-operator) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-tutorial)
+[Microsoft source 1](https://learn.microsoft.com/en-us/kusto/query/summarize-operator)
 
 ## mo-kql-take
 
 Topic: Monitoring and recovery › KQL filtering, aggregation, and interpretation.
 
-Does `Syslog | take 10` guarantee the latest ten messages?
+A Syslog table has more than ten rows with distinct TimeGenerated timestamps in the query scope. Which query selects the ten newest messages by TimeGenerated?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Incorrect:** Yes, take implicitly sorts by TimeGenerated. take does not impose that ordering.
-- **B. Correct:** No; use an explicit time-based top/sort for latest records. take supplies an arbitrary limited sample.
-- **C. Incorrect:** Yes, because every Log Analytics table is ordered newest first. That ordering is not guaranteed by this query.
-- **D. Incorrect:** No; take deletes the selected messages. KQL queries do not delete these log records.
+- **A. Incorrect:** Syslog | take 10 take limits rows without guaranteeing newest-first selection.
+- **B. Correct:** Syslog | top 10 by TimeGenerated desc top with descending timestamp selects the ten largest timestamps, which are the newest messages.
+- **C. Incorrect:** Syslog | top 10 by TimeGenerated asc Ascending timestamp selects the ten oldest messages in scope.
+- **D. Incorrect:** Syslog | summarize arg_max(TimeGenerated, *) With no grouping this produces one latest row, not the required ten messages.
 
-Study: [knowledge file](../knowledge/monitoring/logs/kql.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/logs/kql.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries) · [Microsoft source 2](https://learn.microsoft.com/en-us/kusto/query/summarize-operator) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-tutorial)
+[Microsoft source 1](https://learn.microsoft.com/en-us/kusto/query/take-operator) · [Microsoft source 2](https://learn.microsoft.com/en-us/kusto/query/top-operator) · [Microsoft source 3](https://learn.microsoft.com/en-us/kusto/query/arg-max-aggregation-function)
 
 ## mo-kql-empty
 
 Topic: Monitoring and recovery › KQL filtering, aggregation, and interpretation.
 
-A log query returns no rows for the last five minutes. Which two checks are appropriate before concluding the operation never occurred?
+A known Syslog event generated two minutes ago has been verified in workspace ws-prod. You have query access, and its Computer and TimeGenerated values match your filters. The same query returns no rows when Logs is opened with workspace scope ws-test, which does not store this event. You need to retrieve the already ingested event. Which change addresses the observed scope mismatch?
 
-Select **2**. Difficulty: troubleshooting.
+Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Check workspace/table scope and query/time-picker filters. Scope or narrow filtering can exclude relevant data.
-- **B. Incorrect:** Assume no rows proves all systems were healthy. Missing data is not health evidence by itself.
-- **C. Correct:** Check collection and ingestion of the expected event. The event may not have reached the queried table yet.
-- **D. Incorrect:** Delete the DCR to make historical rows appear. Removing collection does not create missing history.
+- **A. Correct:** Run the query with workspace scope ws-prod. Workspace scope determines which stored workspace data the query searches. The verified event is in ws-prod.
+- **B. Incorrect:** Extend the time range to one day while keeping scope ws-test. The event already matches the current time filter; widening time does not search the different workspace.
+- **C. Incorrect:** Reinstall the VM agent while keeping query scope ws-test. The event is already ingested into ws-prod. Reinstallation does not move that stored event into the queried workspace.
+- **D. Incorrect:** Remove the Computer filter while keeping scope ws-test. Removing a matching filter does not expose a record stored in ws-prod to a ws-test-scoped query.
 
-Study: [knowledge file](../knowledge/monitoring/logs/kql.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/logs/kql.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries) · [Microsoft source 2](https://learn.microsoft.com/en-us/kusto/query/summarize-operator) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-tutorial)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/scope) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection)
 
 ## mo-metric-peak
 
