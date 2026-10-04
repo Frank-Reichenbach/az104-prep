@@ -1368,52 +1368,52 @@ Study: [knowledge file](../knowledge/identity/governance/locks.md). Evidence che
 
 Topic: Identity and governance › Management groups and inherited governance.
 
-An allowed-locations policy is assigned to management group Production. A subscription beneath it has no exclusion or exemption. Where is the policy relevant?
+Production and Sandbox are sibling management groups. Production contains the nested management group Apps, which contains subscription AppSub. Sandbox contains subscription TestSub. A policy assigned to Production denies VM deployments outside West Europe. There are no exclusions, exemptions, or other policies. Both subscriptions have capacity and the deployer has the required permissions. Which deployment does this policy block?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Applicable resources in the descendant subscription. Governance assignments inherit down the hierarchy.
-- **B. Incorrect:** Only the management group display-name property. The purpose is governing descendant resources.
-- **C. Incorrect:** Only subscriptions outside Production. Sibling branches are not the assignment's descendants.
-- **D. Incorrect:** Every subscription in every Entra tenant. Management-group scope does not span unrelated tenants.
+- **A. Correct:** A VM in North Europe in AppSub. AppSub is a descendant of Production through Apps. Its North Europe VM request violates the inherited West Europe restriction.
+- **B. Incorrect:** A VM in West Europe in AppSub. The assignment applies to AppSub, but West Europe satisfies its location requirement.
+- **C. Incorrect:** A VM in North Europe in TestSub. TestSub belongs to the sibling Sandbox branch and is outside this assignment scope.
+- **D. Incorrect:** A VM in West Europe in TestSub. TestSub is outside Production; the policy does not govern every subscription in the tenant.
 
-Study: [knowledge file](../knowledge/identity/governance/management-groups.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/management-groups.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/governance/management-groups/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/governance/management-groups/manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/governance/management-groups/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deny)
 
 ## id-mg-one-parent
 
 Topic: Identity and governance › Management groups and inherited governance.
 
-Can one Azure subscription simultaneously be a direct child of two management groups?
+Which management-group hierarchy is supported within one Microsoft Entra tenant? Choose one answer.
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** No; it has one parent in the hierarchy. Use a hierarchy and assignments consistent with that single-parent model.
-- **B. Incorrect:** Yes, one parent for Policy and another for RBAC. Those controls use the same management hierarchy.
-- **C. Incorrect:** Yes, if it has two billing contacts. Billing contacts do not create multiple hierarchy parents.
-- **D. Incorrect:** Yes, one parent for every Azure region it uses. Resource regions do not determine management-group parent count.
+- **A. Correct:** Production is a child of Corporate, and AppSub is a direct child of Production. Each group and subscription has one direct parent. AppSub can inherit governance through multiple ancestors in this chain.
+- **B. Incorrect:** AppSub is a direct child of Production for Policy and of Corporate for RBAC. A subscription has one direct management-group parent; Policy and RBAC do not use separate parent relationships.
+- **C. Incorrect:** Production is a direct child of Corporate and of Regional, which are siblings. A management group also has only one direct parent. Two sibling parents cannot share this child.
+- **D. Incorrect:** Corporate is a child of Production, and Production is a child of Corporate. The single-parent hierarchy terminates at the root. A circular parent relationship does not form that hierarchy.
 
-Study: [knowledge file](../knowledge/identity/governance/management-groups.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/management-groups.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/governance/management-groups/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/governance/management-groups/manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/governance/management-groups/overview)
 
 ## id-mg-move-impact
 
 Topic: Identity and governance › Management groups and inherited governance.
 
-A subscription moves from Sandbox to Production management group in the same tenant. Which effect should be reviewed?
+Sandbox and Production are sibling management groups. Sam has a built-in Contributor assignment on Sandbox, a built-in Reader assignment on Production, and a direct built-in Contributor assignment on resource group rg-app in subscription AppSub. An authorized administrator moves AppSub from Sandbox to Production. After propagation, what role access does Sam have in AppSub? No other assignments, deny assignments, or conditions apply.
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Changes to inherited Policy and RBAC assignments. The new ancestor chain can change effective governance.
-- **B. Incorrect:** Automatic regional relocation of its VMs. The hierarchy move is not a data-center move.
-- **C. Incorrect:** Automatic creation of a new Entra directory. The scenario remains within the existing tenant.
-- **D. Incorrect:** Replacement of every resource's subscription ID. A management-group move does not create a new subscription.
+- **A. Correct:** Reader across AppSub; Contributor within rg-app. The new Production ancestor supplies Reader. The direct rg-app Contributor assignment remains and adds management access in that resource group.
+- **B. Incorrect:** Contributor across AppSub; Reader within rg-app. The Sandbox Contributor assignment no longer applies to the moved subscription. Reader does not reduce the direct Contributor grant in rg-app.
+- **C. Incorrect:** Reader across AppSub; no role access within rg-app. Subscription-level inherited Reader includes its resource groups, and the direct Contributor assignment on rg-app still applies.
+- **D. Incorrect:** Contributor across AppSub; Contributor within rg-app. The direct Contributor grant is limited to rg-app. It does not preserve the former Sandbox grant across the subscription.
 
-Study: [knowledge file](../knowledge/identity/governance/management-groups.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/management-groups.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/governance/management-groups/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/governance/management-groups/manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/governance/management-groups/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview)
 
 ## id-policy-audit-deny
 

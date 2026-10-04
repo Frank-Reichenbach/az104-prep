@@ -2500,9 +2500,9 @@
     {
       "id": "identity.governance.management-groups",
       "title": "Management groups and inherited governance",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/identity.governance.management-groups.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "id-mg-parent-policy",
@@ -2517,9 +2517,9 @@
           ],
           "baselineHash": "ecb962ec9f1eb12348efe4651fa7b1cfbf8c6b04fc41cb2804099cb4825e7217",
           "baselineContentHash": "aa8f2cd76950fdbcf269621b33bfe71ae10c3b6b6fccc771f61276027fd29db8",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "52e781be3ec39590269530479125b6454b803f372fc7bcc28e5541c7cf82b616"
         },
         {
           "id": "id-mg-one-parent",
@@ -2534,9 +2534,9 @@
           ],
           "baselineHash": "cca8954265f77dec63cb640411ec8b003c58075d8ea808d765af1bb7a4b7dd3c",
           "baselineContentHash": "4c6dbe8b5e1ace69d5b4ca009b71413a4b724c7e1c8d36e4314db0fdb1c07fef",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "58b2ca9abb4a99f5da58e84a5fa3fc039d53d90352e22ddf9aef59e8ebf17a37"
         },
         {
           "id": "id-mg-move-impact",
@@ -2551,9 +2551,9 @@
           ],
           "baselineHash": "c77fb359f2ef95997c7a41ee51f8e17ce213c2d364ac5dcf5c0772f1badd1bae",
           "baselineContentHash": "c3aa31da76f64adf5dbb5e187663a7f248f3282eaa3f9bfa2e41b57e21a42585",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "07f1fb7ff5b187a3dcd4474c06dfc34c9da6d7674ea8d57d3a8d9e40b48431d8"
         }
       ]
     },

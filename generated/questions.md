@@ -1050,40 +1050,40 @@ D. Replace CanNotDelete with ReadOnly, then delete vm-app.
 
 Topic: Identity and governance › Management groups and inherited governance.
 
-An allowed-locations policy is assigned to management group Production. A subscription beneath it has no exclusion or exemption. Where is the policy relevant?
+Production and Sandbox are sibling management groups. Production contains the nested management group Apps, which contains subscription AppSub. Sandbox contains subscription TestSub. A policy assigned to Production denies VM deployments outside West Europe. There are no exclusions, exemptions, or other policies. Both subscriptions have capacity and the deployer has the required permissions. Which deployment does this policy block?
 
 Select **1**. Difficulty: applied.
 
-A. Applicable resources in the descendant subscription.
-B. Only the management group display-name property.
-C. Only subscriptions outside Production.
-D. Every subscription in every Entra tenant.
+A. A VM in North Europe in AppSub.
+B. A VM in West Europe in AppSub.
+C. A VM in North Europe in TestSub.
+D. A VM in West Europe in TestSub.
 
 ## id-mg-one-parent
 
 Topic: Identity and governance › Management groups and inherited governance.
 
-Can one Azure subscription simultaneously be a direct child of two management groups?
+Which management-group hierarchy is supported within one Microsoft Entra tenant? Choose one answer.
 
 Select **1**. Difficulty: foundation.
 
-A. No; it has one parent in the hierarchy.
-B. Yes, one parent for Policy and another for RBAC.
-C. Yes, if it has two billing contacts.
-D. Yes, one parent for every Azure region it uses.
+A. Production is a child of Corporate, and AppSub is a direct child of Production.
+B. AppSub is a direct child of Production for Policy and of Corporate for RBAC.
+C. Production is a direct child of Corporate and of Regional, which are siblings.
+D. Corporate is a child of Production, and Production is a child of Corporate.
 
 ## id-mg-move-impact
 
 Topic: Identity and governance › Management groups and inherited governance.
 
-A subscription moves from Sandbox to Production management group in the same tenant. Which effect should be reviewed?
+Sandbox and Production are sibling management groups. Sam has a built-in Contributor assignment on Sandbox, a built-in Reader assignment on Production, and a direct built-in Contributor assignment on resource group rg-app in subscription AppSub. An authorized administrator moves AppSub from Sandbox to Production. After propagation, what role access does Sam have in AppSub? No other assignments, deny assignments, or conditions apply.
 
 Select **1**. Difficulty: applied.
 
-A. Changes to inherited Policy and RBAC assignments.
-B. Automatic regional relocation of its VMs.
-C. Automatic creation of a new Entra directory.
-D. Replacement of every resource's subscription ID.
+A. Reader across AppSub; Contributor within rg-app.
+B. Contributor across AppSub; Reader within rg-app.
+C. Reader across AppSub; no role access within rg-app.
+D. Contributor across AppSub; Contributor within rg-app.
 
 ## id-policy-audit-deny
 
