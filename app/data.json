@@ -8769,34 +8769,34 @@
     {
       "id": "mo-connection-continuous",
       "family": "mo-connection-continuous",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.network.connection-monitor",
       "objectives": [
         "mo-06"
       ],
       "difficulty": "applied",
-      "prompt": "You need a week of recurring reachability and latency evidence between a VM and an HTTPS endpoint. Which tool fits?",
+      "prompt": "An Azure VM has the required monitoring extension. You need a week of recurring TCP reachability and latency measurements to service.example on port 443. Which Connection Monitor configuration meets the goal?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Connection Monitor.",
-          "explanation": "It runs recurring tests and keeps historical measurements."
+          "text": "Add the VM source, service.example destination, and a recurring TCP 443 configuration to an enabled test group.",
+          "explanation": "The group associates the endpoints with recurring tests of the required protocol and port; monitoring data supplies history."
         },
         {
           "id": "b",
-          "text": "One Next hop query.",
-          "explanation": "That reports a route decision at a point in time."
+          "text": "Add the VM source and destination to a test group whose only configuration uses ICMP.",
+          "explanation": "Recurring ICMP tests do not measure the required TCP 443 path."
         },
         {
           "id": "c",
-          "text": "Only IP flow verify once.",
-          "explanation": "That evaluates a filtering decision rather than a week's measurements."
+          "text": "Add a TCP 443 configuration to a test group that has no source endpoint.",
+          "explanation": "A test requires a source, destination, and configuration; the source is missing."
         },
         {
           "id": "d",
-          "text": "Only create an NSG allow rule.",
-          "explanation": "Permission to pass traffic is not ongoing measurement."
+          "text": "Add the correct endpoints and TCP 443 configuration, then disable the test group for the week.",
+          "explanation": "Disabling the group stops its tests, so it cannot collect the required recurring measurements."
         }
       ],
       "correct": [
@@ -8804,16 +8804,15 @@
       ],
       "knowledge": "knowledge/monitoring/network/connection-monitor.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview",
-        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal",
-        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview"
+        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-connection-test",
       "family": "mo-connection-test",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.network.connection-monitor",
       "objectives": [
         "mo-06"
@@ -8824,23 +8823,23 @@
       "options": [
         {
           "id": "a",
-          "text": "A public DNS alias.",
-          "explanation": "A DNS record does not define monitor test membership."
+          "text": "An endpoint.",
+          "explanation": "An endpoint represents a participating source or destination, rather than the container combining endpoints and configurations."
         },
         {
           "id": "b",
           "text": "A test group.",
-          "explanation": "It groups these components into monitored tests."
+          "explanation": "A test group contains sources, destinations, and test configurations within a connection monitor."
         },
         {
           "id": "c",
-          "text": "An Azure RBAC role definition.",
-          "explanation": "Roles authorize operations rather than define protocol tests."
+          "text": "A test configuration.",
+          "explanation": "The configuration defines protocol-specific settings such as port and frequency; it does not contain the source and destination membership."
         },
         {
           "id": "d",
-          "text": "A managed disk snapshot.",
-          "explanation": "Snapshots do not group connection probes."
+          "text": "An individual test.",
+          "explanation": "An individual test is one source-destination-configuration combination, rather than the group containing their collections."
         }
       ],
       "correct": [
@@ -8848,43 +8847,42 @@
       ],
       "knowledge": "knowledge/monitoring/network/connection-monitor.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview",
-        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal",
-        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview"
+        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-connection-port",
       "family": "mo-connection-port",
-      "revision": 1,
+      "revision": 2,
       "topic": "monitoring.network.connection-monitor",
       "objectives": [
         "mo-06"
       ],
       "difficulty": "troubleshooting",
-      "prompt": "ICMP succeeds between a VM and destination, but the business app uses TCP 443. What should you configure to test that app path?",
+      "prompt": "A Connection Monitor ICMP test from vm-app to service.example succeeds. The application uses TCP 443. You need recurring evidence that a TCP connection to that port can be established, before investigating HTTP responses. Which test configuration should you add for the same endpoints?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Only increase the ICMP packet count.",
-          "explanation": "More ICMP probes still do not test TCP 443."
+          "text": "ICMP with a shorter test interval.",
+          "explanation": "More frequent ICMP checks still do not test whether a TCP connection to port 443 can be established."
         },
         {
           "id": "b",
-          "text": "Assume ICMP success proves HTTPS is healthy.",
-          "explanation": "Ports, filtering, and application behavior can differ."
+          "text": "TCP with destination port 80.",
+          "explanation": "Port 80 is a different listener and does not establish reachability of the required port 443."
         },
         {
           "id": "c",
-          "text": "A TCP/HTTP test configuration using the intended HTTPS port and endpoint.",
-          "explanation": "This measures the relevant path rather than just ICMP."
+          "text": "TCP with destination port 443.",
+          "explanation": "This tests TCP reachability to the specified application port; it does not by itself establish HTTP response correctness."
         },
         {
           "id": "d",
-          "text": "A DNS TXT record with the port number.",
-          "explanation": "That does not configure the monitor's probe."
+          "text": "TCP with destination port 22.",
+          "explanation": "An SSH-port check targets a different listener and cannot establish the required TCP 443 reachability."
         }
       ],
       "correct": [
@@ -8892,11 +8890,10 @@
       ],
       "knowledge": "knowledge/monitoring/network/connection-monitor.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview",
-        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal",
-        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview"
+        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview",
+        "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "mo-flow-payload",

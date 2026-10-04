@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 280/322 questions reviewed, 218 revised and 62 kept; 85/99 topics complete.
-Latest: [Network Insights topology, health, and traffic](docs/reviews/question-bank-refresh/monitoring.insights.networks.md). Each completed topic has item decisions,
+Checkpoint: 283/322 questions reviewed, 221 revised and 62 kept; 86/99 topics complete.
+Latest: [Network Watcher and continuous Connection Monitor](docs/reviews/question-bank-refresh/monitoring.network.connection-monitor.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `monitoring.network.connection-monitor` (Network Watcher and continuous Connection Monitor).
+Next: `monitoring.network.flow-logs` (VNet flow logs and traffic analytics).
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
@@ -294,8 +294,8 @@ retirement are documented with current alternatives.
 ## Next task
 
 Continue the authorized existing-bank review from `npm run review:status`.
-Current checkpoint: 280/322 questions, 85/99 topics complete.
-Next: `monitoring.network.connection-monitor` (Network Watcher and continuous Connection Monitor).
+Current checkpoint: 283/322 questions, 86/99 topics complete.
+Next: `monitoring.network.flow-logs` (VNet flow logs and traffic analytics).
 Record real source checks and repair decisions in its report; do not mark a
 topic complete based on schema checks alone.
 

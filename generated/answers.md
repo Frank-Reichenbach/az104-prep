@@ -3000,18 +3000,18 @@ Study: [knowledge file](../knowledge/monitoring/metrics/analysis.md). Evidence c
 
 Topic: Monitoring and recovery › Network Watcher and continuous Connection Monitor.
 
-You need a week of recurring reachability and latency evidence between a VM and an HTTPS endpoint. Which tool fits?
+An Azure VM has the required monitoring extension. You need a week of recurring TCP reachability and latency measurements to service.example on port 443. Which Connection Monitor configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Connection Monitor. It runs recurring tests and keeps historical measurements.
-- **B. Incorrect:** One Next hop query. That reports a route decision at a point in time.
-- **C. Incorrect:** Only IP flow verify once. That evaluates a filtering decision rather than a week's measurements.
-- **D. Incorrect:** Only create an NSG allow rule. Permission to pass traffic is not ongoing measurement.
+- **A. Correct:** Add the VM source, service.example destination, and a recurring TCP 443 configuration to an enabled test group. The group associates the endpoints with recurring tests of the required protocol and port; monitoring data supplies history.
+- **B. Incorrect:** Add the VM source and destination to a test group whose only configuration uses ICMP. Recurring ICMP tests do not measure the required TCP 443 path.
+- **C. Incorrect:** Add a TCP 443 configuration to a test group that has no source endpoint. A test requires a source, destination, and configuration; the source is missing.
+- **D. Incorrect:** Add the correct endpoints and TCP 443 configuration, then disable the test group for the week. Disabling the group stops its tests, so it cannot collect the required recurring measurements.
 
-Study: [knowledge file](../knowledge/monitoring/network/connection-monitor.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/network/connection-monitor.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal)
 
 ## mo-connection-test
 
@@ -3021,31 +3021,31 @@ What combines sources, destinations, and test configurations within Connection M
 
 Select **1**. Difficulty: foundation.
 
-- **A. Incorrect:** A public DNS alias. A DNS record does not define monitor test membership.
-- **B. Correct:** A test group. It groups these components into monitored tests.
-- **C. Incorrect:** An Azure RBAC role definition. Roles authorize operations rather than define protocol tests.
-- **D. Incorrect:** A managed disk snapshot. Snapshots do not group connection probes.
+- **A. Incorrect:** An endpoint. An endpoint represents a participating source or destination, rather than the container combining endpoints and configurations.
+- **B. Correct:** A test group. A test group contains sources, destinations, and test configurations within a connection monitor.
+- **C. Incorrect:** A test configuration. The configuration defines protocol-specific settings such as port and frequency; it does not contain the source and destination membership.
+- **D. Incorrect:** An individual test. An individual test is one source-destination-configuration combination, rather than the group containing their collections.
 
-Study: [knowledge file](../knowledge/monitoring/network/connection-monitor.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/network/connection-monitor.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal)
 
 ## mo-connection-port
 
 Topic: Monitoring and recovery › Network Watcher and continuous Connection Monitor.
 
-ICMP succeeds between a VM and destination, but the business app uses TCP 443. What should you configure to test that app path?
+A Connection Monitor ICMP test from vm-app to service.example succeeds. The application uses TCP 443. You need recurring evidence that a TCP connection to that port can be established, before investigating HTTP responses. Which test configuration should you add for the same endpoints?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Incorrect:** Only increase the ICMP packet count. More ICMP probes still do not test TCP 443.
-- **B. Incorrect:** Assume ICMP success proves HTTPS is healthy. Ports, filtering, and application behavior can differ.
-- **C. Correct:** A TCP/HTTP test configuration using the intended HTTPS port and endpoint. This measures the relevant path rather than just ICMP.
-- **D. Incorrect:** A DNS TXT record with the port number. That does not configure the monitor's probe.
+- **A. Incorrect:** ICMP with a shorter test interval. More frequent ICMP checks still do not test whether a TCP connection to port 443 can be established.
+- **B. Incorrect:** TCP with destination port 80. Port 80 is a different listener and does not establish reachability of the required port 443.
+- **C. Correct:** TCP with destination port 443. This tests TCP reachability to the specified application port; it does not by itself establish HTTP response correctness.
+- **D. Incorrect:** TCP with destination port 22. An SSH-port check targets a different listener and cannot establish the required TCP 443 reachability.
 
-Study: [knowledge file](../knowledge/monitoring/network/connection-monitor.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/network/connection-monitor.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal)
 
 ## mo-flow-payload
 

@@ -5542,9 +5542,9 @@
     {
       "id": "monitoring.network.connection-monitor",
       "title": "Network Watcher and continuous Connection Monitor",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.network.connection-monitor.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-connection-continuous",
@@ -5559,9 +5559,9 @@
           ],
           "baselineHash": "f8121bbbbf031ee5b01fe6b1684d56a1288eb571481e53c09b1fae0825799b8c",
           "baselineContentHash": "ba2525d08ac76d9b07e7936611e5824dcb8044bf56e86fab14def6228693b5aa",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "5f176647ae08f57266e1e5ffa8c74d2be72e611e2b4206b8fa1b2744816222d0"
         },
         {
           "id": "mo-connection-test",
@@ -5576,9 +5576,9 @@
           ],
           "baselineHash": "7cecfcea949bf90c76e19feabb8a438904022eea3c5274c252defef4ad3655ac",
           "baselineContentHash": "29cf1f096c844b667f3017c751497c159a6f1164f934e77c38d2a28b6b80f76a",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "6db2be7b8e007d1bae6bfa5fcc1a7c76f506e3f6648fae309c0b0124e14a8ce5"
         },
         {
           "id": "mo-connection-port",
@@ -5593,9 +5593,9 @@
           ],
           "baselineHash": "2864aedc46b3a7ee2e3295dcdbd8e01b01f1058bfea380987774a244baa17f3e",
           "baselineContentHash": "06a452235f2bd03f46e63435c43921e41d75b4de0fc7032d5cbaea4d8fd243cb",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "4f0bd770dde5e7ea04381bffb278d3d8dfb309810da2f073d86df15cdb582077"
         }
       ]
     },

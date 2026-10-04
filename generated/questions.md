@@ -2298,14 +2298,14 @@ D. Average is 20.
 
 Topic: Monitoring and recovery › Network Watcher and continuous Connection Monitor.
 
-You need a week of recurring reachability and latency evidence between a VM and an HTTPS endpoint. Which tool fits?
+An Azure VM has the required monitoring extension. You need a week of recurring TCP reachability and latency measurements to service.example on port 443. Which Connection Monitor configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Connection Monitor.
-B. One Next hop query.
-C. Only IP flow verify once.
-D. Only create an NSG allow rule.
+A. Add the VM source, service.example destination, and a recurring TCP 443 configuration to an enabled test group.
+B. Add the VM source and destination to a test group whose only configuration uses ICMP.
+C. Add a TCP 443 configuration to a test group that has no source endpoint.
+D. Add the correct endpoints and TCP 443 configuration, then disable the test group for the week.
 
 ## mo-connection-test
 
@@ -2315,23 +2315,23 @@ What combines sources, destinations, and test configurations within Connection M
 
 Select **1**. Difficulty: foundation.
 
-A. A public DNS alias.
+A. An endpoint.
 B. A test group.
-C. An Azure RBAC role definition.
-D. A managed disk snapshot.
+C. A test configuration.
+D. An individual test.
 
 ## mo-connection-port
 
 Topic: Monitoring and recovery › Network Watcher and continuous Connection Monitor.
 
-ICMP succeeds between a VM and destination, but the business app uses TCP 443. What should you configure to test that app path?
+A Connection Monitor ICMP test from vm-app to service.example succeeds. The application uses TCP 443. You need recurring evidence that a TCP connection to that port can be established, before investigating HTTP responses. Which test configuration should you add for the same endpoints?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Only increase the ICMP packet count.
-B. Assume ICMP success proves HTTPS is healthy.
-C. A TCP/HTTP test configuration using the intended HTTPS port and endpoint.
-D. A DNS TXT record with the port number.
+A. ICMP with a shorter test interval.
+B. TCP with destination port 80.
+C. TCP with destination port 443.
+D. TCP with destination port 22.
 
 ## mo-flow-payload
 
