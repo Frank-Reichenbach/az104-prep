@@ -2971,12 +2971,12 @@
     {
       "id": "co-deploy-scope",
       "family": "co-deploy-scope",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.templates.deployment",
       "objectives": [
         "co-04"
       ],
-      "difficulty": "applied",
+      "difficulty": "foundation",
       "prompt": "You must deploy a Bicep file into an existing resource group. Which command family targets that scope?",
       "select": 1,
       "options": [
@@ -3010,7 +3010,7 @@
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if",
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-deploy-preview",
@@ -3054,39 +3054,39 @@
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if",
         "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-deploy-rbac",
       "family": "co-deploy-rbac",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.templates.deployment",
       "objectives": [
         "co-04"
       ],
-      "difficulty": "applied",
-      "prompt": "A deployment identity has Contributor on a resource group. Its template creates a VM and an Azure role assignment. The VM succeeds, but role assignment creation is denied. What additional permission should you investigate?",
+      "difficulty": "troubleshooting",
+      "prompt": "A deployment identity has only Contributor on rg-app. Its Bicep template creates a VM and a role assignment at rg-app scope. VM creation succeeds, but the role-assignment operation fails with AuthorizationFailed. There are no deny assignments or role-assignment conditions. Which additional action must an appropriate role grant at rg-app to address this failure?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Microsoft.Authorization/roleAssignments/write at the assignment scope",
-          "explanation": "Contributor does not grant role assignment administration."
+          "text": "Microsoft.Authorization/roleAssignments/write",
+          "explanation": "Creating an assignment requires roleAssignments/write. Contributor excludes role assignment administration."
         },
         {
           "id": "b",
-          "text": "Microsoft.Compute/virtualMachines/read only",
-          "explanation": "VM read permission does not authorize role assignments."
+          "text": "Microsoft.Authorization/roleAssignments/read",
+          "explanation": "Reading assignments does not authorize creating the assignment that failed."
         },
         {
           "id": "c",
-          "text": "Microsoft.Resources/deployments/read only",
-          "explanation": "Reading deployment history cannot authorize the denied assignment."
+          "text": "Microsoft.Authorization/roleDefinitions/write",
+          "explanation": "Editing role definitions does not authorize creating a role assignment."
         },
         {
           "id": "d",
-          "text": "Microsoft.Compute/virtualMachines/start/action only",
-          "explanation": "Starting a VM is unrelated to granting Azure resource access."
+          "text": "Microsoft.Authorization/roleAssignments/delete",
+          "explanation": "Deleting assignments does not authorize creating a new assignment."
         }
       ],
       "correct": [
@@ -3094,11 +3094,10 @@
       ],
       "knowledge": "knowledge/compute/templates/deployment.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if",
-        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged"
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged",
+        "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-template"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-export-current",

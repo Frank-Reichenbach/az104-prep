@@ -724,14 +724,14 @@ Topic: Compute › Validating and deploying ARM and Bicep.
 
 You must deploy a Bicep file into an existing resource group. Which command family targets that scope?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 - **A. Correct:** az deployment group create The group deployment command targets a resource group.
 - **B. Incorrect:** az deployment sub create This targets a subscription deployment, not the requested group scope.
 - **C. Incorrect:** az deployment mg create This targets a management group.
 - **D. Incorrect:** az deployment tenant create This targets the tenant scope.
 
-Study: [knowledge file](../knowledge/compute/templates/deployment.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/templates/deployment.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged)
 
@@ -748,7 +748,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** deleting the previous deployment record History deletion does not preview a new deployment.
 - **D. Incorrect:** compiling the Bicep file only Compilation produces JSON without comparing Azure resources.
 
-Study: [knowledge file](../knowledge/compute/templates/deployment.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/templates/deployment.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged)
 
@@ -756,18 +756,18 @@ Study: [knowledge file](../knowledge/compute/templates/deployment.md). Evidence 
 
 Topic: Compute › Validating and deploying ARM and Bicep.
 
-A deployment identity has Contributor on a resource group. Its template creates a VM and an Azure role assignment. The VM succeeds, but role assignment creation is denied. What additional permission should you investigate?
+A deployment identity has only Contributor on rg-app. Its Bicep template creates a VM and a role assignment at rg-app scope. VM creation succeeds, but the role-assignment operation fails with AuthorizationFailed. There are no deny assignments or role-assignment conditions. Which additional action must an appropriate role grant at rg-app to address this failure?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Microsoft.Authorization/roleAssignments/write at the assignment scope Contributor does not grant role assignment administration.
-- **B. Incorrect:** Microsoft.Compute/virtualMachines/read only VM read permission does not authorize role assignments.
-- **C. Incorrect:** Microsoft.Resources/deployments/read only Reading deployment history cannot authorize the denied assignment.
-- **D. Incorrect:** Microsoft.Compute/virtualMachines/start/action only Starting a VM is unrelated to granting Azure resource access.
+- **A. Correct:** Microsoft.Authorization/roleAssignments/write Creating an assignment requires roleAssignments/write. Contributor excludes role assignment administration.
+- **B. Incorrect:** Microsoft.Authorization/roleAssignments/read Reading assignments does not authorize creating the assignment that failed.
+- **C. Incorrect:** Microsoft.Authorization/roleDefinitions/write Editing role definitions does not authorize creating a role assignment.
+- **D. Incorrect:** Microsoft.Authorization/roleAssignments/delete Deleting assignments does not authorize creating a new assignment.
 
-Study: [knowledge file](../knowledge/compute/templates/deployment.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/templates/deployment.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-template)
 
 ## co-export-current
 

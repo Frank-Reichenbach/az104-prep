@@ -2740,9 +2740,9 @@
     {
       "id": "compute.templates.deployment",
       "title": "Validating and deploying ARM and Bicep",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.templates.deployment.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-deploy-scope",
@@ -2757,9 +2757,9 @@
           ],
           "baselineHash": "be114ca6c2c7e69c9a4be9649f1d400e78f3ea541602db9178ea619ea95f7aa1",
           "baselineContentHash": "8248bfe50fbe55b801cc5fe94328f5127023c9c2ec6014fe087e91f8cc624b83",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "47ffea13a597a11778cd7313ac278c018ca3fb612127aea6bd54fe29e15c10b5"
         },
         {
           "id": "co-deploy-preview",
@@ -2774,9 +2774,9 @@
           ],
           "baselineHash": "c88211cd184b6deb27218b99b19ba0160e215e68f2853ddb88ddd19126378532",
           "baselineContentHash": "55b00225f340572d352d3b639eab3b5a0c845586f7db48f2293e8b4f6428a92c",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "d98ec57089a543d63e9da5815fab1a83401889da664bdf411db3db9441ced361"
         },
         {
           "id": "co-deploy-rbac",
@@ -2791,9 +2791,9 @@
           ],
           "baselineHash": "e7d18d8b9cd48955cf5fd6bd430c6ec826a722033660b53c86fada80e7db13a8",
           "baselineContentHash": "22ad6ad9002be8ccc2d536e87f21ba4450ffe63969c348cff5a0a8fdde8ef233",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "69d7364195533aa1e39f6a3bd17df92557bee62fb25427b511eaf64baf8be6d3"
         }
       ]
     },

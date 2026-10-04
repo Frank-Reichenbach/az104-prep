@@ -558,7 +558,7 @@ Topic: Compute › Validating and deploying ARM and Bicep.
 
 You must deploy a Bicep file into an existing resource group. Which command family targets that scope?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 A. az deployment group create
 B. az deployment sub create
@@ -582,14 +582,14 @@ D. compiling the Bicep file only
 
 Topic: Compute › Validating and deploying ARM and Bicep.
 
-A deployment identity has Contributor on a resource group. Its template creates a VM and an Azure role assignment. The VM succeeds, but role assignment creation is denied. What additional permission should you investigate?
+A deployment identity has only Contributor on rg-app. Its Bicep template creates a VM and a role assignment at rg-app scope. VM creation succeeds, but the role-assignment operation fails with AuthorizationFailed. There are no deny assignments or role-assignment conditions. Which additional action must an appropriate role grant at rg-app to address this failure?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Microsoft.Authorization/roleAssignments/write at the assignment scope
-B. Microsoft.Compute/virtualMachines/read only
-C. Microsoft.Resources/deployments/read only
-D. Microsoft.Compute/virtualMachines/start/action only
+A. Microsoft.Authorization/roleAssignments/write
+B. Microsoft.Authorization/roleAssignments/read
+C. Microsoft.Authorization/roleDefinitions/write
+D. Microsoft.Authorization/roleAssignments/delete
 
 ## co-export-current
 
