@@ -5028,9 +5028,9 @@
     {
       "id": "monitoring.logs.agent-dcr",
       "title": "Azure Monitor Agent and data collection rules",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.logs.agent-dcr.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-dcr-association",
@@ -5045,9 +5045,9 @@
           ],
           "baselineHash": "e715b4074dc0f1da5e443f7ddab3bf31fb320440e7d2b633073fb527f6be4555",
           "baselineContentHash": "6668e17a3c01b01618c3298c6752755c903b1f66715c2f7df0d8c6e0560b0ce2",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "9c306166f9cc052ac482d91ae8acc591f854f9cea5b6b4bcb2cb0c3da6bff522"
         },
         {
           "id": "mo-dcr-heartbeat",
@@ -5062,9 +5062,9 @@
           ],
           "baselineHash": "6f97c18465351bf0dcb43c683e0c15e36c77867da2ddf22cb84cfb71db20aa8e",
           "baselineContentHash": "ee0c1b021eb382e535615954268d3d2535682eaa94cf1a897da95096793ab555",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "2e20849d107b66ce3bafa6c3f069b5de9765617127de9d51cc38b20d27dbc6a6"
         },
         {
           "id": "mo-dcr-sources",
@@ -5079,9 +5079,9 @@
           ],
           "baselineHash": "e06e7d90e3bb1d2f0284505ef3ded772ae7b06ecb7f697acb9fadcedd86056bc",
           "baselineContentHash": "97f711a45072ad4bb6f83e3e4fe2b2d08739a6a927d56f93bd740e47473e147d",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "9bdd46b42217c481273097a762f1cf13806410c9e5b277cd1899b3de5c4374bf"
         }
       ]
     },

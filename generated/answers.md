@@ -2796,52 +2796,52 @@ Study: [knowledge file](../knowledge/monitoring/insights/virtual-machines.md). E
 
 Topic: Monitoring and recovery › Azure Monitor Agent and data collection rules.
 
-AMA is installed and a DCR defines Linux Syslog to a workspace, but that DCR has no association to the VM. What is missing?
+Azure Monitor Agent is healthy on vm-linux and its identity and ingestion connectivity are verified. dcr-syslog defines the required Linux facilities, severity levels, and workspace destination, but its associations list contains only vm-other. Which change applies this existing collection configuration to vm-linux?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Associate the VM with the DCR. The association applies the collection configuration to that machine.
-- **B. Incorrect:** Only assign a DNS label to the VM. DNS labels do not apply collection rules.
-- **C. Incorrect:** Only add AllMetrics to its resource diagnostic setting. That does not associate the Syslog DCR.
-- **D. Incorrect:** Only increase workspace retention. Retention does not initiate collection from an unassociated VM.
+- **A. Correct:** Create a DCR association between vm-linux and dcr-syslog. The association makes the existing source and destination configuration apply to this VM.
+- **B. Incorrect:** Move vm-linux into the resource group containing dcr-syslog without adding an association. Resource-group membership does not associate the DCR with the VM.
+- **C. Incorrect:** Create another copy of dcr-syslog without associating that copy with vm-linux. A second unassociated rule still does not apply its collection configuration to this VM.
+- **D. Incorrect:** Change the destination of dcr-syslog to another workspace without changing associations. The VM remains unassociated regardless of the selected destination.
 
-Study: [knowledge file](../knowledge/monitoring/logs/agent-dcr.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/logs/agent-dcr.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog)
 
 ## mo-dcr-heartbeat
 
 Topic: Monitoring and recovery › Azure Monitor Agent and data collection rules.
 
-The VM appears in Heartbeat, but its expected security events are missing. Which conclusion is justified?
+A Windows VM sends current Heartbeat records to ws-ops through Azure Monitor Agent. A locally generated Security event in the test window is missing from the correctly scoped Event-table query in ws-ops. Its associated DCR currently selects only System events. No other event collector is configured. Which change addresses the observed missing stream?
 
 Select **1**. Difficulty: troubleshooting.
 
-- **A. Incorrect:** Heartbeat proves every event filter is correct. Agent communication does not establish event selection.
-- **B. Correct:** Check event source/filter, DCR association, destination, and generated events. Heartbeat narrows the issue but does not prove the specific stream.
-- **C. Incorrect:** The workspace cannot contain any guest data. Heartbeat itself is guest-agent telemetry.
-- **D. Incorrect:** Increase DNS TTL to repair event selection. DNS caching does not define the DCR's event filter.
+- **A. Incorrect:** Reinstall the healthy agent while retaining the System-only DCR. The supplied filter still excludes Security events; reinstalling the agent does not select that stream.
+- **B. Correct:** Add a Windows Security-event selection that includes the test event to the DCR’s ws-ops data flow. Heartbeat establishes communication, but the DCR must separately select the required event source and route it to the workspace.
+- **C. Incorrect:** Increase workspace retention while retaining the System-only DCR. Retention controls stored data lifetime, not selection of an uncollected event stream.
+- **D. Incorrect:** Extend the query time window while retaining the System-only DCR. The query already covers the known event time. A broader search does not collect events excluded by the DCR.
 
-Study: [knowledge file](../knowledge/monitoring/logs/agent-dcr.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/logs/agent-dcr.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-windows-events) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview)
 
 ## mo-dcr-sources
 
 Topic: Monitoring and recovery › Azure Monitor Agent and data collection rules.
 
-Which Azure Monitor component defines selected guest data sources and destinations for AMA?
+For Azure Monitor Agent collection from VMs, which statement correctly distinguishes a DCR from its associations?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Incorrect:** A resource lock. Locks protect resource management, not source selection.
-- **B. Incorrect:** An NSG rule. An NSG permits or denies traffic rather than defines telemetry streams.
-- **C. Correct:** A data collection rule. The DCR specifies collection and routing configuration.
-- **D. Incorrect:** A public IP allocation method. IP allocation does not define agent data sources.
+- **A. Incorrect:** The DCR lists linked VMs; each association defines a separate set of event filters. The relationship is reversed: source filters belong to the DCR and associations link resources to it.
+- **B. Incorrect:** The DCR installs the guest operating system; associations install application packages. DCRs and associations configure telemetry collection rather than guest OS or application deployment.
+- **C. Correct:** The DCR defines collection sources and destinations; associations apply it to selected VMs. The rule describes collection and routing, and the VM-to-rule association applies that configuration.
+- **D. Incorrect:** The DCR defines resource retention; associations contain the stored event records. Collection rules and resource links are not the stored event data or workspace retention configuration.
 
-Study: [knowledge file](../knowledge/monitoring/logs/agent-dcr.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/logs/agent-dcr.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection)
 
 ## mo-log-default
 

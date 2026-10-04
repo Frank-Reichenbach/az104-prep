@@ -2142,40 +2142,40 @@ D. A Recovery Services vault.
 
 Topic: Monitoring and recovery › Azure Monitor Agent and data collection rules.
 
-AMA is installed and a DCR defines Linux Syslog to a workspace, but that DCR has no association to the VM. What is missing?
+Azure Monitor Agent is healthy on vm-linux and its identity and ingestion connectivity are verified. dcr-syslog defines the required Linux facilities, severity levels, and workspace destination, but its associations list contains only vm-other. Which change applies this existing collection configuration to vm-linux?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Associate the VM with the DCR.
-B. Only assign a DNS label to the VM.
-C. Only add AllMetrics to its resource diagnostic setting.
-D. Only increase workspace retention.
+A. Create a DCR association between vm-linux and dcr-syslog.
+B. Move vm-linux into the resource group containing dcr-syslog without adding an association.
+C. Create another copy of dcr-syslog without associating that copy with vm-linux.
+D. Change the destination of dcr-syslog to another workspace without changing associations.
 
 ## mo-dcr-heartbeat
 
 Topic: Monitoring and recovery › Azure Monitor Agent and data collection rules.
 
-The VM appears in Heartbeat, but its expected security events are missing. Which conclusion is justified?
+A Windows VM sends current Heartbeat records to ws-ops through Azure Monitor Agent. A locally generated Security event in the test window is missing from the correctly scoped Event-table query in ws-ops. Its associated DCR currently selects only System events. No other event collector is configured. Which change addresses the observed missing stream?
 
 Select **1**. Difficulty: troubleshooting.
 
-A. Heartbeat proves every event filter is correct.
-B. Check event source/filter, DCR association, destination, and generated events.
-C. The workspace cannot contain any guest data.
-D. Increase DNS TTL to repair event selection.
+A. Reinstall the healthy agent while retaining the System-only DCR.
+B. Add a Windows Security-event selection that includes the test event to the DCR’s ws-ops data flow.
+C. Increase workspace retention while retaining the System-only DCR.
+D. Extend the query time window while retaining the System-only DCR.
 
 ## mo-dcr-sources
 
 Topic: Monitoring and recovery › Azure Monitor Agent and data collection rules.
 
-Which Azure Monitor component defines selected guest data sources and destinations for AMA?
+For Azure Monitor Agent collection from VMs, which statement correctly distinguishes a DCR from its associations?
 
 Select **1**. Difficulty: foundation.
 
-A. A resource lock.
-B. An NSG rule.
-C. A data collection rule.
-D. A public IP allocation method.
+A. The DCR lists linked VMs; each association defines a separate set of event filters.
+B. The DCR installs the guest operating system; associations install application packages.
+C. The DCR defines collection sources and destinations; associations apply it to selected VMs.
+D. The DCR defines resource retention; associations contain the stored event records.
 
 ## mo-log-default
 

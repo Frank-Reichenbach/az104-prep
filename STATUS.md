@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 254/322 questions reviewed, 195 revised and 59 kept; 77/99 topics complete.
-Latest: [Resource logs and diagnostic settings](docs/reviews/question-bank-refresh/monitoring.logs.diagnostic-settings.md). Each completed topic has item decisions,
+Checkpoint: 257/322 questions reviewed, 198 revised and 59 kept; 78/99 topics complete.
+Latest: [Azure Monitor Agent and data collection rules](docs/reviews/question-bank-refresh/monitoring.logs.agent-dcr.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `monitoring.logs.agent-dcr` (Azure Monitor Agent and data collection rules).
+Next: `monitoring.logs.kql` (KQL filtering, aggregation, and interpretation).
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
@@ -294,8 +294,8 @@ retirement are documented with current alternatives.
 ## Next task
 
 Continue the authorized existing-bank review from `npm run review:status`.
-Current checkpoint: 254/322 questions, 77/99 topics complete.
-Next: `monitoring.logs.agent-dcr` (Azure Monitor Agent and data collection rules).
+Current checkpoint: 257/322 questions, 78/99 topics complete.
+Next: `monitoring.logs.kql` (KQL filtering, aggregation, and interpretation).
 Record real source checks and repair decisions in its report; do not mark a
 topic complete based on schema checks alone.
 
