@@ -5362,9 +5362,9 @@
     {
       "id": "monitoring.insights.vms",
       "title": "VM Insights and enhanced guest monitoring",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.insights.vms.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-vm-guest",
@@ -5379,9 +5379,9 @@
           ],
           "baselineHash": "f88162b8b81fe4b55c72bff1cddf657a315016a9f628e843d7e848e80ea32c54",
           "baselineContentHash": "d7b058d1d7e52fbf6da616de7f9c33e89bf3826af8a7c988e1e6e42ef934b8f4",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "695a424f06289224c3cc474dc910dd521e7a34a41e632a2ce55c3694133af859"
         },
         {
           "id": "mo-vm-map",
@@ -5396,9 +5396,9 @@
           ],
           "baselineHash": "20297163867473e8146217d44dd4e0e0b7c19f4ad273bc73779193e84ffda1df",
           "baselineContentHash": "00896490e5ed616eea6c48ec863f87332e76d6ef7429475ff6d4c0a8bc35a93a",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "95c2a2391c67f3fdfd1e147329385017599b11712b32cf4fc3db8bcf8c710c57"
         },
         {
           "id": "mo-vm-destination",
@@ -5413,9 +5413,9 @@
           ],
           "baselineHash": "f574613bf41efce49404615afaf79c17b37464dc8d0ca3e41c515fde9143ba6a",
           "baselineContentHash": "b0a29afb49b4dab5d96281452e1633cbc48b7df07f3cfded6148cc0870d98c1a",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "c494f3996ebcf694dbdefba62dee40daf90085ebc8dc59ee31194b7ce15074ca"
         }
       ]
     },

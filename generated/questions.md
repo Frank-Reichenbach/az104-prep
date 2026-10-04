@@ -2103,40 +2103,40 @@ D. Yes; Dependency Agent supplies storage capacity.
 
 Topic: Monitoring and recovery › VM Insights and enhanced guest monitoring.
 
-A VM's host CPU chart works, but guest memory details are absent. What should you investigate?
+An Azure VM has host CPU metrics but enhanced guest monitoring is not enabled. You need guest memory performance data in the classic logs-based monitoring experience. Required permissions and destination access are available. Which collection configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Enhanced guest monitoring: AMA, DCR association, and destination.
-B. Only a public DNS record for the VM.
-C. Assume guest memory is automatically zero.
-D. Delete the VM's host metrics.
+A. Enable logs-based enhanced monitoring with AMA, the required performance DCR association, and a Log Analytics workspace.
+B. Associate an AMA DCR selecting only Windows event logs and the Log Analytics destination.
+C. Associate an AMA DCR selecting only Linux Syslog and the Log Analytics destination.
+D. Export only VM platform metrics through a diagnostic setting to the Log Analytics workspace.
 
 ## mo-vm-map
 
 Topic: Monitoring and recovery › VM Insights and enhanced guest monitoring.
 
-For a new deployment, a legacy guide recommends enabling VM Insights Map and Dependency Agent. What does current Microsoft guidance say?
+A new VM deployment needs supported guest performance monitoring, without a requirement for the legacy dependency Map. An old guide includes Dependency Agent and VM Insights Map in every deployment. Which plan follows Microsoft’s current guidance?
 
 Select **1**. Difficulty: applied.
 
-A. Dependency Agent is mandatory for all host metrics.
-B. Do not enable this deprecated feature for new deployments.
-C. Map has replaced every DCR and workspace.
-D. Install both legacy Log Analytics Agent and AMA to guarantee accuracy.
+A. Install Dependency Agent alone and use it for guest performance collection.
+B. Configure AMA and supported guest performance collection, and omit the deprecated Map/Dependency Agent feature.
+C. Configure AMA guest performance collection and also enable Map/Dependency Agent for every new VM.
+D. Use only the legacy Log Analytics agent for the new guest monitoring deployment.
 
 ## mo-vm-destination
 
 Topic: Monitoring and recovery › VM Insights and enhanced guest monitoring.
 
-Which destination matches the current supported OpenTelemetry VM metrics experience?
+You configure the supported OpenTelemetry guest-metrics experience for an Azure VM, rather than classic logs-based metrics. Which resource type stores those collected metrics?
 
 Select **1**. Difficulty: foundation.
 
-A. Only a Storage container containing arbitrary text files.
-B. An action group.
+A. A Log Analytics workspace.
+B. An Event Hubs namespace.
 C. An Azure Monitor workspace.
-D. A Recovery Services vault.
+D. A Storage account.
 
 ## mo-dcr-association
 

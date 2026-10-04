@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 271/322 questions reviewed, 211 revised and 60 kept; 82/99 topics complete.
-Latest: [Alert processing rules and maintenance suppression](docs/reviews/question-bank-refresh/monitoring.alerts.processing.md). Each completed topic has item decisions,
+Checkpoint: 274/322 questions reviewed, 214 revised and 60 kept; 83/99 topics complete.
+Latest: [VM Insights and enhanced guest monitoring](docs/reviews/question-bank-refresh/monitoring.insights.vms.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `monitoring.insights.vms` (VM Insights and enhanced guest monitoring).
+Next: `monitoring.insights.storage` (Storage Insights performance and capacity).
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
@@ -294,8 +294,8 @@ retirement are documented with current alternatives.
 ## Next task
 
 Continue the authorized existing-bank review from `npm run review:status`.
-Current checkpoint: 271/322 questions, 82/99 topics complete.
-Next: `monitoring.insights.vms` (VM Insights and enhanced guest monitoring).
+Current checkpoint: 274/322 questions, 83/99 topics complete.
+Next: `monitoring.insights.storage` (Storage Insights performance and capacity).
 Record real source checks and repair decisions in its report; do not mark a
 topic complete based on schema checks alone.
 

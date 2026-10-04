@@ -2745,52 +2745,52 @@ Study: [knowledge file](../knowledge/monitoring/insights/storage.md). Evidence c
 
 Topic: Monitoring and recovery › VM Insights and enhanced guest monitoring.
 
-A VM's host CPU chart works, but guest memory details are absent. What should you investigate?
+An Azure VM has host CPU metrics but enhanced guest monitoring is not enabled. You need guest memory performance data in the classic logs-based monitoring experience. Required permissions and destination access are available. Which collection configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Enhanced guest monitoring: AMA, DCR association, and destination. Host metrics alone do not collect all guest counters.
-- **B. Incorrect:** Only a public DNS record for the VM. DNS does not select guest monitoring streams.
-- **C. Incorrect:** Assume guest memory is automatically zero. Missing telemetry is not a zero-memory reading.
-- **D. Incorrect:** Delete the VM's host metrics. Removing evidence does not enable guest collection.
+- **A. Correct:** Enable logs-based enhanced monitoring with AMA, the required performance DCR association, and a Log Analytics workspace. Guest counters require collection inside the VM; the classic experience uses its performance collection configuration and Log Analytics destination.
+- **B. Incorrect:** Associate an AMA DCR selecting only Windows event logs and the Log Analytics destination. Guest event-log collection alone does not select the required guest memory performance counters.
+- **C. Incorrect:** Associate an AMA DCR selecting only Linux Syslog and the Log Analytics destination. Syslog messages are a different data source from the required memory performance measurements.
+- **D. Incorrect:** Export only VM platform metrics through a diagnostic setting to the Log Analytics workspace. Exporting host metrics does not enable collection of the missing guest memory data.
 
-Study: [knowledge file](../knowledge/monitoring/insights/virtual-machines.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/insights/virtual-machines.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/monitor-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vm-enable-monitoring) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/tutorial-enable-monitoring) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vminsights-maps)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/monitor-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vm-enable-monitoring) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/tutorial-enable-monitoring)
 
 ## mo-vm-map
 
 Topic: Monitoring and recovery › VM Insights and enhanced guest monitoring.
 
-For a new deployment, a legacy guide recommends enabling VM Insights Map and Dependency Agent. What does current Microsoft guidance say?
+A new VM deployment needs supported guest performance monitoring, without a requirement for the legacy dependency Map. An old guide includes Dependency Agent and VM Insights Map in every deployment. Which plan follows Microsoft’s current guidance?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Dependency Agent is mandatory for all host metrics. Host metrics do not require it.
-- **B. Correct:** Do not enable this deprecated feature for new deployments. Current documentation gives that guidance and a retirement timeline.
-- **C. Incorrect:** Map has replaced every DCR and workspace. Current monitoring still uses collection rules and destinations.
-- **D. Incorrect:** Install both legacy Log Analytics Agent and AMA to guarantee accuracy. Duplicate collection is not the recommended repair.
+- **A. Incorrect:** Install Dependency Agent alone and use it for guest performance collection. Dependency Agent is not the supported AMA guest performance collection path; the deprecated Map feature should not be enabled for new deployments.
+- **B. Correct:** Configure AMA and supported guest performance collection, and omit the deprecated Map/Dependency Agent feature. Microsoft supports AMA guest monitoring and explicitly advises against enabling Map/Dependency Agent for new deployments.
+- **C. Incorrect:** Configure AMA guest performance collection and also enable Map/Dependency Agent for every new VM. The additional legacy feature conflicts with the explicit guidance not to enable it for new deployments.
+- **D. Incorrect:** Use only the legacy Log Analytics agent for the new guest monitoring deployment. The legacy agent is no longer supported; current guidance uses Azure Monitor Agent.
 
-Study: [knowledge file](../knowledge/monitoring/insights/virtual-machines.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/insights/virtual-machines.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/monitor-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vm-enable-monitoring) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/tutorial-enable-monitoring) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vminsights-maps)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/monitor-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vm-enable-monitoring) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vminsights-maps)
 
 ## mo-vm-destination
 
 Topic: Monitoring and recovery › VM Insights and enhanced guest monitoring.
 
-Which destination matches the current supported OpenTelemetry VM metrics experience?
+You configure the supported OpenTelemetry guest-metrics experience for an Azure VM, rather than classic logs-based metrics. Which resource type stores those collected metrics?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Incorrect:** Only a Storage container containing arbitrary text files. That is not the described metric destination.
-- **B. Incorrect:** An action group. An action group handles responses rather than stores metrics.
-- **C. Correct:** An Azure Monitor workspace. The current metrics experience uses this workspace type.
-- **D. Incorrect:** A Recovery Services vault. That vault provides recovery services rather than VM metric storage.
+- **A. Incorrect:** A Log Analytics workspace. This is the destination for classic logs-based VM monitoring and guest logs, not this OpenTelemetry metrics experience.
+- **B. Incorrect:** An Event Hubs namespace. An event-streaming namespace is not the destination specified by the VM OpenTelemetry metrics workflow.
+- **C. Correct:** An Azure Monitor workspace. The OpenTelemetry VM metrics experience uses this workspace type.
+- **D. Incorrect:** A Storage account. Archive storage is not the metrics destination for the specified enhanced monitoring workflow.
 
-Study: [knowledge file](../knowledge/monitoring/insights/virtual-machines.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/insights/virtual-machines.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/monitor-vm) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vm-enable-monitoring) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/tutorial-enable-monitoring) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vminsights-maps)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vm-enable-monitoring) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/tutorial-enable-monitoring)
 
 ## mo-dcr-association
 
