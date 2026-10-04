@@ -1470,18 +1470,18 @@ Study: [knowledge file](../knowledge/identity/governance/policy.md). Evidence ch
 
 Topic: Identity and governance › Resource group lifecycle and moves.
 
-A resource group's metadata location is West Europe. Can it contain a supported resource deployed in North Europe?
+Resource group rg-app was created with metadata location West Europe. An administrator successfully deploys vm-app into rg-app with VM location North Europe. Which pair of locations should the administrator observe?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** Yes; resource location can differ from group location. The group's location governs its management metadata.
-- **B. Incorrect:** No; every resource inherits the group's physical region. That is not the resource-group model.
-- **C. Incorrect:** Only after renaming the group to North Europe. The name does not change regional placement rules.
-- **D. Incorrect:** Only by nesting another resource group inside it. Resource groups do not nest.
+- **A. Correct:** rg-app metadata: West Europe; vm-app: North Europe. The resource-group location stores metadata and does not force contained resources into that region.
+- **B. Incorrect:** rg-app metadata: West Europe; vm-app: West Europe. The VM uses its specified North Europe region, rather than inheriting the group metadata region.
+- **C. Incorrect:** rg-app metadata: North Europe; vm-app: North Europe. Deploying a resource in another region does not change the group's existing metadata location.
+- **D. Incorrect:** rg-app metadata: North Europe; vm-app: West Europe. Neither location is switched by deploying the VM. Group metadata and resource placement are separate.
 
-Study: [knowledge file](../knowledge/identity/governance/resource-groups.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/resource-groups.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal)
 
 ## id-rg-move-region
 
@@ -1496,7 +1496,7 @@ Select **1**. Difficulty: applied.
 - **C. Incorrect:** It belongs to both groups afterward. A resource has one resource-group membership at a time.
 - **D. Incorrect:** A complete second VM is created and the original remains. An ARM group move is not a VM cloning operation.
 
-Study: [knowledge file](../knowledge/identity/governance/resource-groups.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/resource-groups.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription)
 
@@ -1506,14 +1506,14 @@ Topic: Identity and governance › Resource group lifecycle and moves.
 
 A study resource group contains a VM, NIC, and storage resources that are no longer needed. What does deleting that group do, assuming no protection blocks deletion?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 - **A. Correct:** Deletes the resources contained in the group. Group deletion is a lifecycle operation over its contents.
 - **B. Incorrect:** Removes only the group label and leaves all resources ungrouped. Azure resources do not become ungrouped through group deletion.
 - **C. Incorrect:** Moves everything into the subscription's default group. There is no automatic relocation of all contents to a default group.
 - **D. Incorrect:** Only stops the VM while retaining every resource. Stopping compute is a different operation.
 
-Study: [knowledge file](../knowledge/identity/governance/resource-groups.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/identity/governance/resource-groups.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription)
 

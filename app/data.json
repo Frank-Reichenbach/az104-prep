@@ -4901,34 +4901,34 @@
     {
       "id": "id-rg-location",
       "family": "id-rg-location",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.governance.resource-groups",
       "objectives": [
         "id-12"
       ],
       "difficulty": "foundation",
-      "prompt": "A resource group's metadata location is West Europe. Can it contain a supported resource deployed in North Europe?",
+      "prompt": "Resource group rg-app was created with metadata location West Europe. An administrator successfully deploys vm-app into rg-app with VM location North Europe. Which pair of locations should the administrator observe?",
       "select": 1,
       "options": [
         {
           "id": "yes",
-          "text": "Yes; resource location can differ from group location.",
-          "explanation": "The group's location governs its management metadata."
+          "text": "rg-app metadata: West Europe; vm-app: North Europe.",
+          "explanation": "The resource-group location stores metadata and does not force contained resources into that region."
         },
         {
           "id": "no",
-          "text": "No; every resource inherits the group's physical region.",
-          "explanation": "That is not the resource-group model."
+          "text": "rg-app metadata: West Europe; vm-app: West Europe.",
+          "explanation": "The VM uses its specified North Europe region, rather than inheriting the group metadata region."
         },
         {
           "id": "move",
-          "text": "Only after renaming the group to North Europe.",
-          "explanation": "The name does not change regional placement rules."
+          "text": "rg-app metadata: North Europe; vm-app: North Europe.",
+          "explanation": "Deploying a resource in another region does not change the group's existing metadata location."
         },
         {
           "id": "nested",
-          "text": "Only by nesting another resource group inside it.",
-          "explanation": "Resource groups do not nest."
+          "text": "rg-app metadata: North Europe; vm-app: West Europe.",
+          "explanation": "Neither location is switched by deploying the VM. Group metadata and resource placement are separate."
         }
       ],
       "correct": [
@@ -4936,11 +4936,9 @@
       ],
       "knowledge": "knowledge/identity/governance/resource-groups.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription"
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-rg-move-region",
@@ -4984,17 +4982,17 @@
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal",
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-rg-delete",
       "family": "id-rg-delete",
-      "revision": 1,
+      "revision": 2,
       "topic": "identity.governance.resource-groups",
       "objectives": [
         "id-12"
       ],
-      "difficulty": "applied",
+      "difficulty": "foundation",
       "prompt": "A study resource group contains a VM, NIC, and storage resources that are no longer needed. What does deleting that group do, assuming no protection blocks deletion?",
       "select": 1,
       "options": [
@@ -5028,7 +5026,7 @@
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal",
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "id-sub-context",

@@ -1128,14 +1128,14 @@ D. It remains present but its workspace destination is automatically cleared.
 
 Topic: Identity and governance › Resource group lifecycle and moves.
 
-A resource group's metadata location is West Europe. Can it contain a supported resource deployed in North Europe?
+Resource group rg-app was created with metadata location West Europe. An administrator successfully deploys vm-app into rg-app with VM location North Europe. Which pair of locations should the administrator observe?
 
 Select **1**. Difficulty: foundation.
 
-A. Yes; resource location can differ from group location.
-B. No; every resource inherits the group's physical region.
-C. Only after renaming the group to North Europe.
-D. Only by nesting another resource group inside it.
+A. rg-app metadata: West Europe; vm-app: North Europe.
+B. rg-app metadata: West Europe; vm-app: West Europe.
+C. rg-app metadata: North Europe; vm-app: North Europe.
+D. rg-app metadata: North Europe; vm-app: West Europe.
 
 ## id-rg-move-region
 
@@ -1156,7 +1156,7 @@ Topic: Identity and governance › Resource group lifecycle and moves.
 
 A study resource group contains a VM, NIC, and storage resources that are no longer needed. What does deleting that group do, assuming no protection blocks deletion?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: foundation.
 
 A. Deletes the resources contained in the group.
 B. Removes only the group label and leaves all resources ungrouped.

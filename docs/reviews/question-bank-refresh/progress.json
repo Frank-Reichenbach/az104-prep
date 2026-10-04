@@ -2320,9 +2320,9 @@
     {
       "id": "identity.governance.resource-groups",
       "title": "Resource group lifecycle and moves",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/identity.governance.resource-groups.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "id-rg-location",
@@ -2337,9 +2337,9 @@
           ],
           "baselineHash": "6ba892702db4f82a03d647a880519658fb31e9cb8c00ddffbd629fcb96c7613b",
           "baselineContentHash": "4f3b5b117e361233564676f0824b672353e1df7f33d1aaba0c31e5de80ba5ec0",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "802b0939d86a0c1ed908701cb3030afea25e921ac8d579cc55a8bc49d39ca133"
         },
         {
           "id": "id-rg-move-region",
@@ -2354,9 +2354,9 @@
           ],
           "baselineHash": "a6bf3a51e96206c2e8924929b802799b19d6e0e0467fca65480dbdb6a493f0a4",
           "baselineContentHash": "04c55e65566537f01a0d12444ac64df91d28d2e331dbcf3564122b0980d7ef5c",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "0f67f0a7010dc636ecca0df31d830763b130afdf2424ae8363feab4a99909283"
         },
         {
           "id": "id-rg-delete",
@@ -2371,9 +2371,9 @@
           ],
           "baselineHash": "8802d935cd3727d5c9d74c8fd6c1ee0d8dbf3c55e2714f2a3a96b646f1bcacf0",
           "baselineContentHash": "6ab2aacf307778b5bfb84164f1fd0f9b45ac85f41e586bcfd423c675d7486b78",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "38de3c6304a1596774c98c571992d01bdfb4e11d675c76838c40947acb00990a"
         }
       ]
     },
