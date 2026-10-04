@@ -5902,9 +5902,9 @@
     {
       "id": "monitoring.backup.vm-restore",
       "title": "Azure VM backup and restore operations",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.backup.vm-restore.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-restore-deleted",
@@ -5919,9 +5919,9 @@
           ],
           "baselineHash": "9a7d21143d425ef66b0745f08ae73d76925792ae983409c95478416da6e94971",
           "baselineContentHash": "96f6ca5875c4aaf5fbe065458670282878e09d708a83674c8a2ba7dc1a4fdb8e",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f16164bdb8fc8a0c0a258459120b4cd7022b6b619bc509b4635d108866d2a03b"
         },
         {
           "id": "mo-restore-consistency",
@@ -5936,9 +5936,9 @@
           ],
           "baselineHash": "7ad47884637a8bce4d13fbcf46f7a775209e9e8c07c1ce9caa8c0e5d551e12cd",
           "baselineContentHash": "59b3a01d8765f3be625fce903907186f59a15d9d5747a1a23b53af40e0d1ef92",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "4bc6901c48682c9c35c4fab556f36a531140a694f59a18f7659b174010a819fb"
         },
         {
           "id": "mo-restore-verify",
@@ -5953,9 +5953,9 @@
           ],
           "baselineHash": "807a2e8c25326ecbdd7163a0e7cbb450b80efbe24bcc96be949c5042aebed3ff",
           "baselineContentHash": "ed5f60b561f8271620d48d882329764b53cb2397ecac90c2a5eeb4f5dcf72881",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "b84a82368b3b125a3eef983ca5a7be96c4621e3f3dfd3e2b984df24495105023"
         }
       ]
     },

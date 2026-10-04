@@ -1986,14 +1986,14 @@ D. Only the action group's email recipient.
 
 Topic: Monitoring and recovery › Azure VM backup and restore operations.
 
-A backed-up Azure VM has been deleted. You want to recover it from a valid point. Which mode fits this situation?
+A backed-up Azure VM has been deleted. A valid recovery point supports Create new VM, and you have the required target permissions and network configuration. You need the restore workflow to create a running VM with basic settings, without a separate custom VM deployment. Which choice meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Create new VM, or restore disks and construct a VM.
-B. Replace existing disks on the deleted VM.
-C. Only change the backup schedule.
-D. Only acknowledge its alert.
+A. Use Create new VM from the selected recovery point.
+B. Use Replace existing disks on the deleted VM.
+C. Use Restore disks and stop when the disk restore finishes.
+D. Use file recovery and copy selected files to a workstation.
 
 ## mo-restore-consistency
 
@@ -2005,21 +2005,21 @@ Select **1**. Difficulty: foundation.
 
 A. Every in-memory write is guaranteed present.
 B. Application/OS recovery may be needed for the captured disk state.
-C. The point cannot contain any disk data.
+C. The application was necessarily quiesced before capture.
 D. It is automatically a database transaction-log backup.
 
 ## mo-restore-verify
 
 Topic: Monitoring and recovery › Azure VM backup and restore operations.
 
-Azure reports a VM restore job completed. Which two checks establish practical recovery better than the job state alone?
+Azure reports a VM restore job completed. You need evidence of both infrastructure usability and guest application/data usability. Which two observations directly verify those separate recovery aspects? Select two; each is an independent evidence check.
 
 Select **2**. Difficulty: applied.
 
-A. Verify the restored VM boots with its intended disks/network.
-B. Assume every external DNS entry changed automatically.
-C. Verify guest data and application behavior at the restored point.
-D. Delete the recovery points immediately before checking the app.
+A. Observe that the restored VM boots with the intended disks and network access.
+B. Observe that the saved restore request names the intended VNet.
+C. Observe expected guest data and successful application behavior at the restored point.
+D. Observe the Completed status of the restore job again.
 
 ## mo-network-topology
 

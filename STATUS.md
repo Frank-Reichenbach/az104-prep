@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 298/322 questions reviewed, 236 revised and 62 kept; 91/99 topics complete.
-Latest: [Backup schedules, retention, and policy selection](docs/reviews/question-bank-refresh/monitoring.backup.policies.md). Each completed topic has item decisions,
+Checkpoint: 301/322 questions reviewed, 239 revised and 62 kept; 92/99 topics complete.
+Latest: [Azure VM backup and restore operations](docs/reviews/question-bank-refresh/monitoring.backup.vm-restore.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `monitoring.backup.vm-restore` (Azure VM backup and restore operations).
+Next: `monitoring.backup.files-restore` (Azure Files backup and item recovery).
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
@@ -294,8 +294,8 @@ retirement are documented with current alternatives.
 ## Next task
 
 Continue the authorized existing-bank review from `npm run review:status`.
-Current checkpoint: 298/322 questions, 91/99 topics complete.
-Next: `monitoring.backup.vm-restore` (Azure VM backup and restore operations).
+Current checkpoint: 301/322 questions, 92/99 topics complete.
+Next: `monitoring.backup.files-restore` (Azure Files backup and item recovery).
 Record real source checks and repair decisions in its report; do not mark a
 topic complete based on schema checks alone.
 

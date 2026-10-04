@@ -2592,18 +2592,18 @@ Study: [knowledge file](../knowledge/monitoring/backup/reports.md). Evidence che
 
 Topic: Monitoring and recovery › Azure VM backup and restore operations.
 
-A backed-up Azure VM has been deleted. You want to recover it from a valid point. Which mode fits this situation?
+A backed-up Azure VM has been deleted. A valid recovery point supports Create new VM, and you have the required target permissions and network configuration. You need the restore workflow to create a running VM with basic settings, without a separate custom VM deployment. Which choice meets the goal?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Create new VM, or restore disks and construct a VM. These modes do not require the original VM resource to exist.
-- **B. Incorrect:** Replace existing disks on the deleted VM. Replace existing requires an existing target VM.
-- **C. Incorrect:** Only change the backup schedule. A schedule does not recreate the deleted resource.
-- **D. Incorrect:** Only acknowledge its alert. Alert response state does not restore the VM.
+- **A. Correct:** Use Create new VM from the selected recovery point. This workflow creates a new VM from the recovery point and does not require the deleted VM resource.
+- **B. Incorrect:** Use Replace existing disks on the deleted VM. Replace existing requires a target VM that still exists.
+- **C. Incorrect:** Use Restore disks and stop when the disk restore finishes. Restored disks can support a new VM, but stopping before VM construction does not create the requested running VM.
+- **D. Incorrect:** Use file recovery and copy selected files to a workstation. File recovery retrieves selected files rather than creating a VM resource with its disks.
 
-Study: [knowledge file](../knowledge/monitoring/backup/virtual-machines.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/virtual-machines.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms)
 
 ## mo-restore-consistency
 
@@ -2613,31 +2613,31 @@ A recovery point is crash-consistent. What should you expect during recovery?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Incorrect:** Every in-memory write is guaranteed present. Crash consistency captures on-disk state, not all pending memory writes.
-- **B. Correct:** Application/OS recovery may be needed for the captured disk state. Crash-consistent recovery can require checks or transaction recovery.
-- **C. Incorrect:** The point cannot contain any disk data. It does capture disk state.
-- **D. Incorrect:** It is automatically a database transaction-log backup. VM consistency is not equivalent to database log backup.
+- **A. Incorrect:** Every in-memory write is guaranteed present. Crash consistency captures the on-disk state and does not guarantee that pending in-memory writes were persisted.
+- **B. Correct:** Application/OS recovery may be needed for the captured disk state. Crash-consistent recovery can require filesystem checks or application transaction recovery.
+- **C. Incorrect:** The application was necessarily quiesced before capture. Crash consistency does not establish application quiescing or application-consistent capture.
+- **D. Incorrect:** It is automatically a database transaction-log backup. A VM disk-state recovery point is not a database transaction-log backup.
 
-Study: [knowledge file](../knowledge/monitoring/backup/virtual-machines.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/virtual-machines.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction)
 
 ## mo-restore-verify
 
 Topic: Monitoring and recovery › Azure VM backup and restore operations.
 
-Azure reports a VM restore job completed. Which two checks establish practical recovery better than the job state alone?
+Azure reports a VM restore job completed. You need evidence of both infrastructure usability and guest application/data usability. Which two observations directly verify those separate recovery aspects? Select two; each is an independent evidence check.
 
 Select **2**. Difficulty: applied.
 
-- **A. Correct:** Verify the restored VM boots with its intended disks/network. Infrastructure usability needs a direct check.
-- **B. Incorrect:** Assume every external DNS entry changed automatically. External references may need independent repair.
-- **C. Correct:** Verify guest data and application behavior at the restored point. Business recovery requires more than resource creation.
-- **D. Incorrect:** Delete the recovery points immediately before checking the app. That removes fallback without establishing usability.
+- **A. Correct:** Observe that the restored VM boots with the intended disks and network access. This directly checks the usability of the restored infrastructure rather than relying only on resource-operation completion.
+- **B. Incorrect:** Observe that the saved restore request names the intended VNet. A configured target records intent; it does not demonstrate that the restored VM boots or has usable network access.
+- **C. Correct:** Observe expected guest data and successful application behavior at the restored point. This directly verifies the guest data and application aspect of practical recovery.
+- **D. Incorrect:** Observe the Completed status of the restore job again. The existing job status does not add evidence that boot, connectivity, data or application behavior is usable.
 
-Study: [knowledge file](../knowledge/monitoring/backup/virtual-machines.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/backup/virtual-machines.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction) · [Microsoft source 4](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction)
 
 ## mo-network-topology
 
