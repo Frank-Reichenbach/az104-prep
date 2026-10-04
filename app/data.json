@@ -3280,39 +3280,39 @@
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file",
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-read-symbolic-name",
       "family": "co-read-symbolic-name",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.templates.interpretation",
       "objectives": [
         "co-01"
       ],
       "difficulty": "applied",
-      "prompt": "In Bicep, resource network has name: vnetName. Which value determines the deployed virtual network's name?",
+      "prompt": "A Bicep file named network.bicep declares parameter vnetName with default 'vnet-test'. Its virtual network declaration uses symbolic name network and sets name: vnetName. It returns an output named deployedName with value network.name. The deployment supplies vnetName = 'vnet-prod'. What is the deployed virtual network's name?",
       "select": 1,
       "options": [
         {
           "id": "property",
-          "text": "The value supplied by vnetName to the name property.",
-          "explanation": "The resource name property controls Azure naming."
+          "text": "vnet-prod",
+          "explanation": "The supplied parameter overrides the default, and the name property uses that supplied value."
         },
         {
           "id": "symbol",
-          "text": "The symbolic identifier network.",
-          "explanation": "That identifier is for references inside Bicep."
+          "text": "network",
+          "explanation": "network is the Bicep symbolic name used for references; it is not the Azure resource name."
         },
         {
           "id": "output",
-          "text": "The output variable's identifier.",
-          "explanation": "Output labels do not name the resource."
+          "text": "deployedName",
+          "explanation": "deployedName labels a returned value; it does not replace the resource name property."
         },
         {
           "id": "file",
-          "text": "The Bicep filename.",
-          "explanation": "The filename is not the declared resource name."
+          "text": "vnet-test",
+          "explanation": "vnet-test is the parameter default. The supplied vnet-prod value takes precedence."
         }
       ],
       "correct": [
@@ -3320,43 +3320,41 @@
       ],
       "knowledge": "knowledge/compute/templates/interpretation.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies"
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-read-dependency",
       "family": "co-read-dependency",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.templates.interpretation",
       "objectives": [
         "co-01"
       ],
       "difficulty": "applied",
-      "prompt": "Bicep resource B references a property of resource A. What is the usual dependency implication?",
+      "prompt": "A Bicep deployment creates a DNS zone with symbolic name zone and two independent resources with symbolic names app and store. The app declaration sets a property to zone.properties.nameServers. The store declaration references neither zone nor app, and there are no explicit dependsOn entries. All three declarations deploy new resources. Which ordering does this configuration require?",
       "select": 1,
       "options": [
         {
           "id": "implicit",
-          "text": "Bicep infers a dependency on A.",
-          "explanation": "The reference expresses the required ordering."
+          "text": "zone before app; store has no dependency on either.",
+          "explanation": "The app property reference creates an implicit dependency on zone. No declared relationship orders store against these resources."
         },
         {
           "id": "order",
-          "text": "Only the textual order of declarations matters.",
-          "explanation": "File position is not the dependency model."
+          "text": "app before zone; store has no dependency on either.",
+          "explanation": "The reference makes app depend on zone, not zone depend on app."
         },
         {
           "id": "none",
-          "text": "B can never depend on A without a manual sleep.",
-          "explanation": "ARM dependencies do not require sleeps."
+          "text": "zone and app have no dependency; store waits for both.",
+          "explanation": "The app reference establishes a dependency; store has no reference or explicit dependency on either."
         },
         {
           "id": "serial",
-          "text": "Every resource in the entire file becomes sequential.",
-          "explanation": "Unrelated resources can still deploy in parallel."
+          "text": "zone before app; store must wait for app.",
+          "explanation": "The zone-to-app dependency does not serialize unrelated store. Independent resources can deploy in parallel."
         }
       ],
       "correct": [
@@ -3364,11 +3362,9 @@
       ],
       "knowledge": "knowledge/compute/templates/interpretation.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax",
-        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file",
         "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-avail-fault",

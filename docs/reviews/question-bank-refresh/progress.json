@@ -2560,9 +2560,9 @@
     {
       "id": "compute.templates.interpretation",
       "title": "Reading ARM templates and Bicep",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.templates.interpretation.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-read-input-output",
@@ -2577,9 +2577,9 @@
           ],
           "baselineHash": "690217fdb9a02350c5c29bd313e3de2dd837756ee9d70a8515d116b09bd5d30e",
           "baselineContentHash": "00e5299c64967988c8a7829a8d6b8ead2403fedeb7a2076e1e3a91203ca7ed6f",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "2826b6dfd38c68f9842331d8f69ef4749cb0d46c289128311596bd21b51245be"
         },
         {
           "id": "co-read-symbolic-name",
@@ -2594,9 +2594,9 @@
           ],
           "baselineHash": "1a4e071f82c652f889860ddc09770e28fc9049f828cdf2ac2202e60ce20d54cb",
           "baselineContentHash": "90900ed70f340cf9997a755625ee4029e3d48262c58035e6b82ee0d6e956c9fe",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "9265e60b592c00d8b3d435d583668b97c091648472f3474da5dc6658de18cb73"
         },
         {
           "id": "co-read-dependency",
@@ -2611,9 +2611,9 @@
           ],
           "baselineHash": "72dfe328a20e42d010518559ecf7094818eba2f8a51f36b1b3af8ae3e893cd23",
           "baselineContentHash": "775291c71a17060b379eb15b7f352a3e321577fa1ec30fef46cda5ccb9b60e2a",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "99e0013dc93fcd9852711f8fd4bdfaf07077baa94cc30059911b72d8d4e451fb"
         }
       ]
     },

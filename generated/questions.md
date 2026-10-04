@@ -647,27 +647,27 @@ D. contentVersion.
 
 Topic: Compute › Reading ARM templates and Bicep.
 
-In Bicep, resource network has name: vnetName. Which value determines the deployed virtual network's name?
+A Bicep file named network.bicep declares parameter vnetName with default 'vnet-test'. Its virtual network declaration uses symbolic name network and sets name: vnetName. It returns an output named deployedName with value network.name. The deployment supplies vnetName = 'vnet-prod'. What is the deployed virtual network's name?
 
 Select **1**. Difficulty: applied.
 
-A. The value supplied by vnetName to the name property.
-B. The symbolic identifier network.
-C. The output variable's identifier.
-D. The Bicep filename.
+A. vnet-prod
+B. network
+C. deployedName
+D. vnet-test
 
 ## co-read-dependency
 
 Topic: Compute › Reading ARM templates and Bicep.
 
-Bicep resource B references a property of resource A. What is the usual dependency implication?
+A Bicep deployment creates a DNS zone with symbolic name zone and two independent resources with symbolic names app and store. The app declaration sets a property to zone.properties.nameServers. The store declaration references neither zone nor app, and there are no explicit dependsOn entries. All three declarations deploy new resources. Which ordering does this configuration require?
 
 Select **1**. Difficulty: applied.
 
-A. Bicep infers a dependency on A.
-B. Only the textual order of declarations matters.
-C. B can never depend on A without a manual sleep.
-D. Every resource in the entire file becomes sequential.
+A. zone before app; store has no dependency on either.
+B. app before zone; store has no dependency on either.
+C. zone and app have no dependency; store waits for both.
+D. zone before app; store must wait for app.
 
 ## co-avail-fault
 

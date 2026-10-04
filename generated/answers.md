@@ -833,7 +833,7 @@ Select **1**. Difficulty: foundation.
 - **C. Incorrect:** outputs. Outputs return values after deployment.
 - **D. Incorrect:** contentVersion. This identifies a template revision, not deployment inputs.
 
-Study: [knowledge file](../knowledge/compute/templates/interpretation.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/templates/interpretation.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies)
 
@@ -841,35 +841,35 @@ Study: [knowledge file](../knowledge/compute/templates/interpretation.md). Evide
 
 Topic: Compute › Reading ARM templates and Bicep.
 
-In Bicep, resource network has name: vnetName. Which value determines the deployed virtual network's name?
+A Bicep file named network.bicep declares parameter vnetName with default 'vnet-test'. Its virtual network declaration uses symbolic name network and sets name: vnetName. It returns an output named deployedName with value network.name. The deployment supplies vnetName = 'vnet-prod'. What is the deployed virtual network's name?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** The value supplied by vnetName to the name property. The resource name property controls Azure naming.
-- **B. Incorrect:** The symbolic identifier network. That identifier is for references inside Bicep.
-- **C. Incorrect:** The output variable's identifier. Output labels do not name the resource.
-- **D. Incorrect:** The Bicep filename. The filename is not the declared resource name.
+- **A. Correct:** vnet-prod The supplied parameter overrides the default, and the name property uses that supplied value.
+- **B. Incorrect:** network network is the Bicep symbolic name used for references; it is not the Azure resource name.
+- **C. Incorrect:** deployedName deployedName labels a returned value; it does not replace the resource name property.
+- **D. Incorrect:** vnet-test vnet-test is the parameter default. The supplied vnet-prod value takes precedence.
 
-Study: [knowledge file](../knowledge/compute/templates/interpretation.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/templates/interpretation.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file)
 
 ## co-read-dependency
 
 Topic: Compute › Reading ARM templates and Bicep.
 
-Bicep resource B references a property of resource A. What is the usual dependency implication?
+A Bicep deployment creates a DNS zone with symbolic name zone and two independent resources with symbolic names app and store. The app declaration sets a property to zone.properties.nameServers. The store declaration references neither zone nor app, and there are no explicit dependsOn entries. All three declarations deploy new resources. Which ordering does this configuration require?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Bicep infers a dependency on A. The reference expresses the required ordering.
-- **B. Incorrect:** Only the textual order of declarations matters. File position is not the dependency model.
-- **C. Incorrect:** B can never depend on A without a manual sleep. ARM dependencies do not require sleeps.
-- **D. Incorrect:** Every resource in the entire file becomes sequential. Unrelated resources can still deploy in parallel.
+- **A. Correct:** zone before app; store has no dependency on either. The app property reference creates an implicit dependency on zone. No declared relationship orders store against these resources.
+- **B. Incorrect:** app before zone; store has no dependency on either. The reference makes app depend on zone, not zone depend on app.
+- **C. Incorrect:** zone and app have no dependency; store waits for both. The app reference establishes a dependency; store has no reference or explicit dependency on either.
+- **D. Incorrect:** zone before app; store must wait for app. The zone-to-app dependency does not serialize unrelated store. Independent resources can deploy in parallel.
 
-Study: [knowledge file](../knowledge/compute/templates/interpretation.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/templates/interpretation.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies)
 
 ## co-avail-fault
 
