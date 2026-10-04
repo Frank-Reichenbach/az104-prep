@@ -2949,16 +2949,16 @@ Study: [knowledge file](../knowledge/monitoring/logs/kql.md). Evidence checked: 
 
 Topic: Monitoring and recovery › Azure Monitor metric aggregation and dimensions.
 
-A supported CPU metric's 30-minute Average chart hides brief spikes. Which change helps examine peak values?
+A CPU-percentage metric supports Average and Maximum at one-minute granularity. A chart averages each 30-minute interval, masking short spikes. You must inspect the highest collected value in each minute of the incident window. Which chart configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Use Maximum with a smaller time grain. This exposes interval peaks with finer time resolution.
-- **B. Incorrect:** Use Count to measure peak CPU percentage. Count measures samples, not their largest CPU value.
-- **C. Incorrect:** Use Sum and call it the maximum percentage. Sum and maximum have different meanings.
-- **D. Incorrect:** Change only the chart title. The title does not change aggregation.
+- **A. Correct:** Maximum aggregation; one-minute time grain. Each point reports the highest collected value in its one-minute interval.
+- **B. Incorrect:** Average aggregation; one-minute time grain. Finer intervals help localize changes, but averaging does not preserve the highest sample in each interval.
+- **C. Incorrect:** Maximum aggregation; 30-minute time grain. It exposes a peak for each 30-minute interval rather than the required per-minute peaks.
+- **D. Incorrect:** Average aggregation; 30-minute time grain with a shorter displayed time range. A shorter displayed range does not change the explicitly retained aggregation or interval size.
 
-Study: [knowledge file](../knowledge/monitoring/metrics/analysis.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/metrics/analysis.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/analyze-metrics) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-aggregation-explained)
 
@@ -2966,18 +2966,18 @@ Study: [knowledge file](../knowledge/monitoring/metrics/analysis.md). Evidence c
 
 Topic: Monitoring and recovery › Azure Monitor metric aggregation and dimensions.
 
-A metric supports an instance dimension. You need separate series for each worker rather than one combined average. What should you use?
+An application metric exposes an Instance dimension with four worker values. All four workers have data in the selected window. You need four separate worker series on one Metrics explorer chart, without excluding any worker. Which configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-- **A. Incorrect:** Only a longer time range. That changes the period rather than separates instances.
-- **B. Correct:** Dimension splitting by instance. Splitting displays the dimension values as separate series.
-- **C. Incorrect:** A sum without dimensions. That combines rather than separates instance data.
-- **D. Incorrect:** A resource lock. Locks do not control chart dimensions.
+- **A. Incorrect:** Filter Instance to one worker without applying splitting. This excludes three workers and does not display all four separate series.
+- **B. Correct:** Split by Instance and set the displayed-series limit to at least four. Splitting creates one series per dimension value; the limit must include all four workers.
+- **C. Incorrect:** Filter Instance to all four workers without applying splitting. The filter includes the workers but leaves their values combined into one series.
+- **D. Incorrect:** Split by Instance and set the displayed-series limit to one. Splitting is appropriate, but the one-series limit omits three required workers.
 
-Study: [knowledge file](../knowledge/monitoring/metrics/analysis.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/metrics/analysis.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/analyze-metrics) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-aggregation-explained)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/analyze-metrics)
 
 ## mo-metric-count
 
@@ -2992,7 +2992,7 @@ Select **1**. Difficulty: foundation.
 - **C. Correct:** Count is 3 and Sum is 20. Samples and total measured values are different quantities.
 - **D. Incorrect:** Average is 20. Average divides the sum by the sample count.
 
-Study: [knowledge file](../knowledge/monitoring/metrics/analysis.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/monitoring/metrics/analysis.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/analyze-metrics) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-aggregation-explained)
 

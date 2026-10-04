@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 248/322 questions reviewed, 190 revised and 58 kept; 75/99 topics complete.
-Latest: [Load Balancer probes and connectivity diagnosis](docs/reviews/question-bank-refresh/networking.load-balancer.troubleshooting.md). Each completed topic has item decisions,
+Checkpoint: 251/322 questions reviewed, 192 revised and 59 kept; 76/99 topics complete.
+Latest: [Azure Monitor metric aggregation and dimensions](docs/reviews/question-bank-refresh/monitoring.metrics.analysis.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `monitoring.metrics.analysis` (Azure Monitor metric aggregation and dimensions).
+Next: `monitoring.logs.diagnostic-settings` (Resource logs and diagnostic settings).
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
@@ -294,8 +294,8 @@ retirement are documented with current alternatives.
 ## Next task
 
 Continue the authorized existing-bank review from `npm run review:status`.
-Current checkpoint: 89/322 questions, 24/99 topics complete.
-Next: `identity.users.licenses` (User and group license assignments).
+Current checkpoint: 251/322 questions, 76/99 topics complete.
+Next: `monitoring.logs.diagnostic-settings` (Resource logs and diagnostic settings).
 Record real source checks and repair decisions in its report; do not mark a
 topic complete based on schema checks alone.
 

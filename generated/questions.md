@@ -2259,27 +2259,27 @@ D. Delete the DCR to make historical rows appear.
 
 Topic: Monitoring and recovery › Azure Monitor metric aggregation and dimensions.
 
-A supported CPU metric's 30-minute Average chart hides brief spikes. Which change helps examine peak values?
+A CPU-percentage metric supports Average and Maximum at one-minute granularity. A chart averages each 30-minute interval, masking short spikes. You must inspect the highest collected value in each minute of the incident window. Which chart configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Use Maximum with a smaller time grain.
-B. Use Count to measure peak CPU percentage.
-C. Use Sum and call it the maximum percentage.
-D. Change only the chart title.
+A. Maximum aggregation; one-minute time grain.
+B. Average aggregation; one-minute time grain.
+C. Maximum aggregation; 30-minute time grain.
+D. Average aggregation; 30-minute time grain with a shorter displayed time range.
 
 ## mo-metric-split
 
 Topic: Monitoring and recovery › Azure Monitor metric aggregation and dimensions.
 
-A metric supports an instance dimension. You need separate series for each worker rather than one combined average. What should you use?
+An application metric exposes an Instance dimension with four worker values. All four workers have data in the selected window. You need four separate worker series on one Metrics explorer chart, without excluding any worker. Which configuration meets the goal?
 
 Select **1**. Difficulty: applied.
 
-A. Only a longer time range.
-B. Dimension splitting by instance.
-C. A sum without dimensions.
-D. A resource lock.
+A. Filter Instance to one worker without applying splitting.
+B. Split by Instance and set the displayed-series limit to at least four.
+C. Filter Instance to all four workers without applying splitting.
+D. Split by Instance and set the displayed-series limit to one.
 
 ## mo-metric-count
 

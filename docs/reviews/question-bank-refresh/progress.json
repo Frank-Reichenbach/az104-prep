@@ -4908,9 +4908,9 @@
     {
       "id": "monitoring.metrics.analysis",
       "title": "Azure Monitor metric aggregation and dimensions",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/monitoring.metrics.analysis.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "mo-metric-peak",
@@ -4925,9 +4925,9 @@
           ],
           "baselineHash": "55c105d0fcb0813ee0a02899b47837c90c49d48797320931b5b127e0793fdd1d",
           "baselineContentHash": "47d56f962c691374537f8d620740ce2aafad6c4f163cb0568959e7e3da70af73",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "2e104130d590e7abab388f27b1dbd746afa9f1a79c692aea5aa857b40ebb9f40"
         },
         {
           "id": "mo-metric-split",
@@ -4942,9 +4942,9 @@
           ],
           "baselineHash": "61ed68f52313159f25f0cdeb01437ec44e0702ff64198cbdca2eb0537296ddbb",
           "baselineContentHash": "f5b73f58878331b1b020a50deb168d04d11a35e6afc80bd67ae2c830a297c04a",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "20ab36056359a5d9a5743f344929c652cc3ce4cc55cc6cb1ac9bc323bd55ca2e"
         },
         {
           "id": "mo-metric-count",
@@ -4959,9 +4959,9 @@
           ],
           "baselineHash": "c888e2252f32206ea5b57e09ae2f49799ddcb91ba0f1e3f7bd214afdf9bd6453",
           "baselineContentHash": "78de73b37f4f9ff4dc9da7f88fd514539b17e9c9790e2fcd7dbf07a2c07c6b52",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "76a19cc2f60bff3c1e746a23d0612e601d066f0d0a3022fc7d97bf0bebbe5838"
         }
       ]
     },
