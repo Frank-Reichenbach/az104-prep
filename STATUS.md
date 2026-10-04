@@ -4,7 +4,7 @@ Updated: 2026-10-04. Approved scope: [PLAN.md](PLAN.md).
 
 ## Current increment
 
-The full existing live-bank style review/update is authorized on 2026-10-03.
+The full existing live-bank style review/update authorized on 2026-10-03 is complete.
 Work branch: `fix/question-bank-style-refresh`. Read the
 [resume guide](docs/reviews/question-bank-refresh/README.md) and
 [ledger](docs/reviews/question-bank-refresh/progress.json); run
@@ -17,9 +17,9 @@ repair reasons, variants where present, and primary sources checked October 3–
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: publish the completed refresh through a pull request.
-The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
-tracks the ongoing refresh. The live main bank still has the baseline
+Next: review PR #3; merge only after explicit approval, then verify main deployment.
+The completed work branch is pushed and [PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
+is ready for review. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
 refresh PR needs explicit approval; do not reuse the earlier skill PR approval.
 
@@ -293,11 +293,13 @@ retirement are documented with current alternatives.
 
 ## Next task
 
-Continue the authorized existing-bank review from `npm run review:status`.
+The authorized existing-bank review is complete. Run `npm run review:status`
+to verify recorded hashes before publication.
 Current checkpoint: 322/322 questions, 99/99 topics complete.
-Next: publish the completed refresh through a pull request.
-Record real source checks and repair decisions in its report; do not mark a
-topic complete based on schema checks alone.
+Next: review PR #3; merge only after explicit approval, then verify main deployment.
+All 99 topic reports record source checks, decisions and answer reasoning.
+Preserve completed reviews unless question content changes. The research
+inventory remains outside this refresh.
 
 The skill-review findings are resolved. Use the revised workflow for the next
 requested authoring or review task, and retain acceptance cases for future
