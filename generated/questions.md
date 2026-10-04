@@ -751,14 +751,14 @@ D. Boot diagnostics
 
 Topic: Compute › Managed disk attachment, expansion, and performance.
 
-A managed data disk was increased from 128 GiB to 256 GiB in Azure, but the guest filesystem still shows the old capacity. What is the next appropriate task?
+A Linux VM data disk was expanded from 128 GiB to 256 GiB in Azure. The guest now detects a 256 GiB block device, but its existing partition and mounted filesystem remain 128 GiB. What task addresses the remaining capacity problem while preserving the filesystem data?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Extend the guest partition and filesystem using the supported OS procedure.
-B. Shrink the Azure disk back and then expand it again.
-C. Rename the LUN to 256.
-D. Change only the VM public IP.
+A. Grow the existing partition and filesystem using the supported OS procedure.
+B. Increase the Azure managed disk size again without changing the guest layout.
+C. Rescan the block device again without changing the guest layout.
+D. Resize the VM to add more vCPUs without changing the guest layout.
 
 ## co-disk-os
 
@@ -777,14 +777,14 @@ D. Standard SSD
 
 Topic: Compute › Managed disk attachment, expansion, and performance.
 
-You attach a managed disk containing existing application data to a Linux VM. What should you do before mounting it?
+A managed data disk with existing application files is attached to a Linux VM at LUN 2. The files must be retained, and the administrator has not yet identified its guest device or filesystem. Which next task prepares a safe mount?
 
 Select **1**. Difficulty: applied.
 
-A. Identify the device and inspect its existing partitions and filesystem.
-B. Always create a new filesystem because attachment erases formatting.
-C. Copy the data to the temporary disk as its only permanent location.
-D. Assume Azure attachment automatically configures the guest mount.
+A. Identify the device for LUN 2, then inspect its partitions and filesystem.
+B. Create a new empty filesystem on the device assigned to LUN 2.
+C. Mount /dev/sdc immediately without checking which LUN it represents.
+D. Mount the local temporary disk as the attached application-data volume.
 
 ## co-host-scope
 

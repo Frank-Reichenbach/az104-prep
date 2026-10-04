@@ -3100,9 +3100,9 @@
     {
       "id": "compute.vms.disks",
       "title": "Managed disk attachment, expansion, and performance",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.vms.disks.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-disk-expand",
@@ -3117,9 +3117,9 @@
           ],
           "baselineHash": "95cc92b4af9a9cb8bbe85a3faa14048f9e663332e31d3a8f8d88a6809f47229a",
           "baselineContentHash": "08d62f97ac0a5e4e9a00897e040a4ffed8bc32097ec418eac91eba08425aa032",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "400cc3d3fdd221cca54afbb273aeca1d0b5b87edba5fae72835fd402410dc385"
         },
         {
           "id": "co-disk-os",
@@ -3134,9 +3134,9 @@
           ],
           "baselineHash": "9807e975e8cecbe4fbd1b954a527d3f0b0385d5353ab2da071a9ea74dcc01f39",
           "baselineContentHash": "8870bd2385a06e7ba7674d31a46923d280f935fc50b2675a36a4ff4d8a8f9367",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "kept",
+          "reviewedRevision": 1,
+          "reviewedHash": "97da94701e487536e4bca4ee83658b92bcc4c804968cd65bf293a5ac44601cef"
         },
         {
           "id": "co-disk-existing",
@@ -3151,9 +3151,9 @@
           ],
           "baselineHash": "bae560472319ec2a72b343dc26f33777e02bbc114d10d563ccdc539f0a2b928a",
           "baselineContentHash": "b42648432fc41d7bb40549b87e7f760dc81e7ef6a142e198a4969ad8c7f53a30",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "f3d8acfa806dc72a9b04a53909735c29ad7651404c85c0f389a48e3cf507a044"
         }
       ]
     },

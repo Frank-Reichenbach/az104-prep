@@ -977,18 +977,18 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/creation.md). Evid
 
 Topic: Compute › Managed disk attachment, expansion, and performance.
 
-A managed data disk was increased from 128 GiB to 256 GiB in Azure, but the guest filesystem still shows the old capacity. What is the next appropriate task?
+A Linux VM data disk was expanded from 128 GiB to 256 GiB in Azure. The guest now detects a 256 GiB block device, but its existing partition and mounted filesystem remain 128 GiB. What task addresses the remaining capacity problem while preserving the filesystem data?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Extend the guest partition and filesystem using the supported OS procedure. Azure disk capacity and the guest filesystem size are separate layers.
-- **B. Incorrect:** Shrink the Azure disk back and then expand it again. Managed disk shrinking is unsupported and does not solve filesystem sizing.
-- **C. Incorrect:** Rename the LUN to 256. A LUN identifies attachment; it is not a capacity value.
-- **D. Incorrect:** Change only the VM public IP. Network addressing does not resize the filesystem.
+- **A. Correct:** Grow the existing partition and filesystem using the supported OS procedure. The block device already has the new capacity; the partition and filesystem still need expansion.
+- **B. Incorrect:** Increase the Azure managed disk size again without changing the guest layout. More block capacity does not expand the existing guest partition or filesystem.
+- **C. Incorrect:** Rescan the block device again without changing the guest layout. The guest already detects 256 GiB. Another scan alone does not grow its partition and filesystem.
+- **D. Incorrect:** Resize the VM to add more vCPUs without changing the guest layout. Compute sizing does not expand the existing disk partition or filesystem.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/disks.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/disks.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm)
 
 ## co-disk-os
 
@@ -1003,7 +1003,7 @@ Select **2**. Difficulty: foundation.
 - **C. Incorrect:** Premium SSD Supported VM configurations can use Premium SSD OS disks.
 - **D. Incorrect:** Standard SSD Standard SSD can be used for an OS disk.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/disks.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/disks.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk)
 
@@ -1011,18 +1011,18 @@ Study: [knowledge file](../knowledge/compute/virtual-machines/disks.md). Evidenc
 
 Topic: Compute › Managed disk attachment, expansion, and performance.
 
-You attach a managed disk containing existing application data to a Linux VM. What should you do before mounting it?
+A managed data disk with existing application files is attached to a Linux VM at LUN 2. The files must be retained, and the administrator has not yet identified its guest device or filesystem. Which next task prepares a safe mount?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Identify the device and inspect its existing partitions and filesystem. This avoids destructive initialization of a disk that already contains data.
-- **B. Incorrect:** Always create a new filesystem because attachment erases formatting. Attachment does not require destructive reformatting.
-- **C. Incorrect:** Copy the data to the temporary disk as its only permanent location. Temporary storage is not a durable replacement.
-- **D. Incorrect:** Assume Azure attachment automatically configures the guest mount. The guest still needs the appropriate discovery and mount configuration.
+- **A. Correct:** Identify the device for LUN 2, then inspect its partitions and filesystem. Attachment and guest device discovery are separate. Identifying the existing filesystem avoids formatting the wrong device or erasing the retained files.
+- **B. Incorrect:** Create a new empty filesystem on the device assigned to LUN 2. This initializes new storage and would replace the existing filesystem rather than preserve the application files.
+- **C. Incorrect:** Mount /dev/sdc immediately without checking which LUN it represents. Device names can vary. The candidate does not establish that /dev/sdc is the required disk or identify its filesystem partition.
+- **D. Incorrect:** Mount the local temporary disk as the attached application-data volume. The local temporary disk is a different storage device; it does not identify the managed disk at LUN 2.
 
-Study: [knowledge file](../knowledge/compute/virtual-machines/disks.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/virtual-machines/disks.md). Evidence checked: 2026-10-04.
 
-[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk)
+[Microsoft source 1](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview)
 
 ## co-host-scope
 

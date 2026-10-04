@@ -4,34 +4,34 @@
     {
       "id": "co-disk-expand",
       "family": "co-disk-expand",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.vms.disks",
       "objectives": [
         "co-10"
       ],
-      "difficulty": "applied",
-      "prompt": "A managed data disk was increased from 128 GiB to 256 GiB in Azure, but the guest filesystem still shows the old capacity. What is the next appropriate task?",
+      "difficulty": "troubleshooting",
+      "prompt": "A Linux VM data disk was expanded from 128 GiB to 256 GiB in Azure. The guest now detects a 256 GiB block device, but its existing partition and mounted filesystem remain 128 GiB. What task addresses the remaining capacity problem while preserving the filesystem data?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Extend the guest partition and filesystem using the supported OS procedure.",
-          "explanation": "Azure disk capacity and the guest filesystem size are separate layers."
+          "text": "Grow the existing partition and filesystem using the supported OS procedure.",
+          "explanation": "The block device already has the new capacity; the partition and filesystem still need expansion."
         },
         {
           "id": "b",
-          "text": "Shrink the Azure disk back and then expand it again.",
-          "explanation": "Managed disk shrinking is unsupported and does not solve filesystem sizing."
+          "text": "Increase the Azure managed disk size again without changing the guest layout.",
+          "explanation": "More block capacity does not expand the existing guest partition or filesystem."
         },
         {
           "id": "c",
-          "text": "Rename the LUN to 256.",
-          "explanation": "A LUN identifies attachment; it is not a capacity value."
+          "text": "Rescan the block device again without changing the guest layout.",
+          "explanation": "The guest already detects 256 GiB. Another scan alone does not grow its partition and filesystem."
         },
         {
           "id": "d",
-          "text": "Change only the VM public IP.",
-          "explanation": "Network addressing does not resize the filesystem."
+          "text": "Resize the VM to add more vCPUs without changing the guest layout.",
+          "explanation": "Compute sizing does not expand the existing disk partition or filesystem."
         }
       ],
       "correct": [
@@ -39,11 +39,10 @@
       ],
       "knowledge": "knowledge/compute/virtual-machines/disks.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types",
         "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks",
-        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk"
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-disk-os",
@@ -88,39 +87,39 @@
         "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks",
         "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-disk-existing",
       "family": "co-disk-existing",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.vms.disks",
       "objectives": [
         "co-10"
       ],
       "difficulty": "applied",
-      "prompt": "You attach a managed disk containing existing application data to a Linux VM. What should you do before mounting it?",
+      "prompt": "A managed data disk with existing application files is attached to a Linux VM at LUN 2. The files must be retained, and the administrator has not yet identified its guest device or filesystem. Which next task prepares a safe mount?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Identify the device and inspect its existing partitions and filesystem.",
-          "explanation": "This avoids destructive initialization of a disk that already contains data."
+          "text": "Identify the device for LUN 2, then inspect its partitions and filesystem.",
+          "explanation": "Attachment and guest device discovery are separate. Identifying the existing filesystem avoids formatting the wrong device or erasing the retained files."
         },
         {
           "id": "b",
-          "text": "Always create a new filesystem because attachment erases formatting.",
-          "explanation": "Attachment does not require destructive reformatting."
+          "text": "Create a new empty filesystem on the device assigned to LUN 2.",
+          "explanation": "This initializes new storage and would replace the existing filesystem rather than preserve the application files."
         },
         {
           "id": "c",
-          "text": "Copy the data to the temporary disk as its only permanent location.",
-          "explanation": "Temporary storage is not a durable replacement."
+          "text": "Mount /dev/sdc immediately without checking which LUN it represents.",
+          "explanation": "Device names can vary. The candidate does not establish that /dev/sdc is the required disk or identify its filesystem partition."
         },
         {
           "id": "d",
-          "text": "Assume Azure attachment automatically configures the guest mount.",
-          "explanation": "The guest still needs the appropriate discovery and mount configuration."
+          "text": "Mount the local temporary disk as the attached application-data volume.",
+          "explanation": "The local temporary disk is a different storage device; it does not identify the managed disk at LUN 2."
         }
       ],
       "correct": [
@@ -128,11 +127,10 @@
       ],
       "knowledge": "knowledge/compute/virtual-machines/disks.md",
       "sources": [
-        "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types",
-        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks",
-        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk"
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/add-disk",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     }
   ]
 }

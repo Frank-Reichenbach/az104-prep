@@ -11,13 +11,13 @@ Work branch: `fix/question-bank-style-refresh`. Read the
 `npm run review:status` before resuming. Completed reviews have final hashes;
 unchanged completed questions must not be reviewed again.
 
-Checkpoint: 157/322 questions reviewed, 125 revised and 32 kept; 46/99 topics complete.
-Latest: [Resizing virtual machines](docs/reviews/question-bank-refresh/compute.vms.resizing.md). Each completed topic has item decisions,
+Checkpoint: 160/322 questions reviewed, 127 revised and 33 kept; 47/99 topics complete.
+Latest: [Managed disk attachment, expansion, and performance](docs/reviews/question-bank-refresh/compute.vms.disks.md). Each completed topic has item decisions,
 repair reasons, variants where present, and primary sources checked October 3–4.
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: `compute.vms.disks` (Managed disk attachment, expansion, and performance).
+Next: `compute.vms.availability` (Availability sets and availability zones).
 The work branch is pushed and [draft PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
 tracks the ongoing refresh. The live main bank still has the baseline
 questions. The preserved research inventory remains separate. Merging this
