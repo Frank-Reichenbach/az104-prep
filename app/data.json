@@ -1662,34 +1662,34 @@
     {
       "id": "co-plan-sharing",
       "family": "co-plan-sharing",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.plans",
       "objectives": [
         "co-17"
       ],
       "difficulty": "foundation",
-      "prompt": "Two web apps and a staging slot run in the same dedicated App Service plan. What compute relationship should the administrator expect?",
+      "prompt": "Two web apps and a staging slot run in the same Standard App Service plan. Per-app scaling is disabled. How are the worker instances used?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "They share the plan worker capacity.",
-          "explanation": "Apps and slots consume resources from the same dedicated plan."
+          "text": "Both apps and the slot share the worker instances allocated to the plan.",
+          "explanation": "With per-app scaling disabled, apps and deployment slots run on the same plan instances and share their CPU and memory."
         },
         {
           "id": "b",
-          "text": "Each receives an independently billed dedicated worker set automatically.",
-          "explanation": "Dedicated compute is allocated at plan level."
+          "text": "Each app has its own worker instances, and the slot shares only its parent app instances.",
+          "explanation": "Dedicated compute is allocated to the plan, not separately to each app; both apps share the plan workers."
         },
         {
           "id": "c",
-          "text": "The staging slot runs in a different region automatically.",
-          "explanation": "A slot uses the same hosting plan, not automatic regional isolation."
+          "text": "Both apps share the plan workers, and the slot receives a separate worker allocation.",
+          "explanation": "Deployment slots also use the plan workers; creating a slot does not create an independent compute allocation."
         },
         {
           "id": "d",
-          "text": "Stopping one app deletes the shared plan workers.",
-          "explanation": "App lifecycle operations do not delete the plan."
+          "text": "The plan divides its workers into nonoverlapping allocations for the two apps and the slot.",
+          "explanation": "Per-app scaling is disabled, so each runs on the plan instances rather than receiving a separate partition of workers."
         }
       ],
       "correct": [
@@ -1701,39 +1701,39 @@
         "https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage",
         "https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-plan-separate",
       "family": "co-plan-separate",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.plans",
       "objectives": [
         "co-17"
       ],
       "difficulty": "applied",
-      "prompt": "A resource-intensive app must have an independent compute and scaling boundary from other apps. Which design fits?",
+      "prompt": "An existing Standard App Service plan hosts a customer portal. You need to deploy a batch-processing web app whose worker capacity and plan scaling can change without changing the portal capacity. The apps must not share worker instances. Which deployment meets these requirements?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Place it in a separate App Service plan.",
-          "explanation": "A separate plan separates the worker capacity and plan scaling."
+          "text": "Create another Standard plan and deploy the batch app to that plan.",
+          "explanation": "Separate plans allocate separate workers and let you change batch-plan capacity independently of the portal plan."
         },
         {
           "id": "b",
-          "text": "Create only another deployment slot in the existing plan.",
-          "explanation": "Slots still share the existing plan workers."
+          "text": "Deploy the batch app as a staging slot of the portal in the existing plan.",
+          "explanation": "The slot shares its plan workers with the portal, so it does not establish the required independent capacity boundary."
         },
         {
           "id": "c",
-          "text": "Change only the app resource group while retaining the plan.",
-          "explanation": "Resource-group organization does not separate shared compute."
+          "text": "Create the batch app in another resource group but select the existing plan.",
+          "explanation": "A different resource group does not change the workers allocated by the selected plan; the apps still share compute."
         },
         {
           "id": "d",
-          "text": "Assign a different custom hostname while retaining the plan.",
-          "explanation": "DNS naming does not change the compute boundary."
+          "text": "Scale out the existing plan and create the batch app in that plan.",
+          "explanation": "More instances enlarge the shared pool; they do not create a separate worker pool or independent plan scaling for the batch app."
         }
       ],
       "correct": [
@@ -1745,39 +1745,39 @@
         "https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage",
         "https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-plan-cost",
       "family": "co-plan-cost",
-      "revision": 1,
+      "revision": 2,
       "topic": "compute.app-service.plans",
       "objectives": [
         "co-17"
       ],
-      "difficulty": "applied",
-      "prompt": "The only app in a paid dedicated App Service plan is stopped. What should be checked to stop unnecessary plan compute charges?",
+      "difficulty": "troubleshooting",
+      "prompt": "After the last web app is deleted, an administrator explicitly retains its pay-as-you-go Standard App Service plan. The empty plan still has two allocated instances and continues to accrue compute charges. No workloads or plan configuration need to be retained. Which action stops future compute charges for this plan?",
       "select": 1,
       "options": [
         {
           "id": "a",
-          "text": "Whether the unused plan can be deleted or moved to a suitable lower tier.",
-          "explanation": "The plan retains its allocated paid capacity while the app is stopped."
+          "text": "Delete the empty App Service plan.",
+          "explanation": "The retained paid plan continues reserving workers. Deleting the unused plan releases that allocation and ends its future compute charges."
         },
         {
           "id": "b",
-          "text": "Assume the stopped app makes the dedicated plan free.",
-          "explanation": "Billing is based on allocated plan resources."
+          "text": "Scale the empty plan in to one instance.",
+          "explanation": "One allocated Standard instance still incurs compute charges, although fewer instances reduce the amount."
         },
         {
           "id": "c",
-          "text": "Remove only the app custom domain.",
-          "explanation": "Hostname configuration does not release the plan compute."
+          "text": "Change the empty plan from Standard to Basic.",
+          "explanation": "Basic is also a paid dedicated tier; a lower tier does not end charges for the allocated plan."
         },
         {
           "id": "d",
-          "text": "Delete only the app deployment history.",
-          "explanation": "Deployment records do not determine worker allocation."
+          "text": "Disable autoscale while leaving two instances allocated.",
+          "explanation": "Disabling autoscale does not release the two allocated workers; billing follows their allocation, not whether scaling rules are enabled."
         }
       ],
       "correct": [
@@ -1789,7 +1789,7 @@
         "https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage",
         "https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs"
       ],
-      "verified": "2026-10-02"
+      "verified": "2026-10-04"
     },
     {
       "id": "co-web-scale-up",

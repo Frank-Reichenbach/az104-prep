@@ -166,40 +166,40 @@ D. In a DNS record with no private endpoint NIC.
 
 Topic: Compute › App Service plan creation and compute sharing.
 
-Two web apps and a staging slot run in the same dedicated App Service plan. What compute relationship should the administrator expect?
+Two web apps and a staging slot run in the same Standard App Service plan. Per-app scaling is disabled. How are the worker instances used?
 
 Select **1**. Difficulty: foundation.
 
-A. They share the plan worker capacity.
-B. Each receives an independently billed dedicated worker set automatically.
-C. The staging slot runs in a different region automatically.
-D. Stopping one app deletes the shared plan workers.
+A. Both apps and the slot share the worker instances allocated to the plan.
+B. Each app has its own worker instances, and the slot shares only its parent app instances.
+C. Both apps share the plan workers, and the slot receives a separate worker allocation.
+D. The plan divides its workers into nonoverlapping allocations for the two apps and the slot.
 
 ## co-plan-separate
 
 Topic: Compute › App Service plan creation and compute sharing.
 
-A resource-intensive app must have an independent compute and scaling boundary from other apps. Which design fits?
+An existing Standard App Service plan hosts a customer portal. You need to deploy a batch-processing web app whose worker capacity and plan scaling can change without changing the portal capacity. The apps must not share worker instances. Which deployment meets these requirements?
 
 Select **1**. Difficulty: applied.
 
-A. Place it in a separate App Service plan.
-B. Create only another deployment slot in the existing plan.
-C. Change only the app resource group while retaining the plan.
-D. Assign a different custom hostname while retaining the plan.
+A. Create another Standard plan and deploy the batch app to that plan.
+B. Deploy the batch app as a staging slot of the portal in the existing plan.
+C. Create the batch app in another resource group but select the existing plan.
+D. Scale out the existing plan and create the batch app in that plan.
 
 ## co-plan-cost
 
 Topic: Compute › App Service plan creation and compute sharing.
 
-The only app in a paid dedicated App Service plan is stopped. What should be checked to stop unnecessary plan compute charges?
+After the last web app is deleted, an administrator explicitly retains its pay-as-you-go Standard App Service plan. The empty plan still has two allocated instances and continues to accrue compute charges. No workloads or plan configuration need to be retained. Which action stops future compute charges for this plan?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-A. Whether the unused plan can be deleted or moved to a suitable lower tier.
-B. Assume the stopped app makes the dedicated plan free.
-C. Remove only the app custom domain.
-D. Delete only the app deployment history.
+A. Delete the empty App Service plan.
+B. Scale the empty plan in to one instance.
+C. Change the empty plan from Standard to Basic.
+D. Disable autoscale while leaving two instances allocated.
 
 ## co-web-scale-up
 

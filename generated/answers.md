@@ -212,16 +212,16 @@ Study: [knowledge file](../knowledge/compute/app-service/networking.md). Evidenc
 
 Topic: Compute › App Service plan creation and compute sharing.
 
-Two web apps and a staging slot run in the same dedicated App Service plan. What compute relationship should the administrator expect?
+Two web apps and a staging slot run in the same Standard App Service plan. Per-app scaling is disabled. How are the worker instances used?
 
 Select **1**. Difficulty: foundation.
 
-- **A. Correct:** They share the plan worker capacity. Apps and slots consume resources from the same dedicated plan.
-- **B. Incorrect:** Each receives an independently billed dedicated worker set automatically. Dedicated compute is allocated at plan level.
-- **C. Incorrect:** The staging slot runs in a different region automatically. A slot uses the same hosting plan, not automatic regional isolation.
-- **D. Incorrect:** Stopping one app deletes the shared plan workers. App lifecycle operations do not delete the plan.
+- **A. Correct:** Both apps and the slot share the worker instances allocated to the plan. With per-app scaling disabled, apps and deployment slots run on the same plan instances and share their CPU and memory.
+- **B. Incorrect:** Each app has its own worker instances, and the slot shares only its parent app instances. Dedicated compute is allocated to the plan, not separately to each app; both apps share the plan workers.
+- **C. Incorrect:** Both apps share the plan workers, and the slot receives a separate worker allocation. Deployment slots also use the plan workers; creating a slot does not create an independent compute allocation.
+- **D. Incorrect:** The plan divides its workers into nonoverlapping allocations for the two apps and the slot. Per-app scaling is disabled, so each runs on the plan instances rather than receiving a separate partition of workers.
 
-Study: [knowledge file](../knowledge/compute/app-service/plans.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/plans.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs)
 
@@ -229,16 +229,16 @@ Study: [knowledge file](../knowledge/compute/app-service/plans.md). Evidence che
 
 Topic: Compute › App Service plan creation and compute sharing.
 
-A resource-intensive app must have an independent compute and scaling boundary from other apps. Which design fits?
+An existing Standard App Service plan hosts a customer portal. You need to deploy a batch-processing web app whose worker capacity and plan scaling can change without changing the portal capacity. The apps must not share worker instances. Which deployment meets these requirements?
 
 Select **1**. Difficulty: applied.
 
-- **A. Correct:** Place it in a separate App Service plan. A separate plan separates the worker capacity and plan scaling.
-- **B. Incorrect:** Create only another deployment slot in the existing plan. Slots still share the existing plan workers.
-- **C. Incorrect:** Change only the app resource group while retaining the plan. Resource-group organization does not separate shared compute.
-- **D. Incorrect:** Assign a different custom hostname while retaining the plan. DNS naming does not change the compute boundary.
+- **A. Correct:** Create another Standard plan and deploy the batch app to that plan. Separate plans allocate separate workers and let you change batch-plan capacity independently of the portal plan.
+- **B. Incorrect:** Deploy the batch app as a staging slot of the portal in the existing plan. The slot shares its plan workers with the portal, so it does not establish the required independent capacity boundary.
+- **C. Incorrect:** Create the batch app in another resource group but select the existing plan. A different resource group does not change the workers allocated by the selected plan; the apps still share compute.
+- **D. Incorrect:** Scale out the existing plan and create the batch app in that plan. More instances enlarge the shared pool; they do not create a separate worker pool or independent plan scaling for the batch app.
 
-Study: [knowledge file](../knowledge/compute/app-service/plans.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/plans.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs)
 
@@ -246,16 +246,16 @@ Study: [knowledge file](../knowledge/compute/app-service/plans.md). Evidence che
 
 Topic: Compute › App Service plan creation and compute sharing.
 
-The only app in a paid dedicated App Service plan is stopped. What should be checked to stop unnecessary plan compute charges?
+After the last web app is deleted, an administrator explicitly retains its pay-as-you-go Standard App Service plan. The empty plan still has two allocated instances and continues to accrue compute charges. No workloads or plan configuration need to be retained. Which action stops future compute charges for this plan?
 
-Select **1**. Difficulty: applied.
+Select **1**. Difficulty: troubleshooting.
 
-- **A. Correct:** Whether the unused plan can be deleted or moved to a suitable lower tier. The plan retains its allocated paid capacity while the app is stopped.
-- **B. Incorrect:** Assume the stopped app makes the dedicated plan free. Billing is based on allocated plan resources.
-- **C. Incorrect:** Remove only the app custom domain. Hostname configuration does not release the plan compute.
-- **D. Incorrect:** Delete only the app deployment history. Deployment records do not determine worker allocation.
+- **A. Correct:** Delete the empty App Service plan. The retained paid plan continues reserving workers. Deleting the unused plan releases that allocation and ends its future compute charges.
+- **B. Incorrect:** Scale the empty plan in to one instance. One allocated Standard instance still incurs compute charges, although fewer instances reduce the amount.
+- **C. Incorrect:** Change the empty plan from Standard to Basic. Basic is also a paid dedicated tier; a lower tier does not end charges for the allocated plan.
+- **D. Incorrect:** Disable autoscale while leaving two instances allocated. Disabling autoscale does not release the two allocated workers; billing follows their allocation, not whether scaling rules are enabled.
 
-Study: [knowledge file](../knowledge/compute/app-service/plans.md). Evidence checked: 2026-10-02.
+Study: [knowledge file](../knowledge/compute/app-service/plans.md). Evidence checked: 2026-10-04.
 
 [Microsoft source 1](https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans) · [Microsoft source 2](https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage) · [Microsoft source 3](https://learn.microsoft.com/en-us/azure/app-service/overview-manage-costs)
 

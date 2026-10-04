@@ -3520,9 +3520,9 @@
     {
       "id": "compute.app-service.plans",
       "title": "App Service plan creation and compute sharing",
-      "status": "pending",
-      "report": null,
-      "verified": null,
+      "status": "complete",
+      "report": "docs/reviews/question-bank-refresh/compute.app-service.plans.md",
+      "verified": "2026-10-04",
       "questions": [
         {
           "id": "co-plan-sharing",
@@ -3537,9 +3537,9 @@
           ],
           "baselineHash": "12abc623070740135fded5bbd898a0bb71cc5204ec74bd7edac127d00a495ec5",
           "baselineContentHash": "39a4c742b1af820a128587a2bdc9dd13814f95a2be3b21a085f3208eca914121",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "68aa5c59a0757e7d2fc7f9d2e0ddc7de5665b1bed821c94dca62c66e0fe4a470"
         },
         {
           "id": "co-plan-separate",
@@ -3554,9 +3554,9 @@
           ],
           "baselineHash": "faa31e2189c3f341362c130e9711f8e3f159aa1ba0aa69fa096ffda04110d994",
           "baselineContentHash": "3fc32c06936cb877ba65fe2e62a80f9e5d1f66f33fb0c35afa0e4704bf71ab72",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "00f8aa293b4262b31e4a004b8f2ddfcc4d03acb991d7a26c3c01fd077e8533cd"
         },
         {
           "id": "co-plan-cost",
@@ -3571,9 +3571,9 @@
           ],
           "baselineHash": "f0ef8e85c5c92d1edef7ce91e3e81c7523d10d6f880cfa1493071324f7393b45",
           "baselineContentHash": "2ef2aaeb51d147f3c9fd363444bae0a49637f0c657736f4fb7e6fef88cb3c4d6",
-          "decision": "pending",
-          "reviewedRevision": null,
-          "reviewedHash": null
+          "decision": "revised",
+          "reviewedRevision": 2,
+          "reviewedHash": "777270434830ae365ab96d4afa9dcb613e2f9607ff3d4e59a4d779f161176e4a"
         }
       ]
     },
