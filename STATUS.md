@@ -13,7 +13,8 @@ Publication uses a pull request; the user's request authorizes its merge.
 Verification: build/check, all 13 Node tests, static-site link validation,
 and diff whitespace checks passed. The server test required localhost binding
 outside the sandbox after the restricted run returned EPERM.
-Next: publish the pull request and verify the main Pages deployment. Use the
+Publication and merge outcome are tracked in
+[PR #4](https://github.com/Frank-Reichenbach/az104-prep/pull/4). Use the
 [main Actions history](https://github.com/Frank-Reichenbach/az104-prep/actions?query=branch%3Amain)
 for its final deployment result.
 
@@ -309,8 +310,8 @@ retirement are documented with current alternatives.
 The authorized existing-bank review is complete. Run `npm run review:status`
 to verify recorded hashes before publication.
 Current checkpoint: 322/322 questions, 99/99 topics complete.
-PR #3 is merged. Next: finish the requested GPL-3.0 publication above, then
-continue maintenance driven by study feedback.
+PR #3 is merged. GPL-3.0 publication is tracked in PR #4 above.
+Next: maintenance driven by study feedback after the license deployment.
 All 99 topic reports record source checks, decisions and answer reasoning.
 Preserve completed reviews unless question content changes. The research
 inventory remains outside this refresh.
