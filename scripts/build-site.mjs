@@ -18,7 +18,7 @@ export async function buildSite(destination = path.join(ROOT, '_site')) {
     }
   }
   // Some knowledge files link back to the project README and approved plan.
-  for (const name of ['README.md', 'PLAN.md', 'STATUS.md'])
+  for (const name of ['README.md', 'PLAN.md', 'STATUS.md', 'LICENSE'])
     await cp(path.join(ROOT, name), path.join(destination, name));
   await writeFile(path.join(destination, '.nojekyll'), '');
   // Verify document links still resolve in the deployment output.

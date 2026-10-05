@@ -1,5 +1,8 @@
 # AZ-104 study workspace
 
+Licensed under the [GNU General Public License version 3](LICENSE)
+(SPDX: `GPL-3.0-only`).
+
 > **Unofficial study material.** This is not an official Microsoft study guide
 > and is not affiliated with or endorsed by Microsoft. The practice questions
 > are original; they are not official exam questions.

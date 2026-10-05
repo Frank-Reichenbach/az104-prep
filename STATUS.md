@@ -1,6 +1,22 @@
 # Session handoff
 
-Updated: 2026-10-04. Approved scope: [PLAN.md](PLAN.md).
+Updated: 2026-10-05. Approved scope: [PLAN.md](PLAN.md).
+
+## GPL-3.0 publication
+
+The user requested GPL version 3 licensing and publication to main on
+October 5, 2026. `LICENSE` contains the unmodified GNU GPL version 3 text
+downloaded from https://www.gnu.org/licenses/gpl-3.0.txt. README.md links it,
+package.json declares `GPL-3.0-only`, and the static build includes the license
+so the deployed README link resolves. Work branch: `chore/gpl-3-license`.
+Publication uses a pull request; the user's request authorizes its merge.
+Verification: build/check, all 13 Node tests, static-site link validation,
+and diff whitespace checks passed. The server test required localhost binding
+outside the sandbox after the restricted run returned EPERM.
+Publication and merge outcome are tracked in
+[PR #4](https://github.com/Frank-Reichenbach/az104-prep/pull/4). Use the
+[main Actions history](https://github.com/Frank-Reichenbach/az104-prep/actions?query=branch%3Amain)
+for its final deployment result.
 
 ## Current increment
 
@@ -17,11 +33,9 @@ repair reasons, variants where present, and primary sources checked October 3–
 Build/check, all 13 Node tests, site links, review hashes, and whitespace checks
 validate checkpoints. The initial stale-hash fixture was rejected as expected.
 These are author-led reviews; no Azure labs were run.
-Next: review PR #3; merge only after explicit approval, then verify main deployment.
-The completed work branch is pushed and [PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3)
-is ready for review. The live main bank still has the baseline
-questions. The preserved research inventory remains separate. Merging this
-refresh PR needs explicit approval; do not reuse the earlier skill PR approval.
+[PR #3](https://github.com/Frank-Reichenbach/az104-prep/pull/3) merged on
+October 4, 2026, as verified in GitHub on October 5. Main now contains the
+reviewed bank at `588b18b`. The preserved research inventory remains separate.
 
 ## Previous skill publication
 
@@ -296,7 +310,8 @@ retirement are documented with current alternatives.
 The authorized existing-bank review is complete. Run `npm run review:status`
 to verify recorded hashes before publication.
 Current checkpoint: 322/322 questions, 99/99 topics complete.
-Next: review PR #3; merge only after explicit approval, then verify main deployment.
+PR #3 is merged. GPL-3.0 publication is tracked in PR #4 above.
+Next: maintenance driven by study feedback after the license deployment.
 All 99 topic reports record source checks, decisions and answer reasoning.
 Preserve completed reviews unless question content changes. The research
 inventory remains outside this refresh.
